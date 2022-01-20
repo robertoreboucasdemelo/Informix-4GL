@@ -1,0 +1,38 @@
+
+{-----------------------------------------------------------------------------
+ Nome do Form: cts29m00                                              Ruiz
+ Mostra informacoes do agendamento                                   Nov/2002
+-----------------------------------------------------------------------------}
+ 
+database porto
+screen size 24 by 80   
+{
+-----------------------------------------------------cts29m00---
+ Solicitante..........:[f001                ] Tipo.:[f002      ] 
+ Data.................:[f003      ] Hora:[f004   ]   
+ Atendente............:[f005  ]     Nome:[f006                ]
+ Depto................:[f007                                ]
+ Numero da Ligacao....:[f008      ] Numero da P.A..:[f009      ]
+----------------------------------------------------------------
+}
+end
+tables
+datmligacao
+datksoltip
+isskfunc
+
+attributes
+f001   = datmligacao.c24solnom,   noentry; 
+f002   = datksoltip.c24soltipdes, noentry; 
+f003   = datmligacao.ligdat   ,   noentry;
+f004   = formonly.lighorinc   ,   noentry;
+f005   = datmligacao.c24funmat,   noentry;
+f006   = isskfunc.funnom      ,   noentry  ;
+f007   = isskfunc.dptsgl      ,   noentry  ;
+f008   = datmligacao.lignum   ,   noentry  ;              
+f009   = datmligacao.c24paxnum,   noentry  ; 
+end
+
+instructions
+     delimiters "  " 
+end

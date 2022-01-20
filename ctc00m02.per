@@ -1,0 +1,88 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC00M02                                      Pedro  - Ago/1994
+
+ Manutencao no cadastro de prestadores do Porto Socorro      Alterado Jan/1997
+------------------------------------------------------------------------------}
+database porto
+screen
+{
+--------------------------------------------------------------------ctc00m02--
+         Codigo:[a1    ]-[a2                                      ]
+------------------------------------------------------------------------------
+ Nome Guerra.:[a3                  ] Situacao..:[i][i2       ]Tipo Pessoa.:[a]
+ Cgc/Cpf:[a4          ][a5  ][a6]    Inscr.Mun.:[a7                  ]
+ Ativ. principal.:[a10|a11                         ]  PIS/NIT..:[c34         ]
+ End Operacional.:[e1   |e2                                ]  Numero..:[e3   ]
+ Bairro:[b2                 ] Cidade:[b3                                 ][b4]
+ Complemento.:[e4                                  ]  Cep......:[b5   ][b6 ]
+ Telefone....:[b7  ][b8                                      ] Fax:[b9       ]
+ Cel. Gestor :[b10 |b11      ] Sucursal:[c32  |c33                           ]
+ Proprietario:[c1                                      ] Patio....:[c]
+ Contato.....:[c2                                      ] Atd.24h..:[d]
+ Opcao Pagto.:[c3|c31            ]     Padrao Qualidade:[h|h2            ]
+ Forma Pagto.:[c4                ]     Tipo Cooperativa:[j|j1            ]
+ Usa Tabela..:[k] Tar.RE:[k5|k6              ] Resp:[m|r2                    ]
+ Observacoes.:[k4                                                            ]
+ Acionamento.:[l][l1      ]  Preenche RIS:[r]  Optante pelo simples:[s]
+}
+end
+
+tables dpaksocor, dpaksocorfav, dbsktarifasocorro
+
+attributes
+a1   = dpaksocor.pstcoddig, comments = " Codigo do prestador", reverse;
+a2   = dpaksocor.nomrazsoc, comments = " Razao social do prestador", upshift, reverse;
+a3   = dpaksocor.nomgrr   , comments = " Nome de guerra do prestador", upshift, reverse;
+a    = dpaksocor.pestip   , comments = " Tipo de pessoa: (F)isica ou (J)uridica", upshift, reverse;
+a4   = dpaksocor.cgccpfnum, comments = " Cgc/Cpf do prestador";
+a5   = dpaksocor.cgcord   , comments = " Filial do Cgc", format = "&&&&";
+a6   = dpaksocor.cgccpfdig, comments = " Digito do Cgc/Cpf", format = "&&";
+a7   = dpaksocor.muninsnum, comments = " Inscricao municipal";
+e1   = dpaksocor.lgdtip   , comments = " Tipo do Logradouro do prestador", upshift;
+e2   = dpaksocor.endlgd   , comments = " Logradouro do prestador", upshift;
+e4   = dpaksocor.endcmp   , comments = " Complemento do Logradouro do prestador", upshift;
+e3   = dpaksocor.lgdnum;
+b2   = dpaksocor.endbrr   , upshift;
+b3   = dpaksocor.endcid   , comments = " Digite a Cidade do prestador", upshift;
+b4   = dpaksocor.endufd   , comments = " Digite o Estado do prestador", upshift;
+b5   = dpaksocor.endcep   , comments = " Digite o CEP";
+b6   = dpaksocor.endcepcmp, comments = " Complemento do CEP";
+b7   = dpaksocor.dddcod   , comments = " Codigo do DDD";
+b8   = dpaksocor.teltxt   , comments = " Telefones para contato";
+b9   = dpaksocor.faxnum   , comments = " Numero do Fax";
+b10  = dpaksocor.celdddnum, comments = " DDD do celular do prestador";
+b11  = dpaksocor.celtelnum, comments = " Telefone celular do prestador";
+c1   = dpaksocor.pptnom   , comments = " Nome do proprietario", upshift;
+c    = dpaksocor.patpprflg, comments = " Possui patio proprio: (S)im ou (N)ao", upshift;
+c2   = dpaksocor.rspnom   , comments = " Nome do Responsavel/Contato", upshift;
+c3   = dpaksocorfav.socpgtopccod, comments = " Opcao Pagto: 1-Dep.Conta, 2-Cheque, 3-Boleto";
+c31  = formonly.socpgtopcdes, noentry;
+d    = dpaksocor.srvnteflg, comments = " Atendimento 24 Horas: (S)im ou (N)ao", upshift;
+c4   = dpaksocor.outciatxt, comments = " Forma de pagamento", upshift;
+h    = dpaksocor.qldgracod, comments = " Padrao de qualidade";
+h2   = formonly.qldgrades;
+c32  = formonly.succod,     comments='Informe a sucursal aonde prestador entrega a nota';
+c33  = formonly.sucnom, noentry;
+i    = dpaksocor.prssitcod, comments = " Situacao: (A)tivo, (B)loqueado, (C)ancelado ou (P)roposta",upshift;
+c34  = formonly.pisnum,     comments = 'Informe o nr do PIS/NIT';
+a10  = formonly.pcpatvcod type smallint, format = "&&&", comments = ' Informe a atividade principal ';
+a11  = formonly.pcpatvdes    , noentry;
+-- c35  = formonly.nitnum,     comments = 'Informe o nr do NIT';
+i2   = formonly.prssitdes    , noentry;
+j    = dpaksocor.prscootipcod, comments = " Tipo de Cooperativa";
+j1   = formonly.prscootipdes , noentry;
+k    = dpaksocor.vlrtabflg   , comments = " Prestador usa tabela : (S)im ou (N)ao", upshift;
+k5   = formonly.rmesoctrfcod , comments = " Codigo da tarifa para RE";
+k6   = formonly.soctrfdes_re , noentry;
+k4   = dpaksocor.pstobs      , comments = " Observacoes", upshift;
+l    = dpaksocor.intsrvrcbflg, comments = " (1) - INTERNET ou <enter> ", upshift;
+l1   = formonly.intdescr     , noentry;
+r    = formonly.risprcflg    , upshift;
+m    = dpaksocor.frtrpnflg   , upshift;
+r2   = formonly.frtrpndes    , upshift, noentry;
+s    = dpaksocor.simoptpstflg, comments = " Optante pelo simples: (S)im ou (N)ao", upshift;
+end
+
+instructions
+     delimiters " "
+end

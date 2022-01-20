@@ -1,0 +1,72 @@
+<title>Consulta Documentos do Cliente</title>
+<script>
+	if(window.opener != null){
+		window.opener.document.getElementById("msg").style.display = "none";
+		window.opener.document.getElementById("link").style.display = "block"; 
+	}
+	function fechar(){
+		try{
+			window.opener.close();		
+			window.close();
+		}catch(e){
+			//alert(e.message);
+		}
+	}
+	
+	function ebfGetDominio() {
+		var url = window.location.href; 
+		url = url.split("/"); 
+		return url[2];
+	}
+	
+	function getFormatURL(){
+		var urlBuscaCliente = "http://" + ebfGetDominio() + "/gerenciadorinterface/psqclicrm.do?";
+		var parametros = window.location.search.split('?')[1];
+		var url = urlBuscaCliente + parametros;		
+		document.getElementById("busca_cliente").src = url;		
+	}
+	
+	/* POST */
+	function getFormatURLPost(){
+		var form = document.createElement("form");
+		form.setAttribute("method", "post");
+		// URL Porto /gerenciadorinterface/psqclicrm.do
+		// URL Azul /gerenciadorinterface/giw2psqclicrm.do
+		form.setAttribute("action", "http://" +  ebfGetDominio() + "/gerenciadorinterface/psqclicrm.do");
+		form.setAttribute("target", "busca_cliente");
+		
+		//Create hiddenField in Form			
+		createElementInDocumentHTML(form,"hidden","usrtip","usrtip",window.opener.document.getElementById("usrtip").value);
+		createElementInDocumentHTML(form,"hidden","empcod","empcod",window.opener.document.getElementById("empcod").value);
+		createElementInDocumentHTML(form,"hidden","usrcod","usrcod",window.opener.document.getElementById("usrcod").value);
+		createElementInDocumentHTML(form,"hidden","sesnum","sesnum",window.opener.document.getElementById("sesnum").value);
+		createElementInDocumentHTML(form,"hidden","portal","portal",window.opener.document.getElementById("portal").value);
+		document.body.appendChild(form);
+		document.getElementById("busca_cliente").src = form.action;
+		form.submit();
+	}
+	
+	function createElementInDocumentHTML(form, type, id, name, value){
+		var hiddenField = document.createElement("input"); 
+		hiddenField.setAttribute("type", type);
+		hiddenField.setAttribute("id", id);
+		hiddenField.setAttribute("name", name);
+		hiddenField.setAttribute("value", value);
+		form.appendChild(hiddenField);
+	}
+	
+	/* OpenUI */
+	function getDialogArguments() {
+		if (window.opener) {
+			return window.opener.getDialogArguments();
+		}
+		return null;
+	}
+</script>
+<body onbeforeunload="fechar()">
+	<iframe id="busca_cliente" name="busca_cliente" src="about:blank" width="100%" height="100%" frameborder="0" ></iframe>
+</body>
+<script>
+	getFormatURLPost();
+</script>
+

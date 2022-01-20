@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m02                                      R.Fornax
+                                                             
+ Cadastro de Servico X Grupo                                 Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m02--
+ Grupo.....:[a  ][b                                                        ]
+------------------------------------------------------------------------------
+   Servico      Nome                                              Situacao
+   
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+------------------------------------------------------------------------------
+ Atualizado..:[f          ] por [g                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.srvgrptipcod  ,noentry;
+   b  = formonly.srvgrptipnom  ,noentry;
+   c  = formonly.srvcod        ,comments = " Digite o Codigo do Servico"   ,upshift;
+   d  = formonly.srvnom        ,noentry;
+   e  = formonly.regsitflg     ,comments = " Situacao A-tivo ou I-nativo"  ,upshift; 
+   f  = formonly.regatldat     ,noentry;
+   g  = formonly.funnom        ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m02(srvcod thru regsitflg)
+end

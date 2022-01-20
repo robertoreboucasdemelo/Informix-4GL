@@ -1,0 +1,46 @@
+{----------------------------------------------------------------------------
+ NOME DO FORM: CTC00m12                                     PRISCILA STAINGEL
+
+ TELA PARA LISTAR TODOS OS PRESTADORES DE ACORDO COM A SITUACAO      JUN/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+-------------------------------------------------------------------ctc00m12---
+ Situacao:[a][a1        ]        Ordenar:[b][b1                   ]
+------------------------------------------------------------------------------
+ Codigo   Nome
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ [c1  ]  [c2                                        ]
+ Total: [d   ]
+
+}
+end
+
+attributes
+  a = formonly.prssitcod type char, upshift,
+                         comments = "Situacao: (A)tivo, (B)loqueado, (C)ancelado, (P)roposta ou (T)odos";
+  a1= formonly.prssitdes type char, noentry;
+  b = formonly.ordem     type integer,
+                         comments = "1-Ordenar por codigo , 2-Ordenar por nome";
+  b1= formonly.ordemdes  type char, noentry;
+  c1= formonly.pstcoddig type char, noentry;
+  c2= formonly.nomgrr    type char, noentry;
+  d = formonly.total     type integer, format = "&&&&", noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc00m12(pstcoddig, nomgrr)
+end

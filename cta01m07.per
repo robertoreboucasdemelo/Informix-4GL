@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m07                                              Gilberto
+                                                                      Marcelo
+ Recalcula valor a pagar da parcela                                  Set/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+
+{
+--------------------------------------------------------------------cta01m07--
+                      Recalculo da parcela numero:[p ]
+------------------------------------------------------------------------------
+
+ Dt.Estimada:[a         ]    [a2                  ]
+
+ Titulo.....:[b1        ]     Tipo Endosso.:[b2                              ]
+
+ Vencimento.:[b4        ]     Valor Titulo.:[b5            ]
+                              Valor Juros..:[c0            ]
+ Atraso.....:[c1 ]dias        Tx.Reativacao:[c3            ]
+
+ Taxa Juros.:[c2   ]% dia     Vlr.Corrigido:[c4            ]
+
+ Observacao.:[d1                                      ]
+
+
+}
+
+tables  fctrpevparc, fctmtitulos, fctmpag
+
+attributes
+   p  =  fctrpevparc.parnum, reverse                  ,noentry;
+
+   a  =  formonly.estvctdat     type date,
+         comments = " Data estimada";
+
+   a2 =  formonly.vctaltdes                           ,noentry;
+
+   b1 =  fctmtitulos.titnumdig                        ,noentry;
+   b2 =  formonly.edstipdes                           ,noentry;
+   b4 =  fctmtitulos.vctdat                           ,noentry;
+   b5 =  fctmtitulos.parvlr, format="##########&.&&"  ,noentry;
+
+   c0 =  formonly.vlrjrs     type dec,
+                             format="##########&.&&"  ,noentry;
+   c1 =  formonly.qtddias                             ,noentry;
+   c2 =  formonly.jrstx                               ,noentry;
+   c3 =  formonly.dctrtvtax  type dec,
+                             format="##########&.&&"  ,noentry;
+   c4 =  formonly.vlrcor     type dec,
+                             format="##########&.&&"  ,noentry;
+
+   d1 =  formonly.obs                                 ,noentry;
+end
+
+instructions
+     delimiters " "
+end

@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m37
+ Autor.......: Lucas Scheid, Meta
+ Tela para resumo dos filtros.                                       Jan/2005
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+       [t                             ]
+------------------------------------cts00m37--
+
+[ca              |c ]–[d                   ]
+
+ U.F.  : [u ]
+
+[ncid   ][cid                             ]
+                   1-Acionamento Automatico
+ Informe: [n]      2-Acionamento Manual
+                   3-Na Rua
+                   4-Todos
+        (F5) Resumo    (F17) Abandona
+}
+end
+
+attributes
+  t  = formonly.titulo,  noentry;
+  ca = formonly.campo, noentry;
+  c  = formonly.filtro_cod;
+  d  = formonly.descricao, noentry;
+  u  = formonly.uf_cod, upshift;
+  ncid= formonly.ncid, upshift;
+  cid= formonly.cidnom, upshift;
+  n  = formonly.flag type smallint, autonext, comments='Infome 1,2,3 ou 4',
+       include=(1,2,3,4);
+end
+
+instructions
+  delimiters ' '
+end

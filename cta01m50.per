@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m50                                               Marcelo
+                                                                      Gilberto
+ Espelho do Cartao                                                    Jan/1996
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+                           INFORMACOES DO CARTAO                    cta01m50
+------------------------------------------------------------------------------
+ Cartao...:[e1                 ]               [e2         ][e21             ]
+
+ Nome.....:[e3                                       ]
+ Cpf/Cgc..:[e31          ]   Cidade..:[e4                                    ]
+ Telefone.:[e6           ]
+ Dt.Adesao:[e8        ]      Validade:[e9      ]      Dia Fatura:[e91]
+
+                   VEICULOS COM ATENDIMENTO "PORTO SOCORRO"
+------------------------------------------------------------------------------
+ Veiculo                                 Cor           Ano   Placa
+------------------------------------------------------------------------------
+[e10                                   ][e11         ][e12 ][e13     ][e14]
+[e10                                   ][e11         ][e12 ][e13     ][e14]
+[e10                                   ][e11         ][e12 ][e13     ][e14]
+[e10                                   ][e11         ][e12 ][e13     ][e14]
+[e10                                   ][e11         ][e12 ][e13     ][e14]
+
+}
+end
+ tables abbmveic, eccmcli , eccmcta    , epcmproposta, epcmitem   , eccmpti
+
+attributes
+   e1  = formonly.cartao          type dec ,
+         format  =  "#### #### #### ####",    noentry;
+   e2  = formonly.situacao,       reverse,    noentry;
+   e21 = formonly.pcablqdes,                  noentry;
+   e3  = eccmcli.pcaclinom,              noentry;
+   e31 = eccmcli.pcaclicgccpf,
+         format  =  "########## ##",        noentry;
+   e4  = formonly.cidade,                     noentry;
+   e6  = formonly.fone            type char,  noentry;
+   e8  = eccmcta.pcactaabrdat   ,                noentry;
+   e9  = formonly.validade,                   noentry;
+   e91 = formonly.pcaclcvct,                  noentry;
+   e10 = formonly.veiculo         type char,  noentry;
+   e11 = formonly.cor             type char,  noentry;
+   e12 = abbmveic.vclanomdl,                  noentry;
+   e13 = abbmveic.vcllicnum,                  noentry;
+   e14 = formonly.tpcar           type char,  noentry;
+end
+instructions
+   delimiters " "
+   screen record s_cta01m50 (veiculo, cor, vclanomdl, vcllicnum, tpcar)
+end

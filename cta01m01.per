@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m01                                               Marcelo
+
+ Consulta acessorios da apolice
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+ Codigo   Descricao            Import. Segurada    Taxa              Franquia
+--------------------------------------------------------------------cta01m01--
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+[a][b   ][c              ] [d                  ] [e    ] [f                  ]
+}
+End
+
+Attributes
+  a = formonly.asstip;
+  b = formonly.asscod, picture = "&&&&";
+  c = formonly.assnom, upshift;
+  d = formonly.assimsvlr type decimal(15,5), format  = "#,###,###,##&.&&&&&";
+  e = formonly.assimstax type decimal(04,2), format  = "#&.&&";
+  f = formonly.assfrqvlr type decimal(15,5), format  = "#,###,###,##&.&&&&&";
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta01m01(asstip thru assfrqvlr)
+End

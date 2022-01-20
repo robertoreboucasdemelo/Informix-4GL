@@ -1,0 +1,58 @@
+database formonly
+screen size 24 by 80
+{            
+--------------------------------------------------------------ctc00m10-------
+Ramo......:[a  ]-[a1                                      ]
+Assunto...:[b  ]-[b1                                      ]
+Convenio..:[c  ]-[c1                                      ] Sequencia:[c2 ]
+-----------------------------------------------------------------------------
+Tipo de Informacao                          E/P Emp Codigo    Destinatarios
+[d|q|e                                      |f| g  |h        |i             ]
+[d|q|e                                      |f| g  |h        |i             ]
+[d|q|e                                      |f| g  |h        |i             ]
+[d|q|e                                      |f| g  |h        |i             ]
+
+E-mails externos
+[j                                                 ]
+[j                                                 ]
+
+Situacao........:[l] (A-Ativo/C-Cancelado)
+Ult. Atualizacao:[m         ]-[n    ][o     ]-[p                   ] 
+}
+end
+attributes
+a  = formonly.ramcod              , autonext         ; 
+a1 = formonly.ramnom              , noentry, upshift ; 
+b  = formonly.c24astcod           , autonext,upshift ,comments = "<F5 - Consulta Assuntos>"; 
+b1 = formonly.c24astdes           , noentry, upshift ;
+c  = formonly.cvnnum              , autonext,upshift ; 
+c1 = formonly.cpodes              , noentry, upshift ;
+c2 = formonly.c24prtseq                              ;
+d  = formonly.c24prtinftip        , autonext,upshift, comments = "Para Avancar ao campo E/P tecle F8." ;
+q  = formonly.cpocod              , invisible,noentry ;
+e  = formonly.cpodes2             , noentry, upshift ;
+f  = formonly.emapager            , autonext,upshift ;
+g  = formonly.empcod              , autonext         ;
+h  = formonly.codigo              , autonext, comments = "Para Avancar ao campo E-mails externos tecle F8." ;
+i  = formonly.destinat            , noentry, upshift ;
+j  = formonly.maicod              , comments = "Para Avancar ao campo Situacao tecle F8." ;
+l  = formonly.c24prtsit           , upshift,comments = "Para Gravar tecle F8." ;
+m  = formonly.caddat              , noentry          ;
+n  = formonly.cadhor              , noentry          ;
+o  = formonly.funmat              , noentry          ;
+p  = formonly.funnom              , noentry          ;
+end
+
+instructions
+   delimiters " "
+   screen record s_tela(formonly.c24prtinftip,
+                        formonly.cpocod,
+                        formonly.cpodes2)
+   
+   screen record s_tela1(formonly.emapager,
+                         formonly.empcod,
+                         formonly.codigo,
+                         formonly.destinat)
+                         
+   screen record s_tela2(formonly.maicod)                         
+end

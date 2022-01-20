@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M03                                              Marcelo
+                                                                     Gilberto
+ Informacoes sobre o acidente                                        Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                         Informacoes sobre o Acidente
+--------------------------------------------------------------------cts18m03--
+ Local Acidente:[a10                                                         ]
+ Cidade........:[a15                 ]    UF......:[a1]
+ Natureza......:[a2][a3                 ] B.O.?...:[b]       D.P..:[b10]
+
+ Local Veiculo.:[c10                                                         ]
+ Endereco......:[c15                                     ]
+ Culpa Acidente:[d|d10          ]         Assumiu?:[e]
+[x]
+
+}
+end
+
+tables
+   ssammot, ssamavs, sgaknatur
+
+attributes
+
+  a10 = ssammot.sinlcldes      , upshift,
+        comments = " Local onde ocorreu o acidente";
+  a15 = ssammot.sinendcid      , upshift,
+        comments = " Cidade onde ocorreu o acidente";
+  a1  = ssammot.sinlclufd      , upshift,
+        comments = " U.F. onde ocorreu o acidente";
+  a2  = ssamavs.sinntzcod      , upshift,
+        comments = " Natureza do acidente";
+  a3  = sgaknatur.sinntzdes    , noentry;
+  b   = ssammot.sinbocflg      , upshift,
+        comments = " Houve boletim de ocorrencia ? (S)im ou (N)ao";
+  b10 = ssammot.dgcnum                 ,
+        comments = " Numero da delegacia de policia";
+
+  c10 = ssammot.sinvcllcldes   , upshift,
+        comments = " Local onde se encontra o veiculo";
+  c15 = ssammot.vclatulgd      , upshift,
+        comments = " Endereco do local onde se encontra o veiculo";
+  d   = formonly.sinmotcplflg  , upshift,
+        comments = " Culpado pelo acidente: (S)egurado, (T)erceiro ou (I)ndefinido", autonext;
+  d10 = formonly.sinmotcpl     , upshift, noentry;
+  e   = formonly.sinrclcpdflg  , upshift,
+        comments = " Culpado assumiu a culpa? (S)im ou (N)ao";
+  x   = formonly.filler        ;
+
+end
+
+instructions
+  delimiters " "
+end

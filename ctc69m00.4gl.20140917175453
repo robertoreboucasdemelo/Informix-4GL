@@ -1,0 +1,1149 @@
+#-----------------------------------------------------------------------------#  
+# Porto Seguro Cia Seguros Gerais                                             #  
+#.............................................................................#  
+# Sistema........: Regras Siebel                                              #  
+# Modulo.........: ctc69m00                                                   #  
+# Objetivo.......: Cadastro Grupo de Servico                                  #  
+# Analista Resp. : Amilton Pinto                                              #  
+# PSI            :                                                            #  
+#.............................................................................#  
+# Desenvolvimento: R.Fornax                                                   #  
+# Liberacao      : 12/08/2013                                                 #  
+#.............................................................................#  
+globals  "/homedsa/projetos/geral/globals/glct.4gl"
+
+define  m_sql             char(1)
+define  m_srvgrptipdestxt like datksrvgrptip.srvgrptipdestxt
+
+#------------------------------------------------------------
+ function ctc69m00_prepare()
+#------------------------------------------------------------
+
+define l_sql char(10000)
+
+ 
+ let l_sql = ' select srvgrptipcod       '
+           , '  from datksrvgrptip       '
+           , '  where srvgrptipcod = ?   '
+ prepare p_ctc69m00_001 from l_sql
+ declare c_ctc69m00_001 cursor for p_ctc69m00_001
+
+ 
+ let l_sql = ' select min(srvgrptipcod)  '
+           , '  from datksrvgrptip       '
+           , '  where srvgrptipcod  >  ? '
+ prepare p_ctc69m00_002 from l_sql
+ declare c_ctc69m00_002 cursor for p_ctc69m00_002
+ 
+ 
+ let l_sql = ' select max(srvgrptipcod)  '
+           , '  from datksrvgrptip       '
+           , '  where srvgrptipcod  <  ? '
+ prepare p_ctc69m00_003 from l_sql
+ declare c_ctc69m00_003 cursor for p_ctc69m00_003
+
+
+ let l_sql = ' update datksrvgrptip set ( srvgrptipdestxt '  
+           , '                          , srvgrptipsitflg '
+           , '                          , regatldat       '
+           , '                          , empcod          '
+           , '                          , usrmatnum       '
+           , '                          , usrtipcod )     '
+           , '                       =  (?,?,?,?,?,?)     '
+           , '  where srvgrptipcod  =  ?                  '
+ prepare p_ctc69m00_004 from l_sql
+
+ 
+ let l_sql = 'insert into datksrvgrptip (srvgrptipnom              '
+           , '                         , srvgrptipdestxt           '   
+           , '                         , srvgrptipsitflg           '
+           , '                         , regatldat                 '
+           , '                         , empcod                    '
+           , '                         , usrmatnum                 '
+           , '                         , usrtipcod      )          '
+           , '          values ( ?,?,?,?,?,?,?)                    '
+ prepare p_ctc69m00_005 from l_sql
+ 
+ 
+ let l_sql = ' select srvgrptipcod       '            
+           , '  from datksrvgrptip       '            
+           , '  where srvgrptipnom = ?   '            
+ prepare p_ctc69m00_006 from l_sql                   
+ declare c_ctc69m00_006 cursor for p_ctc69m00_006    
+ 
+ 
+ let l_sql = ' select count(*)           '
+           , '  from datksrvgrptip       '
+           , '  where srvgrptipnom =  ?  '
+ prepare p_ctc69m00_007 from l_sql
+ declare c_ctc69m00_007 cursor for p_ctc69m00_007
+
+ 
+ let l_sql = ' select  srvgrptipcod        '
+           , '      ,  srvgrptipnom        '
+           , '      ,  srvgrptipsitflg     '
+           , '      ,  usrtipcod           '
+           , '      ,  empcod              '
+           , '      ,  usrmatnum           '
+           , '      ,  regatldat           '
+           , '   from  datksrvgrptip       ' 
+           , '   where srvgrptipcod = ?    '
+ prepare p_ctc69m00_008 from l_sql
+ declare c_ctc69m00_008 cursor for p_ctc69m00_008
+ 	
+ 
+ let l_sql = ' select min(srvgrptipcod)  '        	
+           , ' from datksrvgrptip        '  	     	
+ prepare p_ctc69m00_009 from l_sql               	
+ declare c_ctc69m00_009 cursor for p_ctc69m00_009	
+
+            
+ let l_sql = '  select funnom               '
+           , '    from isskfunc             '
+           , '   where funmat = ?           '
+           , '     and empcod = ?           '
+           , '     and usrtip = ?           '
+ prepare p_ctc69m00_010 from l_sql
+ declare c_ctc69m00_010 cursor for p_ctc69m00_010
+       
+ 
+ let l_sql = ' select min(srvgrptipcod)   '
+           , '   from datksrvgrptip       '
+ prepare p_ctc69m00_011 from l_sql
+ declare c_ctc69m00_011 cursor for p_ctc69m00_011
+ 	
+ 
+ let l_sql = ' select count(*)           '        	
+           , ' from datksrvgrp           '        	
+           , ' where srvgrptipcod = ?    ' 
+           , ' and   regsitflg    = "A"  '       	
+ prepare p_ctc69m00_012 from l_sql                 	
+ declare c_ctc69m00_012 cursor for p_ctc69m00_012 
+ 	
+ 	
+ let l_sql = ' select count(*)          '        	
+           , ' from datksrvgrp          '    	
+           , ' where srvgrptipcod = ?   '         	
+           , ' and   regsitflg    = "I" '       	   	
+ prepare p_ctc69m00_013 from l_sql                	
+ declare c_ctc69m00_013 cursor for p_ctc69m00_013
+ 	
+ 
+ let l_sql = ' select count(*)        '       	
+           , '  from datksrvgrp       '   	
+           , ' where srvgrptipcod = ? '        	     	 	
+ prepare p_ctc69m00_014 from l_sql               	
+ declare c_ctc69m00_014 cursor for p_ctc69m00_014	
+ 
+ 
+ let l_sql = ' select count(*)                  '       	
+           , '  from datksrvgrp    a,           '
+           , '       datksrvgrpesp b            '  	
+           , ' where a.srvgrpcod = b.srvgrpcod  '        	
+           , '   and a.srvgrptipcod = ?         '       	 	
+ prepare p_ctc69m00_015 from l_sql               	
+ declare c_ctc69m00_015 cursor for p_ctc69m00_015
+ 	
+ 
+ let l_sql = ' update datksrvgrp       '       	
+           , ' set regsitflg = "I"     '   	
+           , ' where srvgrptipcod = ?  '        	     	 	
+ prepare p_ctc69m00_016 from l_sql               	
+ 
+ 
+ let l_sql = ' update datksrvgrpesp      ' 
+           , '  set regsitflg = "I"      '  
+           , '  where srvgrpcod in       '
+           , ' (select srvgrpcod         '   	
+           , '  from datksrvgrp          '        	
+           , '  where srvgrptipcod = ? ) '       	 	
+ prepare p_ctc69m00_017 from l_sql               	
+ 
+ 	     
+let m_sql = 'S'
+
+end function
+
+#------------------------------------------------------------
+ function ctc69m00()
+#------------------------------------------------------------
+
+ define lr_ctc69m00  record
+      srvgrptipcod     like datksrvgrptip.srvgrptipcod    
+    , srvgrptipnom     like datksrvgrptip.srvgrptipnom    
+    , srvgrptipsitflg  like datksrvgrptip.srvgrptipsitflg  
+    , regatldat        like datksrvgrptip.regatldat       
+    , funnom           like isskfunc.funnom
+    , obs1             char(60) 
+    , obs2             char(60)   
+ end record
+
+ let int_flag = false
+ initialize lr_ctc69m00.*  to null
+
+ call ctc69m00_prepare()
+ 
+ open window ctc69m00 at 4,2 with form "ctc69m00"
+
+
+ menu "GRUPO"
+
+ command key ("S") "Seleciona"
+                   "Pesquisa Grupos Conforme Criterios"
+          
+          call ctc69m00_seleciona()  returning lr_ctc69m00.*
+          
+          if lr_ctc69m00.srvgrptipcod  is not null  then
+             message ""
+             next option "Proximo"
+          end if
+
+ command key ("P") "Proximo"
+                   "Mostra Proximo Grupo Selecionado"
+         
+          message ""
+         
+             call ctc69m00_proximo(lr_ctc69m00.srvgrptipcod)
+                  returning lr_ctc69m00.*
+             
+             if lr_ctc69m00.srvgrptipcod is null then
+                display by name lr_ctc69m00.* 
+                next option "Seleciona"
+             end if 
+         
+
+ command key ("A") "Anterior"
+                   "Mostra Grupo Anterior Selecionado"
+          
+          message ""
+          
+          if lr_ctc69m00.srvgrptipcod is not null then
+             call ctc69m00_anterior(lr_ctc69m00.srvgrptipcod)
+                  returning lr_ctc69m00.*
+      
+             if lr_ctc69m00.srvgrptipcod is null then
+                display by name lr_ctc69m00.*
+                next option "Seleciona"
+             end if
+          end if
+
+ command key ("M") "Modifica"
+                   "Modifica Grupos"
+          message ""
+          
+          if lr_ctc69m00.srvgrptipcod  is not null then
+             call ctc69m00_modifica(lr_ctc69m00.srvgrptipcod, lr_ctc69m00.*)
+                  returning lr_ctc69m00.*
+             next option "Seleciona"
+          else
+             error " Nenhum Grupo Selecionado!"
+             next option "Seleciona"
+          end if
+ 
+ command key ("I") "Inclui"
+                   "Inclui Grupos"
+         
+          message "" 
+          call ctc69m00_inclui()
+          next option "Seleciona"
+
+ command key ("D") "Descricao"
+                   "Descricao do Grupo"
+         
+         call ctc69m01_consulta(1,lr_ctc69m00.srvgrptipcod)              
+         next option "Seleciona"
+ 
+ command key ("V") "Associar Servico"
+                   "Servico do Grupo"
+          
+          if lr_ctc69m00.srvgrptipcod  is not null then
+             call ctc69m02(lr_ctc69m00.srvgrptipcod,lr_ctc69m00.srvgrptipnom)
+          else
+             error " Nenhum Grupo Selecionado!"
+             next option "Seleciona"
+          end if
+          
+
+          
+ command key (interrupt,E) "Encerra"
+                   "Retorna ao menu anterior"
+          exit menu
+ end menu
+
+ close window ctc69m00
+
+ end function  
+
+
+#------------------------------------------------------------
+ function ctc69m00_seleciona()
+#------------------------------------------------------------
+
+ define lr_ctc69m00     record
+       srvgrptipcod     like datksrvgrptip.srvgrptipcod    
+     , srvgrptipnom     like datksrvgrptip.srvgrptipnom    
+     , srvgrptipsitflg  like datksrvgrptip.srvgrptipsitflg 
+     , regatldat        like datksrvgrptip.regatldat       
+     , funnom           like isskfunc.funnom               
+     , obs1             char(60) 
+     , obs2             char(60)       
+ end record
+
+ define lr_retorno record
+ 	     srvgrptipcod     integer  
+ end record 	
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+  
+ let m_srvgrptipdestxt = null     
+
+ let int_flag = false
+ 
+ initialize lr_ctc69m00.*, lr_retorno.*  to null
+ 
+ display by name lr_ctc69m00.*
+
+ input by name lr_ctc69m00.srvgrptipcod
+
+    before field srvgrptipcod
+        display by name lr_ctc69m00.srvgrptipcod attribute (reverse)
+
+    after  field srvgrptipcod
+        display by name lr_ctc69m00.srvgrptipcod
+
+        open c_ctc69m00_001 using lr_ctc69m00.srvgrptipcod 
+        whenever error continue  
+        fetch c_ctc69m00_001 into lr_retorno.srvgrptipcod
+        whenever error stop   
+         
+        if lr_retorno.srvgrptipcod  is null or
+           lr_retorno.srvgrptipcod  = ''    then
+           
+           
+           #--------------------------------------------------------
+           # Seleciona os Primeiro Codigo do Grupo                          
+           #--------------------------------------------------------
+                  
+           open c_ctc69m00_009
+           whenever error continue    
+           fetch c_ctc69m00_009 into lr_ctc69m00.srvgrptipcod
+           whenever error stop  
+            
+           if lr_ctc69m00.srvgrptipcod  is null or   
+              lr_ctc69m00.srvgrptipcod  = ''    then            
+              next field srvgrptipcod
+           end if
+        end if
+
+    on key (interrupt)
+        exit input
+        	
+            	
+ end input
+
+ if int_flag  then
+    let int_flag = false
+    initialize lr_ctc69m00.*   to null
+    display by name lr_ctc69m00.*
+    error " Operacao Cancelada!"
+    return lr_ctc69m00.*
+ end if
+
+ #--------------------------------------------------------
+ # Recupera os Dados do Grupo                          
+ #--------------------------------------------------------
+ 
+ call ctc69m00_ler(lr_ctc69m00.srvgrptipcod)
+      returning lr_ctc69m00.*
+
+ if lr_ctc69m00.srvgrptipcod  is not null   then
+    display by name  lr_ctc69m00.*
+ else
+    error " Codigo do Grupo Nao Cadastrado!"
+    initialize lr_ctc69m00.*    to null
+ end if
+
+ return lr_ctc69m00.*
+
+ end function  
+
+
+#------------------------------------------------------------
+ function ctc69m00_proximo(lr_param)
+#------------------------------------------------------------
+
+ define lr_param  record
+    srvgrptipcod  like datksrvgrptip.srvgrptipcod 
+ end record
+
+ define lr_ctc69m00 record
+      srvgrptipcod    like datksrvgrptip.srvgrptipcod     
+    , srvgrptipnom    like datksrvgrptip.srvgrptipnom       
+    , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg    
+    , regatldat       like datksrvgrptip.regatldat          
+    , funnom          like isskfunc.funnom                
+    , obs1            char(60) 
+    , obs2            char(60)      
+ end record
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+
+ let int_flag = false
+ 
+ initialize lr_ctc69m00.*   to null
+
+ if lr_param.srvgrptipcod  is null   then 
+    
+    #--------------------------------------------------------
+    # Seleciona o Proximo Grupo                          
+    #--------------------------------------------------------
+    
+    open c_ctc69m00_011
+    whenever error continue  
+    fetch c_ctc69m00_011 into lr_param.srvgrptipcod
+    whenever error stop  
+    
+    let lr_param.srvgrptipcod = lr_param.srvgrptipcod - 1
+ 
+ end if
+
+  open c_ctc69m00_002 using lr_param.srvgrptipcod
+  whenever error continue  
+  fetch c_ctc69m00_002 into lr_ctc69m00.srvgrptipcod
+  whenever error stop
+
+ if lr_ctc69m00.srvgrptipcod  is not null   then
+    
+    call ctc69m00_ler(lr_ctc69m00.srvgrptipcod)
+         returning lr_ctc69m00.*
+
+    if lr_ctc69m00.srvgrptipcod  is not null   then
+       display by name  lr_ctc69m00.*
+    else
+       error "Nao ha' Grupo Nesta Direcao!"
+       initialize lr_ctc69m00.*    to null
+    end if
+ else
+    error " Nao ha' Grupo Nesta Direcao!"
+    initialize lr_ctc69m00.*    to null
+ end if
+
+ return lr_ctc69m00.*
+
+ end function    
+
+
+#------------------------------------------------------------
+ function ctc69m00_anterior(lr_param)
+#------------------------------------------------------------
+
+ define lr_param  record
+     srvgrptipcod  like datksrvgrptip.srvgrptipcod  
+ end record
+
+ define lr_ctc69m00  record
+      srvgrptipcod    like datksrvgrptip.srvgrptipcod     
+    , srvgrptipnom    like datksrvgrptip.srvgrptipnom       
+    , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg    
+    , regatldat       like datksrvgrptip.regatldat          
+    , funnom          like isskfunc.funnom                 
+    , obs1            char(60) 
+    , obs2            char(60)   
+ end record
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+
+ let int_flag = false
+ 
+ initialize lr_ctc69m00.*  to null
+
+ if lr_param.srvgrptipcod  is null   then
+    let lr_param.srvgrptipcod = " "
+ end if
+
+ #--------------------------------------------------------
+ # Seleciona o Grupo Anterior                         
+ #--------------------------------------------------------
+ 
+ open c_ctc69m00_003 using lr_param.srvgrptipcod
+ fetch c_ctc69m00_003 into lr_ctc69m00.srvgrptipcod
+
+ if lr_ctc69m00.srvgrptipcod  is not null   then
+
+    call ctc69m00_ler(lr_ctc69m00.srvgrptipcod)
+         returning lr_ctc69m00.*
+
+    if lr_ctc69m00.srvgrptipcod  is not null   then
+       display by name  lr_ctc69m00.*
+    else
+       error " Nao ha' Grupo Nesta Direcao!"
+       initialize lr_ctc69m00.*    to null
+    end if
+ else
+    error " Nao ha' Grupo Nesta Direcao!"
+    initialize lr_ctc69m00.*    to null
+ end if
+ 
+ return lr_ctc69m00.*
+
+ end function    
+
+
+#------------------------------------------------------------
+ function ctc69m00_modifica(lr_param, lr_ctc69m00)
+#------------------------------------------------------------
+
+ define lr_param  record
+    srvgrptipcod  like datksrvgrptip.srvgrptipcod   
+ end record
+
+ define lr_ctc69m00 record
+      srvgrptipcod    like datksrvgrptip.srvgrptipcod      
+    , srvgrptipnom    like datksrvgrptip.srvgrptipnom        
+    , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg     
+    , regatldat       like datksrvgrptip.regatldat           
+    , funnom          like isskfunc.funnom                 
+    , obs1            char(60) 
+    , obs2            char(60)    
+ end record
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+  
+ let m_srvgrptipdestxt = null 
+ 
+ #--------------------------------------------------------
+ # Abre Tela Para a Digitacao                              
+ #--------------------------------------------------------
+ call ctc69m00_input("a", lr_ctc69m00.*) returning lr_ctc69m00.* 
+
+ if int_flag  then
+    let int_flag = false
+    initialize lr_ctc69m00.*  to null
+    display by name lr_ctc69m00.*
+    error " Operacao cancelada!"
+    return lr_ctc69m00.*
+ end if
+
+ whenever error continue
+
+ let lr_ctc69m00.regatldat = today
+
+ begin work
+ 
+  #--------------------------------------------------------
+  # Altera os Dados do Grupo                         
+  #--------------------------------------------------------
+  
+  whenever error continue
+  execute p_ctc69m00_004 using  m_srvgrptipdestxt  
+                              , lr_ctc69m00.srvgrptipsitflg                          
+                              , lr_ctc69m00.regatldat
+                              , g_issk.empcod
+                              , g_issk.funmat                             
+                              , g_issk.usrtip  
+                              , lr_ctc69m00.srvgrptipcod
+  whenever error stop                          
+  if sqlca.sqlcode <>  0  then
+     error " Erro (",sqlca.sqlcode,") na Alteracao do Grupo!"
+     rollback work
+     initialize lr_ctc69m00.*   to null
+     return lr_ctc69m00.*
+  else
+     error " Alteracao Efetuada Com Sucesso!"
+  end if
+
+ commit work
+
+ whenever error stop
+
+ initialize lr_ctc69m00.*  to null
+ display by name lr_ctc69m00.*
+ message ""
+ return lr_ctc69m00.*
+
+ end function  
+
+
+#------------------------------------------------------------
+ function ctc69m00_inclui()
+#------------------------------------------------------------
+
+ define lr_ctc69m00 record
+      srvgrptipcod    like datksrvgrptip.srvgrptipcod    
+    , srvgrptipnom    like datksrvgrptip.srvgrptipnom      
+    , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg   
+    , regatldat       like datksrvgrptip.regatldat         
+    , funnom          like isskfunc.funnom                
+    , obs1            char(60) 
+    , obs2            char(60)    
+ end record
+
+ define lr_retorno record
+     resp      char(01),
+     ret       smallint,             
+     mensagem  char(60)
+ end record
+
+ initialize lr_ctc69m00.*, lr_retorno.*   to null
+ 
+ let lr_retorno.ret   = 0  
+ let m_srvgrptipdestxt = null                                  
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+ 
+ display by name lr_ctc69m00.*
+
+ #-------------------------------------------------------- 
+ # Abre Tela Para a Digitacao                              
+ #-------------------------------------------------------- 
+ 
+ call ctc69m00_input("i", lr_ctc69m00.*) returning lr_ctc69m00.*
+
+ if int_flag  then
+    let int_flag = false
+    initialize lr_ctc69m00.*  to null
+    display by name lr_ctc69m00.*
+    error " Operacao cancelada!"
+    return
+ end if
+
+ let lr_ctc69m00.regatldat = today
+
+ whenever error continue
+
+ begin work
+     
+  #--------------------------------------------------------
+  # Inclui os Dados do Grupo                          
+  #--------------------------------------------------------
+  
+  whenever error continue  
+  execute p_ctc69m00_005 using  lr_ctc69m00.srvgrptipnom 
+                              , m_srvgrptipdestxt         
+                              , lr_ctc69m00.srvgrptipsitflg                           
+                              , lr_ctc69m00.regatldat                         
+                              , g_issk.empcod     
+                              , g_issk.funmat                             
+                              , g_issk.usrtip     
+
+  whenever error stop  
+  if sqlca.sqlcode <>  0   then
+     error " Erro (",sqlca.sqlcode,") na Inclusao do Grupo!"
+     rollback work
+     return
+  end if
+
+ commit work
+
+ whenever error stop
+ 
+ #-------------------------------------------------------- 
+ # Recupera o Nome do Funcionario                              
+ #-------------------------------------------------------- 
+ 
+ call ctc69m00_func(g_issk.funmat,
+                    g_issk.empcod,
+                    g_issk.usrtip)
+ returning lr_ctc69m00.funnom
+ 
+ open c_ctc69m00_006 using lr_ctc69m00.srvgrptipnom
+ whenever error continue   
+ fetch c_ctc69m00_006 into lr_ctc69m00.srvgrptipcod
+ whenever error stop 
+                                                  
+ if sqlca.sqlcode <>  0   then                                  
+    error " Erro (",sqlca.sqlcode,") ao Recuperar o Codigo do Grupo!"                                                                                                  
+ end if                                                         
+ 
+ 
+ display by name  lr_ctc69m00.*
+
+ display by name lr_ctc69m00.srvgrptipcod attribute (reverse)
+ 
+ error " Inclusao Efetuada Com Sucesso, tecle ENTER!"
+ 
+ prompt "" for char lr_retorno.resp
+
+ initialize lr_ctc69m00.*  to null
+ display by name lr_ctc69m00.*
+
+ end function   
+
+
+#--------------------------------------------------------------------
+ function ctc69m00_input(lr_param, lr_ctc69m00)
+#--------------------------------------------------------------------
+
+ define lr_param         record
+    operacao          char (1)
+ end record
+
+ 
+ define lr_ctc69m00  record
+      srvgrptipcod    like datksrvgrptip.srvgrptipcod      
+    , srvgrptipnom    like datksrvgrptip.srvgrptipnom        
+    , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg     
+    , regatldat       like datksrvgrptip.regatldat           
+    , funnom          like isskfunc.funnom                 
+    , obs1            char(60)  
+    , obs2            char(60)     
+ end record
+
+ define lr_retorno record 
+     erro            smallint,
+     mensagem        char(60),
+     count           smallint,
+     confirma        char(01),
+     srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg        
+ end record
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+
+ initialize lr_retorno.* to null
+ 
+ let lr_retorno.count    = 0
+ let lr_retorno.erro     = 0
+ let lr_retorno.mensagem = null
+ 
+ let int_flag = false  
+
+ input by name   lr_ctc69m00.srvgrptipnom
+               , lr_ctc69m00.srvgrptipsitflg without defaults
+
+   
+    before field srvgrptipnom
+           if lr_param.operacao = 'a' then
+           	  next field srvgrptipsitflg
+           end if
+           
+           display by name lr_ctc69m00.srvgrptipnom attribute (reverse)
+
+    after  field srvgrptipnom
+           display by name lr_ctc69m00.srvgrptipnom
+
+           #-------------------------------------------------------- 
+           # Valida Se o Nome do Grupo Ja Existe                              
+           #-------------------------------------------------------- 
+           
+           open c_ctc69m00_007 using lr_ctc69m00.srvgrptipnom  
+           whenever error continue          
+           fetch c_ctc69m00_007 into lr_retorno.count
+           whenever error stop
+           
+           if lr_retorno.count > 0 then
+              error 'NOME JA CADASTRADO PARA OUTRO GRUPO'
+              next field srvgrptipnom
+           end if   
+           
+           let lr_retorno.count = 0         
+           
+           if fgl_lastkey() = fgl_keyval ("up")     or
+              fgl_lastkey() = fgl_keyval ("left")   then   
+                 next field  srvgrptipnom
+           end if
+
+           if lr_ctc69m00.srvgrptipnom  is null   then
+              error " Nome do Grupo Deve Ser Informado!"
+              next field srvgrptipnom
+           end if
+
+    
+    before field srvgrptipsitflg
+           display by name lr_ctc69m00.srvgrptipsitflg attribute (reverse)
+           let lr_retorno.srvgrptipsitflg = lr_ctc69m00.srvgrptipsitflg 
+
+    after field srvgrptipsitflg
+           display by name lr_ctc69m00.srvgrptipsitflg
+
+           if fgl_lastkey() = fgl_keyval ("up")     or
+              fgl_lastkey() = fgl_keyval ("left")   then
+              
+              if lr_param.operacao = 'a' then   
+              	  next field srvgrptipsitflg       
+              end if                            
+                           
+              next field  srvgrptipnom
+           end if
+           
+           
+           if lr_ctc69m00.srvgrptipsitflg is null  or
+           	  (lr_ctc69m00.srvgrptipsitflg <> "A"  and
+           	   lr_ctc69m00.srvgrptipsitflg <> "I") then
+           	     error "Por Favor Digite 'A' ou 'I' " 	
+                 next field srvgrptipsitflg   
+           end if
+        
+           display by name lr_ctc69m00.srvgrptipsitflg
+           
+           if lr_param.operacao = 'a' then          
+           	              
+             let lr_retorno.confirma = cts08g01("C","S","",            
+                                                "DESEJA ALTERAR",           
+                                                "A DESCRICAO?",         
+                                                "")                    
+                                                                       
+             if lr_retorno.confirma = "S" then                         
+             	  
+             	  #-------------------------------------------------------- 
+             	  # Abre Tela Para a Digitacao da Descricao                             
+             	  #-------------------------------------------------------- 
+             	  
+             	  call ctc69m01_inclui(1,lr_ctc69m00.srvgrptipcod) 
+             	  returning m_srvgrptipdestxt               	                                       
+             end if	
+             
+             if lr_retorno.srvgrptipsitflg <> lr_ctc69m00.srvgrptipsitflg then           
+                if lr_ctc69m00.srvgrptipsitflg = "I" then
+                	 
+                	 #-------------------------------------------------------- 
+                	 # Inativa a Situacao                              
+                	 #-------------------------------------------------------- 
+                	 
+                	 if not ctc69m00_inativacao(lr_ctc69m00.srvgrptipcod) then
+                	 	   next field srvgrptipsitflg
+                	 end if
+                end if	                                                   
+             end if
+           else   
+           	
+           	 let lr_retorno.confirma = cts08g01("C","S","",       
+           	                                    "DESEJA INCLUIR", 
+           	                                    "A DESCRICAO?",   
+           	                                    "")               
+           	                                                      
+           	 if lr_retorno.confirma = "S" then                    
+           	 	  
+           	 	  #-------------------------------------------------------- 
+           	 	  # Abre Tela Para a Digitacao da Descricao                 
+           	 	  #-------------------------------------------------------- 
+           	 	  
+           	 	  call ctc69m01_inclui(1,lr_ctc69m00.srvgrptipcod)                           
+           	 	  returning m_srvgrptipdestxt               	        
+             end if	  
+             
+             
+             let lr_retorno.confirma = cts08g01("C","S","",       
+           	                                    "DESEJA INCLUIR", 
+           	                                    "O GRUPO?",   
+           	                                    "")           
+             
+             
+             if lr_retorno.confirma = "N" then                    
+           	 	  next field srvgrptipsitflg      	        
+             end if	  
+                 
+           end if                                   
+           
+                      
+
+    on key (interrupt)
+       exit input
+
+ end input
+
+ if int_flag   then
+    initialize lr_ctc69m00.*  to null
+ end if
+
+ return lr_ctc69m00.*
+
+ end function   
+
+
+#---------------------------------------------------------
+ function ctc69m00_ler(lr_param)
+#---------------------------------------------------------
+
+ define lr_param  record
+    srvgrptipcod  like datksrvgrptip.srvgrptipcod    
+ end record
+
+ define lr_ctc69m00 record
+    srvgrptipcod    like datksrvgrptip.srvgrptipcod     
+  , srvgrptipnom    like datksrvgrptip.srvgrptipnom       
+  , srvgrptipsitflg like datksrvgrptip.srvgrptipsitflg    
+  , regatldat       like datksrvgrptip.regatldat            
+  , funnom          like isskfunc.funnom                
+  , obs1            char(60)   
+  , obs2            char(60)   
+ end record
+
+ define lr_retorno  record
+    usrmatnum         like isskfunc.funmat,
+    empcod            like isskfunc.empcod,    
+    usrtipcod         like isskfunc.usrtip,        
+    cont              integer             ,
+    ret               smallint            ,
+    mensagem          char(60)  
+ end record
+
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+
+ initialize lr_ctc69m00.*, lr_retorno.*   to null
+ 
+ let lr_retorno.ret  = 0
+ let lr_retorno.cont = 0
+
+ 
+ #-------------------------------------------------------- 
+ # Recupera os Dados do Grupo             
+ #-------------------------------------------------------- 
+  
+ open c_ctc69m00_008 using lr_param.srvgrptipcod 
+ whenever error continue  
+ fetch c_ctc69m00_008 into  lr_ctc69m00.srvgrptipcod        
+                         ,  lr_ctc69m00.srvgrptipnom 
+                         ,  lr_ctc69m00.srvgrptipsitflg     
+                         ,  lr_retorno.usrtipcod
+                         ,  lr_retorno.empcod 
+                         ,  lr_retorno.usrmatnum      
+                         ,  lr_ctc69m00.regatldat
+ whenever error stop
+ 
+ if lr_ctc69m00.srvgrptipcod  is null  then
+    error " Codigo de Grupo Nao Cadastrado!"
+    initialize lr_ctc69m00.*    to null
+    return lr_ctc69m00.*
+ else
+
+    #-------------------------------------------------------- 
+    # Recupera o Nome do Funcionario               
+    #-------------------------------------------------------- 
+    
+    call ctc69m00_func(lr_retorno.usrmatnum
+                      ,lr_retorno.empcod
+                      ,lr_retorno.usrtipcod)
+    returning lr_ctc69m00.funnom
+    
+    
+    #-------------------------------------------------------- 
+    # Recupera as Observacoes do Grupo                
+    #-------------------------------------------------------- 
+    
+       
+    call ctc69m00_recupera_obs(lr_ctc69m00.srvgrptipcod)
+    returning lr_ctc69m00.obs1, 
+              lr_ctc69m00.obs2
+        
+   
+ end if
+
+ return lr_ctc69m00.*
+
+ end function   
+
+
+#---------------------------------------------------------
+ function ctc69m00_func(lr_param)
+#---------------------------------------------------------
+
+ define lr_param  record
+    funmat      like isskfunc.funmat,
+    empcod      like isskfunc.empcod,
+    usrtipcod   like isskfunc.usrtip
+ end record
+
+ define lr_retorno  record
+    funnom            like isskfunc.funnom
+ end record
+
+  if m_sql <> 'S' then
+    call ctc69m00_prepare()
+  end if
+ 
+ initialize lr_retorno.*    to null
+
+   if lr_param.empcod is null or 
+      lr_param.empcod = " " then
+      
+      let lr_param.empcod = 1 
+   
+   end if 
+ 
+   #-------------------------------------------------------- 
+   # Recupera os Dados do Funcionario                
+   #-------------------------------------------------------- 
+   
+   open c_ctc69m00_010 using lr_param.funmat ,
+                             lr_param.empcod ,
+                             lr_param.usrtipcod
+   whenever error continue  
+   fetch c_ctc69m00_010 into lr_retorno.funnom
+   whenever error stop
+ 
+ return lr_retorno.funnom
+
+end function  
+
+#--------------------------------------------------------- 
+ function ctc69m00_recupera_obs(lr_param)                          
+#--------------------------------------------------------- 
+
+define lr_param  record                  
+   srvgrptipcod  like datksrvgrptip.srvgrptipcod                                           
+end record                                     
+                                               
+define lr_retorno  record                      
+   obs1    char(60) , 
+   obs2    char(60) ,    
+   cont    integer                                            
+end record
+
+initialize lr_retorno.* to null
+                                               
+        open c_ctc69m00_012 using lr_param.srvgrptipcod                                                                        
+        whenever error continue                                                                                                  
+        fetch c_ctc69m00_012 into  lr_retorno.cont                                                                               
+        whenever error stop                                                                                                      
+                                                                                                                                 
+        if lr_retorno.cont  >  0   then                                                                                          
+           if lr_retorno.cont = 1 then                                                                                           
+              let lr_retorno.obs1 =  "EXISTE ", lr_retorno.cont using "<<<,<<<", " SERVICO ATIVO ASSOCIADO A ESTE GRUPO."       
+           else                                                                                                                  
+              let lr_retorno.obs1 =  "EXISTEM ",lr_retorno.cont using "<<<,<<<", " SERVICOS ATIVOS ASSOCIADOS A ESTE GRUPO."    
+           end if                                                                                                                
+        else                                                                                                                     
+           let lr_retorno.obs1 =  "NAO EXISTEM SERVICOS ATIVOS ASSOCIADOS A ESTE GRUPO."                                        
+        end if                                                                                                                   
+          
+        
+        open c_ctc69m00_013 using lr_param.srvgrptipcod                                                                       
+        whenever error continue                                                                                              
+        fetch c_ctc69m00_013 into  lr_retorno.cont                                                                           
+        whenever error stop                                                                                                  
+                                                                                                                             
+        if lr_retorno.cont  >  0   then                                                                                      
+           if lr_retorno.cont = 1 then                                                                                       
+              let lr_retorno.obs2 =  "EXISTE ", lr_retorno.cont using "<<<,<<<", " SERVICO INATIVO ASSOCIADO A ESTE GRUPO."    
+           else                                                                                                              
+              let lr_retorno.obs2 =  "EXISTEM ",lr_retorno.cont using "<<<,<<<", " SERVICOS INATIVOS ASSOCIADOS A ESTE GRUPO."   
+           end if                                                                                                              
+        else                                                                                                                   
+           let lr_retorno.obs2 =  "NAO EXISTEM SERVICOS INATIVOS ASSOCIADOS A ESTE GRUPO."                                       
+        end if                                                                                                                 
+          
+        return lr_retorno.obs1 ,  
+               lr_retorno.obs2  
+
+end function
+
+#--------------------------------------------------------- 
+ function ctc69m00_inativacao(lr_param)                          
+#--------------------------------------------------------- 
+
+define lr_param  record                  
+   srvgrptipcod  like datksrvgrptip.srvgrptipcod                                          
+end record                                     
+                                               
+define lr_retorno  record                      
+   cont1    integer ,      
+   cont2    integer ,
+   confirma char(01), 
+   msg1     char(40),
+   msg2     char(40), 
+   msg3     char(40), 
+   msg4     char(40)                                       
+end record
+
+initialize lr_retorno.* to null
+                                               
+        open c_ctc69m00_014 using lr_param.srvgrptipcod                                                                        
+        whenever error continue                                                                                                  
+        fetch c_ctc69m00_014 into  lr_retorno.cont1                                                                               
+        whenever error stop                                                                                                      
+                                                                                                                                 
+                                                                                                       
+        open c_ctc69m00_015 using lr_param.srvgrptipcod                                                                       
+        whenever error continue                                                                                              
+        fetch c_ctc69m00_015 into  lr_retorno.cont2                                                                           
+        whenever error stop                                                                                                  
+                                                                                                                             
+        if lr_retorno.cont1 > 0 or
+        	 lr_retorno.cont2 > 0 then
+       
+           let lr_retorno.msg1 = "SERA INATIVADO " 
+           let lr_retorno.msg2 = lr_retorno.cont1 using '<<<<' ," SERVICOS "
+           let lr_retorno.msg3 = lr_retorno.cont2 using '<<<<' ," ESPECIALIDADES " 
+           let lr_retorno.msg4 = "CONFIRMA? " 
+           
+           let lr_retorno.confirma = cts08g01("C","S",
+                                              lr_retorno.msg1,             
+                                              lr_retorno.msg2,       
+                                              lr_retorno.msg3,       
+                                              lr_retorno.msg4)       
+       
+           if lr_retorno.confirma = "S" then                   
+           	  call ctc69m00_atualiza_inativacao(lr_param.srvgrptipcod)          	    
+           else 
+           	  return false
+           end if	                                             
+        
+       end if
+       
+       return true
+        
+end function
+
+#---------------------------------------------------------
+ function ctc69m00_atualiza_inativacao(lr_param)
+#---------------------------------------------------------
+
+define lr_param  record                  
+   srvgrptipcod   like datksrvgrptip.srvgrptipcod                                           
+end record           
+  
+ begin work 
+ 
+ 
+ whenever error continue
+ execute p_ctc69m00_016 using  lr_param.srvgrptipcod                
+ whenever error stop                                                                                                                               
+ 
+ if sqlca.sqlcode <>  0  then                                  
+    error " Erro (",sqlca.sqlcode,") na Alteracao da Situacao dos Servicos!" 
+    rollback work 
+    return                                                                    
+ end if                  
+                   
+ whenever error continue
+ execute p_ctc69m00_017 using  lr_param.srvgrptipcod                
+ whenever error stop                                                                                                                               
+ 
+ if sqlca.sqlcode <>  0  then                                  
+    error " Erro (",sqlca.sqlcode,") na Alteracao da Situacao das Especialidades!" 
+    rollback work 
+    return                                                                    
+ end if                                    
+   
+ error "Dados Inativados com Sucesso!"
+ commit work
+ 
+end function  
+
+
+
+
+
+
+
+
+
+
+
+
+

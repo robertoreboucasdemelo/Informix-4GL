@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta05m04                                               Gilberto
+                                                                       Marcelo
+ Mostra todas as funcoes do acompanhamento de reclamacoes             Dez/1997
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+ Funcoes
+---------cta05m04--
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+
+}
+end
+
+attributes
+   a  = formonly.fundes                            ,noentry;
+   b  = formonly.funcod  type decimal   ,invisible ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_cta05m04(fundes thru funcod)
+end
+

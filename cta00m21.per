@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m21                                               Roberto
+
+ Seleciona Itens da Apolice.
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+                        Itens da Apolice
+-------------------------------------------------------cta00m21--
+            Item   Veiculo                     Placa    Chassi
+
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+[x][a][y][b      ][c                         ][d      ][e       ]
+------------------------------------------------------------------
+[f                                                              ]
+
+}
+end
+
+tables abbmitem
+
+attributes
+   x = formonly.marca1                          ,noentry;  
+   a = formonly.seta ,upshift 
+                     ,comments = " Escolha teclando <ENTER> "; 
+   y = formonly.marca2                          ,noentry;       
+   b = abbmitem.itmnumdig, format = "#######"   ,noentry;
+   c = formonly.vcldes                          ,noentry;
+   d = formonly.vcllicnum                       ,noentry;
+   e = formonly.vclchsfnl                       ,noentry;
+   f = formonly.obs                             ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m21(marca1 thru vclchsfnl)
+end

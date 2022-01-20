@@ -1,0 +1,83 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc00m00                                                  Pedro
+
+ Manutencao de Postos                                                 SET/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctc00m00--
+                         Codigo:[a1      ]
+------------------------------------------------------------------------------
+R.Social:[a2                                      ]
+
+Sigla...:[a3                  ]
+CGC/CPF.:[a4           ]-[a5]          Insc.Mun.:[a6          ]   T.Pessoa:[b]
+
+Endereco:[b1                                      ]
+Bairro..:[b2                  ]        Cidade...:[b3                  ]
+U.F.....:[b4]                          Cep......:[b5   ][b6 ]
+Telefone:[b7  ][b8       ] Ramais:[b81 ][b82 ] [b83      ]
+
+Horario.: Manha :[b9   ]as[b10  ]
+          Tarde :[b11  ]as[b12  ]
+          Sabado:[b13  ]as[b14  ]
+                                       Alteracao:[b15       ]por[b16        ]
+}
+end
+tables
+gkpkpos
+attributes
+a1   = gkpkpos.pstcoddig;
+
+a2   = gkpkpos.nomrazsoc, upshift, required,autonext;
+
+a3   = gkpkpos.nomgrr   , upshift, required,autonext;
+
+a4   = gkpkpos.cgccpfnum, required,autonext;
+
+a5   = gkpkpos.cgccpfdig, required,autonext;
+
+a6   = gkpkpos.muninsnum, comments = " Nro. da inscricao municipal",
+                          autonext;
+
+b    = gkpkpos.pestip   , comments = " Tipo de pessoa",
+                          upshift,
+                          include  = (" ","F","J","M"),autonext;
+
+b1   = gkpkpos.endlgd   , required,upshift,autonext;
+
+b2   = gkpkpos.endbrr   , required,upshift,autonext;
+
+b3   = gkpkpos.endcid   , required,upshift,autonext;
+
+b4   = gkpkpos.endufd   , required,upshift,autonext;
+
+b5   = gkpkpos.endcep   , required,autonext;
+
+b6   = gkpkpos.endcepcmp, required,autonext;
+
+b7   = gkpkpos.dddcod   ;
+
+b8   = gkpkpos.telnum1  , autonext;
+
+b81  = gkpkpos.telrml1  , autonext;
+
+b82  = gkpkpos.telrml2  , autonext;
+
+b83  = gkpkpos.telnum2  , autonext;
+
+b9   = gkpkpos.hormnhinc, autonext;
+b10  = gkpkpos.hormnhfnl, autonext;
+b11  = gkpkpos.hortrdinc, autonext;
+b12  = gkpkpos.hortrdfnl, autonext;
+b13  = gkpkpos.horsabinc, autonext;
+b14  = gkpkpos.horsabfnl, autonext;
+b15  = gkpkpos.atldat   , noentry ;
+b16  = gkpkpos.funmat   , noentry ;
+
+end
+
+instructions
+  delimiters " ";

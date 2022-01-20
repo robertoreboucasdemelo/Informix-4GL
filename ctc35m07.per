@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC35M07                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Consulta de laudos                                                   Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m07--
+ Data..........:[a5        ]
+ Tipo.de laudo.:[a15 ][a20                                     ]  [a25       ]
+------------------------------------------------------------------------------
+ Nro.Laudo  Tipo     Descricao                         ------ Vigencia ------
+------------------------------------------------------------------------------
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5    ] [b10  ]  [b15                           ]  [b20       ][b25       ]
+
+}
+end
+
+tables datmvstlau, datkvstlautip
+
+attributes
+
+   a5  = formonly.datapsq type date,
+         comments = " Data para pesquisa"                     ;
+   a15 = formonly.socvstlautipcod,
+         comments = " Codigo do tipo de laudo "               ;
+   a20 = formonly.socvstlautipdes,                     noentry;
+   a25 = formonly.total,                               noentry;
+
+   b5  = datmvstlau.socvstlaunum,                      noentry;
+   b10 = formonly.socvstlautipcod2,                    noentry;
+   b15 = formonly.socvstlautipdes2,                    noentry;
+   b20 = formonly.viginc2,                             noentry;
+   b25 = formonly.vigfnl2,                             noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc35m07(socvstlaunum thru vigfnl2)
+

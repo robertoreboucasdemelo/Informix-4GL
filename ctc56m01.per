@@ -1,0 +1,51 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC56M01                                                  Raji
+                                                                              
+ Manutencao dos textos para Clausulas                                 Mar/2002
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc56m01--
+Ramo:[a0  |a1               ] Mdl:[a2 ] Clausula:[a3  |a4                    ]
+------------------------------------------------------------------------------
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+                          
+}
+end
+
+Tables datkclstxt
+
+attributes
+a0   = datkclstxt.ramcod    , noentry  ;
+a1   = formonly.ramnom      , noentry  ;
+a2   = datkclstxt.rmemdlcod , noentry  ;
+
+a3   = datkclstxt.clscod    , noentry  ;
+a4   = formonly.clsdes      , noentry  ;
+
+c0   = datkclstxt.clstxt       , upshift  ,
+                                 autonext ;
+c1   = datkclstxt.clslin       , noentry  ,
+                                 invisible;
+
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctc56m01(clstxt thru clslin)
+End

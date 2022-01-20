@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts02m02                                                  Pedro
+                                                                       Marcelo
+ Laudo - Remocoes (Dados Ref. ao B.O.)                                Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+Dados Referentes ao B.O.
+--------------cts02m02--
+ No. B.O....:[a    ]
+
+ Orgao......:[b       ]
+
+ Veic. lib.?:[c ]
+
+}
+end
+
+tables
+datmservicocmp
+
+attributes
+
+a    = datmservicocmp.bocnum, comments = " Numero do B.O",
+                              autonext;
+b    = datmservicocmp.bocemi, comments = " Orgao Emissor",
+                              autonext,
+                              upshift;
+c    = formonly.vcllibflg   , comments = " Veic. liberado (S)/(N)",
+                              autonext,
+                              upshift;
+end
+
+instructions
+  delimiters " "
+end

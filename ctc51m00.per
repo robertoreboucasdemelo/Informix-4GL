@@ -1,0 +1,79 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc51m00                                               Gustavo
+
+ Cadastro de mensagem conforme criterios                             Dez/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------------------------------ctc51m00----
+        Codigo.......:[a1   ]
+------------------------------------------------------------------------------
+
+        Mensagem.....:[a2                                                ]
+                      [a3                                                ]
+                      [a4                                                ]
+                      [a5                                                ]
+                      [a6                                      ]
+
+        Situacao.....:[a] [a7        ]
+
+
+
+        Incluido.....:[a8        ] por [a10                              ]
+        Atualizado...:[a9        ] por [a11                              ]
+
+}
+
+end
+
+ tables
+ datktltmsg
+
+ attributes
+
+ a1  = datktltmsg.tltmsgcod,
+       comments = "Codigo da Mensagem";
+
+ a2  = formonly.tltmsgtxt1,                upshift, autonext,
+       comments = "Texto da Mensagem";
+
+ a3  = formonly.tltmsgtxt2,                upshift, autonext;
+
+ a4  = formonly.tltmsgtxt3,                upshift, autonext;
+
+ a5  = formonly.tltmsgtxt4,                upshift, autonext;
+
+ a6  = formonly.tltmsgtxt5,                upshift;
+
+ a   = formonly.tltmsgstt,                 upshift,
+       comments = "Situacao da Mensagem";
+
+ a7  = formonly.descsit,                   upshift;
+
+ a8  = datktltmsg.caddat,                  noentry;
+ a9  = datktltmsg.atldat,                  noentry;
+
+ a10 = formonly.cadnom,                    noentry;
+ a11 = formonly.atlnom,                    noentry;
+
+end
+
+instructions
+     delimiters " "
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

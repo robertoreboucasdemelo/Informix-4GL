@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC00m09                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Manutencao e-mail e cod.cronograma do prestador                      Dez/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+           Manutencao e-mail e cronograma do Prestador
+-------------------------------------------------------ctc00m09--
+
+ E-mail....:[a                                                 ]
+
+ Cronograma:[b |b1                                             ]
+
+
+}
+end
+
+tables dpaksocor, dbsmcrnpgt
+
+attributes
+
+a = dpaksocor.maides,
+    comments = " Numero do e-mail do prestador";
+
+b = dpaksocor.crnpgtcod,
+    comments = " Codigo do cronograma de entrega do prestador";
+
+b1= dbsmcrnpgt.crnpgtdes,
+    noentry;
+
+end
+
+
+instructions
+  delimiters " "
+end

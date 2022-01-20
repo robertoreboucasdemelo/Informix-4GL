@@ -1,0 +1,41 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m05                                               Almeida
+
+ Pop up dos procedimentos consultados                                Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Procedimentos para :[a                        ][b ][c         ]
+------------------------------------------------------ctc21m05--
+  Texto
+
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+ [d                                                           ]
+
+}
+end
+
+ tables dattprt,datmprtprc,datmprctxt
+
+ attributes
+
+    a  = dattprt.prtcponom;
+    b  = formonly.relacional;
+    c  = datmprtprc.prtprccntdes;
+    d  = datmprctxt.prctxt;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m05(prctxt)
+ end

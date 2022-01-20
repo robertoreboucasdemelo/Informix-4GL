@@ -1,0 +1,33 @@
+{----------------------------------------------------------------------------
+ Nome do Form: C24geral13                                               Pedro
+                                                                      Marcelo
+ Mostra Todas as Cidades da Grande Sao Paulo                         Jul/1995
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+Cidades da Grande Sao Paulo
+---------------c24geral13--
+[c                        ]
+[c                        ]
+[c                        ]
+[c                        ]
+[c                        ]
+[c                        ]
+[c                        ]
+[c                        ]
+
+}
+
+end
+
+attributes
+   c  = formonly.ciddes   type char      ,noentry;
+end
+
+instructions
+   delimiters  " "
+   screen record s_c24geral13(ciddes)
+end

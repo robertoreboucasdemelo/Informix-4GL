@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC08M00                     Criacao: 14/09/94 - Pedro
+
+ Manutencao dos tipos de servicos do Posto
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc08m00--
+                        Codigo :[a     ][b                   ]
+------------------------------------------------------------------------------
+          Tipo                                               Qualidade
+
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+          [a0]   [a1                                      ]    [a2 ]
+
+}
+end
+
+tables dpatserv
+
+attributes
+a    = dpatserv.pstcoddig;
+b    = formonly.nomgrr;
+a0   = dpatserv.pstsrvtip, autonext,
+       comments = " Tipo do Servico";
+a1   = formonly.pstsrvdes, noentry;
+a2   = dpatserv.pstsrvctg,
+       comments = " 1-Otimo, 2-Bom, 3-Regular, 4-Ruim";
+
+end
+
+instructions
+     screen record s_ctc08m00(pstsrvtip thru pstsrvctg)
+     delimiters " "
+end

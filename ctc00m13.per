@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc00m13                                               Priscila
+ Historico do Prestador                                               Jun/2006
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+
+--------------------------------------------------------------------ctc00m13--
+         Codigo:[a1    ]-[a2                                      ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+
+}
+end
+
+tables
+dpaksocor, dbsmhstprs
+
+attributes
+a1   = dpaksocor.pstcoddig;
+a2   = dpaksocor.nomgrr, upshift;
+b    = dbsmhstprs.prshstdes, upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc00m13(prshstdes)
+end

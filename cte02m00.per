@@ -1,0 +1,72 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTE02M00                                              Ruiz
+                                                                     Akio
+ Acompanhamento de pendencias                                        Abr/2000
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cte02m00--
+                       ACOMPANHAMENTO DE PENDENCIASS               [h0      ]
+------------------------------------------------------------------------------
+ Data.......:[h1        ]        Situacao:[h    ][h2           ] Assunto:[h3 ]
+ No. Ligacao:[h4        ]/[h7  ] SUSEP   :[h5    ]               Total..:[h6 ]
+------------------------------------------------------------------------------
+ Ligacao         Assunto                                  Situacao     Espera
+[r1b ]
+[r1a       ][s ][r7 ][r8                                ][r][r9              ]
+[r2        ][r3   ][r4  ][r5                  ][r6                  |r10     ]
+[r1b ]
+[r1a       ][s ][r7 ][r8                                ][r][r9              ]
+[r2        ][r3   ][r4  ][r5                  ][r6                  |r10     ]
+[r1b ]
+[r1a       ][s ][r7 ][r8                                ][r][r9              ]
+[r2        ][r3   ][r4  ][r5                  ][r6                  |r10     ]
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   dacmatdpndsit,
+   datmligass,
+   dackass,
+   dacmpndret
+
+Attributes
+   h0  = formonly.agora            type datetime hour to second,
+                                   noentry, reverse;
+   h1  = formonly.pnddat           type date, autonext,
+                                   comments = " Data inicial para pesquisa";
+   h   = formonly.pndsitcod        type dec ,
+                                   comments = " Situacao da reclamacao";
+   h2  = formonly.pndsitdsc        type char, noentry, upshift;
+   h3  = formonly.pndasscod        type char, upshift,
+                                   comments = " Assunto da reclamacao";
+   h4  = formonly.lignum           type dec , format = "##########",
+                                   comments = " Numero da ligacao";
+   h7  = formonly.ligano           type dec , format = "####",
+                                   comments = " Ano da ligacao";
+   h5  = formonly.corsus           type char, upshift;
+   h6  = formonly.totqtd           type char, noentry;
+
+   r1a = dacmatdpndsit.corlignum , noentry, format = "##########";
+   r1b = dacmatdpndsit.corligano , invisible, noentry, format = "####";
+   r2  = dacmatdpndsit.caddat    , noentry, format = "dd/mm/yyyy";
+   r3  = dacmatdpndsit.cadhor    , noentry;
+   r4  = dacmpndret.dddcod       , noentry;
+   r5  = dacmpndret.ctttel       , noentry, upshift;
+   r6  = dacmpndret.pndretcttnom , noentry, upshift;
+   s   = dacmatdpndsit.corligitmseq, invisible, noentry;
+   r7  = dackass.corasscod       , upshift;
+   r8  = dackass.corassdes       , noentry, upshift;
+   r   = dacmatdpndsit.c24pndsitcod;
+   r9  = formonly.pndsitdes      , noentry, upshift;
+   r10 = formonly.pndtmp           type interval hour(04) to minute , noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cte02m00(corlignum thru pndtmp)
+End

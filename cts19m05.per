@@ -1,0 +1,58 @@
+{------------------------------------------------------------------------------
+ Nome do form: CTS19M05                                               Ruiz
+ Pesquisa lojas para reparo de vidros                                 Mai/2001
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts19m05--
+ Razao..:[a                                       ]Empresa:[b     ][b1       ]
+ Ender..:[c                                       ]Numero:[c1    ]
+ Bairro.:[d                ] Cidade.:[e                   ] U.F:[f ]
+ Tels...:[g   ][g1                                      ]  Dist:[h        ]Kms
+ Horario:[i                                                 ]At:[i1          ]
+ Contato:[j                                       ]Fax:[k        ] Cod:[l    ]
+ OBSERV.:[m                                                |x       |x1      ]
+
+ Razao..:[a                                       ]Empresa:[b     ][b1       ]
+ Ender..:[c                                       ]Numero:[c1    ]
+ Bairro.:[d                ] Cidade.:[e                   ] U.F:[f ]
+ Tels...:[g   ][g1                                      ]  Dist:[h        ]Kms
+ Horario:[i                                                 ]At:[i1          ]
+ Contato:[j                                       ]Fax:[k        ] Cod:[l    ]
+ OBSERV.:[m                                                |x       |x1      ]
+}
+end
+
+tables
+  adikvdrrpremp,
+  adikvdrrprgrp
+
+attributes
+a  = adikvdrrpremp.vdrrprempnom,  noentry;
+b  = adikvdrrprgrp.vdrrprgrpcod,  noentry;
+b1 = adikvdrrprgrp.vdrrprgrpnom,  noentry, reverse;
+c  = adikvdrrpremp.endlgd      ,  noentry;
+c1 = adikvdrrpremp.endlgdnum   ,  noentry;
+d  = adikvdrrpremp.brrnom      ,  noentry;
+e  = adikvdrrpremp.cidnom      ,  noentry;
+f  = adikvdrrpremp.ufdcod      ,  noentry;
+g  = adikvdrrpremp.dddcod      ,  noentry;
+g1 = formonly.teltxt           ,  noentry;
+h  = formonly.calckm           ,  noentry, reverse;
+i  = formonly.horloja          ,  noentry;
+i1 = formonly.atend            ,  noentry;
+j  = adikvdrrpremp.rspnom      ,  noentry;
+k  = adikvdrrpremp.faxnum      ,  noentry;
+l  = adikvdrrpremp.vdrrprempcod,  noentry;
+m  = adikvdrrpremp.vdrrprempobs,  reverse, noentry;
+x  = formonly.lclltt, invisible,  noentry;
+x1 = formonly.lcllgt, invisible,  noentry;
+end
+
+instructions
+    screen record s_cts19m05(vdrrprempnom thru lcllgt)
+    delimiters " "
+end

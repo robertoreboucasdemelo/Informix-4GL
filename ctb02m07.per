@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02m07                                              Wagner
+
+ Exibe pop-up para selecao do codigo de exd p/carro-extra            out/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+  Valor Desc/Exed.:[a0        ]
+--------------------------ctb02m07--
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+[a1                            ][a2]
+
+}
+End
+
+tables
+  dbskcustosocorro
+
+Attributes
+  a0 = formonly.valor   type dec(15,2)  ,format = "-------.--", noentry;
+  a1 = dbskcustosocorro.soccstdes       ,noentry;
+  a2 = dbskcustosocorro.soccstcod       ,noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb02m07(soccstdes thru soccstcod)
+End

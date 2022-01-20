@@ -1,0 +1,49 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC88M00B.PER                                             #
+# ANALISTA RESP..: ROBERT LIMA                                               #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: LISTA DE CIDADES COM BLOQUEIO ATIVADO.                    #
+#............................................................................#
+# DESENVOLVIMENTO: ROBERT LIMA                                               #
+# LIBERACAO......: 01/04/2011                                                #
+#............................................................................}
+
+database formonly
+
+screen
+{
+
+------------------------------------------------------------------------------
+                    CADASTRO DE CIDADES X BLQ DE[a  ]
+-------------------------------------------------------------------ctc88m00b--
+
+   Cidade:                         UF:  DT DESATIVA      FUNC DESATIVA
+                                                    
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+[x|c1                             |c2] [c3        ] [c4                   ]
+
+}
+end
+
+attributes
+a   = formonly.texto         ,upshift,noentry;
+x   = formonly.navega        ,upshift;
+c1  = formonly.cidnom        ,upshift,noentry;
+c2  = formonly.ufdcod        ,upshift,noentry;
+c3  = formonly.atvdat        ,upshift,noentry;
+c4  = formonly.funmatass     ,upshift,noentry;
+
+instructions
+    delimiters " "
+    screen record s_ctc88m00b[10](navega thru funmatass)

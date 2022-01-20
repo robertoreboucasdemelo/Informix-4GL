@@ -1,0 +1,42 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m24                                      R.Fornax
+
+ Cadastro de Fluxo2 X Clausula                               Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m24--
+ Clausula  Nome
+
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+------------------------------------------------------------------------------
+ Atualizado..:[c          ] por [d                                        ]
+------------------------------------------------------------------------------
+ [e                                                                       ]
+
+}
+end
+
+attributes  
+   a  = formonly.clscod              ,comments = " Digite o Codigo da Clausula"     ,upshift;
+   b  = formonly.clsdes              ,noentry;
+   c  = formonly.atldat              ,noentry;
+   d  = formonly.funmat              ,noentry;
+   e  = formonly.msg                 ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m24(clscod thru clsdes)
+end

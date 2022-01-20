@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m06b                                                 Ruiz 
+ Conclusao do Servico de Vidros                                       Mai/2001
+-----------------------------------------------------------------------------}
+
+database porto   
+screen size 24 by 80
+
+{
+ Acionamento em[o0        ]as[o1   ]por[o2                 ]
+------------------------------------------------------cts19m06b--
+ Etapa....:[a |a1             ][a2                  ][a3   ]
+ Prestador:[b     |b1                       ]
+ Imed?....:[j]
+ Loja.....:[c     |c1                                      ]
+ Cidade...:[d                                           |d1] 
+ Telefone.:[e   ][e1                                       ]
+ Contato..:[f                                              ] 
+ Hor.Loja.:[g                                                   ]    
+ Dt.Visita:[h         ][i    ]   Prev.Chegada:[i1   ]
+ Tipo Atd..[k        ]
+
+}
+end
+
+ Tables
+   datmservico, datmsrvacp, datketapa
+
+ Attributes
+   o0  = datmservico.cnldat    , noentry;
+   o1  = formonly.atdfnlhor    , noentry;
+   o2  = formonly.operador     , noentry;
+   a   = datmsrvacp.atdetpcod  , comments = "   Etapa para acionamento";
+   a1  = datketapa.atdetpdes   , reverse, noentry;
+   a2  = formonly.retorno      , noentry;
+   a3  = formonly.envio        , noentry;
+ 
+   b   = formonly.atdprscod    , comments = "   Codigo do prestador";
+   b1  = formonly.nomprest     , noentry;                 
+
+   j   = formonly.imdsrvflg    , comments = "   Ir ate a loja imediatamente: (S)im ou (N)ao" , upshift;     
+
+   c   = formonly.srrcoddig    , comments = "   Codigo da Loja";
+   c1  = formonly.nomloja      , noentry;
+
+   d   = formonly.cidnom       , noentry;            
+   d1  = formonly.ufdcod       , noentry; 
+ 
+   e   = formonly.dddcod       , noentry;
+   e1  = formonly.teltxt       , noentry;
+
+   f   = formonly.contato      , noentry;
+ 
+   g   = formonly.horloja      , noentry;
+   h   = formonly.atddatprg    , noentry;
+   i   = formonly.atdhorprg    , noentry;
+   i1  = formonly.atdhorpvt    , noentry;  
+   k   = formonly.atntip       , noentry;
+
+ instructions
+   delimiters " " 
+ end

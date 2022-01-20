@@ -1,0 +1,31 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTA02M00C                                      Helder -Nov/2010
+ ------------------------------------------------------------------------------
+}
+database formonly
+screen size 25 by 80
+
+{
+
+               A T E N C A O  
+--------------------------------------cta02m00c-
+  Escolha um assunto: 
+  [a                                      ] 
+  [a                                      ]
+  [a                                      ]
+  [a                                      ]	    
+  [a                                      ]
+  	    
+	F8 - Seleciona
+	    
+}
+end
+
+Attributes
+  a = formonly.item;
+end
+
+Instructions
+  delimiters " "
+  screen record as_cta02m00c(item)
+End

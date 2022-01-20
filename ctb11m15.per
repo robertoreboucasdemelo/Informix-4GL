@@ -1,0 +1,33 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTB11M15                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Janela para Informar nr.Nota fiscal prestadores                     Mai/1999
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+     Repete Nr.Nota Fiscal na O.P.
+--------------------------------ctb11m15--
+
+
+      Informe o numero:[c0      ]
+
+
+}
+
+end
+
+attributes
+  c0   = formonly.nfsnum,
+         comments = " Numero da Nota Fiscal/Rpa";
+end
+
+instructions
+   delimiters  " "
+end
+
+
+

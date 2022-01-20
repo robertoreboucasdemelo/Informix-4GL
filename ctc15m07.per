@@ -1,0 +1,54 @@
+{---------------------------------------------------------------------   
+ Porto Seguro Cia Seguros Gerais                                         
+ ....................................................................    
+ Sistema       : Central 24h                                             
+ Modulo        : ctc15m07                                                
+ Analista Resp.: Roberto Melo                                            
+ PSI           :                                                         
+ Objetivo      : Manutencao do Relacionamento origem/limite          
+.....................................................................    
+ Desenvolvimento: Amilton , META                                         
+ Liberacao      :                                                        
+.....................................................................    
+                                                                         
+                  * * * Alteracoes * * *                                 
+                                                                         
+ Data        Autor Fabrica  Origem    Alteracao                          
+ ----------  -------------- --------- ------------------------------     
+-------------------------------------------------------------------------}
+
+
+database porto
+screen size 24 by 80
+
+{
+---------------------------------------------------ctc15m07--
+ Origem do Servico:[a  ][b                              ]
+-------------------------------------------------------------
+ Limite de Agendamento
+------------------------------------------------------------- 
+ 
+             Limite em dias: [c ] 
+
+ Atualizado..:[b3        ]por[b4                 ]
+
+
+}
+end
+
+tables
+   datksrvtip
+
+attributes
+   a  = datksrvtip.atdsrvorg   , noentry;
+   b  = datksrvtip.srvtipdes   , noentry;      
+   c  = datksrvtip.agdlimqtd   , format = "&&",
+                                 comments = " Limite de dias de Agendamento";   
+   b3 = datksrvtip.atldat      , noentry;                               
+   b4 = formonly.atlfunnom     , noentry;     
+      
+end
+
+instructions
+   delimiters " "   
+end

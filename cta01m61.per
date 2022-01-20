@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m61                                               Roberto
+
+ Localiza CGC/CPF  por Placa                                          Jan/2008
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+------------------------------------------------------------------cta01m61----
+                    Consulta Clientes por Cnpj/Cpf
+------------------------------------------------------------------------------  
+ CNPJ/CPF                NOME            VIGENCIA [c1        ] A [c2        ] 
+------------------------------------------------------------------------------
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+[x][a                    ][b                                              ]
+
+[d                                                                        ]
+
+}
+end
+tables gsakseg
+attributes
+a  = formonly.cgccpf , noentry;
+b  = gsakseg.segnom  , noentry;
+c1 = formonly.viginc , noentry;  
+c2 = formonly.vigfnl , noentry;
+d  = formonly.obs    , noentry; 
+x  = formonly.seta;   
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m61(seta,cgccpf,segnom)
+end

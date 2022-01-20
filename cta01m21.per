@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m21                                                 Pedro
+                                                                      Marcelo
+ Consulta Locais de Apolice de Ramos Elementares                     Mar/1995
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+ Local do Risco/Objeto Segurado
+--------------------------------------------------------------------cta01m21--
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+[a                                                                    |l  |b ]
+
+}
+End
+
+tables
+   rsdmlocal
+
+Attributes
+ a  = formonly.local              ,noentry;
+ l  = formonly.locdes             ,noentry;
+ b  = rsdmlocal.lclnumseq         ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta01m21(local thru lclnumseq)
+End

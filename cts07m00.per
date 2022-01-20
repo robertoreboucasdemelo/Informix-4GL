@@ -1,0 +1,81 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts07m00                                              Marcelo
+                                                                     Gilberto
+ Inclusao de placa do veiculo                                        Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                INCLUSAO DA PLACA DO VEICULO NA APOLICE      [a2             ]
+--------------------------------------------------------------------cts07m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 ]        Cor:[b13      ]
+------------------------------------------------------------------------------
+[c1 ][c2                                                             ]
+
+ CEP....:[f5   ][f6 ]
+ Tp End.:[f7   ] Endereco.:[f1     		                     ]
+ Nr.....:[f8   ] Complemento:[f9                             ]
+ Bairro.:[f2                  ]
+ Cidade.:[f3                  ][f4]
+
+ Placa..:[g      ]
+
+ Confirma.:[h]
+
+
+
+}
+end
+
+tables
+   gsakend    ,
+   datmligacao,
+   datmservico,
+   datrservapol
+
+attributes
+   a2   = datmligacao.c24solnom  , noentry;
+
+   b1   = datmservico.nom        , upshift
+                                 , comments = " Nome";
+   b2   = formonly.doctxt        , noentry;
+   b6   = datmservico.corsus     , upshift
+                                 , comments = " Susep";
+   b7   = datmservico.cornom     , upshift
+                                 , comments = " Corretor";
+   b8   = formonly.cvnnom        , noentry;
+   b9   = datmservico.vclcoddig  , format = "&&&&&&"
+                                 , comments = " Codigo do veiculo";
+   b10  = datmservico.vcldes     , upshift
+                                 , comments = " Descricao do veiculo";
+   b11  = datmservico.vclanomdl  , comments = " Ano do veiculo";
+   b13  = formonly.vclcordes     , downshift
+                                 , comments = " Cor do veiculo";
+
+   c1  =  datmligacao.c24astcod  , noentry;
+   c2  =  formonly.c24astdes     , noentry;
+
+   f5  =  gsakend.endcep         ;          
+   f6  =  gsakend.endcepcmp      ;               
+   f7  =  gsakend.endlgdtip,autonext;
+   f1  =  formonly.endtxt        , upshift;
+   f8  =  gsakend.endnum,autonext;
+   f9  =  gsakend.endcmp,upshift;
+   f2  =  gsakend.endbrr         , upshift;
+   f3  =  gsakend.endcid         , upshift;
+   f4  =  gsakend.endufd         , autonext, upshift;
+
+   g    = datmservico.vcllicnum  , upshift
+                                 , comments = " Placa do veiculo";
+
+   h   = formonly.confirma       , upshift
+                                 , comments = " Confirma: (S)im ou (N)ao"  ;
+end
+
+instructions
+   delimiters " "
+end

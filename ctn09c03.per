@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN09C03                                               Marcelo
+                                                                      Gilberto
+ Consulta informacoes sobre pager do corretor                         Dez/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn09c03--
+
+ Usuario......:[a01       ][a02                                     ]
+ Numero Pager.:[a03       ] Central Envio:[a04]
+ Situacao.....:[a05       ]
+ Receber Aviso:[a]
+ Observacoes..:[a06                                     ]
+
+ Usuario......:[a01       ][a02                                     ]
+ Numero Pager.:[a03       ] Central Envio:[a04]
+ Situacao.....:[a05       ]
+ Receber Aviso:[a]
+ Observacoes..:[a06                                     ]
+
+}
+end
+
+tables htlrust
+
+attributes
+  a01 = htlrust.ustcod         ,noentry, format = "&&&&&&&&&&";
+  a02 = htlrust.ustnom         ,noentry, upshift;
+  a03 = htlrust.pgrnum         ,noentry, format = "&&&&&&&&&&";
+  a04 = htlrust.pgrctl         ,noentry;
+  a05 = formonly.situacao      ,noentry;
+  a   = htlrust.c24msgrcbflg   ,upshift,
+        comments = " Deseja ser notificado via pager pela Central 24 Horas? (S)im ou (N)ao";
+  a06 = htlrust.ustobs         ,noentry, upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn09c03(ustcod thru ustobs)
+end

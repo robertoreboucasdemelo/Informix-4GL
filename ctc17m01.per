@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb73m00                                                 Ligia
+ PSI 191108
+ Cadastro de Departamentos da via emergencial                       Maio/2005
+-----------------------------------------------------------------------------}
+
+database formonly 
+
+screen size 24 by 80
+{
+------------------------------------------------------------------ctc17m01----
+ Departamentos da Via Emergencial : [a ] - [b                   ]
+------------------------------------------------------------------------------
+
+ Codigo.......:[c     ]
+
+ Departamento :[d                                       ]
+
+ Situacao     :[e][f        ]
+
+ Incluido.....:[g         ] por [h                 ]
+
+ Atualizado...:[i         ] por [j                 ] 
+
+
+}
+end
+
+attributes
+   a = formonly.emeviacod, noentry; 
+   b = formonly.emeviades, noentry;  
+   c = formonly.dptcod;  
+   d = formonly.dptnom;  
+   e = formonly.dptsit, comments = "A-Ativo, C-Cancelado", upshift;  
+   f = formonly.dptsitdes;   
+   g = formonly.caddat;  
+   h = formonly.funnomcad;  
+   i = formonly.atldat;  
+   j = formonly.funnomatl;  
+end
+
+instructions
+   delimiters " "
+end

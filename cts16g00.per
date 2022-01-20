@@ -1,0 +1,45 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts16g00                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Verifica solicitacoes anteriores                                    Jun/1999
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Servicos solicitados por esta apolice nos ultimos[a ]dias
+---------------------------------------------------------------cts16g00--
+ Atendimento          Servico     Tipo        Atendente   Solicitante
+
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+[b1        |b2   ][b |b3     |b4][b5        ][b6        |b7             ]
+
+}
+end
+
+ tables datmservico, datksrvtip
+
+ attributes
+    a  = formonly.nrdias type dec            ,noentry,format = "&#";
+    b1 = datmservico.atddat                  ,noentry;
+    b2 = datmservico.atdhor                  ,noentry;
+    b  = datmservico.atdsrvorg ,format = "&&",noentry;
+    b3 = datmservico.atdsrvnum ,format = "&&&&&&&",noentry;
+    b4 = datmservico.atdsrvano ,format = "&&",noentry;
+    b5 = datksrvtip.srvtipabvdes             ,noentry;
+    b6 = formonly.atendente                  ,noentry;
+    b7 = datmservico.c24solnom               ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts16g00(atddat thru c24solnom)
+ end

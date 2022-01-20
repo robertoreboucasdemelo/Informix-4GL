@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m28                                                Roberto
+
+ Localiza Clientes Itau                                               Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+                          LOCALIZA SEGURADO ITAU
+--------------------------------------------------------------------cta00m28--
+    Nome do Segurado                          Dt.Inicial   Dt.Final   Placa
+------------------------------------------------------------------------------
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+[x][a                                       ][b         ][c         ][d      ]
+------------------------------------------------------------------------------
+ Documento:[e                                        ]Situacao...:[f         ]
+ Veiculo..:[g                                        ]Dt.Emissao.:[h         ]
+------------------------------------------------------------------------------
+                        (F17)Abandona, (F8)Seleciona
+------------------------------------------------------------------------------
+}
+end
+tables datmitaapl,
+       datmitaaplitm
+
+attributes
+
+x  = formonly.seta               , invisible;
+a  = datmitaapl.segnom           , upshift
+                                 , noentry;
+b  = datmitaapl.itaaplvigincdat  , noentry;
+c  = datmitaapl.itaaplvigfnldat  , noentry;
+d  = datmitaaplitm.autplcnum     , upshift,
+                                   noentry;
+e  = formonly.documento          , noentry;
+f  = formonly.sitdoc             , noentry;
+g  = formonly.veiculo            , upshift,
+                                   noentry;
+h  = datmitaapl.adniclhordat     , noentry;
+
+
+instructions
+   delimiters " "
+   screen record s_cta00m28(seta thru autplcnum )
+end                                                   

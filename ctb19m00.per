@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CCTB19M00                                               Wagner
+
+ Cadastro de e-mail por UF                                            Mai/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb19m00--
+      Sigla da UF.:[a1] [a11                                     ]
+------------------------------------------------------------------------------
+
+
+      E-Mail......:[a2                                                ]
+
+      Situacao....:[s]
+
+
+
+
+      Incluido....:[a3        ]por[a31                ]
+      Atualizado..:[a4        ]por[a41                ]
+
+
+
+}
+end
+
+tables datmsucmai
+
+attributes
+ a1   = formonly.ufdcod,
+        comments = " Sigla da UF     ",                upshift;
+ a11  = formonly.ufdnom,                               noentry;
+
+ a2   = formonly.maides,
+        comments = " Endereco do E-MAIL      Ex.: sobrenome,nome/...,...,...";
+
+ s    = formonly.sucmaistt,
+        comments = " Situacao do E-MAIL: (A)tivo ou (C)ancelado", upshift;
+
+ a3   = formonly.caddat,                               noentry;
+ a31  = formonly.cadfunnom,                            noentry;
+
+ a4   = formonly.atldat,                               noentry;
+ a41  = formonly.funnom,                               noentry;
+end
+
+instructions
+     delimiters " "
+end

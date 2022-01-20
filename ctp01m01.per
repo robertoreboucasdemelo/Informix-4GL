@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctp01m01                                       Pedro - Nov/1994
+                                                         Alterado em: Dez/1996
+ Mostra as ligacoes anteriores da apolice                         por Gilberto
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+
+{
+--------------------------------------------------------------------ctp01m01--
+ Ligacao    Data/Hora Atend. Atendente  Solicitante     Tipo      Servico
+ Assunto                                              P.A.   Pgr.
+------------------------------------------------------------------------------
+[c         |d         |e    |f        |g             |h        |i            ]
+[k  ][l                                            ][m     ] [n] [o          ]
+[i1    |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       ][i11         ]
+[c         |d         |e    |f        |g             |h        |i            ]
+[k  ][l                                            ][m     ] [n] [o          ]
+[i1    |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       ][i11         ]
+[c         |d         |e    |f        |g             |h        |i            ]
+[k  ][l                                            ][m     ] [n] [o          ]
+[i1    |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       ][i11         ]
+[c         |d         |e    |f        |g             |h        |i            ]
+[k  ][l                                            ][m     ] [n] [o          ]
+[i1    |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       ][i11         ]
+
+------------------------------------------------------------------------------
+}
+end
+
+Tables
+   datkassunto,
+   datmligacao,
+   datrligsrv,
+   datrligsinvst,
+   datrligsinavs,
+   datrligsin,
+   datketapa,
+   datksoltip,
+   datrligagn
+
+Attributes
+
+  c  = datmligacao.lignum                    , noentry, format = "#########&";
+  d  = datmligacao.ligdat                    , noentry;
+  e  = datmligacao.lighorinc                 , noentry;
+  f  = formonly.funnom                       , noentry;
+  g  = datmligacao.c24solnom                 , noentry;
+  h  = datksoltip.c24soltipdes               , noentry;
+  i  = formonly.srvtxt              type char, noentry;
+  k  = datmligacao.c24astcod                 ,
+       color = black reverse where k matches '*K*', noentry;
+  l  = formonly.c24astdes                    ,
+       color = black reverse where l matches 'AZUL*', noentry;
+  m  = datmligacao.c24paxnum                 , noentry, format = "######";
+  n  = datketapa.atdetpdes                   , noentry;
+  o  = formonly.msgenv              type char, noentry;
+  i1 = datrligsrv.atdsrvnum       , invisible, noentry;
+  i2 = datrligsrv.atdsrvano       , invisible, noentry;
+  i3 = datrligsinvst.sinvstnum    , invisible, noentry;
+  i4 = datrligsinvst.sinvstano    , invisible, noentry;
+  i5 = datrligsinvst.ramcod       , invisible, noentry;
+  i6 = datrligsinavs.sinavsnum    , invisible, noentry;
+  i7 = datrligsinavs.sinavsano    , invisible, noentry;
+  i8 = datrligsin.sinnum          , invisible, noentry;
+  i9 = datrligsin.sinano          , invisible, noentry;
+  i10= datrligagn.vstagnnum       , invisible, noentry;
+  i11= formonly.trpavbnum         , invisible, noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctp01m01(lignum thru trpavbnum)
+End

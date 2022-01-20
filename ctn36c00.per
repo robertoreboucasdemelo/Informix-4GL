@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn36c00                                              Marcelo
+                                                                     Gilberto
+ Pop-up para escolha de informacoes da tabela IDDKDOMINIO            Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+[a                                       ]
+------------------------------------ctn36c00--
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+
+}
+end
+
+ tables
+    iddkdominio
+
+ attributes
+    a  = formonly.cabec,               noentry;
+    b  = iddkdominio.cpodes,           noentry;
+    c  = iddkdominio.cpocod,           noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctn36c00(cpodes thru cpocod)
+ end

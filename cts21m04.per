@@ -1,0 +1,56 @@
+
+
+{  ---> MODULO DESATIVADO - UTILIZAR FORMS framc215/framc215a - RE  <---  }
+
+
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS21M04                                               Marcelo
+                                                                      Gilberto
+ Pop-up de locais de risco para documentos de Ramos Elementares       Nov/1995
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+                          Locais de Risco
+------------------------------------------------------------cts21m04--
+[a1                                           ][a2                  ]
+[a3                            ]-[a4]CEP:[a5   |a6 |c       |l    |b ]
+[d1        |d2                                                |d3    ]
+[a1                                           ][a2                  ]
+[a3                            ]-[a4]CEP:[a5   |a6 |c       |l    |b ]
+[d1        |d2                                                |d3    ]
+[a1                                           ][a2                  ]
+[a3                            ]-[a4]CEP:[a5   |a6 |c       |l    |b ]
+[d1        |d2                                                |d3    ]
+[a1                                           ][a2                  ]
+[a3                            ]-[a4]CEP:[a5   |a6 |c       |l    |b ]
+[d1        |d2                                                |d3    ]
+}
+end
+
+tables
+   rsdmlocal,
+   rlaklocal,
+   datmlcl
+
+attributes
+ a1 = formonly.lgdtxt    ;
+ a2 = datmlcl.brrnom     ;
+ a3 = datmlcl.cidnom     ;
+ a4 = datmlcl.ufdcod     ;
+ a5 = datmlcl.lgdcep     ;
+ a6 = datmlcl.lgdcepcmp  ;
+ c  = rsdmlocal.lclrsccod, invisible;
+ l  = formonly.locdes    ;
+ b  = rsdmlocal.lclnumseq;
+ d1 = datmlcl.lgdtip     , invisible;
+ d2 = datmlcl.lgdnom     , invisible;
+ d3 = datmlcl.lgdnum     , invisible;
+end
+
+instructions
+ delimiters " "
+ screen record s_cts21m04(lgdtxt thru lgdnum)
+end

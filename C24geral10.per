@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: c24geral10                                                Pedro
+                                                                       Marcelo
+ Mostra todos os ramos --                                             Mar/1995
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+Codigo    Descricao
+---------------------------------------c24geral10--
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+[a   ]   [b                                       ]
+
+}
+end
+tables
+   gtakram
+
+attributes
+   a  = gtakram.ramcod;
+   b  = gtakram.ramnom;
+end
+
+instructions
+    delimiters " "
+    screen record c24geral10 (ramcod, ramnom)
+end
+

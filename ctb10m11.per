@@ -1,0 +1,29 @@
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctb10m11---
+             Tela da parametrizacao por Alcada
+
+Funcionario                                   Valor  Percentual
+--------------------------------           --------  ----------
+[b1    |b2                       ][b3              ]   [b4   ]%
+[b1    |b2                       ][b3              ]   [b4   ]%
+[b1    |b2                       ][b3              ]   [b4   ]%
+[b1    |b2                       ][b3              ]   [b4   ]%
+[b1    |b2                       ][b3              ]   [b4   ]%
+
+}
+end
+
+attributes
+
+b1 = formonly.funmat type integer,comments='Informa a matricula';
+b2 = formonly.funnom,noentry;
+b3 = formonly.valor;
+b4 = formonly.percentual;
+end
+
+instructions
+   screen record s_ctb10m11[05](funmat thru percentual)
+   delimiters " "
+

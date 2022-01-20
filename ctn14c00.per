@@ -1,0 +1,53 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN14C00                     Criacao: 20/09/94 - Pedro
+
+ Consulta cadastro de Sucursais.
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn14c00--
+ 
+ R.social:[a001                                    ]  Codigo:[c0   ]
+ Endereco:[a002                                    ]  Numero;[a011 ]
+ Cidade..:[a003           ]
+ Tels....:[a004][a005                              ]  Cep...:[a006 ][c1 ]
+ Telex...:[a007                ]                      Fax...:[a008           ]
+ C.G.C...:[a009        ]-[c2]                         Insc.E:[a010           ]
+ 
+ R.social:[a001                                    ]  Codigo:[c0   ]
+ Endereco:[a002                                    ]  Numero:[a011 ]
+ Cidade..:[a003           ]
+ Tels....:[a004][a005                              ]  Cep...:[a006 ][c1 ]
+ Telex...:[a007                ]                      Fax...:[a008           ]
+ C.G.C...:[a009        ]-[c2]                         Insc.E:[a010           ]
+
+
+}
+end
+
+tables gabksuc
+
+attributes
+a001 = gabksuc.sucnom,    noentry;
+c0   = gabksuc.succod,    noentry;
+a002 = gabksuc.endlgd,    noentry;
+a011 = gabksuc.endnum,    noentry;
+a003 = gabksuc.endcid,    noentry;
+a004 = gabksuc.dddcod,    noentry;
+a005 = gabksuc.teltxt,    noentry;
+a006 = gabksuc.endcep,    noentry;
+c1   = gabksuc.endcepcmp, noentry;
+a007 = gabksuc.tlxtxt,    noentry;
+a008 = gabksuc.factxt,    noentry;
+a009 = gabksuc.cgccpfnum, noentry;
+c2   = gabksuc.cgccpfdig, noentry;
+a010 = gabksuc.estinsnum, noentry;
+end
+
+instructions
+     screen record s_ctn14c00(sucnom thru estinsnum)
+     delimiters " "
+end

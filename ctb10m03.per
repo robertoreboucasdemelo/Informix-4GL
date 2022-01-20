@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M03                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de vigencias de tarifas                       Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m03--
+ Nro Vig...:[a5   ]   Tarifa:[a10  ][a15                                     ]
+ Vigencia..:[a20       ]a[a25       ]
+
+ Incluido..:[a30       ]por[a35                ]
+ Atualizado:[a40       ]por[a45                ]
+------------------------------------------------------------------------------
+   Grupo  Descricao                   Custo  Descricao                  Valor
+------------------------------------------------------------------------------
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+
+}
+end
+
+tables dbsmvigtrfsocorro, dbstgtfcst, dbskgtf, dbskcustosocorro
+
+attributes
+
+   a5  = formonly.soctrfvignum,                       noentry;
+   a10 = dbsmvigtrfsocorro.soctrfcod,                 noentry;
+   a15 = formonly.soctrfdes,                          noentry;
+   a20 = dbsmvigtrfsocorro.soctrfvigincdat,           noentry;
+   a25 = dbsmvigtrfsocorro.soctrfvigfnldat,           noentry;
+
+   a30  = dbsmvigtrfsocorro.caddat,                   noentry;
+   a35  = formonly.cadfunnom,                         noentry;
+   a40  = dbsmvigtrfsocorro.atldat,                   noentry;
+   a45  = formonly.funnom,                            noentry;
+
+   b5  = dbstgtfcst.socgtfcod,
+         comments = " Codigo do grupo tarifario";
+   b10 = dbskgtf.socgtfdes,                           noentry;
+   b15 = dbstgtfcst.soccstcod,
+         comments = " Codigo do custo";
+   b20 = dbskcustosocorro.soccstdes,                  noentry;
+   b25 = dbstgtfcst.socgtfcstvlr,  format="######&.&&",
+         comments = " Valor do grupo tarifario/custo";
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb10m03(socgtfcod thru socgtfcstvlr)

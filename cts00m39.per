@@ -1,0 +1,47 @@
+{----------------------------------------------------------------------------
+ NOME DO FORM: CTS00M39                        LUCAS SCHEID/PRISCILA STAINGEL
+
+ TELA PARA EXIBIR OS PRESTADORES NAO LOGADOS NA INTERNET.            ABR/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+-------------------------------------------------------------------cts00m39---
+ Cod.  Prestador            Cidade              Estado DDD  Telefone
+------------------------------------------------------------------------------
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+[a    |b                   |c                    |d ] [e   |f                ]
+
+(F3)Prox.(F4)Ant.(F5)FONE/FAX(F6)Atualiza(F7)FoneCompl. Total de Prest.:[t   ]
+}
+end
+
+attributes
+  a = formonly.pstcoddig type integer, noentry;
+  b = formonly.nomgrr    type char, noentry;
+  c = formonly.endcid    type char, noentry;
+  d = formonly.endufd    type char, noentry;
+  e = formonly.dddcod    type char, noentry;
+  f = formonly.teltxt    type char, noentry;
+  t = formonly.total     type integer, format = "&&&&", noentry,
+                         color = black reverse where t is not null;
+end
+
+instructions
+  delimiters " "
+  screen record s_cts00m39(pstcoddig thru teltxt)
+end

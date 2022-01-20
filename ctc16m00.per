@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc16m00                                               Marcelo
+                                                                      Gilberto
+ Cadastro de naturezas de socorro                                     Abr/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc16m00--
+  Codigo.........:[a1 ]
+------------------------------------------------------------------------------
+  Descricao......:[a2                            ]
+  Situacao.......:[a]
+  
+  Grupo Problemas:[c1   |c2                            ]
+  Grupo Cotas....:[c3   |c4                            ]
+  
+  Programado pelo Prestador: [c5]
+  
+  Descricao WEB..:[d1                                                        ]
+  Visualiza WEB..:[d]
+  
+  Incluido.......:[b1        ]por[b2                 ]
+  Atualizado.....:[b3        ]por[b4                 ]
+  
+}
+end
+
+ tables datksocntz
+
+ attributes
+    a1 = datksocntz.socntzcod   , format = "&&&"
+                                , comments = " Codigo da natureza";
+    a2 = datksocntz.socntzdes   , upshift
+                                , comments = " Descricao da natureza";
+    a  = datksocntz.socntzstt   , upshift
+                                , comments= " Situacao: (A)tivo ou (C)ancelado";
+    c1 = datksocntz.c24pbmgrpcod, upshift
+                                , comments = " Grupo de problemas que a natureza pertence";
+    c2 = formonly.c24pbmgrpdes  , noentry;
+    c3 = datksocntz.socntzgrpcod, comments = " Utilizado somente para Cotas";
+    c4 = formonly.socntzgrpdes	 , noentry, comments = " Descricao do grupo de cotas";
+    c5 = datksocntz.natagdflg  , upshift, comments = "Agendamento Pelo Prestador";    
+    d1 = datksocntz.webntzdes   , comments = " Descricao da natureza na WEB";
+    d  = datksocntz.webvslflg   , upshift 
+                                , comments = " Visualiza na WEB? (S)Sim ou (N)Nao";
+    b1 = datksocntz.caddat      , noentry;
+    b2 = formonly.cadfunnom     , noentry;
+    b3 = datksocntz.atldat      , noentry;
+    b4 = formonly.atlfunnom     , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

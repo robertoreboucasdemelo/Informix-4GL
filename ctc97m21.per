@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc97m21
+
+ Cadastro de Carga Itau                                              Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                      CORRECAO ARQUIVO ORIGINAL DE CARGA
+-------------------------------------------------------------------ctc97m21---
+Versao/Linha:[a1       |a2       ]            Apolice/Item:[b1       |b2     ]
+
+Companhia....:  [c1]-[c2                                                ]
+
+Ramo.........: [d1 ]-[d2                                                ]
+
+Produto......:[e1  ]-[e2                                                ]
+
+Plano........:[f1  ]-[f2                            ]
+
+Serv.Prestado: [g1 ]-[g2                                                ]
+
+Segmento.....:[l1  ]-[l2                                                |l3]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a1 = formonly.itaasiarqvrsnum    ,noentry, reverse;
+   a2 = formonly.itaasiarqlnhnum    ,noentry, reverse;
+   b1 = formonly.itaaplnum          ,noentry, reverse;
+   b2 = formonly.itaaplitmnum       ,noentry, reverse;
+   c1 = formonly.itaciacod          ,comments = "Codigo da Companhia";
+   c2 = formonly.itaciades          ,noentry;
+   d1 = formonly.itaramcod          ,comments = "Codigo do Ramo";
+   d2 = formonly.itaramdes          ,noentry;
+   e1 = formonly.itaprdcod          ,comments = "Codigo do Produto";
+   e2 = formonly.itaprddes          ,noentry;
+   f1 = formonly.itasgrplncod       ,comments = "Codigo do Plano";
+   f2 = formonly.itasgrplndes       ,noentry;
+   g1 = formonly.itaasisrvcod       ,upshift, comments = "Codigo do Servico de Assistencia Prestado";
+   g2 = formonly.itaasisrvdes       ,noentry;
+   l1 = formonly.itaclisgmcod       ,upshift, comments = "Codigo do Segmento do Cliente";
+   l2 = formonly.itaclisgmdes       ,noentry;
+   l3 = formonly.itasgmcod          ,noentry, invisible;
+end
+
+instructions
+   screen record s_ctc97m21 (itaasiarqvrsnum thru itasgmcod)
+   delimiters " "
+end

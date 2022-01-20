@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m02                                               Beatriz
+                                                                       Araujo
+ Cadastro historico de/para Origem                                   Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc93m02--
+    Origem:[a  ]-[b                 ] Assunto:[d  ]-[e                      ]
+------------------------------------------------------------------------------
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+
+                                                       <Ctrl-C> Cancela
+}
+end
+tables datkdcrorghst,datkassunto
+
+attributes
+   a = datkdcrorghst.atdsrvorg   ,noentry;
+   b = formonly.descricao        type char, noentry;
+   c = formonly.texto            type char,upshift;
+   d = datkdcrorghst.c24astcod   ,noentry,upshift;
+   e = datkassunto.c24astdes     ,noentry,upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc93m02[12] (texto)
+end
+
+

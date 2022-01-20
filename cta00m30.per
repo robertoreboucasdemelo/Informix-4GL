@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m30                                               Roberto
+
+ Seleciona Itens da Apolice Itau                                      Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+                        Itens da Apolice
+-------------------------------------------------------cta00m30--
+            Item   Veiculo                                Placa    
+
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+[x][a][y][b      ][c                                   ][d      ]
+------------------------------------------------------------------
+[f                                                              ]
+
+}
+end
+
+tables datmitaaplitm
+
+attributes
+   x = formonly.marca1                                  ,noentry;  
+   a = formonly.seta ,upshift 
+                     ,comments = " Escolha teclando <ENTER> "; 
+   y = formonly.marca2                                  ,noentry;       
+   b = datmitaaplitm.itaaplitmnum, format = "#######"   ,noentry;
+   c = formonly.vcldes                                  ,noentry;
+   d = datmitaaplitm.autplcnum                          ,noentry;
+   f = formonly.obs                                     ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m30(marca1 thru autplcnum)
+end

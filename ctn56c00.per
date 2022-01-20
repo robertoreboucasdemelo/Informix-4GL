@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn56c00.                                     Johnny,Biztalking
+
+                                                                      Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{                            
+                             CONSULTA CAPS
+------------------------------------------------------------------ctn56c00----
+ CEP.......:[a4   |a5 ]
+ UF........:[a2]    Cidade....:[a1                                           ] 
+ Tipo Logr.:[a6       ]                                                  
+ Endereco..:[a7                       ]                    Numero:[a8   ]
+ Bairro....:[a3                                      ]      
+------------------------------------------------------------------------------
+    Codigo  Razao Social         Cidade             Bairro          Distancia
+   
+[l][a9   ][a10                 ][a11              ][a12            ][a13     ]
+[l][a9   ][a10                 ][a11              ][a12            ][a13     ]
+[l][a9   ][a10                 ][a11              ][a12            ][a13     ]
+[l][a9   ][a10                 ][a11              ][a12            ][a13     ]
+------------------------------------------------------------------------------  
+                (F8) Seleciona    (F17) Sair
+------------------------------------------------------------------------------ 
+
+}
+end
+
+ tables datmlcl
+
+attributes
+
+a1 = datmlcl.cidnom   , upshift  , comments = " Informe a Cidade ";
+a2 = datmlcl.ufdcod   , upshift  , comments = " Sigla da unidade da federacao ";
+a3 = datmlcl.brrnom   , upshift  , comments = " Informe o Bairro ";
+a4 = datmlcl.lgdcep   , autonext , comments = " CEP do logradouro ";
+a5 = datmlcl.lgdcepcmp , autonext , format =  "&&&";
+a6 = datmlcl.lgdtip , upshift
+              , comments = " Tipo do logradouro: Avenida, Rua, Praca, Travessa"; 
+a7 = datmlcl.endcmp    , upshift , comments = " Informe o Endereco"; 
+a8 = datmlcl.lgdnum , format = "#####"  , comments = " Numero do logradouro ";
+a9 = formonly.codigo type decimal(5,0), noentry ;
+a10 = formonly.razao  type char   ,upshift, noentry ;
+a11 = formonly.cidade type char, noentry; 
+a12= formonly.bairro type char   ,upshift, noentry; 
+a13 = formonly.distancia type char, noentry ;
+l  = formonly.fantasma   ,  invisible;
+
+end
+
+instructions
+   delimiters " "
+   
+   screen record src_dados (fantasma,codigo, razao
+                           ,cidade, bairro
+                           ,distancia)
+   
+end   

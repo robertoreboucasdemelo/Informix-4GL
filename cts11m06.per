@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTS11M06                                        Marcelo
+                                                               Gilberto
+ Digitacao das localidades para assistencia a passageiro       Jun/1999
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            Assistencia a Passageiros - Localidades
+-----------------------------------------------------cts11m06---
+ Domicilio.: [a1                                           ][a2]
+ Ocorrencia: [b1                                           ][b2]
+[d1         ][c1                                           ][c2]
+
+
+}
+end
+
+tables
+   datmassistpassag
+
+attributes
+   d1 = formonly.descricao,noentry;
+   a1 = datmassistpassag.atddmccidnom, upshift
+                                     , comments = " Cidade de domicilio ";
+   a2 = datmassistpassag.atddmcufdcod, upshift
+                                     , comments = " UF de domicilio ";
+   b1 = formonly.atdocrcidnom        , upshift
+                                     , comments = " Cidade de ocorrencia";
+   b2 = formonly.atdocrufdcod        , upshift
+                                     , comments = " UF de ocorrencia ";
+   c1 = datmassistpassag.atddstcidnom, upshift
+                                     , comments = " Cidade de destino ";
+   c2 = datmassistpassag.atddstufdcod, upshift
+                                     , comments = " UF de destino ";
+end
+
+instructions
+   delimiters " "
+end

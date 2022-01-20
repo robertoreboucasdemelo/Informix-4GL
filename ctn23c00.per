@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------
+ Nome do form: ctn23c00                                     Gilberto
+                                                             Marcelo
+ Mostra todos os prestadores com veiculo acionado via radio   Abr/96
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Codigo  Nome de Guerra
+----------------------------------------ctn23c00--
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+[a     ][b                                       ]
+
+}
+end
+
+tables
+   dpaksocor
+
+attributes
+   a  = dpaksocor.pstcoddig         ,noentry;
+   b  = dpaksocor.nomgrr            ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn23c00(pstcoddig thru nomgrr)
+end
+

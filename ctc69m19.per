@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m19                                      R.Fornax
+
+ Cadastro de Dominio                                         Set/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m19--
+                            CADASTRO DE DOMINIOS
+-----------------------------------------------------------------------------
+ Codigo     Dominio
+
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+ [a    ]   [b                 ]
+------------------------------------------------------------------------------
+ Atualizado..:[c          ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.cpocod         ,noentry;
+   b  = formonly.cpodes         ,comments = " Digite a Descricao do Dominio";
+   c  = formonly.atlult         ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m19(cpocod thru cpodes)
+end

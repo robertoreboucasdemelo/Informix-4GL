@@ -1,0 +1,80 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc12m00                                                  Pedro
+
+ Manutencao da Lista de Estabelecimentos                              Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc12m00--
+                         Codigo:[a1      ]
+------------------------------------------------------------------------------
+ Razao Social:[a2                                      ]
+
+
+ Endereco....:[b1                                      ]
+
+ Bairro......:[b3                  ]           Cidade.:[b4                  ]
+
+ U.F.........:[b5]                             Cep....:[b6   ][b7 ]
+
+ Tels........:[b8  ][b9                                      ]
+
+ Horario.....: 2 a 6a.:[b10  ]as[b11  ]
+               Sabado.:[b12  ]as[b13  ]
+               Domingo:[b14  ]as[b15  ]        At.24hs:[c ]
+}
+end
+
+tables
+dpaklista
+
+attributes
+a1   = dpaklista.emplstcod   ;
+
+a2   = dpaklista.empnom      ,upshift,
+                              required,
+                              autonext;
+
+b1   = dpaklista.endlgd      ,required,
+                              upshift,
+                              autonext;
+
+b3   = dpaklista.endbrr      ,required,
+                              upshift,
+                              autonext;
+
+b4   = dpaklista.endcid      ,required,
+                              upshift,
+                              autonext;
+
+b5   = dpaklista.endufd      ,required,
+                              upshift,
+                              autonext;
+
+b6   = dpaklista.endcep      ,required,
+                              autonext;
+
+b7   = dpaklista.endcepcmp   ,required,
+                              autonext;
+
+b8   = dpaklista.dddcod      ;
+
+b9   = dpaklista.teltxt      ,autonext;
+
+b10  = dpaklista.horsegsexinc,autonext;
+b11  = dpaklista.horsegsexfnl,autonext;
+b12  = dpaklista.horsabinc   ,autonext;
+b13  = dpaklista.horsabfnl   ,autonext;
+b14  = dpaklista.hordominc   ,autonext;
+b15  = dpaklista.hordomfnl   ,autonext;
+c    = dpaklista.hs24flg     ,comments = " Atende 24 horas (S) ou (N)",
+                              include  = ("S","N"),
+                              autonext;
+end
+
+instructions
+  delimiters " "
+end

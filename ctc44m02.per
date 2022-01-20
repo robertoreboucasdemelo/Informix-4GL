@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc44m02                                               Gilberto
+                                                                       Marcelo
+ Pop-up de dados dos dependentes                                      Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                     Dados sobre depedentes
+--------------------------------------------------------ctc44m02--
+
+ Nome Conjuge:[a1                                                ]
+
+ Qtde Depend.:[a2]
+
+}
+end
+
+ tables datksrr
+
+ attributes
+
+   a1  = datksrr.cojnom,                           upshift,
+         comments = " Nome do conjuge";
+
+   a2  = datksrr.srrdpdqtd,                        upshift,
+         comments = " Quantidade de dependentes (se nao houver informe 0)";
+
+ end
+
+ instructions
+      delimiters " "
+ end

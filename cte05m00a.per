@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte05m00a
+ Autor.......: Saymon, Meta
+ Tela de cadastro de integracao de assunto CRM x Informix.
+                                                                       SET/2012
+}
+
+database formonly
+
+screen
+{
+ASSUNTOS DO CRM SIEBEL
+--------------------------------cte05m00a--
+COD  ASSUNTO
+[id] [astnom                             ]
+[id] [astnom                             ]
+[id] [astnom                             ]
+-------------------------------------------
+Tecle: <CTRL-C>Abandonar, <F8>Selecionar
+}
+end
+
+attributes
+id        = formonly.id;
+astnom    = formonly.astnom;
+
+end
+
+instructions
+  delimiters " "
+  
+  screen record sa_cte05m00a[3](id
+                               ,astnom)
+end

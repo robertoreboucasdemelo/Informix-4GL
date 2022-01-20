@@ -1,0 +1,40 @@
+{
+-----------------------------------------------------------------------------
+ Nome do form: CTB83m02                                        Cristiane Silva
+
+ Pesquisa Empresa                              			Ago/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------ctb83m02--
+ Empresa		 Descricao
+-----------------------------------------------------------------------
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+
+ (F8)Seleciona (F17)Abandona
+}
+
+end
+
+tables gabkemp
+
+attributes
+  n = formonly.navega, invisible;
+  b = formonly.empcod;
+  c = formonly.empnom, upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb83m02(navega thru empnom)
+end

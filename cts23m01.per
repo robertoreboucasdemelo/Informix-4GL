@@ -1,0 +1,56 @@
+{--------------------------------------------------------------------
+ Nome do form: cts23m01
+                                                             Marcus
+ Inconsistencia da Frota Sinal / Localizacao                 Out/00
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[c1                                                                          ]
+[c2                                                                          ]
+--------------------------------------------------------------------cts23m01--
+ Atividade: [c3 ]
+------------------------------------------------------------------------------
+  MDT   Veiculo   Motorista       Data         Hora        Tempo    Control.
+
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+[d1  ]  [d2   ]  [d3        ]   [d4        ]  [d5      ]  [z1      ]   [d6  ]
+
+}
+end
+
+  tables
+    datkveiculo, datmfrtpos, dattfrotalocal, datkmdt, datksrr
+
+  attributes
+    c1  =  formonly.cabec,                              noentry;
+    c2  =  formonly.cabec1,                             noentry;
+    c3  =  formonly.c24atvpesq,                         upshift,
+           comments = "Opcoes : QRV - QRX - QRU - REC - INI - FIM ";
+    d1  =  datkveiculo.mdtcod;
+    d2  =  datkveiculo.atdvclsgl,                       noentry;
+    d3  =  datksrr.srrabvnom,                           noentry;
+    d4  =  datmfrtpos.atldat,                           noentry;
+    d5  =  datmfrtpos.atlhor,                           noentry;
+    z1  =  formonly.tempo,                              noentry;
+    d6  =  datkmdt.mdtctrcod,                           noentry;
+  end
+
+  instructions
+    delimiters " "
+    screen record s_cts23m01(mdtcod thru mdtctrcod)
+  end
+
+
+

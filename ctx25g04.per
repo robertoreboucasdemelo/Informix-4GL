@@ -1,0 +1,73 @@
+{--------------------------------------------------------------------
+ NOME DO FORM: CTX25G04                                 LUCAS SCHEID
+ EXIBE VEICULOS MAIS PROXIMOS DA OCORRENCIA - ROTERIZADO    JUN/2006
+--------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+                     VEICULOS MAIS PROXIMOS DA OCORRENCIA
+-------------------------------------------------------------------ctx25g04---
+ Grupo:[c1|c2               |e         |c3  |c4       ]Empresa:[e1|e2        ]
+ Atividade: [c6 ]
+------------------------------------------------------------------------------
+VCL:[d1   ][d2 ] [d3    |d4                             |d41                 ]
+QRA:[d5    |d6        ]
+AST:[d7                                                                      ]
+GPS:[d8|d9                     |d10                             |z1|d12      ]
+OBS:[d11                                 ]Tempo[d18  ]Distancia:[d17      ]Km
+[d13      |d14   |d15     |d16      ]
+
+VCL:[d1   ][d2 ] [d3    |d4                             |d41                 ]
+QRA:[d5    |d6        ]
+AST:[d7                                                                      ]
+GPS:[d8|d9                     |d10                             |z1|d12      ]
+OBS:[d11                                 ]Tempo[d18  ]Distancia:[d17      ]Km
+[d13      |d14   |d15     |d16      ]                             [c5        ]
+
+}
+end
+
+attributes
+  c1  = formonly.vcldtbgrpcod type decimal, comments = " Grupo de distribuicao";
+  c2  = formonly.vcldtbgrpdes, noentry;
+  e   = formonly.tipo_texto;
+  c3  = formonly.asist_nat type integer;
+  c4  = formonly.desc_asist_nat, noentry;
+  c6  = formonly.c24atvpsq,                       upshift,
+        comments="Informe: QRV, QRU, QRA, QRX, QTP, INI, FIM";
+
+  e1  = formonly.ciaempcod, comments = " Codigo da empresa";
+  e2  = formonly.empsgl, noentry;
+
+  d1  = formonly.atdvclsgl type char,   reverse, noentry;
+  d2  = formonly.c24atvcod type integer, noentry;
+  d3  = formonly.socvclcod type integer, noentry;
+  d4  = formonly.socvcltipdes    type char, noentry;
+  d41 = formonly.vcleqpdes type char, noentry;
+  d5  = formonly.srrcoddig type integer, noentry;
+  d6  = formonly.srrabvnom,  noentry;
+  d7  = formonly.srrasides type char,  noentry;
+  d8  = formonly.ufdcod_gps, noentry;
+  d9  = formonly.cidnom_gps, noentry;
+  d10 = formonly.brrnom_gps, noentry;
+  z1  = formonly.endzon_gps, noentry;
+  d11 = formonly.obspostxt,  noentry;
+  d18 = formonly.temp_rot, noentry, color = black reverse;
+  d17 = formonly.dist_rot, noentry, color = black reverse;
+
+  d12 = formonly.espera,     noentry;
+  d13 = formonly.dstqtd,     noentry;
+  d14 = formonly.atdprscod, invisible, noentry;
+  d15 = formonly.lclltt,    invisible, noentry;
+  d16 = formonly.lcllgt,    invisible, noentry;
+
+  c5  = formonly.total,        noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctx25g04(atdvclsgl thru lcllgt)
+end

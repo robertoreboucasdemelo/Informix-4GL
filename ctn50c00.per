@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn50c00                                                   Raji
+ Consultas do sistema de atendimento ao segurado                      Out/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------ctn50c00--
+ Data do atendimento:[a1        ]   [a2        ]
+
+ ([e])Agrupamento [g  ]   ([f])Assunto [h  ]
+------------------------------------------------------------------------------
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+------------------------------------------------------------------------------
+
+}
+end
+
+
+attributes
+   a1  =  formonly.datini    type date;
+   a2  =  formonly.datfim    type date;
+   e   =  formonly.selagpnom          ,upshift
+                  ,comments = " Totalizacao por Agrupamento";
+   f   =  formonly.selassnom          ,upshift
+                  ,comments = " Totalizacao por Assunto";
+   g   =  formonly.c24astagp          ,upshift
+                  ,comments = " Digite o Agrupamento especifico";
+   h   =  formonly.c24astcod          ,upshift
+                  ,comments = " Digite o Assunto especifico";
+   x   =  formonly.texto              ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn50c00(texto)
+end

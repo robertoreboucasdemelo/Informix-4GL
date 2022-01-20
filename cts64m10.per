@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts64m10                                              Amilton
+                                                                     Pinto
+ Controle de Reservas ITAU.                                          MAI/2011
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+[cab                                      ]   Total de Reservas[h2  ][h1     ]
+--------------------------------------------------------------------cts64m10--
+   Servico       Atendimento    Retirada      Diarias     Motivo       Status
+------------------------------------------------------------------------------
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+[a            ][b    ][c    ] [d    ][e    ]  [f    ] [h             ]  [g]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+tables
+   datmservico   
+
+attributes
+   cab = formonly.cabec           type char          , noentry;
+   h1  = formonly.horaatu         type char, reverse , noentry;  
+   h2  = formonly.qtde            type decimal,noentry;
+   a   = formonly.servico         type char          , noentry;
+   b   = formonly.atdlibdat       type char          , noentry;
+   c   = formonly.atdlibhor       type char          , noentry;
+   d   = formonly.atddatprg       type char          , noentry;
+   e   = formonly.atdhorprg       type char          , noentry;         
+   f   = formonly.diarias         type char          , noentry;         
+   h   = formonly.itarsrcaomtvdes type char ,reverse , noentry;
+   g   = formonly.situacao        type char          , noentry;
+   
+end
+
+instructions
+ delimiters " "
+ screen record s_cts64m10(servico thru situacao)
+end

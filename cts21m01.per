@@ -1,0 +1,35 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts21m01                                     Marcelo
+                                                            Gilberto
+ Mostra reguladores de Sinistro de R.E. de plantao          Nov/1995
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Reguladores                             Pager    Vist.
+---------------------------------------------cts21m01--
+[a                             ][b     ][c       ][d  ]
+[a                             ][b     ][c       ][d  ]
+[a                             ][b     ][c       ][d  ]
+[a                             ][b     ][c       ][d  ]
+[a                             ][b     ][c       ][d  ]
+
+}
+end
+
+tables
+   sgkkperi, sgkmperplt
+
+attributes
+   a  = sgkkperi.nomrazsoc                         , noentry;
+   b  = sgkkperi.sinpricod     ,invisible          , noentry;
+   c  = sgkmperplt.pgrnum      ,format = "&&&&&&&&", noentry;
+   d  = sgkmperplt.sinvstmrcqtd,format = "<<&"     , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts21m01(nomrazsoc thru sinvstmrcqtd)
+end

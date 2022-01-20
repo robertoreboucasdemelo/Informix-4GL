@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts14m05                                                  Pedro
+                                                                       Marcelo
+ Mostra todos os sinistros avisados da apolice/item                   Ago/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Vistoria  Ano    Data Sinis.
+--------------------cts14m05--
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+ [s1    ][s2  ]  [s3        ]
+
+}
+end
+
+tables
+   ssamsin
+
+attributes
+
+   s1  = ssamsin.sinvstnum,   noentry;
+   s2  = ssamsin.sinvstano,   noentry;
+   s3  = ssamsin.orrdat   ,   noentry;
+
+instructions
+  delimiters " "
+  screen record s_cts14m05(sinvstnum thru orrdat)
+end

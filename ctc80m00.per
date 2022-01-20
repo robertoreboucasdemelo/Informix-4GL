@@ -1,0 +1,50 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTC80m00                                   Cristiane Silva
+
+ Cadastro dos Tipos de Desconto                                   Jun/2006
+-------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc80m00---
+		             TIPOS DE DESCONTO
+------------------------------------------------------------------------------
+
+ Codigo.....: [a ]
+
+ Descricao..: [b                                      ]
+
+ Situacao...: [c]
+
+ Cod.Despesa: [h     ]         C.Custo: [i       ]
+
+ Incluido...: [d             ] por [e                            ]
+ Atualizado.: [f             ] por [g                            ]
+
+
+(F17) Abandona
+
+}
+
+end
+
+tables dbsktipdsc
+
+attributes
+  a = formonly.dsctipcod;
+  b = dbsktipdsc.dsctipdes, upshift;
+  c = dbsktipdsc.dsctipsit, upshift,
+      comments = " Situacao do tipo de desconto: (A)tivo ou (C)ancelado", upshift;
+  d = dbsktipdsc.caddat, noentry;
+  e = formonly.cadfunnom, noentry;
+  f = dbsktipdsc.atldat, noentry;
+  g = formonly.funnom, noentry;
+  h = formonly.coddesp, comments='Informe o codigo da despesa contabil';
+  i = formonly.ccusto, comments='Informe o codigo do centro de custo';
+end
+
+instructions
+  delimiters " "
+end

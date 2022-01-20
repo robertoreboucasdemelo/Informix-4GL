@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------     
+ Nome do form: cty05g11                                              R.Fornax     
+                                                                                   
+ Extrato de Limites Help Desk                                        Mai/2015     
+-----------------------------------------------------------------------------}     
+
+database formonly
+screen
+
+
+{
+              Limites de Utilizacao[a]
+
+[b                                             ]
+--------------------------------------cty05g11--
+ Assistencia              Qtd.Utilizada  [g     ]
+
+ ATENDIMENTO TELEFONICO       [c  ]       [d  ]
+ ATENDIMENTO PRESENCIAL       [e  ]       [f  ]
+
+[h                          ] [i  ]
+
+
+}
+
+end
+
+attributes
+ 
+  a = formonly.descanso                   ;
+  b = formonly.texto                      ;
+  c = formonly.qtd_tel           , noentry;
+  d = formonly.lim_tel           , noentry;
+  e = formonly.qtd_pre           , noentry;
+  f = formonly.lim_pre           , noentry;
+  g = formonly.limite_msg        , noentry;
+  h = formonly.lim_uni_msg       , noentry;
+  i = formonly.lim_uni           , noentry;
+ 
+end
+
+instructions
+  delimiters " "
+end

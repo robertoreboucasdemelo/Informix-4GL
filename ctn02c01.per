@@ -1,0 +1,54 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN02C01                     Criacao: 25/10/94 - Pedro
+
+ Consulta inspetorias por cep
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn02c01--
+
+ R.social:[a02                                     ]Codigo.:[a03]
+ Endereco:[a04                                     ]Nro/Cmp:[a05  ][a06      ]
+ Bairro..:[a07                 ]                    Cidade.:[a08             ]
+ UF......:[u2]                                      Cep....:[a09  ][a10]
+ Tels....:[a11 ][a12                                      ]
+ Telex...:[a13                                     ]Fax....:[a14             ]
+ Contato.:[a15                                     ]
+
+ R.social:[a02                                     ]Codigo.:[a03]
+ Endereco:[a04                                     ]Nro/Cmp:[a05  ][a06      ]
+ Bairro..:[a07                 ]                    Cidade.:[a08             ]
+ UF......:[u2]                                      Cep....:[a09  ][a10]
+ Tels....:[a11 ][a12                                      ]
+ Telex...:[a13                                     ]Fax....:[a14             ]
+ Contato.:[a15                                     ]
+}
+end
+
+tables gabkins
+
+attributes
+a02  = gabkins.iptnom,    noentry;
+a03  = gabkins.iptcod,    noentry;
+a04  = gabkins.endlgd,    noentry;
+a05  = gabkins.endnum,    noentry;
+a06  = gabkins.endcmp,    noentry;
+a07  = gabkins.endbrr,    noentry;
+a08  = gabkins.endcid,    noentry;
+u2   = gabkins.endufd,    noentry;
+a09  = gabkins.endcep,    noentry;
+a10  = gabkins.endcepcmp, noentry;
+a11  = gabkins.dddcod,    noentry;
+a12  = gabkins.teltxt,    noentry;
+a13  = gabkins.tlxtxt,    noentry;
+a14  = gabkins.factxt,    noentry;
+a15  = gabkins.rspnom,    noentry;
+end
+
+instructions
+     screen record s_ctn02c01(iptnom thru rspnom)
+     delimiters " "
+end

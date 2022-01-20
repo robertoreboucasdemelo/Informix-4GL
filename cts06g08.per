@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS06G08                                               Marcelo
+                                                                      Gilberto
+ Funcoes Genericas - Consulta de endereco padronizada                 Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  [a0                                                                  ]
+----------------------------------------------------------------cts06g08--
+
+ Local.....:[a1                                      ]
+ Cidade....:[a2                                           ]  UF..:[a3]
+ Bairro....:[a4                                      ]       Zona:[a5]
+ Logradouro:[a7                                                          ]
+ CEP.......:[b1   ][b2 ]
+ Ponto Ref.:[c1                            ]
+ Contato...:[c2                  ]              Telefone:[d1  |d2       ]
+
+}
+end
+
+ tables datmlcl
+
+ attributes
+    a0 = formonly.cabtxt     , reverse
+                             , noentry;
+    a1 = datmlcl.lclidttxt   , noentry;
+    a2 = datmlcl.cidnom      , noentry;
+    a3 = datmlcl.ufdcod      , noentry;
+    a4 = datmlcl.lclbrrnom   , noentry;
+    a5 = datmlcl.endzon      , noentry;
+    a7 = formonly.lgdtxt     , noentry;
+    b1 = datmlcl.lgdcep      , noentry;
+    b2 = datmlcl.lgdcepcmp   , noentry;
+    c1 = datmlcl.lclrefptotxt, noentry;
+    c2 = datmlcl.lclcttnom   , noentry;
+    d1 = datmlcl.dddcod      , noentry;
+    d2 = datmlcl.lcltelnum   , noentry;
+ end
+
+ instructions
+    delimiters " "
+ end

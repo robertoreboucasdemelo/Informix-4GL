@@ -1,0 +1,28 @@
+{-----------------------------------------------------------------------------#
+# Nome do Form: cta00m08                                        Ligia Mattge  #
+#                                                                             #
+# Informar senha para utilizar sistema c/Contingencia ativa          Fev/2007 #
+#-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+
+-----------------------------cta00m08------
+Informe a senha para acesso ao Informix
+-------------------------------------------
+
+    Senha:[a                   ]      
+ 
+-------------------------------------------
+(F17)Abandona
+
+}
+end
+
+attributes
+    a  = formonly.senha, invisible, comments = "Informe a senha";
+instructions
+   delimiters " "
+end

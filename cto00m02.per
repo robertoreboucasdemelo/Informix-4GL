@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTO00M02                                                 Ruiz
+                                                                        Akio
+ Mostra acao a ser tomada pelo sistema de acordo c/ o assunto        Abr/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+     Acao a ser tomada
+----------------------cto00m02--
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+[a                        ][b  ]
+--------------------------------
+
+}
+
+End
+
+tables
+   dackprgext
+
+Attributes
+ a  = dackprgext.prgextdes       ,noentry;
+ b  = dackprgext.prgextcod       ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m02(prgextdes thru prgextcod)
+End

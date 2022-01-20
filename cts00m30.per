@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m30                                              Ruiz   
+                                                                     Marcus    
+ Tela de complemento do servico via internet                         Set/2001
+-----------------------------------------------------------------------------}
+ 
+database porto     
+screen size 24 by 80 
+{
+
+
+--------------------------------------------------------------------cts00m30--
+ Servico:[a           ]-[a1                                   ]
+------------------------------------------------------------------------------ 
+ Enviado:[b      ] As:[b1   ] Por:[b2                         |b3            ]
+ Lido...:[c      ] As:[c1   ] Por:[c2                         |c3            ]
+                                                                             
+ [d1                                                                         ]
+ [d2                                                                         ]
+ [d3                                                                         ]
+ [d4                                                                         ]
+
+ Enviado:[b      ] As:[b1   ] Por:[b2                         |b3            ]
+ Lido...:[c      ] As:[c1   ] Por:[c2                         |c3            ]
+ [d1                                                                         ]
+ [d2                                                                         ]
+ [d3                                                                         ]
+ [d4                                                                         ]
+}
+end
+
+Tables datmsrvintcmp, isskfunc, datksrvtip
+
+attributes
+  a  = formonly.servico        , noentry;
+  a1 = datksrvtip.srvtipdes    , noentry; 
+  b  = datmsrvintcmp.caddat    , noentry , format = "mm/yyyy";
+  b1 = datmsrvintcmp.cadhor    , noentry ;
+  b2 = isskfunc.funnom         , noentry ;
+  b3 = formonly.origem         , noentry ;
+  c  = datmsrvintcmp.atldat    , noentry , format = "mm/yyyy";
+  c1 = datmsrvintcmp.atlhor    , noentry ;
+  c2 = formonly.funnom1        , noentry ;
+  c3 = formonly.origem1        , noentry ;
+  d1 = formonly.srvcmptxt1     , upshift; 
+  d2 = formonly.srvcmptxt2     , upshift; 
+  d3 = formonly.srvcmptxt3     , upshift; 
+  d4 = formonly.srvcmptxt4     , upshift; 
+end
+
+instructions
+     delimiters "  " 
+     screen record s_cts00m30(caddat thru srvcmptxt4)
+end

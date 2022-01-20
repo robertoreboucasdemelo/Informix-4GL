@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC54M00                                                 Raji
+
+ Digitacao de endereco para patio de rpt                            Mai/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                Patios para Remocoes de Perda Total (RPT)
+------------------------------------------------------------------ctc54m00--
+ UF  Cidade                        Bairro                Status       Padrao
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+[a1][a0                          ][a4                  ][a2][a3      |a6|a5]
+}
+end
+
+ tables datmlcl,
+        datkptv
+
+ attributes
+   a5  = datkptv.prdptvcod   , upshift, invisible
+                             , comments = " Codigo ";
+   a0  = datmlcl.cidnom      , upshift
+                             , comments = " Cidade ";
+   a4  = formonly.brrnom     , upshift
+                             , comments = " Bairro";
+   a1  = datmlcl.ufdcod      , upshift
+                             , comments = " Sigla da unidade da federacao ";
+   a2  = formonly.c24ptvstt  , upshift
+                             , comments = " Status do Patio";
+   a3  = formonly.sttdes     , upshift
+                             , comments = " Descricao do Status";
+   a6  = formonly.pcpptvflg  , upshift
+                             , comments = " Padrao selecao automatica";
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc54m00(prdptvcod thru pcpptvflg)
+ end

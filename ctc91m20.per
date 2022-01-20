@@ -1,0 +1,60 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m20
+
+ Consulta Inconsistencia                                             Dez/2010
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                    CONSULTA DE INCONSISTENCIAS PENDENTES [o]
+-------------------------------------------------------------------ctc91m20---
+Versao:[i    ] Proces.:[j         ]a[k         ] Apol.:[l        ] Imped.:[m]
+------------------------------------------------------------------------------
+ X Versao Linha Proc  Apolice  Item        Tipo Inconsistencia           Imped
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+[x|a    |b     |c   |d        |e   |f                                      |n]
+------------------------------------------------------------------------------
+Vigencia.:[p         ] a [q         ]       Qtd Linhas.:[r    ]
+Campo....:[g                              ] Valor:[h                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   x  = formonly.marca           ,upshift, autonext, comments = " Marque com X os itens que deseja reprocessar.";
+   a  = formonly.versao          ,noentry;
+   b  = formonly.linha           ,noentry;
+   c  = formonly.process         ,noentry;
+   d  = formonly.apolice         ,noentry;
+   e  = formonly.item            ,noentry;
+   f  = formonly.incons          ,noentry;
+   n  = formonly.imped           ,noentry;
+   g  = formonly.campo           ,noentry;
+   h  = formonly.conteudo        ,noentry;
+   o  = formonly.operacao        ,noentry, invisible;
+   i  = formonly.filversao       ,upshift, reverse, comments = " Filtrar pela versao do arquivo.";
+   j  = formonly.fildtini        ,upshift, reverse, comments = " Filtrar pela data de inicio de processamento.";
+   k  = formonly.fildtfim        ,upshift, reverse, comments = " Filtrar pela data de fim de processamento";
+   l  = formonly.filapol         ,upshift, reverse, comments = " Filtrar pelo numero da apolice.";
+   m  = formonly.filimped        ,upshift, reverse, comments = " Filtrar inconsistencias impeditivas ou nao impeditivas.";
+   p  = formonly.itaaplvigincdat ,noentry;
+   q  = formonly.itaaplvigfnldat ,noentry;
+   r  = formonly.qtd             ,noentry;
+end
+
+instructions
+   screen record s_ctc91m20  (marca thru imped)
+   screen record s_ctc91m20a (campo thru operacao)
+   screen record s_ctc91m20b (filversao thru filimped)
+   screen record s_ctc91m20c (itaaplvigincdat thru itaaplvigfnldat)
+   delimiters " "
+end

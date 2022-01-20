@@ -1,0 +1,66 @@
+{---------------------------------------------------------------------------
+              *** Porto  Seguro  Cia.  de  Seguros  Gerais ***
+............................................................................
+
+ Sistema.: Ct24hs   - Central 24hs e Pronto Socorro
+ Modulo..: ctc60m02 - Manutencao Veiculos
+ Analista: Wagner Agostinho
+ PSI.....:                OSF: 10570
+
+ Desenvolvimento: Fabrica de Software  -  Talita Menezes - DEZ/02
+ Alteracoes:
+
+ DATA        SOLICITACAO  RESPONSAVEL  DESCRICAO
+-----------------------------------------------------------------------------
+ 19/02/2003  PAS ???????  Zyon         Retirada do campo "Controle"
+----------------------------------------------------------------------------}
+
+database porto
+
+screen
+
+{
+
+
+-------------------------------------------------------------------ctc60m02---
+  Sigla:[a    ]          Codigo:[b     ]
+------------------------------------------------------------------------------
+
+  Grp Dist....:[d |d2                  ]
+
+  Pager/MDT...:[e  ]/[e2  ]
+
+  Teletrim....:[f      ]
+
+  Celular.....:[g   |h        ]
+
+  ID Nextel...:[k         ]
+
+  Linha Nextel:[i   ] [j        ]
+
+}
+
+tables
+   datkveiculo
+  ,dattfrotalocal
+  ,datkvcldtbgrp
+
+attributes
+   a  = datkveiculo.atdvclsgl, upshift, autonext;
+   b  = datkveiculo.socvclcod, autonext;
+   d  = dattfrotalocal.vcldtbgrpcod, comments = " Codigo do grupo de distribuicao (Radio)", autonext;
+   d2 = datkvcldtbgrp.vcldtbgrpdes, noentry;
+   e  = datkveiculo.atdimpcod, autonext;
+   e2 = datkveiculo.mdtcod, autonext;
+   f  = datkveiculo.pgrnum, autonext;
+   g  = datkveiculo.celdddcod, comments = " Informe o DDD do celular";
+   h  = datkveiculo.celtelnum, comments = " Informe o numero do telefone celular";
+   k  = datkveiculo.nxtide, comments = "ID Nextel";
+   i  = datkveiculo.nxtdddcod, comments = "DDD Nextel";
+   j  = datkveiculo.nxtnum, comments = "Numero Nextel";
+
+end
+
+instructions
+   delimiters " "
+end

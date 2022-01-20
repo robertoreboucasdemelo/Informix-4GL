@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC18M02                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Manutencao data periodo de bloqueio das lojas locadoras             Jan/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Periodo de bloqueio da loja
+-------------------------------------ctc18m02--
+
+       Data  inicio :[a1        ]
+
+            termino :[a2        ]
+
+
+}
+end
+
+tables
+  datklcvsit
+
+attributes
+
+a1  = datklcvsit.viginc,
+          comments = " Data inicio do periodo de bloqueio ";
+a2  = datklcvsit.vigfnl,
+          comments = " Data termino do periodo de bloqueio ";
+
+end
+
+instructions
+  delimiters " "
+end

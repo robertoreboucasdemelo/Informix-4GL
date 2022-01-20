@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN22C01                                              Gilberto
+                                                                      Marcelo
+ Consulta telefones de um nome da agenda                             Fev/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn22c01--
+Nome.......:[a                                       ]
+Observacao.:[b                                                           ]
+------------------------------------------------------------------------------
+        Descricao       DDD    Numero       Ramal      Cod. Bip
+
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+       [b5        ]    [b07 ] [b10      ]  [b12 ]     [b15      ]
+
+
+}
+end
+
+tables datkpesagetel, datkagendatel
+
+attributes
+
+  a   = formonly.pesnom                ,noentry;
+  b   = formonly.pesobs                ,noentry;
+
+  b5  = formonly.teltipdes             ,noentry;
+  b07 = datkagendatel.dddcod           ,noentry;
+  b10 = datkagendatel.telnum           ,noentry;
+  b12 = datkagendatel.rmlnum           ,noentry;
+  b15 = datkagendatel.bipnum           ,noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn22c01(teltipdes thru bipnum)

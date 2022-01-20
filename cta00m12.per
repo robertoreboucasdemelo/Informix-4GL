@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m12                                                 Pedro
+
+ Mostra os Itens da Apolice                                          Dez/1994
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+       Item  Veiculo                     Chassi
+----------------------------------------cta00m12--
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+[a][b      ][c                         ][d       ]
+
+}
+End
+
+Attributes
+ a = formonly.lixo;
+ b = formonly.itmnumdig type decimal(7,0), format = "#######";
+ c = formonly.vcldes;
+ d = formonly.vclchs;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta00m12(lixo, itmnumdig, vcldes, vclchs)
+End

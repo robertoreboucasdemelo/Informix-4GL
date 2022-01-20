@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m09a                                             Danilo                           
+ Pop-up de assuntos/ Subassuntos / Identificalção                   Jun/2010
+-----------------------------------------------------------------------------}
+
+Database formonly
+
+Screen
+{
+              [a                     ]
+-----------------------------------------cto00m09a--
+[b                                              |c ]
+[b                                              |c ]
+[b                                              |c ]
+[b                                              |c ]
+[b                                              |c ]
+[b                                              |c ]
+
+}
+End
+
+
+Attributes
+ a  = formonly.titulo, noentry; 
+ b = formonly.descricao, noentry;
+ c  = formonly.cod, noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m09(descricao, cod)
+End

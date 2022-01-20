@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta03m00                                                  Pedro
+                                                                       Marcelo
+ Historico da Ligacao                                                 Jan/1995
+----------------------------------------------------------------------------- 
+ 07/10/08 - Carla Rampazzo - PSI 230650 - Decreto 6523
+          - Incluir campo de Atendimento
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cta03m00--
+    HISTORICO DA LIGACAO:[b         ]         Atendimento:[c        ] 
+------------------------------------------------------------------------------
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+   [a                                                                     ]
+
+}
+end
+
+tables
+datmlighist,
+datmatd6523
+
+
+attributes
+
+a    = datmlighist.c24ligdsc, upshift;
+c    = datmatd6523.atdnum   , upshift, format =  "<<<<<<<<&";
+b    = datmlighist.lignum   , upshift, format = "<<<<<<<<<&";
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cta03m00(c24ligdsc)
+end

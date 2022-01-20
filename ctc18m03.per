@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC18M03                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Consulta situacao da loja locadora                                  Jan/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+         Situacao da loja locadora
+-------------------------------------ctc18m03--
+
+       Situacao ....:[a|a1          ]
+
+       Data  inicio :[b1        ]
+
+            termino :[b2        ]
+
+ Atualizado em:[c1        ]
+           por:[c2|c3    |c4                  ]
+
+}
+end
+
+tables
+  datkavislocal, datklcvsit
+
+attributes
+
+a   = datkavislocal.vclalglojstt, noentry ;
+a1  = formonly.lojsttdes        , noentry ;
+b1  = datklcvsit.viginc         , noentry ;
+b2  = datklcvsit.vigfnl         , noentry ;
+c1  = datklcvsit.atldat         , noentry ;
+c2  = datklcvsit.atlemp         , noentry , format = "&&";
+c3  = datklcvsit.atlmat         , noentry , format = "&&&&&&";
+c4  = formonly.atlnom           , noentry ;
+
+end
+
+instructions
+  delimiters " "
+end

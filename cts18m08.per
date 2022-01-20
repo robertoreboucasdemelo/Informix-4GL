@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts18m08                                              Marcelo
+                                                                     Gilberto
+ Exibe propostas individuais para selecao                            Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+    Propostas individuais referentes a proposta[a1][a10     ]
+-------------------------------------------------------cts18m08--
+ Proposta      Proponente                                Placa
+
+[b1][b10     ][b20                                     ][b30    ]
+[b1][b10     ][b20                                     ][b30    ]
+[b1][b10     ][b20                                     ][b30    ]
+[b1][b10     ][b20                                     ][b30    ]
+[b1][b10     ][b20                                     ][b30    ]
+[b1][b10     ][b20                                     ][b30    ]
+
+}
+end
+
+tables
+   apbmitem, apbmveic
+
+attributes
+
+   a1  = apbmitem.prporgpcp  , noentry, format = "&&";
+   a10 = apbmitem.prpnumpcp  , noentry, format = "&&&&&&&&";
+
+   b1  = apbmitem.prporgidv  , noentry, format = "&&";
+   b10 = apbmitem.prpnumidv  , noentry, format = "&&&&&&&&";
+   b20 = formonly.segnom     , noentry, upshift;
+   b30 = apbmveic.vcllicnum  , noentry, upshift;
+
+instructions
+  delimiters " "
+  screen record s_cts18m08(prporgidv thru vcllicnum)
+end

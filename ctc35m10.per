@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTC35M10                                            Gilberto
+                                                                    Marcelo
+                                                                     Wagner
+ Mostra todos os Grupos de itens                                     Dez/98
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Grupos de itens
+----------------------------------------ctc35m10--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   datkvstitmgrp
+
+attributes
+   a   = datkvstitmgrp.socvstitmgrpdes               ,noentry;
+   b   = datkvstitmgrp.socvstitmgrpcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc35m10(socvstitmgrpdes thru socvstitmgrpcod)
+end
+

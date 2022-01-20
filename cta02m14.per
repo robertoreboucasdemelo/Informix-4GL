@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m14                                                 Ruiz
+
+ Consulta os sinistros da apolice                                    Fev/2001
+-----------------------------------------------------------------------------}
+
+Database Formonly
+Screen
+{
+--------------------------------------------------------------------cta02m14--
+ Num.Aviso   Data Aviso   Nome do Terceiro        Veiculo do Terceiro
+------------------------------------------------------------------------------
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+[a     |a1  |b         |c                   |d                               ]
+
+}
+End
+
+Attributes
+ a = formonly.sinavsnum;
+ a1= formonly.sinavsano;
+ b = formonly.sinocrdat;
+ c = formonly.sinrclnom;
+ d = formonly.sinbemdes;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta02m14(sinavsnum thru sinbemdes)
+End

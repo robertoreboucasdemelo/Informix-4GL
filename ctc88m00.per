@@ -1,0 +1,57 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC88M00.4GL                                              #
+# ANALISTA RESP..: KEVELLIN                                                  #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: ATIVAR/DESATIVAR FROTA EXTRA.                             #
+#............................................................................#
+# DESENVOLVIMENTO: KEVELLIN                                                  #
+# LIBERACAO......:                                                           #
+#............................................................................#
+#                        * * *  ALTERACOES  * * *                            #
+#                                                                            #
+# DATA        AUTOR FABRICA   PSI/OSF       ALTERACAO                        #
+# ----------  -------------   ------------  -------------------------------- #
+#                                                                            #
+# -------------------------------------------------------------------------- }
+
+database formonly
+
+screen
+{
+
+
+------------------------------------------------------------------------------
+             ATIVACAO / DESATIVACAO FROTA EXTRA
+--------------------------------------------------------------------ctc88m00--
+
+ Frota Extra Ativada: [a]          Bloqueio Viatura por        
+                                   inc na vistoria       [f]
+ Plantao por SMS:     [b]
+
+ QRV2 ATIVO:          [C]
+
+ Gerenciamento de 
+ Especialidades:      [d]
+
+ Bloqueio QRA por 
+ falta de seg vida    [e]
+
+
+ Observacao:          [obs                                                   ]
+}
+end
+
+attributes
+a   = formonly.info    ,upshift;
+b   = formonly.atvplt  ,upshift;
+C   = formonly.qrv2    ,upshift;
+d   = formonly.geresp  ,upshift;
+e   = formonly.blqqra  ,upshift,noentry;
+f   = formonly.blqvtr  ,upshift,noentry;
+obs = formonly.obs     ,upshift,noentry;
+
+instructions
+    delimiters " "   

@@ -1,0 +1,66 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC59M01                                               Wagner
+                                                                      Raji
+ Cidades x Cidades Sede                                               Jul/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc59m01---
+  Sede: [a1                           |a |a2    |c                           ]
+------------------------------------------------------------------------------
+   [c1                                                                       ]
+   [e                                                           |e1 ]
+    Cidade                                   UF
+ ----------------------------------------------------------------------------
+
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]
+ [d|b1                                       |b |b2   ]     
+ [d|b1                                       |b |b2   ]     
+[f              ][g                 ][h                 ][i                  ]
+
+}
+end
+
+tables datrcidsed, glakcid
+
+attributes
+  a  = formonly.ufdsedcod,   upshift,
+                             comments = " UF da cidade sede";
+  a1 = formonly.cidsednom,   upshift,
+                             comments = " Cidade sede";
+  a2 = datrcidsed.cidsedcod, noentry, upshift;
+
+  e  = formonly.txtbrrtip,   noentry;
+  
+  e1 = formonly.brrtipflgdes,noentry;
+  
+  d  = formonly.atnflg,       upshift;
+
+  b1 = glakcid.cidnom,       upshift,
+                             comments = " Cidade";
+  b  = glakcid.ufdcod,       upshift,
+                             comments = " UF da cidade";
+  b2 = datrcidsed.cidcod,    noentry;
+  c  = formonly.atencaodes,  noentry, reverse;
+  c1 = formonly.atencaosep,  noentry;
+  
+  f  = formonly.atdqrvflg,  noentry, reverse;
+  g  = formonly.blqqraflg,  noentry, reverse;
+  h  = formonly.blqvtrflg,  noentry, reverse;
+  i  = formonly.blqvclsegflg, noentry, reverse;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc59m01(cidnom thru cidcod)
+  screen record s_ctc59m01_2(atnflg thru cidcod)
+end
+

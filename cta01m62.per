@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m62                                                Roberto
+
+ Localiza CGC/CPF                                                     Jul/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+
+------------------------------------------------------------------------------
+ Cliente: [a                                      ]   [a1               ]
+ CPF....: [b                   ]     Vigencia.: [b1        ] a [b2        ] 
+------------------------------------------------------------------cta01m62----
+            Produto              Documento           Situacao     QtdSrv SrvRe
+------------------------------------------------------------------------------
+[l][c                     ][d                    ][e              ][f  ][g  ] 
+[l][c                     ][d                    ][e              ][f  ][g  ]
+[l][c                     ][d                    ][e              ][f  ][g  ]
+[l][c                     ][d                    ][e              ][f  ][g  ]
+[l][c                     ][d                    ][e              ][f  ][g  ]
+[l][c                     ][d                    ][e              ][f  ][g  ]
+[l][c                     ][d                    ][e              ][f  ][g  ]
+------------------------------------------------------------------------------
+[h                                                                          ]
+------------------------------------------------------------------------------
+[i                                                                          ]
+------------------------------------------------------------------------------
+}
+end
+tables gsakpes
+
+attributes
+a  = gsakpes.pesnom     , noentry;
+a1 = formonly.negocio   , noentry;  
+b  = formonly.cgccpfnum , noentry;
+b1 = formonly.viginc    , noentry;  
+b2 = formonly.vigfnl    , noentry; 
+h  = formonly.sitdoc    , noentry;             
+i  = formonly.obs       , noentry;
+
+l  = formonly.seta   ,  invisible;
+c  = formonly.produto   , noentry;
+d  = formonly.documento , noentry;
+e  = formonly.situacao  , noentry;
+f  = formonly.qtdsrv    , noentry;
+g  = formonly.qtdsrvre  , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m62(seta thru qtdsrvre)
+end                                                

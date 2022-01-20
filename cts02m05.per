@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS02M05                                               Pedro
+                                                                      Marcelo
+ Informacoes para Entrada Via Formulario (Sistema Fora do Ar)         Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+           Entrada Via Formulario
+-----------------------------------cts02m05--
+ Data Atend.:[a         ] Hora Atend.:[b    ]
+ Funcionario:[c     |d                   ]
+
+ Data Acion.:[e         ] Hora Acion.:[f    ]
+ Funcionario:[g     |h                   ]
+ Prestador..:[i     |j                   ]
+
+ Confirma...:[k]
+
+}
+end
+
+tables
+  datmservico,
+  dpaksocor
+
+attributes
+  a = datmservico.atddat         , comments = " Data do Atendimento"   ,
+                                   autonext;
+  b = datmservico.atdhor         , comments = " Hora do Atendimento"   ,
+                                   autonext;
+  c = datmservico.funmat         , comments = " Matricula do Atendente",
+                                   format = "&&&&&&", autonext;
+  d = formonly.atdfunnom         , noentry;
+  e = datmservico.cnldat         , comments = " Data do Acionamento"   ,
+                                   autonext;
+  f = datmservico.atdfnlhor      , comments = " Hora do Acionamento"   ,
+                                   autonext;
+  g = datmservico.c24opemat      , comments = " Matricula do Operador Radio",
+                                   format = "&&&&&&", autonext;
+  h = formonly.cnlfunnom         , noentry;
+  i = formonly.pstcoddig type dec, comments = " Codigo do Prestador"   ,
+                                   format = "&&&&&&", autonext;
+  j = dpaksocor.nomgrr           , noentry;
+  k = formonly.confirma          , comments = " Confirma dados: (S)im ou (N)ao" ,
+                                   required, upshift;
+end
+
+instructions
+  delimiters " "
+end

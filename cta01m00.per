@@ -1,0 +1,90 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA01M00                                              Marcelo
+                                                                     Gilberto
+ Espelho da apolice                                                  Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 25 by 80
+{
+ Atendimento...:[e         ]                            
+--------------------------------------------------------------------cta01m00--
+ Suc:[a1   ] Apl:[a2        ] Item:[a3      ] End:[a4       ][a5             ]
+------------------------------------------------------------------------------
+[b1                               ]|            SEGURADO [c8                 ]
+ Emissao.:[b2        ]             |[c1                                      ]
+ Vig.Apl.:[b3        ]a[b4        ]|[c2      ]  Fone:[c3                     ]
+ Convenio:[b5                     ]|[c7                                      ]
+ Cobert..:[b6][b7                 ]|            CORRETOR
+ Categ...:[b8]       Perfil:[b10  ]|[c4                                      ]
+ Situacao:[b9       ]Benef.:[b13]  |[c5      ]  Fone:[c6                     ]
+------------------------------------------------------------------------------
+                                   |              AUTO        [d0           ]
+                                   | Marca..:[d1              ]   [b11      ]
+                                   | Tipo...:[d2                             ]
+                                   | Modelo.:[d3              ]   [b12      ]
+                                   | Chassi.:[d4                  ]
+                                   | Placa..:[d5     ]
+                                   | Fab/Mod:[d6  ]/[d7  ]   [d8           ]
+------------------------------------------------------------------------------
+}
+end
+tables gsakseg   ,
+       gcakcorr  ,
+       gcaksusep ,
+       agbkmarca ,
+       agbktip   ,
+       agbkveic  ,
+       abamapol  ,
+       abamdoc   ,
+       abbmveic  ,
+       abbmcasco ,
+       abbmdoc
+
+attributes
+
+    e  = formonly.atdnum  type dec(10,0), noentry, format = "<<<<<<<<&&";
+   a1  = abamapol.succod                , noentry, format = "###&&";
+   a2  = abamapol.aplnumdig             , noentry, format = "<<<<<<<& &";
+   a3  = abbmveic.itmnumdig             , noentry, format = "<<<<<& &";
+   a4  = abamdoc.edsnumref              , noentry, format = "<<<<<<<<&";
+   a5  = formonly.solnom                , noentry;
+
+   b1  = formonly.edstipdes             , noentry;
+   b2  = abamapol.emsdat                , noentry;
+   b3  = abamapol.viginc                , noentry;
+   b4  = abamapol.vigfnl                , noentry;
+   b5  = formonly.cvnnom                , noentry;
+   b6  = abbmcasco.cbtcod               , noentry, format = "&&";
+   b7  = formonly.cbtdes                , noentry;
+   b8  = abbmcasco.ctgtrfcod            , noentry, format = "&&";
+   b9  = formonly.sitdes    type char   , noentry;
+   b13 = formonly.benefx    type char   , noentry;
+   b10 = formonly.perfil    type char   , noentry;
+
+   c1  = gsakseg.segnom                 , noentry;
+   c2  = gsakseg.segnumdig              , noentry;
+   c3  = formonly.segteltxt type char   , noentry;
+
+   c4  = gcakcorr.cornom                , noentry;
+   c5  = gcaksusep.corsus               , noentry;
+   c6  = formonly.corteltxt type char   , noentry;
+   c7  = formonly.atd       type char   , noentry;
+   c8  = formonly.def       type char   , noentry;
+   d0  = formonly.autrevtxt             , noentry;
+   d1  = agbkmarca.vclmrcnom            , noentry;
+   b11 = formonly.benef     type char   , noentry;
+   d2  = agbktip.vcltipnom              , noentry;
+   d3  = agbkveic.vclmdlnom             , noentry;
+   b12 = formonly.ituran    type char   , noentry;
+   d4  = formonly.vclchs    type char   , noentry;
+   d5  = abbmveic.vcllicnum             , noentry;
+   d6  = abbmveic.vclanofbc             , noentry;
+   d7  = abbmveic.vclanomdl             , noentry;
+   d8  = formonly.obs       type char   , noentry;
+end
+
+instructions
+   delimiters " "
+end

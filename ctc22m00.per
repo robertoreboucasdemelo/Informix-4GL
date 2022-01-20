@@ -1,0 +1,75 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTC22M00                                         Pedro
+                                                              Marcelo
+ Manutencao das Sucursais dos Convenios                        Nov/95
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc22m00--
+        Convenio.:[b00 ][b01                 ]       Codigo.:[b02  ]
+------------------------------------------------------------------------------
+
+ Nome....:[a001                                    ]
+
+ Endereco:[a002                                    ]
+ Bairro..:[a003                ]                Cidade.:[a004                ]
+ U.F.....:[uf]                                  CEP....:[a005 ][c00]
+
+ Telefone:[a006][a007     ]                     Fax....:[a008     ]
+
+ Contato.:[a009                                    ]
+
+ Ultima Atualizacao em:[a010      ]por[a011  ][a012                ]
+
+}
+end
+
+tables datkscv
+
+attributes
+b00  = formonly.cvnnum   type dec, comments = " Codigo do Convenio",
+                                   required,
+                                   upshift,
+                                   autonext;
+b01  = formonly.cvnnom,            noentry;
+
+b02  = formonly.scvsuccod,         comments = " Codigo da Sucursal Convenio";
+a001 = datkscv.scvsucnom,          required,
+                                   comments = " Nome da Sucursal Convenio",
+                                   upshift ,
+                                   autonext;
+a002 = datkscv.scvendlog,          required,
+                                   autonext,
+                                   upshift;
+a003 = datkscv.scvendbrr,          required,
+                                   autonext,
+                                   upshift;
+a004 = datkscv.scvendcid,          required,
+                                   autonext,
+                                   upshift;
+uf   = datkscv.scvufd,             required,
+                                   upshift,
+                                   autonext;
+a005 = datkscv.scvendcep,          required,
+                                   autonext;
+c00  = datkscv.scvendcepcmp,       required,
+                                   autonext;
+a006 = datkscv.scvdddcod,          autonext;
+a007 = datkscv.scvtelnum,          comments = " Telefone",
+                                   autonext;
+a008 = formonly.scvfaxnum,         comments = " Fax",
+                                   autonext;
+a009 = formonly.scvrspnom,         comments = " Nome do Responsavel",
+                                   upshift,
+                                   autonext;
+a010 = datkscv.atldat , noentry;
+a011 = datkscv.funmat , noentry,   format = "&&&&&&";
+a012 = formonly.funnom, noentry;
+end
+
+instructions
+     delimiters " "
+end

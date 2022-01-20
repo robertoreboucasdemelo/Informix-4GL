@@ -1,0 +1,72 @@
+{---------------------------------------------------------------------------
+              *** Porto  Seguro  Cia.  de  Seguros  Gerais ***
+............................................................................
+
+ Sistema.: Ct24hs   - Central 24hs e Pronto Socorro
+ Modulo..: ctc60m03 - Manutencao Socorrista
+ Analista: Wagner Agostinho
+ PSI.....:                OSF: 10570
+
+ Desenvolvimento: Fabrica de Software  -  Talita Menezes - DEZ/02
+----------------------------------------------------------------------------}
+
+database porto
+
+screen
+
+{
+
+
+--------------------------------------------------------------------ctc60m03--
+ Codigo.....:[a       ]  Nome:[a2                                          ]
+------------------------------------------------------------------------------
+
+ Celular......:[b   ][b2       ]
+
+ ID Nextel....:[c         ]
+
+ Linha Nextel.:[c1] [c2       ]
+
+
+
+
+
+
+
+
+}
+
+tables
+   datksrr
+
+attributes
+
+   a   = datksrr.srrcoddig
+                ,comments = " Codigo do socorrista (com digito)"
+                ,autonext;
+
+   a2  = datksrr.srrnom
+                ,noentry;
+
+   b   = datksrr.celdddcod
+                ,comments = " DDD do celular"
+                ,autonext;
+
+   b2  = datksrr.celtelnum
+                ,comments = " DDD do celular"
+                ,autonext;
+
+   c   = datksrr.nxtide,
+                 comments = "Id Nextel";
+   c1  = datksrr.nxtdddcod,
+                 comments = "DDD Nextel";
+   c2  = datksrr.nxtnum,
+                 comments = "Numero Nextel";
+
+end
+
+instructions
+
+   delimiters " "
+
+end

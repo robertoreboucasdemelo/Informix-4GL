@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS64M02                                              Amilton
+                                                                     Pinto
+ Criterios para locacao de veiculos Itau                            MAI/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+        Dados para locacao em caso de sinistro
+---------------------------------------------cts64m02--
+ Data do Sinistro.....:[a         ]
+ Numero do processo...:[b              ]           
+ Condicao do Processo.:[c                             ]
+ Oficina..............:[d                             ]
+  
+}
+end
+
+tables 
+  datmavisrent
+
+attributes
+
+a   = formonly.sindat        type date, format = "dd/mm/yyyy", autonext,
+                             comments = " Data em que ocorreu o sinistro";
+b   = formonly.prcnum       ,comments = "Numero do processo",
+                             autonext,
+                             upshift ;
+c   = formonly.prccnddes    ,comments = "Condição do processo",
+                             autonext,
+                             upshift;
+d = formonly.itaofinom      ,comments = "Oficina aonde se encontra o veiculo",
+                             autonext,
+                             upshift;
+end
+
+instructions
+  delimiters " "
+end

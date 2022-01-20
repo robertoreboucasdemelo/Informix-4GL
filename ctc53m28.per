@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m28                                      R.Fornax
+                                                             
+ Cadastro de Bloco X Natureza                                Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m28--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ] 
+ Bloco......:[e   ][f                                                       ] 
+------------------------------------------------------------------------------
+ Natureza  Nome                                     Data Ini     Data Fim     
+                                                 
+ [g    ] [h                                      ] [i         ] [j         ]
+ [g    ] [h                                      ] [i         ] [j         ]
+ [g    ] [h                                      ] [i         ] [j         ]
+ [g    ] [h                                      ] [i         ] [j         ]
+ [g    ] [h                                      ] [i         ] [j         ]  
+------------------------------------------------------------------------------
+ Atualizado..:[l          ] por [m                                         ]
+------------------------------------------------------------------------------
+ [n                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;    
+   b  = formonly.desper                 ,noentry;    
+   c  = formonly.c24astcod              ,noentry;    
+   d  = formonly.c24astdes              ,noentry;    
+   e  = formonly.blocod                 ,noentry;
+   f  = formonly.blodes                 ,noentry;
+   g  = formonly.socntzcod              ,comments = " Digite o Codigo da Natureza"    ,upshift;   
+   h  = formonly.socntzdes              ,noentry;
+   i  = formonly.datini                 ,comments = " Digite a Data Inicial"          ,upshift; 
+   j  = formonly.datfim                 ,comments = " Digite a Data Final"            ,upshift; 
+   l  = formonly.atldat                 ,noentry;
+   m  = formonly.funmat                 ,noentry;
+   n  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m28(socntzcod thru datfim)
+end

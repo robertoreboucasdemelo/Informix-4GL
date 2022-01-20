@@ -1,0 +1,41 @@
+
+{-----------------------------------------------------------------------------
+ Nome do Form: CTE03M00                                              Raji
+
+ Acompanhamento de transmissao de fax - URA                          Set/2000
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cte03m01--
+                      STATUS DE TRANSMISSAO FAX - URA
+------------------------------------------------------------------------------
+
+
+ Codigo DDD     :[h1  ]
+
+ Numero do Fax  :[h2       ]
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   dacmligurastt
+
+Attributes
+   h1  = dacmligurastt.dddcod     ;
+   h2  = dacmligurastt.facnum       ;
+End
+
+Instructions
+ delimiters " "
+End

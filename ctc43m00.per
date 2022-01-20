@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc43m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de Botoes dos MDT's                                         Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc43m00--
+        Codigo.....:[a1   ]
+------------------------------------------------------------------------------
+
+
+        Texto......:[a2             ]
+
+        Finalidade.:[a3                                                ]
+                    [a3                                                ]
+                    [a3                                                ]
+                    [a3                                                ]
+
+        Situacao...:[a]
+
+        Incluido...:[b1        ]por[b2                 ]
+        Atualizado.:[b3        ]por[b4                 ]
+
+}
+end
+
+tables datkmdtbot
+
+attributes
+
+   a1  = formonly.mdtbotcod       type dec
+                                , comments = " Codigo do botao do MDT";
+
+   a2  = datkmdtbot.mdtbottxt   , upshift
+                                , comments = " Texto visivel no painel";
+
+   a3  = datkmdtbot.mdtbotfncdes, upshift 
+                                , comments = " Finalidade/utilizacao do botao";
+
+   a   = formonly.mdtbotstt     , upshift
+                                , comments = " Situacao: (A)tivo ou (C)ancelado";
+
+   b1  = datkmdtbot.caddat      , noentry;
+   b2  = formonly.cadfunnom     , noentry;
+
+   b3  = datkmdtbot.atldat      , noentry;
+   b4  = formonly.funnom        , noentry;
+end
+
+instructions
+   delimiters " "
+end

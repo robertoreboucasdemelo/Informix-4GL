@@ -1,0 +1,31 @@
+database formonly
+screen
+{
+--------------------------------------------------------------cts11m09--------
+
+ Empresa..:[a   |a1                            ] No. Voo:[b    |b1           ]
+ No. PTA..:[c      ]                Localiz:[d      ]
+
+ Empresa..:[a   |a1                            ] No. Voo:[b    |b1           ]
+ No. PTA..:[c      ]                Localiz:[d      ]
+
+ Empresa..:[a   |a1                            ] No. Voo:[b    |b1           ]
+ No. PTA..:[c      ]                Localiz:[d      ]
+
+
+}
+end
+attributes
+
+   a  = formonly.aerciacod   ;
+   a1 = formonly.trpaerempnom;
+   b  = formonly.trpaervoonum;
+   b1 = formonly.vooescolhido, color = black reverse where b1 matches "Voo escolhido", noentry;
+   c  = formonly.trpaerptanum;
+   d  = formonly.trpaerlzdnum;
+
+end
+instructions
+   delimiters " "
+   screen record s_cts11m09(aerciacod thru trpaerlzdnum)
+end

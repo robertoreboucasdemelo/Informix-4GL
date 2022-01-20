@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctn18c01                                     Priscila
+ Lista Local de entrega da loja de carro extra              Fev/2006
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            Locais de Entrega
+-----------------------------------------------ctn18c01----
+  Locadora...:[a0  ][a1                                 ]
+  Loja.......:[b0  ][b1                                 ]
+-----------------------------------------------------------
+ CIDADE                                   ESTADO   TAXA
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+[c0                                       ][c1] [d      ]
+}
+end
+
+tables datklcletgvclext,
+       datklocadora,
+       datkavislocal
+
+attributes
+   a0 = datklcletgvclext.lcvcod ,noentry;
+   a1 = datklocadora.lcvnom     ,noentry;
+   b0 = datkavislocal.lcvextcod ,noentry;
+   b1 = datkavislocal.aviestnom ,noentry;
+   c0 = formonly.cidnom    ,noentry;
+   c1 = formonly.ufdcod    ,noentry;
+   d  = formonly.etgtaxvlr ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn18c01(cidnom thru etgtaxvlr)
+end
+

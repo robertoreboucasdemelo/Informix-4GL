@@ -1,0 +1,43 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc97m02                                Amilton Pinto
+                                                             
+ Cadastro grupo                                    Ago/2012
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc97m02--
+   Grupo      Descricao                            Contabiliza    Pacote
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+   [a    ]  [b                                    ]   [c]          [f]
+------------------------------------------------------------------------------
+ Atualizado..:[d          ] por [e                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.grpcod     ,upshift,comments='Codigo do grupo' ; 
+   b  = formonly.desnom     ,upshift,comments='Descricao do grupo' ;
+   c  = formonly.ctonumflg  ,upshift,comments='Flag de contabilizacao' ; 
+   f  = formonly.launumflg  ,upshift,comments='Flag de pacote'; 
+   d  = formonly.atldat     ,noentry;
+   e  = formonly.funnom     ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc97m02(grpcod thru launumflg)
+end

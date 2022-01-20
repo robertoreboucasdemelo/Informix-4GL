@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc98m00                                               Beatriz
+                                                                       Araujo
+ Cadastro de valor referencia e pecas                                 SET/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc98m00--
+  Natureza : [a  ] - [a1             ] Empresa : [g  ] - [g1                 ] 
+------------------------------------------------------------------------------
+                                                                            
+  Valor Referencia (M.O.): R$[b       ]       
+                                                                            
+  Valor de Pecas.........: R$[c       ] 
+                                                                            
+  Status.................: [d] 
+   
+                                                                            
+  Incluido...: [e          ] por [e1            ]                             
+  Atualizado.: [f          ] por [f1            ]                            
+                                                                            
+------------------------------------------------------------------------------
+}
+end
+tables dpakpecrefvlr,datksocntz,gabkemp
+
+attributes
+    a  = dpakpecrefvlr.socntzcod ;
+    a1 = datksocntz.socntzdes    , noentry,upshift;
+    b  = dpakpecrefvlr.mobrefvlr ;
+    c  = dpakpecrefvlr.pecmaxvlr ;
+    d  = dpakpecrefvlr.cadsttcod , upshift;
+    e  = dpakpecrefvlr.caddat    , noentry;
+    e1 = formonly.funcad         , noentry;
+    f  = dpakpecrefvlr.atldat    , noentry;
+    f1 = formonly.funatl         , noentry;
+    g  = dpakpecrefvlr.empcod    , upshift; 
+    g1 = gabkemp.empsgl          , noentry,upshift;
+end
+
+instructions          
+     delimiters " "   
+end 

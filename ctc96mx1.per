@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m00b                                      Helder Oliveira
+
+ Cadastros de Segmento                                               Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+----------------------------------------------------------------[e       ]---
+  Codigo  Descricao                                                 Cod.Itau
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+  [a      |b                                                       |f      ]
+------------------------------------------------------------------------------
+   Alterado em: [c         ] por: [d                                       ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    a  = formonly.codigo    ,upshift, comments = 'Codigo Interno';
+    b  = formonly.descricao ,upshift, comments = 'Descricao';
+    f  = formonly.codaux    ,upshift;
+    c  = formonly.atldat    ,upshift;
+    d  = formonly.funnom      ,upshift;
+    e  = formonly.tela      ;
+
+end
+
+instructions
+    screen record s_ctc96mx1 (codigo thru codaux)
+    delimiters " "
+end

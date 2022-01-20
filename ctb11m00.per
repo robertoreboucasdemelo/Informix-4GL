@@ -1,0 +1,91 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB11M00                                               Gilberto
+                                                                       Marcelo
+ Protocolo da ordem de pagamento - Porto Socorro                      Dez/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb11m00--
+ Numero O.P.....:[o2      ]Situacao.:[o4|o6                           ][e1   ]
+------------------------------------------------------------------------------
+ Tipo Favorecido:[f] [o8          ]   Empresa.:[e2][e3                ]
+ Cod. Prestador.:[o10   ][o12                                              ]
+ Susep Corretor.:[o14   ][o16                                     ]
+ Cod. Segurado..:[o18     ][o20                                     ]
+ Tarifa.........:[o9    ][o91                     ]
+ Tipo Pessoa....:[t]         Cgc/Cpf.:[o21         ][o22 ][t2]
+ Tipo do Docto..:[d1][d2             ]
+ Numero do Docto:[d3      ]
+ Data Entrega...:[o23       ]
+ Data Pagamento.:[o24       ]
+ Total Servicos.:[o26   ]
+ Total Valor....:[o28             ]
+ Total Relacoes.:[o30   ]
+[o32                                                                         ]
+}
+end
+
+tables dbsktarifasocorro, dbsmopg, dpaksocor, gsakseg, gcaksusep, gcakcorr
+
+attributes
+   o2   = formonly.socopgnum,
+          comments = " Numero da Ordem de Pagamento"              ;
+   o4   = dbsmopg.socopgsitcod,
+          comments = " Situacao da Ordem de Pagamento"            ;
+   o6   = formonly.socopgsitdes,                          noentry;
+   e1   = formonly.empresa,                               noentry;
+
+   f    = formonly.favtip,
+          comments = " Favorecido: (1)Prestador, (2)Corretor, (3)Segurado";
+   o8   = formonly.favtipdes,                             noentry;
+   e2   = formonly.empcod, comments = " Código da empresa ";
+   e3   = formonly.empnom,                                noentry;
+
+   o9   = dbsktarifasocorro.soctrfcod,                    noentry;
+   o91  = dbsktarifasocorro.soctrfdes,                    noentry;
+   o10  = dbsmopg.pstcoddig,
+          comments = " Codigo do prestador";
+   o12  = dpaksocor.nomrazsoc,                            noentry;
+   o14  = formonly.corsus,                                upshift,
+          comments = " Codigo da susep do corretor";
+   o16  = gcakcorr.cornom,                                noentry;
+   o18  = formonly.segnumdig,
+          comments = " Codigo do segurado";
+   o20  = gsakseg.segnom,                                 noentry;
+
+   t    = dbsmopg.pestip,                                 upshift,
+          comments = " Pessoa: (F)isica, (J)uridica";
+   o21  = dbsmopg.cgccpfnum,
+          comments = " Numero do Cgc/Cpf";
+   o22  = dbsmopg.cgcord,
+          format = "&&&&",
+          comments = " Codigo da Filial do Cgc";
+   t2   = dbsmopg.cgccpfdig,
+          format = "&&",
+          comments = " Digito do Cgc/Cpf";
+
+   d1   = dbsmopg.socpgtdoctip,
+          comments = " Tipo Docto: 1-Nota Fiscal, 2-Recibo, 3-R.P.A., 4-Nota Fical Eletrônica";
+   d2   = formonly.socpgtdocdes, noentry;
+   d3   = formonly.nfsnum type decimal(8,0), format = "&&&&&&&&",
+          comments = " Numero da Nota Fiscal / Recibo / R.P.A. / Nota Fiscal Eletrônica";
+
+   o23  = dbsmopg.socfatentdat,
+          comments = " Data do protocolo da Ordem de Pagamento";
+   o24  = dbsmopg.socfatpgtdat,
+          comments = " Data do pagamento da Ordem de Pagamento";
+   o26  = dbsmopg.socfatitmqtd,
+          comments = " Quantidade total de servicos";
+   o28  = dbsmopg.socfattotvlr,  format = "###########&&.&&",
+          comments = " Valor total dos servicos";
+   o30  = dbsmopg.socfatrelqtd,
+          comments = " Total de relacoes de servicos";
+   o32  = formonly.linhamsg,                               noentry;
+end
+
+instructions
+     delimiters " "
+end

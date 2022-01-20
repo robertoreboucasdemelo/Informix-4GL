@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC34M10                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Consulta Vistorias nao realizadas                                   Dez/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+ Vistorias pendentes para este veiculo
+---------------------------------------------------------ctc34m10--
+ Dt.Vistoria  Nro.Vst  Tipo            Situacao        Nova data
+
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+[b         ] [c     ] [d|d1         ] [e|e1         ] [f         ]
+
+}
+End
+
+Tables datmsocvst
+
+Attributes
+  b   = datmsocvst.socvstdat,                              noentry;
+  c   = datmsocvst.socvstnum,                              noentry;
+  d   = datmsocvst.socvsttip,                              noentry;
+  d1  = formonly.socvsttip_des,                            noentry;
+  e   = datmsocvst.socvstsit,                              noentry;
+  e1  = formonly.socvstsit_des,                            noentry;
+  f   = formonly.socvstdat_new,                            noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctc34m10(socvstdat thru socvstdat_new)
+End
+
+
+

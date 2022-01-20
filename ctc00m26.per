@@ -1,0 +1,53 @@
+
+database porto 
+
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctc00m26---
+           CADASTRO CAMPANHAS ATUALIZACAO CADASTRAL BASE PRESTADOR            
+------------------------------------------------------------------------------
+
+    Codigo         Data Inicial       Data Final
+
+    [g|a  ]       [b         ]       [c         ] 
+    [g|a  ]       [b         ]       [c         ]
+    [g|a  ]       [b         ]       [c         ]
+    [g|a  ]       [b         ]       [c         ]
+    [g|a  ]       [b         ]       [c         ]
+    [g|a  ]       [b         ]       [c         ]
+    [g|a  ]       [b         ]       [c         ]
+     
+   (F1) Incluir  (F2) Alterar   (F6) Deletar   (F8) Retornar 
+
+   Atualizado...: [d                  ]             por [e                   ]  
+}
+end 
+
+tables datkprsatlcph, isskfunc
+
+attributes
+   
+   g = formonly.ghost
+       ,invisible;
+   
+   a = formonly.prsatlcphnum
+       ,autonext, noentry;
+       
+   b = formonly.prsatlcphinidat
+       ,autonext;
+       
+   c = formonly.prsatlcphfimdat
+       ,autonext;
+   
+   d = formonly.atldat 
+       ,noentry;
+       
+   e = formonly.funnom
+       ,noentry;
+       
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc00m26[7] (ghost thru prsatlcphfimdat)
+end    

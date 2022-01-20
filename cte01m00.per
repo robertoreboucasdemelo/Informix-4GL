@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte01m00                                                  Akio
+
+ Registra o solicitante                                              Abr/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+--------------------------------------------------------------------cte01m00--
+                  [a                                      ]
+------------------------------------------------------------------------------
+[x1    ]                                                           [x2       ]
+ 
+         Matricula Atend.:[g0] [g1    ]
+ 
+         Solicitante :[b                   ] Tipo: [b1 |b2                ]
+
+         Susep.......:[c1    ]          Status do Corretor..:[g2              ]
+         Corretor....:[c2                                                ]
+
+        [d0           |d1|d2    ]
+        [d5           |d6                                      ]
+        [e0           |e1                                      ]
+         Empresa Doc.:[f1][f2                                  ]
+
+         Confirma....:[f]
+
+}
+end
+
+ tables datksoltip
+
+ attributes
+    x1 = formonly.ini           ,invisible;
+    x2 = formonly.simulacao     ;
+    g0 = FORMONLY.empcodatend   ,          comments="Empresa do atendente";
+    g1 = FORMONLY.funmatend   , UPSHIFT, comments="Matricula do atendente";
+    a  = formonly.atdcabec      , noentry;
+    b  = formonly.solnom        , upshift, comments=" Nome do solicitante";
+    b1 = datksoltip.c24soltipcod, comments = " Tipo do solicitante";
+    b2 = datksoltip.c24soltipdes, noentry;
+    c1 = formonly.corsus        , upshift, comments=" Susep do corretor";
+    c2 = formonly.cornom        , noentry;
+    d0 = formonly.funmatcab     , noentry;
+    d1 = formonly.empcod        ,          comments="Empresa do funcionario";
+    d2 = formonly.funmat        ,          comments="Matricula do funcionario";
+    d5 = formonly.funnomcab     , noentry;
+    d6 = formonly.funnom        , noentry;
+    e0 = formonly.corasscab     , noentry;
+    e1 = formonly.corass        , noentry;
+    f1 = formonly.ciaempcod     , comments="Empresa do Documento";
+    f2 = formonly.empnom        , noentry;
+    f  = formonly.confirma      , upshift, comments="Confirma dados (S/N)";
+    g2 = formonly.stt           type char, noentry;
+ end
+
+ instructions
+    delimiters " "
+ end

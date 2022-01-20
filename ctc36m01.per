@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC36M01                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Manutencao dos laudos de vistoria dos veiculos (AGENDA)              Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc36m01--
+ Numero Vistoria:[a1      ]   Situacao.:[a2][a3                            ]
+------------------------------------------------------------------------------
+ Tipo Vistoria..:[a] [a4          ]
+
+ Sigla Veiculo..:[a5   ]      Codigo...:[a6    ]   Situacao.:[a8        ][a7]
+ Descricao......:[a9                                                        ]
+ Placa..........:[a10    ]
+ Prestador......:[a11    ][a12                                              ]
+
+ Data  Vistoria.:[a13       ]
+ Local Vistoria.:[a14][a15                                     ]
+
+
+ Atualizado.....:[a16       ] por [a17                ]
+
+
+}
+end
+
+tables datmsocvst, datkvstlcl, datkveiculo, dpaksocor
+
+attributes
+   a1   = formonly.socvstnum,
+          comments = " Numero da Vistoria "                         ;
+   a2   = datmsocvst.socvstsit,                              noentry;
+   a3   = formonly.sitdesc,                                  noentry;
+   a    = datmsocvst.socvsttip,
+          comments = " Tipos: (2)Solicitada e (3)Re-vistoria "      ;
+   a4   = formonly.tipdesc,                                  noentry;
+   a5   = datkveiculo.atdvclsgl,
+          comments = " Sigla do veiculo",                    upshift;
+   a6   = datmsocvst.socvclcod,                              noentry;
+   a7   = formonly.socoprsitcod,                   noentry,invisible;
+   a8   = formonly.sitvcldesc,                               noentry;
+   a9   = formonly.vcldesc,                                  noentry;
+   a10  = formonly.vcllicnum,                                noentry;
+   a11  = formonly.pstcoddig,                                noentry;
+   a12  = formonly.nomgrr,                                   noentry;
+   a13  = datmsocvst.socvstdat,
+          comments = " Data prevista para a realizacao da vistoria ";
+   a14  = datmsocvst.socvstlclcod,
+          comments = " Local onde sera realizada a vistoria "       ;
+   a15  = formonly.socvstlclnom,                             noentry;
+   a16  = datmsocvst.atldat,                                 noentry;
+   a17  = formonly.funnom,                                   noentry;
+
+end
+
+instructions
+     delimiters " "
+end

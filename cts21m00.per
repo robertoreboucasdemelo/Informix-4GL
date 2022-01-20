@@ -1,0 +1,87 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts21m00                                               Marcelo
+                                                                      Gilberto
+ Laudo - Vistoria de Sinistro de R.E.                                 Nov/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1        ]       VISTORIA DE SINISTRO DE R.E.     [a2             ]
+--------------------------------------------------------------------cts21m00--
+[a3                                      ]  [a4                              ]
+[a5    |a6                                ]      Convenio:[a7                ]
+------------------------------------------------------------------------------
+ Loc. Risco:[l10     ]
+            [l15                                                             ]
+ Vist.Local:[l]
+ Endereco..:[l20       ][l21                                     ]No.:[l22   ]
+ Complemto.:[l23            ]     Bairro....:[l30                 ]
+ Cidade....:[l31                 ]U.F.......:[l3]            CEP:[l32  ]-[l33]
+
+ Tel. Local:[l40 ][l45           ]Resp.Local:[l50                            ]
+ Ponto Ref.:[l55                                     ]
+
+ Data/Hora Sinistro:[s15       ][s20  ]
+ 
+
+ (F1)Help, (F3)Refer, (F5)Espelho, (F6)Historico
+}
+end
+
+tables datmpedvist, sgkkperi, sgaknatur
+
+attributes
+
+a1   = formonly.vistoria      , noentry;
+a2   = datmpedvist.vstsolnom  , noentry;
+a3   = datmpedvist.segnom     , comments = " Nome do Cliente"
+                              , upshift;
+a4   = formonly.doctxt        , noentry;
+a5   = formonly.corsus        , comments = " Susep"
+                              , upshift
+                              , autonext;
+a6   = datmpedvist.cornom     , comments = " Corretor"
+                              , upshift;
+a7   = formonly.cvnnom        , noentry;
+l10  = formonly.lclrsccod     , comments = " Codigo do Local de Risco"
+                              , upshift;
+l15  = formonly.lclrscend     , noentry;
+l    = formonly.lclendflg     , comments = " Vistoria no Local de Risco ? (S/N)"
+                              , upshift;
+l20  = datmpedvist.lgdtip     , comments = " Tipo Logradouro: Rua, Avenida, Alameda, Praca, etc..."
+                              , upshift;
+l21  = datmpedvist.lgdnom     , comments = " Endereco do Local de Vistoria "
+                              , upshift;
+l22  = datmpedvist.lgdnum     , comments = " Numero do Endereco";
+l23  = datmpedvist.lgdnomcmp  , comments = " Complemento do Endereco"
+                              , upshift;
+l30  = datmpedvist.endbrr     , comments = " Bairro do Local de Vistoria"
+                              , upshift;
+l31  = datmpedvist.endcid     , comments = " Cidade do Local de Vistoria"
+                              , upshift;
+l3   = datmpedvist.endufd     , comments = " U.F. do Local de Vistoria"
+                              , upshift;
+l32  = datmpedvist.endcep     , comments = " CEP do Endereco"
+                              , autonext;
+l33  = datmpedvist.endcepcmp  , comments = " Complemento do CEP"
+                              , autonext;
+l40  = datmpedvist.endddd     , comments = " DDD de Contato no Local "
+                              , autonext
+                              , upshift;
+l45  = datmpedvist.teldes     , comments = " Telefone de Contato no Local"
+                              , upshift;
+l50  = datmpedvist.lclcttnom  , comments = " Responsavel no Local"
+                              , upshift;
+l55  = datmpedvist.endrefpto  , comments = " Ponto de Referencia do Local"
+                              , upshift;
+s15  = datmpedvist.sindat     , comments = " Data do Sinistro"
+                              , autonext;
+s20  = datmpedvist.sinhor     , comments = " Hora do Sinistro"
+                              , autonext;
+end
+
+instructions
+  delimiters " "
+end

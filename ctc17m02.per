@@ -1,0 +1,26 @@
+database formonly
+screen
+{
+ Via Emergencial      Prior
+-----------------------------
+[b                   |c     ]
+[b                   |c     ]
+[b                   |c     ]
+[b                   |c     ]
+[b                   |c     ]
+[b                   |c     ]
+[b                   |c     ]
+-----------------------------
+ (F8)Seleciona  (F17)Aband.
+}
+end
+
+attributes
+   b = formonly.emeviades  type char;
+   c = formonly.emeviapri  type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc17m02[07] (emeviades thru emeviapri)
+end

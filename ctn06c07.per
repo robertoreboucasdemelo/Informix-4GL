@@ -1,0 +1,62 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTN06C07                                               Marcelo
+                                                                      Gilberto
+ Pesquisa oficinas por razao social, nome de guerra ou telefone.      Jun/1995
+-------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn06c07--
+ Nome:[a                                  ]Tipo Pesq:[b] Fone:[c   ][d       ]
+------------------------------------------------------------------------------
+ Razao Social                    Nome de Guerra        Telefone         Sit.
+ Endereco                        Bairro                Cidade/UF
+
+[e1                            ][e2                  ][e3  ][e4       ][e    ]
+[e5                            ][e6                  ][e7                   ]
+[e8    ]
+[e1                            ][e2                  ][e3  ][e4       ][e    ]
+[e5                            ][e6                  ][e7                   ]
+[e8    ]
+[e1                            ][e2                  ][e3  ][e4       ][e    ]
+[e5                            ][e6                  ][e7                   ]
+[e8    ]
+[e1                            ][e2                  ][e3  ][e4       ][e    ]
+[e5                            ][e6                  ][e7                   ]
+[e8    ]
+}
+end
+
+tables
+  gkpkpos,
+  sgokofi
+
+attributes
+
+   a  = formonly.psqnom   , upshift    ,
+        comments = " Nome para pesquisa";
+   b  = formonly.psqtip   , upshift    ,
+        comments = " (G)uerra, (R)azao social, (P)arcial de nome" ;
+   c  = formonly.ofndddcod,
+        comments = " Codigo de DDD";
+   d  = formonly.ofntelnum,
+        comments = " Numero de telefone";
+
+   e1 = gkpkpos.nomrazsoc  ;
+   e2 = gkpkpos.nomgrr    ;
+   e3 = gkpkpos.dddcod    ;
+   e4 = formonly.telnum   ;
+   e  = formonly.sitdes   ;
+   e5 = gkpkpos.endlgd    ;
+   e6 = gkpkpos.endbrr    ;
+   e7 = gkpkpos.endcid    ;
+   e8 = gkpkpos.pstcoddig , invisible;
+end
+
+instructions
+
+screen record s_ctn06c07 (nomrazsoc thru pstcoddig);
+
+delimiters " "

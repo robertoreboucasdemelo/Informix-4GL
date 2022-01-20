@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTC00M22a                                          Robert
+                                                               
+ Popup de cadeia de responsaveis                                Set/2010
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            CADEIA DE RESPONSAVEIS - PORTO SOCORRO
+-----------------------------------------------------------ctc00m22a--
+  Codigo  Superintendente/Gerente/Coordenador/Analista
+ [a    ] [b                                                         ]
+ [a    ] [b                                                         ]
+ [a    ] [b                                                         ]
+ [a    ] [b                                                         ]
+ [a    ] [b                                                         ]
+ [a    ] [b                                                         ]
+----------------------------------------------------------------------
+ (F8) Seleciona (F17) Abandona
+}
+end
+
+tables
+   dpakprsgstcdi
+   
+attributes
+
+   a   = dpakprsgstcdi.gstcdicod, noentry;
+   b   = formonly.respdesc     , noentry;
+end   
+
+
+instructions
+   delimiters " "
+   screen record s_ctc00m22_popup[6](gstcdicod,
+                                     respdesc)   

@@ -1,0 +1,33 @@
+database formonly
+ 
+screen
+{
+--------------------------------------------------------------------ctn53c00--
+                      Pesquisa veiculos por aproximacao                            
+------------------------------------------------------------------------------
+             
+        Data Inicial:[a         ]                 Hora Inicial: [b    ]                     
+        Data Final..:[c         ]                 Hora Final..: [d    ]                     
+        
+        Endereco....:[e                                               ] 
+        Cidade......:[f                                       ] UF:[g ]        
+        
+        Distancia...:[h    ]metros                                             
+                                                                                                    
+}
+end
+
+attributes
+   a = formonly.datini  type date  ;
+   b = formonly.horaini, picture = "##:##";
+   c = formonly.datfim  type date  ;
+   d = formonly.horafim, picture = "##:##";
+   e = formonly.lgdnom type char, noentry;
+   f = formonly.cidnom type char, noentry;
+   g = formonly.ufdcod type char, noentry;
+   h = formonly.dist,    autonext;
+end  
+
+instructions               
+  delimiters " "
+end 

@@ -1,0 +1,137 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M00                                               Marcelo
+                                                                      Gilberto
+ Laudo - Reserva de locacao de veiculos                               Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a001         ]    LAUDO DE SERVICO - LOCACAO       [a002           ]
+--------------------------------------------------------------------cts15m00--
+[a003                                    ]  [a004                            ]
+[a005  |a006                                    ] Convenio:[a007             ]
+[a008  |a009                                    ][a010|a011   ]Tp:[b|b00     ]
+------------------------------------------------------------------------------
+[b01][b02                                                      ] [b03        ]
+ Usuario..:[c000                                 ] Cpf:[c020     |c2]
+ Motivo...:[c1 ]-[c001            ] [c002           ][c017                ][h]
+ Avisar Sinistro:[z] Locadora.:[c3  ]-[c003                                  ]
+ Loja.....:[c004   ]-[c005                                    ] Cond:[i]
+ Tx.2 Condutor:[c006    ]  Veic.Pref:[c007]    Grupo Veic:[c]
+ Descricao:[c008                                                             ]
+ Valor:[c009     ]Participacao:[c010     ]Isencao:[c011    ]Reducao:[c012    ]
+ Formulario:[f]            Prorrog.:[p]
+ Tel. Ctt - Cel.:[ab  ][c014     ]   Fixo.:[aa  ][c016     ]     Srv.Lib?:[d1]
+ Atd./Lib.:[d2                                                               ]
+
+}
+end
+
+tables
+   datkavisveic ,
+   datkavislocal,
+   datklocadora ,
+   datmavisrent ,
+   datmligacao  ,
+   datmservico  ,
+   datrservapol ,
+   datmrsvvcl
+
+attributes
+
+a001  = formonly.servico         , noentry;
+a002  = datmligacao.c24solnom    , noentry;
+
+a003  = datmservico.nom          , comments = " Nome"
+                                 , upshift;
+a004  = formonly.doctxt          , noentry;
+a005  = datmservico.corsus       , comments = " Susep"
+                                 , upshift;
+a006  = datmservico.cornom       , comments = " Corretor"
+                                 , upshift;
+a007  = formonly.cvnnom          , noentry;
+a008  = datmservico.vclcoddig    , comments = " Codigo do Veiculo"
+                                 , format   = "&&&&&&";
+a009  = datmservico.vcldes       , comments = " Descricao do veiculo"
+                                 , upshift;
+a010  = datmservico.vclanomdl    , comments = " Ano do veiculo";
+a011  = datmservico.vcllicnum    , comments = " Placa do veiculo"
+                                 , upshift;
+b     = datmavisrent.vclloctip   , autonext
+                                 , comments = " Tipo da Locacao: (1)Segurado, (2)Corretor ou (3)Deptos.";
+b00   = formonly.vcllocdes       , noentry;
+b01   = datmligacao.c24astcod    , noentry;
+b02   = formonly.c24astdes       , noentry;
+b03   = formonly.prgtxt          , noentry;
+c000  = datmavisrent.avilocnom   , comments = " Nome do Usuario"
+                                 , upshift;
+c020  = datmavisrent.locrspcpfnum,comments = " Numero do CPF do usuario!";
+c2    = datmavisrent.locrspcpfdig,comments = " Numero do digito verificador do usuario!";
+c1    = formonly.avialgmtv        type dec
+                                 , format = "&&&"
+                                 , autonext;
+c001  = formonly.avimtvdes       , noentry;
+c002  = formonly.cndtxt          , noentry;
+h     = formonly.flgarantia      , upshift
+                                 , autonext;
+
+z     = formonly.lcvsinavsflg      type char, upshift;
+c3    = datklocadora.lcvcod      , comments = " Codigo da Locadora"
+                                 , format = "##&&"
+                                 , autonext;
+c003  = datklocadora.lcvnom      , autonext;
+c004  = datkavislocal.lcvextcod  , comments = " Codigo da loja para retirada do veiculo"
+                                 , autonext
+                                 , upshift
+                                 , required;
+c005  = datkavislocal.aviestnom  , noentry;
+i     = formonly.cdtoutflg       , upshift
+                                 , autonext
+                                 , comments = " Outro Condutor ? (S)im ou (N)ao";
+c006  = datklocadora.cdtsegtaxvlr, noentry;
+c007  = datkavisveic.avivclcod   , comments = " Veiculo de preferencia para locacao"
+                                 , autonext;
+c     = datkavisveic.avivclgrp   , noentry;
+c008  = formonly.avivcldes       , noentry;
+c009  = formonly.vcldiavlr         type dec
+                                 , format = "<<,<<<.<<"
+                                 , noentry;
+c010  = datkavisveic.frqvlr      , noentry;
+c011  = datkavisveic.isnvlr      , noentry;
+c012  = datkavisveic.rduvlr      , noentry;
+f     = formonly.frmflg          , upshift
+                                 , autonext
+                                 , comments = " Entrada via formulario ? (S)im ou (N)ao";
+p     = formonly.aviproflg       , upshift
+                                 , autonext
+                                 , comments = " Prorrogacao ? (S)im ou (N)ao";
+ab  = datmrsvvcl.smsenvdddnum  , comments = " Codigo DDD Celular"
+                                 , autonext
+                                 , upshift
+                                 , required;
+c014  = datmrsvvcl.smsenvcelnum  , comments = " Telefone Celular"
+                                 , autonext
+                                 , upshift
+                                 , required;
+aa  = datmavisrent.cttdddcod   , comments = " Codigo DDD Fixo"
+                                 , autonext
+                                 , upshift
+                                 , required;
+c016  = datmavisrent.ctttelnum   , comments = " Telefone Fixo"
+                                 , autonext
+                                 , upshift
+                                 , required;
+c017  = formonly.garantia        , autonext;
+
+d1    = datmservico.atdlibflg    , comments = " Servico liberado ? (S)im ou (N)ao"
+                                 , autonext
+                                 , upshift
+                                 , required;
+d2    = formonly.atdlibtxt       , noentry;
+end
+
+ instructions
+  delimiters " "
+end

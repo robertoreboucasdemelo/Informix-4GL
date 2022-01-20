@@ -1,0 +1,62 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m02                                               Almeida
+
+ Cadastramento dos Procedimentos a ser tomado pelo atenden           Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc21m02--
+         Data.:[a         ]  Hora.:[b    ]   No Procedimento.:[k    ] 
+------------------------------------------------------------------------------
+ Proc  Campo                 Condicao  Vigencia Incial   Vigencia Final   Sit
+
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+[l   ][c                   ][d |e    ][f         |g    ][h         |i    ][j]
+
+   (F1)Consulta Empresa   (F2)Exclui   (F8)Consulta texto   (F17)Abandona
+}
+end
+
+ tables datmprtprc,dattprt
+
+ attributes
+
+    a  = formonly.viginc1,
+         comments = " Data de vigencia para pesquisa (a partir de)";
+    b  = formonly.viginchor1,
+         comments = " Horario de vigencia para pesquisa (a partir de)";
+    k  = formonly.prtprcnum1,
+         comments = " Numero do procedimento";
+
+
+    l  = datmprtprc.prtprcnum               ,noentry;
+    c  = dattprt.prtcponom                  ,noentry;
+    d  = formonly.relacional                ,noentry;
+    e  = datmprtprc.prtprccntdes            ,noentry;
+    f  = formonly.viginc        type date   ,noentry;
+    g  = formonly.viginchor     type date   ,noentry;
+
+    h  = formonly.vigfnl        type date,
+         comments = " Data vigencia final";
+    i  = formonly.vigfnlhor     type date,
+         comments = " Hora vigencia final";
+    j  = datmprtprc.prtprcsitcod            ,upshift,
+         comments = " Situacao: (A)tivo, (C)ancelado, (P)rovisorio";
+         
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m02(prtprcnum thru prtprcsitcod)
+ end

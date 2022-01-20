@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts50m00                                               Nilo   
+
+ Consulta Ligacoes em Abandono                                       Abr/2008
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+-------------------------------------------------------------------cts50m00---
+ Data         Hora       Telefone    Qtd  Fila       Lig. Status Ligacao
+------------------------------------------------------------------------------
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+[a         ][b        ][c           ][x ][d         ][e] [g                  ]
+
+}
+end
+tables datkabn
+attributes
+a = datkabn.inidat,   noentry;
+b = datkabn.abninihor,   noentry;
+c = datkabn.abntel, noentry;
+x = formonly.qtd_lig, noentry;
+d = datkabn.pades, noentry;
+e = datkabn.abncont, noentry;
+g = formonly.abnsitdesc, noentry;
+end
+Instructions
+   delimiters " "
+   screen record s_cts50m00(inidat
+		           ,abninihor
+		           ,abntel
+		           ,qtd_lig
+		           ,pades
+		           ,abncont
+		           ,abnsitdesc)
+end

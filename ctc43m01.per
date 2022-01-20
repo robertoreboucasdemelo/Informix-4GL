@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc43m01                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de programacao de botoes dos MDTs             Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc43m01--
+ Nro Prog..:[a5   ]   Nome.:[a10                                             ]
+ Situacao..:[s]
+
+ Atualizado:[a40       ]por[a45                ]
+------------------------------------------------------------------------------
+     Botao    Texto Painel      Sequencia  Tratamento  Digitacao  Validacao
+------------------------------------------------------------------------------
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+   [b5    ]  [b10            ]  [b15  ]       [t]         [d]        [v]
+
+
+}
+end
+
+ tables datkmdtbot, datkmdtprg, datrmdtbotprg
+
+ attributes
+
+    a5  = datkmdtprg.mdtprgcod,
+          comments = " Codigo da programacao de botoes";
+
+    a10 = datkmdtprg.mdtprgdes,                        upshift,
+          comments = " Nome da programacao de botoes";
+
+    s   = datkmdtprg.mdtprgstt,                        upshift,
+          comments = " Situacao: (A)tivo, (C)ancelado";
+
+    a40 = datkmdtprg.atldat,                           noentry;
+    a45 = formonly.funnom,                             noentry;
+
+    b5  = datrmdtbotprg.mdtbotcod,                     noentry;
+    b10 = datkmdtbot.mdtbottxt,                        noentry;
+    b15 = datrmdtbotprg.mdtbotprgseq,                  noentry;
+    t   = datrmdtbotprg.mdtbotprgsisflg,               noentry;
+    d   = datrmdtbotprg.mdtbotprgdigflg,               noentry;
+    v   = formonly.mdtbotvldflg,                       noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctc43m01(mdtbotcod thru mdtbotvldflg)

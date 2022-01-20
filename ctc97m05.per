@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc97m05
+
+ Cadastro Plano X Natureza X Assunto                                 Mai/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc97m05--
+ Plano.....:[a1  |a2                                                         ]
+ Grupo.....:[b1  |b2                                                         ]
+ Natureza..:[c1  |c2                                                         ]
+------------------------------------------------------------------------------
+ Assunto   Descricao                        
+  
+  [d1 ]    [d2                                                               ] 
+  [d1 ]    [d2                                                               ] 
+  [d1 ]    [d2                                                               ] 
+  [d1 ]    [d2                                                               ] 
+  [d1 ]    [d2                                                               ] 
+------------------------------------------------------------------------------
+   Alterado em: [e1        ] por: [e2                                        ]
+------------------------------------------------------------------------------
+
+
+}
+end
+
+attributes
+   a1 = formonly.cod            ,noentry;  
+   a2 = formonly.descricao      ,noentry;  
+   b1 = formonly.grpcod         ,noentry;  
+   b2 = formonly.grpdes         ,noentry;
+   c1 = formonly.socntzcod      ,noentry;
+   c2 = formonly.socntzdes      ,noentry;  
+   d1 = formonly.c24astcod      ,upshift , comments = " Digite o codigo do Assunto";
+   d2 = formonly.c24astdes      ,upshift , noentry;
+   e1 = formonly.atldat         ,upshift , noentry;
+   e2 = formonly.funmat         ,upshift , noentry;
+end
+
+instructions
+   screen record s_ctc97m05 (c24astcod thru c24astdes)
+   delimiters " "
+end

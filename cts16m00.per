@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS16M00                                               Pedro
+                                                                      Marcelo
+ Localiza servico para registrar ALT, CAN, REC, IND, CON              Abr/1995
+-----------------------------------------------------------------------------}
+
+database porto   
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts16m00--
+ Servico:[l0|l1     |l2] Data Atend.:[l3        ] Origem Serv:[l ][l4        ]
+ Placa..:[l5     ]       Nome Solic.:[l6                         ][l7        ]
+------------------------------------------------------------------------------
+ Servico       Nome/Veiculo                                Situacao/Placa
+[r1           |r2                                       ] [r3            ] 
+[r4        ]  [r5                                       ] [r6     ] 
+
+[r1           |r2                                       ] [r3            ] 
+[r4        ]  [r5                                       ] [r6     ] 
+
+[r1           |r2                                       ] [r3            ] 
+[r4        ]  [r5                                       ] [r6     ] 
+
+[r1           |r2                                       ] [r3            ] 
+[r4        ]  [r5                                       ] [r6     ] 
+
+}
+
+tables
+   datmservico, 
+   datksrvtip   
+
+attributes
+
+   l0  = formonly.atdorigem type dec                , format = "&&",
+         comments = " Origem do Servico", noentry;
+   l1  = formonly.atdsrvnum type dec                , format = "&&&&&&&",
+         comments = " Numero do Servico";
+   l2  = formonly.atdsrvano type dec                , format = "&&",
+         comments = " Ano do Servico";
+   l3  = datmservico.atddat                         ,
+         comments = " Data do Atendimento";
+   l   = datmservico.atdsrvorg             , upshift,
+         comments = " Tipo de Servico";
+   l4  = datksrvtip.srvtipabvdes           , noentry;
+   l5  = datmservico.vcllicnum             , upshift,
+         comments = " Placa do Veiculo";
+   l6  = formonly.nome                     , upshift,
+         comments = " Iniciais do Nome";
+   l7  = formonly.total                    , noentry;
+   r1  = formonly.servico2                 , noentry;
+   r2  = datmservico.nom                   , noentry;
+   r3  = formonly.sitdes                   , noentry;
+   r4  = formonly.srvtipdes                , noentry;
+   r5  = datmservico.vcldes                , noentry;
+   r6  = formonly.vcllicnum2               , noentry;
+
+instructions
+  delimiters " " 
+  screen record s_cts16m00(servico2 thru vcllicnum2)
+end

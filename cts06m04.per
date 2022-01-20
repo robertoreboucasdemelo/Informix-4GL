@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m04                                                  Pedro
+                                                                       Marcelo
+ Autorizacao de Vistoria Quando Limite Excedido                       Fev/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+               Informacoes para Autorizacao
+-------------------------------------------------cts06m04--
+     Para forcar a realizacao o depto de vistoria deve ser
+ avisado e o nome de quem autorizou a realizacao informado
+ abaixo.
+
+
+     Autorizado por:[i1        ]
+
+
+}
+end
+
+tables
+   datmvistoria
+
+attributes
+
+   i1  = datmvistoria.atdatznom            ,upshift,
+         comments = " (F8)Programadas";
+
+instructions
+  delimiters " "
+end

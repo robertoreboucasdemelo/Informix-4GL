@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS11M01                                               Marcelo
+                                                                      Gilberto
+ Manutencao na lista de passageiros                                   Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+          Dados do passageiro/hospede
+---------------------------------------cts11m01--
+  Nome                                     Idade
+
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+ [a1                                      ][a2 ]
+
+}
+end
+
+ tables datmpassageiro
+
+ attributes
+   a1  = formonly.pasnom         , comments = " Nome do passageiro/hospede"
+                                 , upshift;
+   a2  = formonly.pasidd         , comments = " Idade do passageiro/hospede" ;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_cts11m01(pasnom thru pasidd)

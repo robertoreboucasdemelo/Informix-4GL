@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc94m01                                                   Jose
+                                                                      Kurihara
+ Cadastro de Parametros para bloqueio de Viaturas c/ seguro irregular Jan/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc94m01--
+  Tipo de veiculo:[a1   ]-[a2                                      ]
+------------------------------------------------------------------------------
+  Coberturas:
+             Casco (S/N) .........:[b]
+             Danos Materiais......:[a3         ]
+             Danos Corporais......:[a4         ]
+             APP (Morte/Invalidez):[a5         ]
+             Clausula 111 (S/N) ..:[c]
+
+  Observacoes:
+ [w                                                                         ]
+ [w                                                                         ]
+
+      Atualizado.:[z0        ] por [z1                 ]
+
+
+}
+end
+
+tables datksgrirrblqpam
+
+attributes
+   a1   = formonly.socvcltip  type integer,
+          comments = " Tipo do Veiculo"                          ;
+
+   a2   = formonly.socvcltipdes type char,  noentry;
+
+   b    = formonly.csccbtflg  type char,  upshift,    comments = 
+         " Obrigatorio informar se valida cobertura Casco (S)im ou (N)ao";
+
+   a3   = formonly.dmavlr     type dec(8,2), format="----,--&.&&",
+          comments = " Informar valor da IS Danos Materiais";
+
+   a4   = formonly.dcpvlr     type dec(8,2), format="----,--&.&&",
+          comments = " Informar valor da IS Danos Corporais";
+
+   a5   = formonly.appvlr     type dec(8,2), format="----,---.--",
+          comments = " Informar valor da IS APP (Morte/Invalidez)";
+
+   c    = formonly.rbcvclensflg  type char,  upshift,    comments = 
+         " Obrigatorio informar se valida Clausula 111 (S)im ou (N)ao";
+
+   w    = formonly.obstxt, upshift, wordwrap;
+
+   z0   = formonly.atldat      type date,  noentry;
+   z1   = formonly.atlfunnom   type char,  noentry;
+end
+
+instructions
+     delimiters " "
+end

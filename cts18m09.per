@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M09                                              Marcelo
+                                                                     Gilberto
+ Informacoes sobre veiculo do causador                               Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                            Veiculo do Causador
+--------------------------------------------------------------------cts18m09--
+
+ Veiculo.:[c60  |c65                                     ]
+ Cor.....:[c70       ]
+ Chassi..:[c80                 ]
+ Licenca.:[c85    ]
+ Fab/Mod.:[c90 ][c95 ]
+[x]
+
+
+}
+end
+
+tables
+   ssamavsvcl
+
+attributes
+
+c60  = ssamavsvcl.vclcoddig           , comments = " Codigo do veiculo do causador";
+c65  = ssamavsvcl.sinbemdes, upshift  , comments = " Veiculo do causador";
+c70  = formonly.vclcordes  , downshift, comments = " Cor do veiculo";
+c80  = ssamavsvcl.vclchsnum, upshift  , comments = " Chassi do veiculo";
+c85  = ssamavsvcl.vcllicnum, upshift  , comments = " Placa do veiculo";
+c90  = ssamavsvcl.vclanofbc           , comments = " Ano de fabricacao do veiculo";
+c95  = ssamavsvcl.vclanomdl           , comments = " Ano modelo do veiculo";
+x    = formonly.filler     ;
+end
+
+instructions
+  delimiters " "
+end

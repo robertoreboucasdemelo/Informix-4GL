@@ -1,0 +1,731 @@
+#-----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                             #
+# ........................................................................... #
+# SISTEMA........: PORTO SERVIÇOS AVULSOS                                     #
+# MODULO.........: BDBSR018                                                   #
+# ANALISTA RESP..: CELSO ISSAMU YAMAHAKI                                      #
+# PSI/OSF........:                                                            #
+#                  RELATÓRIO SEMANAL DOS SERVIÇOS DO SAPS.                    #
+# ........................................................................... #
+# DESENVOLVIMENTO: JOSIANE APARECIDA DE ALMEIDA                               #
+# LIBERACAO......: 13/08/2014                                                 #
+#-----------------------------------------------------------------------------#
+
+database porto
+
+  define m_path      char(300)
+
+  define mr_servicos record
+         c24astcod          like datmligacao.c24astcod
+         ,c24astdes         like datkassunto.c24astdes
+         ,atdsrvnum         like datmservico.atdsrvnum
+         ,atdsrvano         like datmservico.atdsrvano
+         ,atddat            like datmservico.atddat
+         ,atdhor            like datmservico.atdhor
+         ,srvcbnhor         like datmservico.srvcbnhor
+         ,orrdat            like datmsrvre.orrdat
+         ,sindat            like datmservicocmp.sindat
+         ,c24soltipcod      like datmligacao.c24soltipcod
+         ,c24soltipdes      like datksoltip.c24soltipdes
+         ,atdprscod         like datmservico.atdprscod
+         ,socvclcod         like datmsrvacp.socvclcod
+         ,atdetpcod         like datmsrvacp.atdetpcod
+         ,funmat            like datmsrvacp.funmat
+         ,acionamentoAut    char(3)
+         ,socntzcod         char(60)
+         ,socntzdes         char(60)
+         ,c24pbmgrpcod      char(60)
+         ,c24pbmgrpdes      like datkpbmgrp.c24pbmgrpdes
+         ,c24pbmcod         char(60)
+         ,c24pbmdes         like datkpbm.c24pbmdes
+         ,asitipcod         like datmservico.asitipcod
+         ,asitipdes         like datkasitip.asitipdes
+         ,lgdtip            like datmlcl.lgdtip
+         ,lgdnom            like datmlcl.lgdnom
+         ,lgdnum            like datmlcl.lgdnum
+         ,lclbrrnom         like datmlcl.lclbrrnom
+         ,cidnom            like datmlcl.cidnom
+         ,ufdcod            like datmlcl.ufdcod
+         ,lclltt            like datmlcl.lclltt
+         ,lcllgt            like datmlcl.lcllgt
+         ,pgtfrmcod         like datkpgtfrm.pgtfrmcod
+         ,pgtfrmdes         like datkpgtfrm.pgtfrmdes
+         ,cgccpfnum         like datrligcgccpf.cgccpfnum
+         ,cgccpfdig         like datrligcgccpf.cgccpfdig
+         ,cgcord            like datrligcgccpf.cgcord
+         ,socopgitmvlr      like dbsmopgitm.socopgitmvlr
+         ,endereco          char(1000)
+         ,dataocrr          date
+         ,atdetpdes         like datketapa.atdetpdes
+         ,ultdatcpf         date
+         ,atdsrvorg         like datmservico.atdsrvorg
+
+  end record
+
+define m_agora datetime year to second
+
+  define l_data_atual        date,
+         l_hora_atual        datetime hour to minute,
+         l_data_inicio       date,
+         l_data_fim          date
+
+#-----------------------------------------#
+main
+#-----------------------------------------#
+
+
+  # -> ABRE O BANCO UTILIZADO PELA CENTRAL 24 HORAS
+  call fun_dba_abre_banco("CT24HS")
+ 
+
+  
+
+  let l_data_atual = arg_val(1)
+
+  if l_data_atual is null or
+     l_data_atual = " " then
+  # ---> OBTER A DATA E HORA DO BANCO
+
+  call cts40g03_data_hora_banco(2)
+       returning l_data_atual,
+                 l_hora_atual
+  end if
+  # ---> DATA DE EXTRACAO DAS INFORMACOES (1 DIA)
+  let l_data_inicio = (l_data_atual - 7 units day)
+  let l_data_fim = (l_data_atual - 1)
+  
+
+  call bdbsr018_busca_path()
+
+  call bdbsr018_prepare()
+
+  set isolation to dirty read
+
+  call bdbsr018()
+
+
+
+end main
+
+#-----------------------------------------#
+function bdbsr018_prepare()
+#-----------------------------------------#
+  define l_sql char(9000)
+
+  let l_sql = 'select                  '
+             ,'      lig.c24astcod,    '
+             ,'      ass.c24astdes,    '
+             ,'      srv.atdsrvnum,    '
+             ,'      srv.atdsrvano,    '
+             ,'      srv.atddat,       '
+             ,'      srv.atdhor,       '
+             ,'      srv.srvcbnhor,    '
+             ,'      lig.c24soltipcod, '
+             ,'      tip.c24soltipdes, '
+             ,'      srv.atdprscod,    '
+             ,'      acp.socvclcod,    '
+             ,'      acp.atdetpcod,    '
+             ,'      acp.funmat,       '
+             ,'      srv.asitipcod,    '
+             ,'      srv.atdsrvorg     '
+             ,' from datmservico srv,  '
+             ,'      datkassunto ass,  '
+             ,'outer datmligacao lig,  '
+             ,'      datksoltip tip,   '
+             ,'      datmsrvacp acp    '
+             ,'where lig.atdsrvnum = srv.atdsrvnum       '
+             ,'  and lig.atdsrvano = srv.atdsrvano       '
+             ,'  and srv.atdsrvnum = acp.atdsrvnum       '
+             ,'  and srv.atdsrvano = acp.atdsrvano       '
+             ,'  and lig.c24astcod = ass.c24astcod       '
+             ,'  and lignum = (select min(l.lignum)      '
+             ,'                       from datmligacao l '
+             ,'                        where l.atdsrvnum = srv.atdsrvnum '
+             ,'                          and l.atdsrvano = srv.atdsrvano)'
+             ,'  and srv.ciaempcod = 43                 '
+             ,'  and srv.atdsrvseq = acp.atdsrvseq      '
+             ,'  and lig.c24soltipcod = tip.c24soltipcod'
+             ,'  and srv.atddat between ? and ?         '
+
+
+  prepare pbdbsr018001 from l_sql
+  declare cbdbsr018001 cursor for pbdbsr018001
+
+
+
+  let l_sql = 'select                         '
+             ,'      k.socntzcod,             '
+             ,'      k.socntzdes,             '
+             ,'      m.orrdat                 '
+             ,' from datmsrvre m,             '
+             ,'      datksocntz k             '
+             ,'where m.atdsrvnum = ?          '
+             ,'  and m.atdsrvano = ?          '
+             ,'  and m.socntzcod = k.socntzcod'
+
+
+  prepare pbdbsr018003 from l_sql
+  declare cbdbsr018003 cursor for pbdbsr018003
+
+
+  let l_sql = 'select                             '
+             ,'      pbm.c24pbmcod,               '
+             ,'      pbm.c24pbmdes,               '
+             ,'      pbm.c24pbmgrpcod             '
+             ,' from                              '
+             ,'      datkpbm pbm,                 '
+             ,'      datrsrvpbm svp               '
+             ,'where                              '
+             ,'   svp.atdsrvnum = ?            '
+             ,'  and svp.atdsrvano = ?            '
+             ,'  and svp.c24pbmcod = pbm.c24pbmcod'
+
+
+  prepare pbdbsr018004 from l_sql
+  declare cbdbsr018004 cursor for pbdbsr018004
+
+
+  let l_sql = 'select                     '
+             ,'       lgdtip,             '
+             ,'       lgdnom,             '
+             ,'       lgdnum,             '
+             ,'       trim(lclbrrnom),    '
+             ,'       cidnom,             '
+             ,'       ufdcod,             '
+             ,'       lclltt,             '
+             ,'       lcllgt              '
+             ,'  from datmlcl             '
+             ,' where atdsrvnum = ?       '
+             ,'   and atdsrvano = ?       '
+             ,'   and c24endtip = 1       '
+
+
+  prepare pbdbsr018005 from l_sql
+  declare cbdbsr018005 cursor for pbdbsr018005
+
+
+  let l_sql = 'select                             '
+  					 ,'		   frm.pgtfrmcod,               '
+  					 ,'		   frm.pgtfrmdes                '
+             ,' from datmpgtinf inf,              '
+             ,'      datkpgtfrm frm               '
+             ,'where inf.atdsrvnum = ?            '
+             ,'  and inf.atdsrvano = ?            '
+             ,'  and inf.pgtfrmcod = frm.pgtfrmcod'
+
+
+  prepare pbdbsr018006 from l_sql
+  declare cbdbsr018006 cursor for pbdbsr018006
+
+
+  let l_sql = 'select                          '
+             ,'        cpf.cgccpfnum,          '
+             ,'        cpf.cgccpfdig,          '
+             ,'        cpf.cgcord              '
+             ,'   from datmligacao lig,        '
+             ,'        datrligcgccpf cpf       '
+             ,'  where lig.atdsrvnum = ?       '
+             ,'    and lig.atdsrvano = ?       '
+             ,'    and lig.lignum    = (select min(lignum)                    '
+             ,'                           from datmligacao lig2               '
+             ,'                          where lig2.atdsrvnum = lig.atdsrvnum '
+             ,'                            and lig2.atdsrvano = lig.atdsrvano)'
+             ,'    and lig.lignum = cpf.lignum                                '
+
+
+  prepare pbdbsr018007 from l_sql
+  declare cbdbsr018007 cursor for pbdbsr018007
+
+
+  let l_sql =  'select               '
+             ,'      itm.socopgitmvlr'
+             ,' from dbsmopg opg,    '
+             ,'      dbsmopgitm itm  '
+             ,'where atdsrvnum = ?   '
+             ,'  and atdsrvano = ?   '
+             ,'  and opg.socopgnum = itm.socopgnum '
+
+
+  prepare pbdbsr018008 from l_sql
+  declare cbdbsr018008 cursor for pbdbsr018008
+
+
+  let l_sql = 'select                '
+             ,'      sindat          '
+             ,' from datmservicocmp  '
+             ,'where atdsrvnum = ?   '
+             ,'  and atdsrvano = ?   '
+
+
+  prepare pbdbsr018009 from l_sql
+  declare cbdbsr018009 cursor for pbdbsr018009
+
+
+  let l_sql = 'select                '
+             ,'      atdetpdes       '
+             ,' from datketapa       '
+             ,'where atdetpcod = ?   '
+
+  prepare pbdbsr018010 from l_sql
+  declare cbdbsr018010 cursor for pbdbsr018010
+
+
+  let l_sql = 'select                  '
+             ,'       asi.asitipdes    '
+             ,' from datkasitip asi    '
+             ,'where asi.asitipcod = ? '
+
+  prepare pbdbsr018011 from l_sql
+  declare cbdbsr018011 cursor for pbdbsr018011
+
+
+  let l_sql = 'select                     '
+             ,'       grp.c24pbmgrpdes    '
+             ,' from datkpbmgrp grp       '
+             ,'where grp.c24pbmgrpcod = ? '
+
+  prepare pbdbsr018012 from l_sql
+  declare cbdbsr018012 cursor for pbdbsr018012
+
+
+  let l_sql = 'select max(srv.atddat)		'
+             ,'  from datmservico srv,  '
+             ,'       datmligacao lig,  '
+             ,'       datrligcgccpf cpf '
+             ,'where cpf.cgccpfnum = ?  '
+             ,'   and cpf.cgcord = ?    '
+             ,'   and cpf.cgccpfdig = ? '
+             ,'   and cpf.lignum = lig.lignum       '
+             ,'   and lig.atdsrvnum = srv.atdsrvnum '
+             ,'   and lig.atdsrvano = srv.atdsrvano '
+             ,'   and lig.lignum    = (select min(lignum)      '
+             ,'                           from datmligacao lig2'
+             ,'                          where lig2.atdsrvnum = srv.atdsrvnum '
+             ,'                            and lig2.atdsrvano = srv.atdsrvano)'
+
+  prepare pbdbsr018013 from l_sql
+  declare cbdbsr018013 cursor for pbdbsr018013
+
+end function
+
+#-----------------------------------------#
+function bdbsr018()
+#-----------------------------------------#
+
+
+
+  display " "
+  display "******Parametros do Relatório******"
+  display "Data Início: ", l_data_inicio
+  display "Data Fim: ", l_data_fim
+  display " "
+
+  let m_agora = current
+  display "Inicio: ", m_agora
+  display "Extraindo relatório... "
+  start report bdbsr018_relatorio to m_path
+
+
+
+  open cbdbsr018001 using l_data_inicio, l_data_fim
+
+
+  foreach cbdbsr018001 into mr_servicos.c24astcod,
+                            mr_servicos.c24astdes,
+                            mr_servicos.atdsrvnum,
+                            mr_servicos.atdsrvano,
+                            mr_servicos.atddat,
+                            mr_servicos.atdhor,
+                            mr_servicos.srvcbnhor,
+                            mr_servicos.c24soltipcod,
+                            mr_servicos.c24soltipdes,
+                            mr_servicos.atdprscod,
+                            mr_servicos.socvclcod,
+                            mr_servicos.atdetpcod,
+                            mr_servicos.funmat,
+                            mr_servicos.asitipcod,
+                            mr_servicos.atdsrvorg
+
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018001 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+     #VERIFICANDO SE É ACIONAMENTO AUTOMÁTICO
+     if mr_servicos.funmat = "999999" then
+        let mr_servicos.acionamentoAut = "sim"
+     else
+        let mr_servicos.acionamentoAut = "não"
+     end if
+
+     #VERIFICANDO SE O SERVIÇO É RE OU AUTO
+     if mr_servicos.atdsrvorg = 9 or mr_servicos.atdsrvorg = 13 then
+
+
+          open cbdbsr018003 using mr_servicos.atdsrvnum,
+          								     mr_servicos.atdsrvano
+          fetch cbdbsr018003 into mr_servicos.socntzcod,
+                               mr_servicos.socntzdes,
+                               mr_servicos.dataocrr
+
+          if sqlca.sqlcode <> 0 then
+            if sqlca.sqlcode <> notfound then
+             display "Erro SELECT cbdbsr018003 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+             exit program(1)
+            end if
+          end if
+     else
+        open cbdbsr018009 using mr_servicos.atdsrvnum,
+     		   								     mr_servicos.atdsrvano
+        fetch cbdbsr018009 into mr_servicos.dataocrr
+
+        if sqlca.sqlcode <> 0 then
+     		   if sqlca.sqlcode <> notfound then
+     		      display "Erro SELECT cbdbsr018002 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+     		      exit program(1)
+     		   end if
+        end if
+
+     end if
+
+     open cbdbsr018004 using mr_servicos.atdsrvnum,
+        								     mr_servicos.atdsrvano
+     fetch cbdbsr018004 into mr_servicos.c24pbmcod,
+                             mr_servicos.c24pbmdes,
+                             mr_servicos.c24pbmgrpcod
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018004 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+
+     open cbdbsr018011 using mr_servicos.asitipcod
+     fetch cbdbsr018011 into mr_servicos.asitipdes
+
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018011 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+
+     open cbdbsr018012 using mr_servicos.c24pbmgrpcod
+     fetch cbdbsr018012 into mr_servicos.c24pbmgrpdes
+
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018012 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+
+     open cbdbsr018005 using mr_servicos.atdsrvnum,
+        								     mr_servicos.atdsrvano
+     fetch cbdbsr018005 into mr_servicos.lgdtip,
+                             mr_servicos.lgdnom,
+                             mr_servicos.lgdnum,
+                             mr_servicos.lclbrrnom,
+                             mr_servicos.cidnom,
+                             mr_servicos.ufdcod,
+                             mr_servicos.lclltt,
+                             mr_servicos.lcllgt
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018005 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+     let mr_servicos.endereco = mr_servicos.lgdtip clipped, " ", mr_servicos.lgdnom clipped , ", ", mr_servicos.lgdnum clipped
+
+
+     open cbdbsr018006 using mr_servicos.atdsrvnum,
+        								     mr_servicos.atdsrvano
+     fetch cbdbsr018006 into mr_servicos.pgtfrmcod,
+                             mr_servicos.pgtfrmdes
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018006 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+
+     open cbdbsr018007 using mr_servicos.atdsrvnum,
+        								     mr_servicos.atdsrvano
+     fetch cbdbsr018007 into mr_servicos.cgccpfnum,
+                             mr_servicos.cgccpfdig,
+                             mr_servicos.cgcord
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018007 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+
+     open cbdbsr018008 using mr_servicos.atdsrvnum,
+        								     mr_servicos.atdsrvano
+     fetch cbdbsr018008 into mr_servicos.socopgitmvlr
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018008 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+     open cbdbsr018010 using mr_servicos.atdetpcod
+     fetch cbdbsr018010 into mr_servicos.atdetpdes
+
+     if sqlca.sqlcode <> 0 then
+        if sqlca.sqlcode <> notfound then
+           display "Erro SELECT cbdbsr018008 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+           exit program(1)
+        end if
+     end if
+
+     if mr_servicos.cgccpfnum is not null then
+     			open cbdbsr018013 using mr_servicos.cgccpfnum,
+     			                        mr_servicos.cgcord,
+     			                        mr_servicos.cgccpfdig
+     			fetch cbdbsr018013 into mr_servicos.ultdatcpf
+
+
+          if sqlca.sqlcode <> 0 then
+             if sqlca.sqlcode <> notfound then
+                display "Erro SELECT cbdbsr018013 / ", sqlca.sqlcode, "/", sqlca.sqlerrd[2]
+                exit program(1)
+             end if
+          end if
+          close cbdbsr018013
+    else
+    	    output to report bdbsr018_relatorio()
+          initialize mr_servicos.* to null
+          continue foreach
+    end if
+
+     output to report bdbsr018_relatorio()
+
+     initialize mr_servicos.* to null
+
+  end foreach
+
+  close cbdbsr018001
+  close cbdbsr018003
+  close cbdbsr018004
+  close cbdbsr018005
+  close cbdbsr018006
+  close cbdbsr018007
+  close cbdbsr018008
+  close cbdbsr018009
+  close cbdbsr018010
+  close cbdbsr018011
+  close cbdbsr018012
+
+
+  finish report bdbsr018_relatorio
+
+  call bdbsr018_envia_email(l_data_inicio, l_data_fim)
+
+  display "Relatório extraído! "
+  let m_agora = current
+  display "Fim: ", m_agora
+
+end function
+
+#-----------------------------------------#
+function bdbsr018_busca_path()
+#-----------------------------------------#
+   define l_dia char(02),
+          l_mes char(02),
+          l_ano char(04)
+
+  # ---> INICIALIZACAO DAS VARIAVEIS
+   let m_path = null
+   let l_dia  = null
+   let l_mes  = null
+   let l_ano  = null
+
+  # ---> CHAMA A FUNCAO PARA BUSCAR O CAMINHO DO ARQUIVO DE LOG
+  let m_path = f_path("SAPS","LOG")
+
+  if m_path is null then
+     let m_path = "."
+  end if
+
+  let m_path = m_path clipped,"/bdbsr018.log"
+
+  call startlog(m_path)
+
+  # ---> CHAMA A FUNCAO PARA BUSCAR O CAMINHO DO ARQUIVO DE RELATORIO
+  let m_path = f_path("SAPS", "RELATO")
+
+  if m_path is null then
+     let m_path = "."
+  end if
+  
+  let l_dia = day(l_data_inicio)
+  let l_mes = month(l_data_inicio)clipped
+  let l_ano = year(l_data_inicio)
+
+  if l_mes < 10 then 
+      let l_mes = "0",l_mes
+  end if
+   
+  let m_path = m_path clipped , '/' 
+  
+  let m_path = m_path clipped, l_dia clipped, l_mes clipped , l_ano ,"BDBSR018.xls"
+
+  display 'm_path: ', m_path clipped
+
+end function
+
+
+#-----------------------------------------#
+function bdbsr018_envia_email(lr_parametro)
+#-----------------------------------------#
+
+  define lr_parametro record
+         data_inicial date,
+         data_final   date
+  end record
+
+  define l_assunto     char(100),
+         l_erro_envio  integer,
+         l_comando     char(200)
+
+  # ---> INICIALIZACAO DAS VARIAVEIS
+  let l_comando    = null
+  let l_erro_envio = null
+  let l_assunto    = "Servicos SAPS do periodo: ",
+                     lr_parametro.data_inicial using "dd/mm/yyyy",
+                     " a ",
+                     lr_parametro.data_final using "dd/mm/yyyy"
+
+  # ---> COMPACTA O ARQUIVO DO RELATORIO
+  let l_comando = "gzip -f ", m_path
+
+  run l_comando
+  let m_path = m_path clipped, ".gz"
+
+  display "m_path - ", m_path
+
+  let l_erro_envio = ctx22g00_envia_email("BDBSR018", l_assunto, m_path)
+
+  if l_erro_envio <> 0 then
+     if l_erro_envio <> 99 then
+        display "Erro ao enviar email(ctx22g00) - ", m_path
+     else
+        display "Nao existe email cadastrado para o modulo - BDBSR018"
+     end if
+  end if
+
+end function
+
+#-----------------------------------------#
+report bdbsr018_relatorio()
+#-----------------------------------------#
+  output
+
+     left   margin    00
+     right  margin    00
+     top    margin    00
+     bottom margin    00
+     page   length    02
+
+  format
+
+     first page header
+
+
+   print "Assunto",                           ASCII(09),
+         "Descrição Assunto",                 ASCII(09),
+         "Número do Serviço",                 ASCII(09),
+         "Ano do Serviço",                    ASCII(09),
+         "Data do Atendimento",               ASCII(09),
+         "Hora do Atendimento",               ASCII(09),
+         "Data/Hora Agendada",                ASCII(09),
+         "Data da Ocorrência",                ASCII(09),
+         "Código do Tipo de Solicitante",     ASCII(09),
+         "Descrição do Tipo de Solicitante",  ASCII(09),
+         "Código do Prestador",               ASCII(09),
+         "Código do Veículo Socorro",         ASCII(09),
+         "Código da Etapa",                   ASCII(09),
+         "Descrição da Etapa",                ASCII(09),
+         "Acionamento Automático",            ASCII(09),
+         "Código da Natureza",                ASCII(09),
+         "Descrição da Natureza",             ASCII(09),
+         "Código do Grupo de Problema",       ASCII(09),
+         "Descrição do Grupo de Problema",    ASCII(09),
+         "Código do Problema",                ASCII(09),
+         "Descrição do Problema",             ASCII(09),
+         "Código do Tipo de Assistência",     ASCII(09),
+         "Descrição do Tipo de Assistência",  ASCII(09),
+         "Endereço",                          ASCII(09),
+         "Bairro",                            ASCII(09),
+         "Cidade",                            ASCII(09),
+         "UFD",                               ASCII(09),
+         "Latitude",                          ASCII(09),
+         "Longitude",                         ASCII(09),
+         "Código da Forma de Pagamento",      ASCII(09),
+         "Descrição da Forma de Pagamento",   ASCII(09),
+         "Número CGC/CPF",                    ASCII(09),
+         "Dígito CGC/CPF",                    ASCII(09),
+         "Número da Ordem do CGC",            ASCII(09),
+         "Data Última Compra CGC/CPF",        ASCII(09),
+         "Valor do Item da OP"
+
+     on every row
+
+        print mr_servicos.c24astcod                       ,ascii(09);
+        print mr_servicos.c24astdes                       ,ascii(09);
+        print mr_servicos.atdsrvnum                       ,ascii(09);
+        print mr_servicos.atdsrvano                       ,ascii(09);
+        print mr_servicos.atddat                          ,ascii(09);
+        print mr_servicos.atdhor                          ,ascii(09);
+        print mr_servicos.srvcbnhor                       ,ascii(09);
+        print mr_servicos.dataocrr                        ,ascii(09);
+        print mr_servicos.c24soltipcod                    ,ascii(09);
+        print mr_servicos.c24soltipdes                    ,ascii(09);
+        print mr_servicos.atdprscod                       ,ascii(09);
+        print mr_servicos.socvclcod                       ,ascii(09);
+        print mr_servicos.atdetpcod                       ,ascii(09);
+        print mr_servicos.atdetpdes                       ,ascii(09);
+        print mr_servicos.acionamentoAut                  ,ascii(09);
+        print mr_servicos.socntzcod                       ,ascii(09);
+        print mr_servicos.socntzdes                       ,ascii(09);
+        print mr_servicos.c24pbmgrpcod                    ,ascii(09);
+        print mr_servicos.c24pbmgrpdes                    ,ascii(09);
+        print mr_servicos.c24pbmcod                       ,ascii(09);
+        print mr_servicos.c24pbmdes                       ,ascii(09);
+        print mr_servicos.asitipcod                       ,ascii(09);
+        print mr_servicos.asitipdes                       ,ascii(09);
+        print mr_servicos.endereco clipped                ,ascii(09);
+        print mr_servicos.lclbrrnom                       ,ascii(09);
+        print mr_servicos.cidnom                          ,ascii(09);
+        print mr_servicos.ufdcod                          ,ascii(09);
+        print mr_servicos.lclltt                          ,ascii(09);
+        print mr_servicos.lcllgt                          ,ascii(09);
+        print mr_servicos.pgtfrmcod       using "<<<<<<<&",ascii(09);
+        print mr_servicos.pgtfrmdes                       ,ascii(09);
+        print mr_servicos.cgccpfnum                       ,ascii(09);
+        print mr_servicos.cgccpfdig                       ,ascii(09);
+        print mr_servicos.cgcord                          ,ascii(09);
+        print mr_servicos.ultdatcpf                       ,ascii(09);
+        print mr_servicos.socopgitmvlr   using "<<<<<<<&.&&"
+
+end report

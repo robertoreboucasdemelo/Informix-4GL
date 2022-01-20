@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m09b
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+-----------------------------------------------------------------|cts06m09b|--
+Vistoria:[a        ][b      |c                             ][d  ]DtAgd:[e    ]
+------------------------------------------------------------------------------
+ Sigla[f                             ]Base                   Dist  QAcn QPend
+------------------------------------------------------------------------------
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+[g    |h                             |i                   |j     |k    |l    ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+    
+    a = formonly.f_NumeroVistoria          type char, noentry;
+    b = formonly.f_TipoLocal               type char, noentry;
+    c = formonly.f_BairroVistoria          type char, noentry;
+    d = formonly.f_Origem                  type char, noentry;
+    e = formonly.f_DiaMesVistoria          type char, noentry;
+    f = formonly.f_TipoInspetor            type char, noentry;
+    
+    g = formonly.f_SiglaVeiculo            type char, noentry;
+    h = formonly.f_NomeInspetor            type char, noentry;
+    i = formonly.f_BairroBase              type char, noentry;
+    j = formonly.f_Distancia               type char, noentry;
+    k = formonly.f_QtdVistoriasAcn         type char, noentry;
+    l = formonly.f_QtdVistoriasPend        type char, noentry;
+    
+end
+
+instructions
+    delimiters ' '
+    screen record s_cts06m09b(f_SiglaVeiculo
+                         thru f_QtdVistoriasPend)
+end
+

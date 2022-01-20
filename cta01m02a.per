@@ -1,0 +1,36 @@
+database formonly
+screen size 24 by 80
+{
+                     VANTAGENS
+------------------------------------------------------aogtfech12-------------
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+[a                                                                        |g]
+-----------------------------------------------------------------------------
+  <F3> - AVANCAR     <F4> - RETROCEDER                                  
+}
+end
+
+attributes 
+a = formonly.vantagem type char, noentry;
+g = formonly.ghost    type char, invisible;
+end             
+
+instructions
+     delimiters " "
+     screen record s_cta01m02a[15] (vantagem,ghost)                      
+end
+
+

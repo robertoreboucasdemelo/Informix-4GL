@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN09C00                              Criacao: 25/10/94 - Pedro
+
+ Consulta cadastro de corretores por SUSEP/NOME
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn09c00--
+ Susep...:[a001  ]             Nome:[a002                                    ]
+------------------------------------------------------------------------------
+ Endereco:[a007                                             ][a071           ]
+ Bairro..:[a008                ] Cidade.:[a009                ]  U.F.:[uf]
+ Cep.....:[a010 ][b01]
+ Tels....:[a011][a012                             ]
+ Fax.....:[a021][a013                ][a014            ][a015     ]
+ E-Mail...[b001                                              ]
+
+ Produtor:[a016                                    ]
+ Inspetor:[a017                                    ]
+ Atend...:[c001                                    ] Telefone:[c002          ]
+ Und.Oper:[a018                                    ]
+ Convenio:[a019                                    ]
+ Corresp.:[a020                                                  ]
+
+}
+end
+
+tables gcaksusep, gcakcorr, gcakfilial, gcbkinsp, gcbkprod, gabkuno
+
+attributes
+  a001 = formonly.corsus        ,upshift, comments = " Codigo da susep";
+  a002 = gcakcorr.cornom        ,upshift, comments = " Nome do corretor";
+  a007 = gcakfilial.endlgd      ,noentry;
+  a071 = gcakfilial.endcmp      ,noentry;
+  a008 = gcakfilial.endbrr      ,noentry;
+  a009 = gcakfilial.endcid      ,noentry;
+  uf   = gcakfilial.endufd      ,noentry;
+  a010 = gcakfilial.endcep      ,noentry;
+  b01  = gcakfilial.endcepcmp   ,noentry;
+  a011 = gcakfilial.dddcod      ,noentry;
+  a012 = gcakfilial.teltxt      ,noentry;
+  a021 = gcakfilial.dddfax      ,noentry;
+  a013 = gcakfilial.factxt      ,noentry;
+  a014 = formonly.codacsura     ,noentry;
+  a015 = gcaksusep.suslnhqtd    ,noentry;
+  b001 = gcakfilial.maides      ,noentry;
+  a016 = gcbkprod.pdtnom        ,noentry;
+  a017 = gcbkinsp.inpnom        ,noentry;
+  c001 = formonly.rspnom        ,noentry;
+  c002 = formonly.rsptel        ,noentry;
+  a018 = gabkuno.unonom         ,noentry;
+  a019 = formonly.cvnnom        ,noentry;
+  a020 = formonly.endcordes     ,noentry;
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB00M02                                              Marcelo
+                                                                     Gilberto
+ Exibe pop-up para selecao do codigo do item de pagto.               Set/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+               Itens
+--------------------------ctb00m02--
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+
+}
+End
+
+tables
+  dblkpagitem
+
+Attributes
+  a  = dblkpagitem.c24pgtitmdes       ,noentry;
+  b  = dblkpagitem.c24pgtitmcod       ,noentry, invisible;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb00m02(c24pgtitmdes thru c24pgtitmcod)
+End

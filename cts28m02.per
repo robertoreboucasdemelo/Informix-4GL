@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts28m02                                                   Ruiz
+ Tela de acionameto do sinistro de transportes                        Out/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts28m02--
+Razao..:[a01                                     ]Codigo:[a02     ]
+Ender..:[a03                                     ]Bairro:[a04               ]
+Cidade.:[a05                 ] UF..:[a0]          Tipo:[a06                 ]
+Tels...:[a07 |a08      ]Celular:[a09 |a10      ]  Distancia:[a11       ] Kms
+Ult.Servico:[a12       ] AS:[a19     ]        Classificacao:[a18   ]
+Observ.:[a13                                               |a16     |a17     ]
+        [a14                                               ]
+        [a15                                               ]
+
+Razao..:[a01                                     ]Codigo:[a02     ]
+Ender..:[a03                                     ]Bairro:[a04               ]
+Cidade.:[a05                 ] UF..:[a0]          Tipo:[a06                 ]
+Tels...:[a07 |a08      ]Celular:[a09 |a10      ]  Distancia:[a11       ] Kms
+Ult.Servico:[a12       ] AS:[a19     ]        Classificacao:[a18   ]
+Observ.:[a13                                               |a16     |a17     ]
+        [a14                                               ]
+        [a15                                               ]
+
+}
+tables
+ sstkprest,
+ datmservico,
+ datmlcl
+
+attributes
+
+a01= sstkprest.sinprsnom,    noentry, upshift;
+a02= sstkprest.sinprscod,    format = "<<<<<<<&";
+a03= sstkprest.endlgd,       noentry, upshift;
+a04= sstkprest.endbrr,       noentry, upshift;
+a05= sstkprest.endcid,       noentry, upshift;
+a0 = sstkprest.endufd,       noentry, upshift;
+a06= formonly.sinprstip,     noentry, upshift;
+a07= sstkprest.dddcod,       noentry, upshift;
+a08= sstkprest.telnum,       noentry, upshift;
+a09= sstkprest.cllddd,       noentry, upshift;
+a10= sstkprest.clltelnum,    noentry, upshift;
+a11= formonly.calckm    ,    noentry, reverse;
+a12= sstkprest.prssrvultdat, noentry, upshift;
+a13= formonly.obs1,          noentry, upshift;
+a14= formonly.obs2,          noentry, upshift;
+a15= formonly.obs3,          noentry, upshift;
+a16= formonly.lclltt,        invisible,noentry;
+a17= formonly.lcllgt,        invisible,noentry;
+a18= formonly.class,         noentry;
+a19= sstkprest.prssrvulthor,  noentry;
+end
+
+instructions
+  screen record s_cts28m02(sinprsnom thru prssrvulthor)
+  delimiters " "
+end

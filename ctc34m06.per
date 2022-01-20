@@ -1,0 +1,51 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc34m06                                               Marcelo
+                                                                     Gilberto
+ Manutencao do Relacionamento Veiculos/Tipos de assistencia          Set/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m06--
+ Veiculo:[a     |a2   |a3                                                    ]
+------------------------------------------------------------------------------
+    Cod     Descricao               Dt Cadastro     Funcionario
+
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+
+
+}
+end
+
+ tables datrvclasi, datkasitip
+
+ attributes
+
+    a  = datrvclasi.socvclcod                ,noentry;
+    a2 = formonly.atdvclsgl                  ,noentry;
+    a3 = formonly.vcldes                     ,noentry;
+
+    b  = datrvclasi.asitipcod                ,upshift,
+         comments = " Codigo da assistencia";
+    b1 = datkasitip.asitipdes                ,noentry;
+
+    b2 = datrvclasi.caddat                   ,noentry;
+    b3 = formonly.cadfunnom                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc34m06(asitipcod thru cadfunnom)
+ end

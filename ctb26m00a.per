@@ -1,0 +1,29 @@
+database formonly
+screen size 24 by 80
+{
++---------------------------------------------------+
+|                Relatorio/Rotina                   |
+|---------------------------------------------------|
+| Codigo       Relatorio                            |
+|[a       ][c                                      ]|
+|[a       ][c                                      ]|
+|[a       ][c                                      ]|
+|[a       ][c                                      ]|
+|[a       ][c                                      ]|
+|---------------------------------------------------|
+|(F8) - Seleciona    (F17) - Sair                   |
++---------------------------------------------------+
+}
+end
+
+attributes
+ a = formonly.cod,upshift ;
+ c = formonly.des,upshift ;
+
+end
+instructions
+   delimiters " "
+   screen record s_ctb26m00a(formonly.cod,
+                             formonly.des)
+
+end

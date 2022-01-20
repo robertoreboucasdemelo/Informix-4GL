@@ -1,0 +1,67 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M08                                               Marcelo
+                                                                      Gilberto
+ Consulta transmissoes pendentes para fax, impressao remota e MDT     Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+         TRANSMISSOES PENDENTES PARA FAX, IMPRESSAO REMOTA E MDT    [a1      ]
+--------------------------------------------------------------------cts00m08--
+ Data Envio.:[a2        ]                                       [a3          ]
+------------------------------------------------------------------------------
+ Servico       Data  Hora      Situacao/Prestador        Espera   Tipo/Destino
+
+[r1           |r2   |r3      ][r4                      ][r5      ][r6      ]
+                      [r71   ][r72                 ]          [r8          ]
+                              [r9                                          ]
+[c][c1][c2        ][c3        ][c4        ][c5         ][c6    ][c7]
+[r1           |r2   |r3      ][r4                      ][r5      ][r6      ]
+                      [r71   ][r72                 ]          [r8          ]
+                              [r9                                          ]
+[c][c1][c2        ][c3        ][c4        ][c5         ][c6    ][c7]
+[r1           |r2   |r3      ][r4                      ][r5      ][r6      ]
+                      [r71   ][r72                 ]          [r8          ]
+                              [r9                                          ]
+[c][c1][c2        ][c3        ][c4        ][c5         ][c6    ][c7]
+------------------------------------------------------------------------------
+}
+
+ tables
+   datmservico,
+   datmtrxfila,
+   datmfax,
+   datmmdtmsg
+
+ attributes
+   a1  = formonly.relogio   type datetime hour to second   ,noentry;
+   a2  = formonly.trxpardat type date                      ,
+         comments = " Data do envio da transmissao";
+   a3  = formonly.total                                    ,noentry;
+
+   r1  = formonly.servico                                  ,noentry;
+   r2  = formonly.trxenvdat                                ,noentry;
+   r3  = formonly.trxenvhor                                ,noentry;
+   r4  = formonly.trxsitdes                                ,noentry;
+   r5  = formonly.espera    type datetime hour to second   ,noentry;
+   r6  = formonly.trxtipdes                                ,noentry;
+   r71 = formonly.atdprscod                                ,noentry, invisible;
+   r72 = formonly.nomgrr                                   ,noentry;
+   r8  = formonly.destino                                  ,noentry;
+   r9  = formonly.faxstttxt                                ,noentry;
+
+   c   = formonly.trxtipcod type decimal                   ,noentry, invisible;
+   c1  = formonly.trxsitcod                                ,noentry, invisible;
+   c2  = datmtrxfila.atdtrxnum                             ,noentry, invisible;
+   c3  = datmfax.faxch1                                    ,noentry, invisible;
+   c4  = datmfax.faxch2                                    ,noentry, invisible;
+   c5  = datmmdtmsg.mdtmsgnum                              ,noentry, invisible;
+   c6  = formonly.atdsrvnum                                ,noentry, invisible;
+   c7  = formonly.atdsrvano                                ,noentry, invisible;
+
+ instructions
+   delimiters " "
+   screen record s_cts00m08(servico thru atdsrvano)
+ end

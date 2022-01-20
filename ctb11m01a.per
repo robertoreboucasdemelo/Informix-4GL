@@ -1,0 +1,35 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTB11M01A                                Luis Barros  - Fev/2013                                                                 
+
+ POP-UP - Cadastro do numero da OP SAP  
+------------------------------------------------------------------------------}
+database porto
+
+screen size 24 by 60
+{
+ +------------------------------------------+
+ |              A T E N C A O               |
+ |--------------------------------ctb11m01a-|
+ |                                          |
+ | ATENCAO: Favor informar o numero da OP   |
+ |          SAP para realizar o pagamento   |
+ |          desta OP por cheque!            |
+ |                                          |
+ |     OP SAP: [a1              ]           |
+ |                                          |
+ |                                          |
+ |      (F8)CONFIRMA     (Ctrl+c) SAIR      |
+ +------------------------------------------+
+}
+end
+
+tables dbsmopg
+
+attributes 
+
+   a1 = formonly.finsispgtordnum;
+
+end
+instructions
+ delimiters  " "
+end

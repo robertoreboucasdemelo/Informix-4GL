@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc41m01                                               Gilberto
+                                                                       Marcelo
+ Transfere MDT's de controladora                                      Jul/1999
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc41m01--
+          Codigo Identificacao...:[a1   ]       Qtde MDT.:[a2   ]
+------------------------------------------------------------------------------
+
+
+
+
+          Controladora Destino...:[a3   ]       Qtde MDT.:[a4   ]
+
+
+          Quantidade de MDT's....:[a5   ]
+
+
+
+
+
+
+}
+end
+
+attributes
+
+   a1  = formonly.mdtctrcod1,
+         comments = " Codigo da controladora atual";
+
+   a2  = formonly.mdtctrqtd1,                         noentry;
+
+   a3  = formonly.mdtctrcod2,
+         comments = " Codigo da controladora destino";
+
+   a4  = formonly.mdtctrqtd2,                         noentry;
+
+   a5  = formonly.mdtctrqtd3,
+         comments = " Quantidade de MDT's a serem transferidas";
+
+end
+
+instructions
+     delimiters " "
+end

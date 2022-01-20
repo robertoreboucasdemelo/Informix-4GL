@@ -1,0 +1,67 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc91m19                                          Marcos Goes
+
+ Consulta de Oficinas Referenciadas Itau                             Nov/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by  80
+
+{
+ Cidade:[a1                       ] UF:[a2] Bairro:[a3                       ]
+ Zona:[a4] R.Social:[a5                       ] Linha:[a6                    ]
+--------------------------------------------------------------------ctc91m19--
+ R.Social:[b1                                                              |x]
+ Linha...:[c1                              ]Avaliac.:[c2                     ]
+ Endereco:[d1                                                                ]
+ Bairro..:[e1                              ]CEP.:[e2   |e3 ]       Ativa..:[e]
+ Cidade..:[f1                              ]UF..:[f2][b    ]       Reg.Img:[f]
+ Contato.:[g1                              ]Fone:[g2  |g3       ]  Lotada.:[g]
+ Horarios:[h1   ]as[h2   |h3                                    ]  Rec.24h:[h]
+------------------------------------------------------------------------------
+ R.Social:[b1                                                              |x]
+ Linha...:[c1                              ]Avaliac.:[c2                     ]
+ Endereco:[d1                                                                ]
+ Bairro..:[e1                              ]CEP.:[e2   |e3 ]       Ativa..:[e]
+ Cidade..:[f1                              ]UF..:[f2][b    ]       Reg.Img:[f]
+ Contato.:[g1                              ]Fone:[g2  |g3       ]  Lotada.:[g]
+ Horarios:[h1   ]as[h2   |h3                                    ]  Rec.24h:[h]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a1 = formonly.filcidade                ,upshift, comments = " Buscar pela cidade.";
+   a2 = formonly.filuf                    ,upshift, comments = " Buscar pela UF.";
+   a3 = formonly.filbairro                ,upshift, comments = " Buscar pelo bairro.";
+   a4 = formonly.filzona                  ,upshift, comments = " Buscar pela zona.";
+   a5 = formonly.filrazao                 ,upshift, comments = " Buscar pela Razao Social ou Nome Fantasia.";
+   a6 = formonly.fillinha                 ,upshift, comments = " Buscar pela Linha Atendida.";
+   x  = formonly.marca           ,upshift, autonext, comments = " ";
+   b  = formonly.itarefofncod  ,invisible,noentry; {Codigo Oficina}
+   b1 = formonly.sclraznom                ,noentry; {Razao Social}
+   c1 = formonly.atdlintipdes             ,noentry; {Linha}
+   c2 = formonly.avades                   ,noentry; {Avaliacao}
+   d1 = formonly.endereco                 ,noentry; {Endereco}
+   e1 = formonly.brrnom                   ,noentry; {Bairro}
+   e2 = formonly.cepnum     type decimal  ,noentry, format = "&&&&&"; {CEP}
+   e3 = formonly.cepcplnum  type decimal  ,noentry, format = "&&&";   {CEP - complemento}
+   e  = formonly.atoofnflg                ,noentry; {Ativa}
+   f1 = formonly.cidnom                   ,noentry; {Cidade}
+   f2 = formonly.ufdsgl                   ,noentry; {UF}
+   f  = formonly.rgcflg                   ,noentry; {Regulacao Imagem}
+   g1 = formonly.cttnom                   ,noentry; {Contato}
+   g2 = formonly.teldddnum  type decimal  ,noentry, format = "##&&";      {DDD Fone}
+   g3 = formonly.telnum     type decimal  ,noentry, format = "&&&&&&&&&"; {Fone}
+   g  = formonly.lotada                   ,noentry; {Lotada}
+   h1 = formonly.horainicio               ,noentry, picture = "##:##"; {Horario Inicio}
+   h2 = formonly.horafinal                ,noentry, picture = "##:##"; {Horario Final}
+   h3 = formonly.atdsmndiades             ,noentry; {Atendimento}
+   h  = formonly.h24rcbflg                ,noentry; {Recebimento 24h}
+end
+
+instructions
+   screen record s_ctc91m19b (marca thru h24rcbflg)
+   delimiters " "
+end

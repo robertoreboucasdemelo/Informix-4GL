@@ -1,0 +1,39 @@
+database porto
+
+screen
+{
+-----------------------------------------------------------------------------
+ Tabela de preco - AUTOMOVEL                                                  
+-------------------------------------------------------------------ctc00m14--
+Empresa     Origem        Tip Assis.     Tabela                             
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]
+[  a|     b][ c|        d][  e|        f][  g|                             h]                                                                              
+
+ (F1)Inclui (F2)Exclui (F8)Salva                                                                             
+}
+
+end 
+	
+tables
+   dparpstsrvprc  
+
+attributes
+   a = dparpstsrvprc.empcod,    autonext;
+   b = formonly.empsgl,         noentry;
+   c = dparpstsrvprc.atdsrvorg, autonext;
+   d = formonly.srvtipabvdes,   noentry;
+   e = dparpstsrvprc.asitipcod, autonext;
+   f = formonly.asitipabvdes,   noentry;
+   g = dparpstsrvprc.soctrfcod, autonext;
+   h = formonly.soctrfdes,      noentry;
+end
+
+instructions
+   delimiters " ";
+   screen record s_ctc00m14(empcod thru soctrfdes);     
+end

@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc97m03                                      Amilton
+                                                             
+ Cadastro Plano Residencia                                   Ago/2012
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc97m03--
+ Plano.....:[a  ][b                                                        ]
+------------------------------------------------------------------------------
+  Grupo            LMI GRP   Ntz   Descricao                    LMI NTZ  Valor
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+ [c  |d           ] [e  ]   [f  ] [g                           ] [h ]   [i   ]
+------------------------------------------------------------------------------
+ Atualizado..:[j          ] por [l                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.cod                ,noentry;
+   b  = formonly.descricao          ,noentry;      
+   c  = formonly.grpcod             ,upshift; 
+   d  = formonly.desnom             ,noentry;
+   e  = formonly.lmtgrp             ,upshift; 
+   f  = formonly.nat_cod            ,upshift; 
+   g  = formonly.nat_desc           ,noentry;    
+   h  = formonly.limite             ,upshift; 
+   i  = formonly.lmtvlr             ,upshift;       
+   j  = formonly.atldat             ,noentry;
+   l  = formonly.funnom             ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc97m03(grpcod thru lmtvlr)
+end

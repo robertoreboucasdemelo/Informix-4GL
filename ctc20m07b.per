@@ -1,0 +1,53 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc00m17b                                              Jorge
+
+ Tela consulta e alteracao valor bonificacao                       Nov/2013
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc20m07b--
+   [c                                                                   ]
+ Prestador:[c1      ][c2                                                     ]
+------------------------------------------------------------------------------
+ Dt Analise   Dt Pgto     Grupo Servico             Valor Premio
+
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+[a1        ] [a2        ] [a3][a4                  ][a5        ]
+
+[b1                                                              ]
+[b1                                                              ]
+
+
+}
+end
+
+ tables dpampstprm
+
+ attributes
+
+   a1 = formonly.vlrrefdat,noentry;
+   a2 = formonly.vlrpgtdat,noentry;
+   a3 = formonly.prtbnfgrpcod, noentry;
+   a4 = formonly.prtbnfgrpdes, noentry;
+   a5 = formonly.pstprmvlr;
+
+   b1 = formonly.pstapuobstxt, noentry, wordwrap;   
+
+   c  = formonly.cabec, noentry,reverse;
+   c1 = formonly.pstcoddig     ,noentry;
+   c2 = formonly.rspnom        ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc20m07b(vlrrefdat thru pstprmvlr)
+ end

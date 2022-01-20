@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M10                                              Marcelo
+                                                                     Gilberto
+ Consulta itens da ordem de pagamento                                Abr/1997
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb11m10--
+  N.Fiscal    Ord Servico  Faixa  Vlr.Inicial   Vlr.Total Diferenca Lib   Seq
+
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+ [a5      ] [a9|a10    |an] [r]  [a15        |a20        |a21      ][l][a25  ]
+
+}
+End
+
+Tables dbsmopg, dbsmopgitm, datmservico
+
+Attributes
+  a5   = dbsmopgitm.nfsnum,                                   noentry;
+  a9   = datmservico.atdsrvorg,format = "&&",                 noentry;
+  a10  = dbsmopgitm.atdsrvnum, format = "&&&&&&&",            noentry;
+  an   = dbsmopgitm.atdsrvano, format = "&&",                 noentry;
+  r    = dbsmopgitm.vlrfxacod,                                noentry;
+  a15  = dbsmopgitm.socopgitmvlr,     format = "#######&.&&", noentry;
+  a20  = formonly.socopgtotvlr        type decimal,
+                                      format = "#######&.&&", noentry;
+  a21  = formonly.socopgdscvlr        type decimal,
+                                      format = "#####&.&&",   noentry;
+  l    = dbsmopgitm.socconlibflg,                             noentry;
+  a25  = dbsmopgitm.socopgitmnum,                             noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb11m10(nfsnum thru socopgitmnum)
+End

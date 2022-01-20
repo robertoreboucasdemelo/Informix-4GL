@@ -1,0 +1,151 @@
+{--------------------------------------------------------------------
+ Nome do form: cts00m03                                        Pedro
+                                                             Marcelo
+ Manutencao de posicao da frota(guinchos/tecnicos)            Abr/95
+--------------------------------------------------------------------}
+database porto
+screen size 25 by 80
+{
+[c0                                                                          ]
+[c1                                                                    |c2   ]
+--------------------------------------------------------------------cts00m03--
+Grupo:[c3|c4                  ] Atividade:[c5 ]  Ass.:[c6|c7      ] Zona:[c8]
+Sigla:[c9   ] Eqpto:[c10 |c11       ] Prestador:[c12   |c13              ]
+Empresa:[a1][a2                      ]Tipo SRV :[a3|a4             ]
+------------------------------------------------------------------------------
+Vcl:[d1   |d2 |d21            |d3    |d4                  |d41            |f ]
+Soc:[d5    |d6        |d7                                                    ]
+GPS[x|u1|d8                      |d9                              |z1|f1     ]
+QTH:[u2|d10      |d11         |z2|f2] QTI:[u3|d12      |d13         |z3|f3   ]
+CEL:[g   |g1       |d15      |d16      ] NEXTEL ID: [i          ]
+OBS:[d14                                                         ]Tmp:[d17   ]
+
+Vcl:[d1   |d2 |d21            |d3    |d4                  |d41            |f ]
+Soc:[d5    |d6        |d7                                                    ]
+GPS[x|u1|d8                      |d9                              |z1|f1     ]
+QTH:[u2|d10      |d11         |z2|f2] QTI:[u3|d12      |d13         |z3|f3   ]
+CEL:[g   |g1       |d15      |d16      ] NEXTEL ID: [i          ]
+OBS:[d14                                                         ]Tmp:[d17   ]
+
+}
+end
+
+ tables
+    dattfrotalocal, datkveiculo, datmservico
+
+ attributes
+  a1  = formonly.ciaempcod , comments="Codigo da empresa", reverse;
+  a2  = formonly.empnom, noentry, reverse;
+  a3  = formonly.srvorgtipcod                type smallint,
+        comments = " Informe o Tipo Servico";
+  a4  = formonly.srvorgtip                   type char, noentry;
+  c0  = formonly.cabec1,                          noentry;
+  c1  = formonly.cabec2,                          noentry;
+  c2  = formonly.horaatu,         reverse,        noentry;
+
+  c3  = formonly.vcldtbgrpcod                type decimal,
+        comments = " Grupo de distribuicao";
+
+  c4  = formonly.vcldtbgrpdes,                    noentry;
+
+  c5  = formonly.c24atvpsq,                       upshift,
+        comments=" Informe a atividade";
+
+  c6  = formonly.asitipcod,
+        comments = " Tipo de assistencia do socorrista";
+  c7  = formonly.asitipabvdes,                    noentry;
+
+  c8  = formonly.endzonpsq,                       upshift,
+        comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+
+  c9  = formonly.atdvclpsq,                       upshift,
+        comments = " Sigla de identificacao do veiculo";
+
+  c10 = formonly.soceqpcodpsq                type decimal,
+        comments = " Codigo do equipamento";
+  c11 = formonly.soceqpabvpsq,                    noentry;
+
+  c12 = formonly.pstcodpsq                   type decimal,
+        comments = " Codigo do prestador";
+  c13 = formonly.nomgrrpsq,                       noentry;
+
+  d1  = datkveiculo.atdvclsgl,                    noentry;
+  d2  = dattfrotalocal.c24atvcod,                 upshift,
+        comments = " QRA-Logon, QRU-Servico, QRV-Liberado, QRX-Parado, QTP-Fora de Operacao";
+  d21 = formonly.c24atvcmp,  color = black reverse where d21 is not null,   noentry;
+  d3  = dattfrotalocal.socvclcod,                 noentry;
+  d4  = formonly.socvcltipdes,                    noentry;
+  d41 = formonly.vcleqpdes,                       noentry;
+
+  d5  = dattfrotalocal.srrcoddig,
+        comments = " Codigo do socorrista";
+
+  d6  = formonly.srrabvnom,                       upshift,
+        comments = " Nome abreviado do socorrista";
+
+  d7  = formonly.srrasides,                       noentry;
+
+  x   = formonly.tipposcab,                       noentry;
+
+  u1  = formonly.ufdcod_gps,                      upshift,
+        comments = " Estado onde o veiculo esta no momento (GPS)";
+
+  d8  = formonly.cidnom_gps,                      upshift,
+        comments = " Cidade onde o veiculo esta no momento (GPS)";
+
+  d9  = formonly.brrnom_gps,                      upshift,
+        comments = " Bairro onde o veiculo esta no momento (GPS)";
+
+  z1  = formonly.endzon_gps,                      upshift,
+        comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+
+  u2  = formonly.ufdcod_qth,                      upshift,
+        comments = " Estado onde sera realizado o servico (QTH)";
+
+  d10 = formonly.cidnom_qth,                      upshift,
+        comments = " Cidade onde sera realizado o servico (QTH)";
+
+  d11 = formonly.brrnom_qth,                      upshift,
+        comments = " Bairro onde sera realizado o servico (QTH)";
+
+  z2  = formonly.endzon_qth,                      upshift,
+        comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+
+  u3  = formonly.ufdcod_qti,                      upshift,
+        comments = " Estado onde o veiculo esta no momento (QTI)";
+
+  d12 = formonly.cidnom_qti,                      upshift,
+        comments = " Cidade onde o veiculo esta no momento (QTI)";
+
+  d13 = formonly.brrnom_qti,                      upshift,
+        comments = " Bairro onde o veiculo esta no momento (QTI)";
+
+  z3  = formonly.endzon_qti,                      upshift,
+        comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+
+  d14 = formonly.obspostxt,                       upshift,
+        comments = " Observacoes";
+
+  g   = formonly.celdddcod type char, color = black reverse where g is not null,  noentry;
+  g1  = formonly.celtelnum type dec(10,0), color = black reverse where g1 is not null,  noentry;
+
+  d15 = formonly.celular, noentry ;
+
+  d16 = formonly.nxtnum, noentry;
+
+  i = formonly.nxtide, color = black reverse where i is not null, noentry;
+
+  d17 = formonly.tempo,                           noentry;
+
+  f   = datmservico.atdsrvorg,       invisible,   noentry;
+  f1  = dattfrotalocal.atdsrvnum,    invisible,   noentry;
+  f2  = dattfrotalocal.atdsrvano,    invisible,   noentry;
+  f3  = datkveiculo.pstcoddig,       invisible,   noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts00m03(atdvclsgl thru pstcoddig)
+ end
+

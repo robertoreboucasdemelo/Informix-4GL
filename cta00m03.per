@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m03                                                 Pedro
+
+ Consulta Itens de uma proposta                                      Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+--------------------------------------------------------------------cta00m03--
+ Documento                     Vigencia                  Situacao
+ Veiculo /    Segurado                                                Placa
+------------------------------------------------------------------------------
+[a    |b   |c         |d       ][e         ]a[f          ][g         ]
+[h                                                                   |i      ]
+[j                                                                          ]
+
+[a    |b   |c         |d       ][e         ]a[f          ][g         ]
+[h                                                                   |i      ]
+[j                                                                          ]
+
+[a    |b   |c         |d       ][e         ]a[f          ][g         ]
+[h                                                                   |i      ]
+[j                                                                          ]
+
+
+}
+end
+
+tables
+   datrligapol
+
+attributes
+  a = datrligapol.succod;
+  b = datrligapol.ramcod;
+  c = datrligapol.aplnumdig;
+  d = datrligapol.itmnumdig;
+  e = formonly.viginc;
+  f = formonly.vigfnl;
+  g = formonly.aplsit;
+  h = formonly.segnom;
+  i = formonly.vcllicnum;
+  j = formonly.vcldes;
+end
+
+Instructions
+ delimiters " "
+ screen record s_cta00m03(succod thru vcldes);
+End

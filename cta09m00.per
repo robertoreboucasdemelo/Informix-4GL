@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta09m00                                                  Ruiz
+ Registra o solicitante para fila de apoio                           Out/2002
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+{
+
+--------------------------------------------------------------------cta09m00--
+                  A T E N D I M E N T O    A P O I O  - CT24HS
+------------------------------------------------------------------------------
+
+         Empresa............:[b ]
+
+         Matricula..........:[c     ]
+
+         Nome do Atendente..:[d                                            ]
+
+         Numero Atendimento.:[e        ]
+
+
+         Confirma....:[f]
+
+
+------------------------------------------------------------------------------
+
+}
+end
+
+ attributes
+    b  = formonly.empcod        ,          comments="Empresa do Atendente";
+    c  = formonly.funmat        ,          comments="Matricula do Atendente";
+    d  = formonly.funnom        , noentry;
+    e  = formonly.atdnum        ,          comments="Numero do Atendimento";
+    f  = formonly.confirma      , upshift, comments="Confirma dados (S/N)";
+ end
+ instructions
+    delimiters " "
+ end

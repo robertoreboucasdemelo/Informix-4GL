@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB24M01                                                Wagner 
+ POPUP Motivo de retorno                                             Set/2002
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+            Motivos de Retorno 
+----- ----------------------------ctb24m01--
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+[a  |b                                     ]
+
+}
+End
+
+tables
+   datksrvret
+
+Attributes
+ a  = datksrvret.srvretmtvcod    ,noentry;
+ b  = datksrvret.srvretmtvdes    ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctb24m01(srvretmtvcod thru srvretmtvdes)
+End

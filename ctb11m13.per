@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb11m13                                             Marcelo
+                                                                    Gilberto
+ Seleciona contribuinte a ser tributado                             Out/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+       Cadastro de Contribuintes (Depto.Tributos)
+-------------------------------------------------ctb11m13--
+ Contribuinte:[a1                                      ]
+ Endereco....:[a2                                      ]
+ Bairro......:[a3                  ]
+ Cidade......:[a4                  ]     UF:[a5]
+-----------------------------------------------------------
+ Empr.   Sucursal         Atividade
+-----------------------------------------------------------
+[b1][b2   ][b3            ][b][b4                         ]
+[b1][b2   ][b3            ][b][b4                         ]
+[b1][b2   ][b3            ][b][b4                         ]
+[b1][b2   ][b3            ][b][b4                         ]
+}
+end
+
+tables
+   cgpkcontrn
+   cgpkprestn
+
+attributes
+  a1  = cgpkcontrn.cntnom                   , upshift, noentry;
+  a2  = formonly.endlgd                     , upshift, noentry;
+  a3  = cgpkcontrn.endbrr                   , upshift, noentry;
+  a4  = cgpkcontrn.endcid                   , upshift, noentry;
+  a5  = cgpkcontrn.endufd                   , upshift, noentry;
+  b1  = cgpkprestn.empcod                   , format = "&&";
+  b2  = cgpkprestn.succod                   , format = "###&&", invisible;
+  b3  = formonly.sucnom                     , upshift, noentry;
+  b   = cgpkprestn.prstip                   , upshift, noentry;
+  b4  = formonly.prstipdes                  , upshift, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb11m13 (empcod thru prstipdes)
+end

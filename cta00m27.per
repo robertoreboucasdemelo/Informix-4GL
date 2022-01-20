@@ -1,0 +1,79 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m27                                               Roberto
+
+ Atendimento Itau.                                                   Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+--------------------------------------------------------------------cta00m27--
+ Atendimento.:[a         ]Localiza Apolices Itau                          
+------------------------------------------------------------------------------
+ Solicitante.:[b              ]                  Tipo.:[c |c1                ]
+-------------------------- Chaves de Localizacao -----------------------------
+                                                                              
+ Companhia....:[d   |d1                                                      ]                                                               
+ Ramo.........:[e   |e1                                        ][p           ]                                                               
+ Apolice......:[f       ]           Item.:[g     ]                                        
+ Placa........:[h      ]                                                               
+ Segurado.....:[i                                            ]                                                               
+ Pessoa.......:[j |j1      ]                                                               
+ Cgc/Cpf......:[l1          ][l2  ][l3]                                                                  
+ Proposta.....:[m        ]                                                               
+ Chassi.......:[n                   ]                                                              
+                                                                              
+ Sem Doct.....:[o]                                                              
+                                                                              
+}
+
+end
+
+tables datmatd6523   ,   
+       datmligacao   ,
+       datkitacia    ,
+       datmitaapl    ,
+       datmitaaplitm 
+     
+attributes
+
+a  = datmatd6523.atdnum         , autonext                               
+                                , comments = " Numero do Atendimento";   
+b  = formonly.solnom            , upshift                                
+                                , comments = " Nome do Solicitante";     
+c  = datmligacao.c24soltipcod   , comments = " Tipo do Solicitante";     
+c1 = formonly.c24soltipdes      , noentry;
+d  = datkitacia.itaciacod       , autonext
+                                , comments = " Codigo da Companhia"; 
+d1 = datkitacia.itaciades       , noentry;   
+e  = datmitaapl.itaramcod       , autonext    
+                                , comments = " Ramo da Apolice";  
+e1 = formonly.ramnom            , noentry; 
+f  = datmitaapl.itaaplnum       , comments = " Numero da Apolice";
+g  = datmitaaplitm.itaaplitmnum , autonext                           
+                                , comments = " Itens da Apolice";
+h  = datmitaaplitm.autplcnum    , upshift                                         
+                                , comments = " Localiza pela Placa do Veiculo";   
+i  = datmitaapl.segnom          , upshift                                        
+                                , comments = " Localiza pelo Nome do Segurado";  
+j  = datmitaapl.pestipcod       , upshift                                            
+                                , comments = " Tipo Pessoa: (F)isica ou (J)uridica"; 
+j1 = formonly.pesnom            , noentry;                                           
+l1 = datmitaapl.segcgccpfnum    , autonext                       
+                                , comments = " Numero do CGC/CPF"; 
+l2 = datmitaapl.segcgcordnum    , autonext                        
+                                , comments = " Numero da Filial";
+l3 = datmitaapl.segcgccpfdig    , autonext                       
+                                , comments = " Digito do CGC/CPF";
+m  = datmitaapl.itaprpnum       , autonext                        
+                                , comments = " Numero da Proposta";
+n  = datmitaaplitm.autchsnum    , upshift                                      
+                                , comments = " Localiza pelo Chassi do Veiculo";
+o  = formonly.semdocto          , upshift
+                                , comments = " Informe 'S' para Ligacao Sem Docto";  
+p  = formonly.c24paxtxt         , noentry;                                 
+                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+instructions  
+   delimiters " " 
+end

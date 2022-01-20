@@ -1,0 +1,42 @@
+database porto
+screen size 24 by 80
+{
+[a                                                     ]
+--------------------------------------------------------
+ [b           |c                                       ]
+  ============ ========================================
+[f|f02        |f03                                     ]
+[f|f02        |f03                                     ]
+[f|f02        |f03                                     ]
+           Ctrl+C:Abandona    F8:Seleciona
+}
+end
+tables
+   dpakprtbnfcrt
+
+attributes
+     a   = formonly.titulo     type char,
+           upshift;
+     
+     b   = formonly.codigo     type char,
+           upshift;
+     
+     c   = formonly.descricao     type char,
+           upshift;
+     
+     f   = formonly.campo     type char,
+           upshift;
+   
+     f02 = dpakprtbnfcrt.crttip,
+           upshift;
+
+     f03 = formonly.crttipdes     type char,
+           upshift;
+end
+
+
+instructions
+     delimiters  " "
+     screen record s_p_tipos[3] (campo,crttip,crttipdes)
+end
+

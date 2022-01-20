@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC37M01                                               Gilberto
+                                                                      Marcelo
+                                                                      Wagner
+ Observacao da vistoria de auto-socorro                               Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc37m01--
+                    NUMERO DA VISTORIA [a        ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+}
+end
+
+tables
+datmvstobs
+
+attributes
+
+a    = formonly.socvstnum,    reverse ,noentry;
+b    = datmvstobs.blqobstxt,           upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc37m01(blqobstxt)
+end

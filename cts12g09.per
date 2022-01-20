@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g09                                    R.Fornax
+
+ Extrato de Servicos ao Automovel Itau                     Ago/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------cts12g09--
+                       EXTRATOS DE SERVICO AO AUTOMOVEL
+------------------------------------------------------------------------------
+
+   Servico                                                 KM
+
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+[a|b                                                 ]    [c  ]
+
+
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  =  formonly.codigo         , invisible ,noentry;
+   b  =  formonly.servdes        , noentry;
+   c  =  formonly.km             , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g09(codigo thru km)
+end
+

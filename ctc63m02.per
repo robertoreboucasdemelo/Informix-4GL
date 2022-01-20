@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc63m02                                      Helder Oliveira
+                                                               Humberto Santos
+ Cadastros de Menu                                                   Jul/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+-------------------------------------------------------------------ctc63m02---
+ Matricula...:[p1        ] Nome:[p2                                         ] 
+ Departamento:[p3        ] Emp.:[p4      ]
+------------------------------------------------------------------------------
+      Mat.   Nome                                     Depart.   Status  Emp
+
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+([x])[a     |b                                        |c        |d      |e  ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    p1 = formonly.matricula     , upshift , comments = 'Digite a Matricula para pesquisa';
+    p2 = formonly.nome          , upshift , comments = 'Digite o Nome para pesquisa';
+    p3 = formonly.departamento  , comments = 'Digite o Departamento para pesquisa';
+    p4 = formonly.empresa       , upshift , comments = 'Digite a Empresa para pesquisa'; 
+
+
+    x  = formonly.marca       , upshift , comments = 'Digite (X) para Marcar!';
+    a  = formonly.s_matriula  , noentry ;
+    b  = formonly.s_nome      , noentry ;
+    c  = formonly.s_depart    , noentry ;
+    d  = formonly.s_stt       , noentry ;
+    e  = formonly.s_emp       , noentry ;
+
+end
+
+instructions
+  {  screen record sctc63m02a(matricula thru empresa)
+    delimiters " " }
+
+    screen record sctc63m02(marca thru s_emp)
+    delimiters " "
+end

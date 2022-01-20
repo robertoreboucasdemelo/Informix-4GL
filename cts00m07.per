@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m07                                              Gilberto
+                                                                      Marcelo
+ Servicos que estao sendo acionados pelos operadores de radio        Mar/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+
+[cab                                                              ] [h       ]
+--------------------------------------------------------------------cts00m07--
+    Servico       Tipo                Operador                   Viatura
+------------------------------------------------------------------------------
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+[r1           ]  [r2        ]  [r6    |r3                  ]  [r4   ] [r5    ]
+
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   datksrvtip,
+   datkveiculo,
+   datmservico
+
+Attributes
+   cab = formonly.cabec           type char          , noentry;
+   h   = formonly.horatu          type char, reverse , noentry;
+
+   r1  = formonly.srvnum          type char          , noentry;
+   r2  = datksrvtip.srvtipabvdes                     , noentry;
+   r3  = formonly.funnom          type char          , noentry;
+   r4  = datkveiculo.atdvclsgl                       , noentry;
+   r5  = datkveiculo.socvclcod                       , invisible;
+   r6  = datmservico.c24opemat                       , noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts00m07(srvnum thru datmservico.c24opemat)
+End

@@ -1,0 +1,101 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTS22M02                                           LUCAS SCHEID
+ LAUDO - ASSISTENCIA A PASSAGEIROS(HOSPEDAGEM)                        NOV/2006
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]ASSISTENCIA A PASSAGEIROS-HOSPEDAGEM [a2             ]
+-------------------------------------------------------------------cts22m02---
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ]          [b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+-------------------------------------------------------------[waz         ]---
+ Motivo...:[c|c2                  ] Serv.Ref.:[c3|c4     |c5] Seg.Hospedado[x]
+
+ Hotel....:[d1                                      ]
+
+ Bairro...:[d2                  ]  Cidade....:[d3                  ] UF:[x1]
+
+ Ponto Ref:[d5                                                      ]
+
+ Tel.Local:[d8          ]         Resp.Local:[d9                  ]
+
+ N.Diarias:[e7] Quartos:[e8] Srv.Imed:[f] Pri:[g|g1    ] Srv.Lib:[h] Form:[i]
+ Atd./Lib.:[j                                               |j2        |j3   ]
+ (F1)Help(F3)Refer(F4)Ocorr(F5)Espelho(F6)Hist(F7)Imp(F9)Conclui(F10)Passag
+}
+end
+
+tables
+   datmservico     ,
+   datmligacao     ,
+   datmassistpassag,
+   datmhosped      ,
+   datkasimtv
+
+attributes
+
+a1   = formonly.servico             , noentry;
+a2   = datmligacao.c24solnom        , noentry;
+
+b1   = datmservico.nom              , upshift
+                                    , comments = " Nome";
+b2   = formonly.doctxt              , noentry;
+b6   = datmservico.corsus           , upshift
+                                    , comments = " Susep";
+b7   = datmservico.cornom           , upshift
+                                    , comments = " Corretor";
+b8   = formonly.cvnnom              , noentry, invisible;
+b9   = datmservico.vclcoddig        , format = "&&&&&&"
+                                    , comments = " Codigo do veiculo";
+b10  = datmservico.vcldes           , upshift
+                                    , comments = " Descricao do veiculo";
+b11  = datmservico.vclanomdl        , comments = " Ano do veiculo";
+b12  = datmservico.vcllicnum        , upshift
+                                    , comments = " Placa do veiculo";
+b13  = formonly.vclcordes           , downshift
+                                    , comments = " Cor do veiculo";
+
+
+c    = datmassistpassag.asimtvcod   , comments = " Motivo da solicitacao";
+c2   = datkasimtv.asimtvdes         , upshift;
+c3   = formonly.refatdsrvorg type dec, format = "&&"
+                                    , comments = " Origem do servico de referencia";
+c4   = datmassistpassag.refatdsrvnum, format = "&&&&&&&"
+                                    , comments = " Numero do servico de referencia";
+c5   = datmassistpassag.refatdsrvano, format = "&&"
+                                    , comments = " Ano do servico de referencia";
+x   = formonly.seghospedado type char , upshift, comments="Informe se segurado ja esta hospedado S/N ", include=("S","N"),autonext ;
+d1   = formonly.hsphotnom, noentry;
+
+d2   = formonly.hsphotbrr, noentry;
+d3   = formonly.hsphotcid, noentry;
+x1   = formonly.hsphotuf, noentry;
+
+d5   = formonly.hsphotrefpnt, noentry;
+d8   = formonly.hsphottelnum, noentry;
+d9   = formonly.hsphotcttnom, noentry;
+
+
+e7   = datmhosped.hpddiapvsqtd      , comments = " Quantidade estimada de diarias";
+e8   = datmhosped.hpdqrtqtd         , comments = " Quantidade de quartos ";
+f    = formonly.imdsrvflg           , upshift
+                                    , comments = " Servico imediato ? (S)im ou (N)ao";
+g    = datmservico.atdprinvlcod     , comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+g1   = formonly.atdprinvldes        , noentry;
+h    = datmservico.atdlibflg        , upshift
+                                    , comments = " Servico liberado ? (S)im ou (N)ao";
+i    = formonly.frmflg              , upshift
+                                    , comments = " Entrada via formulario: (S)im ou (N)ao";
+j    = formonly.atdtxt              , noentry;
+j2   = datmservico.atdlibdat        , noentry;
+j3   = datmservico.atdlibhor        , noentry;
+waz  = formonly.msg_azul type char, noentry;
+end
+
+instructions
+  delimiters " "
+end

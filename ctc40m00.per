@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc40m00                                               Marcelo
+                                                                      Gilberto
+ Cadastro de dominios                                                 Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc40m00--
+ Chave de Dominio:[a                 ]
+------------------------------------------------------------------------------
+
+ Cod  Descricao
+
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+[b   |c                                                 ][d                  ]
+
+
+}
+end
+
+ tables datkdominio, isskfunc
+
+ attributes
+    a  = datkdominio.cponom     , comments = " Chave de dominio ";
+    b  = datkdominio.cpocod     , comments = " Codigo do dominio";
+    c  = datkdominio.cpodes     , comments = " Descricao do dominio";
+    d  = datkdominio.atlult     , invisible, noentry;
+ end
+
+ instructions
+    screen record s_ctc40m00 (cpocod thru atlult)
+    delimiters " "
+ end

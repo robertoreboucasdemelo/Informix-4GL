@@ -1,0 +1,36 @@
+database formonly
+screen 
+{
+------------------------------------------------------------------cts00m05----
+ Viaturas Bloqueadas : [a1 ] 
+------------------------------------------------------------------------------
+ Veiculo Socorrista                         Operador          
+------------------------------------------------------------------------------
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+[a2  ][a3      |a4                       ][a5      |a6                       ]
+------------------------------------------------------------------------------
+}
+end
+attributes
+  
+a1 = formonly.bloqviat,    noentry;   
+a2 = formonly.atdvclsgl,   noentry;   
+a3 = formonly.srrcoddig,   noentry;
+a4 = formonly.srrnom,      noentry;
+a5 = formonly.c24opemat,   noentry; 
+a6 = formonly.funnom,      noentry;
+
+
+instructions
+   delimiters " "
+   screen record s_array[11] (atdvclsgl thru funnom)
+end

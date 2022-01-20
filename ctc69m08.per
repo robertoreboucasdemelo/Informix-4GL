@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m08                                      R.Fornax
+
+ Cadastro de Servico X Clausula/Plano X Especialidade        Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m08--
+               ASSOCIACAO DAS ESPECIALIDADES DO SERVICO DA CLAUSULA
+------------------------------------------------------------------------------
+ Clausula...:[a   ]-[b                                                      ]
+ Servico....:[c   ]-[d                                                      ]
+------------------------------------------------------------------------------
+ Codigo   Especialidade          Limite    Unid.Lim     Custo    Unid.Ct   
+                             
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+ [e    ] [f                   ][g       ] [h|h1     ][i       ] [j|j1     ][x]
+------------------------------------------------------------------------------
+ Atualizado..:[m          ] por [n                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.clscod               ,noentry;
+   b  = formonly.clsnom               ,noentry;
+   c  = formonly.srvcod               ,noentry;
+   d  = formonly.srvnom               ,noentry;
+   e  = formonly.srvespcod            ,comments = " Digite o Codigo da Especialidade"    ,upshift;
+   f  = formonly.srvespnom            ,noentry;
+   g  = formonly.clssrvesplimvlr      ,comments = " Digite o Limite por Evento"          ,upshift;
+   h  = formonly.codlim               ,comments = " Digite a Unidade de Limite"          ,upshift;
+   h1 = formonly.clssrvesplimundnom   ,noentry;
+   i  = formonly.undsrvcusvlr         ,comments = " Digite o Custo Unitario"             ,upshift;
+   j  = formonly.codcus               ,comments = " Digite a Unidade do Custo"           ,upshift;
+   j1 = formonly.undsrvcusundnom      ,noentry;
+   x  = formonly.clssrvespcod         ,invisible ,noentry;  
+   m  = formonly.regatldat            ,noentry;
+   n  = formonly.funnom               ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m08(srvespcod  thru clssrvespcod)
+end

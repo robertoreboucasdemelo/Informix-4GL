@@ -1,0 +1,39 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m14                                      R.Fornax
+                                                             
+ Consulta de Classe de Localizacao                           Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m14--
+                        CONSULTA DE CLASSE DE LOCALIZACAO
+------------------------------------------------------------------------------
+   Codigo      Classe de Localizacao                                    
+   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+   [a    ]   [b                                                         ]   
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.clalclcod ,noentry;
+   b  = formonly.clalcldes ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m14(clalclcod thru clalcldes)
+end

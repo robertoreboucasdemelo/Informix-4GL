@@ -1,0 +1,95 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m26                                               Roberto
+
+ Atendimento PSS                                                     Jan/2010
+------------------------------------------------------------------------------
+                         * * * Alteracoes * * *
+   Data     Autor Fabrica   Origem         Alteracao
+ ---------- --------------- -------------- ---------------------------------
+ 09/11/2015 INTERA,MarcosMP SPR_2015_22413 Alteracoes:
+                                         1.Excluir 'Atendimento' da tela;
+                                         2.Incluir tecla de Funcao para 
+                                           consulta de CPF do cliente.
+-----------------------------------------------------------------------------}
+ 
+database porto
+screen
+{
+-------------------------------------------------------------------cta00m26---
+                              Consulta Clientes PSS    
+------------------------------------------------------------------------------
+ Solicitante...:[b              ]             Tipo....:[c |c1                ]
+------------------------------------------------------------------------------
+ Convenio......:[v1|v2                ]
+ Pessoa:.......:[d |d2      ]                                   [p           ]   
+ CGC/CPF.......:[e1          ][e2  ][e3] 
+ Cliente.......:[f                                                           ] 
+ Nr. Contrato..:[g          ]                           Sem Doct:[h]                                          
+ 
+ Situacao......:[t             ]                    
+ Vigencia......:[u1        ] a [u2        ]
+ Endereco......:[i                                       ]Numero:[j     ]                                                                                     
+ Complemento...:[l                                       ]CEP...:[m    ]-[n  ]                                                                  
+ Bairro........:[o                                       ] 
+ Cidade........:[q                                       ]UF....:[r ][x] 
+ [s                                                                          ]
+}
+end
+
+tables gsakpes      ,
+       datmatd6523  ,
+       gsakpesend   ,
+       datmligacao  ,
+       kspmcntrsm   ,
+       gsakdocngcseg,
+       datkdominio
+       
+
+attributes
+
+b  = formonly.solnom          , upshift                                
+                              , comments = " Nome do solicitante";     
+c  = datmligacao.c24soltipcod , comments = " Tipo do solicitante";     
+c1 = formonly.c24soltipdes    , noentry;                               
+d  = gsakpes.pestip           , upshift                                                                                                                                                                                                                                                  
+                              , comments = " Tipo Pessoa: (F)isica ou (J)uridica";        
+d2 = formonly.tipnom          , noentry;                                                                                                                                                                                               
+e1 = gsakpes.cgccpfnum        , autonext                                                                                                                                                                                                                                                 
+                              , comments = " Numero do CGC/CPF"
+                              , format   = "&&&&&&&&&&&&";                                                                                                                                                                                                                         
+e2 = gsakpes.cgcord           , autonext                                                                                                                                                                                                                                                 
+                              , comments = " Numero da Filial"
+                              , format   = "&&&&";                                                                                                                                                                                                                           
+e3 = gsakpes.cgccpfdig        , autonext 
+                              , comments = " Digito CGC/CPF"
+                              , format   = "<<";    
+f  = gsakpes.pesnom           , comments = ' Nome do Cliente PSS', upshift;       
+g  = kspmcntrsm.psscntcod     , comments = ' Numero de Contrato'
+                              , format   = "<<<<<<<<<<<";     
+h  = formonly.semdocto        , upshift, 
+                                comments = " Informe 'S' para Ligacao sem Docto";
+p  = formonly.c24paxtxt       , noentry;  
+t  = formonly.situacao        , noentry;  
+u1 = gsakdocngcseg.viginc     , noentry;
+u2 = gsakdocngcseg.vigfnl     , noentry;
+i  = gsakpesend.endlgd        , noentry; 
+j  = gsakpesend.endnum        , noentry
+                              , format   = "<<<<<<";        
+l  = gsakpesend.endcmp        , noentry; 
+m  = gsakpesend.endcep        , noentry; 
+n  = gsakpesend.endcepcmp     , noentry; 
+o  = gsakpesend.endbrr        , noentry; 
+q  = gsakpesend.endcid        , noentry; 
+r  = gsakpesend.endufd        , noentry;
+s  = formonly.obs             , noentry; 
+x  = formonly.espera            type char
+                              , invisible;  
+v1 = datkdominio.cpocod       , autonext                                                           
+                              , comments = "Numero do Convenio";                                 
+v2 = datkdominio.cpodes       , noentry;                                                        
+
+instructions
+   
+   delimiters " "
+   
+end

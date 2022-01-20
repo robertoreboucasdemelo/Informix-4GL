@@ -1,0 +1,37 @@
+{--------------------------------------------------------------------
+ Nome do form: cts21m06                                     Gilberto
+
+ Mostra todas as Naturezas de Sinistro de R.E.                Nov/95
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Naturezas de Sinistro de R.E.
+------------------------------------cts21m06--
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+
+}
+end
+
+tables
+   sgaknatur
+
+attributes
+   a   = sgaknatur.sinntzdes               ,noentry;
+   b   = sgaknatur.sinntzcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts21m06(sinntzdes thru sinntzcod)
+end
+

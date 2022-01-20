@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC81M00                                        Cristiane Silva
+
+ Descontos da Ordem de Pagamento                             	      Jul/2006
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc81m00--
+   Tipo         Desconto                 Valor		Observacao
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+[n][a1]-[a2                         ] [a3        ] [a4                       ]
+
+ Total de Descontos: [a5        ]
+ (F17)Abandona,  (F1)Incluir,  (F2)Excluir,  (F3)Modificar
+}
+end
+
+Tables dbsropgdsc, dbsktipdsc
+
+attributes
+  n    = formonly.navega, invisible;
+  a1   = dbsropgdsc.dsctipcod,                                noentry;
+  a2   = dbsktipdsc.dsctipdes,			              noentry;
+  a3   = dbsropgdsc.dscvlr, format = "######&.&&";
+  a4   = dbsropgdsc.dscvlrobs;
+  a5   = formonly.totdsc type decimal, format = "######&.&&", noentry;
+end
+
+Instructions
+  delimiters " "
+  screen record s_ctc81m00(navega thru dscvlrobs)
+end
+

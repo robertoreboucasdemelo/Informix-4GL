@@ -1,0 +1,112 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTS04M00                                              Marcelo
+                                                                     Gilberto
+ Laudo - Sinistro Ramos Elementares                                  Out/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]     SINISTRO RAMOS ELEMENTARES      [a2             ]
+--------------------------------------------------------------------cts04m00--
+[b1                                      ]  [b2                              ]
+[b5    |b6                                  ] Convenio:[b7                   ]
+------------------------------------------------------------------------------
+ Vist.Ref.:[b8      ][b9  ]
+ Loc.Risco:[c1      ] Atend.Local:[c]                   [k                   ]
+ Endereco.:[c2                                                               ]
+ Bairro...:[c3                  ] Cidade.....:[c4                  ] U.F.:[c5]
+ Complemen:[c11                      ]      Resp. Local:[c10                 ]
+ Tel.Local:[c8  |c9       ]                 Tel.Celul.:[c12 |c13      ]
+ Ponto Ref:[c6                                                      ]Zona:[c7]
+ Data Ocor:[d1        ] Hora Ocor:[d2   ] Nat Sin:[d3|d4                     ]
+ Problema.:[d8  |d5                        ]
+ Natz PSoc:[x1 |x2                           ]       Tp.Assist.:[d6|d7      ]
+           [l1   ]  [l2                                                ]
+ Prior.:[f|f1    ] Prs.Local.:[j] Serv.Imed:[e] Serv. Lib..:[g] Formulario:[h]
+ Atend/Lib:[i                                                                ]
+
+}
+end
+
+tables
+   datmservico ,
+   datmsrvre   ,
+   datmligacao ,
+   datmlcl,
+   datkasitip,
+   datkpbm,
+   datmpedvist,
+   datksrvret
+attributes
+
+a1   = formonly.srvnum         , noentry;
+a2   = datmligacao.c24solnom   , noentry;
+b1   = datmservico.nom         , upshift
+                               , comments = " Nome do Cliente";
+b2   = formonly.doctxt         , noentry;
+b5   = datmservico.corsus      , upshift
+                               , comments = " Susep";
+b6   = datmservico.cornom      , upshift
+                               , comments = " Corretor";
+b7   = formonly.cvnnom         , noentry;
+c1   = datmsrvre.lclrsccod     , upshift
+                               , comments = " Codigo do Local de Risco";
+c    = formonly.lclrscflg      , upshift
+                               , comments = " Atendimento no Local de Risco ? (S)im ou (N)ao";
+k    = formonly.atdorgsrvnum   , upshift;
+c2   = formonly.lgdtxt         , upshift
+                               , comments = " Endereco para atendimento";
+c3   = datmlcl.lclbrrnom       , upshift
+                               , comments = " Bairro";
+c4   = datmlcl.cidnom          , upshift
+                               , comments = " Cidade";
+c5   = datmlcl.ufdcod          , upshift
+                               , comments = " Sigla U.F.";
+c6   = datmlcl.lclrefptotxt    , upshift
+                               , comments = " Ponto de referencia";
+c7   = datmlcl.endzon          , upshift
+                               , comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste ou (CE)ntral";
+c8   = datmlcl.dddcod          , comments = " Codigo do DDD";
+c9   = datmlcl.lcltelnum       , comments = " Telefone do local";
+c10  = datmlcl.lclcttnom       , upshift
+                               , comments = " Responsavel no local";
+c11  = datmlcl.endcmp          , upshift
+                               , comments = " Complemento do endereco";
+c12  = datmlcl.celteldddcod    , comments = " Codigo DDD do Celular";
+c13  = datmlcl.celtelnum       , comments = " Telefone Celular";
+d1   = datmsrvre.orrdat        , comments = " Data da ocorrencia";
+d2   = datmsrvre.orrhor        , picture = "##:##"
+                               , comments = " Hora da ocorrencia";
+d3   = datmsrvre.sinntzcod     , comments = "Codigo da natureza do Sinistro";
+d4   = formonly.sinntzdes      , noentry;
+d5   = datmservico.atddfttxt   , upshift
+                               , comments = " Problema apresentado";
+x1   = datmsrvre.socntzcod     , comments = "Codigo da natureza do P.Socorro";
+x2   = formonly.socntzdes      , noentry;
+d6   = datmservico.asitipcod   , comments = " Tipo de assistencia";
+d7   = datkasitip.asitipabvdes , noentry;
+l1   = datmsrvre.srvretmtvcod;
+l2   = formonly.srvretmtvdes   , upshift;
+d8   = datkpbm.c24pbmcod       , comments = " Codigo problema apresentado"
+                               , upshift;
+f    = datmservico.atdprinvlcod, comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+f1   = formonly.atdprinvldes   , noentry;
+j    = formonly.prslocflg      , upshift
+                             , comments = " Prestador no local: (S)im ou (N)ao";
+e    = formonly.imdsrvflg      , upshift
+                               , comments = " Servico imediato? (S)im ou (N)ao";
+
+g    = datmservico.atdlibflg   , upshift
+                               , comments = " Servico liberado? (S)im ou (N)ao";
+h    = formonly.frmflg         , upshift
+                               , comments = " Entrada via formulario? (S)im ou (N)ao";
+i    = formonly.atdtxt         , noentry;
+b8   = datmpedvist.sinvstnum   , comments = " Numero da Vistoria";
+b9   = datmpedvist.sinvstano   , comments = " Ano da Vistoria";
+end
+
+instructions
+  delimiters " "
+end

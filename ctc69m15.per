@@ -1,0 +1,39 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m15                                      R.Fornax
+                                                             
+ Consulta de Categoria Tarifaria                             Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m15--
+                       CADASTRO DE UNIDADES DE LIMITES
+------------------------------------------------------------------------------
+   Codigo      Unidade                                     
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.limcod , comments = " Digite o Codigo da Unidade"       ,upshift;
+   b  = formonly.limdes , comments = " Digite a Descricao da Unidade"    ,upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m15(limcod thru limdes)
+end

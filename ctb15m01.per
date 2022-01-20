@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB15M01                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Manutencao autorizacoes para mudanca de fase                         Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     Matriculas autorizadas para mudanca de fase
+-----------------------------------------------ctb15m01--
+
+ Fase......:   [a1|a2                                  ]
+
+ Empresa Matricula  Nome
+
+  [b1]   [b2    ]  [b3                                 ]
+  [b1]   [b2    ]  [b3                                 ]
+  [b1]   [b2    ]  [b3                                 ]
+
+
+}
+end
+
+tables
+  datkfseatz
+
+attributes
+
+a1= formonly.c24fsecod type dec(2,0),
+    noentry, format = "&&";
+a2= formonly.c24fsedes,
+    noentry;
+
+b1= formonly.empcod,
+    comments = " Codigo da Empresa",
+    autonext;
+b2= formonly.funmat,
+    comments = " Codigo da Matricula",
+    autonext;
+b3= formonly.funnom,
+    noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb15m01(empcod thru funnom)
+end
+

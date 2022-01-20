@@ -1,0 +1,63 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cta02m22                             Carla Rampazzo - OUT/2008
+ Descricao   : Tela de Transferencia do Atendimento
+ Projeto     : PSI 230650 - Adaptacao do Sistema ao Decreto 6523
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+ Atendimento:[a         ]
+--------------------------------------------------------------------cta02m22--
+Suc:[b    ] Ramo:[c   ] Apl:[d         ]Item:[e       ][f                    ]
+------------------------------------------------------------------------------
+   [g                                                                     ]
+   [g                                                                     ]
+   [g                                                                     ]
+   [g                                                                     ]
+   [g                                                                     ]
+------------------------------------------------------------------------------
+ Ligacao:[h        ]  [i  ]-[j                                            ]
+------------------------------------------------------------------------------
+   [k                                                                     ]
+   [k                                                                     ]
+   [k                                                                     ]
+   [k                                                                     ]
+   [k                                                                     ]
+   [k                                                                     ]
+------------------------------------------------------------------------------
+  (F1) Confirma  (F5) Espelho                               Ctrl/C - Encerra
+}
+
+end
+
+tables
+   datkassunto,
+   datmligacao,
+   datksoltip,
+   datmatdtrn,
+   datmlighist,
+   datrligapol,
+   datmatd6523
+attributes
+
+a    = datmatdtrn.atdnum         , upshift, format = "<<<<<<<<<&", reverse;
+b    = datrligapol.succod        , noentry;
+c    = datrligapol.ramcod        , noentry;
+d    = datrligapol.aplnumdig     , noentry;
+e    = datrligapol.itmnumdig     , noentry;
+f    = datmatd6523.solnom        , noentry;
+g    = formonly.descr_hist       , upshift,noentry;
+h    = datmatdtrn.necgerlignum   , upshift, noentry;
+i    = datmligacao.c24astcod     , upshift, noentry;
+j    = formonly.c24astdes type char, noentry;
+k    = datmlighist.c24ligdsc     , upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cta02m22(descr_hist)
+  screen record s_cta02m22a(c24ligdsc)
+end 

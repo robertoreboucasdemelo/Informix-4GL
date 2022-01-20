@@ -1,0 +1,910 @@
+#-----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                             #
+# ........................................................................... #
+# SISTEMA........: PORTO SOCORRO                                              #
+# MODULO.........: ctx34g00                                                   #
+# ANALISTA RESP..: Beatriz Araujo                                             #
+# PSI/OSF........: PSI-2011-0258628/PR                                        #
+# DATA...........: 15/07/2011                                                 #
+# OBJETIVO.......: Criar uma inferface unica de atualizacao das etapas na     #
+#                  base do Oracle do Novo Acionamento                         #
+# Observacoes:                                                                #
+# ........................................................................... #
+#                        * * * Alteracoes * * *                               #
+#                                                                             #
+#    Data      Autor Fabrica    Origem      Alteracao                         #
+#  ----------  -------------    ---------   --------------------------------  #
+#                                                                             #
+#-----------------------------------------------------------------------------#
+
+database porto
+
+define m_ctx34g00_prep smallint
+
+#------------------------------------------#
+function ctx34g00_prepare()
+#------------------------------------------#
+
+define l_sql char(6000)
+
+ let l_sql = "select a.atdsrvnum ,",
+               " a.atdsrvano ,",
+               " a.atdsrvseq ,",
+               " a.atdetpcod ,",
+               " a.atdetpdat ,",
+               " a.atdetphor ,",
+               " a.empcod    ,",
+               " a.funmat    ,",
+               " a.pstcoddig ,",
+               " a.atdmotnom ,",
+               " a.atdvclsgl ,",
+               " a.c24nomctt ,",
+               " a.socvclcod ,",
+               " a.srrcoddig ,",
+               " a.envtipcod ,",
+               " a.srvrcumtvcod,",
+               " a.acntmpqtd,",
+               " a.dstqtd ",
+          " from datmsrvacp a ",
+         " where a.atdsrvnum = ?",
+           " and a.atdsrvano = ?",
+           " and a.atdsrvseq = (select max(b.atdsrvseq) ",
+                                " from datmsrvacp b",
+                               " where b.atdsrvnum = ?",
+                                 " and b.atdsrvano = ?)"
+   prepare p_ctx34g00_001 from l_sql
+   declare c_ctx34g00_001 cursor for p_ctx34g00_001
+
+   let l_sql = " select atdsrvorg",
+             " from datmservico",
+            " where atdsrvnum = ?",
+              " and atdsrvano = ?"
+   prepare p_ctx34g00_002 from l_sql
+   declare c_ctx34g00_002 cursor for p_ctx34g00_002
+
+   let l_sql = "select a.atdsrvnum ,",
+               " a.atdsrvano ,",
+               " a.atdsrvseq ,",
+               " a.atdetpcod ,",
+               " a.atdetpdat ,",
+               " a.atdetphor ,",
+               " a.empcod    ,",
+               " a.funmat    ,",
+               " a.pstcoddig ,",
+               " a.atdmotnom ,",
+               " a.atdvclsgl ,",
+               " a.c24nomctt ,",
+               " a.socvclcod ,",
+               " a.srrcoddig ,",
+               " a.envtipcod ,",
+               " a.srvrcumtvcod,",
+               " a.acntmpqtd,",
+               " a.dstqtd ",
+          " from datmsrvacp a ",
+         " where a.atdsrvnum = ?",
+           " and a.atdsrvano = ?",
+           " and a.atdsrvseq = ?"
+   prepare p_ctx34g00_003 from l_sql
+   declare c_ctx34g00_003 cursor for p_ctx34g00_003
+
+   let l_sql = " select grlinf",
+                " from datkgeral",
+               " where grlchv = 'ACIONAMENTO'"
+   prepare p_ctx34g00_004 from l_sql
+   declare c_ctx34g00_004 cursor for p_ctx34g00_004
+
+   let l_sql = "select atdsrvseq ,",
+               " atdetpcod ,",
+               " atdetpdat ,",
+               " atdetphor ,",
+               " empcod    ,",
+               " funmat    ,",
+               " pstcoddig ,",
+               " atdmotnom ,",
+               " atdvclsgl ,",
+               " c24nomctt ,",
+               " socvclcod ,",
+               " srrcoddig ,",
+               " envtipcod ,",
+               " srvrcumtvcod,",
+               " acntmpqtd,",
+               " dstqtd ",
+          " from datmsrvacp ",
+         " where atdsrvnum = ?",
+           " and atdsrvano = ?",
+         " order by atdsrvseq"
+   prepare p_ctx34g00_005 from l_sql
+   declare c_ctx34g00_005 cursor for p_ctx34g00_005
+
+   let l_sql = "insert into igbmparam ",
+              " values ('CTX34G00', ",
+                     " (select NVL(max(relpamseq),0)+1",
+                            " from igbmparam param",
+                           " where relsgl = 'CTX34G00'), ",
+                      " ?, ",
+                      " ? )"
+   prepare p_ctx34g00_006 from l_sql
+
+   let l_sql = "select relpamtip ,",
+                     " relpamtxt ,",
+                     " relpamseq ",
+                " from igbmparam ",
+               " where relsgl = 'CTX34G00'",
+               " order by relpamseq"
+   prepare p_ctx34g00_007 from l_sql
+   declare c_ctx34g00_007 cursor for p_ctx34g00_007
+
+   let l_sql = "delete ",
+                " from igbmparam ",
+               " where relsgl = 'CTX34G00'",
+                 " and relpamseq = ? "
+   prepare p_ctx34g00_008 from l_sql
+
+   let l_sql = "select relpamseq ",
+                " from igbmparam ",
+               " where relsgl = 'CTX34G00'",
+                 " and relpamtip = ? ",
+                 " and relpamtxt = ? "
+   prepare p_ctx34g00_009 from l_sql
+   declare c_ctx34g00_009 cursor for p_ctx34g00_009
+
+   let m_ctx34g00_prep = true
+
+end function
+
+#------------------------------------------#
+function ctx34g00_apos_grvetapa(param)
+#------------------------------------------#
+
+define param record
+   atdsrvnum like datmservico.atdsrvnum,
+   atdsrvano like datmservico.atdsrvano,
+   atdsrvseq like datmservico.atdsrvseq,
+   tipoEnvio smallint # 1- insert da ultima sequencia  2- update da sequencia
+end record
+
+ define l_xml record
+    response char(32766),
+    request  char(32766)
+ end record
+
+ define lr_retorno record
+    cod_erro  smallint,
+    mensagem  char(100)
+ end record
+
+ define l_status integer
+ define l_msg    char(500)
+ define l_online smallint
+ define l_relpamtxt  like igbmparam.relpamtxt
+
+ initialize l_xml.* to null
+
+ if not m_ctx34g00_prep then
+    call ctx34g00_prepare()
+ end if
+
+ if ctx34g00_NovoAcionamento() and
+    ctx34g00_origem(param.atdsrvnum,param.atdsrvano) and
+    param.atdsrvnum > 0 and
+    param.atdsrvnum is not null then
+
+    #---------------------------------------------
+    # Verifica se eh alteracao ou inclusao
+    #---------------------------------------------
+
+    case param.tipoEnvio
+       when 1
+          let l_xml.request = ctx34g00_novaEtapa(param.atdsrvnum,param.atdsrvano)
+       when 2
+          let l_xml.request = ctx34g00_altEtapa(param.atdsrvnum,param.atdsrvano,param.atdsrvseq)
+    end case
+
+    call ctx34g00_enviar_mq_AW(l_xml.request clipped)
+                     returning l_status,
+                               l_msg,
+                               l_xml.response
+
+    if l_status <> 0 then
+       call ctx34g02_email_erro(l_xml.request,
+                                l_xml.response,
+                                "ERRO NO MQ - ctx34g02_apos_grvetapa",
+                                l_msg)
+
+       # Grava informacao para reprocessamento batch
+       let l_relpamtxt = param.atdsrvnum using "#######", "|", param.atdsrvano using "##", "|", param.atdsrvseq using "#####", "|", param.tipoEnvio using "#"
+       call ctx34g00_grava_mq_AW_batch(2, l_relpamtxt)
+
+    else
+       if l_xml.response like "%<retorno><codigo>1</codigo>%" then
+          if not l_xml.response like "%Servico %nao existe%" then
+             call ctx34g02_email_erro(l_xml.request,
+                                      l_xml.response,
+                                      "ERRO NO SERVICO - ctx34g02_apos_grvetapa",
+                                      "")
+
+            # Grava informacao para reprocessamento batch
+            let l_relpamtxt = param.atdsrvnum using "#######", "|", param.atdsrvano using "##", "|", param.atdsrvseq using "#####", "|", param.tipoEnvio using "#"
+            call ctx34g00_grava_mq_AW_batch(2, l_relpamtxt)
+
+          end if
+       end if
+    end if
+
+ end if
+
+end function
+
+
+#------------------------------------------#
+function ctx34g00_origem(param)
+#------------------------------------------#
+
+define param record
+   atdsrvnum like datmservico.atdsrvnum,
+   atdsrvano like datmservico.atdsrvano
+end record
+
+
+ define l_atdsrvorg like datmservico.atdsrvorg
+
+ if not m_ctx34g00_prep then
+    call ctx34g00_prepare()
+ end if
+
+ whenever error continue
+  open c_ctx34g00_002 using param.atdsrvnum,param.atdsrvano
+
+  fetch c_ctx34g00_002 into l_atdsrvorg
+
+  if sqlca.sqlcode = 0 then
+
+     select 1
+      from iddkdominio
+     where cponom = 'srvorg_aciona'
+       and cpocod = l_atdsrvorg
+
+     if sqlca.sqlcode = 0 then
+        return true
+     else
+        if sqlca.sqlcode = notfound then
+           return false
+        end if
+     end if
+  end if
+ whenever error stop
+
+return true
+
+end function
+
+#------------------------------------------#
+function ctx34g00_NovoAcionamento()
+#------------------------------------------#
+
+ define grlinf like datkgeral.grlinf
+
+ if not m_ctx34g00_prep then
+    call ctx34g00_prepare()
+ end if
+
+
+ whenever error continue
+  open c_ctx34g00_004
+  fetch c_ctx34g00_004 into grlinf
+
+  if sqlca.sqlcode = 0 then
+     if grlinf = 1 then
+        return true
+     else
+        return false
+     end if
+   end if
+ whenever error stop
+
+return false
+
+end function
+
+#-----------------------------------------------#
+function ctx34g00_ver_acionamentoWEB(l_nivel_msg)
+#-----------------------------------------------#
+
+define l_nivel_msg      smallint,  # 1-OnLine(mensagem usuario), 2-Batch
+       l_acionamentoWEB smallint,
+       l_conf           smallint
+
+let l_acionamentoWEB = ctx34g00_NovoAcionamento()
+
+if l_acionamentoWEB and l_nivel_msg = 1 then
+         call cts08g01( "A","N",  "",
+                       "AcionamentoWEB Ativo.",
+                       "Esta operacao deve ser realizada","no AcionamentoWEB!")
+              returning l_conf
+end if
+
+return l_acionamentoWEB
+
+end function
+
+
+# busca todos os dados para realizar a inclusao e monta o XML
+#------------------------------------------#
+function ctx34g00_novaEtapa(param)
+#------------------------------------------#
+
+ define param record
+    atdsrvnum like datmservico.atdsrvnum,
+    atdsrvano like datmservico.atdsrvano
+ end record
+
+ define ctx34g00_etapa record
+    atdsrvnum    like datmsrvacp.atdsrvnum   ,
+    atdsrvano    like datmsrvacp.atdsrvano   ,
+    atdsrvseq    like datmsrvacp.atdsrvseq   ,
+    atdetpcod    like datmsrvacp.atdetpcod   ,
+    atdetpdat    like datmsrvacp.atdetpdat   ,
+    atdetphor    like datmsrvacp.atdetphor   ,
+    empcod       like datmsrvacp.empcod      ,
+    funmat       like datmsrvacp.funmat      ,
+    pstcoddig    like datmsrvacp.pstcoddig   ,
+    atdmotnom    like datmsrvacp.atdmotnom   ,
+    atdvclsgl    like datmsrvacp.atdvclsgl   ,
+    c24nomctt    like datmsrvacp.c24nomctt   ,
+    socvclcod    like datmsrvacp.socvclcod   ,
+    srrcoddig    like datmsrvacp.srrcoddig   ,
+    envtipcod    like datmsrvacp.envtipcod   ,
+    srvrcumtvcod like datmsrvacp.srvrcumtvcod,
+    acntmpqtd    like datmsrvacp.acntmpqtd   ,
+    dstqtd       like datmsrvacp.dstqtd
+ end record
+
+ define l_xml record
+    request char(32766)
+ end record
+
+ define l_acntmpqtdmin like datmsrvacp.acntmpqtd
+ define l_acntmpqtdmax like datmsrvacp.acntmpqtd
+
+ initialize ctx34g00_etapa.* to null
+ initialize l_xml.* to null
+ let l_acntmpqtdmin = '  0:00:00'
+ let l_acntmpqtdmax = ' 23:59:59'
+
+whenever error continue
+  open c_ctx34g00_001 using param.atdsrvnum,
+                            param.atdsrvano,
+                            param.atdsrvnum,
+                            param.atdsrvano
+
+  fetch c_ctx34g00_001  into  ctx34g00_etapa.atdsrvnum   ,
+                              ctx34g00_etapa.atdsrvano   ,
+                              ctx34g00_etapa.atdsrvseq   ,
+                              ctx34g00_etapa.atdetpcod   ,
+                              ctx34g00_etapa.atdetpdat   ,
+                              ctx34g00_etapa.atdetphor   ,
+                              ctx34g00_etapa.empcod      ,
+                              ctx34g00_etapa.funmat      ,
+                              ctx34g00_etapa.pstcoddig   ,
+                              ctx34g00_etapa.atdmotnom   ,
+                              ctx34g00_etapa.atdvclsgl   ,
+                              ctx34g00_etapa.c24nomctt   ,
+                              ctx34g00_etapa.socvclcod   ,
+                              ctx34g00_etapa.srrcoddig   ,
+                              ctx34g00_etapa.envtipcod   ,
+                              ctx34g00_etapa.srvrcumtvcod,
+                              ctx34g00_etapa.acntmpqtd   ,
+                              ctx34g00_etapa.dstqtd
+ whenever error stop
+
+  # Zerar previsoes negativa
+  if ctx34g00_etapa.acntmpqtd < l_acntmpqtdmin then
+     let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmin
+  end if
+
+  # Limitar previsoes em 24h
+  if ctx34g00_etapa.acntmpqtd > l_acntmpqtdmax then
+     let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmax
+  end if
+
+  let l_xml.request = ctx34g00_geraXML(ctx34g00_etapa.atdsrvnum   ,
+                                       ctx34g00_etapa.atdsrvano   ,
+                                       ctx34g00_etapa.atdsrvseq   ,
+                                       ctx34g00_etapa.atdetpcod   ,
+                                       ctx34g00_etapa.atdetpdat   ,
+                                       ctx34g00_etapa.atdetphor   ,
+                                       ctx34g00_etapa.empcod      ,
+                                       ctx34g00_etapa.funmat      ,
+                                       ctx34g00_etapa.pstcoddig   ,
+                                       ctx34g00_etapa.atdmotnom   ,
+                                       ctx34g00_etapa.atdvclsgl   ,
+                                       ctx34g00_etapa.c24nomctt   ,
+                                       ctx34g00_etapa.socvclcod   ,
+                                       ctx34g00_etapa.srrcoddig   ,
+                                       ctx34g00_etapa.envtipcod   ,
+                                       ctx34g00_etapa.srvrcumtvcod,
+                                       ctx34g00_etapa.acntmpqtd   ,
+                                       ctx34g00_etapa.dstqtd      ,
+                                       "S")
+
+  return l_xml.request
+end function
+
+# busca todos os dados para realizar a alteracao e monta o XML
+#------------------------------------------#
+function ctx34g00_altEtapa(param)
+#------------------------------------------#
+
+ define param record
+   atdsrvnum like datmservico.atdsrvnum,
+   atdsrvano like datmservico.atdsrvano,
+   atdsrvseq like datmservico.atdsrvseq
+ end record
+
+ define ctx34g00_etapa record
+   atdsrvnum    like datmsrvacp.atdsrvnum   ,
+   atdsrvano    like datmsrvacp.atdsrvano   ,
+   atdsrvseq    like datmsrvacp.atdsrvseq   ,
+   atdetpcod    like datmsrvacp.atdetpcod   ,
+   atdetpdat    like datmsrvacp.atdetpdat   ,
+   atdetphor    like datmsrvacp.atdetphor   ,
+   empcod       like datmsrvacp.empcod      ,
+   funmat       like datmsrvacp.funmat      ,
+   pstcoddig    like datmsrvacp.pstcoddig   ,
+   atdmotnom    like datmsrvacp.atdmotnom   ,
+   atdvclsgl    like datmsrvacp.atdvclsgl   ,
+   c24nomctt    like datmsrvacp.c24nomctt   ,
+   socvclcod    like datmsrvacp.socvclcod   ,
+   srrcoddig    like datmsrvacp.srrcoddig   ,
+   envtipcod    like datmsrvacp.envtipcod   ,
+   srvrcumtvcod like datmsrvacp.srvrcumtvcod,
+   acntmpqtd    like datmsrvacp.acntmpqtd   ,
+   dstqtd       like datmsrvacp.dstqtd
+ end record
+
+ define l_xml record
+    request char(32766)
+ end record
+
+ define l_acntmpqtdmin like datmsrvacp.acntmpqtd
+ define l_acntmpqtdmax like datmsrvacp.acntmpqtd
+
+ initialize ctx34g00_etapa.* to null
+ initialize l_xml.* to null
+ let l_acntmpqtdmin = '  0:00:00'
+ let l_acntmpqtdmax = ' 23:59:59'
+
+whenever error continue
+  open c_ctx34g00_003 using param.atdsrvnum,
+                            param.atdsrvano,
+                            param.atdsrvseq
+
+  fetch c_ctx34g00_003  into  ctx34g00_etapa.atdsrvnum   ,
+                              ctx34g00_etapa.atdsrvano   ,
+                              ctx34g00_etapa.atdsrvseq   ,
+                              ctx34g00_etapa.atdetpcod   ,
+                              ctx34g00_etapa.atdetpdat   ,
+                              ctx34g00_etapa.atdetphor   ,
+                              ctx34g00_etapa.empcod      ,
+                              ctx34g00_etapa.funmat      ,
+                              ctx34g00_etapa.pstcoddig   ,
+                              ctx34g00_etapa.atdmotnom   ,
+                              ctx34g00_etapa.atdvclsgl   ,
+                              ctx34g00_etapa.c24nomctt   ,
+                              ctx34g00_etapa.socvclcod   ,
+                              ctx34g00_etapa.srrcoddig   ,
+                              ctx34g00_etapa.envtipcod   ,
+                              ctx34g00_etapa.srvrcumtvcod,
+                              ctx34g00_etapa.acntmpqtd   ,
+                              ctx34g00_etapa.dstqtd
+
+  # Zerar previsoes negativa
+  if ctx34g00_etapa.acntmpqtd < l_acntmpqtdmin then
+     let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmin
+  end if
+
+  # Limitar previsoes em 24h
+  if ctx34g00_etapa.acntmpqtd > l_acntmpqtdmax then
+     let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmax
+  end if
+
+ whenever error stop
+   let l_xml.request = ctx34g00_geraXML(ctx34g00_etapa.atdsrvnum   ,
+                                        ctx34g00_etapa.atdsrvano   ,
+                                        ctx34g00_etapa.atdsrvseq   ,
+                                        ctx34g00_etapa.atdetpcod   ,
+                                        ctx34g00_etapa.atdetpdat   ,
+                                        ctx34g00_etapa.atdetphor   ,
+                                        ctx34g00_etapa.empcod      ,
+                                        ctx34g00_etapa.funmat      ,
+                                        ctx34g00_etapa.pstcoddig   ,
+                                        ctx34g00_etapa.atdmotnom   ,
+                                        ctx34g00_etapa.atdvclsgl   ,
+                                        ctx34g00_etapa.c24nomctt   ,
+                                        ctx34g00_etapa.socvclcod   ,
+                                        ctx34g00_etapa.srrcoddig   ,
+                                        ctx34g00_etapa.envtipcod   ,
+                                        ctx34g00_etapa.srvrcumtvcod,
+                                        ctx34g00_etapa.acntmpqtd   ,
+                                        ctx34g00_etapa.dstqtd      ,
+                                        "S")
+  return l_xml.request
+
+end function
+
+#------------------------------------------#
+function ctx34g00_geraXML(param)
+#------------------------------------------#
+
+define param record
+   atdsrvnum    like datmsrvacp.atdsrvnum   ,
+   atdsrvano    like datmsrvacp.atdsrvano   ,
+   atdsrvseq    like datmsrvacp.atdsrvseq   ,
+   atdetpcod    like datmsrvacp.atdetpcod   ,
+   atdetpdat    like datmsrvacp.atdetpdat   ,
+   atdetphor    like datmsrvacp.atdetphor   ,
+   empcod       like datmsrvacp.empcod      ,
+   funmat       like datmsrvacp.funmat      ,
+   pstcoddig    like datmsrvacp.pstcoddig   ,
+   atdmotnom    like datmsrvacp.atdmotnom   ,
+   atdvclsgl    like datmsrvacp.atdvclsgl   ,
+   c24nomctt    like datmsrvacp.c24nomctt   ,
+   socvclcod    like datmsrvacp.socvclcod   ,
+   srrcoddig    like datmsrvacp.srrcoddig   ,
+   envtipcod    like datmsrvacp.envtipcod   ,
+   srvrcumtvcod like datmsrvacp.srvrcumtvcod,
+   acntmpqtd    like datmsrvacp.acntmpqtd   ,
+   dstqtd       like datmsrvacp.dstqtd      ,
+   flgxmlcmp    char(1)                      # flag para gerar xml completo
+  end record
+
+define l_xml record
+    request char(6000)
+ end record
+
+define dstqtd_metros integer
+
+# Converte distancia de KM(ifx) para Metros (aw)
+let dstqtd_metros = 0
+if param.dstqtd > 0 then
+   let dstqtd_metros = param.dstqtd * 1000
+end if
+
+ let  l_xml.request = '<ServicoEtapa>',
+                          '<SequenciaEtapaServico>',param.atdsrvseq using "<<<&", '</SequenciaEtapaServico>',
+                          '<EtapaAcompanhamento>',
+                             '<CodigoEtapa>',param.atdetpcod using "<<&", '</CodigoEtapa>',
+                          '</EtapaAcompanhamento>'
+
+ if param.pstcoddig is not null and param.pstcoddig <> 0 then
+    let  l_xml.request = l_xml.request clipped,
+                          '<QuantidadeDistanciaMetrosAtendimentoCalculada>', dstqtd_metros using "<<<<<<<<<&", '</QuantidadeDistanciaMetrosAtendimentoCalculada>',
+                          '<DataPrevisaoAtendimentoCalculada>',param.acntmpqtd clipped,'</DataPrevisaoAtendimentoCalculada>',
+                          '<RecursoAtendimento>',
+                            '<Prestador>',
+                               '<CodigoPrestador>',param.pstcoddig using "<<<<<<&", '</CodigoPrestador>',
+                            '</Prestador>'
+
+                            if param.srrcoddig is not null and param.srrcoddig <> 0 then
+                               let  l_xml.request = l_xml.request clipped,
+                                                   '<Socorrista>',
+                                                       '<CodigoSocorrista>',param.srrcoddig using "<<<<<<&", '</CodigoSocorrista>',
+                                                   '</Socorrista>'
+                            end if
+
+                            if param.socvclcod is not null and param.socvclcod <> 0 then
+                               let  l_xml.request = l_xml.request clipped,
+                                                   '<VeiculoSocorro>',
+                                                       '<CodigoVeiculo>',param.socvclcod using "<<<<<<&", '</CodigoVeiculo>',
+                                                   '</VeiculoSocorro>'
+                            end if
+
+                            let  l_xml.request = l_xml.request clipped,
+                                                '</RecursoAtendimento>'
+ end if
+
+ let  l_xml.request = l_xml.request clipped,
+                          '<DataAtualizacao>',param.atdetpdat clipped,' ',param.atdetphor clipped,'</DataAtualizacao>',
+                          '<UsuarioAtualizacao>',
+                              '<Empresa>',param.empcod using "<<&",'</Empresa>',
+                              '<Matricula>',param.funmat using "<<<<<&", '</Matricula>',
+                              '<TipoUsuario>F</TipoUsuario>',
+                          '</UsuarioAtualizacao>',
+                      '</ServicoEtapa>'
+
+
+ if param.flgxmlcmp == 'S' then
+    let l_xml.request = '<?xml version="1.0" encoding="UTF-8" ?>',
+                        '<REQUEST>',
+                        '<SERVICO>ATUALIZACAO_ETAPA</SERVICO>',
+                        '<OBJETOS>',
+                           '<ServicoCentral>',
+                               '<CodigoOrigemServico/>',
+                               '<NumeroServicoAtendimento>',param.atdsrvnum using "<<<<<<&", '</NumeroServicoAtendimento>',
+                               '<AnoServicoAtendimento>',param.atdsrvano using "<&", '</AnoServicoAtendimento>',
+                               '<CodigoAssuntoCentral/>',
+                           '</ServicoCentral>',
+                           '<Etapas>', l_xml.request clipped, '</Etapas>',
+                        '</OBJETOS>',
+                        '</REQUEST>'
+ end if
+
+ return l_xml.request
+end function
+
+
+# busca todos os dados para realizar a inclusao e monta o XML
+#------------------------------------------#
+function ctx34g00_xmlEtapas(param)
+#------------------------------------------#
+ define param record
+    atdsrvnum like datmservico.atdsrvnum,
+    atdsrvano like datmservico.atdsrvano
+ end record
+
+ define ctx34g00_etapa record
+    atdsrvseq    like datmsrvacp.atdsrvseq   ,
+    atdetpcod    like datmsrvacp.atdetpcod   ,
+    atdetpdat    like datmsrvacp.atdetpdat   ,
+    atdetphor    like datmsrvacp.atdetphor   ,
+    empcod       like datmsrvacp.empcod      ,
+    funmat       like datmsrvacp.funmat      ,
+    pstcoddig    like datmsrvacp.pstcoddig   ,
+    atdmotnom    like datmsrvacp.atdmotnom   ,
+    atdvclsgl    like datmsrvacp.atdvclsgl   ,
+    c24nomctt    like datmsrvacp.c24nomctt   ,
+    socvclcod    like datmsrvacp.socvclcod   ,
+    srrcoddig    like datmsrvacp.srrcoddig   ,
+    envtipcod    like datmsrvacp.envtipcod   ,
+    srvrcumtvcod like datmsrvacp.srvrcumtvcod,
+    acntmpqtd    like datmsrvacp.acntmpqtd   ,
+    dstqtd       like datmsrvacp.dstqtd
+ end record
+
+ define l_xml record
+    request char(15000)
+ end record
+
+ define l_acntmpqtdmin like datmsrvacp.acntmpqtd
+ define l_acntmpqtdmax like datmsrvacp.acntmpqtd
+
+ initialize ctx34g00_etapa.* to null
+ initialize l_xml.* to null
+ let l_acntmpqtdmin = '  0:00:00'
+ let l_acntmpqtdmax = ' 23:59:59'
+
+ whenever error continue
+
+ open c_ctx34g00_005 using param.atdsrvnum,
+                           param.atdsrvano
+
+ foreach c_ctx34g00_005  into  ctx34g00_etapa.atdsrvseq   ,
+                               ctx34g00_etapa.atdetpcod   ,
+                               ctx34g00_etapa.atdetpdat   ,
+                               ctx34g00_etapa.atdetphor   ,
+                               ctx34g00_etapa.empcod      ,
+                               ctx34g00_etapa.funmat      ,
+                               ctx34g00_etapa.pstcoddig   ,
+                               ctx34g00_etapa.atdmotnom   ,
+                               ctx34g00_etapa.atdvclsgl   ,
+                               ctx34g00_etapa.c24nomctt   ,
+                               ctx34g00_etapa.socvclcod   ,
+                               ctx34g00_etapa.srrcoddig   ,
+                               ctx34g00_etapa.envtipcod   ,
+                               ctx34g00_etapa.srvrcumtvcod,
+                               ctx34g00_etapa.acntmpqtd   ,
+                               ctx34g00_etapa.dstqtd
+
+    #Zerar previsoes negativa
+    if ctx34g00_etapa.acntmpqtd  < l_acntmpqtdmin then
+      let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmin
+    end  if
+
+    # Limitar previsoes em 24h
+    if ctx34g00_etapa.acntmpqtd > l_acntmpqtdmax then
+       let ctx34g00_etapa.acntmpqtd = l_acntmpqtdmax
+    end if
+
+    let  l_xml.request = l_xml.request clipped,
+                         ctx34g00_geraXML(param.atdsrvnum,
+                                          param.atdsrvano,
+                                          ctx34g00_etapa.atdsrvseq    ,
+                                          ctx34g00_etapa.atdetpcod   ,
+                                          ctx34g00_etapa.atdetpdat   ,
+                                          ctx34g00_etapa.atdetphor   ,
+                                          ctx34g00_etapa.empcod      ,
+                                          ctx34g00_etapa.funmat      ,
+                                          ctx34g00_etapa.pstcoddig   ,
+                                          ctx34g00_etapa.atdmotnom   ,
+                                          ctx34g00_etapa.atdvclsgl   ,
+                                          ctx34g00_etapa.c24nomctt   ,
+                                          ctx34g00_etapa.socvclcod   ,
+                                          ctx34g00_etapa.srrcoddig   ,
+                                          ctx34g00_etapa.envtipcod   ,
+                                          ctx34g00_etapa.srvrcumtvcod,
+                                          ctx34g00_etapa.acntmpqtd   ,
+                                          ctx34g00_etapa.dstqtd      ,
+                                          'N')
+ end foreach
+
+ whenever error stop
+
+ return l_xml.request
+end function
+
+# Padroniza o envio de MQ para o AW
+#------------------------------------------#
+function ctx34g00_enviar_mq_AW(param)
+#------------------------------------------#
+ define param record
+    request  char(32766)
+ end record
+
+ define l_xml record
+    response char(32766)
+ end record
+
+ define l_status integer
+ define l_msg    char(500)
+ define l_online smallint
+ define l_tentativas smallint
+
+ let l_tentativas = 1
+ while true
+    let l_online = online()
+    call figrc006_enviar_pseudo_mq("DPCNVACIONAJAVA01R",
+                                   param.request clipped,
+                                   l_online)
+            returning l_status,
+                      l_msg,
+                      l_xml.response
+
+    if l_status = 0 or l_tentativas >= 4 then
+    	 exit while
+    end if
+    let l_tentativas = l_tentativas + 1
+    sleep 1
+ end while
+
+ return l_status,
+        l_msg,
+        l_xml.response
+
+end function
+
+
+# Grava dados para envio ao AW em processo Batch
+#----------------------------------------------#
+function ctx34g00_grava_mq_AW_batch(param)
+#----------------------------------------------#
+ define param record
+ 	  relpamtip  like igbmparam.relpamtip, # 1=APOS GRAVA SERVICO, 2=APOS GRAVA ETAPA e 3=APOS GRAVA HISTORICO
+    relpamtxt  like igbmparam.relpamtxt
+ end record
+ 
+ define l_cont smallint,
+        l_relpamseq like igbmparam.relpamseq
+
+ initialize l_cont, l_relpamseq to null
+ 
+ if not m_ctx34g00_prep then
+    call ctx34g00_prepare()
+ end if
+
+ open c_ctx34g00_009 using param.relpamtip,
+                           param.relpamtxt
+
+ fetch c_ctx34g00_009 into l_relpamseq
+
+ if sqlca.sqlcode = 100 then
+ 	
+ 	  whenever error continue
+    set lock mode to not wait
+
+    let l_cont = 0
+    while true
+       let l_cont = l_cont + 1
+    
+       execute p_ctx34g00_006 using param.relpamtip,
+                                    param.relpamtxt
+       if sqlca.sqlcode = -243 or
+          sqlca.sqlcode = -244 or
+          sqlca.sqlcode = -245 or
+          sqlca.sqlcode = -246 then
+          if l_cont < 11  then
+             sleep 1
+             continue while
+          end if
+       end if
+       exit while
+    end while
+
+    set lock mode to wait
+    whenever error stop
+                                  
+ end if
+
+ close c_ctx34g00_009
+
+ return
+end function
+
+
+# Processa envio ao AW Gravados em processo Batch
+#-----------------------------------------------#
+function ctx34g00_processa_mq_AW()
+#-----------------------------------------------#
+ define ws record
+   atdsrvnum like datmservico.atdsrvnum,
+   atdsrvano like datmservico.atdsrvano,
+
+   atdsrvseq like datmservico.atdsrvseq,
+   c24txtseq like datmservhist.c24txtseq,
+   tipoEnvio smallint, # 1- insert da ultima sequencia  2- update da sequencia
+
+   relpamseq  like igbmparam.relpamseq,
+   relpamtip  like igbmparam.relpamtip, # 1=APOS GRAVA SERVICO, 2=APOS GRAVA ETAPA e 3=APOS GRAVA HISTORICO
+   relpamtxt  like igbmparam.relpamtxt
+
+ end record
+
+ define l_datahora  datetime year to fraction,
+        l_cont smallint,
+        temptxt char(10)
+
+ initialize ws.*, l_datahora, l_cont  to null
+
+ if not m_ctx34g00_prep then
+    call ctx34g00_prepare()
+ end if
+
+ let l_datahora = current
+ display l_datahora, " - INICIO DO PROCESSO DE REENVIO AW"
+
+ let l_cont = 0
+ foreach c_ctx34g00_007 into ws.relpamtip,
+                             ws.relpamtxt,
+                             ws.relpamseq
+    case ws.relpamtip
+       when 1 # APOS GRAVA SERVICO
+          let ws.atdsrvnum = ws.relpamtxt[1,7]
+          let ws.atdsrvano = ws.relpamtxt[9,10]
+
+          call ctx34g02_apos_grvservico(ws.atdsrvnum, ws.atdsrvano)
+
+       when 2 # APOS GRAVA ETAPA
+          let ws.atdsrvnum = ws.relpamtxt[1,7]
+          let ws.atdsrvano = ws.relpamtxt[9,10]
+          let ws.c24txtseq = ws.relpamtxt[12,15]
+          let ws.tipoEnvio = ws.relpamtxt[17,17]
+
+          call ctx34g00_apos_grvetapa(ws.atdsrvnum, ws.atdsrvano, ws.c24txtseq, ws.tipoEnvio)
+
+       when 3 # APOS GRAVA HISTORICO
+          let ws.atdsrvnum = ws.relpamtxt[1,7]
+          let ws.atdsrvano = ws.relpamtxt[9,10]
+          let ws.c24txtseq = ws.relpamtxt[12,15]
+          let ws.tipoEnvio = ws.relpamtxt[17,17]
+          
+          call ctx34g01_apos_grvhistorico(ws.atdsrvnum, ws.atdsrvano, ws.c24txtseq, ws.tipoEnvio)
+    end case
+
+    let l_datahora = current
+    display l_datahora, "-Srv:", ws.atdsrvnum using "&&&&&&&", "-", ws.atdsrvano using "&&", " operacao:", ws.relpamtip, " SEQ:", ws.c24txtseq, " TIP:" , ws.tipoEnvio
+
+    # APAGA REGISTRO APOS PROCESSAMENTO
+    execute p_ctx34g00_008 using ws.relpamseq
+
+    # Espera 1 segunda a cada 4 requisição para nao sobrecarregar WS do AW
+    let l_cont = l_cont + 1
+    if l_cont >= 4 then
+       sleep 1
+       let l_cont = 0
+    end if
+    
+ end foreach
+
+ let l_datahora = current
+ display l_datahora, " - FIM DO PROCESSO DE REENVIO AW"
+
+end function

@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts11m08                                              Marcelo
+                                                                     Gilberto
+ Preferencias - Passagem Aerea                                       Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Preferencias Viagem
+---------------cts11m08--
+
+ Data Viagem:[a1        ]
+
+ Hora Viagem:[a2   ]
+
+
+}
+end
+
+tables
+   datmassistpassag
+
+attributes
+   a1 = datmassistpassag.trppfrdat, comments = " Data Preferida Viagem";
+   a2 = datmassistpassag.trppfrhor, comments = " Hora Preferida Viagem";
+end
+
+instructions
+   delimiters " "
+end

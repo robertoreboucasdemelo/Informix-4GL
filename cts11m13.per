@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTS11M13                                        Amilton
+                                                               
+ Exibe Servicos Originais Itau                      
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+               Servicos solicitados pela apolice
+-----------------------------------------------------cts11m13--
+ Assunto     Servico       Data/Hora Atend.   Solicitante     
+
+  [e  ]   [a            ][b         ][c    ][d              ]
+  [e  ]   [a            ][b         ][c    ][d              ]
+  [e  ]   [a            ][b         ][c    ][d              ]
+  [e  ]   [a            ][b         ][c    ][d              ]
+  [e  ]   [a            ][b         ][c    ][d              ]
+
+}
+end
+
+tables
+   datmservico
+
+attributes
+   e   = formonly.assunto                ,noentry;
+   a   = formonly.servico                ,noentry;
+   b   = formonly.atddat                 ,noentry;
+   c   = formonly.atdhor                 ,noentry;
+   d   = datmservico.c24solnom           ,noentry;
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts11m13(assunto thru c24solnom)
+end

@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC35M05                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Manutencao no cadastro de Laudo de vistorias                         Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m05--
+ Nro Laudo.:[a5    ]
+ Tipo laudo:[a10][a15                                     ]
+ Vigencia..:[a20       ] a [a25       ]
+
+ Incluido..:[a30       ]por[a35                ]
+------------------------------------------------------------------------------
+ Grupo/Descricao            Item/Descricao               Verif./Descricao  Rev
+------------------------------------------------------------------------------
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+[b5 |b10                  ][b15|b20                    ][b25|b30          ][c]
+
+}
+end
+
+tables datmvstlau, datrvstitmver, datkvstitmgrp, datkvstitm, datkvstitmver
+
+attributes
+
+   a5  = formonly.socvstlaunum,
+         comments = " Codigo do laudo "                  ;
+   a10 = datmvstlau.socvstlautipcod,
+         comments = " Codigo do tipo de laudo "          ;
+   a15 = formonly.socvstlautipdes,                noentry;
+   a20 = datmvstlau.viginc,
+         comments = " Data do inicio da vigencia"        ;
+   a25 = datmvstlau.vigfnl,
+         comments = " Data do final da vigencia"         ;
+
+   a30 = datmvstlau.caddat,                       noentry;
+   a35 = formonly.cadfunnom,                      noentry;
+
+   b5  = datrvstitmver.socvstitmgrpcod,           noentry;
+   b10 = datkvstitmgrp.socvstitmgrpdes,           noentry;
+   b15 = datrvstitmver.socvstitmcod,              noentry;
+   b20 = datkvstitm.socvstitmdes,                 noentry;
+   b25 = datrvstitmver.socvstitmvercod,           noentry;
+   b30 = datkvstitmver.socvstitmverdes,           noentry;
+   c   = datrvstitmver.socvstitmrevflg,           noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc35m05(socvstitmgrpcod thru socvstitmrevflg)
+
+

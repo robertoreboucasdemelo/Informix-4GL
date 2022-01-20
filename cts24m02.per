@@ -1,0 +1,114 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts24m02                                              Kevellin
+
+ Envio de mensagens MID                                              Mar/2009
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------cts24m02---
+                          ENVIO DE MENSAGEM AO GPS
+------------------------------------------------------------------------------
+ Sigla viat..:[a05  ][a06              ] MID..........: [a061  ]
+ Prestador...:[a07   ][a08             ] Controladora.:[a09  ][a10           ]
+ Grp Distrib.:[a11|a11a                ] Grp Msg......:[a12|a13              ]
+ Tip Veiculo.:[a14|a14a                ] Natureza QRA.:[a15|a15a             ]
+ Assistencias:[a16|a16a                ] Cidade sede..:[a17             |a17a]
+ Tipo GPS....:[a18 |a18a               ]
+ Cod.Mensagem:[a19  ]
+       Texto.:[a20                                               ]
+              [a21                                               ]
+              [a22                                               ]
+              [a23                                               ]
+              [a24                                               ]
+
+[a25                                                                      ]
+}
+
+end tables datmtlt, datkveiculo, dpaksocor, dattfrotalocal, datkasitip, datkmdt, datksocntz,
+           datkvcldtbgrp, datkmpacid, datkmdtcfg, datktltgrp
+
+    attributes
+
+   a05 = datkveiculo.atdvclsgl,       upshift,
+         comments = "Informe a sigla da viatura ";
+
+   a06 = formonly.vcldes,             upshift, noentry;
+
+   a061 = datkveiculo.mdtcod,         upshift,
+         comments = "Informe o codigo MDT ";
+
+   a07 = datkveiculo.pstcoddig,
+         comments = "Informe o Codigo do Prestador ";
+
+   a08 = dpaksocor.nomrazsoc,          upshift, noentry;
+
+   a09 = datkmdt.mdtctrcod,
+         comments = "Informe o numero da Controladora ";
+
+   a10 = formonly.mdtfqcdes,           upshift, noentry;
+
+   a11 = dattfrotalocal.vcldtbgrpcod,        upshift,
+         comments = "Informe o grupo de distribuicao ";
+
+   a11a = datkvcldtbgrp.vcldtbgrpdes,   upshift, noentry;
+
+   a12 = datktltgrp.c24tltgrpnum,               upshift,
+         comments = " Codigo do grupo para envio de mensagens";
+
+   a13 = formonly.c24tltgrpdes,     upshift, noentry;
+
+   a14 = datkveiculo.socvcltip,     upshift,
+         comments = "Informe o tipo de veículo ";
+
+   a14a = formonly.vcltipdes,     upshift, noentry;
+
+   a15 = datksocntz.socntzcod,      upshift,
+         comments = "Informe o código da natureza ";
+
+   a15a = datksocntz.socntzdes,      upshift, noentry;
+
+   a16 = datkasitip.asitipcod,      upshift,
+         comments = "Informe o código da assistência ";
+
+   a16a = datkasitip.asitipdes,      upshift,  noentry;
+
+   a17 = datkmpacid.cidnom,      upshift,
+         comments = "Informe a cidade sede ";
+
+   a17a = datkmpacid.ufdcod,      upshift, noentry;
+
+   a18 = datkmdt.mdtcfgcod,         upshift,
+         comments = "Informe o codigo de configuracao do MDT";
+
+   a18a = datkmdtcfg.mdtcfgdes,                        noentry;
+
+   a19 = datmtlt.tltmsgcod,
+         comments = "Informe o codigo da Mensagem ou (enter)";
+
+   a20 = formonly.tltmsgtxt1,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a21 = formonly.tltmsgtxt2,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a22 = formonly.tltmsgtxt3,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a23 = formonly.tltmsgtxt4,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a24 = formonly.tltmsgtxt5,                   upshift,
+         comments = "Texto livre para mensagem";
+
+   a25 = formonly.informa,                      noentry;
+
+end
+
+instructions
+     delimiters " "
+end
+
+

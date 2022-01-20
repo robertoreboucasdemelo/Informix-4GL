@@ -1,0 +1,26 @@
+database formonly
+
+screen size 24 by 80
+{
+[b                                                            ]
+ --------------------------------------------------cts06g11b-- 
+ Sentido:[a1                                ][a5              ]
+ Pista:  [a2                                ]
+[a3 ]    [a3b     ]
+Referencias:
+[a4                                                           ]
+}
+
+attributes
+   b   = formonly.titulo      type char, noentry;
+   a1  = formonly.sentido     type char, upshift;
+   a2  = formonly.pista       type char, upshift;
+   a3  = formonly.campo_km    type char, upshift, noentry;
+   a3b = formonly.km          type char;
+   a4  = formonly.referencias type char, upshift;
+   a5  = formonly.exemplo     type char,noentry;    
+end
+
+instructions
+   delimiters ' '
+    

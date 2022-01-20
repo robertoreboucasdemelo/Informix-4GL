@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTC34M16                                          LUCAS SCHEID
+
+ TELA DE MANUTENCAO DO CADASTRO DE TECNOLOGIA DO VEICULO.            MAR/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc34m16---
+  Codigo......:[a     ]               Prestador:[b     ][c                   ]
+------------------------------------------------------------------------------
+
+  Sem Parar...:[d        ]
+  Simcard.....:[g              ]
+  Nextel Dados:[h              ]
+  Nextel Voz..:[i              ]
+  Equipamento.:[j    |j1        ]
+  Ativo Fixo..:[e        ]         Serie:[f                   ]
+  Rastreador..:[k         ]
+
+
+
+
+
+
+}
+end
+
+attributes
+  a  = formonly.socvclcod       type integer, comments = " Codigo do veiculo";
+  b  = formonly.pstcoddig       type integer, noentry;
+  c  = formonly.nomgrr          type char, noentry;
+
+  d  = formonly.prrsemnum       type integer, comments = " Numero Sem Parar";
+  e  = formonly.mdtwvtfxoatvnum type integer, comments = " Numero do Atvo Fixo do MDT ou WVT";
+  f  = formonly.mdtwvtsernum    type char, upshift, comments = " Numero de Serie do MDT ou WVT";
+  g  = formonly.simcardnum      type decimal, comments = " Numero do Simcard";
+  h  = formonly.dadnxtnum       type decimal, comments = " Numero do Nextel Dados";
+  i  = formonly.voznxtnum       type decimal, comments = " Numero do Nextel Voz";
+  j  = formonly.eqptip          type integer, comments = " (1)MDT RADIO  (2)MDT GPRS  (3)WVT NEXTEL  (4)WVT GPRS  (5)WVT MULTI";
+  j1 = formonly.eqpdes          type char, noentry;
+  k  = formonly.rstnum          type char, upshift, comments = " Numero do Rastreador";
+end
+
+instructions
+  delimiters " "
+end

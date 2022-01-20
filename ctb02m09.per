@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02M09                                              Wagner
+
+ Batimento do lote de pagamentos (O.P. - Carro-Extra)                Nov/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+                    BATIMENTO QUANTIDADES/VALORES DA O.P.
+--------------------------------------------------------------------ctb02m09--
+                  [a5                                     ]
+
+                       Digitado             Protocolo             Diferenca
+                 --------------        --------------        --------------
+  Quantidade.: [a10            ]     [a15            ]     [a20            ]
+
+  Valor Bruto: [a22            ]
+  Desconto...: [a23            ]
+                ---------------
+  Valor......: [a25            ]     [a30            ]     [a35            ]
+
+
+}
+End
+
+Tables dbsmopg, dbsmopgitm
+
+Attributes
+  a5   = formonly.msgcab,                                     noentry;
+
+  a10  = formonly.socopgitmqtd,                               noentry;
+  a15  = dbsmopg.socfatitmqtd,                                noentry;
+  a20  = formonly.socopgdifqtd,                               noentry;
+
+  a22  = formonly.socopgitmtot type decimal,format = "-----------&.&&", noentry;
+  a23  = formonly.socopgitmcst type decimal ,format = "-----------&.&&", noentry;
+  a25  = dbsmopgitm.socopgitmvlr, format = "-----------&.&&", noentry;
+  a30  = dbsmopg.socfattotvlr,    format = "-----------&.&&", noentry;
+  a35  = formonly.socopgdifvlr    type decimal,
+                                  format = "-----------&.&&", noentry;
+End
+
+Instructions
+  delimiters " "
+End

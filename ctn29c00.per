@@ -1,0 +1,57 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN29C00                                     Gilberto
+                                                             Marcelo
+ Consulta oficinas do produto - AUTO REVENDAS               Out/1996
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn29c00--
+ Sucursal.......:[c1   ]       Apolice:[c2       ]        Item:[c3     ]
+ Descr.veiculo..:[c4                                                         ]
+ Concessionaria.:[c5                                      ]
+------------------------------------------------------------------------------
+
+ R.Social:[a001                                    ]  Codigo:[a002  ]
+ Endereco:[a003                                    ]  Bairro:[a004           ]
+ Cidade..:[a005                ]-[uf]
+ Telefone:[a006][a007                           ]
+
+ R.Social:[a001                                    ]  Codigo:[a002  ]
+ Endereco:[a003                                    ]  Bairro:[a004           ]
+ Cidade..:[a005                ]-[uf]
+ Telefone:[a006][a007                           ]
+
+
+}
+end
+
+tables abbmitem, gkpkpos
+
+attributes
+  c1 = abbmitem.succod           ,format = "###&&",
+       comments = " Codigo da Sucursal";
+  c2 = abbmitem.aplnumdig        ,format = "&&&&&&&&&",
+       comments = " Numero da Apolice ";
+  c3 = abbmitem.itmnumdig        ,format = "&&&&&&&",
+       comments = " Numero do Item"    ;
+
+  c4 = formonly.vcldes   ,              noentry;
+  c5 = formonly.nfscnsnom,              noentry;
+
+  a001 = gkpkpos.nomrazsoc,             noentry;
+  a002 = gkpkpos.pstcoddig,             noentry;
+  a003 = gkpkpos.endlgd   ,             noentry;
+  a004 = gkpkpos.endbrr   ,             noentry;
+  a005 = gkpkpos.endcid   ,             noentry;
+  uf   = gkpkpos.endufd   ,             noentry;
+  a006 = gkpkpos.dddcod   ,             noentry;
+  a007 = gkpkpos.teltxt   ,             noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn29c00(nomrazsoc thru teltxt)
+
+end

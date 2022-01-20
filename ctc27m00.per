@@ -1,0 +1,82 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC27M00                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Manutencao no cadastro de aeroportos                                 Jun/1999
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc27m00--
+       Codigo:[a1  |a2                                                ]
+------------------------------------------------------------------------------
+ Endereco.:[b1                                                               ]
+ Bairro...:[b2                                      ]
+ Cidade...:[b3                                           ]    U.F......:[b4]
+ CEP......:[b5   |b6 ]    Telefone...:[b7  |b8       ]
+ Ponto Ref:[b9                                      ]         24 Horas?:[c]
+
+ Horarios.:2a. a 6a.:[c1   ]as[c2   ]
+           Sabados..:[c3   ]as[c4   ]
+           Domingos.:[c5   ]as[c6   ]               Situacao:[d|d0          ]
+
+ Cadastrado em:[e1        ]por[e2|e3    |e4                  ]
+ Atualizado em:[f1        ]por[f2|f3    |f4                  ]
+ Observacoes..:[g1                                                ]
+
+}
+end
+
+tables datkaeroporto
+
+attributes
+a1   = datkaeroporto.arpcod      , format = "&&&&"
+                                 , comments = " Codigo do prestador";
+a2   = datkaeroporto.arpnom      , upshift
+                                 , comments = " Nome do Aeroporto";
+b1   = formonly.arpend           , upshift
+                                 , comments = " Endereco do Aeroporto ";
+b2   = datkaeroporto.brrnom      , upshift
+                                 , comments = " Bairro do Aeroporto ";
+b3   = datkaeroporto.cidnom      , upshift
+                                 , comments = " Cidade do Aeroporto ";
+b4   = datkaeroporto.ufdcod      , upshift
+                                 , comments = " UF do Aeroporto ";
+b5   = datkaeroporto.lgdcep      , comments = " CEP do Aeroporto ";
+b6   = datkaeroporto.lgdcepcmp   , format   = "&&&"
+                                 , comments = " Complemento do CEP ";
+b7   = datkaeroporto.dddcod      , comments = " DDD do Aeroporto ";
+b8   = datkaeroporto.lcltelnum   , comments = " Telefone do Aeroporto ";
+b9   = datkaeroporto.lclrefptotxt, upshift
+                                 , comments = " Ponto de Referencia ";
+c    = formonly.hor24h           , upshift
+                                 , comments = " Funciona 24 horas? (S)im ou (N)ao ";
+c1   = datkaeroporto.horsegsexinc, comments = " Horario inicial de funcionamento ";
+c2   = datkaeroporto.horsegsexfnl, comments = " Horario final de funcionamento ";
+c3   = datkaeroporto.horsabinc   , comments = " Horario inicial de funcionamento ";
+c4   = datkaeroporto.horsabfnl   , comments = " Horario final de funcionamento ";
+c5   = datkaeroporto.hordominc   , comments = " Horario inicial de funcionamento ";
+c6   = datkaeroporto.hordomfnl   , comments = " Horario final de funcionamento ";
+
+d    = datkaeroporto.arpsitcod   , comments = " Situacao do aeroporto: (1)Ativo, (2)Cancelado, (3)Interditado ";
+d0   = formonly.arpsitdes        , noentry;
+
+e1   = datkaeroporto.caddat      , noentry;
+e2   = datkaeroporto.cademp      , noentry, format = "&&";
+e3   = datkaeroporto.cadmat      , noentry, format = "&&&&&&";
+e4   = formonly.cadnom           , noentry;
+
+f1   = datkaeroporto.atldat      , noentry;
+f2   = datkaeroporto.atlemp      , noentry, format = "&&";
+f3   = datkaeroporto.atlmat      , noentry, format = "&&&&&&";
+f4   = formonly.atlnom           , noentry;
+
+g1   = datkaeroporto.arpobs      , upshift
+                                 , comments = " Observacoes ";
+end
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC00M08                                              Marcelo
+                                                                     Gilberto
+ Consulta ordens de pagamento pagas para o prestador                 Jan/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc00m08--
+ Periodo.:[c1        ] a [c2        ]                          Emp.:[e1|e2   ]
+------------------------------------------------------------------------------
+     Dt.Pagto        Nro O.P.        Qtd Servicos        Vlr Bruto Total
+
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+    [a1        ]    [a5      ]            [a10   ]      [a15            ]
+
+    Total Pesquisa.:  [t1    ]            [t5    ]      [t10            ]
+
+}
+End
+
+Tables dbsmopg, dbsmopgfav, dpaksocor
+
+Attributes
+  c1  = formonly.socpgtincdat  type decimal,
+         comments = " Data de pagamento (inicial)";
+  c2  = formonly.socpgtfnldat  type decimal,
+         comments = " Data de pagamento (final)";
+  e1  = formonly.ciaempcod,      
+         comments = " Codigo da empresa.";
+  e2  = formonly.empsgl,                                  noentry;         
+
+  a1  = dbsmopg.socfatpgtdat,                             noentry;
+  a5  = dbsmopg.socopgnum,                                noentry;
+  a10 = dbsmopg.socfatitmqtd,                             noentry;
+  a15 = dbsmopg.socfattotvlr,  format="###########&.&&",  noentry;
+
+  t1  = formonly.socopggrlqtd  type decimal,              noentry;
+  t5  = formonly.socpgtgrlqtd  type decimal,              noentry;
+  t10 = formonly.socpgtgrlvlr  type decimal,
+                               format="###########&.&&",  noentry;
+
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctc00m08(socfatpgtdat thru socfattotvlr)
+End

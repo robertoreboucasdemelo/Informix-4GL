@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN28C02                                               Marcelo
+                                                                      Gilberto
+ Mostra todas as situacoes de transmissao p/ impressao remota         Set/1996
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+      Situacao da Transmissao
+-------------------------ctn28c02--
+[a ][b                        ]
+[a ][b                        ]
+[a ][b                        ]
+[a ][b                        ]
+[a ][b                        ]
+[a ][b                        ]
+
+}
+end
+
+tables
+   iddkdominio
+
+attributes
+   a  = iddkdominio.cpocod   ,noentry, invisible;
+   b  = iddkdominio.cpodes   ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn28c02(cpocod thru cpodes)

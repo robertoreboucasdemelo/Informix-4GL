@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m25                                      R.Fornax
+                                                             
+ Cadastro de Blocos                                          Abr/2014 
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m25--
+                            CADASTRO DE BLOCOS  
+------------------------------------------------------------------------------
+   Codigo      Bloco                                     
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]     
+------------------------------------------------------------------------------
+   [c                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.blocod , comments = " Digite o Codigo do Bloco"    ,upshift;
+   b  = formonly.blodes , comments = " Digite a Descricao do Bloco" ,upshift; 
+   c  = formonly.msg    , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m25(blocod thru blodes)
+end

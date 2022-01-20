@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN22C00                                              Gilberto
+                                                                      Marcelo
+ Consulta nomes da agenda de telefones                               Fev/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn22c00--
+Nome:[a                                  ]   Tipo.:[b]
+------------------------------------------------------------------------------
+                Nome
+
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+               [c                                       ][d     ]
+
+}
+end
+
+tables  datkpesagetel
+
+attributes
+
+  a   = formonly.nomepsq                        ,upshift ,
+        comments = " Nome para pesquisa"                 ;
+  b   = formonly.tipopsq                        ,upshift ,
+        comments = " (A)partir de, (P)arte do nome"      ;
+
+  c   = datkpesagetel.pesnom                    ,noentry ;
+  d   = datkpesagetel.pescod       ,invisible   ,noentry ;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn22c00 (pesnom thru pescod);
+

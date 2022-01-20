@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctx00m00                                              Ruiz    
+ Texto livre para pager                                               mai/2007
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+  [a                                                 ]
+--------------------------------------------ctx00m00--
+  [b                                                 ]
+  [b                                                 ]
+  [b                                                 ]
+  [b                                                 ]
+
+  
+ (F17)Abandona                  
+}
+end
+
+attributes
+
+a  = formonly.cab           , upshift, noentry, reverse;
+b  = formonly.texto         , upshift, autonext;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctx00m00(texto)
+end

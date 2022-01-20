@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB24M00                                                 Wagner
+ Cadastro de Motivo de retorno                                        Set/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb24m00--
+        Codigo..........:[a1 ]
+------------------------------------------------------------------------------
+
+
+
+        Descricao ..: [a2                                      ]
+
+ 
+
+
+
+
+        Incluido........:[a3        ] por [a4                 ]
+        Atualizado......:[a5        ] por [a6                 ]
+
+
+}
+end
+
+tables datksrvret
+
+attributes
+   a1   = datksrvret.srvretmtvcod,
+          comments = " Codigo do Motivo de retorno";
+
+   a2   = datksrvret.srvretmtvdes,
+          comments = " Descricao do Motivo de retorno", upshift;
+
+   a3   = datksrvret.caddat, noentry;
+
+   a4   = formonly.cadfunnom, noentry;
+
+   a5   = datksrvret.atldat, noentry;
+
+   a6   = formonly.funnom, noentry;
+end
+
+instructions
+     delimiters " "
+end
+

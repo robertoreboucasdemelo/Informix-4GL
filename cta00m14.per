@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m14                                                 Pedro
+                                                                      Marcelo
+ Consulta Apolices Encontradas Pela Pesquisa (RE)                    Mar/1995
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+--------------------------------------------------------------------cta00m14--
+ Segurado                                   Documento
+ Local do risco
+------------------------------------------------------------------------------
+[a                                    ][c                                 |v ]
+[d                                                                           ]
+[i                             |j    |k         ][e ][f   ][g            ][h ]
+
+[a                                    ][c                                 |v ]
+[d                                                                           ]
+[i                             |j    |k         ][e ][f   ][g            ][h ]
+
+[a                                    ][c                                 |v ]
+[d                                                                           ]
+[i                             |j    |k         ][e ][f   ][g            ][h ]
+
+[a                                    ][c                                 |v ]
+[d                                                                           ]
+[i                             |j    |k         ][e ][f   ][g            ][h ]
+}
+End
+
+Attributes
+ a = formonly.segnom          ;
+ c = formonly.documento       ;
+ d = formonly.endereco        ;
+ v = formonly.vigente         ;
+ e = formonly.succod          ,invisible ,noentry;
+ f = formonly.ramcod          ,invisible ,noentry;
+ g = formonly.aplnumdig       ,invisible ,noentry;
+ h = formonly.lclnumseq       ,invisible ,noentry;
+ i = formonly.endereco2       ;
+ j = formonly.venc            ;
+ k = formonly.vigfnl          ;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta00m14(segnom thru vigfnl )
+End

@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m28                                              Marcelo
+                                                                     Gilberto
+ Exibe dados do veiculo - Garantia estendida (ramo 16)               OUT/1997
+-----------------------------------------------------------------------------}
+
+ database porto
+
+ screen size 25 by 80
+{
+             Dados do automovel
+----------------------------------cta01m28--
+ Marca..:[d1                 ]
+ Tipo...:[d2                               ]
+ Modelo.:[d3                 ]
+ Chassi.:[d4                  ]
+ Placa..:[d5     ]
+ Fab/Mod:[d6  ]/[d7  ]
+
+ Grupo..:[d8                            ]
+ Loja...:[d9                  ]
+
+}
+ end
+
+ tables agbkveic  , agbkmarca , agbktip,
+        rgrmgrevcl, agbkconces, rgrkcnsgrp
+
+ attributes
+    d1 =  agbkmarca.vclmrcnom            , noentry;
+    d2 =  agbktip.vcltipnom              , noentry;
+    d3 =  agbkveic.vclmdlnom             , noentry;
+    d4 =  rgrmgrevcl.vclchsnum           , noentry;
+    d5 =  rgrmgrevcl.vcllicnum           , noentry;
+    d6 =  rgrmgrevcl.vclanofbc           , noentry;
+    d7 =  rgrmgrevcl.vclanomdl           , noentry;
+    d8 =  rgrkcnsgrp.cnsgrpnom           , noentry;
+    d9 =  agbkconces.cnsnom              , noentry;
+ end
+
+ instructions
+    delimiters " "
+ end

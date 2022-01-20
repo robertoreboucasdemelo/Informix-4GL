@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB12M12                                              Wagner
+ Exibe pop-up dos servicos relacionados de RE                        Jul/2001
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+       Servicos de RE Relacionados
+-------------------------------------ctb12m12--
+                                     [a       ]
+   Servico     Natureza         Dt.Atend  Tipo
+
+[b                                            ]
+[b                                            ]
+[b                                            ]
+[b                                            ]
+
+}
+End
+
+Attributes
+ a  = formonly.total     type char    ,noentry;
+ b  = formonly.linha     type char    ,noentry;
+end
+
+Instructions
+ delimiters " "
+ screen record s_ctb12m12(linha)

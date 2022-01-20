@@ -1,0 +1,74 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M01                                              Marcelo
+                                                                     Gilberto
+ Informacoes sobre o motorista                                       Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                 Motorista do[a10     ]na ocasiao do acidente
+--------------------------------------------------------------------cts18m01--
+ Nome.....:[c10                                 ]Cgc/Cpf:[c20      ][c25 ][c2]
+ Endereco.:[c30                                    ]
+ Bairro...:[c40                 ] Cidade.....:[c45                 ] UF:[c4]
+ Telefone.:[c50 ][c55      ]
+ C.N.H....:[c60         ]         Exame Saude:[c65       ]
+ Idade....:[c7]     Sexo:[c]      Est.Civil..:[c1]      Vinculo:[c80         ]
+ Profissao:[c90                                 ][inv ]
+[x]
+}
+end
+
+tables
+   ssammot
+
+attributes
+
+  a10 = formonly.cabtxt        , noentry, upshift;
+
+  c10 = ssammot.sinmotnom      , upshift,
+        comments = " Nome do motorista";
+  c20 = ssammot.cgccpfnum               ,
+        comments = " CGC/CPF do motorista";
+  c25 = ssammot.cgcord                  ,
+        comments = " Ordem do CGC"      ,
+        format   = "&&&&";
+  c2  = ssammot.cgccpfdig               ,
+        comments = " Digito do CGC/CPF" ,
+        format   = "&&";
+  c30 = ssammot.endlgd         , upshift,
+        comments = " Endereco do motorista";
+  c40 = ssammot.endbrr         , upshift,
+        comments = " Bairro do motorista";
+  c45 = ssammot.endcid         , upshift,
+        comments = " Cidade do motorista";
+  c4  = ssammot.endufd         , upshift,
+        comments = " Sigla de UF";
+  c50 = formonly.dddcod                 ,
+        comments = " DDD do motorista";
+  c55 = ssammot.telnum                  ,
+        comments = " Telefone do motorista";
+  c60 = ssammot.cnhnum                  ,
+        comments = " Carteira de habilitacao do motorista";
+  c65 = ssammot.cnhvctdat               ,
+        comments = " Data de validade do exame medico";
+  c7  = ssammot.sinmotidd               ,
+        comments = " Idade do motorista";
+  c   = ssammot.sinmotsex      , upshift,
+        comments = " Sexo do motorista: (M)asculino ou (F)eminino";
+  c1  = ssammot.cdtestcod       ,
+        comments = " Estado civil do motorista";
+  c80 = formonly.sgrvindes     , upshift,
+        comments = " Vinculo com o segurado";
+  c90 = ssammot.sinmotprfdes   , upshift,
+        comments = " Profissao do motorista";
+  inv = ssammot.sinmotprfcod   , noentry, invisible;
+  x   = formonly.filler        ;
+
+end
+
+instructions
+  delimiters " "
+end

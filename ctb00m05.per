@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb00m05                                              Marcelo
+                                                                     Gilberto
+ Pop-up para selecao do endosso vigente na data da locacao           Mar/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+ Proposta:[a1][a2      ]    Data Atendimento:[a3        ]
+ Sucursal:[a    ] Ramo:[b   ]  Apolice:[c        ] Item:[d       ]
+-------------------------------------------------------------ctb00m05--
+ Endosso    Tipo                  Situacao   Vigencia
+
+[f        ][g                   ][h        ][i         ][x][j         ]
+[f        ][g                   ][h        ][i         ][x][j         ]
+[f        ][g                   ][h        ][i         ][x][j         ]
+[f        ][g                   ][h        ][i         ][x][j         ]
+[f        ][g                   ][h        ][i         ][x][j         ]
+[f        ][g                   ][h        ][i         ][x][j         ]
+
+}
+end
+
+tables
+   datrligprp, datrligapol, abbmdoc, abamdoc
+
+attributes
+   a1 = datrligprp.prporg    , format = "&&"
+                             , noentry;
+   a2 = datrligprp.prpnumdig , format = "&&&&&&&&"
+                             , noentry;
+   a3 = formonly.atddat      , noentry;
+
+   a  = datrligapol.succod   , autonext
+                             , format = "###&&"
+                             , comments = " Sucursal ";
+   b  = datrligapol.ramcod   , autonext
+                             , format = "&&&&"
+                             , comments = " Ramo ";
+   c  = datrligapol.aplnumdig, autonext
+                             , format = "<<<<<<<##"
+                             , comments = " Numero da apolice";
+   d  = datrligapol.itmnumdig, autonext
+                             , format = "<<<<<<##"
+                             , comments = " Item da apolice";
+   f = abamdoc.edsnumdig;
+   g = formonly.edstipdes;
+   h = formonly.edssttdes;
+   i = abbmdoc.viginc;
+   x = formonly.cpotxt;
+   j = abbmdoc.vigfnl;
+end
+
+instructions
+ delimiters " "
+ screen record s_ctb00m05(edsnumdig thru vigfnl)
+end

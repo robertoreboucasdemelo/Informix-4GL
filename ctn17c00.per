@@ -1,0 +1,58 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTN17C00                                      Marcelo
+                                                             Gilberto
+ Consulta veiculos disponiveis para locacao                  Ago/1996
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+             Veiculos disponiveis para locacao - Carro Extra
+--------------------------------------------------------------------ctn17c00--
+ LOCADORA...:[a0  ] [a1                              ]
+ LOJA.......:[b0   ][b1                              ]Empresa:[e1][e2         ]
+------------------------------------------------------------------------------
+ Veiculo...:[v1                                      ]Grupo.....:[v] [v2  ]
+ Discrim...:[v3                       ]Isencao:[v7        ]Reducao:[v8        ]
+ Vlr.Diaria:[v4           ]    Vlr.Seguro:[v5         ]   Franquia:[v9        ]
+ Obs.......:[v6                                                ]
+
+ Veiculo...:[v1                                      ]Grupo.....:[v] [v2  ]
+ Discrim...:[v3                       ]Isencao:[v7        ]Reducao:[v8        ]
+ Vlr.Diaria:[v4           ]    Vlr.Seguro:[v5         ]   Franquia:[v9        ]
+ Obs.......:[v6                                                ]
+
+ Veiculo...:[v1                                      ]Grupo.....:[v] [v2  ]
+ Discrim...:[v3                       ]Isencao:[v7        ]Reducao:[v8        ]
+ Vlr.Diaria:[v4           ]    Vlr.Seguro:[v5         ]   Franquia:[v9        ]
+ Obs.......:[v6                                                ]
+}
+end
+
+tables datklocadora, datkavisveic, datkavislocal, datklocaldiaria, datravsemp
+
+attributes
+  a0 = datklocadora.lcvcod        ,required;
+  a1 = datklocadora.lcvnom        ,noentry, upshift;
+  b0 = datkavislocal.lcvextcod    ,required;
+  b1 = datkavislocal.aviestnom    ,noentry, upshift;
+  e1 = formonly.ciaempcod       ; 
+  e2 = formonly.empsgl            ,noentry;
+
+  v1 = datkavisveic.avivclmdl                             ,noentry;
+  v  = datkavisveic.avivclgrp                             ,noentry;
+  v2 = datkavisveic.avivclcod     ,invisible              ,noentry;
+  v3 = datkavisveic.avivcldes                             ,noentry;
+  v4 = datklocaldiaria.lcvvcldiavlr                       ,noentry;
+  v5 = datklocaldiaria.lcvvclsgrvlr                       ,noentry;
+  v7 = datkavisveic.isnvlr        ,format="###,##&.&&"    ,noentry;
+  v8 = datkavisveic.rduvlr        ,format="###,##&.&&"    ,noentry;
+  v9 = datkavisveic.frqvlr        ,format="###,##&.&&"    ,noentry;
+  v6 = datkavisveic.obs           ,upshift                ,noentry;
+end
+
+instructions
+     screen record s_ctn17c00(avivclmdl thru obs)
+     delimiters " "
+end

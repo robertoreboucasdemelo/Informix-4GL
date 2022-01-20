@@ -1,0 +1,53 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m13                                      R.Fornax
+
+ Cadastro de Alerta X Motivo Assistencia                     Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m13--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+ Clausula...:[e   ][f                                                       ]
+ Tipo.......:[g   ][h                                                       ]
+ Motivo.....:[i   ][j                                                       ]
+------------------------------------------------------------------------------
+                                   ALERTA
+ Linha1.....:    [l                                       ]
+ Linha2.....:    [m                                       ]
+ Linha3.....:    [n                                       ]
+ Linha4.....:    [o                                       ]
+------------------------------------------------------------------------------
+ Atualizado..:[p          ] por [q                                         ]
+------------------------------------------------------------------------------
+ [r                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;
+   b  = formonly.desper                 ,noentry;
+   c  = formonly.c24astcod              ,noentry;
+   d  = formonly.c24astdes              ,noentry;
+   e  = formonly.clscod                 ,noentry;
+   f  = formonly.clsdes                 ,noentry;
+   g  = formonly.asitipcod              ,noentry;
+   h  = formonly.asitipdes              ,noentry;
+   i  = formonly.asimtvcod              ,noentry;
+   j  = formonly.asimtvdes              ,noentry;
+   l  = formonly.linha1                 ,comments = " Digite a Primeira Linha" ,upshift;
+   m  = formonly.linha2                 ,comments = " Digite a Segunda Linha"  ,upshift;
+   n  = formonly.linha3                 ,comments = " Digite a Terceira Linha" ,upshift;
+   o  = formonly.linha4                 ,comments = " Digite a Quarta Linha"   ,upshift;
+   p  = formonly.atldat                 ,noentry;
+   q  = formonly.funmat                 ,noentry;
+   r  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+end

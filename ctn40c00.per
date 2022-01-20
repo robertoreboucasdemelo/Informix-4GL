@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctn40c00                                               Gilberto
+                                                                       Marcelo
+ Consulta situacao do veiculo (bloqueado/cancelado)                   Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------
+                 Dados sobre situacao do veiculo
+----------------------------------------------------------ctn40c00--
+
+ Veiculo...:[a    ][a2    ]
+            [a3                                                    ]
+
+ Situacao..:[b1][b2       ]
+
+ Observacao:[c1                                                ]
+            [c2                                                ]
+            [c3                                                ]
+
+ Incluido..:[d1        ] as [d2   ] por [d3                 ]
+ Atualizado:[d4        ]            por [d5                 ]
+
+}
+end
+
+ tables datkveiculo, datkvclsit
+
+ attributes
+    a    = datkveiculo.atdvclsgl,       reverse,           noentry;
+    a2   = datkvclsit.socvclcod,                           noentry;
+    a3   = formonly.vcldes,                                noentry;
+
+    b1   = datkveiculo.socoprsitcod,    reverse,           noentry;
+    b2   = formonly.socoprsitcoddes,    reverse,           noentry;
+
+    c1   = formonly.obs1,                                  noentry;
+    c2   = formonly.obs2,                                  noentry;
+    c3   = formonly.obs3,                                  noentry;
+
+    d1   = datkvclsit.caddat,                              noentry;
+    d2   = datkvclsit.cadhor,                              noentry;
+    d3   = formonly.cadfunnom,                             noentry;
+
+    d4   = datkvclsit.atldat,                              noentry;
+    d5   = formonly.funnom,                                noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

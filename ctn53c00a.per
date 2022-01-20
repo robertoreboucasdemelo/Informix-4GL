@@ -1,0 +1,40 @@
+database formonly
+ 
+screen
+{
+-------------------------------------------------------------------ctn53c00a--
+                      Pesquisa veiculos por aproximacao                       
+------------------------------------------------------------------------------
+Distancia  MDT  Data       Hora     UF Cidade                 Bairro   
+
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+[x|a    ] [b   |c         |d       |e |f                      |g             ]
+ 
+}
+end
+
+attributes
+   x = formonly.aux type char;
+   a = formonly.dist      , noentry;
+   b = formonly.mdtcod    , noentry;
+   c = formonly.caddat    , noentry;
+   d = formonly.cadhor    , noentry;
+   e = formonly.ufdcod    , noentry;
+   f = formonly.cidnom    , noentry;
+   g = formonly.brrnom    , noentry;
+end             
+
+instructions
+  delimiters " "
+  screen record s_ctn53c00(aux thru brrnom)
+end

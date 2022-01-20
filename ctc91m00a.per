@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m00a                                       Helder Oliveira
+
+ Cadastros                                                            Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+-------------------------------------------------------------------ctc91m00a--
+  Cod   Flag  Descricao
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+ [a    ][f]  [b                                                             ]
+------------------------------------------------------------------------------
+   Alterado em: [c         ] por: [d                                        ]
+------------------------------------------------------------------------------
+ 
+}
+end
+
+attributes
+
+    a  = formonly.codigo    ,upshift, comments = 'Codigo';
+    f  = formonly.flag      ,upshift, comments = 'Flag';
+    b  = formonly.descricao ,upshift, comments = 'Descricao';
+    c  = formonly.atldat    ,upshift;
+    d  = formonly.funnom     ,upshift;
+
+end
+
+instructions
+    screen record s_ctc91m00a (codigo thru descricao)
+    delimiters " "
+end

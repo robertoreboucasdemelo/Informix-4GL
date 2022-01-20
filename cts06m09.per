@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m09
+                                                                      Alexson
+ Controle de Servicos (RADIO)                                        Jun/2003
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+
+UF / Cidade ..: [a ] [b                                     |c     ]X:[x    ]
+Bairro .......: [d                                                          ]
+Periodo de ...: [e         ]a[f         ]  Pri:[g] Emp:[ h] Visto:[i        ]
+-----------------------------------------------------------------|cts06m09|---
+ S DtAgd P Em UF/Cidade/Bairro[y                        ]Periodo Horario
+------------------------------------------------------------------------------
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+[j|k    |l|m |n                                         |o                   ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+
+    a = formonly.f_UF                type char, upshift, autonext;
+    b = formonly.f_NomeCidade        type char, upshift;
+    c = formonly.f_CodigoCidade      type char, noentry;
+    d = formonly.f_NomeBairro        type char, upshift;
+    e = formonly.f_DataInicial;
+    f = formonly.f_DataFinal;
+    g = formonly.f_FiltroPrioridade  type char, upshift, autonext;
+    h = formonly.f_FiltroEmpresa     type char, upshift, autonext;
+    i = formonly.f_FiltroVistoria    type char, upshift, autonext;
+    x = formonly.f_FiltroX           type char, upshift, autonext;
+
+    y = formonly.f_QtdAcnPendX       type char, noentry;
+
+    j = formonly.f_RegSelecionado    type char, upshift, autonext;
+    k = formonly.f_DiaMesVistoria    type char, noentry;
+    l = formonly.f_Prioridade        type char, noentry;
+    m = formonly.f_CodigoEmpresa     type char, noentry;
+    n = formonly.f_EnderecoExibicao  type char, noentry;
+    o = formonly.f_HorarioPref       type char, noentry;
+
+end
+
+instructions
+    delimiters ' '
+    screen record s_cts06m09(f_RegSelecionado
+                        thru f_HorarioPref)
+end
+

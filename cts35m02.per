@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Sistema : ct24hs   - Central 24 HS       
+ Programa: cts35m00 - Carga da Contigencia                    
+ Autor...: A. Jahchan em 14/02/2005 
+ -----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------cts35m02--
+ Periodo:[a         ]a[b         ]                 Total de Servicos:[t      ]
+------------------------------------------------------------------------------
+ Data       Hora  Ass   Servico       Placa   Empr. Segurado       
+------------------------------------------------------------------------------
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+[c         |d    |e  |i|f            |g      |j    |h                        ]
+
+ (F17)Abandona, (F8) Seleciona   (*)Servicos realizados na Contingencia
+}
+end
+
+tables
+      datmservico
+
+attributes
+
+   a = formonly.datinc         type date;
+   b = formonly.datfnl         type date;
+   t = formonly.total          , noentry;
+   c = datmservico.atddat      , noentry;
+   d = datmservico.atdhor      , noentry;
+   e = formonly.assunto        , noentry;
+   i = formonly.ctg            , noentry;
+   f = formonly.servico        , noentry;
+   g = datmservico.vcllicnum   , noentry;
+   j = formonly.empresa        , noentry;
+   h = datmservico.nom         , noentry;
+
+end
+
+instructions
+   delimiters  " "
+   screen record s_cts35m02 (atddat thru nom)
+end

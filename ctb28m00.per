@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb28m00
+ Autor.......: Carlos, Meta
+ Tela para consulta de Servicos RIS.                                 Mar/2005
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+ Periodo:[i         ]a[f         ] Prestador:[p      |pn                     ]
+--------------------------------------------------------------------ctb28m00--
+                                       Total     Envio     Fora do
+ Prestador                             Atend     ok        Prazo    Pendentes
+------------------------------------------------------------------------------
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+[p1     |z|pn1                      ] [a     ]  [o     ]  [r     ]  [e     ]
+------------------------------------------------------------------------------
+                          Total Geral:[ta    ]  [tok   ]  [tr    ]  [te    ]
+------------------------------------------------------------------------------
+ (F8) Detalhar Pendentes   (CTRL+C/F17) Nova Consulta
+}
+
+end
+
+attributes
+  i  = formonly.perini        type date;
+  f  = formonly.perfim        type date;
+  p  = formonly.pstcoddig     type integer;
+  z  = formonly.traco         type char;
+  pn = formonly.nomgrr        type char, noentry;
+  p1 = formonly.pstcoddig1    type integer;
+  pn1= formonly.nomgrr1       type char;
+  a  = formonly.totatend      type integer;
+  o  = formonly.totenvok      type integer;
+  r  = formonly.totenvfp      type integer;
+  e  = formonly.totpend       type integer;
+  ta = formonly.ttotatend     type integer;
+  tok= formonly.ttotenvok     type integer;
+  tr = formonly.ttotenvfp     type integer;
+  te = formonly.ttotpend      type integer;
+end
+
+instructions
+  delimiters ' '
+  screen record s_ctb28m00  (pstcoddig1
+                            ,traco
+                            ,nomgrr1
+                            ,totatend
+                            ,totenvok
+                            ,totenvfp
+                            ,totpend)
+end

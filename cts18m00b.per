@@ -1,0 +1,52 @@
+database porto
+screen size 24 by 80
+{
+        	           PROCESSO LOCALIZADO
+-----------------------------------------------------------------(cts18m00b)-
+Terc....: [f0                                      ]  TEL...: [f1       ]
+End.....: [f2                       ]   Bairro.: [f3                       ]
+Cidade..: [f4                  ]        UF.....: [f5]
+Veic....: [f6   ]      Bem:
+Chas....: [f7                  ]     Placa:[f8     ]  Fab/Mod.:[f9  ]/[f10 ]
+Cor.....: [f11                 ]     CGC/CPF.:[f12         ]-[f13 ]-[f14]
+Vistoria: [f15   ] [f16 ]            Sinistro:[f17   ] [f18 ]
+-----------------------------------------------------------------------------
+
+
+DESEJA APROVEITAR OS DADOS ACIMA (S/N) ? [o]
+
+
+}
+end
+
+tables
+   ssamavs, ssamsin
+
+attributes
+
+f0  = formonly.sinrclnom   ,noentry;
+f1  = formonly.sinrcltel   ,noentry;
+f2  = formonly.sinrclend   ,noentry;
+f3  = formonly.endbrr      ,noentry;
+f4  = formonly.sinrclendcid,noentry;
+f5  = formonly.sinrclendufd,noentry;
+f6  = formonly.vclcoddig   ,noentry;
+f7  = formonly.vclchsnum   ,noentry;
+f8  = formonly.vcllicnum   ,noentry;
+f9  = formonly.vclanomdl   ,noentry;
+f10 = formonly.vclanofbc   ,noentry;
+f11 = formonly.vcldencor   ,noentry;
+f12 = formonly.cgccpfnum   ,noentry;
+f13 = formonly.cgcord      ,noentry;
+f14 = formonly.cgccpfdig   ,noentry;
+f15 = formonly.sinvstnum   ,noentry;
+f16 = formonly.sinvstano   ,noentry;
+f17 = formonly.sinnum      ,noentry;
+f18 = formonly.sinano      ,noentry;
+o   = formonly.opcao       ,upshift;
+
+end
+
+instructions
+   delimiters " " ;
+end

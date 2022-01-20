@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn13c00                                               Marcelo
+                                                                     Gilberto
+ Mostra todos os topicos relacionados com o convenio selecionado.    Mar/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+screen size 24 by 80
+{
+         Procedimentos de Atendimento - Topicos
+----------------------------------------------ctn13c00--
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+
+}
+End
+
+tables
+   datktopcvn
+
+Attributes
+ a  = datktopcvn.cvntopnom ,noentry;
+ b  = datktopcvn.cvntopcod ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn13c00(cvntopnom thru cvntopcod)

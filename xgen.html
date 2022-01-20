@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<title>Atendimento Emissao Auto</title>
+
+<script><!--
+
+function ebfConcatLeft(param, size, character){
+   var contador = param.length;
+
+   if(param.length != size){
+      while(contador < size){
+         param = character + param;	
+         contador++;
+      }
+   }
+   return param;
+}
+
+function ebfGetDominio() {
+   var url = location.href; 
+   url = url.split("/"); 
+   return url[2];
+}
+
+var sesnum = '@sesnum@';
+var usrcod = '@usrcod@';
+var empcod = '@empcod@';
+var usrtip = '@usrtip@';
+var portal = 3;
+
+var codigo = empcod * 100000;
+var auxiliar = codigo + parseFloat(usrcod);
+var matricula = new String(auxiliar);
+
+   matricula = usrtip + ebfConcatLeft(matricula, 7, 0);   
+//var url = 'https://apu2.xgen.com.br/porto1/f_sucursal.html?sel=PortoNet&mat=' + matricula;
+var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc/xwc.dll?f=F5004&ct=REGIONAIS_SUCURSAL_EMISS&sel=PortoNet&mat=' + matricula;
+var loc = url;
+var prop = "left=0,top=0,toolbar=0,location=0,directories=0,status=1,menubar=0,scrollbars=yes,resizable=1,width=500,height=500";
+   
+   // Abre janela
+   janela=window.open(url,"_blank",prop).focus();
+
+   if (window.opener) {
+      window.close(); 
+   }else{
+      window.history.back();
+   }
+   
+</script>
+
+</head>
+<body>
+</body>
+</html>

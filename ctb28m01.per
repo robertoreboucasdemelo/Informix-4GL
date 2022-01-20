@@ -1,0 +1,42 @@
+database formonly
+screen size 24 by 80
+
+{
+ RIS Pendentes
+ Periodo:[a         ]a[b         ] Prestador:[c     |d                       ]
+--------------------------------------------------------------------ctb28m01--
+  Data         Servico
+------------------------------------------------------------------------------
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+ [e         ] [f            ]
+------------------------------------------------------------------------------
+                Total:[i    ]
+------------------------------------------------------------------------------
+ (F8) Seleciona Servico    (CTRL+C/F17) Nova Consulta
+}
+end
+
+attributes
+  a = formonly.perini type date, format = 'dd/mm/yyyy';
+  b = formonly.perfim type date, format = 'dd/mm/yyyy';
+  c = formonly.pstcoddig;
+  d = formonly.nomgrr;
+
+  e = formonly.atddat type date, format = 'dd/mm/yyyy';
+  f = formonly.servico;
+
+  i = formonly.total type integer, format = '<<<<&';
+end
+
+instructions
+  delimiters ' '
+  screen record s_ctb28m01 (atddat, servico)
+end

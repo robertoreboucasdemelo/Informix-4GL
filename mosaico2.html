@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<title>MOSAICO</title>	 
+	<link href="/ct24h/trs/resources/css/reset.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/ct24h/trs/resources/css/s.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/ct24h/trs/resources/css/jquery-ui-1.8.10.custom.css" rel="stylesheet" type="text/css" media="screen" />
+
+	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">-->
+
+	
+	
+<script><!--
+
+var panum = null;
+
+var sesnum = '@sesnum@';
+var usrcod = '@usrcod@';
+var empcod = '@empcod@';
+var usrtip = '@usrtip@';
+var tipoatd = getURLParameter('tipoatd');
+var portal = 3;
+
+var urlporto = "&sesnum=" + sesnum + "&usrcod=" + usrcod + "&empcod=" + empcod + "&usrtip=" + usrtip + "&portal=" + portal;
+
+var xmlhttp;
+var v_buffer = [];
+var indice = 0;
+var id = 1;
+var sincronismoOn = false;
+
+var g_unclosable = new Array("PesquisaAtendimento",
+                             "AcompanhamentoProposta",
+                             "AtendimentoUnidade",
+                             "AtendimentoUnidade2",
+                             "Sincronismo",
+                             "VistoriaPrevia",
+                             "Apolice",
+                             "CobrancaWeb",
+                             "GCDE",
+                             "SISEG",
+                             "ManuaisCirculares",
+                             "BaseConhecimento",
+                             "DadosPOL",
+							 "PesquisaDocumentos");
+var g_iconeId = new Array();
+g_iconeId["PesquisaAtendimento"] = "/ct24h/trs/resources/img/pesquisaatendimento.png";
+g_iconeId["AcompanhamentoProposta"] = "/ct24h/trs/resources/img/as.png";
+g_iconeId["VistoriaPrevia"] = "/ct24h/trs/resources/img/vp.png";
+g_iconeId["Apolice"] = "/ct24h/trs/resources/img/consultaapolice.png";
+g_iconeId["Sincronismo"] = "/ct24h/trs/resources/img/telephone_1.png";
+g_iconeId["CobrancaWeb"] = "/ct24h/trs/resources/img/cobranca.png";
+g_iconeId["GCDE"] = "/ct24h/trs/resources/img/gcde2.png";
+g_iconeId["SISEG"] = "/ct24h/trs/resources/img/siseg.png";
+g_iconeId["ManuaisCirculares"] = "/ct24h/trs/resources/img/manuais2.png";
+g_iconeId["BaseConhecimento"] = "/ct24h/trs/resources/img/baseconhecimento.png";
+g_iconeId["DadosPOL"] = "/ct24h/trs/resources/img/dadospol.png";
+g_iconeId["PesquisaDocumentos"] = "/ct24h/trs/resources/img/consultaapolice.png";
+
+window.onload = maxWindow;
+function maxWindow()
+{
+	window.moveTo(0,0);
+	if (document.all){
+		top.window.resizeTo(screen.availWidth,screen.availHeight);
+	}
+	else if (document.layers||document.getElementById)	{
+		if (top.window.outerHeight<screen.availHeight||top.window.outerWidth<screen.availWidth){
+	    	top.window.outerHeight = screen.availHeight;
+	    	top.window.outerWidth = screen.availWidth;
+	  	}
+	}
+}
+
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
+
+function carregar2() {
+
+	// Redimensionar tela conforme resolucao do monitor.
+	maxWindow();
+	
+    /* Atribui sessao */
+    setSessao(usrtip, empcod, usrcod, sesnum);
+    if (sincronismoOn) {
+        setTimeout(carregar, 1000) ;
+    }
+
+    // Customizando...
+
+    var dateHoje = new Date();
+    var datePassado = new Date();
+
+    datePassado.setTime(dateHoje.getTime() - 1296000000); // 15 DIAS
+
+	if(tipoatd == 1){
+	
+	$(document).ready(function() {
+        document.title = 'MOSAICO - Atendimento Corretores';
+		});
+	
+    PS.create("AtendimentoUnidade",
+           "/atendimentounidades/paunatuatd.do?",
+           "AtendimentoCorretor",
+           "AtendimentoCorretor", true);
+
+/*
+    PS.create("AtendimentoUnidade2",
+           "/atendimentounidades/paunatuatd.do?",
+           "AtendimentoCorretor",
+           "AtendimentoCorretor", true);
+*/
+
+	
+
+    PS.create("PesquisaAtendimento",
+           "/atendimentounidades/paunpesqat.do?",
+           "PesquisaAtendimento",
+           "PesquisaAtendimento", true, true);
+
+    PS.create("AcompanhamentoProposta",
+           "/historicoacompanhamentoproposta/consultaProposta.do?dispatch=init&descricaoOrigem=AUTO&dataInicioEventoProtocolo=" +
+           formatDate(datePassado) +
+       	   "&dataFimEventoProtocolo=" +
+           formatDate(dateHoje),
+           "AC Proposta",
+           "AC Proposta", true, true);
+
+        PS.create("VistoriaPrevia",
+               "http://aplweb/cgi-bin/seweb/trs/wissc040.pl?n_htm=/ct24h/trs/vistoria.html",
+		   "Vistoria Pr&eacute;via",
+		   "Vistoria Pr&eacute;via", true, true);
+
+       PS.create("Apolice",
+		   "http://aplweb/cgi-bin/seweb/trs/wissc040.pl?n_htm=/ct24h/trs/apolice.html",
+		   "Consulta Ap&oacute;lice",
+		   "Consulta Ap&oacute;lice", true, true);
+
+	   PS.create("Sincronismo",
+         "/portalsincronismoatendimento/loadpa.do?",
+         "Sincronismo",
+         "Sincronismo", true, true);	   
+
+	   PS.create("CobrancaWeb",
+			   "http://aplweb/cobrancaonline/obpesq.do?sissgl=COBATEND",
+			   "Cobran&ccedil;a Web",
+			   "Cobran&ccedil;a Web", true, true);
+/*
+	   PS.create("GCDE",
+			   "http://gcde/default.aspx?sissgl=GCDE&prgsgl=default&modsgl=default",
+			   "GCDE",
+			   "GCDE", true, true);
+*/
+	   PS.createPost("GCDE",
+			   "http://gcdev2/gcde/defaultv2.aspx?sissgl=GCDE&prgsgl=default&modsgl=default",
+			   "GCDE",
+			   "GCDE", true, true);
+	   PS.create("SISEG",
+			   "http://aplweb/rns/rns_icnqly.do?sissgl=RNS",
+			   "Bases SISEG",
+			   "Bases SISEG", true, true);
+	   	   
+	   PS.create("ManuaisCirculares",
+			   "http://aplweb/col/trs/awcolc012.html#tabela",
+			   "Manuais Circulares",
+			   "Manuais Circulares", true, true);
+
+	   PS.create("BaseConhecimento",
+			   "http://portonet/site/basedeconhecimento/index.cfm?",
+			   "Base Conhecimento",
+			   "Base Conhecimento", true, true);	   
+
+	   PS.create("DadosPOL",
+			   "http://aplweb/simuladorcalculoendosso/wsce013.do?sissgl=Comp_Pol",
+			   "Dados POL",
+			   "Dados POL", true, true);
+		} else {
+
+		$(document).ready(function() {
+        document.title = 'MOSAICO - Consulta de apólices';
+		});
+		
+		PS.create("PesquisaDocumentos",
+			   "/ct24h/trs/mosaicopa.html?",
+			   "Consulta Ap&oacute;lice Auto",
+			   "Consulta Ap&oacute;lice Auto", true);
+		}
+}
+
+function carregar() {
+
+ if (window.XMLHttpRequest)
+  {// code for IE7+, FirefOx, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequEst();
+  }
+ else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+ xmlhttp.onreadystatechange=function()
+  {
+    try {
+   document.getElementById("debug").value += vr;
+   } catch (e) {
+   }
+  if (xmlhttp.readyState==3 && xmlhttp.status==200)
+   {
+      //alert('teste ' + xmlhttp.responseText);
+      var v_response = xmlhttp.responseText;
+
+      v_buffer = v_response.split("\n");
+
+      var v_newbuffer = [];
+      for (var i = 0; i<v_buffer.length;i++) {
+           if (v_buffer[i].indexOf("||") != -1) {
+               v_newbuffer.push(v_buffer[i]);
+           }
+      }
+      v_buffer = v_newbuffer;
+
+      for (var i=0;indice<v_buffer.length;indice++) {
+         if (v_buffer[indice].indexOf("||") !=-1) {
+            doComando(v_buffer[indice].split("||")[0]);
+         }
+      }
+   }
+  if (xmlhttp.readyState==4) {
+      //alert('4');
+      xmlhttp = null;
+      setTimeout(carregar, 500);
+  }
+}
+
+xmlhttp.open("GET", "http://li134:1000/XXXXP0609511", true);
+xmlhttp.send();
+}
+function doComando(comando) {
+     id++;
+     comando+= urlporto;
+     /*alert(comando);*/
+
+     PS.create("ID_1",
+           comando,
+           "Apolice",
+           "Apolice");
+}
+
+--></script>
+
+
+</head>
+<body onload="carregar2()">
+
+	<!-- Header -->
+	<div id="header">
+		<img src="/ct24h/trs/resources/img/logo.png" class="left" id="logo" />
+
+        <a href="JavaScript:salvarPerspectiva()" class="save right" title="Salvar" tip="Salvar"></a>
+        <a href="JavaScript:restaurarPerspectiva()" class="restore right" title="Restaurar" tip="Restaurar"></a>
+        <a href="#" class="mosaic right" title="Mosaico" tip="Mosaico"></a>
+        <a href="#" class="list right" title="Lista" tip="Lista"></a>
+
+		<div class="datetime right">
+			<div class="date left"><span>&nbsp;</span> <em>0</em></div>
+			<div class="time left"><span>&nbsp;</span> <em>0</em></div>
+		</div>
+	</div>
+	<!-- Windows list -->
+
+	<div id="list"><ul></ul></div>
+
+        <!-- Window Nav -->
+	<a href="#" class="arrow-left"></a>
+	<a href="#" class="arrow-right"></a>
+
+        <!-- Carousel -->
+        <div class="" id="carousel">
+                <a href="#" class="buttons prev"></a>
+                <div class="viewport">
+                    <div id="dock" class="overview"> 
+                        <div class="dock-container"> 
+                            <!--<a class="dock-item" href="#"><span>History</span><img src="/ct24h/trs/resources/img/consultaapolice.png" alt="history" /></a> -->
+                        </div><!-- end div .dock-container --> 
+                    </div><!-- end div .dock #dock --> 
+                </div>
+                <a href="#" class="buttons next"></a>
+        </div>
+
+
+
+    <div id="footer"></div>
+	
+	<script src="/ct24h/trs/resources/js/jquery-1.8.2.js"></script>
+  <script src="/ct24h/trs/resources/js/jquery-ui.js"></script>
+	<script src="/ct24h/trs/resources/js/jquery-1.8.2.tools.min.js"></script>
+	
+	<!--<script src="/ct24h/trs/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/ct24h/trs/resources/js/jquery.tools.min.js" type="text/javascript"></script>
+	<script src="/ct24h/trs/resources/js/jquery.dialogextend.js" type="text/javascript"></script>-->
+	<script src="/ct24h/trs/resources/js/ui.dialog.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="/ct24h/trs/resources/js/jquery.jcarousellite.js"></script>
+
+	<script type="text/javascript" src="/ct24h/trs/resources/js/jquery.tinycarousel.min.js"></script>
+	<script src="/ct24h/trs/resources/js/ps.js" type="text/javascript"></script>
+	<script src="/ct24h/trs/resources/js/s.js" type="text/javascript"></script>
+	<script src="/ct24h/trs/resources/js/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/ct24h/trs/resources/js/interface.js" type="text/javascript"></script>
+
+</body>
+</html>    

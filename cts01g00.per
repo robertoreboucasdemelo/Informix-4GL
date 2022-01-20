@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS01G00                                              Marcelo
+                                                                     Gilberto
+ Mostra todas as inconsistencias encontradas no atendimento          Fev/1997
+-----------------------------------------------------------------------------}
+
+Database formonly
+
+screen size 24 by 80
+{
+[h                                           ]
+------------------------------------cts01g00--
+[a ][b                                       ]
+[a ][b                                       ]
+[a ][b                                       ]
+[a ][b                                       ]
+[a ][b                                       ]
+[a ][b                                       ]
+
+}
+End
+
+Attributes
+ h  = formonly.cabecalho   ,noentry;
+ a  = formonly.inccod      ,invisible,noentry;
+ b  = formonly.incdsc      ,upshift,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts01g00(inccod thru incdsc)
+End

@@ -1,0 +1,121 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS11M00                                               Marcelo
+                                                                      Gilberto
+ Laudo - Assistencia a Passageiros (Transporte)                       Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]ASSISTENCIA A PASSAGEIROS-TRANSPORTE [a2             ]
+--------------------------------------------------------------------cts11m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+ Assistenc:[c0|c1      ]           Motivo....:[c |c2                  ]
+ Serv.Ref.:[c3|c4     |c5]
+ Local....:[d1                                                               ]
+ Bairro...:[d2                  ]  Cidade....:[d3                  ] U.F.:[d4]
+ Complemen:[d10                      ]       Resp.Local:[d9                  ]
+ Ponto Ref:[d5                                                      ]Zona:[d6]
+ Tel.Local:[d7  |d8       ]        Tel.Celul.:[d11 |d12      ]       Bag.:[e]
+ Destino..:[e0                                      ]
+ Endereco.:[e1                                                               ]
+ Bairro...:[e2                  ]  Cidade....:[e3                  ] U.F.:[e4]
+ Srv.Imed?:[f] Priorid.:[g|g1    ] Serv.Lib.?:[h]  [f2         |p]   Form:[i]
+ Atd./Lib.:[j1                                              |j2        |j3   ]
+[k                                                                           ]
+}
+end
+
+tables
+   datmservico     ,
+   datmservicocmp  ,
+   datmlcl         ,
+   datmligacao     ,
+   datkasitip      ,
+   datmassistpassag,
+   datkasimtv
+
+attributes
+
+a1   = formonly.servico             , noentry;
+a2   = datmligacao.c24solnom        , noentry;
+
+b1   = datmservico.nom              , upshift
+                                    , comments = " Nome";
+b2   = formonly.doctxt              , noentry;
+b6   = datmservico.corsus           , upshift
+                                    , comments = " Susep";
+b7   = datmservico.cornom           , upshift
+                                    , comments = " Corretor";
+b8   = formonly.cvnnom              , noentry;
+b9   = datmservico.vclcoddig        , format = "&&&&&&"
+                                    , comments = " Codigo do veiculo";
+b10  = datmservico.vcldes           , upshift
+                                    , comments = " Descricao do veiculo";
+b11  = datmservico.vclanomdl        , comments = " Ano do veiculo";
+b12  = datmservico.vcllicnum        , upshift
+                                    , comments = " Placa do veiculo";
+b13  = formonly.vclcordes           , downshift
+                                    , comments = " Cor do veiculo";
+
+c0   = datmservico.asitipcod        , comments = " Tipo de assistencia";
+c1   = datkasitip.asitipabvdes      , noentry;
+c    = datmassistpassag.asimtvcod   , comments = " Motivo da solicitacao";
+c2   = datkasimtv.asimtvdes         , upshift;
+c3   = formonly.refatdsrvorg type dec, format = "&&"
+                                    , comments = " Origem do servico de referencia";
+c4   = datmassistpassag.refatdsrvnum, format = "&&&&&&&"
+                                    , comments = " Numero do servico de referencia";
+c5   = datmassistpassag.refatdsrvano, format = "&&"
+                                    , comments = " Ano do servico de referencia";
+
+d1   = formonly.lgdtxt              , upshift
+                                    , comments = " Local onde se encontram os passageiros";
+d2   = datmlcl.lclbrrnom            , upshift;
+d3   = datmlcl.cidnom               , upshift;
+d4   = datmlcl.ufdcod               , upshift;
+d5   = datmlcl.lclrefptotxt         , upshift
+                                    , comments = " Ponto de referencia do local";
+d6   = datmlcl.endzon               , upshift
+                                    , comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste ou (CE)ntral";
+d7   = datmlcl.dddcod               , comments = " DDD do local onde se encontram os passageiros";
+d8   = datmlcl.lcltelnum            , comments = " Telefone do local onde se encontram os passageiros";
+d9   = datmlcl.lclcttnom            , upshift
+                                    , comments = " Responsavel no local";
+d10  = datmlcl.endcmp               , upshift
+                                    ,comments = " Complemento do endereco";
+d11  = datmlcl.celteldddcod         ,comments = " Codigo DDD do Celular";
+d12  = datmlcl.celtelnum            ,comments = " Telefone Celular";
+e    = datmassistpassag.bagflg      , upshift
+                                    , comments = " Existe bagagem ? (S)im ou (N)ao";
+e0   = formonly.dstlcl              , upshift
+                                    , comments = " Local de destino dos passageiros";
+e1   = formonly.dstlgdtxt           , upshift;
+e2   = formonly.dstbrrnom           , upshift;
+e3   = formonly.dstcidnom           , upshift;
+e4   = formonly.dstufdcod           , upshift;
+f    = formonly.imdsrvflg           , upshift
+                                    , comments = " Servico imediato ? (S)im ou (N)ao";
+g    = datmservico.atdprinvlcod     , comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+g1   = formonly.atdprinvldes        , noentry;
+h    = datmservico.atdlibflg        , upshift
+                                    , comments = " Servico liberado ? (S)im ou (N)ao";
+f2   = formonly.prsloccab           , noentry;
+p    = formonly.prslocflg           , upshift
+                                    , comments = " Prestador no local: (S)im ou (N)ao";
+i    = formonly.frmflg              , upshift
+                                    , comments = " Entrada via formulario: (S)im ou (N)ao";
+j1   = formonly.atdtxt              , noentry;
+j2   = datmservico.atdlibdat        , noentry;
+j3   = datmservico.atdlibhor        , noentry;
+k    = formonly.msgfun              , noentry;
+
+end
+
+instructions
+  delimiters " "
+end

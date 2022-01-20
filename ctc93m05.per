@@ -1,0 +1,74 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m05                                               Beatriz
+                                                                       Araujo
+ Cadastro de/para Contabilizacao                                     Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ -------------------------------------------------------------------ctc93m05--
+ Empresa...............: [a  |a1                     ]   
+ Ramo Principal........: [b     ]           Modalidade Principal..: [b1 ]  
+ Ramo Contabil.........: [c     ]           Modalidade Contabil...: [c1 ]
+ Clausula..............: [d1    ]           Clausula paga?........: [d]    
+ Servico decorrente de.: [e |e1                   ]                    
+ Servico prestado para.: [f |f1                   ]                        
+ Bem atendido..........: [g |g1                   ] 
+ Carteira..............: [h |h1                                           ]
+ Grupo de Assunto......: [i    |i1                                       ] 
+ Assunto...............: [l    |l1                                       ] 
+ -----------------------------------------------------------------------------
+ Evento Provisao.......: [j         ]  Evento Ajuste.........: [j1        ]     
+ Evento Cancelamento...: [j2        ]  Evento Pagamento......: [j3        ]
+ Status................: [k]
+
+ Atualizado.:[x1        ]por[z1                 ]   
+}
+end
+tables dbskctbevnpam,
+       gabkemp,
+       datkastagp,
+       isskfunc,
+       datkasttip,
+       datkassunto
+
+
+attributes
+    a  = dbskctbevnpam.empcod       ,format = "&&&";
+    a1 = gabkemp.empsgl             , noentry;
+    b  = dbskctbevnpam.pcpsgrramcod ,format = "&&&&&&";                                   
+    b1 = dbskctbevnpam.pcpsgrmdlcod ,format = "&&&";                                   
+    c  = dbskctbevnpam.ctbsgrramcod ,format = "&&&&&&";                                   
+    c1 = dbskctbevnpam.ctbsgrmdlcod ,format = "&&&";
+    d  = dbskctbevnpam.pgoclsflg    , upshift;                                
+    d1 = dbskctbevnpam.clscod       , upshift;   
+    e  = dbskctbevnpam.srvdcrcod    ,format = "&&";                                
+    e1 = formonly.srvdcrdes         , noentry;
+    f  = dbskctbevnpam.itaasstipcod ,format = "&&";                                   
+    f1 = datkasttip.itaasiplntipdes , noentry;                                   
+    g  = dbskctbevnpam.bemcod       ,format = "&&";                             
+    g1 = formonly.bemdes            , noentry;                       
+    h  = dbskctbevnpam.srvatdctecod ,format = "&&";                                   
+    h1 = formonly.srvatdctedes      , noentry;                              
+    i  = dbskctbevnpam.c24astagp    , upshift;                                    
+    i1 = datkastagp.c24astagpdes    , noentry; 
+    l  = dbskctbevnpam.c24astcod    , upshift;
+    l1 = datkassunto.c24astdes      , noentry;                                
+    j  = dbskctbevnpam.srvpovevncod ;                                     
+    j1 = dbskctbevnpam.srvajsevncod ;                                     
+    j2 = dbskctbevnpam.srvbxaevncod ;  
+    j3 = dbskctbevnpam.srvpgtevncod ;  
+    k  = dbskctbevnpam.atopamflg    , upshift;                                 
+    x1 = dbskctbevnpam.atldat       , noentry;                              
+    z1 = isskfunc.funnom            , noentry;                         
+       
+    
+end 
+instructions
+     delimiters " "
+     
+end      
+
+                                     

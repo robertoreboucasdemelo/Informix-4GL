@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M08                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de grupo tarifario (veiculos)                 Dez/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m08--
+ Cod. Grupo:[a5    ][a10                                     ]
+ Situacao..:[s]
+
+ Incluido..:[a30       ]por[a35                ]
+ Atualizado:[a40       ]por[a45                ]
+------------------------------------------------------------------------------
+ Codigo  Descricao
+------------------------------------------------------------------------------
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+ [b5]   [b10                                                         ]
+
+}
+end
+
+tables dbskgtf
+
+attributes
+
+   a5  = formonly.socgtfcod,                          noentry;
+   a10 = dbskgtf.socgtfdes,                           noentry;
+   s   = dbskgtf.socgtfstt,                           noentry;
+
+   a30  = dbskgtf.caddat,                             noentry;
+   a35  = formonly.cadfunnom,                         noentry;
+   a40  = dbskgtf.atldat,                             noentry;
+   a45  = formonly.funnom,                            noentry;
+
+   b5  = formonly.vclcoddig type decimal(2,0),
+         comments = " Codigo do veiculo"                     ;
+   b10 = formonly.vcldes,                             noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb10m08(vclcoddig thru vcldes)

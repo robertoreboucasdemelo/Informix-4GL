@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m41                                               R.Fornax
+
+ Cadastro de Regras Azul                                              Abr/2016
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m41--
+
+ Codigo......: [a   ]
+ Empresa.....: [b   ] - [b1                                                 ]
+ Ramo........: [c   ] - [c1                                                 ]
+ Clausula....: [d   ] - [d1                                                 ]
+ Vig.Inicial.: [e         ]
+ Vig.Final...: [f         ]
+ Paga........: [g]
+ Exportado...: [m]
+ Situacao....: [h]
+
+
+ Observacoes.: [i                                                           ]
+ Atualizado..: [j          ] por [l                 ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.plnclscod      , comments = " Digite o Codigo do Plano/Clausula"    ,upshift;
+    b  = formonly.empcod         , comments = " Codigo da Empresa"                    ,upshift;
+    b1 = formonly.empnom         , noentry;
+    c  = formonly.ramcod         , comments = " Codigo do Ramo"                       ,upshift;
+    c1 = formonly.ramnom         , noentry;
+    d  = formonly.clscod         , comments = " Digite a Clausula"                    ,upshift;
+    d1 = formonly.clsnom         , noentry;
+    e  = formonly.clsviginidat   , comments = " Vigencia Inicial"                     ,upshift;
+    f  = formonly.clsvigfimdat   , comments = " Vigencia Final"                       ,upshift;
+    g  = formonly.clssitflg      , comments = " Clausula Paga S-im ou N-ao"           ,upshift;
+    m  = formonly.irdclsflg      , noentry;
+    h  = formonly.regsitflg      , comments = " Situacao A-tivo ou I-nativo"          ,upshift;
+    i  = formonly.obs1           , noentry;
+    j  = formonly.regatldat      , noentry;
+    l  = formonly.funnom         , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

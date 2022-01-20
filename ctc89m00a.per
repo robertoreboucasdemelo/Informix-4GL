@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc89m00a                                               Adriano
+                                                                        Santos
+ Cadastro de CIDADES X AVISOS VIA SMS                                 Jun/2010
+-----------------------------------------------------------------------------}
+
+
+database formonly
+
+screen
+{---------------------------------------------ctc89m00a---
+
+           CIDADES X AVISOS VIA SMS                     
+
+ Cidade  : [a                                ]
+ UF      : [b ]   
+ Tipo SMS: [c |d                             ]
+
+
+}
+end
+
+attributes
+a   = formonly.cidnom    ,upshift;          
+b   = formonly.ufdcod    ,upshift;    
+c   = formonly.tipcod    ,upshift;  
+d   = formonly.destipsms ,noentry;
+end
+
+instructions
+   delimiters " "
+end

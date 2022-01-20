@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m60                                               Roberto
+
+ Localiza CGC/CPF                                                     Jul/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+------------------------------------------------------------------cta01m60----
+                    Consulta Clientes por Cnpj/Cpf
+------------------------------------------------------------------------------  
+ CNPJ/CPF                NOME
+------------------------------------------------------------------------------
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+[a                    ][b                                              ]
+
+}
+end
+tables gsakseg
+attributes
+a = formonly.cgccpf         ;
+b = gsakseg.segnom , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m60(cgccpf,segnom)
+end

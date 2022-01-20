@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn39c00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de grupos de distribuicao dos veiculos do Porto Socorro      Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Grupos de distribuicao
+-----------------------ctn39c00--
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+[a                        ][b   ]
+
+}
+end
+
+ tables
+    datkvcldtbgrp
+
+ attributes
+    a  = datkvcldtbgrp.vcldtbgrpdes, noentry;
+    b  = datkvcldtbgrp.vcldtbgrpcod, noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctn39c00(vcldtbgrpdes thru vcldtbgrpcod)

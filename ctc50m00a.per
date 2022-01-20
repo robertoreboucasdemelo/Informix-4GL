@@ -1,0 +1,36 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC50M00a                  Criacao: 27/02/2013 - Jorge
+
+Cadstrar Origens x tipo de Acionamento por cidade
+------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{-----------------------------------------------------------
+ Cidade:[a                                            ]     
+-----------------------------------------------ctc50m00a---
+ Origem    Grp. Acion.                                            
+                                                          
+  [e1 ]     [e2 ][e3                             ]       
+  [e1 ]     [e2 ][e3                             ]         
+  [e1 ]     [e2 ][e3                             ]         
+  [e1 ]     [e2 ][e3                             ]        
+                                                          
+ (F8)Salva,  (F1)Inclui, (F2)Exclui                    
+----------------------------------------------------------         
+}
+end 
+
+tables datrorgcidacntip
+
+attributes
+a  = formonly.texto      , noentry;
+e1 = formonly.atdsrvorg  , comments="Codigo da Origem";
+e2 = formonly.gpsacngrpcod , comments="0 - Não acionado por GPS e 1 - Acionado por GPS";
+e3 = formonly.gpsacngrpdes , noentry;
+
+instructions
+     delimiters " "
+     screen record s_ctc50m00a(atdsrvorg, gpsacngrpcod,gpsacngrpdes)
+end

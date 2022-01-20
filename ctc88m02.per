@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTC88M02                                           Robert
+                                                               
+ Gerenciamento de especialidades                                Dez/2010
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                     GERENCIAMENTO DE ESPECIALIDADES        
+--------------------------------------------------------------------ctc88m02--
+      Cfg Seq Grupo                 Viatura              Assistencia  Chave
+      --- --- --------------------- ------------------   ------------  ---
+   [x|a  |a1 |b                    |c                 ] [d            |e  ]
+                                   [f                  |g         |h       ]
+                            
+   [x|a  |a1 |b                    |c                 ] [d            |e  ]
+                                   [f                  |g         |h       ]
+                            
+   [x|a  |a1 |b                    |c                 ] [d            |e  ]
+                                   [f                  |g         |h       ]
+                                                          
+------------------------------------------------------------------------------
+ (F5)ON/OFF  (F17) Abandona
+}
+
+end
+
+tables
+   dpaksocor
+
+attributes
+   
+   x   = formonly.navega;
+   
+   a   = formonly.espcnfcod,noentry;
+   
+   a1  = formonly.hstseq,noentry;
+   
+   b   = formonly.vcldtbgrpdes,noentry;
+   
+   c   = formonly.cpodes,noentry;
+   
+   d   = formonly.asitipdes,noentry;
+   
+   e   = formonly.atmacnflg,noentry;
+      
+   f   = formonly.funnom ,noentry;
+   
+   g   = formonly.atldat ,noentry;
+   
+   h   = formonly.atlhor ,noentry;
+end
+
+instructions
+   delimiters " "
+   
+screen record s_ctc88m02[3](navega thru atlhor)    

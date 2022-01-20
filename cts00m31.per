@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m31                                               Marcus
+                                                                        
+ Exibe alertas de Internet para operadores do radio                   Set/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a1                                                                 ]
+-----------------------------------------------------------cts00m31--
+ Alerta
+
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+[b1                                                   |b2        |b3]
+
+}
+end
+
+ tables datmsrvintale
+
+ attributes
+
+    a1 = formonly.cabec,                               noentry;
+    b1 = formonly.opraledes,                           noentry;
+    b2 = formonly.servico,                             noentry;
+    b3 = datmsrvintale.srvintaleseq,    invisible,     noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_cts00m31(opraledes thru srvintaleseq)
+

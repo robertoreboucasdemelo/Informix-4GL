@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts16m02                                               Ruiz  
+ Informa quem esta' ALT, CON, RET no sinistro                       Fev/2002
+-----------------------------------------------------------------------------}
+
+database porto   
+screen size 24 by 80
+
+{
+    Alteracao,Consulta, ou Retorno
+--------------------------------------------cts16m02--
+
+ Solicitante:[a             ] Tipo:[b1][b2          ]
+ Complemento:[c  ]
+
+[d                       ]
+}
+end
+
+tables
+   datmligacao,
+   datksoltip 
+
+attributes
+
+   a   = datmligacao.c24solnom            , upshift,
+         comments = " Nome do solicitante";
+   b1  = datksoltip.c24soltipcod          ;
+   b2  = datksoltip.c24soltipdes          , upshift, noentry;
+   c   = formonly.cmptip                  , upshift;
+   d   = formonly.texto                   , noentry;
+
+instructions
+  delimiters " " 
+end

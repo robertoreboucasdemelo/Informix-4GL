@@ -1,0 +1,55 @@
+{---------------------------------------------------------------------------
+ Nome do form: CTB05M06                                             Wagner  
+                                                                   
+ Consulta acionamento de servicos do prestador selecionado          Mar/2002
+---------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb05m06--
+Data:[a1        |a10       ] Prest.[a2    |a3                  ][a4          ]
+------------------------------------------------------------------------------
+ Servico       Etapa         --------------- Acionamento -------------- Vcl.
+
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+[b |b1     |b2|b4            |b5                |t1|b6        |t2|b7   |b8   ]
+
+}
+
+ tables
+   dpaksocor, datmservico, datketapa, datkveiculo
+
+ attributes
+   a1  = formonly.datpsq      , noentry;
+   a10 = formonly.datpsq_a    , noentry;
+   a2  = dpaksocor.pstcoddig  , noentry;
+   a3  = dpaksocor.nomgrr     , noentry;
+   a4  = formonly.srvqtdtxt   , noentry;
+
+   b   = datmservico.atdsrvorg, format = "&&"     , noentry;
+   b1  = datmservico.atdsrvnum, format = "&&&&&&&", noentry;
+   b2  = datmservico.atdsrvano, format = "&&"     , noentry;
+   b4  = datketapa.atdetpdes  , noentry;
+   b5  = formonly.funnom      , noentry;
+   t1  = formonly.txt1        , noentry;
+   b6  = datmservico.cnldat   , noentry;
+   t2  = formonly.txt2        , noentry;
+   b7  = datmservico.atdfnlhor, noentry;
+   b8  = datkveiculo.atdvclsgl, noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctb05m06(atdsrvorg thru atdvclsgl)
+ end

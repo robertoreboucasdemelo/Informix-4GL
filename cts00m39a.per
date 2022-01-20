@@ -1,0 +1,24 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTS00M39                                              Priscila
+ Filtro da tela de prestadores nao logados no portal                 Jun/2006
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+{
+                        Filtro
+----------------------------------------------cts00m39a--
+ Estado: [a ]
+ Cidade: [b                                            ]
+
+}
+end
+
+attributes
+   a = formonly.estado    , upshift;
+   b = formonly.cidade    , upshift;
+end
+
+instructions
+   delimiters  " "
+end

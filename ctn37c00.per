@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn37c00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de equipamentos para veiculos de assistencia                 Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Equipamentos
+------------------------------------------------ctn37c00--
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+[a                                                 ][b   ]
+
+}
+end
+
+ tables
+    datkvcleqp
+
+ attributes
+    a  = datkvcleqp.soceqpdes, noentry;
+    b  = datkvcleqp.soceqpcod, noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctn37c00(soceqpdes thru soceqpcod)

@@ -1,0 +1,46 @@
+{############################################################################
+# Nome do Modulo: CTC20M01                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CADASTRO DE CRITERIOS DA BONIFICAÇÃO.                            NOV/2008 #
+############################################################################}
+
+database porto
+
+screen
+{
+
+
+------------------------------------------------------------------------------     
+                      CADASTRO DE CRITERIO DE BONIFICAÇÃO
+--------------------------------------------------------------------ctc20m01-- 
+         
+                                                                            
+                                                                  
+         Código:[a   ]              Tipo: [e  |f               ]                                             
+                                                                            
+         Descrição:[b                                          ]            
+                                                                 
+         Data Atualização:[c                  ]                             
+                                                                            
+         Usuário Atualização:[d                                ]            
+                                                                            
+                                                                             
+       
+                                                                           
+}
+
+tables
+   dpakprtbnfcrt
+   
+attributes
+   a = dpakprtbnfcrt.bnfcrtcod, comments = " Codigo do Criterio da Bonificação";
+   b = dpakprtbnfcrt.bnfcrtdes, comments = " Descrição do Criterio da Bonificação", upshift;
+   c = dpakprtbnfcrt.atldat,    noentry;
+   d = formonly.funnom,         noentry;
+   e = dpakprtbnfcrt.crttip,    comments = " (A)dicional (C)redencial (P)ercentual ", upshift;
+   f = formonly.crttipdes,     noentry;
+end
+
+instructions
+  delimiters " "
+end

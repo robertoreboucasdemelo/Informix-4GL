@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN47C01                                              Ruiz   
+ Consulta atendimento a reparos nos vidros                           Jun/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn47c01--
+ No.Servico:[a            ]       Empresa:[b              ]
+------------------------------------------------------------------------------
+           Ligacao       Data      Hora       Situacao   
+
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]           
+        [c         ] [d         ] [e    ] [f              ]  
+
+}
+end
+
+attributes
+
+  a  = formonly.servico    , noentry;
+  b  = formonly.nomemp     , noentry;
+  c  = formonly.lignum     , noentry;
+  d  = formonly.ligdat     , noentry;
+  e  = formonly.lighorinc  , noentry;
+  f  = formonly.atdetpdes  , noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn47c01(lignum  thru atdetpdes)
+end

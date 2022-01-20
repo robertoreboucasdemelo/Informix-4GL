@@ -1,0 +1,37 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC00M02c                                Luis Barros  - Fev/2013                                                                 
+
+ POP-UP - Aviso de Alteracao de Prestador  
+------------------------------------------------------------------------------}
+database porto
+
+screen size 24 by 60
+{
+ +------------------------------------------+
+ |              A T E N C A O               |
+ |--------------------------------ctc00m02c-|
+ |                                          |
+ | ATENCAO: Favor informar ao SAP os dados  |
+ |          alterados no cadastro, para     |
+ |          evitarmos inconsistencias no    |
+ |          pagamento deste prestador!      |
+ |                                          |
+ |                        CONFIRMA CIENCIA? |
+ |                                          |
+ | [a1]                        (F8)CONFIRMA |
+ +------------------------------------------+
+}
+end
+
+tables dbsmopg
+
+attributes
+
+   a1 = formonly.abc
+      , invisible;
+
+
+end
+instructions
+ delimiters  " "
+end

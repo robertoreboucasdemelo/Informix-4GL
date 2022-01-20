@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn20c00                                                 Pedro
+                                                                      Marcelo
+ Mostra todos os Convenios                                           Nov/1995
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+             Convenios
+--------------------------ctn20c00--
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+[a                             ][b ]
+
+}
+End
+
+tables
+   datkscv
+
+Attributes
+ a  = formonly.cvnnom      ,noentry;
+ b  = datkscv.cvnnum       ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn20c00(cvnnom thru cvnnum)
+End

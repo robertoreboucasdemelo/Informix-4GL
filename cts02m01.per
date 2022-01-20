@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS02M01                                                  Pedro
+                                                                       Marcelo
+ Laudo - Remocoes (Dados Ref. a Caminhao)                             Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      Dados referentes ao veiculo/carga
+-----------------------------------------cts02m01--
+
+ Carregado....:[a ]    Peso da carga..:[b     ]Kg
+
+ Tipo Caminhao:[c ]    Tipo Carroceria:[d      ]
+
+
+}
+end
+
+ tables datmservicocmp
+
+ attributes
+
+   a  = datmservicocmp.vclcrgflg,
+        comments = " Veiculo carregado: (S)im ou (N)ao",
+                                                  upshift,
+                                                  autonext;
+   b  = datmservicocmp.vclcrgpso,
+        comments = " Peso da carga em Kg",
+                                                  autonext;
+   c  = datmservicocmp.vclcamtip,
+        comments = " Tipo caminhao: (1)Truck, (2)Toco, (3)Carreta",
+                                                  required,
+                                                  autonext;
+   d  = datmservicocmp.vclcrcdsc,
+        comments = " Tipo de carroceria",
+                                                  upshift,
+                                                  autonext,
+                                                  required;
+ end
+
+instructions
+  delimiters " "
+end

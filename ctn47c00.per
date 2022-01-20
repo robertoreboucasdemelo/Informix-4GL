@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN47C00                                              Marcelo 
+                                                                     Gilberto
+                                                                     Wagner   
+ Consulta atendimento a reparos nos vidros                           Dez/1999
+-----------------------------------------------------------------------------}
+
+database formonly    
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn47c00-- 
+ Data:[a         ]               No.Servico:[b0|b1     |b2]
+------------------------------------------------------------------------------
+ No.Servico     Documento                  Empresa           Ultima situacao
+
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+[c            |d                             |e             ][f              ]
+
+
+}
+end
+
+
+attributes
+
+  a   = formonly.atddat               ,                           
+        comments = " Data atendimento para pesquisa";  
+
+  b0  = formonly.atdorigem    type dec , format = "&&",
+        comments = " Origem do Servico", noentry;
+
+  b1  = formonly.atdsrvnum    type dec , format = "&&&&&&&",
+        comments = " Numero do Servico";
+
+  b2  = formonly.atdsrvano    type dec , format = "&&",
+        comments = " Ano do Servico";
+
+  c   = formonly.servico               , noentry; 
+
+  d   = formonly.documento             , noentry;
+
+  e   = formonly.nomemp                , noentry;
+
+  f   = formonly.atdetpdes             , noentry;
+end
+
+instructions
+  delimiters " " 
+  screen record s_ctn47c00(servico thru atdetpdes) 
+end
+
+

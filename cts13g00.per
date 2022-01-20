@@ -1,0 +1,45 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts13g00                                               Marcelo
+                                                                     Gilberto
+ Verifica se existe bloqueio para as chaves informadas               Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                         ]
+--------------------------------------------------cts13g00--
+ Numero   Dsc.Chave  Conteudo Chave               Nivel
+                                               
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+[b     ] [b1      ] [b2                          |b3      ]
+
+
+}
+end
+
+ tables datkblq
+
+ attributes
+
+    a  = formonly.cabec       ,reverse       ,noentry;
+
+    b  = datkblq.blqnum                      ,noentry;
+    b1 = formonly.blqchvdes                  ,noentry;
+    b2 = formonly.blqchvcnt                  ,noentry;
+    b3 = formonly.blqnivdes                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts13g00(blqnum thru blqnivdes)
+ end

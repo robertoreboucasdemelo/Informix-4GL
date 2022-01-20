@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m01                                      R.Fornax
+                                                             
+ Cadastro de Segmento                                        Mar/2014 
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m01--
+                            CADASTRO DE SEGMENTO  
+------------------------------------------------------------------------------
+   Codigo      Produto                                    
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]     
+------------------------------------------------------------------------------
+   [c                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper , comments = " Digite o Codigo do Segmento"       ,upshift;
+   b  = formonly.desper , comments = " Digite a Descricao do Segmento"    ,upshift;
+   c  = formonly.msg    , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m01(codper thru desper)
+end

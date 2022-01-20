@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN04C01                                              Marcelo
+                                                                     Gilberto
+ Consulta reguladores de sinistro de transportes por UF              Jun/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+              Reguladores de Sinistro de Transportes
+--------------------------------------------------------ctn04c01--
+ UF  Cidade                Codigo   Nome do Regulador
+
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+[a ][b                   ][c     ][d                             ]
+
+}
+end
+
+tables sstkprest
+
+attributes
+  a  = sstkprest.endufd,    noentry, upshift;
+  b  = sstkprest.endcid,    noentry, upshift;
+  c  = sstkprest.sinprscod, noentry, format = "&&&&&&";
+  d  = sstkprest.sinprsnom, noentry, upshift;
+end
+
+instructions
+     screen record s_ctn04c01(endufd thru sinprsnom)
+     delimiters " "
+end

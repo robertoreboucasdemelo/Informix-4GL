@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTC28M00                                     Marcelo
+                                                            Gilberto
+ Manutencao do cadastro de regioes                          Mai/1996
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc28m00--
+    Codigo  Descricao da Regiao
+------------------------------------------------------------------------------
+
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+    [a  ]  [b                                                           ]
+
+
+}
+end
+
+tables
+   datkatdreg
+
+attributes
+   a   = datkatdreg.atdregcod     ,noentry;
+   b   = datkatdreg.atdregdes     ,upshift,
+         comments = " Descricao da Regiao";
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc28m00(atdregcod thru atdregdes)
+end
+

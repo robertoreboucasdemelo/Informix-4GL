@@ -1,0 +1,66 @@
+database formonly
+
+screen
+{
+---------------------(Localiza serviços por proximidade)------------cts59m00--
+ Dt\Hr Ini:[a         |b    ]Dt\Hr Fim:[c         |d    ]    Dist:[e     ]Mt
+ Pst:[g    ]Sgla:[h    ]Emp:[i ]Grupo Ntz:[j  ]Cod Assist:[l  ]Tp Serv:[m  ]
+ UF:[n ]Cidade:[o               ]Logradouro:[p                             ]
+------------------------------------------------------------------------------
+     Servico    Combinado com cliente   Lib Espera   Enviar   Emp   Etapa
+                                                    
+ [q][r         ]Comb[s    ]de[t    ]    [u] [v      |x       |y    |z      ]
+    [a1        |a2                                  ]Ditancia de[a3      ]Mt
+                                                    
+ [q][r         ]Comb[s    ]de[t    ]    [u] [v      |x       |y    |z      ]
+    [a1        |a2                                  ]Ditancia de[a3      ]Mt
+                                                    
+ [q][r         ]Comb[s    ]de[t    ]    [u] [v      |x       |y    |z      ]
+    [a1        |a2                                  ]Ditancia de[a3      ]Mt
+                                                    
+ [q][r         ]Comb[s    ]de[t    ]    [u] [v      |x       |y    |z      ]
+    [a1        |a2                                  ]Ditancia de[a3      ]Mt
+    
+ (F6)Nova consulta (F7)Lig. (F8)Laudo (F17)Abandona            Total[w     ]                  
+}
+end
+
+ attributes
+
+    a =  formonly.datcmbini,      autonext;
+    b =  formonly.horcmbini,      autonext;
+    c =  formonly.datcmbfim,      autonext;
+    d =  formonly.horcmbfim,      autonext;
+    e =  formonly.dstsrv   ,      autonext;
+                                  
+    g =  formonly.pstcoddig,      autonext;
+    h =  formonly.atdvclsgl,      upshift, autonext;
+    i =  formonly.empcod,         autonext;
+    j =  formonly.socntzgrpcod,   autonext;
+    l =  formonly.asitipcod,      autonext;
+    m =  formonly.atdsrvorg,      autonext;
+    n =  formonly.ufdcod,         autonext;
+    o =  formonly.cidnom,         autonext;
+    p =  formonly.lgdnom,         autonext;
+
+    q =  formonly.aux,            autonext;
+    r =  formonly.servico,        noentry ;
+    s =  formonly.horacomb,       noentry ;
+    t =  formonly.datacomb,       noentry ;
+    u =  formonly.atdlibflg,      noentry ;
+    v =  formonly.espera,         noentry ;
+    x =  formonly.asitipdes,      noentry ;
+    y =  formonly.empsgl,         noentry ;
+    z =  formonly.atdetpdes,      noentry ;
+    a1 = formonly.srvtipabvdes,   noentry ;
+    a2 = formonly.endereco,       noentry ;
+    a3 = formonly.dstqru,         noentry ;
+
+    w =  formonly.total,          noentry;
+
+ end
+
+ instructions
+    screen record s_servicos(aux thru dstqru)
+    delimiters " "
+ end    

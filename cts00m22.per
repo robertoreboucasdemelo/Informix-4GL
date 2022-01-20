@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M22                                                Wagner
+
+ Conclusao do Servico ja executado                                    Abr/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Acionamento em[o0        ]as[o1   ]por[o2                  ]
+-------------------------------------------------------cts00m22--
+ Etapa....:[c |c1             ]
+ Prestador:[c3    |c4                       ]
+ Cidade...:[c41                                             ]
+ Telefone.:[c5  ][c6                                      ]
+ Contato..:[c7                                      ]
+
+
+}
+end
+
+ Tables
+   dpaksocor, datmservico, datmsrvacp, datketapa
+
+ Attributes
+   o0  = datmservico.cnldat    , noentry;
+   o1  = formonly.atdfnlhor    , noentry;
+   o2  = formonly.operador     , noentry;
+   c   = datmsrvacp.atdetpcod  , comments = " Etapa para acionamento";
+   c1  = datketapa.atdetpdes   , reverse, noentry;
+
+   c3  = datmservico.atdprscod , format = "&&&&&&"
+                               , comments = " Codigo do prestador";
+   c4  = dpaksocor.nomgrr      , noentry;
+
+  c41  = formonly.cidufdprs    , noentry;
+
+   c5  = dpaksocor.dddcod      , noentry;
+   c6  = dpaksocor.teltxt      , noentry;
+   c7  = datmservico.c24nomctt , noentry;
+
+ end
+
+ instructions
+   delimiters " "
+ end

@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m51                                               Marcelo
+                                                                      Gilberto
+ Pesquisa por Nome do titular ou Adicional                            Jan/1996
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+---------------------------------------------------------------------cta01m51-
+                     PESQUISA POR NOME DO ASSOCIADO
+------------------------------------------------------------------------------
+  Nome Associado                  Tipo       Cartao            Situacao
+
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+ [p10                           ][p15      ][p20             ][p25      ]
+
+}
+
+end
+ tables eccmcli, eccmpti
+
+attributes
+   p10  = eccmcli.pcaclinom                            ,noentry;
+   p15  = formonly.tipo                                ,noentry;
+   p20  = eccmpti.pcapticod   ,  format = "&&&&&&&&&&&&&&&&"  ,noentry;
+   p25  = formonly.situacao                            ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m51 (pcaclinom  thru  situacao)
+end

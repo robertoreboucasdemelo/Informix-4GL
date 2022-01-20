@@ -1,0 +1,38 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m04                                               Almeida
+
+ Pop up de campos                                                    Mai/1998
+----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+         Pesquisa de campos para cadastramento
+--------------------------------------------------ctc21m04--
+ Campos                Descricao
+
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+[a                   ][b                             ][c][d]
+
+}
+end
+
+ attributes
+    a  = formonly.prtcponom,upshift,noentry;
+    b  = formonly.prtcpodes,upshift,noentry;
+    c  = formonly.prtcpointcod,noentry,invisible;
+    d  = formonly.prtcpointnom,noentry,invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m04(prtcponom,prtcpodes,prtcpointcod,prtcpointnom)
+ end

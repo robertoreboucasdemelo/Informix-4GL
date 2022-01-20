@@ -1,0 +1,60 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN06C05                              Criacao: 06/01/95 - Pedro
+
+ Consulta Lista_OESP
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn06c05--
+          Tipo de servico:[a2][a3                                 ]
+------------------------------------------------------------------------------
+
+ R.social:[a8                                      ]Codigo:[a9    ]
+ Endereco:[a10                                     ]Bairro:[a11              ]
+ Cidade..:[a12                 ] U.F:[u2]           Cep...:[a13  ][a14]
+ Tels....:[a15][a16                                     ]
+ Horario.: 2/6a[a17  ]as[a18  ] Sab.:[a19  ]as[a20  ]Dom..:[a21  ]as[a22  ]
+ 24 horas:[c]
+
+ R.social:[a8                                      ]Codigo:[a9    ]
+ Endereco:[a10                                     ]Bairro:[a11              ]
+ Cidade..:[a12                 ] U.F:[u2]           Cep...:[a13  ][a14]
+ Tels....:[a15][a16                                     ]
+ Horario.: 2/6a[a17  ]as[a18  ] Sab.:[a19  ]as[a20  ]Dom..:[a21  ]as[a22  ]
+ 24 horas:[c]
+}
+end
+
+tables dpaklista,
+       dpckserv
+
+attributes
+a2   = dpckserv.pstsrvtip    ,comments = " Tipo de servico",
+                              autonext;
+a3   = dpckserv.pstsrvdes    ,noentry;
+a8   = dpaklista.empnom      ,noentry;
+a9   = dpaklista.emplstcod   ,noentry;
+a10  = dpaklista.endlgd      ,noentry;
+a11  = dpaklista.endbrr      ,noentry;
+a12  = dpaklista.endcid      ,noentry;
+u2   = dpaklista.endufd      ,noentry;
+a13  = dpaklista.endcep      ,noentry;
+a14  = dpaklista.endcepcmp   ,noentry;
+a15  = dpaklista.dddcod      ,noentry;
+a16  = dpaklista.teltxt      ,noentry;
+a17  = dpaklista.horsegsexinc,noentry;
+a18  = dpaklista.horsegsexfnl,noentry;
+a19  = dpaklista.horsabinc   ,noentry;
+a20  = dpaklista.horsabfnl   ,noentry;
+a21  = dpaklista.hordominc   ,noentry;
+a22  = dpaklista.hordomfnl   ,noentry;
+c    = dpaklista.hs24flg     ,noentry;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctn06c05(empnom thru hs24flg)
+end

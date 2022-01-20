@@ -1,0 +1,54 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTN10C01                                     Marcelo
+                                                            Gilberto
+ Mostra as apolices/ramos encontradas para local de risco   Mar/97
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn10c01--
+ Logradouro:[f01                                                         ]
+ Bairro....:[f02                                     ]            [inv       ]
+ Cidade....:[f03                                          ]  Cep.:[f04  ][f05]
+------------------------------------------------------------------------------
+     Ramo   Descricao do Ramo                  Suc.    Apolice   [t0        ]
+
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+    [a0  ] [a1                             ]   [a2   ][a3        ]
+
+}
+end
+
+tables gtakramo, rlaklocal, rsamseguro
+
+attributes
+
+  f01  = rlaklocal.endlgdnom;
+  f02  = rlaklocal.endbrr   ;
+  f03  = rlaklocal.endcid   ;
+  f04  = rlaklocal.endcep   ;
+  f05  = rlaklocal.endcepcmp;
+  inv  = rlaklocal.lclrsccod, invisible;
+
+  t0   = formonly.total      , noentry;
+  a0   = gtakramo.ramcod     , format = "&&&&";
+  a1   = gtakramo.ramnom     ;
+  a2   = rsamseguro.succod   , format = "###&&";
+  a3   = rsamseguro.aplnumdig, format = "#######& &";
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn10c01(ramcod  thru  aplnumdig)
+end
+

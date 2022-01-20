@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC14M06                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Texto livre para pager                                               jun/1999
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+           Texto adicional livre para pager
+----------------------------------------------ctc14m06--
+
+  [a00                                               ]
+  [a00                                               ]
+  [a00                                               ]
+  [a00                                               ]
+
+ Escreva o texto acima como se fosse uma linha continua
+ (F17)Abandona, (F2)Exclui
+}
+end
+
+attributes
+
+a00  = formonly.texto        , upshift, autonext;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc14m06(texto)
+end

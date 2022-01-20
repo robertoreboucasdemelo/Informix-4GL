@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS20M05                                              Marcelo
+                                                                     Gilberto
+ Exibe dados referentes a conclusao do servico                       Abr/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Conclusao em[a1        ]as[a2   ]por[a3                  ]
+------------------------------------------------------------------cts20m05--
+ Etapa....:[c |c1             ]
+ Prestador:[c2    ][c3                       ]
+ Cidade...:[c4                                           ]
+ Telefone.:[c5  ][c6                                      ]
+ Contato..:[c7                                      ]
+ Veiculo..:[c8   ][c9    |c10                                               ]
+ Socorris.:[c11     |c12       ]
+
+}
+end
+
+ Tables
+   dpaksocor, datmservico, datketapa, datksrr
+
+ Attributes
+   a1   = datmservico.cnldat                    ,noentry;
+   a2   = datmservico.atdfnlhor                 ,noentry;
+   a3   = formonly.funnom                       ,noentry;
+   c    = datketapa.atdetpcod                   ,noentry;
+   c1   = datketapa.atdetpdes         ,reverse  ,noentry;
+   c2   = datmservico.atdprscod       ,format = "&&&&&&";
+   c3   = dpaksocor.nomgrr                      ,noentry;
+   c4   = formonly.cidufdprs                    ,noentry;
+   c5   = dpaksocor.dddcod                      ,noentry;
+   c6   = dpaksocor.teltxt                      ,noentry;
+   c7   = datmservico.c24nomctt                 ,noentry;
+   c8   = datmservico.atdvclsgl                 ,noentry;
+   c9   = datmservico.socvclcod                 ,noentry;
+   c10  = formonly.vcldes                       ,noentry;
+   c11  = datmservico.srrcoddig                 ,noentry;
+   c12  = datksrr.srrabvnom                     ,noentry;
+ end
+
+ instructions
+   delimiters " "
+ end

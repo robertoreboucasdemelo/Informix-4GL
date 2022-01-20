@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc92m03
+
+ Cadastro Cobertura                                                   Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m03--
+ Plano.....:[a1  |a2                                                         ]
+ Cobertura.:[b1  |b2                                                         ]
+------------------------------------------------------------------------------
+ Assistencia   Banco                                 Garantia   Carro Reserva
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+[c][c1   ]    [c2 |c3                            ]    [c4   ]     [c5   ]
+------------------------------------------------------------------------------
+   Alterado em: [d1        ] por: [d2                                        ]
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a1 = formonly.itaasiplncod    , upshift, noentry;
+   a2 = formonly.itaasiplndes    , upshift, noentry;
+   b1 = formonly.itacbtcod       , upshift, comments = " Digite o codigo da Cobertura";
+   b2 = formonly.itacbtdes       , upshift, comments = " Digite a descricao da Cobertura";
+   c  = formonly.controle        , upshift;
+   c1 = formonly.itaasisrvcod    , upshift, comments = " Digite o codigo da Assistencia";
+   c2 = formonly.ubbcod          , upshift, comments = " Digite o codigo do Banco";
+   c3 = formonly.vcltipdes       , upshift, noentry;
+   c4 = formonly.rsrcaogrtcod    , upshift, comments = " Digite o codigo de Garantia de Carro Reserva";
+   c5 = formonly.itarsrcaosrvcod , upshift, comments = " Digite o codigo de Servico de Carro Reserva";
+   d1 = formonly.atldat          , upshift, noentry;
+   d2 = formonly.atlusr          , upshift, noentry;
+end
+
+instructions
+   screen record s1_ctc92m03 (itaasiplncod thru itacbtdes)
+   screen record s2_ctc92m03 (controle thru itarsrcaosrvcod)
+   screen record s3_ctc92m03 (atldat thru atlusr)
+   delimiters " "
+end

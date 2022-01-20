@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTO00M04                                                 Ruiz
+                                                                        Akio
+ Mostra o cadastro de assuntos                                       Abr/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+        Codigos de Assuntos
+-----------------------------cto00m04--
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+---------------------------------------
+
+}
+End
+
+tables
+   dackass
+
+Attributes
+ a  = dackass.corasscod    ,noentry;
+ b  = dackass.corassdes    ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m04(corasscod thru corassdes)
+End

@@ -1,0 +1,94 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc14m01                                               Gilberto
+                                                                       Marcelo
+ Cadastro de Codigos de Assunto                                       Mar/1998
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctc14m01--
+ Assuntos do agrupamento.:[a  ][a1                                      ]
+------------------------------------------------------------------------------
+ Codigo...........:[b1 ]  Descricao...:[b2                                   ]
+ Exibicao.........:[e]    Msg. Pager...:[p][p1                  ]
+ Advertencia......:[v]    Condutor.....:[c]
+ Acao tomada......:[b3][b4                                                   ]
+ Autorizacao......:[f]    Justificativa:[g]
+ Obriga Motivo....:[z]    Fone/email...:[d]
+ Msg email........:[t]    RIS..........:[y]
+ Acesso pela Web?.:[w]    Situacao.....:[s]    Aciona Automatico:[h]
+ Tipo de Assunto..:[i1][i2                                                   ]
+ Mensagem MDT.....:[j                                            ]
+
+ Incluido.....:[s1        ] por [s2                 ]
+ Atualizado...:[s3        ] por [s4                 ]
+ Restricoes...:[x                                       ]
+}
+end
+
+ tables datkassunto
+
+ attributes
+    a  = formonly.c24astagp                     ,upshift,
+         comments = " Codigo do Agrupamento";
+    a1 = formonly.c24astagpdes                  ,noentry;
+    b1 = formonly.c24astcod,
+         comments = " Codigo do Assunto"        ,upshift;
+    b2 = datkassunto.c24astdes,
+         comments = " Descricao do Assunto"     ,upshift;
+    e  = formonly.c24astexbflg,
+         comments = "Exibe cod. sem restricao de nivel de acesso:(S)im ou (N)ao"
+                                                ,upshift;
+    p  = formonly.c24asttltflg,
+         comments = " Notifica corretor via pager: (S)im ou (N)ao " ,upshift;
+    p1 = formonly.txtdes                        ,noentry;
+    v  = formonly.c24astatdflg,
+         comments = " Exibe advertencia para o atendente: (S)im ou (N)ao "
+                                                ,upshift;
+    c  = datkassunto.cndslcflg,
+         comments = "Solicita o condutor : (S)im ou (N)ao "
+                                                ,upshift;
+    b3 = datkassunto.prgcod                     ,format = "&&",
+         comments = " Acao a ser tomada";
+    b4 = formonly.prgdes                        ,noentry;
+    f  = datkassunto.c24atrflg,
+         comments = "Quem autoriza o uso do codigo: (S)im ou (N)ao "
+                                                ,upshift;
+    g  = datkassunto.c24jstflg,
+         comments = "Justifica o uso do codigo: (S)im ou (N)ao "
+                                                ,upshift;
+    z  = datkassunto.rcuccsmtvobrflg,
+         comments = "Obriga Motivo: (S)im ou (N)ao "
+                                                ,upshift;
+    d  = datkassunto.telmaiatlflg,
+         comments = "Solicita Fone/e-mail: (S)im ou (N)ao "
+                                                ,upshift;
+    t =  formonly.maimsgenvflg,
+         comments = 'Notifica corretor via e-mail: (S)im ou (N)ao' , upshift;
+
+    y =  formonly.risprcflg,
+         comments = 'RIS: (S)im ou (N)ao !', upshift;
+
+    w =  formonly.webrlzflg, comments = 'Acesso pela Web: (S)im ou (N)ao', upshift;
+
+    s  = datkassunto.c24aststt,
+         comments = " Situacao: (A)tivo ou (C)ancelado" ,upshift;
+    h  = datkassunto.atmacnflg, comments = '(S)im ou (N)ao', upshift;
+
+    i1  = formonly.tip_c24ast   type decimal , comments = "Codigo Tipo de Assunto", upshift, format = '&&';
+    i2  = formonly.tip_c24astdes , noentry;
+
+    j  = formonly.mdtmsgtxt, upshift;
+
+    s1 = datkassunto.caddat                     ,noentry;
+    s2 = formonly.cadfunnom                     ,noentry;
+    s3 = datkassunto.atldat                     ,noentry;
+    s4 = formonly.funnom                        ,noentry;
+
+    x  = formonly.restricao                     ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

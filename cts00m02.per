@@ -1,0 +1,90 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M02                                                  Pedro
+                                                                       Marcelo
+ Conclusao do Servico                                                 Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     Acionamento em[o0        ]as[o1   ]por[o2                  ]
+----------------------------------------------------------------cts00m02--
+ Etapa....:[c |c1             ]   [c2                  ]   [c21     ]
+ Prestador:[c3    |c4                       ] [l       ]
+ Cidade...:[c41                                             ]
+ Telefone.:[c5  |c6                                      ]
+ Contato..:[c7                                      ]
+[c18       |c19       |c20                                           ]
+ Socorris.:[c9    |c91       ]    Tel.:[c92 |c93      ][d   |d1       ]
+ Previsao.:[c14  ]           Distancia:[c15      ] km
+[c10       |c11              ]    [c12       |c13            |c16    ]
+ Tp Envio.:[x]
+ Ult.Trans:[t1                ]Em[t2        ][t3        ] Por:[t4    ]
+
+
+}
+end
+
+ Tables
+   dpaksocor, datmservico, datmtrptaxi, datmsrvacp, datketapa, datksrr, datkveiculo, datmmdtlog
+
+ Attributes
+   o0  = datmservico.cnldat    , noentry;
+   o1  = formonly.atdfnlhor    , noentry;
+   o2  = formonly.operador     , noentry;
+   c   = datmsrvacp.atdetpcod  , comments = " Etapa para acionamento";
+   c1  = datketapa.atdetpdes   , reverse, noentry;
+   c2  = formonly.retorno      , noentry;
+   c21 = formonly.envio        , noentry;
+
+   c3  = datmservico.atdprscod , format = "&&&&&&"
+                               , comments = " Codigo do prestador";
+   c4  = dpaksocor.nomgrr      , noentry;
+   l   = formonly.prsloc       , noentry;
+
+  c41  = formonly.cidufdprs    , noentry;
+
+   c5  = dpaksocor.dddcod      , noentry;
+   c6  = dpaksocor.teltxt      , noentry;
+
+   c7  = datmservico.c24nomctt , upshift
+                               , comments = " Nome do contato no posto";
+
+   c9  = formonly.srrcoddig      type decimal
+                               , comments = " Codigo do socorrista";
+
+   c91 = datksrr.srrabvnom     , noentry;
+
+   c10 = formonly.valor        , noentry;
+   c11 = datmservico.atdcstvlr , format = "<<,<<<,<<<,<<&.&&"
+                               , comments = " Valor estimado do servico";
+   c12 = formonly.veiculo      , noentry;
+   c13 = formonly.pasasivcldes , upshift
+                               , comments = " (P)Passeio - (V)Van";
+   c16 = formonly.l_descveiculo, noentry ;
+   c14 = datmservico.atdprvdat , comments = "Previsao Socorrista";
+   c15 = formonly.dstqtd       , noentry;
+   x   = formonly.envtipcod    , upshift
+                               , comments= " Tipo Envio: (0)Telefone, (1)GPS, (2)Internet";
+
+   c92 = formonly.celdddcod_veic type char, noentry, color = black reverse where c92 is not null;
+   c93 = formonly.celtelnum_veic type integer, noentry, color = black reverse where c93 is not null;
+
+   d   = formonly.celdddcod_soco type char, noentry;
+   d1  = formonly.celtelnum_soco type integer, noentry ;
+   c18 = formonly.titulo, noentry;
+   c19 = formonly.atdvclsgl type char,upshift;
+   c20 = formonly.socvcldes    , noentry;
+
+   t1  = formonly.mdtmsgsttdes            ,noentry;
+   t2  = datmmdtlog.atldat                ,noentry;
+   t3  = datmmdtlog.atlhor                ,noentry;
+   t4  = formonly.rcbpor                  ,noentry;
+
+
+ end
+
+ instructions
+   delimiters " "
+ end

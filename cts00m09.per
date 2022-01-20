@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M09                                              Marcelo
+                                                                     Gilberto
+ Pop-up de tipos de servico                                          Out/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+        Tipos de Servico
+-------------------------cts00m09--
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+
+}
+End
+
+tables
+   datksrvtip
+
+Attributes
+ a  = datksrvtip.srvtipdes, noentry;
+ b  = datksrvtip.atdsrvorg, noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts00m09(srvtipdes thru atdsrvorg)
+End

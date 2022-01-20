@@ -1,0 +1,38 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTS08G01                                              Marcelo
+                                                                     Gilberto
+ Janela para confirmacao de mensagens                                Set/1998
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+           [a                                 ]
+------------------------------------------------ctb31m00--
+
+   INICIO..: [b1        ]
+
+   FINAL...: [c1        ]
+
+   SIGLA...: [d1        ]
+   
+   EMAIL...: [e1                                     ]
+
+
+}
+
+attributes
+   a = formonly.titulo   type char, reverse  , noentry;
+   
+   b1 = formonly.texto1   type date ;
+   
+   c1 = formonly.texto2   type date ;
+   
+   d1  = formonly.texto3 type char;
+   e1 = formonly.email type char;
+end
+
+instructions
+   delimiters  " "
+end

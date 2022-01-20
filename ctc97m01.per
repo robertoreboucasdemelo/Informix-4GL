@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc97m01                                             Amilton 
+                                                                      
+ Cadastro de Servicos X Planos                                        ago/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc97m01--
+
+ Servico.....:[a   ]
+              
+ Descricao...:[b                                                            ]
+              
+ Plano.......:[c   ]
+              
+ Descricao...:[d                                                            ]
+              
+              
+ -> Atualizado..:[e          ] por [f                 ]
+  
+------------------------------------------------------------------------------
+
+}
+end
+
+ attributes
+    a  = formonly.cod       , comments = " Digite o Codigo do Servico"       ,upshift;
+    b  = formonly.descricao , comments = " Descricao do Servico"    ,upshift; 
+    c  = formonly.asiplncod , comments = " Digite o Codigo do Plano"       ,upshift;
+    d  = formonly.asiplndes , comments = " Descricao do Plano"    ,upshift; 
+    e  = formonly.atldat                           ,noentry;
+    f  = formonly.funnom                           ,noentry;    
+ end
+
+ instructions
+      delimiters " "
+ end

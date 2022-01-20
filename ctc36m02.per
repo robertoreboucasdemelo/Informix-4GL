@@ -1,0 +1,64 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC36M02                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Manutencao dos laudos de vistoria dos veiculos (LAUDO)               Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc36m02--
+ Numero Vistoria:[a1      ]   Situacao.:[a2][a3                            ]
+------------------------------------------------------------------------------
+ Tipo Vistoria..:[a] [a4          ]
+
+ Sigla Veiculo..:[a5   ]      Codigo...:[a6    ]   Situacao.:[a8        ][a7]
+ Descricao......:[a9                                                        ]
+ Placa..........:[a10    ]
+ Prestador......:[a11    ][a12                                              ]
+
+ Data  vistoria..:[a13       ]
+ Local vistoria..:[a14][a15                                     ]
+
+ Nome motorista..:[b1                                      ]
+ Quantidade fotos:[b2]
+
+ Vistoriador.....:[b3        ] por [b4                 ]
+}
+end
+
+tables datmsocvst, datkvstlcl, datkveiculo, dpaksocor
+
+attributes
+   a1   = formonly.socvstnum,
+          comments = " Numero da Vistoria "                         ;
+   a2   = datmsocvst.socvstsit,                              noentry;
+   a3   = formonly.sitdesc,                                  noentry;
+   a    = datmsocvst.socvsttip,                              noentry;
+   a4   = formonly.tipdesc,                                  noentry;
+   a5   = datkveiculo.atdvclsgl,                             noentry;
+   a6   = datmsocvst.socvclcod,                              noentry;
+   a7   = formonly.socoprsitcod,                   noentry,invisible;
+   a8   = formonly.sitvcldesc,                               noentry;
+   a9   = formonly.vcldesc,                                  noentry;
+   a10  = formonly.vcllicnum,                                noentry;
+   a11  = formonly.pstcoddig,                                noentry;
+   a12  = formonly.nomgrr,                                   noentry;
+   a13  = datmsocvst.socvstdat,                              noentry;
+   a14  = datmsocvst.socvstlclcod,                           noentry;
+   a15  = formonly.socvstlclnom,                             noentry;
+
+   b1   = datmsocvst.socvstmotnom,
+          comments = " Nome do motorista do veiculo ",       upshift;
+   b2   = datmsocvst.socvstfotqtd,
+          comments = " Quantidade de fotos do veiculo "             ;
+   b3   = datmsocvst.atldat,                                 noentry;
+   b4   = formonly.funnom,                                   noentry;
+
+end
+
+instructions
+     delimiters " "
+end

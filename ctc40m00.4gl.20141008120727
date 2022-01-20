@@ -1,0 +1,535 @@
+###########################################################################
+# Nome do Modulo: ctc40m00                                       Marcelo  #
+#                                                                Gilberto #
+# Cadastro de dominios                                           Mar/1999 #
+###########################################################################
+#                             ALTERACOES                                  #
+#                             ----------                                  #
+# 17/03/2009 - Patricia W. - CT 90311671 Alteracao para gravacao na       #
+#                                        datkdominio quando o campo for   #
+#                                        encontrado na chave 'datkdominio'#
+#                                        da iddkdominio.                  #  
+#                                                                         #
+###########################################################################
+
+globals "/homedsa/projetos/geral/globals/glct.4gl"
+
+define m_prep_sql smallint
+define l_tabela   char (11)
+define l_sql      char (500)
+define d_ctc40m00 record                 
+       cponom like datkdominio.cponom
+end record                                  
+
+#----------------------------------------------------------
+ function ctc40m00_prepare()                               
+#----------------------------------------------------------
+                              
+                                                           
+   let l_sql = null                                        
+                                                           
+   let l_sql = ' select cpocod, cpodes, atlult ',          
+               '  from ', l_tabela ,                      
+               ' where cponom = ? ',       
+               '   order by cpocod '
+                                                                  
+   prepare pcta01m000001 from l_sql                        
+   declare ccta01m000001 cursor for pcta01m000001          
+                                                           
+   let m_prep_sql = true                                   
+                                                           
+ end function                                              
+
+#------------------------------------------------------------
+ function ctc40m00()
+#------------------------------------------------------------
+
+ define a_ctc40m00    array[100] of record
+    cpocod            like datkdominio.cpocod,
+    cpodes            like datkdominio.cpodes,
+    atlult            like datkdominio.atlult
+ end record
+
+ define prompt_key    char (01)
+
+ define arr_aux       smallint
+ define scr_aux       smallint
+
+ define a_maqsgl      array[5] of record
+    maq               char (04)
+ end record
+
+ define arr_maq       smallint
+
+ define ws            record
+    sql               char (500),
+    cpocod            like datkdominio.cpocod,
+    cpocod1           like datkdominio.cpocod,
+    cpodes            like datkdominio.cpodes,
+    errflg            char (01),
+    operacao          char (01),
+    confirma          char (01)
+ end record
+
+ define l_cponom      like datkdominio.cponom
+ define l_dominio     char(100) ## like iddkdominio.cponom
+ define l_cpocod      like datkdominio.cpocod
+ 
+ define l_conta_usuar smallint
+ 
+ define l_countdat int
+
+ define l_texto char(70)
+ 
+ let int_flag = false
+
+
+ initialize d_ctc40m00.*  to null
+ initialize a_ctc40m00    to null
+ initialize ws.*          to null
+ initialize l_conta_usuar to null
+ initialize l_cponom      to null
+ initialize l_dominio     to null
+ initialize l_cpocod      to null
+ initialize l_tabela      to null 
+ initialize a_maqsgl      to null
+
+# ## alberto
+# if g_hostname is null or g_hostname = ' ' then
+#    let g_hostname = "u07"
+# end if
+# if g_hostname = "u07"  then
+#    let a_maqsgl[1].maq = "u07"
+# else
+#    let a_maqsgl[1].maq = "u18"
+#    let a_maqsgl[2].maq = "u18w"
+#    let a_maqsgl[3].maq = "u01"
+#    let a_maqsgl[4].maq = "u41"
+#
+##------------------------------------------------------------
+## Abrir banco de dados na u41 pois ha' trigger na IDDKDOMINIO
+##------------------------------------------------------------
+#    prepare sql_close_u18 from "close database"
+#    execute sql_close_u18
+#    prepare sql_open_u41 from "database porto@u41"
+#    execute sql_open_u41
+# end if
+
+ open window ctc40m00 at 06,02 with form "ctc40m00"
+                      attribute (form line first, message line last, comment line last - 1)
+
+ message " (F17)Abandona"
+
+ while not int_flag
+    clear form
+
+    input by name d_ctc40m00.cponom without defaults
+       before field cponom
+          display by name d_ctc40m00.cponom attribute (reverse)
+
+       after  field cponom
+          display by name d_ctc40m00.cponom
+          let l_dominio = d_ctc40m00.cponom
+          if d_ctc40m00.cponom is null then
+             error " Informe a chave de dominio a ser pesquisada!"
+             next field cponom
+          end if
+
+       on key (interrupt, control-c)
+          let int_flag = true
+          exit input
+    end input
+
+    if int_flag then
+       exit while
+    end if
+
+    while true
+       message " Aguarde, pesquisando..." attribute (reverse)
+
+       initialize a_ctc40m00  to null
+
+       # CT 90311671
+       call ctc40m00_busca_datk(d_ctc40m00.cponom)
+            returning l_tabela
+            
+       {if d_ctc40m00.cponom = "cvnnum" or
+          d_ctc40m00.cponom = "ligcvntip" then
+          let l_tabela = "datkdominio"
+       else
+          let l_tabela = "iddkdominio"
+       end if}
+
+       call ctc40m00_prepare()         
+
+       open ccta01m000001 using d_ctc40m00.cponom
+                        
+       let arr_aux = 1  
+                        
+       foreach ccta01m000001 into a_ctc40m00[arr_aux].cpocod,
+                                  a_ctc40m00[arr_aux].cpodes,
+                                  a_ctc40m00[arr_aux].atlult
+                        
+          let arr_aux = arr_aux + 1
+                        
+          if arr_aux > 100  then
+             error " Limite excedido! Foram encontrados mais de 100 dominios!"
+             exit foreach
+          end if
+
+       end foreach
+
+       if arr_aux = 1  then
+          message ""
+          if cts08g01("C","S",
+                      "NAO FOI ENCONTRADO NENHUM DOMINIO", 
+                      "PARA CHAVE INFORMADA!",
+                      "", 
+                      "INICIA INCLUSAO DE DOMINIO?") = "N"  then
+             exit while
+          end if
+       end if
+
+       message " (F17)Abandona, (F1)Inclui, (F2)Exclui, (F8)Dados Atualizacao"
+
+       call set_count(arr_aux - 1)
+
+       input array a_ctc40m00 without defaults from s_ctc40m00.*
+          before row
+             let arr_aux = arr_curr()
+             let scr_aux = scr_line()
+
+             if arr_aux <= arr_count()  then
+                let ws.cpocod = a_ctc40m00[arr_aux].cpocod
+                let ws.cpodes = a_ctc40m00[arr_aux].cpodes
+                let ws.operacao = "a"
+             end if
+
+          before insert
+             let ws.operacao = "i"
+             initialize a_ctc40m00[arr_aux].* to null
+
+          before field cpocod
+             if a_ctc40m00[arr_aux].cpocod is not null  then
+                next field cpodes
+             end if
+
+             display a_ctc40m00[arr_aux].cpocod to s_ctc40m00[scr_aux].cpocod attribute(reverse)
+
+          after  field cpocod
+             display a_ctc40m00[arr_aux].cpocod to s_ctc40m00[scr_aux].cpocod
+
+             if ws.operacao = "i"  then
+                let l_sql = null                                                             
+                let l_sql = 'select cpocod from ', l_tabela ,                                         
+                             ' where cponom = "' , d_ctc40m00.cponom clipped, '"',         
+                             ' and   cpocod = "' , a_ctc40m00[arr_aux].cpocod clipped, '" '
+                                                                                        
+                prepare s_con_datkdominio1 from l_sql                                      
+                declare c_con_datkdominio1 cursor for s_con_datkdominio1                   
+                                                                                           
+                open  c_con_datkdominio1                                                   
+                fetch c_con_datkdominio1 into ws.cpocod1                                   
+                               
+                if sqlca.sqlcode <> notfound  then 
+                   initialize a_ctc40m00[arr_aux] to null
+                   error " Codigo de dominio ja cadastrado!"
+                   close c_con_datkdominio1
+                   next field cpocod
+                end if
+                close c_con_datkdominio1
+             end if
+
+          before field cpodes
+             display a_ctc40m00[arr_aux].cpodes to s_ctc40m00[scr_aux].cpodes attribute(reverse)
+
+          after  field cpodes
+             display a_ctc40m00[arr_aux].cpodes to s_ctc40m00[scr_aux].cpodes
+
+             if a_ctc40m00[arr_aux].cpodes is null  or
+                a_ctc40m00[arr_aux].cpodes =  " "   then
+                error " Informe a descricao do dominio!"
+                next field cpodes
+             end if
+
+             if ws.operacao = "i"  then
+                let l_sql = null
+                let l_sql = 'select cpocod from ', l_tabela ,                
+                             ' where cponom = "' , d_ctc40m00.cponom clipped, '"', 
+                             ' and   cpodes = "' , a_ctc40m00[arr_aux].cpodes clipped, '" '             
+                                                                                 
+                prepare s_con_datkdominio2 from l_sql                          
+                declare c_con_datkdominio2 cursor for s_con_datkdominio2           
+                                                                   
+                open  c_con_datkdominio2                                       
+                fetch c_con_datkdominio2 into ws.cpocod1                       
+               
+                if sqlca.sqlcode <> notfound  then
+                   error " Descricao ja existe com o CODIGO  ",ws.cpocod1
+                   close c_con_datkdominio2
+                   next field cpodes
+                end if
+                close c_con_datkdominio2
+
+################################################################################
+               
+                if d_ctc40m00.cponom[1,4] = "web_" then
+                   let  l_cponom = d_ctc40m00.cponom[1,5]
+                   
+                   let ws.sql = 'select count(*) from ', l_tabela ,
+                     ' where cpodes = "' , a_ctc40m00[arr_aux].cpodes clipped, '"',
+                     ' and   cponom matches "', l_cponom clipped, '*" '
+
+                   prepare s_con_iddkdominio from ws.sql
+                   declare c_con_iddkdominio cursor for s_con_iddkdominio
+
+                   open  c_con_iddkdominio
+                   fetch c_con_iddkdominio into l_conta_usuar
+                   close c_con_iddkdominio
+
+                   let ws.sql = "select cponom,cpocod from ", l_tabela ,
+                     " where cpodes = '" , a_ctc40m00[arr_aux].cpodes clipped, "'",
+                     " and   cponom matches '", l_cponom clipped, "*'"
+
+                   prepare s_show_iddkdominio from ws.sql
+                   declare c_show_iddkdominio cursor for s_show_iddkdominio
+
+                   open  c_show_iddkdominio
+                   fetch c_show_iddkdominio into l_dominio,l_cpocod
+                   close c_show_iddkdominio
+
+                   if l_conta_usuar >= 1 then
+                      error " Usuario já cadastrado no DOMINIO ",
+                              l_dominio clipped," com o CODIGO  ",l_cpocod
+                      next field cpodes
+                   end if
+                end if
+################################################################################
+             end if
+
+          after row
+             begin work
+
+             whenever error continue
+
+             let ws.errflg = "N"
+                 
+             if ws.operacao = "i"  then
+                let a_ctc40m00[arr_aux].atlult = f_fungeral_atlult()
+                
+                let l_sql = null                                                              
+                let l_sql = 'select cpocod from ', l_tabela ,                                
+                             ' where cponom = "' , d_ctc40m00.cponom clipped, '"',           
+                             ' and   cpocod = "' , a_ctc40m00[arr_aux].cpocod clipped, '" '  
+                                                                                             
+                prepare s_con_datkdominio3 from l_sql                                        
+                declare c_con_datkdominio3 cursor for s_con_datkdominio3                     
+                                                                                             
+                open  c_con_datkdominio3                                                     
+                fetch c_con_datkdominio3 into ws.cpocod1                                     
+
+                if sqlca.sqlcode = notfound  then
+                      let ws.sql = "insert into ",l_tabela ,
+                                   "(cponom, cpocod, cpodes, atlult) values (?,?,?,?)"               
+
+                      prepare ins_iddkdominio from ws.sql
+
+                      if sqlca.sqlcode <> 0  then
+                         error " Erro (", sqlca.sqlcode, ") na preparacao do comando SQL! "
+                         prompt "" for char prompt_key
+                         let ws.errflg = "S"
+                         #exit for
+                      end if
+
+                      let ws.sql = "select cpocod from ",l_tabela ,
+                                   "  where cponom = ?                     ",
+                                   "    and cpocod = ?                     "
+                      prepare s_ver_iddkdominio from ws.sql
+                      declare c_ver_iddkdominio cursor for s_ver_iddkdominio
+
+                      open c_ver_iddkdominio using d_ctc40m00.cponom,
+                                                   a_ctc40m00[arr_aux].cpocod
+                      fetch c_ver_iddkdominio
+
+                      if sqlca.sqlcode = notfound  then
+                         execute ins_iddkdominio using
+                                                     d_ctc40m00.cponom,
+                                                     a_ctc40m00[arr_aux].cpocod,
+                                                     a_ctc40m00[arr_aux].cpodes,
+                                                     a_ctc40m00[arr_aux].atlult
+
+                         if sqlca.sqlcode <> 0  then
+                            error " Erro (", a_maqsgl[arr_maq].maq, ":", sqlca.sqlcode, ") no cadastramento do dominio!"
+                            prompt "" for char prompt_key
+                            let ws.errflg = "S"
+                            #exit for
+                         end if
+                      end if
+                      close c_ver_iddkdominio
+                  # end for
+                end if
+             else
+                if ws.operacao = "a" and
+                   ws.cpodes  <> a_ctc40m00[arr_aux].cpodes  then
+                   let a_ctc40m00[arr_aux].atlult = f_fungeral_atlult()
+
+                   let ws.sql = "update ", l_tabela ,
+                                "   set (cpodes, atlult) = (?,?)  ",
+                                " where cponom = ? and cpocod = ? "
+
+                   prepare upd_iddkdominio from ws.sql
+
+                   if sqlca.sqlcode <> 0  then
+                      error " Erro (", sqlca.sqlcode, ") na preparacao do comando SQL! "
+                      prompt "" for char prompt_key
+                      let ws.errflg = "S"
+                   end if
+
+                   execute upd_iddkdominio using a_ctc40m00[arr_aux].cpodes,
+                                                 a_ctc40m00[arr_aux].atlult,
+                                                 d_ctc40m00.cponom,
+                                                 a_ctc40m00[arr_aux].cpocod
+
+                   if sqlca.sqlcode <> 0  then
+                      error " Erro (", a_maqsgl[arr_maq].maq, ":", sqlca.sqlcode, ") na atualizacao de dominios!"
+                      prompt "" for char prompt_key
+                      let ws.errflg = "S"
+                      whenever error stop
+                   end if
+                end if
+             end if
+
+             if ws.errflg = "N"  then
+                commit work
+             else
+                rollback work
+                let int_flag = true
+                exit input
+             end if
+
+             whenever error stop
+
+             let ws.operacao = " "
+
+          before delete
+             let ws.operacao = "d"
+             let a_ctc40m00[arr_aux].atlult = f_fungeral_atlult()
+
+             # CT 90311671 - se a exclusao for feita em uma chave 
+             # que for subitem de alguma outra, na iddkdominio sob  
+             # a chave 'datkdominio', não deixa excluir.
+             
+             let l_countdat = 0
+
+             select count(*) 
+               into l_countdat
+               from datkdominio
+              where cponom = a_ctc40m00[arr_aux].cpodes
+
+             if l_countdat > 0 then
+                let l_texto = "ITEM ",a_ctc40m00[arr_aux].cpodes clipped ,
+                              " CADASTRADO COMO"
+                   
+                call cts08g01("A","N",l_texto,"CHAVE NAO PODE SER REMOVIDO!",
+                              "",
+                              "")
+                     returning ws.confirma
+                display a_ctc40m00[arr_aux].cpodes to 
+                        s_ctc40m00[scr_aux].cpodes 
+                exit input
+             end if
+                           
+             initialize ws.confirma to null
+             call cts08g01("A","S","ESTA OPERACAO PODE AFETAR UM OU",
+                           "MAIS SISTEMAS CORPORATIVOS!",
+                           "",
+                           "CONFIRMA REMOCAO DO DOMINIO?")
+                 returning ws.confirma
+
+             if ws.confirma = "S"  then
+                let ws.errflg = "N"
+
+                begin work
+                   let ws.sql = "delete from ",l_tabela ,
+                       " where cponom = ? and cpocod = ?"
+
+                    prepare del_iddkdominio from ws.sql
+
+                    whenever error continue
+
+                    execute del_iddkdominio using d_ctc40m00.cponom,
+                                                  a_ctc40m00[arr_aux].cpocod
+
+                    if sqlca.sqlcode <> 0  then
+                       error " Erro (", a_maqsgl[arr_maq].maq, ":", sqlca.sqlcode, ") na remocao do dominio!"
+                       prompt "" for char prompt_key
+                       let ws.errflg = "S"
+                       whenever error stop
+                    end if
+
+                    whenever error stop
+                   if ws.errflg = "N"  then
+                      commit work
+                   else
+                      rollback work
+                   end if
+             else
+                error " Remocao cancelada!"
+                exit input
+             end if
+
+             let ws.operacao = " "
+             initialize a_ctc40m00[arr_aux].*   to null
+             display a_ctc40m00[arr_aux].* to s_ctc40m00[scr_aux].*
+
+          on key (accept)
+             continue input
+
+          on key (interrupt, control-c)
+             let int_flag = true
+             exit input
+
+          on key (F8)
+             let arr_aux = arr_curr()
+             call ctc40m01(a_ctc40m00[arr_aux].atlult)
+
+       end input
+
+       if int_flag  then
+          let int_flag = false
+          exit while
+       end if
+    end while
+ end while
+
+ let int_flag = false
+
+ close window ctc40m00
+
+ end function  ###  ctc40m00
+
+#----------------------------------------------------------
+ function ctc40m00_busca_datk(p_cponom)
+#----------------------------------------------------------
+# Esta funcao busca na iddkdominio pela chave 'datkdominio' 
+# e verifica se os campos pertencentes a esta chave devem ser 
+# gravados na datkdominio ou na iddkdominio.
+
+   define p_cponom like datkdominio.cponom
+   define l_count int
+   
+   let l_count = 0
+   
+   select count(*) 
+     into l_count
+     from iddkdominio
+    where cpodes = p_cponom
+      and cponom = 'datkdominio'
+      
+   if l_count = 0 then
+      return 'iddkdominio'
+   end if         
+   
+   return 'datkdominio'
+
+end function

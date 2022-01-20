@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M04                                              Marcelo
+                                                                     Gilberto
+ Mostra todos destinos da ordem de pagamento                         Dez/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Destino
+-------------------------------------ctb11m04--
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+[a5                                      ][a10]
+
+}
+end
+
+tables fpgkpgtdst
+
+attributes
+  a5   = fpgkpgtdst.pgtdstdes,                  noentry;
+  a10  = fpgkpgtdst.pgtdstcod,      invisible,  noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb11m04(pgtdstdes thru pgtdstcod)
+end

@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M07                                              Marcelo
+                                                                     Gilberto
+ Manutencao dos custos dos itens da ordem de pagamento               Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+ Ord Servico..:[s0|s1     |s2]
+--------------------------------------------------------------------ctb11m07--
+   Custo  Descricao                               Qtde            Valor
+
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+  [a5   ][a10                                ][a15    ][a20            ][a25 ]
+
+}
+End
+
+Tables dbsmopgitm, dbsmopgcst, dbskcustosocorro, datmservico
+
+Attributes
+  s0   = datmservico.atdsrvorg,format = "&&",        noentry;
+  s1   = dbsmopgitm.atdsrvnum, format = "&&&&&&&",   noentry;
+  s2   = dbsmopgitm.atdsrvano, format = "&&",        noentry;
+
+  a5   = dbsmopgcst.soccstcod,                       noentry;
+  a10  = dbskcustosocorro.soccstdes,                 noentry;
+  a15  = dbsmopgcst.cstqtd,
+         comments = " Quantidade";
+  a20  = dbsmopgcst.socopgitmcst,  format = "###########&.&&",
+         comments = " Valor referente ao custo";
+  a25  = dbskcustosocorro.soccstclccod,  invisible,  noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb11m07(soccstcod thru soccstclccod)
+End

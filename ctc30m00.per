@@ -1,0 +1,91 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC30M00                                              Marcelo
+                                                                     Gilberto
+ CARRO EXTRA: Manutencao do cadastro de LOCADORAS                    Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc30m00--
+                               Codigo:[x   ]
+------------------------------------------------------------------------------
+ Locadora.:[a001                                    ]
+ Endereco.:[a002                                    ]
+ Bairro...:[a003                                    ]
+ Cidade...:[a004                                         ]   U.F:[u0]
+ Telefone.:[a005|a006                                     ]  Fax:[a007     ]
+ Tx.Seguro:[a008      ]      Tx.2 Condutor:[a011    ]
+ CGC......:[a009        ]/[a010]-[a0]
+
+ Enviar FAX para.:[f]-[f001           ]                Situacao:[s][s10      ]
+ Tipo Acionamento:[d    ][d1        ]
+ Email...........:[e                                                 ]
+ Favorecido......:[g      |g1                                    ]
+ Cronograma......:[h |h1                                      ]
+ Cadastrado em...:[b0        ]por[b1|b2    |b3                  ]
+ Atualizado em...:[c0        ]por[c1|c2    |c3                  ]
+}
+end
+
+tables datklocadora,datkavislocal
+
+attributes
+x    = formonly.lcvcod  type smallint, required
+                                , format="##&&" ;
+a001 = datklocadora.lcvnom      , upshift
+                                , comments = " Razao Social da Locadora" ;
+a002 = datklocadora.lgdnom      , upshift
+                                , comments = " Endereco" ;
+a003 = datklocadora.brrnom      , upshift
+                                , comments = " Bairro" ;
+a004 = datklocadora.cidnom      , upshift
+                                , comments = " Cidade" ;
+u0   = datklocadora.endufd      , upshift
+                                , comments = " Sigla da Unidade Federativa";
+a005 = datklocadora.dddcod      , comments = " Codigo do DDD";
+a006 = datklocadora.teltxt      , upshift
+                                , comments = " Telefone da Locadora" ;
+a007 = datklocadora.facnum      , comments = " Fax da Central de Reservas" ;
+a008 = datklocadora.adcsgrtaxvlr, format = "###,##&.&&"
+                                , comments = " Taxa de Seguro para locacao";
+a011 = datklocadora.cdtsegtaxvlr, format = "#,##&.&&"
+                                , comments = "Taxa de segundo condutor";
+a009 = datklocadora.cgccpfnum   , format="&&&&&&&&&&&&"
+                                , comments = " Numero do CGC" ;
+a010 = datklocadora.cgcord      , format="&&&&"
+                                , comments = " Ordem do CGC" ;
+a0   = datklocadora.cgccpfdig   , format="&&"
+                                , comments = " Digito do CGC" ;
+f    = datklocadora.lcvresenvcod, comments = " 1-Central de Reservas, 2-Loja";
+f001 = formonly.envdsc          , noentry ;
+s    = datklocadora.lcvstt      , upshift
+                                , comments = " Situacao: (A)tiva ou (C)ancelada";
+s10  = formonly.lcvsttdes       , noentry;
+d    = formonly.acntip, comments='Informe 1-Internet, 2-Fax, 3-Online';
+d1   = formonly.acndes, noentry;
+e    = formonly.maides;
+b0   = datklocadora.caddat      , noentry;
+b1   = datklocadora.cademp      , format = "&&"
+                                , noentry;
+b2   = datklocadora.cadmat      , format = "&&&&&&"
+                                , noentry;
+b3   = formonly.cadnom          , noentry;
+
+c0   = datklocadora.atldat      , noentry;
+c1   = datklocadora.atlemp      , format = "&&"
+                                , noentry;
+c2   = datklocadora.atlmat      , format = "&&&&&&"
+                                , noentry;
+c3   = formonly.atlnom          , noentry;
+
+g    = datkavislocal.lcvextcod   , required;
+g1   = formonly.aviestnom       , noentry;
+h    = datklocadora.pgtcrncod   , format="&&", comments="Cronograma de Pagamento";
+h1   = formonly.crnpgtdes       , noentry;
+end
+
+instructions
+     delimiters " "
+end

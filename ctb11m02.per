@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M02                                              Marcelo
+                                                                     Gilberto
+ Consulta fases da ordem de pagamento                                Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb11m02--
+ Descricao da fase                --- Realizacao ---    ---- Responsavel ----
+
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+
+}
+End
+
+Tables dbsmopgfas
+
+Attributes
+  a5   = formonly.socopgfasdes,          noentry;
+  a10  = dbsmopgfas.socopgfasdat,        noentry;
+  a15  = dbsmopgfas.socopgfashor,        noentry;
+  a20  = formonly.funnom,                noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb11m02(socopgfasdes thru funnom)
+End

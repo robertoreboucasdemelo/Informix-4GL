@@ -1,0 +1,38 @@
+{ Sistema de Auto -  Modulo   oppwc028
+   array  - 11/2001               }
+
+database porto
+screen size 24 by 80
+{
+[b          ]                                                    [c          ]
+--------------------------------------------------------------------cty21g03--
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+[a                                                                          ]
+------------------------------------------------------------------------------
+
+}
+end
+tables
+   gppmnetprpaut
+attributes
+   a  = formonly.ppw028, noentry;
+   b  = formonly.prp1  , noentry;
+   c  = formonly.prp2  , noentry;
+
+
+instructions
+ delimiters "  "
+    screen record s_cty21g03 (ppw028)
+end
+

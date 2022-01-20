@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN16C00                                               Pedro
+                                                                     Marcelo
+ Consulta ao saldo de diarias da clausula 26                        Ago/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn16c00--
+ Sucursal:[c1   ]  Apolice:[c2       ]    Item:[c3     ]     Data:[c4        ]
+------------------------------------------------------------------------------
+
+ Segurado:[a1                                                ]
+
+ Veiculo.:[a2                                      ]       Placa:[a3     ]
+
+ Clausula:[a6 ][a7                                  ]
+
+ Vigencia:[a4        ]a[a5        ]
+
+
+ Saldo...:[a8  ]Diaria(s) por Clausula
+
+
+
+}
+end
+
+tables abbmclaus, abbmveic, abamapol
+
+attributes
+   c1 = abbmclaus.succod          , format = "####&",
+        comments = " Codigo da Sucursal";
+   c2 = abbmclaus.aplnumdig       , format = "#######&&",
+        comments = " Numero da Apolice ";
+   c3 = abbmclaus.itmnumdig       , format = "######&",
+        comments = " Numero do Item"    ;
+   c4 = formonly.clcdat  type date,
+        comments = " Data de referencia para calculo do saldo de diarias";
+
+   a1 = formonly.segnom           , noentry ;
+   a2 = formonly.vcldes           , noentry ;
+   a3 = abbmveic.vcllicnum        , noentry ;
+   a4 = abamapol.viginc           , noentry ;
+   a5 = abamapol.vigfnl           , noentry ;
+   a6 = abbmclaus.clscod          , noentry ;
+   a7 = formonly.clsdes           , noentry ;
+   a8 = formonly.sldqtd           , noentry ;
+end
+
+instructions
+     delimiters " "
+end

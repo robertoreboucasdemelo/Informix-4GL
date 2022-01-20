@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB23M00                                                Wagner 
+                                                                   
+ Manutencao bloqueio periodo socorrista                               Jun/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb23m00-- 
+   Codigo socorrista..........:[a1      |a2                                 ]
+   Situacao atual ............:  [a|a3          ]
+------------------------------------------------------------------------------
+                                                         
+
+   Data inicial do bloqueio ..:[a4        ] hora:[a5   ]
+ 
+   Data final   do bloqueio ..:[a6        ] hora:[a7   ] 
+     
+   Codigo evento para bloqueio:[a8 |a9                                    ] 
+  
+
+
+   Bloqueio cadastrado em ....:[a10       ] por:[a11                ]
+   Bloqueio atualizado em ....:[a12       ] por:[a13                ]
+ 
+}
+end
+
+tables datmsrrblq, datksrr 
+
+attributes 
+   a1   = datmsrrblq.srrcoddig, 
+          comments = " Codigo do socorrista para bloqueio";
+   a2   = datksrr.srrnom, noentry;  
+   a    = datksrr.srrstt, noentry;  
+   a3   = formonly.srrsttdes,  noentry;
+   a4   = datmsrrblq.blqincdat  
+          ,comments = " Data inicial para bloqueio do socorrista";
+   a5   = formonly.blqinchor type datetime hour to minute
+          ,picture = "##:##" ,comments = " Horario inicial do bloqueio";
+   a6   = datmsrrblq.blqfnldat  
+          ,comments = " Data final para bloqueio do socorrista";
+   a7   = formonly.blqfnlhor type datetime hour to minute
+          ,picture = "##:##" ,comments = " Horario final do bloqueio";
+   a8   = datmsrrblq.c24evtcod
+          ,comments = " Codido do evento para bloqueio do socorrista"; 
+   a9   = formonly.c24evtdes,  noentry;
+   a10  = datmsrrblq.blqcaddat,noentry;
+   a11  = formonly.cadfunnom,  noentry;
+   a12  = datmsrrblq.atldat,   noentry;
+   a13  = formonly.funnom,     noentry;
+end
+
+instructions
+     delimiters " "
+end

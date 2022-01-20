@@ -1,0 +1,36 @@
+{===========================================================================
+# Sistema   : Porto Socorro - ctg07
+# Modulo    : ctn55g00.per
+# Objetivo  : Pop-up de socorristas para conferencia de guias de recolhimento
+#             de impostos 
+# Analista  : Fabio Costa
+# Liberacao : 26/02/2009
+#===========================================================================}
+database formonly
+screen
+{
+  Codigo   Socorrista                   Vg inicial  Vinculo
+----------------------------------------------------------------
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+[a       ][b                          ][c         ][d          ]
+
+}
+end
+
+attributes
+   a = formonly.srrcoddig  type dec(8,0), noentry, format='########';
+   b = formonly.srrnom   , noentry, upshift;
+   c = formonly.viginc     type date, noentry;
+   d = formonly.pstvindes, noentry, upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn55g00(srrcoddig thru pstvindes)
+end

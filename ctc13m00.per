@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC13M00                     Criacao: 06/01/95 - Pedro
+
+ Manutencao dos tipos de servicos do Estabelecimento
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc13m00--
+                  Codigo:[a     ][b                                      ]
+------------------------------------------------------------------------------
+                  Tipo    Descricao
+
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+                  [a0]   [a1                                      ]
+}
+end
+
+tables dparservlista,
+       dpaklista    ,
+       dpckserv
+
+attributes
+a    = dparservlista.emplstcod          ;
+b    = dpaklista.empnom                 ;
+a0   = dparservlista.pstsrvtip, autonext,
+       comments = " Tipo de Servico"     ;
+a1   = dpckserv.pstsrvdes,       noentry;
+
+end
+
+instructions
+     screen record s_ctc13m00(pstsrvtip thru pstsrvdes)
+     delimiters " "
+end

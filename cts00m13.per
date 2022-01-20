@@ -1,0 +1,82 @@
+{---------------------------------------------------------------------
+ Nome do Form: cts00m13                                      Marcelo
+                                                             Gilberto
+ Contingencia - Posicao da frota                             Dez/1999
+---------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[c1                                                               ] [c2      ]
+--------------------------------------------------------------------cts00m13--
+ Grupo:[c3][c4                  ]      Atividade:[c5 ]   Zona:[c6]
+ Sigla:[c7 ]                           Prestador:[c10   |c11                 ]
+------------------------------------------------------------------------------
+ Veiculo:[d1   ][d2 ][d3    ][d4                                       ]
+ Socorr.:[d5    |d6        ]        [e0      |e1    |e2][e3    ]
+ Localiz:[d7|d8                     |d9                                   |d ]
+ Atualiz:[d10       |d11  ]          Contato:[d12       |d13  ] Tempo:[d14   ]
+
+ Veiculo:[d1   ][d2 ][d3    ][d4                                       ]
+ Socorr.:[d5    |d6        ]        [e0      |e1    |e2][e3    ]
+ Localiz:[d7|d8                     |d9                                   |d ]
+ Atualiz:[d10       |d11  ]          Contato:[d12       |d13  ] Tempo:[d14   ]
+
+ Veiculo:[d1   ][d2 ][d3    ][d4                                       ]
+ Socorr.:[d5    |d6        ]        [e0      |e1    |e2][e3    ]
+ Localiz:[d7|d8                     |d9                                   |d ]
+ Atualiz:[d10       |d11  ]          Contato:[d12       |d13  ] Tempo:[d14   ]
+}
+end
+
+ tables
+    dattfrtlclslv
+
+ attributes
+    c1  = formonly.cabec            , noentry;
+    c2  = formonly.horatu           , reverse
+                                    , noentry;
+    c3  = dattfrtlclslv.vcldtbgrpcod, comments = " Grupo de distribuicao";
+    c4  = formonly.vcldtbgrpdes     , noentry;
+    c5  = formonly.c24atvpsq        , upshift
+                                    , comments=" QRU-Servico, QRV-Liberado, QTR-Almoco, QTP-Fora de Operacao";
+    c6  = formonly.endzonpsq        , upshift
+                                    , comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+    c7  = formonly.atdvclpsq        , upshift
+                                    , comments = " Sigla de identificacao do veiculo";
+    c10 = formonly.pstcodpsq          type decimal
+                                    , comments = " Codigo do prestador";
+    c11 = formonly.nomgrrpsq        , noentry;
+
+    d1  = dattfrtlclslv.atdvclsgl   , noentry;
+    d2  = dattfrtlclslv.c24atvcod   , noentry;
+    d3  = dattfrtlclslv.socvclcod   , noentry;
+    d4  = formonly.vcldes           , noentry;
+
+    d5  = dattfrtlclslv.srrcoddig   , noentry;
+    d6  = dattfrtlclslv.srrabvnom   , noentry;
+    e0  = formonly.srvtxt           , noentry;
+    e1  = dattfrtlclslv.atdsrvnum   , format = "&&&&&&"
+                                    , noentry;
+    e2  = dattfrtlclslv.atdsrvano   , format = "&&"
+                                    , noentry;
+    e3  = dattfrtlclslv.pstcoddig   , invisible
+                                    , noentry;
+
+    d7  = dattfrtlclslv.ufdcod      , noentry;
+    d8  = dattfrtlclslv.cidnom      , noentry;
+    d9  = dattfrtlclslv.brrnom      , noentry;
+    d   = dattfrtlclslv.endzon      , noentry;
+
+    d10 = dattfrtlclslv.atldat      , noentry;
+    d11 = dattfrtlclslv.atlhor      , noentry;
+    d12 = dattfrtlclslv.cttdat      , noentry;
+    d13 = dattfrtlclslv.ctthor      , noentry;
+    d14 = formonly.tempo            , noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts00m13(atdvclsgl thru tempo)
+ end

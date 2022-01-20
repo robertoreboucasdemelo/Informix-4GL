@@ -1,0 +1,37 @@
+database formonly
+screen size 24 by 80
+{
+  Cadastro de Email para Rotinas Batch e Relatorios 
+ 
+  Rotina/Relatorio: [a                                                     ]
+----------------------------------------------------------------- ctb26m00 --
+  Seq    E-mail
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ [b   ][c                                                            ][d  ]
+ 
+ (F1) - Incluir    (F2) - Excluir     (F17) - Sair
+}
+end
+
+attributes
+ a = formonly.rotina,upshift ;
+ b = formonly.seq,noentry ;
+ c = formonly.email;
+ d = formonly.tipo,invisible,noentry;
+
+end
+instructions
+   delimiters " "
+   screen record s_ctb26m00(formonly.seq,
+                            formonly.email,
+                            formonly.tipo)
+
+end

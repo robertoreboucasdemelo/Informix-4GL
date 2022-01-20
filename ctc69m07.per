@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m07                                      R.Fornax
+
+ Cadastro de Pacote X Clausula/Plano                         Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m07--
+ Codigo.....:[a   ]
+ Clausula...:[b   ][c                                                       ]
+------------------------------------------------------------------------------
+ Servico  Nome                            Limite          Unidade
+
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+ [d    ] [e                            ] [f       ] [g                 ] [h ]
+------------------------------------------------------------------------------
+ Atualizado..:[i          ] por [j                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.plnclscod              ,noentry;
+   b  = formonly.clscod                 ,noentry;
+   c  = formonly.clsnom                 ,noentry;
+   d  = formonly.paccod                 ,comments = " Digite o Codigo do Servico"     ,upshift;
+   e  = formonly.pacdes                 ,noentry;
+   f  = formonly.paclim                 ,noentry;
+   g  = formonly.pacuni                 ,noentry;
+   h  = formonly.srvplnclscod           ,invisible ,noentry;
+   i  = formonly.regatldat              ,noentry;
+   j  = formonly.funnom                 ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m07(paccod thru srvplnclscod)
+end

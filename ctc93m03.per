@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m03                                               Beatriz
+                                                                       Araujo
+ Cadastro de/para Motivo                                              Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc93m03--
+           Origem : [a  ] - [a1                             ]
+           Empresa: [b  ] - [b1                             ]
+           Motivo : [c  ] - [c1                             ]
+------------------------------------------------------------------------------
+                                                                            
+  Decorrencia do servico: [d  ] - [d1                             ]           
+                                                                            
+  Bem atendido..........: [e  ] - [e1                             ]     
+                                                                            
+  Status................: [f  ] - [f1                             ]
+  
+                                                                            
+  Incluido...: [g         ] por [g1            ]                               
+  Atualizado.: [h         ] por [h1            ]                               
+                                                                            
+------------------------------------------------------------------------------
+}
+end
+tables gabkemp,datkalgmtv,datksrvtip
+
+attributes
+    a  = datkalgmtv.atdsrvorg ;
+    a1 = datksrvtip.srvtipabvdes, noentry ;
+    b  = datkalgmtv.ciaempcod;
+    b1 = gabkemp.empsgl, noentry;
+    c  = datkalgmtv.avialgmtv ;
+    c1 = formonly.avialgmtvdes, noentry;
+    d  = datkalgmtv.srvdcrcod ;
+    d1 = formonly.srvdcrdes,  noentry;
+    e  = datkalgmtv.bemcod ;
+    e1 = formonly.bemdes,  noentry;
+    f  = datkalgmtv.atoflg ;
+    f1 = formonly.atoflgdes, noentry;
+    g  = datkalgmtv.caddat, noentry;        
+    g1 = formonly.funcad  , noentry; 
+    h  = datkalgmtv.atldat, noentry;        
+    h1 = formonly.funatl  , noentry; 
+    
+end
+
+instructions          
+     delimiters " "   
+end 
+
+

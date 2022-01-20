@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M07                                              Marcelo
+                                                                     Gilberto
+ Obtem informacoes para abertura do aviso de sinistro                Ago/1997
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+               Informacoes sobre Sinistro
+---------------------------------------------------cts18m07--
+
+ Data Sinistro:[a10       ]
+ Hora Sinistro:[a20  ]
+ Ramo/Sub-Ramo:[b1  ][b2][b3             ]
+ No.Vistoria..:[c10   ][c20 ]
+
+ Proposta.....:[d ][d10     ]
+ Proponente...:[d20                                     ]
+
+ Placa Veiculo:[e10    ]
+
+
+}
+end
+
+tables  ssamavs, ssamsin
+
+attributes
+  a10 = ssamavs.sinocrdat , comments = " Data de ocorrencia do sinistro";
+  a20 = ssamavs.sinocrhor , comments = " Hora de ocorrencia do sinistro";
+  b1  = ssamavs.ramcod    , comments = " Ramo: (31)Automovel ou (53)RCF";
+  b2  = ssamavs.subcod    , comments = " Sub-Ramo: (02)Danos Materiais ou (04)Danos Pessoais";
+  b3  = formonly.subnom   , upshift, noentry;
+  c10 = ssamsin.sinvstnum , comments = " Numero da vistoria de sinistro";
+  c20 = ssamsin.sinvstano , comments = " Ano da vistoria de sinistro";
+  d   = formonly.prporgpcp  type dec, comments = " Origem da proposta", format = "&&";
+  d10 = formonly.prpnumpcp  type dec, comments = " Numero da proposta", format = "&&&&&&&&";
+  d20 = formonly.prpnom   , upshift, noentry;
+  e10 = ssamavs.vcllicnum , comments = " Placa do veiculo";
+end
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,52 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc32m02                                              Marcelo
+                                                                     Gilberto
+ Manutencao do Relacionamento Bloqueio/Matriculas                    Abr/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc32m02--
+ Matriculas p/ bloqueio:[a     ]
+------------------------------------------------------------------------------
+      Empresa     Matricula       Nome                     Depto
+
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+          [b ]      [b1    ]     [b2                  ]   [b3    ]
+
+
+}
+end
+
+ tables  isskfunc, datrfunblqlib
+
+ attributes
+
+    a  = datrfunblqlib.blqnum              ,noentry;
+
+    b  = datrfunblqlib.empcod              ,required,
+         comments = " Empresa do funcionario";
+
+    b1 = datrfunblqlib.funmat              ,required,
+         comments = " Matricula do funcionario"
+                                           ,upshift;
+
+    b2 = isskfunc.funnom                   ,noentry;
+    b3 = isskfunc.dptsgl                   ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc32m02(empcod thru dptsgl)
+ end

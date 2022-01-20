@@ -1,0 +1,37 @@
+{----------------------------------------------------------------------------
+  Nome do Form: CTN01C02                                     26/10/94 - Pedro
+
+  Consulta Tipos de Guincho.
+----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+ Cod        Descricao
+-------------------------------------------ctn01c02--
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+[f1]       [f2                                      ]
+}
+
+end
+tables
+dpckguincho
+
+attributes
+f1 = dpckguincho.gchtip, noentry;
+f2 = dpckguincho.gchdes, noentry;
+end
+
+instructions
+     delimiters " "
+end

@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC36M05                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Consulta fases da vistoria                                          Dez/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc36m05--
+ Descricao da fase                --- Realizacao ---    ---- Responsavel ----
+
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+[a5                           ]  [a10       ] [a15  ]  [a20                 ]
+
+}
+End
+
+Tables datmvstfas
+
+Attributes
+  a5   = formonly.descfas,               noentry;
+  a10  = formonly.caddat,                noentry;
+  a15  = formonly.cadhor,                noentry;
+  a20  = formonly.funnom,                noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctc36m05(descfas thru funnom)
+End

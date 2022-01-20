@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M25                                              Marcus  
+                                                                     Ruiz     
+ Consulta etapas do acompanhamento do servico pela internet          Ago/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts00m25--
+ No.Servico:[a5           ]-[a10                           ]
+------------------------------------------------------------------------------
+ Status             Data/Hora       Origem              Prestador
+
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+
+}
+End
+
+Tables datmsrvint, datksrvtip, datketapa
+
+Attributes
+  a5   = formonly.srvnum      ,        noentry;
+  a10  = datksrvtip.srvtipdes ,        noentry;
+
+  b5   = datketapa.atdetpdes  ,        noentry;
+  b10  = datmsrvint.caddat    ,        noentry;
+  b15  = datmsrvint.cadhor    ,        noentry;
+  b    = datmsrvint.atdetpseq ,        invisible;
+  b20  = formonly.origem      ,        noentry;
+  b25  = formonly.nomgrr      ,        noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_cts00m25(atdetpdes thru nomgrr)
+End

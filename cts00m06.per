@@ -1,0 +1,71 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M06                                                  Pedro
+                                                                       Marcelo
+ Localiza Servico pelo RADIO                                          Abr/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                             LOCALIZA SERVICOS
+--------------------------------------------------------------------cts00m06--
+ Servico:[l0|l1     |l2]     Data:[l3        ] Tipo Servico:[l ][l4          ]
+ Placa:[l5     ]    Nome Solic.:[l6                           ]
+ Sigla:[l7   ]Prestador:[l8    |l9               ]Empresa[r7|r8       |l10  ]
+------------------------------------------------------------------------------
+ Servico       Nome / Veiculo                              Etapa / Placa
+[r1           |r2                                       ] [r3             ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1           |r2                                       ] [r3             ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1           |r2                                       ] [r3             ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1           |r2                                       ] [r3             ]
+[r4        ]  [r5                                       ] [r6     ]
+
+}
+
+tables
+   datmservico,
+   datketapa
+
+attributes
+
+
+   l0  = formonly.atdsrvorg_a type dec,format = "&&"     , noentry;
+   l1  = formonly.atdsrvnum type dec,  format = "&&&&&&&", autonext,
+         comments = " Numero do Servico";
+   l2  = formonly.atdsrvano type dec, format = "&&" ,
+         comments = " Ano do Servico";
+   l3  = datmservico.atddat                         ,
+         comments = " Data do Atendimento / Acionamento";
+   l   = formonly.atdsrvorg type char, upshift,
+         comments = "Origem do Servico";
+   l4  = formonly.srvtipabvdes             , noentry;
+   l5  = datmservico.vcllicnum             , upshift,
+         comments = " Placa do Veiculo";
+   l6  = formonly.nome                     , upshift,
+         comments = " Iniciais do Nome";
+   l7  = formonly.atdvclsgl                , upshift,
+         comments = " Sigla de identificacao do veiculo";
+   l8  = formonly.pstcoddig type dec,
+         comments = " Codigo do prestador";
+   l9  = formonly.nomgrr                   , noentry;
+   r7  = formonly.ciaempcod                ;
+   r8  = formonly.empnom                   , noentry;
+   l10 = formonly.total                    , noentry;
+   r1  = formonly.servico2                 , noentry;
+   r2  = datmservico.nom                   , noentry;
+   r3  = datketapa.atdetpdes               , noentry;
+   r4  = formonly.srvtipdes                , noentry;
+   r5  = datmservico.vcldes                , noentry;
+   r6  = formonly.vcllicnum2               , noentry;
+
+instructions
+  delimiters " "
+  screen record s_cts00m06(servico2 thru vcllicnum2)
+end

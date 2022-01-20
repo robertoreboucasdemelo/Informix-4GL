@@ -1,0 +1,35 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC18M01                                             Marcelo
+                                                                    Gilberto
+ Manutencao das clausulas atendidas pela loja                       Nov/1998
+----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+             CLAUSULAS ATENDIDAS PELA LOJA
+---------------------------------------------ctc18m01--
+  RAMO  CLAUSULA
+
+ [a0  ][a1 |a2                                        ]
+ [a0  ][a1 |a2                                        ]
+ [a0  ][a1 |a2                                        ]
+ [a0  ][a1 |a2                                        ]
+ [a0  ][a1 |a2                                        ]
+ [a0  ][a1 |a2                                        ]
+
+  (F1)Inclui  (F2)Exclui  (F17)Abandona
+}
+end
+
+attributes
+  a0 = formonly.ramcod type integer;
+  a1 = formonly.clscod type char, upshift;
+  a2 = formonly.clsdes type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc18m01(ramcod thru clsdes)
+end

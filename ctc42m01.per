@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc42m01                                                 Sergio
+                                                                        Burini
+ Cadastro de SIMCards                                                    Jun/2008
+-----------------------------------------------------------------------------}
+
+
+database formonly
+
+screen
+{
+--------------------------------------------------------------------ctc42m01--
+Sin.    Oper.   SIMCard                    DDD Telefone  Ultima Transm.
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+[a    ][b     ][c                        ][d  |e        |f                  ]
+
+ (F1) Incluir    (F8) Alterar    (F6) Atualizar
+}
+end
+
+attributes
+   a  = formonly.recsinflg, upshift, comments = "Sinal Recebido (R) e Sinal Informado (I)";
+   b  = formonly.celoprcoddes, noentry, comments = "Operadora transmissora do sinal";
+   c  = formonly.cdssimintcod, comments = "Numero do SIMCard.";
+   d  = formonly.dddcod, comments = "DDD";
+   e  = formonly.celnum, comments = "Fone Celular";
+   f  = formonly.sinutmdat, comments = "data ultimo sinal";
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc42m01 [10] (recsinflg thru sinutmdat)
+end

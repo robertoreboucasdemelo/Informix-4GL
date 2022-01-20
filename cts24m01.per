@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctS24m00                                              Wagner
+
+ Pop-up de Mensagens teletrim                                        Jan/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                Mensagens para Teletrim
+-----------------------------------------------cts24m01--
+[a   |b                                                 ]
+     [c                                                 ]
+[a   |b                                                 ]
+     [c                                                 ]
+[a   |b                                                 ]
+     [c                                                 ]
+
+}
+End
+
+tables
+   datktltmsg
+
+Attributes
+ a  = datktltmsg.tltmsgcod,    noentry;
+ b  = formonly.tltmsgtxt1,     noentry;
+ c  = formonly.tltmsgtxt2,     noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts24m01(tltmsgcod thru tltmsgtxt2)
+End

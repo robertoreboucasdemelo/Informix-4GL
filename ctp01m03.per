@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctp01m03                                                  Pedro
+                                                                       Marcelo
+ Historico da Pesquisa                                                Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctp01m03--
+                    Historico da pesquisa [a            ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+}
+end
+
+tables
+datmpesqhist
+
+attributes
+
+a  = formonly.servico         ,reverse    ,noentry;
+b  = datmpesqhist.c24psqdsc   ,upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctp01m03(c24psqdsc)
+end

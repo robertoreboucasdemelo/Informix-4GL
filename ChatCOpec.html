@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>COperacoes - Atendimento Online</title>
+<style type="text/css">
+<!--
+
+body {
+	margin: 10px;
+	font-family: tahoma, arial;
+	}
+
+h1 {
+	color: #1B70E1; 
+	font-size: 24px;
+	font-weight: bold;
+	}
+
+h3 {
+	color: #1B70E1; 
+	font-size: 18px;
+	font-weight: bold;
+	}
+
+a { color: #1b70e1;	}
+
+p { 
+	font-size: 11px;
+	margin: 0;
+	padding:0;
+	}
+
+#pagina { 
+	width: 600px;
+	}
+
+.box_topo {
+	background-image: url(https://wwws.portoseguro.com.br/col/images/332_box_topo.jpg);
+	background-repeat:no-repeat;
+	width: 600px;
+	height: 50px;
+	margin: 0;
+	padding:0;
+	}
+
+.box_topo_h2 {
+	color: #1B70E1; 
+	font-size: 20px;
+	top: 16px;
+	left: 22px;
+	position: relative;
+	}
+
+.box_meio {
+	background-image: url(https://wwws.portoseguro.com.br/col/images/332_box_meio.jpg);
+	background-repeat:repeat-y;
+	width: 600px;
+	margin: 0;
+	padding: 10px 10px 10px 15px;
+	}
+
+.box_rodape {
+	background-image: url(https://wwws.portoseguro.com.br/col/images/332_box_rodape.jpg);
+	background-repeat:no-repeat;
+	width: 600px;
+	height: 21px;
+	margin: 0;
+	padding:0;
+	}
+
+.box_meio2 {
+	width: 271px;
+	height: 170px;
+	margin: 0;
+	padding: 0;
+	border-left: 1px solid #8DB7F0;
+	border-right: 1px solid #8DB7F0;
+	}
+
+*html .box_meio2 {
+	width: 273px;
+	}
+
+.box_rodape2 {
+	background-image: url(https://wwws.portoseguro.com.br/col/images/332_box_rodape2.gif);
+	background-repeat:no-repeat;
+	width: 273px;
+	height: 15px;
+	margin: 0;
+	padding:0;
+	}
+
+.linha {
+	color: #1b70e1;
+	height: 1px;
+	width: 550px;
+	margin: 15px 0px 15px 0;
+	}
+
+#formulario {
+	width:590px;
+	display:none;
+	}
+
+.campo_contador {
+	 border: #E7F0F8 1px solid;
+	 color:#FF0000;
+	 font-family: tahoma;
+	 font-size: 10px ;
+	 background-color: #F3F8FD;
+	}
+
+.select {
+	font-size:	11px;
+	height:17px;
+	border: #000000 1px solid;
+	}
+
+.campo_contador {
+	 border: #E7F0F8 1px solid;
+	 color:#FF0000;
+	 font-size: 10px ;
+	 background-color: #F3F8FD;
+	}
+
+#atendimento ul {
+	list-style-type: armenian;
+	color: #000099;
+	margin: 0 0 5px 20px;
+	padding: 0;
+	}
+
+#atendimento ul a {
+	font: 11px/16px arial,helvetica,sans-serif;
+	color:#000099;
+	padding: 0;
+	margin: 0;
+	}
+
+.atendimentoFundo {
+	background-color: #FFFFCC;
+	background-color: #FBEFAA;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFCC, endColorstr=#FBEFAA)
+	}
+
+.mensagem {
+ 	font-family: Arial;
+	font-size:17px;
+	font-weight:bolder;
+	}
+
+.mensagemhelpdesk {
+	 font-family: Arial;
+	 font-size:14px;
+	 font-weight:normal;
+	}
+
+#mensagemErro{display:none;width:600px}
+#mensagemErro .mensagem {
+	font-family: Arial;
+	font-size:17px;
+	font-weight:bolder;
+	color:#FF0000;
+	}
+
+#trChat {display:none;}
+#trVoip {display:none;}
+
+.textarea {
+	font-size:	11px;
+	border: #000 1px solid;
+	}
+
+.botao	{
+	border-bottom: #0C3367 2px solid;
+	border-left: #5494E9 2px solid;
+	border-right: #0C3367 2px solid;
+	border-top: #5494E9 2px solid;
+	font-size: 9px; 
+	font-weight: bold;
+	color: #fff;
+	background-color: #1B70E1;
+	}
+
+.entrada {
+	border: #000000 1px solid;
+	font-size: 11px 
+	}
+
+.anchors { 
+	color: #1b70e1;
+	margin: 10px;
+	padding: 10px;
+	}
+
+li { 
+	font-size: 11px;
+	margin: 0;
+	padding:0;
+	color: #1B70E1; 
+	}
+
+.rodape {
+	font-size: 10px;
+	color: #FFFFFF;
+	}
+
+-->
+</style>
+
+
+<script language="javascript" type="text/javascript">
+
+function abreChatCOperacoes() {
+	var end = "https://wwws.portoseguro.com.br/ncc/portocentralop/chat5/cliente/frm_login.asp?IDArea=2&susep=@webusrcod@";
+	var pop_window = window.open(end,"janela","width=350,height=400,resizable=0,toolbar=0,location=0,directories=0,status=0,menubar=0");
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+</script>
+
+</head>
+<body>
+
+<input type="hidden" name="usrtip" value="@usrtip@">
+<input type="hidden" name="webusrcod" value="@webusrcod@">
+<input type="hidden" name="sesnum" value="@sesnum@">
+<input type="hidden" name="corsus" value="@corsus@">
+
+
+<div id="pagina">
+
+	<div style="width:600px">
+	<h1>Atendimento Online</h1>
+	<p>Bem vindo ao Atendimento Online. Aqui voc&ecirc; pode ser atendido pela Central de Opera&ccedil;&otilde;es de forma r&aacute;pida, pr&aacute;tica e sem custos.</p>
+	<br/>
+
+	<!-- CENTRAL OPERACOES -->
+	<a name="centraloperacoes"></a>
+	<div class="box_topo">
+	<h2 class="box_topo_h2">Central de Opera&ccedil;&otilde;es</h2>
+	</div>
+	
+	<div class="box_meio">
+
+		<table width="550" border="0" cellspacing="4" cellpadding="0">
+		<tr>
+		<td width="25%" align="center"><a href="javascript:abreChatCOperacoes('@corsus@');" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('botChatSinistroAuto','','https://wwws.portoseguro.com.br/col/images/botao_chat02.gif',1)"><img name="botChatSinistroAuto" src="https://wwws.portoseguro.com.br/col/images/botao_chat01.gif" border="0"></a></td>
+		<td width="75%"><p><strong>Central de Opera&ccedil;&otilde;es:</strong> Comunique-se em tempo real com o departamento da Central de Opera&ccedil;&otilde;es. 
+Para agilizar o atendimento, tenha em m&atilde;os o n&uacute;mero do servi&ccedil;o.</p></td>
+		</tr>
+		</table>
+
+		<br/>
+	</div>
+	<div class="box_rodape"></div>
+	<!-- FIM CENTRAL OPERACOES -->
+
+
+
+
+
+<br />
+<br />
+
+
+</div>
+</div>
+
+
+</body>
+
+</html> 
+

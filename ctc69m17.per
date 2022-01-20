@@ -1,0 +1,50 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m17                                      R.Fornax
+
+ Classe de Lozalizacao X Cidade                              Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m17--
+                             PERMISSAO POR CIDADE
+-----------------------------------------------------------------------------
+ Clausula...:[a   ]-[b                                                      ]
+ Servico....:[c   ]-[d                                                      ]
+ Classe.....:[e   ]-[f                                                  ][ g]
+------------------------------------------------------------------------------
+ Codigo     Cidade                                                    UF
+
+ [h    ]   [i                                                     ]  [j ][x ]
+ [h    ]   [i                                                     ]  [j ][x ]
+ [h    ]   [i                                                     ]  [j ][x ]
+ [h    ]   [i                                                     ]  [j ][x ]
+ [h    ]   [i                                                     ]  [j ][x ]
+------------------------------------------------------------------------------
+ Atualizado..:[l          ] por [m                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.clscod               ,noentry;
+   b  = formonly.clsnom               ,noentry;
+   c  = formonly.srvcod               ,noentry;
+   d  = formonly.srvnom               ,noentry;
+   e  = formonly.lclclacod            ,noentry;
+   f  = formonly.clalcldes            ,noentry;
+   g  = formonly.codufd               ,noentry; 
+   h  = formonly.cidcod               ,comments = " Digite o Codigo da Cidade"       ,upshift; 
+   i  = formonly.cidnom               ,noentry;
+   j  = formonly.ufdcod               ,noentry;  
+   x  = formonly.rtcececod            ,invisible ,noentry;  
+   l  = formonly.regatldat            ,noentry;
+   m  = formonly.funnom               ,noentry; 
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m17(cidcod thru rtcececod )
+end

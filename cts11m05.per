@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS11M05                                               Marcelo
+                                                                      Gilberto
+ Conclusao do servico - passagem aerea                                Abr/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+          Reserva de Passagem Aerea - Informacoes Adicionais
+------------------------------------------------------------cts11m05--
+ Empresa.........:[a5   |a0                  ]   No. Voo:[a1   ]
+ Reserva Passagem:[a]                     Emite Passagem:[b]
+ No. PTA.........:[a2     ]                  Localizador:[a3     ]
+ Vlr Psg Adulto..:[a4        ]           Vlr Psg Crianca: [a7        ]
+ Vlr Psg Total...:[a6        ] 
+----------------------------- EMBARQUE -------------------------------
+ Aeroporto:[c0  ][c1                                                ]
+ Cidade...:[c2                                           ]  UF..:[c3]
+ Data/Hora:[c4        ]as[c5   ]
+
+----------------------------- CHEGADA  -------------------------------
+ Aeroporto:[d0  ][d1                                                ]
+ Cidade...:[d2                                           ]  UF..:[d3]
+ Data/Hora:[d4        ]as[d5   ]
+
+
+}
+end
+
+tables
+   datmtrppsgaer
+
+attributes
+  a5   = formonly.aerciacod;
+  a0   = datmtrppsgaer.trpaerempnom, upshift, noentry
+                                   , comments = " Empresa aerea ";
+  a1   = datmtrppsgaer.trpaervoonum, comments = " Numero do voo ";
+  a    = formonly.aerpsgrsrflg, upshift, noentry;
+  b    = formonly.aerpsgemsflg, upshift, noentry;
+  a2   = datmtrppsgaer.trpaerptanum, upshift
+                                   , comments = " Numero PTA ";
+  a3   = datmtrppsgaer.trpaerlzdnum, upshift
+                                   , comments = " Numero do localizador ";
+  a4   = datmtrppsgaer.adlpsgvlr, upshift
+                             , comments = "Informe valor de passagem adulto ";
+  a7   = datmtrppsgaer.crnpsgvlr, upshift
+                             , comments = "Informe valor de passagem crianca ";
+  a6   = datmtrppsgaer.totpsgvlr, upshift
+                             , comments = "Informe valor de passagem total ";
+
+  c0   = formonly.arpembcod          type dec
+                                   , format = "&&&&"
+                                   , comments = " Codigo do aeroporto de embarque ";
+  c1   = formonly.arpembnom        , noentry;
+  c2   = formonly.arpembcidnom     , noentry;
+  c3   = formonly.arpembufdcod     , noentry;
+  c4   = datmtrppsgaer.trpaersaidat, comments = " Data para embarque ";
+  c5   = formonly.trpaersaihor type date, format='##:##', comments = " Hora prevista para embarque ";
+
+  d0   = formonly.arpchecod          type dec
+                                   , format = "&&&&"
+                                   , comments = " Codigo do aeroporto de chegada ";
+  d1   = formonly.arpchenom        , noentry;
+  d2   = formonly.arpchecidnom     , noentry;
+  d3   = formonly.arpcheufdcod     , noentry;
+  d4   = datmtrppsgaer.trpaerchedat, comments = " Data para chegada ";
+  d5   = formonly.trpaerchehor type date, format='##:##', comments = " Hora prevista para chegada ";
+end
+
+instructions
+  delimiters " "
+  screen record s_cts11m05(aerciacod thru trpaerchehor)
+end

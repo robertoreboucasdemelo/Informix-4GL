@@ -1,0 +1,64 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC03M00                     Criacao: 26/09/94 - Pedro
+
+ Manutencao de Escritorios de Corretagem
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc03m00--
+                         Codigo:[c00]
+------------------------------------------------------------------------------
+
+ Razao Social:[a001                                    ]
+
+ Responsavel.:[a002                                    ]
+
+ Endereco....:[a003                                    ]
+
+ Bairro......:[a004                ]            Cidade:[a005                ]
+
+ U.F.........:[u0]                              Cep...:[a006 ][c01]
+
+ Telefones...:[a007][a008                                     ]
+
+ Fax.........:[a009                ]
+}
+end
+
+tables gabkesc
+
+attributes
+c00  = gabkesc.esccod;
+a001 = gabkesc.escnom,    required,
+                          autonext,
+                          upshift;
+a002 = gabkesc.rspnom,    required,
+                          autonext,
+                          upshift;
+a003 = gabkesc.endlgd,    required,
+                          autonext,
+                          upshift;
+a004 = gabkesc.endbrr,    required,
+                          autonext,
+                          upshift;
+a005 = gabkesc.endcid,    required,
+                          autonext,
+                          upshift;
+a006 = gabkesc.endcep,    required,
+                          autonext;
+c01  = gabkesc.endcepcmp, required,
+                          autonext;
+a007 = gabkesc.dddcod,    autonext;
+a008 = gabkesc.teltxt,    autonext;
+a009 = gabkesc.factxt,    autonext;
+u0   = gabkesc.endufd,    required,
+                          autonext,
+                          upshift;
+end
+
+instructions
+     delimiters " "
+end

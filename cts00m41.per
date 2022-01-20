@@ -1,0 +1,66 @@
+database formonly
+
+screen
+{
+--------------------------------------------------------------------cts00m41--
+Tipo:[x|   y]  Data:[         a] Empresa:[  b|                              c] 
+Cidade Sede:[                       d] UF Sede: [ z] Etapa:[ w|            w2] 
+------------------------------------------------------------------------------
+       Serv Ime   Serv Progr   Total |[  c1] [  c2] [  c3] [  c4]  [  c5]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+[  e]  [     f]    [     g]   [    h]|[    i|     j|     k|      l|     m]
+                                     |
+ TOTAL DIA[     n]  [     o]  [    p]|[    q|     r|     s|      t|     u]
+}
+end
+
+attributes
+x   = formonly.tipo          ,reverse, comments = " 1 - Auto / 2 - RE ";
+y   = formonly.tipodes       ,reverse, noentry;
+a   = formonly.atddat        ,upshift, reverse;
+b   = formonly.empcod        ,upshift, reverse;
+c   = formonly.empdes        ,upshift, noentry, reverse;
+d   = formonly.cidsednom     ,upshift, reverse;
+z   = formonly.ufdcodsed     ,upshift, reverse;
+w   = formonly.atdetpcod     ,reverse;     
+w2  = formonly.atdetpdes     ,reverse, noentry;
+
+c1  = formonly.cabecalho1    ,noentry;
+c2  = formonly.cabecalho2    ,noentry;
+c3  = formonly.cabecalho3    ,noentry;
+c4  = formonly.cabecalho4    ,noentry;
+c5  = formonly.cabecalho5    ,noentry;
+
+e   = formonly.atdhor        ,noentry;
+f   = formonly.qtdsrvimd     ,noentry;
+g   = formonly.qtdsrvprg     ,noentry;
+h   = formonly.qtdsrvtot     ,noentry;
+i   = formonly.qtd1          ,noentry;
+j   = formonly.qtd2          ,noentry;
+k   = formonly.qtd3          ,noentry;
+l   = formonly.qtd4          ,noentry;
+m   = formonly.qtd5          ,noentry;
+
+n   = formonly.qtdtotsrvimd  ,noentry, reverse;
+o   = formonly.qtdtotsrvprg  ,noentry, reverse;
+p   = formonly.qtdtotsrv     ,noentry, reverse;
+q   = formonly.qtdtotsrv1  ,noentry, reverse;
+r   = formonly.qtdtotsrv2  ,noentry, reverse;
+s   = formonly.qtdtotsrv3  ,noentry, reverse;
+t   = formonly.qtdtotsrv4  ,noentry, reverse;
+u   = formonly.qtdtotsrv5  ,noentry, reverse;
+
+instructions
+    delimiters " "
+    screen record s_totsrv[13](atdhor thru qtd5) 

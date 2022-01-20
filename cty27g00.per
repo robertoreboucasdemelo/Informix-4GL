@@ -1,0 +1,60 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty27g00                                                Alberto
+ Dados de Cobranca do Servico                                          12/2012
+-----------------------------------------------------------------------------}
+database formonly
+screen size 24 by 80
+{
+--------------------------------------------------------------------cty27g00--
+           D A D O S   D E   C O B R A N C A   D O   S E R V I C O
+------------------------------------------------------------------------------
+ numero Servico.....:[a1           ]Forma Pagamento:[b|b1                   ]
+------------------------------------------------------------------------------
+ Nome exatamente como 
+ impresso no cartão.:[c                                                 ]
+
+ Numero do Cartao...:[da  ][db  ][dc  ][dd  ] [de                 ]
+
+ Bandeira...........:[e|e1                  ]Validade Cartao:[f         ]
+
+ Quantidade Parcelas:[g  ]
+
+ Numero Proposta....:[x ]/[a       ]
+------------------------------------------------------------------------------
+ <Ctrl+C> Abandona
+------------------------------------------------------------------------------
+}
+end
+
+ attributes
+    x  = formonly.orgnum,          reverse,noentry;
+    a  = formonly.prpnum,          reverse,noentry;
+    a1 = formonly.servico,         reverse,noentry;
+    b  = formonly.pgtfrmcod,        comments = "Informe/Selecione Forma de Pagamento.", reverse;
+    b1 = formonly.l_pgtfrmdes, noentry;
+    c  = formonly.clinom,          comments = "Informe nome exatamente como impresso no cartão. ", reverse, upshift ;
+    da = formonly.numcar1
+        ,comments = "Informe numero do Cartao."
+        ,reverse
+        ,autonext;   
+    db = formonly.numcar2
+        ,comments = "Informe numero do Cartao."
+        ,reverse
+        ,autonext; 
+    dc = formonly.numcar3
+        ,comments = "Informe numero do Cartao."
+        ,reverse
+        ,autonext;   
+    dd = formonly.numcar4
+        ,comments = "Informe numero do Cartao."
+        ,reverse
+        ,autonext;  
+    de = formonly.crtnum,          noentry, invisible;
+    e  = formonly.bndcod,         comments = "Informe o nome da Bandeira do Cartao.", reverse;
+    e1 = formonly.l_bnddes, noentry; 
+    f  = formonly.crtvlddat type date, comments="Informe a data de validade do cartao ",reverse;
+    g  = formonly.cbrparqtd,   comments = "Informe a quantidade de Parcelas.", reverse;
+end
+ instructions
+    delimiters " "
+ end

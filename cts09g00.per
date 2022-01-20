@@ -1,0 +1,33 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts09g00                                               Pedro
+                                                                      Marcelo
+ Atualiza telefone do segurado                                        Abr/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Atualize Telefone Residencial para Contato
+--------------------------------------cts09g00--
+
+ DDD.:[a   ]
+
+ TEL.:[b                                       ]
+
+
+}
+end
+
+tables
+   gsakend
+
+attributes
+
+   a   = gsakend.dddcod, comments = " Codigo do DDD";
+   b   = gsakend.teltxt, comments = " Numero do telefone",
+                         upshift;
+
+instructions
+  delimiters " "
+end

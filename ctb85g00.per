@@ -1,0 +1,36 @@
+database formonly
+screen
+{
+--------------------------------------------------------------------ctb85g00--
+    Codigo:[a         ] - [b                                       ]
+------------------------------------------------------------------------------
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+   [c                                                                     ]
+
+}
+end
+
+attributes
+
+   a = formonly.codigo     type char, upshift, noentry;
+   b = formonly.coddes     type char, upshift, noentry;
+   c = formonly.texto      type char, upshift;
+
+end
+
+instructions
+   delimiters ' '
+   screen record s_ctb85g00[14](texto)
+end                                             

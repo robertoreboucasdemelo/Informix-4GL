@@ -1,0 +1,98 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts24m00                                               Gustavo
+
+ Cadastro de Movimento Teletrim conforme criterios                    Jan/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------cts24m00---
+ Numero Movimento: [a00   ]
+------------------------------------------------------------------------------
+[a01          |a02       ][a03 |a04       ]
+ Sigla viat..:[a05  ]   [a06                                                ]
+ Frota Prest.:[a07   ][a08                                     ]
+ Nro.Control.:[a09  ] [a10                      ]
+ Codigo Grupo:[a11  ] [a12                                              ]
+ Nro.Teletrim:[a13    |a14                                     ]
+ Cod.Mensagem:[a15  ]
+       Texto.:[a16                                               ]
+              [a17                                               ]
+              [a18                                               ]
+              [a19                                               ]
+              [a20                                     ]
+
+[a21                                                                      ]
+}
+
+end tables datmtlt, datkveiculo, dpaksocor, htlrust, datktltgrp
+
+    attributes
+
+   a00 = formonly.tltmvtnum,
+         comments = "Codigo do Grupo ";
+
+   a01 = formonly.perde,              noentry;
+
+   a02 = formonly.dtini type date,
+         comments = "Informe data inicial para pesquisa";
+
+   a03 = formonly.perat,              noentry;
+
+   a04 = formonly.dtfim type date,
+         comments = "Informe data final para pesquisa";
+
+   a05 = datmtlt.atdvclsgl,           upshift,
+         comments = "Informe a sigla da viatura ";
+
+   a06 = formonly.vcldes,             upshift, noentry;
+
+   a07 = datmtlt.pstcoddig,
+         comments = "Informe o Codigo do Prestador ";
+
+   a08 = dpaksocor.nomrazsoc,          upshift, noentry;
+
+   a09 = datmtlt.mdtctrcod,
+         comments = "Informe o numero da Controladora ";
+
+   a10 = formonly.mdtfqcdes,           noentry;
+
+   a11 = datmtlt.c24tltgrpnum,
+         comments = "Informe o codigo do Grupo ";
+
+   a12 = datktltgrp.c24tltgrpdes,     upshift, noentry;
+
+   a13 = datmtlt.pgrnum,
+         comments = "Informe o Numero do Teletrim ";
+
+   a14 = htlrust.ustnom,               upshift, noentry;
+
+   a15 = datmtlt.tltmsgcod,
+         comments = "Informe o codigo da Mensagem ou (enter)";
+
+   a16 = formonly.tltmsgtxt1,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a17 = formonly.tltmsgtxt2,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a18 = formonly.tltmsgtxt3,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a19 = formonly.tltmsgtxt4,                   upshift, autonext,
+         comments = "Texto livre para mensagem";
+
+   a20 = formonly.tltmsgtxt5,                   upshift,
+         comments = "Texto livre para mensagem";
+
+   a21 = formonly.informa,                      noentry;
+
+end
+
+instructions
+     delimiters " "
+end
+
+

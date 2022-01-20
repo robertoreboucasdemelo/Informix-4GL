@@ -1,0 +1,58 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m00                                               Almeida
+
+ Simulacao dos procedimentos cadastrados                             jan/1999
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc21m00--
+ Ativar em.:[a         ][b    ]   Ate.:[c         ][d    ][d1                ]
+------------------------------------------------------------------------------
+     Campo                      Conteudo
+
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+[e1][e2                   ][e3][e4                                       ][e5]
+
+ (F17)Abandona, (F8)Texto
+}
+end
+
+ tables dattprt,datmprtprc
+
+ attributes
+
+    a  = formonly.viginc                       type date,
+         comments = " Vigencia inicial (data)";
+    b  = formonly.viginchor                    type datetime hour to minute,
+         comments = " Vigencia inicial (hora)";
+    c  = formonly.vigfnl                       type date,
+         comments = " Vigencia final (data)";
+    d  = formonly.vigfnlhor                    type datetime hour to minute,
+         comments = " Vigencia final (hora)";
+    d1 = formonly.cabtxt                      ,noentry;
+
+    e1 = datmprtprc.prtcpointcod   ,invisible ,noentry;
+    e2 = dattprt.prtcponom         ,upshift,
+         comments = " Informe o nome do campo";
+    e3 = formonly.sinal            ,upshift,
+         comments = " Informe: (=)Regra ou (<>)Excessao";
+    e4 = datmprtprc.prtprccntdes   ,upshift,
+         comments = " Informe o conteudo do campo";
+    e5 = dattprt.prtcpointnom      ,invisible ,noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m00   (prtcpointcod thru prtcpointnom)
+ end

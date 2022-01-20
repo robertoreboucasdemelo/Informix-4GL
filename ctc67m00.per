@@ -1,0 +1,74 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc67m00                                    Marcia  - Ago/2013
+
+ Manutencao no cadastro de clientes I                        
+----------------------------------------------------------------------------}
+database porto
+screen
+{
+ -----------------------------------------------------------------ctc67m00---
+ Tipo Pessoa .......:[x]
+ Cnpj/Cpf...........:[a           ][b   ][c ]       Situacao..:[d][e        ]
+ Nome Completo .....:[f                                                     ]
+ Tel Cel ...........:[g          ]
+ Tel Res ...........:[h         ] 
+ Cidade  ...........:[i                                             ] 
+ UF ................:[j ]
+ Lista de Servicos..:
+      Nr.Serv.         Nome Servico             Data           Status  
+   [a1     |an]    [a2                  ]    [a3        ]    [a4      ]
+   [a1     |an]    [a2                  ]    [a3        ]    [a4      ]
+   [a1     |an]    [a2                  ]    [a3        ]    [a4      ]
+   [a1     |an]    [a2                  ]    [a3        ]    [a4      ]
+   [a1     |an]    [a2                  ]    [a3        ]    [a4      ] 
+
+
+}
+end
+
+tables datkipecli , datripeclisrv
+
+attributes
+x = formonly.tipcli,upshift,comments = " Tipo de pessoa (F)isica ou (J)uridica "
+                   , autonext;
+a = datkipecli.cpfcpjnum,comments  = " cnpj/Cpf Do Cliente"  
+                   , autonext
+	           ,format = "###&&&&&&&&&";
+b = datkipecli.cpjfilnum,comments  = " Ordem cnpj do Cliente" 
+                   , autonext
+		   ,format = "&&&&" ;
+c = datkipecli.cpfcpjdig,comments  = " Digito cnpj/Cpf do Cliente"  
+                   , autonext
+		   ,format = "&&" ;
+d = datkipecli.clisitcod,comments  = " (A)tivo (C)cancelado", upshift
+                   , autonext;
+e = formonly.desclisitcod,comments = " descricao da Situacao",upshift
+			 ,noentry ;
+f = datkipecli.clinom,comments = " Nome do Cliente ",upshift,autonext ;
+g = datkipecli.celtelnum,comments = " Telefone Celular do Cliente "   
+	                ,format = "##########&" 
+			,autonext;
+h = datkipecli.telnum,comments = " telefone Residencial Cliente " ,upshift
+	                ,format = "#########&" 
+			,autonext;
+i = datkipecli.cidnom,comments = " cidnom do Cliente ",upshift,autonext;
+j = datkipecli.ufdsgl,comments = " ufdsgl do Cliente ",upshift;
+		
+a1 = datripeclisrv.srvnum    , comments = " Nr do servico "  
+                             , format = "&&&&&&&";
+
+an = datripeclisrv.rlzsrvano , comments = " Ano do servico "
+                             , format = "&&";
+
+
+a2 = datripeclisrv.srvnom    , comments = " Nome do servico ", upshift ;
+a3 = datripeclisrv.srvsoldat , comments = "Data da solicitacao do servico " ;
+a4 = formonly.srvsitcod      , comments = "Situacao do servico" , upshift ;
+
+end
+
+instructions
+     delimiters " "
+     screen record s_ctc67m00_01(clisitcod thru ufdsgl)
+     screen record s_ctc67m00(srvnum thru srvsitcod)
+end

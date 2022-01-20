@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M28                                                 Ruiz
+                                                                       Marcus
+ Mostra o cadastro de motivos                                        Ago/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+           MOTIVOS                      
+----------------------cts00m28--
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+[a   ][b                       ]
+--------------------------------
+}
+End
+
+tables
+   datksrvintmtv
+
+Attributes
+ a  = datksrvintmtv.etpmtvcod    ,invisible, noentry;
+ b  = datksrvintmtv.etpmtvdes    ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts00m28(etpmtvcod thru etpmtvdes)
+End

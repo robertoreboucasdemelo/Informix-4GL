@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m33                                      R.Fornax
+
+ Cadastro de Segmento X Motivo                              Out/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m33--
+ Segmento...:[a   ][b                                                     ]
+------------------------------------------------------------------------------
+ Motivo  Nome
+
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ] 
+------------------------------------------------------------------------------
+ Atualizado..:[e          ] por [f                                        ]
+------------------------------------------------------------------------------
+ [g                                                                       ]
+
+}
+end
+
+attributes
+   a  = formonly.itaclisgmcod           ,noentry;
+   b  = formonly.itaclisgmdes           ,noentry;
+   c  = formonly.asitipcod              ,comments = " Digite o Codigo da Assistencia"     ,upshift;
+   d  = formonly.asitipdes              ,noentry;
+   e  = formonly.atldat                 ,noentry;
+   f  = formonly.funmat                 ,noentry;
+   g  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc91m33(asitipcod thru asitipdes)
+end

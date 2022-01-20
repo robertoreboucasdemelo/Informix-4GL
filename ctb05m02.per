@@ -1,0 +1,72 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB05M02                                               Wagner   
+                                                                  
+ Consulta ordem de pagamento por (numero/ordem de servico)            Mar/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb05m02--
+ Numero O.P...:[c5      ]      Numero da O.S.:[c9|c10    |ca]
+------------------------------------------------------------------------------
+ Numero O.P...:[a5      ]         Fase Atual.:[a7                            ]
+                                  Situacao...:[a9                            ]
+[a10           ][a15     ][a20                                               ]
+ Tipo Pessoa..:[a50     ]         Cgc/Cpf....:[a55         ][a60 ][dc]
+
+ Data Entrega.:[a25       ]       Data Pagto.:[a30       ]
+ Qtd. Servicos:[a35   ]           Valor Total:[a40            ]
+
+ Opc Pagamento:[a65          ]
+ Destino......:[a75                               ]
+ Favorecido...:[a80                                     ]
+ Banco........: [a85 ][a90                 ]
+ Agencia......:[a95  ][a]         Conta......:[a105        ][dt]
+
+}
+end
+
+tables dbsmopg, dbsmopgitm, dbsmopgfav, fpgkpgtdst,
+       gcdkbanco, gcdkbancoage, datmservico
+
+attributes
+   c5   = formonly.socopgnumc,
+          comments = " Numero da Ordem de Pagamento"              ;
+   c9   = datmservico.atdsrvorg,format = "&&",             noentry;
+   c10  = dbsmopgitm.atdsrvnum, format = "&&&&&&&",
+          comments = " Numero da Ordem de Servico"                ;
+   ca   = dbsmopgitm.atdsrvano, format = "&&",
+          comments = " Ano da Ordem de Servico"                   ;
+
+   a5   = dbsmopg.socopgnum,                              noentry;
+   a7   = formonly.socopgfasdes,                          noentry;
+   a9   = formonly.socopgsitdes,                          noentry;
+   a10  = formonly.favtipcab,                             noentry;
+   a15  = formonly.favtipcod,                             noentry;
+   a20  = formonly.favtipnom,                             noentry;
+   a25  = dbsmopg.socfatentdat,                           noentry;
+   a30  = dbsmopg.socfatpgtdat,                           noentry;
+   a35  = dbsmopg.socfatitmqtd,  format="<<<<<<",         noentry;
+   a40  = dbsmopg.socfattotvlr,  format="<<<<<<<<<<<<.<<",noentry;
+   a50  = formonly.tippesdes,                             noentry;
+   a55  = dbsmopg.cgccpfnum,                              noentry;
+   a60  = dbsmopg.cgcord,        format="&&&&",           noentry;
+   dc   = dbsmopg.cgccpfdig,     format="&&",             noentry;
+
+   a65  = formonly.socpgtopcdes,                          noentry;
+   a75  = fpgkpgtdst.pgtdstdes,                           noentry;
+   a80  = dbsmopgfav.socopgfavnom,                        noentry;
+   a85  = dbsmopgfav.bcocod,                              noentry;
+   a90  = gcdkbanco.bcosgl,                               noentry;
+   a95  = dbsmopgfav.bcoagnnum,                           noentry;
+   a    = dbsmopgfav.bcoagndig,                           noentry;
+   a105 = dbsmopgfav.bcoctanum,                           noentry;
+   dt   = dbsmopgfav.bcoctadig,                           noentry;
+
+end
+
+instructions
+     delimiters " "
+end

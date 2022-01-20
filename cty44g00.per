@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty44g00                                               Roberto
+ Consulta de Planos e Clausulas                                      Abr/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+{
+--------------------------------------------------------------------cty44g00--
+ Data.:[a         ] a [b         ] Tipo.:[c][d         ]
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+   [x                                                                     ]
+ 
+}
+end
+
+attributes
+
+    a  = formonly.dt_ini         , comments = " Informe a Data Inicial"               ,upshift;
+    b  = formonly.dt_fnl         , comments = " Informe a Data Final"                 ,upshift;
+    c  = formonly.tipo           , comments = " Informe A-Apolice ou P-Proposta"      ,upshift;
+    d  = formonly.tipdes         , noentry;
+    x  = formonly.obs            , noentry;
+   
+
+end
+instructions
+   delimiters " "
+end  
+ 

@@ -1,0 +1,82 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts08m00                                                  Pedro
+                                                                       Marcelo
+ Solicitacao de 2a. via de talao de estacionamento                    Mar/1995
+
+ Alteracao: Rodrigo Santos em 19/11/2003 - OSF 28983
+ Objetivo : Inclusao de novos campos no endereco e permissao para digitacao
+            dos mesmos.
+-----------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+                        SOLICITACAO SEGUNDA VIA              [a2             ]
+--------------------------------------------------------------------cts08m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+[c1 ][c2                                                             ]
+
+ CEP......:[f5   ][f6 ]
+ Tp End...:[f8]    Endereco...:[f1                                           ]
+ Nr.......:[f9   ] Complemento:[f10                          ]
+ Bairro...:[f2                  ]
+ Cidade...:[f3                  ] UF:[f4]
+
+ Confirma.:[f7]
+
+ (F1)Help  (F5)Espelho
+
+}
+ end
+
+tables
+   datmservico ,
+   datrservapol,
+   datmligacao ,
+   gsakend     ,
+   datmsegviaend
+
+attributes
+   a2   = datmligacao.c24solnom  , noentry;
+
+   b1   = datmservico.nom        , upshift
+                                 , comments = " Nome";
+   b2   = formonly.doctxt        , noentry;
+   b6   = datmservico.corsus     , upshift
+                                 , comments = " Susep";
+   b7   = datmservico.cornom     , upshift
+                                 , comments = " Corretor";
+   b8   = formonly.cvnnom        , noentry;
+   b9   = datmservico.vclcoddig  , format = "&&&&&&"
+                                 , comments = " Codigo do veiculo";
+   b10  = datmservico.vcldes     , upshift
+                                 , comments = " Descricao do veiculo";
+   b11  = datmservico.vclanomdl  , comments = " Ano do veiculo";
+   b12  = datmservico.vcllicnum  , upshift
+                                 , comments = " Placa do veiculo";
+   b13  = formonly.vclcordes     , downshift
+                                 , comments = " Cor do veiculo";
+
+   c1  =  datmligacao.c24astcod  , noentry;
+   c2  =  formonly.c24astdes     , noentry;
+
+   f1  =  formonly.endereco      , upshift;
+   f2  =  gsakend.endbrr         , upshift;
+   f3  =  gsakend.endcid         , upshift;
+   f4  =  gsakend.endufd         , upshift;
+   f5  =  gsakend.endcep         ;
+   f6  =  gsakend.endcepcmp      ;
+   f7  =  formonly.confirma      , upshift
+                                 , comments = " Confirma solicitacao: (S)im ou (N)ao";
+   f8  = gsakend.endlgdtip       , upshift;
+   f9  = datmsegviaend.endnum    ;
+   f10 = datmsegviaend.endcmp    , upshift;
+end
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,52 @@
+{############################################################################
+# Nome do Modulo: CTC20M06                                    Sergio Burini #
+#                                                                PSI 237248 #
+# Manutenção Prestadores X Processos de Bonificação.               MAR/2009 #
+############################################################################}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc20m07--
+   [c                                                                   ]
+ Prestador:[a1      |a2                                                     ]
+------------------------------------------------------------------------------
+    Cod     Processo                 Dt Cadastro    Funcionario
+
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+   
+    
+        
+
+}
+end
+
+ tables dparbnfprt
+
+ attributes
+
+    a1 = dparbnfprt.pstcoddig               ,noentry;
+    a2 = formonly.rspnom                    ,noentry;
+                                            
+    b  = formonly.prtbnfprccod            ,upshift,
+         comments = " Codigo do Processo."; 
+    b1 = formonly.prtbnfprcdes              ,noentry;
+                                            
+    b2 = formonly.altdat                    ,noentry;
+    b3 = formonly.funnom                    ,noentry;
+
+    c  = formonly.cabec, noentry,reverse;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc20m07(prtbnfprccod thru funnom)
+ end

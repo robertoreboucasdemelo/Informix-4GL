@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M17                                            Aguinaldo
+                                                                   Costa
+ Direciona e imprime OP  de servico para prestador                 Out/2003
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+
+{
+         Direcionamento da impressao da OP
+----------------------------------------------------ctb11m17---
+
+ Enviar   OP  para:[a][a1        ]
+
+ Nome de Guerra.:[b                   ]
+ Email..........:[c                                           ]
+ Numero do Fax..:[d   ][e         ]
+ Numero do Celular:[f   ][g         ]
+
+}
+end
+
+tables
+  dpaksocor
+
+attributes
+
+  a  = formonly.destino   ,comments = " Enviar para (E)mail, (I)mpressora, (F)ax ou (S)MS"
+                          ,autonext
+                          ,upshift ;
+  a1 = formonly.envdes    ,noentry;
+  b  = dpaksocor.nomgrr   ,reverse
+                          ,noentry;
+  c  = formonly.maides    ,reverse
+                          ,comments = "Email";
+  d  = dpaksocor.dddcod   ,reverse
+                          ,comments = " Codigo do DDD"
+                          ,autonext
+                          ,upshift ;
+  e  = dpaksocor.faxnum   ,reverse
+                          ,comments = " Numero do FAX de destino"
+                          ,autonext
+                          ,upshift ;
+  f  = dpaksocor.celdddnum,reverse
+                          ,comments = " Codigo do DDD"
+                          ,autonext
+                          ,upshift ;
+  g  = dpaksocor.celtelnum,reverse
+                          ,comments = " Numero do Celular de destino"
+                          ,autonext
+                          ,upshift ;                          
+                          
+end
+
+instructions
+  delimiters " "
+end

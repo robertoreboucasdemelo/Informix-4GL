@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS31M00B
+                                                                      Roberto
+ Tela para a Escolha do Endereco                                     Jun/2007
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+           Escolha o Endereco Disponivel
+----------------------------------------------cts31m00b--
+
+      [a |a1                                     ]
+      [b |b1                                     ]
+      [c |c1                                     ]
+
+                    Opcao: [d]
+
+}
+end
+
+attributes
+
+  a   = formonly.opc1          ,noentry ;
+  a1  = formonly.crpretlcldes  ,noentry ;
+  b   = formonly.opc2          ,noentry ;
+  b1  = formonly.veldes        ,noentry ;
+  c   = formonly.opc3          ,noentry ;
+  c1  = formonly.fnrdes        ,noentry ;
+  d   = formonly.opcf          ,comments = " Digite a opcao desejada" ;
+
+end
+
+instructions
+  delimiters " "
+end                                                              

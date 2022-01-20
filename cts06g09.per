@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06g09                                               Gilberto
+                                                                       Marcelo
+ Funcoes Genericas - Pesquisa padrao de logradouro Mapas              Nov/1999
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+   [a0                                                                  ]
+------------------------------------------------------------------cts06g09--
+ Tipo Logr.:[a1        ]
+ Logradouro:[a2                                                            ]
+ Numero....:[a3   ] Bairro:[a4                                  ] Tp Psq:[p]
+----------------------------------------------------------------------------
+ Logradouro / Bairro                                 Numeracao    CEP
+
+[b1                                                             |b2        ]
+[b3                                          ]  [b4    |b5    ]  [b9   |b10]
+[b8|b6|b7]                                  [b11                           ]
+[b1                                                             |b2        ]
+[b3                                          ]  [b4    |b5    ]  [b9   |b10]
+[b8|b6|b7]                                  [b11                           ]
+[b1                                                             |b2        ]
+[b3                                          ]  [b4    |b5    ]  [b9   |b10]
+[b8|b6|b7]                                  [b11                           ]
+}
+end
+
+ tables datkmpacid, datkmpabrr, datkmpalgd, datkmpalgdsgm,datmlcl
+
+ attributes
+
+    a0  = formonly.cabtxt,      reverse,                noentry;
+    a1  = formonly.lgdtippsq,                           noentry;
+    a2  = formonly.lgdnompsq,                           upshift,
+          comments = " Nome do logradouro";
+    a3  = formonly.lgdnumpsq,                           noentry;
+    a4  = formonly.brrnompsq,                           noentry;
+    p   = formonly.tippsq,                              upshift,
+          comments = " Pesquisa: (F)onetica, (P)arcial";
+
+    b1  = formonly.lgdnomtxt,                           noentry;
+    b2  = datkmpalgd.lgdtip,         invisible,         noentry;
+    b3  = datkmpabrr.brrnom,                            noentry;
+    b4  = datkmpalgdsgm.mpalgdincnum,                   noentry;
+    b5  = datkmpalgdsgm.mpalgdfnlnum,                   noentry;
+    b9  = datmlcl.lgdcep,                               noentry;
+    b10 = datmlcl.lgdcepcmp,                            noentry;
+    b7  = datkmpalgdsgm.lcllgt,      invisible,         noentry;
+    b8  = datkmpalgd.lgdnom,         invisible,         noentry;
+    b6  = datkmpalgdsgm.lclltt,      invisible,         noentry;
+    b11 = formonly.latlontxt,                           noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_cts06g09(lgdnomtxt thru latlontxt)
+

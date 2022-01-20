@@ -1,0 +1,41 @@
+database formonly
+
+screen
+
+{
+                    PESQUISA SERVICOS
+------------------------------------------(cts00m00a)---
+   Limitar em [x   ]servicos                              
+   
+   Empresas:
+      [a] PORTO SEGURO        [e] ALARMES MONITORADOS 
+      [b] AZUL                [f] SAUDE
+      [c] ITAU                [g] CARTAO
+      [d] VIDA                [h] PSS
+   
+   Progamados Hora Inicial:[a1]:[a2]
+   
+   Progamados Hora Final..:[b1]:[b2]
+}
+end
+
+attributes
+ x   = formonly.qtdsrv     type integer, format = "&&&&", autonext;
+ a   = formonly.empauxpor  type char   , upshift      , autonext; 
+ b   = formonly.empauxazu  type char   , upshift      , autonext;  
+ c   = formonly.empauxita  type char   , upshift      , autonext;  
+ d   = formonly.empauxvid  type char   , upshift      , autonext;  
+ e   = formonly.empauxpro  type char   , upshift      , autonext; 
+ f   = formonly.empauxsau  type char   , upshift      , autonext; 
+ g   = formonly.empauxcar  type char   , upshift      , autonext;  
+ h   = formonly.empauxpss  type char   , upshift      , autonext;   
+ a1  = formonly.inicioH    type integer, format = "&&", autonext;
+ a2  = formonly.inicioM    type integer, format = "&&", autonext;
+ b1  = formonly.fimH       type integer, format = "&&", autonext;
+ b2  = formonly.fimM       type integer, format = "&&", autonext;
+ 
+end
+
+instructions
+  delimiters ' '
+end

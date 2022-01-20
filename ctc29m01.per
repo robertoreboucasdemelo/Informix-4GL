@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC29M01                                              Marcelo
+                                                                     Gilberto
+ Mostra todos os relatorios disponiveis para solicitacao             Mai/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                  Relatorios
+------------------------------------------ctc29m01--
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+[a       ][b                                       ]
+
+}
+End
+
+tables
+   dgbkrel
+
+Attributes
+ a  = dgbkrel.relsgl, noentry;
+ b  = dgbkrel.reldes, noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc29m01(relsgl thru reldes)
+End

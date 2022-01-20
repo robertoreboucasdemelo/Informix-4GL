@@ -1,0 +1,41 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m27                                      R.Fornax
+
+ Cadastro de Clausulas Azul                                  Mar/2015
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+------------------------------------------------------------------------------
+                       CADASTRO DE CLAUSULAS DA AZUL  
+--------------------------------------------------------------------ctc69m27--
+ Clausula  Nome                                                     Processa
+
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+ [a  ] [b                                                          ]  [c]
+------------------------------------------------------------------------------
+ [d                                                                       ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes  
+   a  = formonly.clscod              ,comments = " Digite o Codigo da Clausula"     ,upshift;
+   b  = formonly.clsdes              ,comments = " Digite a Descricao da Clausula"  ,upshift;  
+   c  = formonly.processa            ,comments = " Processa <S>im ou <N>ao"         ,upshift;                
+   d  = formonly.msg                 ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m27(clscod thru processa)
+end

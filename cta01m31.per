@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m31                                               Roberto
+
+ Localiza apolices do Ramo Vida Individual                           Abr/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+--------------------------------------------------------cta01m31-------------
+ Nome do Segurado                              Cgc/Cpf           Data Nasc.
+------------------------------------------------------------------------------
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+[a                                      ][b                   ][c          ]
+
+}
+end
+tables gsaksegger
+attributes
+a = gsaksegger.segnom;
+b = formonly.cgccpf,   noentry;
+c = gsaksegger.nscdat, noentry;
+end
+Instructions
+   delimiters " "
+   screen record s_cta01m31(segnom,cgccpf,nscdat)
+end

@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m06                                              Pedro
+                                                                     Marcelo
+ Inclui/Altera quantidade de vistorias autorizadas                   Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06m06--
+ Realizacao:[a         ] Sucursal:[a1   ][a11                                ]
+------------------------------------------------------------------------------
+
+
+
+      CENTRAL 24 HORAS                     VOLANTES
+      ----------------------               ----------------------
+
+      V.P. Autorizadas:[a2  ]              V.P. Autorizadas:[a3  ]
+
+      V.P. Marcadas...:[a4  ]              V.P. Marcadas...:[a5  ]
+
+
+
+
+
+}
+end
+
+tables
+   datmvstagen
+
+attributes
+
+   a   = formonly.vstdat        type date ,
+         comments = " Data da Realizacao da Vistoria";
+   a1  = formonly.succod        type decimal,
+         comments = " Sucursal";
+   a11 = formonly.sucnom                   ,noentry;
+
+   a2  = datmvstagen.atrvstqtdc24          ,
+         comments= " Quantidade de vistorias autorizadas para CENTRAL 24 HORAS";
+   a3  = datmvstagen.vstqtdaut             ,noentry,
+         comments= " Quantidade de vistorias autorizadas para VISTORIADORES VOLANTES";
+   a4  = datmvstagen.vstqtdc24             ,noentry;
+   a5  = datmvstagen.vstqtdvol             ,noentry;
+
+instructions
+  delimiters " "
+end

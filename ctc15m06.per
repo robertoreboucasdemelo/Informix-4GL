@@ -1,0 +1,55 @@
+{----------------------------------------------------------------------
+ Nome do Form: CTC15M06                                      Marcelo
+                                                             Gilberto
+ Manutencao do Relacionamento Tipo de Assistencia/Motivo     Mar/1999
+----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m06--
+          Tipo de Assistencia:[a |b                              ]
+------------------------------------------------------------------------------
+ Motivo                  Status      Atualizado
+
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+[c |c1                  |d|d1       |e         |por|f1|f2    |f3             ]
+
+}
+end
+
+tables
+   datkasimtv, datkasitip, datrmtvasitip
+
+attributes
+   a  = datkasitip.asitipcod    , noentry;
+   b  = datkasitip.asitipdes    , noentry;
+   c  = datrmtvasitip.asimtvcod , format = "&&"
+                                , comments = " Codigo do motivo para assistencia";
+   c1 = datkasimtv.asimtvdes    , noentry;
+   d  = datrmtvasitip.asimtvsit , upshift
+                                , comments = " Status da etapa para servico: (A)tivo ou (C)ancelado";
+   d1 = formonly.asimtvsitdes   , noentry;
+   e  = datrmtvasitip.atldat    , noentry;
+   por= formonly.txt            , noentry;
+   f1 = datrmtvasitip.atlemp    , format = "&&"
+                                , noentry;
+   f2 = datrmtvasitip.atlmat    , format = "&&&&&&"
+                                , noentry;
+   f3 = formonly.atlnom         , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc15m06(asimtvcod thru atlnom)
+end

@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB18M00                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de eventos analise                                          Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb18m00--
+        Codigo..........:[a1]
+------------------------------------------------------------------------------
+
+
+
+        Descricao ..: [a2                                      ]
+
+        Situacao ...: [a]
+
+
+
+
+
+        Incluido........:[a3        ] por [a4                 ]
+        Atualizado......:[a5        ] por [a6                 ]
+
+}
+end
+
+tables dbsmcrnpgt
+
+attributes
+   a1   = dbsmcrnpgt.crnpgtcod,
+          comments = " Codigo do cronograma";
+
+   a2   = dbsmcrnpgt.crnpgtdes,
+          comments = " Descricao do cronograma",
+          upshift;
+
+   a    = dbsmcrnpgt.crnpgtstt,
+          comments = " Codigo situacao do cronograma",
+          upshift;
+
+   a3   = dbsmcrnpgt.caddat,
+          noentry;
+
+   a4   = formonly.cadfunnom,
+          noentry;
+
+   a5   = dbsmcrnpgt.atldat,
+          noentry;
+
+   a6   = formonly.funnom,
+          noentry;
+
+end
+
+instructions
+     delimiters " "
+end
+

@@ -1,0 +1,29 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M08                                              Marcelo
+                                                                     Gilberto
+ informa valor total do servico (informado na relacao)               Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+     VALOR TOTAL DO SERVICO
+--------------------------ctb11m08--
+
+    Valor .:[a              ]
+
+
+}
+End
+
+Tables dbsmopgitm
+
+Attributes
+  a   = dbsmopgitm.socopgitmvlr,   format = "###########&.&&",
+        comments = " Valor do total do servico";
+End
+
+Instructions
+  delimiters " "
+End

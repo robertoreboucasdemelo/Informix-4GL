@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts21m09                                              Ruiz
+                                                                   Junior-fsw
+ Mostra dados do canc.  vist. RE - e chamada pelo modulo cts21m03    Ago/2001
+-----------------------------------------------------------------------------}
+ 
+database porto
+screen size 24 by 80   
+{
+-----------------------------------------------------cts21m09---
+ Nome.................:[f001           ]
+ Solicitante..........:[f002                ]  
+ Data.................:[f003      ] Hora:[f004   ]   
+ Matricula............:[f005  ]     Nome:[f006                ]
+ Tipo de Cancelamento.:[f007                                ]
+ Motivo do Cancelamento:  
+        [f008                                             ]
+        [f008                                             ]
+
+----------------------------------------------------------------
+}
+end
+tables
+datmpedvist
+datksoltip
+isskfunc
+
+attributes
+f001   = datmpedvist.vstsolnom,   noentry; 
+f002   = datksoltip.c24soltipdes, noentry; 
+f003   = formonly.atddat      ,   noentry;
+f004   = formonly.atdhor      ,   noentry;
+f005   = formonly.funmat      ,   noentry;
+f006   = isskfunc.funnom      ,   noentry  ;
+f007   = formonly.desccan     ,   noentry  ;
+f008   = formonly.cncmtvtxt   ,   noentry  ;
+end
+
+instructions
+     delimiters "  " 
+end

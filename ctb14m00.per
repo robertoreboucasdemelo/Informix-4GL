@@ -1,0 +1,88 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB14M00                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de eventos analise                                          Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb14m00--
+   Codigo..........:[a1]
+------------------------------------------------------------------------------
+
+   Descricao evento.:[a2                                                ]
+                     [a3                                                ]
+                     [a4                                                ]
+
+   Resumo descricao.:[a5                       ]
+   Fase analise.....: [a6|a7                       ]
+   Codigo Reclamacao:[a8 |a9                                      ]
+   Situacao evento..:  [a]
+
+
+   Incluido.........:[a10       ] por [a11                ]
+   Atualizado.......:[a12       ] por [a13                ]
+
+}
+end
+
+tables datkevt, datkfse, datkassunto
+
+attributes
+   a1   = datkevt.c24evtcod,
+          comments = " Codigo do Evento de analise ";
+
+   a2   = formonly.c24evtdes1,
+          comments = " Descricao completa do Evento de analise  ",
+          autonext,
+          upshift;
+
+   a3   = formonly.c24evtdes2,
+          autonext,
+          upshift;
+
+   a4   = formonly.c24evtdes3,
+          upshift;
+
+   a5   = datkevt.c24evtrdzdes,
+          comments = " Descricao resumida do Evento de analise  ",
+          upshift;
+
+   a6   = datkevt.c24fsecod,
+          comments = " Codigo da fase de analise";
+
+   a7   = datkfse.c24fsedes,
+          noentry;
+
+   a8   = datkevt.c24astcod,
+          comments = " Codigo da Reclamacao referente a este evento",
+          upshift;
+
+   a9   = datkassunto.c24astdes,
+          noentry;
+
+   a    = datkevt.c24evtstt,
+          comments = " Codigo situacao do evento de analise",
+          upshift;
+
+   a10  = datkevt.caddat,
+          noentry;
+
+   a11  = formonly.cadfunnom,
+          noentry;
+
+   a12  = datkevt.atldat,
+          noentry;
+
+   a13  = formonly.funnom,
+          noentry;
+
+end
+
+instructions
+     delimiters " "
+end
+

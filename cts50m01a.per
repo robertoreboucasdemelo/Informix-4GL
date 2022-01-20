@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts50m01a                                              Nilo   
+
+ Descricao Historico das Ligacoes em Abandono                         Abr/2008
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{ 
+  Data        Hora       Telefone      Nr.Ligacao
+     Descricao do Historico                             Status 
+---------------------------------------------------------------cts50m01a--
+[e         ][f        ][g           ][j         ]
+[l][m                                                 |ab                ]
+    [v   |x                  ] [y                  ]
+
+[l][m                                                 |ab                ]
+    [v   |x                  ] [y                  ]
+
+}
+end
+tables datkabn
+      ,isskfunc
+      ,datmabnhst
+attributes
+e = datkabn.inidat,   noentry;
+f = datkabn.abninihor,   noentry;
+g = datkabn.abntel, noentry;
+j = datkabn.lignum, noentry;
+
+l = datmabnhst.abntelseq, invisible, noentry;
+m = datmabnhst.abndes, noentry;
+ab = formonly.status_desc, noentry;
+v = formonly.por   , noentry;
+x = isskfunc.funnom, noentry;
+y = datmabnhst.cttdathor, noentry;
+end
+Instructions
+   delimiters " "
+   screen record s_cts50m01a(abntelseq
+                            ,abndes
+                            ,status_desc
+		            ,por
+		            ,funnom
+                            ,cttdathor)
+end

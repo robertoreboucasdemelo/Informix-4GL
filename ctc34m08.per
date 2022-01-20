@@ -1,0 +1,55 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc34m08                                               Marcelo
+                                                                     Gilberto
+ Manutencao do Relacionamento Veiculos/Equipamentos/Fabricantes      Set/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m08--
+ Veiculo:[a     |a2   |a3                                                    ]
+------------------------------------------------------------------------------
+ Cod.  Equip.Abv.   Cod.  Fabricante Abv.  Dt Cadastro  Funcionario
+
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+[b   ][b1        ] [b2  ][b3             ] [b4        ][b5                  ]
+
+
+}
+end
+
+ tables datreqpvcl, datkvcleqp, datkeqpfab
+
+ attributes
+
+    a  = datreqpvcl.socvclcod                ,noentry;
+    a2 = formonly.atdvclsgl                  ,noentry;
+    a3 = formonly.vcldes                     ,noentry;
+
+    b  = datreqpvcl.soceqpcod                ,upshift,
+         comments = " Codigo do equipamento";
+    b1 = datkvcleqp.soceqpabv                ,noentry;
+
+    b2 = datreqpvcl.eqpfabcod,
+         comments = " Codigo do fabricante";
+    b3 = datkeqpfab.eqpfababv                ,noentry;
+
+    b4 = datreqpvcl.caddat                   ,noentry;
+    b5 = formonly.cadfunnom                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc34m08(soceqpcod thru cadfunnom)
+ end

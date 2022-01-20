@@ -1,0 +1,45 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m05                                      R.Fornax
+
+ Cadastro de Perfil X Assunto                                Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m05--
+ Perfil...:[a   ][b                                                       ]
+------------------------------------------------------------------------------
+ Assunto  Nome
+
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+------------------------------------------------------------------------------
+ Atualizado..:[e          ] por [f                                        ]
+------------------------------------------------------------------------------
+ [g                                                                       ]
+ [h                                                                       ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;
+   b  = formonly.desper                 ,noentry;
+   c  = formonly.c24astcod              ,comments = " Digite o Codigo do Assunto"     ,upshift;
+   d  = formonly.c24astdes              ,noentry;
+   e  = formonly.atldat                 ,noentry;
+   f  = formonly.funmat                 ,noentry;
+   g  = formonly.msg                    ,noentry;
+   h  = formonly.msg1                   ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m05(c24astcod thru c24astdes)
+end

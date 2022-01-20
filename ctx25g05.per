@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTX25G05                                          LUCAS SCHEID
+ PESQUISA PADRAO DE LOGRADOURO MAPAS - ROTERIZADO.                  JUN/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+[a0                                                                          ]
+-------------------------------------------------------------------ctx25g05---
+ UF:[a5]Cidade:[a6                                     ]Tipo:[a1             ]
+ Logradouro:[a2                                                              ]
+ Numero....:[a3   ]          Bairro:[a4                                      ]
+------------------------------------------------------------------------------
+ Logradouro / Bairro                                              CEP
+
+[b1                                                                       ]
+[b2                                                              |b3      ]
+[b8|b9|b10|b11]                            [b12                           ]
+[b1                                                                       ]
+[b2                                                              |b3      ]
+[b8|b9|b10|b11]                            [b12                           ]
+[b1                                                                       ]
+[b2                                                              |b3      ]
+[b8|b9|b10|b11]                            [b12                           ]
+}
+end
+
+attributes
+
+  a0  = formonly.titulo_janela type char,    reverse, noentry;
+  a1  = formonly.lgdtip_input  type char,    noentry;
+  a2  = formonly.lgdnom_input  type char,    upshift, comments = " Nome do logradouro (NAO INFORMAR O TIPO!)";
+  a3  = formonly.lgdnum_input  type integer, comments = " Numero do logradouro";
+  a4  = formonly.brrnom_input  type char,    noentry;
+  a5  = formonly.ufdcod_input  type char,    upshift, comments = " UF do logradouro";
+  a6  = formonly.cidnom_input  type char,    upshift, comments = " Cidade do logradouro";
+
+  b1  = formonly.tipendtxt type char,    noentry;
+  b2  = formonly.brrnom    type char,    noentry;
+  b3  = formonly.cep       type char,    noentry;
+  b8  = formonly.codigo    type integer, noentry, invisible;
+  b9  = formonly.tipoend   type char,    noentry, invisible;
+  b10 = formonly.lgdtip    type char,    noentry, invisible;
+  b11 = formonly.lgdnom    type char,    noentry, invisible;
+  b12 = formonly.latlontxt type char,    noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctx25g05(tipendtxt thru latlontxt)
+ 

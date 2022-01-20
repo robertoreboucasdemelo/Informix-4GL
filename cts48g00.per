@@ -1,0 +1,25 @@
+database porto
+
+screen
+{
+                           ENDEREÇO DO PRESTADOR                  
+  Presador: [a     ][b                                                      ]
+  Lgr: [c                                                                   ]      
+  Brr: [d                            ]Cid:[e                         ]UF:[f ]
+}
+end 
+
+tables
+ dpaksocor
+
+attributes
+ a = dpaksocor.pstcoddig;
+ b = dpaksocor.nomgrr   ;
+ c = dpaksocor.endlgd   ;
+ d = dpaksocor.endbrr   ;
+ e = dpaksocor.endcid   ;
+ f = dpaksocor.endufd   ;
+
+instructions
+  delimiters " "
+end

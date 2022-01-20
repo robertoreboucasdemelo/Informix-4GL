@@ -1,0 +1,55 @@
+{------------------------------------------------------------------------------
+ Analista Responsavel : Raji Jahchan
+ PSI                  : 166480
+ OSF                  : 19372
+ ------------------------------------------------------------------------------
+ Form                 : cts00m35
+ Modulo               : cts00m35
+ Desenvolvimento      : Fabrica de Software - Gustavo Bayarri
+ Data                 : 26/05/2003
+
+-------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                       CONSULTA EXECUCAO DO SERVICO GPS
+--------------------------------------------------------------------cts00m35--
+Numero do servico: [a1        ]                                   Total: [a2  ]
+------------------------------------------------------------------------------
+ Seq.Movt Tra.MDT    Data     Hora  Mdt  Botao/Tp.Mov Situacao        Dist/Metr
+                                                                                
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+[r1       |r2    ][r3        |r4   |r5  |r6          |r7              |r8     ]
+------------------------------------------------------------------------------
+ (F17)Abandona, (F8)Seleciona
+}
+End
+
+Tables datmmdtmvt, datkmdtbot
+
+Attributes
+  a1   = formonly.srvnum;
+  a2   = formonly.total type dec(4,0), format = "&&&&";
+  r1   = datmmdtmvt.mdtmvtseq;
+  r2   = datmmdtmvt.mdttrxnum;
+  r3   = datmmdtmvt.caddat;
+  r4   = datmmdtmvt.cadhor;
+  r5   = datmmdtmvt.mdtcod;
+  r6   = datkmdtbot.mdtbottxt;
+  r7   = formonly.mdtmvtsttdes;
+  r8   = formonly.dist ,noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_cts00m35(mdtmvtseq thru dist)
+End

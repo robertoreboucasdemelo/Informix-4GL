@@ -1,0 +1,49 @@
+database porto   
+screen size 24 by 80
+
+{
+
+    Assunto: [d  ] [e                                      ]                 
+--------------------------------------------------------------------ctc26m00--
+         Descricao Motivo                                   Status            
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+[a  ][b                                                 ]     [c]             
+
+                                                                             
+    (F1)-Inclui  (F2)-Exclui  (F5)-Altera  (F8)-Sub_Motivo  (F17)-Abandona
+}
+end
+
+tables datkrcuccsmtv
+ 
+attributes
+   a  = datkrcuccsmtv.rcuccsmtvcod, invisible;
+
+   b  = datkrcuccsmtv.rcuccsmtvdes,upshift;
+   
+   c  = datkrcuccsmtv.rcuccsmtvstt,upshift, include = ("A","C");
+
+   d  = formonly.c24astcod,upshift;
+   
+   e  = formonly.c24astdes,upshift,noentry;
+
+  
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc26m00(datkrcuccsmtv.rcuccsmtvcod,
+                           datkrcuccsmtv.rcuccsmtvdes,
+                           datkrcuccsmtv.rcuccsmtvstt)
+end

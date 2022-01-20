@@ -1,0 +1,41 @@
+database formonly
+
+screen
+{
+----------------------------------------------------------ctc70m01------------
+         Codigo ........:[a       ]
+------------------------------------------------------------------------------
+
+
+         Descricao .....:[b                   ]  
+         
+         Origem ........:[c     ][d                             ]
+
+         Status ........:[e]
+
+ 
+         Incluido ......:[f         ] por [g                   ]          
+         Atualizado ....:[h         ] por [i                   ]
+
+
+
+
+------------------------------------------------------------------------------
+}
+end 
+
+attributes
+
+a = formonly.srvrcumtvcod;
+b = formonly.srvrcumtvdes, upshift;
+c = formonly.atdsrvorg;
+d = formonly.srvtipdes, noentry;
+e = formonly.srvrcumtvstt, upshift,comments= "A(Ativo)  C(Cancelado)";
+f = formonly.caddat;
+g = formonly.funnom;
+h = formonly.atldat;
+i = formonly.funnom2;
+end 
+
+
+ 

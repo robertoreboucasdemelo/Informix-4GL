@@ -1,0 +1,33 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC00M02b                                    Robert  - Set/2010                                                                 
+
+ Cadastro de prestador principal - Porto Socorro  
+------------------------------------------------------------------------------}
+database porto
+screen
+{
+   CASO ESTE PRESTADOR SEJA DE UM GRUPO, DIGITE O CODIGO DO
+   PRESTADOR PRINCIPAL DO GRUPO
+--------------------------------------------------------ctc00m02b--
+ 
+ Prestador principal.........:[a    ] 
+ 
+ Nome do prestador principal.:[b                                  ]
+            
+          
+}
+end
+
+tables dpaksocor
+
+attributes
+
+a = dpaksocor.pcpprscod, comments="Codigo do prestador principal";
+b = dpaksocor.nomrazsoc ,noentry;
+
+                                       
+end
+
+instructions
+     delimiters " "
+end

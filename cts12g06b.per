@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g06b                                 Amilton
+                                                         Pinto
+ Pop-up de naturezas Saldos Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+-----------------------------cts12g06b--  
+----------------------------------------  
+   Naturezas                         
+----------------------------------------
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+[a|b                                   ] 
+
+
+}
+end
+
+attributes
+   a  =  formonly.socntzcod type dec, invisible,noentry;
+   b  =  formonly.socntzdes      , noentry;                         
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g06(socntzcod thru socntzdes)
+end
+

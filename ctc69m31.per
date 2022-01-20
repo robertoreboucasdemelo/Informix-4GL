@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc69m31                                               Roberto
+ Consulta de Planos e Clausulas                                      Abr/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+{
+--------------------------------------------------------------------ctc69m31--
+ Empresa.:[a   ][a1                  ][l1       ][b   ][b1                   ]
+ Segmento:[c   ][c1                  ] Pacote..: [d   ][d1                   ]
+------------------------------------------------------------------------------
+     Cod.   Emp.   Ramo  [l2   ] Seg.  Paga   Exp.     Inicial      Final
+
+[y] [e   ] [f   ] [g   ] [h   ] [i   ] [j  ] [l  ]  [m         ] [n         ]
+[y] [e   ] [f   ] [g   ] [h   ] [i   ] [j  ] [l  ]  [m         ] [n         ]
+[y] [e   ] [f   ] [g   ] [h   ] [i   ] [j  ] [l  ]  [m         ] [n         ]
+[y] [e   ] [f   ] [g   ] [h   ] [i   ] [j  ] [l  ]  [m         ] [n         ]
+[y] [e   ] [f   ] [g   ] [h   ] [i   ] [j  ] [l  ]  [m         ] [n         ]
+
+    [x                                                                     ]
+------------------------------------------------------------------------------
+ Empresa.:[o                          ][l3       ][p                         ]
+ Segmento:[q                          ] Status..: [r                         ]
+ 
+}
+end
+
+attributes
+
+    a  = formonly.empcod         , comments = " Codigo da Empresa"                    ,upshift;
+    a1 = formonly.empnom         , noentry;
+    b  = formonly.clscod         , comments = " Digite a Clausula"                    ,upshift;
+    b1 = formonly.clsnom         , noentry;
+    c  = formonly.prfcod         , comments = " Digite o Segmento"                    ,upshift;
+    c1 = formonly.desper         , noentry;
+    d  = formonly.paccod         , comments = " Digite o Codigo do Pacote"            ,upshift;
+    d1 = formonly.pacdes         , noentry;
+    y  = formonly.seta           ;
+    e  = formonly.plnclscod      , noentry;
+    f  = formonly.empcod1        , noentry;
+    g  = formonly.ramcod         , noentry;
+    h  = formonly.clscod1        , noentry;
+    i  = formonly.prfcod1        , noentry;
+    j  = formonly.clssitdes      , noentry;
+    l  = formonly.irdclsdes      , noentry;
+    m  = formonly.clsviginidat   , noentry;
+    n  = formonly.clsvigfimdat   , noentry;
+    x  = formonly.obs            , noentry;
+    o  = formonly.empnom1        , noentry;
+    p  = formonly.clsnom1        , noentry;
+    q  = formonly.desper1        , noentry;
+    r  = formonly.regsitdes      , noentry; 
+    l1 = formonly.label1         , noentry; 
+    l2 = formonly.label2         , noentry; 
+    l3 = formonly.label3         , noentry; 
+
+end
+instructions
+   delimiters " "
+   screen record s_ctc69m31(seta thru clsvigfimdat)
+end

@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M03                                              Marcelo
+                                                                     Gilberto
+ Direcionamento da impressao da reserva                              Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Direcionamento da impressao da reserva
+--------------------------------------------cts15m03--
+
+ Enviar pedido para:[a]      No. FAX:[b000][b001     ]
+                                     [b002            ]
+------------------------------------------------------
+               MENSAGEM PARA LOCADORA
+------------------------------------------------------
+ [c001                                              ]
+ [c002                                              ]
+
+}
+end
+
+tables
+  datklocadora
+
+attributes
+
+a    = formonly.enviar         ,comments = " Enviar para (I)mpressora ou (F)ax",
+                                autonext,
+                                upshift ;
+b000 = datklocadora.dddcod     ,comments = " Codigo do DDD",
+                                autonext,
+                                upshift ;
+b001 = datklocadora.facnum     ,comments = " Numero do FAX de destino",
+                                autonext,
+                                upshift ;
+b002 = formonly.envdsc         ,noentry ;
+c001 = formonly.msg1           ,comments = " Primeira linha de mensagem"       ,
+                                autonext,
+                                upshift ;
+c002 = formonly.msg2           ,comments = " Segunda linha de mensagem"       ,
+                                autonext,
+                                upshift ;
+end
+
+instructions
+  delimiters " "
+end

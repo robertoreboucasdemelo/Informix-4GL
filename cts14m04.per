@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts14m04                                                  Pedro
+                                                                       Marcelo
+ Pop-up de horario de regioes                                         Jun/1995
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+ Data          Semana
+-------------cts14m04--
+[a         |b][c      ]
+[a         |b][c      ]
+[a         |b][c      ]
+[a         |b][c      ]
+[a         |b][c      ]
+[a         |b][c      ]
+[a         |b][c      ]
+
+}
+end
+
+
+attributes
+
+a    = formonly.vstdat               ,noentry;
+b    = formonly.dianum   , invisible ,noentry;
+c    = formonly.diasem               ,noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cts14m04(vstdat thru diasem)
+end

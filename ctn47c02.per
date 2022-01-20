@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN47C02                                              Ruiz   
+ Consulta atendimento a reparos nos vidros                           Jun/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+----------------------------------------ctn47c02--
+ Ligacao:[b         ]
+--------------------------------------------------
+ Status    Data       Hora    Situacao   
+                                                      
+ [d1  ] [e1        ] [f1   ] [g1                 ]           
+ [d2  ] [e2        ] [f2   ] [g2                 ]           
+ [d3  ] [e3        ] [f3   ] [g3                 ]           
+ [d4  ] [e4        ] [f4   ] [g4                 ]           
+
+}
+end
+
+attributes
+
+  b   = formonly.lignum     , noentry;
+
+  d1  = formonly.atmstt1    , noentry;
+  e1  = formonly.data1      , noentry;
+  f1  = formonly.hora1      , noentry;
+  g1  = formonly.descr1     , noentry;
+
+  d2  = formonly.atmstt2    , noentry;
+  e2  = formonly.data2      , noentry;
+  f2  = formonly.hora2      , noentry;
+  g2  = formonly.descr2     , noentry;
+
+  d3  = formonly.atmstt3    , noentry;
+  e3  = formonly.data3      , noentry;
+  f3  = formonly.hora3      , noentry;
+  g3  = formonly.descr3     , noentry;
+
+  d4  = formonly.atmstt4    , noentry;
+  e4  = formonly.data4      , noentry;
+  f4  = formonly.hora4      , noentry;
+  g4  = formonly.descr4     , noentry;
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m05                                                  Pedro
+                                                                       Marcelo
+ Informa dados para assunto de veiculo localizado (L11 e L12)          Mai/1995
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+        Dados necessarios para veiculo localizado
+--------------------------------------------------cta02m05--
+ Data Furto.......:[a         ]
+ Data Localizacao.:[b         ]
+ Veiculo esta' em poder do segurado?....:[d]
+
+ Cidade de Localizacao.:[e                        ] UF.:[f ]
+ Fez B.O. Localizacao?.:[g]               No.B.O....:[h    ]
+ D.P...................:[c       ]
+}
+end
+
+tables
+   datmservico
+
+attributes
+
+   a   = datmservico.atddat;
+   b   = formonly.lcldat;
+   c   = formonly.delegacia ,upshift;
+   d   = formonly.vclpdrseg ,upshift;
+   e   = formonly.cidnom    ,upshift;
+   f   = formonly.ufdcod    ,upshift;
+   g   = formonly.flagbo    ,upshift, comments='(S)im ou (N)ao.';
+   h   = formonly.bocnum    ,upshift;
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M05                                              Marcelo
+                                                                     Gilberto
+ Mostra todos destinos da ordem de pagamento                         Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+   Informacoes para pagamento (Cadastro de Prestadores)
+-----------------------------------------------ctb11m05--
+ Razao social:[a1                                      ]
+ Nome Guerra.:[a2                                      ]
+ Opcao Pagto.:[o ][o2        ]
+ Favorecido..:[a3                                      ]
+ Cgc/Cpf.....:[p][a4          ][a5  ][da]
+ Banco.......:[a10 ][a15                 ]
+ Agencia.....:[a20  ][f][a25                 ]
+ Tipo Conta..:[t][t2         ] Conta:[a30         ][d ]
+
+ Confirma dados ? [c]
+}
+End
+
+Tables dpaksocor, dpaksocorfav, gcdkbanco, gcdkbancoage
+
+Attributes
+  a1   = dpaksocor.nomrazsoc,                   noentry;
+  a2   = dpaksocor.nomgrr,                      noentry;
+
+  o    = dpaksocorfav.socpgtopccod,             noentry;
+  o2   = formonly.socpgtopcdes,                 noentry;
+
+  a3   = dpaksocorfav.socfavnom,                noentry;
+
+  p    = dpaksocorfav.pestip,                   noentry;
+  a4   = dpaksocorfav.cgccpfnum,                noentry;
+  a5   = dpaksocorfav.cgcord,    format="&&&&", noentry;
+  da   = dpaksocorfav.cgccpfdig ,format="&&",   noentry;
+
+  a10  = dpaksocorfav.bcocod,                   noentry;
+  a15  = gcdkbanco.bcosgl,                      noentry;
+
+  a20  = dpaksocorfav.bcoagnnum,                noentry;
+  f    = dpaksocorfav.bcoagndig,                noentry;
+  a25  = gcdkbancoage.bcoagnnom,                noentry;
+
+  t    = dpaksocorfav.bcoctatip,                noentry;
+  t2   = formonly.bcoctatipdes,                 noentry;
+  a30  = dpaksocorfav.bcoctanum,                noentry;
+  d    = dpaksocorfav.bcoctadig,                noentry;
+
+  c    = formonly.confirma,                     upshift,
+         comments=" Confirma? (S)im ou (N)ao";
+End
+
+Instructions
+  delimiters " "

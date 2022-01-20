@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<script type="text/javascript">
+function replaceAll(string, token, newtoken) {
+	while (string.indexOf(token) != -1) {
+ 		string = string.replace(token, newtoken);
+	}
+	return string;
+}
+  var queryString = window.location.search.substring(1);
+
+  if (queryString.indexOf("_") != -1) {
+      queryString = replaceAll(queryString, "_", "&"); 
+      queryString = replaceAll(queryString, "^", "="); 
+  }
+
+  location = 
+       "/psserv/consulta/home.aspx?" + queryString + "&portal=2";
+
+   
+</script>
+</HEAD>
+</HTML>
+

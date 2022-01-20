@@ -1,0 +1,35 @@
+{------------------------------------------------------------------------
+ Nome do Form: ctc81m00c                        Robson Ruas   - Fev/2013                                                                 
+
+ POP-UP - Aviso de Limitar o valor de desconto da OP 
+------------------------------------------------------------------------}
+database porto
+
+screen size 24 by 60
+{
+ 
++------------------------------------------+
+|            A T E N C A O                 |
+|------------------------------ctc81m00c---|
+|                                          |
+|         Nesta OP, somente será           |
+|         permitido um desconto de         |
+|         até [a1            ] reais!      |
+|                                          |
+|         (Ctrl+c) SAIR                    |
++------------------------------------------+
+ 
+}
+end
+
+tables dbsmopg
+
+attributes
+
+   a1 = formonly.vlr type decimal, format = "##########&.&&",upshift; 
+                                             
+end                                          
+instructions                                 
+ delimiters  " "                             
+end
+

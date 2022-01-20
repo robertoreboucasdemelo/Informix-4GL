@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC07M00                     Criacao: 14/09/94 - Pedro
+
+ Manutencao da frota de guincho do posto
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc07m00--
+                    Posto:[a     ][a0                  ]
+------------------------------------------------------------------------------
+      Tipo                                                      Quantidade
+
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+      [a1] [a2                                      ]              [a3]
+
+
+}
+end
+
+tables dpatguincho
+
+attributes
+a  = dpatguincho.pstcoddig ;
+a0 = formonly.nomgrr       ;
+a1 = dpatguincho.gchtip    , autonext
+                           , comments = " Tipo do guincho";
+a2 = formonly.gchdes       , noentry ;
+a3 = dpatguincho.gchqtd    , autonext
+                           , comments = " Quantidade de guinchos";
+end
+
+instructions
+     screen record s_ctc07m00(gchtip thru gchqtd)
+     delimiters " "
+end

@@ -1,0 +1,33 @@
+database formonly
+screen size 24 by 80
+{
+--------------------------------------------------------------- ctc04m00 ----
+Tipo Descricao                      Data     Funcionario
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+[a ][b                             |c       |d                              ]
+
+  (F1) Inclui   (F2) Exclui   (F3) Proximo   (F4) Anterior   (F17) Abandona
+} 
+end 
+
+attributes
+ a = formonly.c24imgfaxtip          type smallint, format='#&', autonext;
+ b = formonly.c24imgfaxtipdes       type char, upshift, autonext;
+ c = formonly.atldat                type date, format='dd/mm/yy', noentry;
+ d = formonly.funcionario           type char, noentry;
+end
+instructions
+ delimiters ' '
+ screen record  s_ctc04m00[13] (c24imgfaxtip thru funcionario)
+end

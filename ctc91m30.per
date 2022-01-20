@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m30                                              R.Fornax
+ Popup Generico Itau                                                 Out/2014
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+Codigo    Descricao
+-----------------------------------------ctc91m30--
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+
+}
+end
+
+attributes
+   a  = formonly.codigo   ;
+   b  = formonly.descricao;
+end
+
+instructions
+    delimiters " "
+    screen record s_ctc91m30(codigo, descricao)
+end
+

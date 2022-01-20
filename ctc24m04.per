@@ -1,0 +1,48 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC24M04                                               Ruiz    
+ Manutencao dos procedimentos operacionais - historico                Dez/2001
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc24m04--
+ Convenio..:[a ]-[a1                  ]
+ Topico....:[b ]-[b1                  ]
+------------------------------------------------------------------------------
+     DATA        HORA     MATRICULA 
+                           
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+ [c         ] [d       ] [e     ][f                   |g  ]
+     (F8) Seleciona
+}
+end
+
+Tables isskfunc
+
+Attributes
+a    = formonly.cvnnum       , noentry;      
+a1   = formonly.convenio     , noentry;
+b    = formonly.cvntopcod    , noentry;
+b1   = formonly.cvntopnom    , noentry;
+c    = formonly.data         , noentry;      
+d    = formonly.hora         , noentry; 
+e    = formonly.funmat       , noentry;
+f    = formonly.funnom       , noentry;
+g    = formonly.seq          , noentry, invisible;
+
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctc24m04(data      thru seq)
+End

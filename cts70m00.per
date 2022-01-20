@@ -1,0 +1,147 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTS70m00                                    AUTOR: Roberto
+ LAUDO - PORTO SOCORRO E LAUDO - REMOCOES PSS
+
+-----------------------------------------------------------------------------
+ 22/jan/2015 - Marcos Souza (BizTalking)- PSI SPR-2014-28503 - Retirada dos
+                            campos da tela 'titulo' e incluido 'Proposta'
+-----------------------------------------------------------------------------
+ 09/mar/2015 - Marcos Souza (BizTalking)- PSI SPR-2015-03912 - Substituicao 
+                            do campo DOCX pela data nascimento e num pedido
+-----------------------------------------------------------------------------
+ 09/jun/2015 - Marcos Souza (BizTalking)- SPR-2015-11582                      
+                          - Retirada da tela os campos:                       
+                              - Formulário(S/N) (frmflg)                      
+                              - Data e hora Sinistro (sindat / sinhor)        
+                              - Em Residencia(S/N) (atdrsdflg)                
+                              - Ha vitimas(S/N) (sinvitflg)                   
+                              - Dados do BO (bocflg / bocnum / bocemi)  
+                              - Desapoio 
+                              - refasstxt      
+------------------------------------------------------------------------------
+ 29/jul/2015 - Marcos Souza (BizTalking)-SPR-2015-15533-Fechamento Servs GPS 
+                            Desolcar campo 'Prestador Local para posicionamento
+                            após o campo 'Problema'. 
+----------------------------------------------------------------------------- }
+ 
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]   Proposta:[a3         ]            [a2             ]
+-------------------------------------------------------------------cts70m00---
+[b1                                      ]Nasc:[b2        ] Pedido:[b3       ]
+[b6    |b7                                      ]          [b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+-------------------------------------------------------------[waz         ]---
+[c1 ][c2                                                                     ]
+
+ Cam/Util..:[c]   [d2        |d0  |d1                       ]  [k2         |l]
+ Endereco..:[f1                                                              ]
+ Bairro....:[f2                  ] Cidade....:[f3                     ]UF:[f4]
+ Complemen.:[f11                      ]     Resp.Local.:[f9                  ]
+ Tel.Local.:[f7  ][f8       ]               Tel.Celular:[f12 |f13      ]
+ Ponto Ref.:[f5                                                    ] Zona:[f6]
+ Tp.Assist.:[g |g1      ] Destino:[h]       Acompanha.?:[i]     [d ]
+ Prioridade:[k|k1    ]            [m]       Srv.Liber.?:[n]     Imediato?: [j]
+ Atd./Lib.:[x                                               |x2        |x3   ]
+
+[y                                                                           ]
+}
+end
+
+tables
+  datmlcl
+
+attributes
+
+a1  = formonly.servico type char, noentry;
+a2  = formonly.c24solnom type char, noentry;
+a3  = formonly.prpnumdsp, noentry;
+b1  = formonly.nom    type char, comments = " Nome", upshift;
+b2  = formonly.nscdat type date, upshift, 
+      comments = " Informe a data de Nascimento ";
+b3  = formonly.srvpedcod, noentry, reverse;
+b6  = formonly.corsus type char, comments = " Susep", upshift;
+b7  = formonly.cornom, noentry;
+b8  = formonly.cvnnom type char, noentry, invisible;
+b9  = formonly.vclcoddig type integer, format = "&&&&&&",
+      comments = " Codigo do veiculo";
+b10 = formonly.vcldes type char, comments = " Descricao do veiculo", upshift;
+b11 = formonly.vclanomdl type datetime year to year,
+      comments = " Ano do veiculo", autonext;
+b12 = formonly.vcllicnum type char, comments = " Placa do veiculo",
+      upshift;
+b13 = formonly.vclcordes type char, comments = " Cor do veiculo",
+      downshift;
+c1  = formonly.c24astcod type char, noentry;
+c2  = formonly.c24astdes type char, noentry;
+c   = formonly.camflg type char,
+      comments = " Caminhao/Utilitario: (S)im ou (N)ao",
+      upshift;
+d2  = formonly.problema type char,
+      noentry;
+d0  = formonly.c24pbmcod type integer,
+      comments = " Codigo problema ou defeito reclamado",
+      upshift;
+d1  = formonly.atddfttxt ,
+      comments = " Problema ou defeito reclamado",
+      upshift;
+d   = formonly.atdsrvorg type integer, noentry, invisible;
+f1  = formonly.lgdtxt,
+      comments = " Local onde esta o veiculo", upshift;
+f2  = formonly.lclbrrnom type char, upshift;
+f3  = formonly.cidnom type char, upshift;
+f4  = formonly.ufdcod type char, upshift;
+f5  = formonly.lclrefptotxt,
+      comments = " Ponto de referencia do local", upshift;
+f6  = formonly.endzon type char,
+      comments = " Somente para Capital S.P, NO/SU/LE/OE,CE",
+      upshift;
+f7  = formonly.dddcod type char,
+      comments = " DDD do local onde esta o veiculo";
+f8  = formonly.lcltelnum type char,
+      comments = " Telefone do local onde esta' o veiculo";
+f9  = formonly.lclcttnom type char,
+      comments = " Responsavel no local",
+      upshift;
+f11 = datmlcl.endcmp , upshift ,
+      comments = " Complemento do endereco";
+f12 = datmlcl.celteldddcod  ,
+      comments = " Codigo DDD do Celular";
+f13 = datmlcl.celtelnum     ,
+      comments = " Telefone Celular";
+g   = formonly.asitipcod type integer, noentry;
+g1  = formonly.asitipabvdes type char, noentry;
+h   = formonly.dstflg type char,
+      comments = " Destino: (S)im ou (N)ao",
+      upshift;
+i   = formonly.rmcacpflg,
+      comments = " Acompanha Remocao ? (S)im ou (N)ao",
+      upshift;
+j   = formonly.imdsrvflg type char,
+      comments = " E' servico imediato ? (S)im ou (N)ao",
+      upshift;
+k   = formonly.atdprinvlcod type integer,
+      comments =
+      " Nivel de Prioridade no atendimento: (1)Baixa, (2)Normal ou (3)Urgente";
+k1  = formonly.atdprinvldes, noentry;
+k2  = formonly.prsloccab, noentry;
+l   = formonly.prslocflg,
+      comments = " Prestador no local: (S)im ou (N)ao", upshift;
+m   = formonly.srvprlflg type char,
+      comments = " Servico particular: (S)im ou (N)ao", upshift,
+      invisible;
+n   = formonly.atdlibflg type char,
+      comments = " Servico liberado: (S)im ou (N)ao", upshift;
+x   = formonly.atdtxt, noentry;
+x2  = formonly.atdlibdat type date, format ="dd/mm/yyyy", noentry;
+x3  = formonly.atdlibhor type datetime hour to minute, noentry;
+y   = formonly.msgfun type char, noentry;
+waz = formonly.msg_azul type char, noentry;
+
+end
+
+instructions
+  delimiters " "
+end

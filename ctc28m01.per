@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC28M01                                              Marcelo
+                                                                     Gilberto
+ Manutencao das faixas das regioes                                   Mai/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc28m01--
+               Regiao:[a     ]-[b                             ]
+------------------------------------------------------------------------------
+                    Cod.Faixa         Faixa de CEP
+
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+                     [c    ]         [d    ][e    ]
+
+}
+end
+
+tables
+   datkfxareg, datkatdreg
+
+attributes
+
+   a  = datkfxareg.atdregcod
+        ,noentry
+        ,comments = " Codigo da regiao";
+
+   b  = datkatdreg.atdregdes
+        ,noentry
+        ,comments = " Descricao da regiao";
+
+   c  = datkfxareg.atdregfxacod
+        ,noentry
+        ,comments = " Codigo da faixa de regiao";
+
+   d  = datkfxareg.cepinc
+        ,comments = " CEP inicial da faixa";
+
+   e  = datkfxareg.cepfnl
+        ,comments = " CEP final da faixa";
+
+instructions
+  delimiters " "
+  screen record s_ctc28m01(atdregfxacod thru cepfnl)
+end

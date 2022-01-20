@@ -1,0 +1,54 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC87M00.PER                                              #
+# ANALISTA RESP..: SERGIO BURINI                                             #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: CADASTRO DE ORIENTAÇÃO DE PREENCHIMENTO DE ENDEREÇO.      #
+#............................................................................#
+# DESENVOLVIMENTO: SERGIO BURINI                                             #
+# LIBERACAO......: 18/06/2009                                                #
+#............................................................................#
+#                        * * *  ALTERACOES  * * *                            #
+#                                                                            #
+# DATA        AUTOR FABRICA   PSI/OSF       ALTERACAO                        #
+# ----------  -------------   ------------  -------------------------------- #
+#                                                                            #
+# -------------------------------------------------------------------------- }
+
+database formonly
+
+screen
+{
+
+
+------------------------------------------------------------------------------
+             CADASTRO DE PROCEDIMENTOS PARA PRENCHIMENTO DO LAUDO
+--------------------------------------------------------------------ctc87m00--
+
+ Cidade: [a                                                         ] UF:[b ]
+
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+ [c1                                                                        ]
+
+ [obs                                                                       ]
+}
+end
+
+attributes
+a   = formonly.cidnom    ,upshift;
+b   = formonly.ufdcod    ,upshift;
+c1  = formonly.prnorntxt ,upshift;
+obs = formonly.obs type char, noentry ;
+
+instructions
+    delimiters " "
+    screen record s_ctc87m00[9](prnorntxt)       

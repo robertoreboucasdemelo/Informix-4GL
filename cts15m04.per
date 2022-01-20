@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M04                                                  Pedro
+                                                                       Marcelo
+ Informa data e hora retirada na loja e dias de utilizacao            Ago/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      Dados da Locacao
+-----------------------cts15m04--
+ Data Limite Locacao:[e         ]
+
+ Data de Retirada:[a         ]
+ Hora de Retirada:[b    ]
+
+ Dias Utilizacao.:[c     ]
+
+ Emp/Suc/C.Cus:[d1|d2   |d3     ]
+ [d4                        ]
+
+}
+end
+
+tables
+  datmavisrent, datmprorrog
+
+attributes
+
+  a  = datmavisrent.aviretdat  ,comments = " Data de retirada na loja"
+                               ,autonext;
+  b  = datmavisrent.avirethor  ,comments = " Hora de retirada na loja"
+                               ,autonext , picture = "##:##";
+  c  = datmavisrent.aviprvent  ,comments = " Previsao Utilizacao(em dias)";
+  d1 = datmprorrog.cctempcod   ,comments = " Cod.Empresa solicitante"
+                               ,format = "&&"
+                               ,autonext;
+  d2 = datmprorrog.cctsuccod   ,comments = " Cod.Sucursal solicitante"
+                               ,format = "###&&"
+                               ,autonext;
+  d3 = datmprorrog.cctcod      ,comments = " Cod. C.Custo solicitante"
+                               ,format = "&&&&&&&";
+  d4 = formonly.cctnom         ,noentry;
+
+  e  = formonly.dtentvcl       ,noentry;
+end
+
+instructions
+  delimiters " "
+end
+

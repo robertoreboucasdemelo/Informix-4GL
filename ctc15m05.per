@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC15M05                                               Marcelo
+                                                                      Gilberto
+ Cadastro de motivos por tipo de assistencia                          Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m05--
+          Codigo Motivo:[a1]
+------------------------------------------------------------------------------
+
+
+          Descricao....:[a2                  ]
+
+          Situacao.....:[b|b1                  ]
+
+
+
+          Incluido.....:[c1        ]por[c2|c3    |c4                 ]
+
+          Atualizado...:[d1        ]por[d2|d3    |d4                 ]
+
+
+
+}
+end
+
+ tables datkasimtv
+
+ attributes
+    a1 = datkasimtv.asimtvcod  , comments = " Codigo do motivo para assistencia";
+    a2 = datkasimtv.asimtvdes  , upshift
+                               , comments = " Descricao do motivo para assistencia";
+    b  = datkasimtv.asimtvsit  , upshift
+                               , comments = " Situacao do motivo para assistencia";
+    b1 = formonly.asimtvsitdes , noentry;
+    c1 = datkasimtv.caddat     , noentry;
+    c2 = datkasimtv.cademp     , format = "&&"
+                               , noentry;
+    c3 = datkasimtv.cadmat     , format = "&&&&&&"
+                               , noentry;
+    c4 = formonly.cadfunnom    , noentry;
+    d1 = datkasimtv.atldat     , noentry;
+    d2 = datkasimtv.atlemp     , format = "&&"
+                               , noentry;
+    d3 = datkasimtv.atlmat     , format = "&&&&&&"
+                               , noentry;
+    d4 = formonly.atlfunnom    , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M24                                                 Raji
+
+ Direciona e imprime laudo de servico para prestador                 Fev/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+          Fax Aviso de Indicacao de Oficina
+--------------------------------------------------cts00m14--
+
+      Enviar aviso para:[a][a1        ]
+
+      Razao Social.....:[b                                 ]
+
+      Numero do Fax....:[c   ][d       ]
+
+
+}
+end
+
+tables
+  gkpkpos
+
+attributes
+
+  a  = formonly.enviar    ,comments = " Enviar para (I)mpressora ou (F)ax"
+                          ,autonext
+                          ,upshift ;
+  a1 = formonly.envdes    ,noentry;
+  b  = gkpkpos.nomrazsoc  ,reverse
+                          ,noentry;
+  c  = gkpkpos.dddcod     ,reverse
+                          ,comments = " Codigo do DDD"
+                          ,autonext
+                          ,upshift ;
+  d  = gkpkpos.faxnum     ,reverse
+                          ,comments = " Numero do FAX de destino"
+                          ,autonext
+                          ,upshift ;
+end
+
+instructions
+  delimiters " "
+end

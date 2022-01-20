@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB12M07                                               Gilberto
+                                                                       Marcelo
+ Localiza laudo de servico (PAGAMENTOS)                               Abr/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Dt Atd.:[l3        ] Tp. Servico:[l ][l4                            ]
+ Placa..:[l5     ]    Nome Solic.:[l6                            ][l7        ]
+--------------------------------------------------------------------ctb12m07--
+ Servico       Nome/Veiculo                                Situacao/Placa
+
+[r1          ][r2                                       ] [r3            ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1          ][r2                                       ] [r3            ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1          ][r2                                       ] [r3            ]
+[r4        ]  [r5                                       ] [r6     ]
+
+[r1          ][r2                                       ] [r3            ]
+[r4        ]  [r5                                       ] [r6     ]
+}
+
+tables
+   datmservico,
+   datksrvtip
+
+attributes
+
+   l3  = datmservico.atddat                        ,
+         comments = " Data do Atendimento";
+   l   = datmservico.atdsrvorg             ,upshift,
+         comments = " Tipo de Servico";
+   l4  = datksrvtip.srvtipdes              ,noentry;
+   l5  = datmservico.vcllicnum             ,upshift,
+         comments = " Placa do Veiculo";
+   l6  = formonly.nome                     ,upshift,
+         comments = " Iniciais do Nome";
+   l7  = formonly.total                    ,noentry;
+   r1  = formonly.servico2                 ,noentry;
+   r2  = datmservico.nom                   ,noentry;
+   r3  = formonly.situacao                 ,noentry;
+   r4  = datksrvtip.srvtipabvdes           ,noentry;
+   r5  = datmservico.vcldes                ,noentry;
+   r6  = formonly.vcllicnum2               ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctb12m07(servico2 thru vcllicnum2)
+end

@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m02                                                  Pedro
+                                                                       Marcelo
+ Localiza Marcacao de Vistoria Previa Domiciliar                      Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06m02--
+ Realizacao:[l1        ]       Sucursal:[l2   ][l21                          ]
+ Placa.....:[l3     ]          Susep...:[l31   ]                  [lt        ]
+------------------------------------------------------------------------------
+ Realiz  Vistoria   Susep   Veiculo                                   Placa
+
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+[l4   ] [l5       ][l6    ][l7                                      ][l8     ]
+
+}
+end
+
+tables
+   datmvistoria
+
+attributes
+
+   l1  = formonly.vstdat      type date             ,
+         comments = " Data da Realizacao da Vistoria";
+   l2  = formonly.succod      type decimal          ,
+         comments = " Sucursal";
+   l21 = formonly.sucnom                   ,noentry;
+   l3  = formonly.placa                    ,upshift,
+         comments = " Placa do Veiculo";
+   l31 = formonly.susep                    ,upshift,
+         comments = " Susep do Corretor";
+   lt  = formonly.total                    ,noentry;
+
+   l4  = formonly.vstdat2                  ,noentry;
+   l5  = datmvistoria.vstnumdig            ,noentry;
+   l6  = datmvistoria.corsus               ,noentry;
+   l7  = formonly.veiculo                  ,noentry;
+   l8  = formonly.vcllicnum                ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_cts06m02(vstdat2 thru vcllicnum)
+end

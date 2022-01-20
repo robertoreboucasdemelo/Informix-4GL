@@ -1,0 +1,71 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta20m00                                               Junior 
+ Outras Informacoes Itau Residencia                                   AGO/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+--------------------------------------------------------------------cta20m00--
+[r                                                                           ]
+------------------------------------------------------------------------------
+ CGC/CPF....:[j                        ]                Tipo....:[l          ]
+ Assistencia:[p                                       ] Proposta:[y          ]
+ Produto....:[z                                       ] Emissao.:[v         ]
+ UNibanco...:[s1   |s2                           ]      Inic.Ass:[n         ]
+ Beneficio..:[t1   |t2                                                       ]
+                                                        VIP.....:[w  ]
+                                                        Franquia:[o         ]
+                                                                       
+             [b1   |b2                                                ]
+ Canal Venda:[c1   |c2                                                ]
+ Tipo.Cancel:[k1   |k2                                 ] [x]
+------------------------------------------------------------------------------
+
+
+
+
+
+}
+end
+tables  datmitaapl      ,
+        datmitaaplitm   ,
+        datkitarsrcaosrv,
+        datkitaempasi   ,
+        datkitaprd      ,
+        datkitavclcrgtip,
+        datkitarsrcaogar,
+        datkubbvcltip   ,
+        datkitaaplcanmtv,
+        datkitavcltip   ,
+        datkitafrtmdl   ,
+        datkitavndcnl
+
+attributes
+
+   j   =   formonly.cgccpf                    type decimal, noentry;
+   l   =   formonly.pestip                  , noentry;
+   n   =   datmitaaplitm.asiincdat          , noentry;
+   o   =   datmitaaplitm.casfrqvlr          , noentry;
+   p   =   datkitaempasi.itaempasides       , upshift, noentry;
+   r   =   formonly.label2                  , noentry;
+   s1  =   datkubbvcltip.ubbcod             , noentry, format = "<<<&&";           
+   s2  =   datkubbvcltip.vcltipdes          , upshift, noentry; 
+   t1  =   datkitarsrcaogar.rsrcaogrtcod , noentry, format = "<<<&&";           
+   t2  =   datkitarsrcaogar.itarsrcaogrtdes , upshift, noentry;
+   v   =   datmitaapl.adniclhordat          , noentry;
+   z   =   datkitaprd.itaprddes             , upshift, noentry;
+   y   =   datmitaapl.itaprpnum             , noentry, format = "<<<<&&&&&&&";  
+   w   =   formonly.vipsegflg               , upshift, noentry;
+   k1  =   datkitaaplcanmtv.itaaplcanmtvcod , noentry, format = "<<<&&"; 
+   k2  =   datkitaaplcanmtv.itaaplcanmtvdes , upshift, noentry;
+   x   =   formonly.seta                    , invisible;
+   b1  =   datkitafrtmdl.frtmdlcod          , noentry, format = "<<<&&";
+   b2  =   datkitafrtmdl.frtmdldes          , noentry, upshift;         
+   c1  =   datkitavndcnl.vndcnlcod          , noentry, format = "<<<&&";
+   c2  =   datkitavndcnl.vndcnldes          , noentry, upshift;         
+
+
+instructions
+   delimiters " "
+end

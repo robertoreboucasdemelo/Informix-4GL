@@ -1,0 +1,50 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc32m04                                               Marcelo
+                                                                     Gilberto
+ Consulta Cadastro de Bloqueios                                      Abr/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc32m04--
+ Data.:[a         ]
+------------------------------------------------------------------------------
+ Numero Dsc.Chave  Conteudo Chave           Nivel    Vig.Inicial   Vig.Final
+
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+[b    ][b1     |b2                          |b3      ][b4        ][b5        ]
+
+
+}
+end
+
+ tables datkblq
+
+ attributes
+
+    a  = formonly.psqdat,
+         comments = " Data para pesquisa (vigencia inicial a partir de)";
+
+    b  = datkblq.blqnum                      ,noentry;
+    b1 = formonly.blqchvdes                  ,noentry;
+    b2 = formonly.blqchvcnt                  ,noentry;
+    b3 = formonly.blqnivdes                  ,noentry;
+    b4 = datkblq.viginc                      ,noentry;
+    b5 = datkblq.vigfnl                      ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc32m04(blqnum thru vigfnl)
+ end

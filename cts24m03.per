@@ -1,0 +1,42 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts24m03                                               Kevellin
+
+ Janela para confirmacao de mensagens                                Mar/2009
+ ----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[c0                                      ]
+--------------------------------cts24m02a--
+[c1                                      ]
+[c2                                      ]
+[c3                                      ]
+[c4                                      ]
+SIGLAS [a     ]
+       [a     ]
+       [a     ]
+       [a     ]
+       [a     ]
+       [a     ]
+       [a     ]
+[c]
+}
+
+end tables datkveiculo
+
+attributes
+   c0 = formonly.cabtxt   type char, reverse  , noentry;
+   c1 = formonly.linha1   type char           , noentry;
+   c2 = formonly.linha2   type char           , noentry;
+   c3 = formonly.linha3   type char           , noentry;
+   c4 = formonly.linha4   type char           , noentry;
+   a  = datkveiculo.atdvclsgl   , noentry;
+   c  = formonly.confirma type char, invisible;
+end
+
+instructions
+   delimiters  " "
+   screen record s_cts24m03(datkveiculo.atdvclsgl)
+end

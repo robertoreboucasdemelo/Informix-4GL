@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn41c00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de congeneres                                                Out/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Congeneres
+--------------------------------------ctn41c00--
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+[a                                       ][b   ]
+
+}
+end
+
+ tables
+    gcckcong
+
+ attributes
+    a  = gcckcong.sgdnom,    noentry;
+    b  = gcckcong.sgdirbcod, noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctn41c00(sgdnom thru sgdirbcod)

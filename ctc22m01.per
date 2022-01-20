@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC22M01                                               Wagner
+
+ Alerta convenio / assuntos                                           Jul/2002
+-----------------------------------------------------------------------------}
+
+database porto     
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc22m01--
+          Convenio..:   [a |a1                                  ]
+------------------------------------------------------------------------------
+
+ Assunto Descricao                                   Alterado por      Data
+ ------- ---------------------------------------- ------------------- --------
+
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ [b  ] [b1                                      |b2                 |b3      ]
+ 
+
+}
+end
+
+tables dammaleastcvn
+
+attributes
+  a  = dammaleastcvn.ligcvntip,   format = "&&";
+  a1 = formonly.ligcvndes,      noentry;
+
+  b  = formonly.c24astcod, upshift, comments = " Codigo do assunto", autonext;
+  b1 = formonly.c24astdes,     noentry;
+  b2 = formonly.funnom,noentry;
+  b3 = dammaleastcvn.atldat, format = "dd/mm/yy" , noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc22m01(c24astcod thru atldat)
+end
+

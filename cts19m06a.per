@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m06a                                                 Ruiz 
+ Informacao do tipo de atendimento de vidros                          Set/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Tipo de Atendimento
+----------------------cts19m06a--
+ 
+  Loja.........:[a]                 
+
+  Domiciliar...:[b]
+
+
+}
+end
+
+tables
+datmservico
+           
+attributes
+  a  = formonly.atdloja  ,upshift, comments = " Marque com X";               
+  b  = formonly.atddomic ,upshift, comments = " Marque com X";                
+end
+instructions
+  delimiters " " 
+end

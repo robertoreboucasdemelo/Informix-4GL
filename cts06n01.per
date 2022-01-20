@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06n01                                                  Pedro
+                                                                       Marcelo
+ Historico da Vistoria                                                Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06n01--
+   HISTORICO DA VISTORIA [a        ]        Atendimento:[c        ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+}
+end
+
+tables
+datmvistoria,
+datmservhist
+
+attributes
+
+a    = datmvistoria.vstnumdig,reverse ,noentry;
+b    = datmservhist.c24srvdsc,upshift;
+c    = formonly.atdnum;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cts10m00(c24srvdsc)
+end

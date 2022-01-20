@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m09c
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+-----------------------------------------------------------------|cts06m09c|--
+Inspetor:[a    |b                            ]Lim:[c  ]QAcn:[d   ]QPend:[e   ]
+------------------------------------------------------------------------------
+ S DtAgd P Em UF/Cidade/Bairro  [f               ]    Periodo Horario    Dist
+------------------------------------------------------------------------------
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+[g|h    |i|j |k                                      |l                |m    ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+    
+    a = formonly.f_SiglaVeiculo      type char, noentry;
+    b = formonly.f_NomeInspetor      type char, noentry;
+    c = formonly.f_LimiteKM          type char, noentry;
+    d = formonly.f_QtdVistoriasAcn   type char, noentry;
+    e = formonly.f_QtdVistoriasPend  type char, noentry;
+    f = formonly.f_TipoVistoria      type char, noentry;
+    
+    g = formonly.f_RegSelecionado    type char, upshift, autonext;
+    h = formonly.f_DiaMesVistoria    type char, noentry;
+    i = formonly.f_Prioridade        type char, noentry;
+    j = formonly.f_CodigoEmpresa     type char, noentry;
+    k = formonly.f_EnderecoExibicao  type char, noentry;
+    l = formonly.f_HorarioPref       type char, noentry;
+    m = formonly.f_Distancia         type char, noentry;
+    
+end
+
+instructions
+    delimiters ' '
+    screen record s_cts06m09c(f_RegSelecionado
+                         thru f_Distancia)
+end
+

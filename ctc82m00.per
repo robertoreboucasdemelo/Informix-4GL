@@ -1,0 +1,39 @@
+database formonly
+screen
+{
+--------------------------------------------------------------------ctc82m00--
+
+ Empresa.........:[a ][a1                               ]
+
+ Cidade..........:[b                                            ] UF..:[b1]
+
+ Cod. Assunto....:[c  ][c1                                      ]
+
+ Status..........:[d]-[d1      ]
+
+
+
+ Incluido...........:[e         ] por [f                   ]
+ Atualizado.........:[g         ] por [h                   ]
+
+}
+end
+attributes
+
+   a  = formonly.empcod, comments = " Informe o Codigo da Empresa";
+   a1 = formonly.empnom, noentry;
+   b  = formonly.cidnom, comments = " Informe o Nome da Cidade",upshift;
+   b1 = formonly.ufdcod, comments = " Informe o Estado",upshift;
+   c  = formonly.c24astcod, comments = " Informe o Codigo do Assunto",upshift;
+   c1 = formonly.c24astdes, noentry;
+   d  = formonly.atvstt, comments = " Digite 'A'Tivo, 'I'Nativo ou ENTER para Pesquisar",upshift;
+   d1 = formonly.situacaodes, noentry;
+   e  = formonly.caddat , noentry;
+   f  = formonly.funnom1, noentry;
+   g  = formonly.atldat , noentry;
+   h  = formonly.funnom2, noentry;
+   
+end
+instructions
+   delimiters " "
+end

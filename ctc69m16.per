@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m16                                      R.Fornax
+
+ Popup Especialidades                                        Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m16--
+                              POPUP DE LIMITES
+------------------------------------------------------------------------------
+ Tipo     Nome                             Limite    Unidade
+
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [a    ] [b                          ]   [c       ] [d                 ]
+ [e                                                                    ]
+
+
+}
+end
+
+attributes
+   a  = formonly.limcod   ;
+   b  = formonly.limdes   ;
+   c  = formonly.limlim   ;
+   d  = formonly.limuni   ;
+   e  = formonly.msg      ;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m16(limcod thru limuni)
+end

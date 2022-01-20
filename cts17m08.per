@@ -1,0 +1,51 @@
+{
+#------------------------------------------------------------------------------#
+# Porto Seguro Cia Seguros Gerais                                              #
+#..............................................................................#
+# Sistema        : Central 24 horas                                            #
+# Modulo         : cts17m08                                                    #
+#                  Consultar Laudos Multiplos.                                 #
+# Analista Resp. : Ligia Mattge                                                #
+# PSI            : 189790                                                      #
+#..............................................................................#
+# Desenvolvimento: META, Marcos M.P.                                           #
+# Data           : 08/04/2005                                                  #
+#------------------------------------------------------------------------------#
+}
+database formonly
+
+screen size 24 by 80
+{
+-------------------------------------------------------------- cts17m08 ------
+ Servico       Natureza           Especialidade Problema                  Obs. 
+------------------------------------------------------------------------------  
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+[a            |b                 |e            |c                        |d  ]
+------------------------------------------------------------------------------
+ (Control-c) Abandona   [f                                                 ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a = formonly.servico, noentry;
+   b = formonly.socntzdes, noentry;
+   e = formonly.espdes, noentry;
+   c = formonly.atddfttxt, noentry;
+   d = formonly.c24astcod, noentry;
+   f = formonly.opcoes,    noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts17m08 [10] (servico thru c24astcod)
+end
+

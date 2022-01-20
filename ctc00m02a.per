@@ -1,0 +1,34 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC00M02a                                     Robert  - Set/2010 
+
+ Complemento do cadastro de prestadores - Porto Socorro    
+------------------------------------------------------------------------------}
+database porto
+screen
+{
+--------------------------------------------------------ctc00m02a--
+ 
+ Cadeia de responsavel......:[a    ] 
+          Superintentedente.:[b                                  ]
+          Gerente...........:[c                                  ]
+          Coordenador.......:[d                                  ]
+          Analista..........:[e                                  ]  
+          
+}
+end
+
+tables dpaksocor, dpaksocorfav, dbsktarifasocorro
+
+attributes
+
+a = dpaksocor.gstcdicod, comments="Codigo da cadeia de responsavel";
+b = formonly.sprnom ,noentry;
+c = formonly.gernom ,noentry;
+d = formonly.cdnnom ,noentry;
+e = formonly.anlnom ,noentry;
+                                       
+end
+
+instructions
+     delimiters " "
+end

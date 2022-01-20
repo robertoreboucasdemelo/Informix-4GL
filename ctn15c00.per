@@ -1,0 +1,49 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN15C00                     Criacao: 20/09/94 - Pedro
+
+ Consulta Cadastro de Empresas.
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn15c00--
+
+ R.social:[a001                                    ]  Codigo:[c0]
+ Endereco:[a002                                      ]Cidade:[a003           ]
+ Telefone:[a004][a005                            ]    Cep...:[a006 ][c1 ]
+ C.G.C...:[a007                ]                      Fax...:[a009           ]
+
+ R.social:[a001                                    ]  Codigo:[c0]
+ Endereco:[a002                                      ]Cidade:[a003           ]
+ Telefone:[a004][a005                            ]    Cep...:[a006 ][c1 ]
+ C.G.C...:[a007                ]                      Fax...:[a009           ]
+
+ R.social:[a001                                    ]  Codigo:[c0]
+ Endereco:[a002                                      ]Cidade:[a003           ]
+ Telefone:[a004][a005                            ]    Cep...:[a006 ][c1 ]
+ C.G.C...:[a007                ]                      Fax...:[a009           ]
+
+}
+end
+
+tables gabkemp
+
+attributes
+a001 = gabkemp.empnom,                   noentry;
+c0   = gabkemp.empcod,                   noentry;
+a002 = gabkemp.endlgd,                   noentry;
+a003 = gabkemp.endcid,                   noentry;
+a004 = gabkemp.dddcod,                   noentry;
+a005 = gabkemp.teltxt,                   noentry;
+a006 = gabkemp.endcep,                   noentry;
+c1   = gabkemp.endcepcmp,                noentry;
+a007 = formonly.cgc,                     noentry;
+a009 = gabkemp.factxt,                   noentry;
+end
+
+instructions
+     screen record s_ctn15c00(empnom thru factxt)
+     delimiters " "
+end

@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc98m01                                               Beatriz
+                                                                       Araujo
+ Cadastro historico de valor referencia e pecas                      SET/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc98m01--
+    Natureza:[a  ]-[b                 ] Empresa:[d  ]-[e                      ]
+------------------------------------------------------------------------------
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+   [c                                                                        ]
+
+                                                       <Ctrl-C> Cancela
+}
+end
+tables dpampecrefvlrhst,datksocntz,gabkemp
+
+attributes
+   a = dpampecrefvlrhst.socntzcod   ,noentry;
+   b = datksocntz.socntzdes         , noentry;
+   c = formonly.texto               type char,upshift;
+   d = dpampecrefvlrhst.empcod      ,noentry,upshift;
+   e = gabkemp.empsgl               ,noentry,upshift;
+end 
+
+instructions
+   delimiters " "
+   screen record s_ctc98m01[12] (texto)
+end
+
+

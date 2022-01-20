@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctp01m06                                                  Pedro
+                                                                       Marcelo
+ Mostra todos servicos da apolice que nao foram pesquisados           Mai/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico    Atendimento   Cod
+--------------------ctp01m06--
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+[a |a1     ][a2        ] [a3 ]
+
+}
+end
+
+tables
+   datmservico, datmpesquisa
+
+attributes
+
+   a   = datmservico.atdsrvorg ,format = "&&",      noentry;
+   a1  = datmservico.atdsrvnum ,format = "&&&&&&&", noentry;
+   a2  = datmpesquisa.caddat                      , noentry;
+   a3  = datmpesquisa.psqcod                      , noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctp01m06(atdsrvorg thru psqcod)
+end

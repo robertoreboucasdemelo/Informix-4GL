@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTC35M11                                            Gilberto
+                                                                    Marcelo
+                                                                     Wagner
+ Mostra todos os Itens de vistoria                                   Dez/98
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Itens de vistoria
+----------------------------------------ctc35m11--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   datkvstitm
+
+attributes
+   a   = datkvstitm.socvstitmdes               ,noentry;
+   b   = datkvstitm.socvstitmcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc35m11(socvstitmdes thru socvstitmcod)
+end
+

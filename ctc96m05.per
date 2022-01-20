@@ -1,0 +1,36 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts64m01                                  Amilton
+                                                         Pinto
+ Pop-up de motivos  Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+---------------------------ctc96m05--
+            Produtos                  
+-------------------------------------   
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+
+
+}
+end
+
+attributes
+   a  =  formonly.itaprdcod     , noentry;
+   b  =  formonly.itaprddes      , noentry;   
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc96m05(itaprdcod thru itaprddes)
+end
+

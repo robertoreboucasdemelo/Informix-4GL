@@ -1,0 +1,91 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTB12M03                                               Marcelo
+                                                                      Gilberto
+ Tela de consulta de servico e acerto de valor                        Abr/1997
+------------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb12m03--
+ SERVICO:[a0|a1     |a2]   LAUDO DE SERVICO -[a3        ]   [a4             ]
+----------------------[e2                                            ][e    ]-
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+ Assunto..:[c2 ][c3                                                         ]
+[v1                                                ]
+[v2                                                                          ]
+ Endereco.:[d1                                                               ]
+ Bairro...:[d2                  ]  Cidade....:[d3                  ] U.F.:[d4]
+ Ponto Ref:[d5                                   ]                   Zona:[d6]
+ Tel.Local:[d7  |d8        ]       Resp.Local:[d9                  ]
+ Atd/Lib..:[e1                                                              ]
+[f1                            ]   Tipo Socor:[f2                  ]
+[g0        |g1                   ] Valor.....:[g2            ] O.P.:[g3      ]
+}
+end
+
+tables
+  datmservico ,
+  datmligacao ,
+  datkassunto ,
+  datksrvtip  ,
+  datkasitip  ,
+  datmlcl     ,
+  dbsmopg
+
+attributes
+  a0   = datmservico.atdsrvorg   , format = "&&", noentry;
+  a1   = datmservico.atdsrvnum   , comments = " Numero do servico",
+                                   autonext, format = "&&&&&&&";
+  a2   = datmservico.atdsrvano   , comments = " Ano do servico"   ,
+                                   format = "&&";
+  a3   = datksrvtip.srvtipabvdes , noentry, reverse;
+  a4   = datmligacao.c24solnom   , noentry;
+  
+  e2   = formonly.limite         , noentry;
+  e    = formonly.empresa        , noentry;
+
+  b1   = datmservico.nom         , noentry;
+  b2   = formonly.doctxt         , noentry;
+  b6   = datmservico.corsus      , noentry;
+  b7   = datmservico.cornom      , noentry;
+  b8   = formonly.cvnnom         , noentry, reverse;
+  b9   = datmservico.vclcoddig   , format = "&&&&&&", noentry;
+  b10  = datmservico.vcldes      , noentry;
+  b11  = datmservico.vclanomdl   , noentry;
+  b12  = datmservico.vcllicnum   , noentry;
+  b13  = formonly.vclcordes      , noentry, downshift;
+
+  c2   = datkassunto.c24astcod   , noentry;
+  c3   = formonly.c24astdes      , noentry;
+
+  v1   = formonly.livre1         , noentry;
+  v2   = formonly.livre2         , noentry;
+
+  d1 = formonly.lgdtxt           , noentry;
+  d2 = datmlcl.lclbrrnom         , noentry;
+  d3 = datmlcl.cidnom            , noentry;
+  d4 = datmlcl.ufdcod            , noentry;
+  d5 = datmlcl.lclrefptotxt      , noentry;
+  d6 = datmlcl.endzon            , noentry;
+  d7 = datmlcl.dddcod            , noentry;
+  d8 = datmlcl.lcltelnum         , noentry;
+  d9 = datmlcl.lclcttnom         , noentry;
+
+  e1   = formonly.atdlibtxt      , noentry;
+
+  f1   = formonly.tmptxt         , noentry;
+  f2   = datkasitip.asitipdes    , noentry, reverse;
+
+  g0   = formonly.opgtxt         , noentry;
+  g1   = formonly.pgtdattxt      , noentry;
+  g2   = datmservico.atdcstvlr   , noentry, format = "<<<,<<<,<<&.&&";
+  g3   = dbsmopg.socopgnum       , noentry, format = "<<<<<<<&";
+end
+
+instructions
+  delimiters " "
+end

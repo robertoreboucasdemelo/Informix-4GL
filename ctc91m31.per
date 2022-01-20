@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m31                                      R.Fornax
+ Cadastro de Alerta X Assunto                                Out/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m31--
+ Segmento...:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+------------------------------------------------------------------------------
+                                   ALERTA
+ 
+ Linha1.....:    [e                                       ]
+ Linha2.....:    [f                                       ]
+ Linha3.....:    [g                                       ]
+ Linha4.....:    [h                                       ]
+
+------------------------------------------------------------------------------
+ Atualizado..:[i          ] por [j                                          ]
+------------------------------------------------------------------------------
+ [l                                                                         ]
+
+
+}
+end
+
+attributes
+   a  = formonly.itaclisgmcod           ,noentry;    
+   b  = formonly.itaclisgmdes           ,noentry;    
+   c  = formonly.c24astcod              ,noentry;
+   d  = formonly.c24astdes              ,noentry;
+   e  = formonly.linha1                 ,comments = " Digite a Primeira Linha" ,upshift;
+   f  = formonly.linha2                 ,comments = " Digite a Segunda Linha"  ,upshift;
+   g  = formonly.linha3                 ,comments = " Digite a Terceira Linha" ,upshift;
+   h  = formonly.linha4                 ,comments = " Digite a Quarta Linha"   ,upshift;
+   i  = formonly.atldat                 ,noentry;
+   j  = formonly.funmat                 ,noentry;
+   l  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+end

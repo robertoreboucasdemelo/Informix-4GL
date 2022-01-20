@@ -1,0 +1,51 @@
+{
+-----------------------------------------------------------------------------
+ Nome do form: CTC74m00                                        Cristiane Silva
+
+ Cadastro de Naturezas do Socorrista                                 Out/2005
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc74m00--
+ Socorrista: [a    ] [b                                            ]
+------------------------------------------------------------------------------
+  Codigo   Descricao     Especialidade    Dt Cadastro     Funcionario
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+[n|c    |d            |e |f              |g         |h                     ]
+
+
+}
+
+
+end
+
+tables datksrr, dbsrntzpstesp
+
+attributes
+
+  a = datksrr.srrcoddig, 	noentry;
+  b = datksrr.srrnom,		noentry;
+
+  n = formonly.navega, invisible;
+
+  c = formonly.socntzcod;
+  d=  formonly.socntzdes, upshift, noentry;
+  e = formonly.espcod;
+  f = formonly.espdes, upshift;
+  g = formonly.atldat;
+  h = formonly.funnom, upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc74m00(navega thru funnom)
+end

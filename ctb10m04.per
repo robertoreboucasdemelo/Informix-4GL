@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M04                                               Gilberto
+                                                                       Marcelo
+ Consulta vigencia de tarifas do porto socorro                        Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m04--
+ Data...:[a5        ]
+ Tarifa.:[a15  ][a20                                     ]        [a25       ]
+------------------------------------------------------------------------------
+ Nro Vig   Codigo    Tarifa                            ------ Vigencia ------
+------------------------------------------------------------------------------
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+  [b5   ]  [b10  ]  [b15                           ]  [b20       ][b25       ]
+
+}
+end
+
+tables dbsmvigtrfsocorro, dbsktarifasocorro
+
+attributes
+
+   a5  = formonly.datapsq type date,
+         comments = " Data para pesquisa"                     ;
+   a15 = formonly.soctrfcod,
+         comments = " Codigo da tarifa"                       ;
+   a20 = formonly.soctrfdes,                          noentry;
+   a25 = formonly.total,                              noentry;
+
+   b5  = dbsmvigtrfsocorro.soctrfvignum,              noentry;
+   b10 = formonly.soctrfcod2,                         noentry;
+   b15 = formonly.soctrfdes2,                         noentry;
+   b20 = formonly.soctrfvigincdat2,                   noentry;
+   b25 = formonly.soctrfvigfnldat2,                   noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb10m04(soctrfvignum thru soctrfvigfnldat2)
+

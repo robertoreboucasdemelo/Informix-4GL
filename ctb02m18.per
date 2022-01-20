@@ -1,0 +1,29 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02M18                                               Wagner  
+ Informa periodo saldo para prorrogacoes mesmo servico.               Ago/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+ Periodo de apuracao saldo mesmo servico
+--------------------------------ctb02m18--
+
+  Data de :[a         ]ate:[a1        ]
+
+
+}
+end
+
+attributes
+
+ a  = formonly.rsrincdat, comments = " Data inicio periodo",
+                              autonext;
+ a1 = formonly.rsrfnldat, comments = " Data final periodo",
+                              autonext;
+end
+
+instructions
+  delimiters " " 
+end

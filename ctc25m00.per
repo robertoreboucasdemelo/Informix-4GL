@@ -1,0 +1,57 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc25m00                                               Marcus
+
+ Cadastrados para procedimentos de tela                             Abr/2002
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc25m00--
+ Tela .......:[a                ][b][c                                       ]
+ Ativar em...:[d         ][e    ] Ate.:[f         ][g    ][g1                ]
+ Departamento:[h1    ][h2                                     ] 
+------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+F5 - Departamentos
+}
+end
+
+ tables datktel,datktelprc,isskdepto
+
+ attributes
+    a  = datktel.telnom              ,downshift;
+    b  = datktel.telcod              ,invisible,noentry;
+    c  = datktel.teldsc                        ,noentry; 
+    d  = formonly.viginc                       type date,
+         comments = " Vigencia inicial (data)";
+    e  = formonly.viginchor                    type datetime hour to minute,
+         picture ="##:##",
+         comments = " Vigencia inicial (hora)";
+    f  = formonly.vigfnl                       type date,
+         comments = " Vigencia final (data)";
+    g  = formonly.vigfnlhor                    type datetime hour to minute,
+         picture ="##:##",
+         comments = " Vigencia final (hora)";
+    g1 = formonly.cabtxt                      ,noentry;
+    h1 = isskdepto.dptsgl, 
+         comments = "Sigla do Departamento";
+    h2 = isskdepto.dptnom, noentry;
+
+ end
+
+ instructions
+    delimiters " "
+ end

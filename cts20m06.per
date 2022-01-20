@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts20m06                                               Gilberto
+                                                                       Marcelo
+ Laudo Remocoes - Exibe informacoes sobre o ultimo sinistro aberto    Jan/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Informacoes sobre ultimo sinistro aberto
+-------------------------------------cts20m06--
+
+Central 24h: Solicitacao.:[a5        ]
+              Dt. Sinistro:[a10       ]
+              Hr. Sinistro:[a12  ]
+
+Processo...: Ocorrencia..:[a15       ]
+             Nr. Sinistro:[ar  ][a20   ][a25 ]
+             Tipo Perda..:[a28       ]
+             Nr. Vistoria:[a30   ][a35 ]
+
+}
+end
+
+tables datmservico,
+       datmservicocmp,
+       ssamsin
+
+attributes
+
+  a5  = datmservico.atddat           ,noentry;
+  a10 = datmservicocmp.sindat        ,noentry;
+  a12 = datmservicocmp.sinhor        ,noentry;
+  a15 = ssamsin.orrdat               ,noentry;
+  ar  = ssamsin.ramcod               ,noentry;
+  a20 = ssamsin.sinnum               ,noentry;
+  a25 = ssamsin.sinano               ,noentry;
+  a28 = formonly.tipprddes           ,noentry;
+  a30 = ssamsin.sinvstnum            ,noentry;
+  a35 = ssamsin.sinvstano            ,noentry;
+
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m08                                              Marcelo
+                                                                     Gilberto
+ Informa dados para contato posterior sobre reclamacao               Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      Informacoes para Contato
+-----------------------------cta02m08--
+
+ Telefone:[a    ][b                   ]
+
+ Fax.....:[c        ]
+
+ Contato.:[d                   ]
+
+}
+end
+
+tables
+   datmreclam
+
+attributes
+
+   a  = datmreclam.dddcod, comments = " DDD para contato";
+   b  = datmreclam.ctttel, comments = " Telefone para contato", upshift;
+   c  = datmreclam.faxnum, comments = " Fax para contato";
+   d  = datmreclam.cttnom, comments = " Pessoa para contato", upshift;
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,27 @@
+{-------------------------------------------------------------------------------
+ Form     : cta02m13b                                       Criado em : abr/2007
+-------------------------------------------------------------------------------}
+  
+database porto
+screen size 24 by 80
+{
+    Informar Placa ou Chassi
+----------------------cta02m13b-
+                    
+  Placa : [a      ]
+                                 
+  Chassi: [b                   ]
+
+--------------------------------
+}
+
+tables
+     datmsinatditf
+
+attributes
+     a = datmsinatditf.vcllicnum ,upshift ;     
+     b = formonly.chassi         ,upshift ;
+
+instructions
+     delimiters " "
+end

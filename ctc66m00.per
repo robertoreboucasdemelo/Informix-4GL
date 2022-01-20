@@ -1,0 +1,40 @@
+database formonly
+screen
+{
+------------------------------------------------------------------------------
+      Grupo:[a ]-[b                             ]
+--------------------------------------------------------------------ctc66m00--
+   Empresa                   Assunto
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+  [d |e                 ]   [f  ] [g                               ]
+
+  F1-Incluir  F2-Excluir  F3-Prox  F4-Ant  F17-Sair
+}
+end
+
+attributes
+   
+   a = formonly.socntzgrpcod type dec;
+   b = formonly.socntzgrpdes;
+
+   d = formonly.empcod    type smallint, format='&&';
+   e = formonly.empnom    type char, noentry;
+   f = formonly.c24astcod type char, upshift;
+   g = formonly.c24astdes type char, noentry;
+
+end
+
+instructions
+   delimiters ' '
+   screen record s_ctc66m00[12](empcod thru c24astdes)
+end

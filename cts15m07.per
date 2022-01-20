@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M07                                               Marcelo
+                                                                      Gilberto
+ Informa data do sinistro e oficina para locacao em caso de sinistro  Mai/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Dados para locacao em caso de sinistro
+-----------------------------------------------cts15m07--
+
+ Data Sinistro:[a         ]
+
+ Oficina......:[b                                       ]
+ Telefone.....:[c   ][d        ]
+
+
+}
+end
+
+tables
+  datmavisrent
+
+attributes
+
+  a = datmavisrent.avioccdat, comments = " Data do sinistro",
+                              autonext;
+  b = datmavisrent.ofnnom   , comments = " Oficina onde se encontra o veiculo",
+                              upshift , autonext;
+  c = datmavisrent.dddcod   , comments = " DDD da oficina",
+                              autonext;
+  d = datmavisrent.telnum   , comments = " Telefone da oficina",
+                              autonext;
+end
+
+instructions
+  delimiters " "
+end

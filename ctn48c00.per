@@ -1,0 +1,64 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN48C00                                               GUSTAVO
+
+ Consulta servicos enviados para o teletrim                           JAN/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctn48c00---
+ Nr.Movto.:[a    ] Nr.Mensagem:[b       ] Dt.Trans.:[c         ] Situacao:[d ]
+------------------------------------------------------------------------------
+ Nr.Movt. Nr.Msg. Situacao                      Data      Hora Por
+
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+[e      |f       |g |h                     ][i         ][j    |l             ]
+
+}
+
+tables
+  datmtltmsglog
+
+attributes
+   a = formonly.tltmvtnum_d,
+       comments = "Numero do Movimento";
+
+   b = formonly.mstnum_d,
+       comments = "Numero da Mensagem";
+
+   c = formonly.trxdat_d,
+       comments = "Data Transmissao";
+
+   d = formonly.mststt_d,
+       comments = "Informe o Nro. de uma Situacao da Mensagem Teletrim ou enter para todos";
+
+   e = datmtltmsglog.tltmvtnum,         noentry;
+
+   f = datmtltmsglog.mstnum,            noentry;
+
+   g = datmtltmsglog.mststt,            noentry;
+
+   h = formonly.desc,          upshift, noentry;
+
+   i = datmtltmsglog.atldat,            noentry;
+
+   j = datmtltmsglog.atlhor,            noentry;
+
+   l = formonly.cadnom,        upshift, noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn48c00(tltmvtnum thru cadnom)
+end
+

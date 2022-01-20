@@ -1,0 +1,37 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc25m04                                               Marcus
+
+ Pop up de campos                                                    Abr/2002
+----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+            Pesquisa de Telas para cadastramento
+--------------------------------------------------ctc25m04----
+        Telas                         Descricao
+
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+[a                   ][b                                   ][c]
+
+}
+end
+
+ attributes
+    a  = formonly.telnom,upshift,noentry;
+    b  = formonly.teldsc,upshift,noentry;
+    c  = formonly.telcod,noentry,invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc25m04(telnom,teldsc,telcod)
+ end

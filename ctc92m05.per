@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc92m05
+
+ Cadastro Plano X Assunto                                             Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m05--
+ Plano.....:[a1  |a2                                                         ]
+------------------------------------------------------------------------------
+ Assunto Descricao                        Tip.Assunto            Contab  Sin
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+ [b1 ]   [b2                            ] [d |d1               ] [b]     [c]
+------------------------------------------------------------------------------
+   Alterado em: [e1        ] por: [e2                                        ]
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a1 = formonly.itaasiplncod    , upshift, noentry;
+   a2 = formonly.itaasiplndes    , upshift, noentry;
+   
+   b1 = formonly.astcod          , upshift, comments = " Digite o codigo do Assunto";
+   b2 = formonly.c24astdes       , upshift, noentry;
+   d  = formonly.itaasiplntipcod , upshift, comments = " Digite Codigo do Tipo de Assunto";
+   d1 = formonly.itaasiplntipdes , noentry;
+   b  = formonly.evtctbflg       , upshift, comments = " Digite S ou N para Contabiliza Evento";
+   c  = formonly.sinflg          , upshift, comments = " Digite S ou N para Sinistro";
+   
+   e1 = formonly.atldat          , upshift, noentry;
+   e2 = formonly.atlusr          , upshift, noentry;
+end
+
+instructions
+   screen record s1_ctc92m05 (itaasiplncod thru itaasiplndes)
+   screen record s2_ctc92m05 (astcod thru sinflg)
+   screen record s3_ctc92m05 (atldat thru atlusr)
+   delimiters " "
+end

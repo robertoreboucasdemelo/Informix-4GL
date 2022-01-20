@@ -1,0 +1,53 @@
+
+{------------------------------------------------------------------------------
+ Nome do Form: ctb13m01                                               Marcelo
+                                                                      Gilberto
+ Localiza servicos realizados pela frota sem quilometragem digitada   Jul/1997
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb13m01--
+ Periodo:[a1        ]a[a2        ]                                [a3        ]
+------------------------------------------------------------------------------
+       Atendimento            Servico      Veic.    Conclusao    Situacao
+
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+      [b1        ][b2   ] [b3           ] [b4   ] [b6        ] [b7       ]
+
+}
+end
+
+tables
+   datmservico
+
+attributes
+
+  a1  = formonly.incdat, autonext,
+        comments = " Data inicial para pesquisa";
+  a2  = formonly.fnldat, autonext,
+        comments = " Data final para pesquisa";
+  a3  = formonly.contador    , noentry;
+
+  b1  = datmservico.atddat   , noentry;
+  b2  = datmservico.atdhor   , noentry;
+  b3  = formonly.servico     , noentry;
+  b4  = datmservico.atdvclsgl, upshift, noentry;
+  b6  = datmservico.cnldat   , noentry;
+  b7  = formonly.sitdes      , noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctb13m01(atddat thru sitdes)
+end

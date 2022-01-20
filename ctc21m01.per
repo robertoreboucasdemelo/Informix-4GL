@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc21m01                                               Marcelo
+                                                                      Gilberto
+ Cadastro de campos de parametros para procedimentos                  Jun/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc21m01--
+               Codigo......:[a1   ]
+------------------------------------------------------------------------------
+
+
+               Campo.......:[b1                       ]
+
+               Descricao...:[b2                                      ]
+
+               Nome interno:[b3                  ]
+
+
+
+               Atualizado..:[c1        ]por[c2                 ]
+
+
+
+}
+end
+
+ tables dattprt
+
+ attributes
+    a1 = dattprt.prtcpointcod,
+         comments = " Codigo do campo";
+
+    b1 = dattprt.prtcponom                  ,upshift,
+         comments = " Nome do campo";
+    b2 = dattprt.prtcpodes                  ,upshift,
+         comments = " Descricao do campo";
+    b3 = dattprt.prtcpointnom               ,downshift,
+         comments = " Nome do campo na base de dados";
+
+    c1 = dattprt.atldat                     ,noentry;
+    c2 = formonly.atlfunnom                 ,noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

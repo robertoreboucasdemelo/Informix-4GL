@@ -1,0 +1,73 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN06C01                              Criacao: 24/10/94 - Pedro
+
+ Consulta oficinas por cep
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn06c01--
+ Marca...:[a1 |a02             ]    Nome:[a03                    ]    Tipo:[t]
+------------------------------------------------------------------------------
+ R.Social:[a04                                    ]Codigo:[a05   ][a         ]
+ Endereco:[a06                                    ]Bairro:[a07               ]
+ Cidade..:[a08                 ]      U.F.:[uf]    Cep...:[a09  |a10|a21     ]
+ Fones...:[a11 ][a12      ][a121     ]Tipo:[a122          |a123             ]
+ Horario.:[a13  ]as[a14  ][a15  ]as[a16  ]         Sabado:[a17  ]as[a18  ]
+ Servicos:[a191               ][obs               ]Qualid:[a20           ]
+
+ R.Social:[a04                                    ]Codigo:[a05   ][a         ]
+ Endereco:[a06                                    ]Bairro:[a07               ]
+ Cidade..:[a08                 ]      U.F.:[uf]    Cep...:[a09  |a10|a21     ]
+ Fones...:[a11 ][a12      ][a121     ]Tipo:[a122          |a123             ]
+ Horario.:[a13  ]as[a14  ][a15  ]as[a16  ]         Sabado:[a17  ]as[a18  ]
+ Servicos:[a191               ][obs               ]Qualid:[a20           ]
+
+}
+end
+
+tables gkpkpos,
+       sgokofi,
+       agbkmarca
+
+attributes
+   a1   =  formonly.vclmrccod,
+           comments = " Codigo da Marca" ;
+   a02  =  agbkmarca.vclmrcnom             ,noentry;
+   a03  =  formonly.nomepsq                ,upshift,
+           comments = " Nome para pesquisa";
+   t    =  formonly.nometip                ,upshift,
+           comments = " Nome de (G)uerra ou (R)azao social" ;
+
+   a04  =  gkpkpos.nomrazsoc               ,noentry;
+   a05  =  gkpkpos.pstcoddig               ,noentry;
+   a    =  formonly.srvnoite               ,noentry;
+   a06  =  gkpkpos.endlgd                  ,noentry;
+   a07  =  gkpkpos.endbrr                  ,noentry;
+   a08  =  formonly.endcid2                ,noentry;
+   uf   =  formonly.endufd2                ,noentry;
+   a09  =  formonly.endcep2                ,noentry;
+   a10  =  gkpkpos.endcepcmp               ,noentry;
+   a11  =  gkpkpos.dddcod                  ,noentry;
+   a12  =  gkpkpos.telnum1                 ,noentry;
+   a121 =  gkpkpos.telnum2                 ,noentry;
+   a122 =  formonly.tipo                   ,noentry;
+   a123 =  formonly.marca                  ,noentry;
+   a13  =  gkpkpos.hormnhinc               ,noentry;
+   a14  =  gkpkpos.hormnhfnl               ,noentry;
+   a15  =  gkpkpos.hortrdinc               ,noentry;
+   a16  =  gkpkpos.hortrdfnl               ,noentry;
+   a17  =  gkpkpos.horsabinc               ,noentry;
+   a18  =  gkpkpos.horsabfnl               ,noentry;
+   a191 =  formonly.servicos               ,noentry;
+   obs  =  formonly.ofnobs                 ,noentry;
+   a20  =  formonly.qualidade,     reverse ,noentry;
+   a21  =  formonly.leva_traz,     reverse ,noentry;
+end
+
+instructions
+   screen record s_ctn06c01(nomrazsoc thru leva_traz)
+   delimiters " "
+end

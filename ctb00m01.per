@@ -1,0 +1,42 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTB00M01                                             Marcelo
+                                                                    Gilberto
+ Pagamento de locacoes - Digitacao dos itens                        Ago/1996
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     DISCRIMINACAO DOS ITENS           [b0        ][b1               ]
+--------------------------------------------------------------------ctb00m01--
+    Cod.    Descricao do Item                          Valor Cobrado
+
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+    [a0][a][a1                             ]      [a2               ]
+
+}
+
+tables dblmpagitem, dblkpagitem
+
+attributes
+b0   = formonly.resexctxt               , noentry, upshift;
+b1   = formonly.c24diadifvlr    type dec, noentry
+                                        , format = "--,---,---,--&.&&";
+a0   = formonly.c24pgtitmcod    type dec, required
+                                        , comments = " Codigo do Item";
+a    = dblkpagitem.c24pgtitmtip         , noentry, invisible;
+a1   = dblkpagitem.c24pgtitmdes         , noentry, upshift;
+a2   = formonly.c24pgtitmvlr    type dec, format = "--,---,---,--&.&&"
+                                        , comments = " Valor Cobrado" ;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctb00m01(c24pgtitmcod thru c24pgtitmvlr)
+end

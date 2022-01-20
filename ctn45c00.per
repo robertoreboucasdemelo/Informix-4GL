@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn45c00                                               Gilberto
+                                                                       Marcelo
+ Consulta socorristas do prestador                                    Set/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            Socorristas cadastrados para o prestador
+--------------------------------------------------------ctn45c00--
+   Codigo Nome Abrv  Nome do socorrista
+
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+[b1      |b2        |b3                                          ]
+
+}
+end
+
+ tables datksrr
+
+ attributes
+
+    b1 = datksrr.srrcoddig,                            noentry;
+    b2 = datksrr.srrabvnom,                            noentry;
+    b3 = datksrr.srrnom,                               noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctn45c00(srrcoddig thru srrnom)
+

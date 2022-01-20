@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M02                                              Marcelo
+                                                                     Gilberto
+ Criterios para locacao de veiculos                                  Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+              CRITERIOS PARA LOCACAO DE VEICULO
+----------------------------------------------------cts15m02--
+
+ Usuario maior de 21 anos ?              [a]
+
+ Usuario possui habilitacao ha' 2 anos ? [b]
+
+[d10                                    ][d]
+
+ Localizacao do Usuario:
+
+ Cidade:[cid                                          ]UF:[uf]
+
+}
+end
+
+tables
+  datmlcl
+
+attributes
+
+a   = formonly.maior21     ,comments = " Deve ter mais de 21 anos de idade",
+                            autonext,
+                            upshift ;
+b   = formonly.habilit     ,comments = " Deve ter habilitacao ha' pelo menos 2 anos",
+                            autonext,
+                            upshift ;
+d10 = formonly.qsttxt      ,noentry;
+d   = formonly.condutaxi   ,comments = " Usuario possui CONDUTAXI ?",
+                            autonext,
+                            upshift;
+cid = datmlcl.cidnom       ,comments = " Cidade onde se encontra o segurado",
+                            autonext,
+                            upshift;
+uf  = datmlcl.ufdcod       ,comments = " UF onde se encontra o segurado",
+                            autonext,
+                            upshift;
+end
+
+instructions
+  delimiters " "
+end

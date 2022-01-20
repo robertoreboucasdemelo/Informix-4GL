@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m25                                               Gilberto
+                                                                       Marcelo
+ Importancias seguradas apolice de R.E.                                 Set/97
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 25 by 80
+{
+       Importancias seguradas
+----------------------------cta01m25--
+
+  Imp.Segurada..:[w1                ]
+
+  Premio Liquido:[w2                ]
+
+  Premio Total..:[w3                ]
+
+
+}
+end
+
+tables
+   rsimsitcbt, rspmparc
+
+attributes
+   w1  = rsimsitcbt.imsdifvlr        ,
+         format="---,---,---,--&.&&";
+   w2  = rspmparc.parliqvlr          ,
+         format="---,---,---,--&.&&" ;
+   w3  = formonly.prmtotvlr type dec(17,5),
+         format="---,---,---,--&.&&" ;
+end
+
+instructions
+   delimiters " "
+end

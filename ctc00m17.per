@@ -1,0 +1,52 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc00m17                                               Adriano
+                                                                      
+ Controle de vigencia de contrato do prestador                       Out/2009
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc00m17--
+ Vg.Inicial    Vg.Final      Data Inclusão   Responsável
+
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+[a1        ][a2        ]    [a3        ]    [a4                              ]
+
+Total Contratos.:[b  ]
+
+}
+end
+
+ tables dpakprscntvigctr
+
+ attributes
+
+   a1 = dpakprscntvigctr.cntvigincdat,
+        comments = " Vigencia inicial do contrato";
+
+   a2 = dpakprscntvigctr.cntvigfnldat,
+        comments = " Vigencia final do contrato";
+
+   a3 = dpakprscntvigctr.atldat,         noentry;
+
+   a4 = formonly.altfunnom,              noentry;
+   
+   b  = formonly.total,                  noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc00m17(cntvigincdat thru altfunnom)
+ end

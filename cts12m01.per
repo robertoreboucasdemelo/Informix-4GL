@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts12m01                                                  Pedro
+                                                                       Marcelo
+ Laudo - Remocao de Perda Total (Carta de Autorizacao)                Mar/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     Complemento para carta de autorizacao de RPT
+----------------------------------------------cts12m01--
+
+ Reclamante..:[a1                                      ]
+ Veiculo.....:[a2                                      ]
+ Placa.......:[a3     ]                Chassi:[a4      ]
+ Ano Fab/Mod.:[a5  |a6  ]
+ Proprietario:[a7                                      ]
+
+ No. Vistoria:[a8    |a9  ]
+}
+end
+
+tables
+abbmveic
+
+attributes
+
+a1   = formonly.rclnom         ,comments = " Nome do reclamante",
+                                upshift;
+a2   = formonly.vcldes         ,comments = " Descricao do veiculo",
+                                upshift;
+a3   = abbmveic.vcllicnum      ,comments = " Placa do veiculo",
+                                upshift;
+a4   = abbmveic.vclchsfnl      ,comments = " Numero do chassi",
+                                upshift;
+a5   = abbmveic.vclanofbc      ,comments = " Ano de fabricacao";
+a6   = abbmveic.vclanomdl      ,comments = " Ano modelo";
+a7   = formonly.prpnom         ,comments = " Nome do proprietario",
+                                upshift;
+a8   = formonly.vstnum         ,comments = " Numero de vistoria";
+a9   = formonly.vstano         ,comments = " Ano da vistoria";
+end
+
+instructions
+  delimiters " "
+end

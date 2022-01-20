@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc63m00                                      Helder Oliveira
+                                                               Humberto Santos
+ Cadastros de Menu                                                   Jul/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+
+-------------------------------------------------------
+        [x                                     ]
+------------------------------------------ctc63m00a----
+   MATRICULA : [a         ]
+
+    Nome.....:[b                                    ]
+    Depto....:[c                                    ]
+    Status...:[d  ]
+    Empresa..:[e  ]
+    Tipo.....:[f  ]
+-------------------------------------------------------
+
+}
+end
+
+attributes
+
+    a  = formonly.funmat    , upshift;
+    b  = formonly.funnom    , upshift, noentry;
+    c  = formonly.dptsgl    , noentry;
+    d  = formonly.stt       , upshift, noentry;
+    e  = formonly.emp       , upshift, noentry;
+    f  = formonly.tipo      , upshift, noentry;
+    
+    x  = formonly.titulo    , upshift, noentry;
+
+end
+
+instructions
+    screen record sctc63m00a(funmat thru tipo)
+    delimiters " "
+end

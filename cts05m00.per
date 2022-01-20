@@ -1,0 +1,102 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS05M00                                                  Pedro
+                                                                       Marcelo
+ Aviso de Sinistro de Roubo/Furto Total                               Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ] AVISO DE SINISTRO ROUBO/FURTO TOTAL [a2             ]
+--------------------------------------------------------------------cts05m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+ CHASSI/PLACA conferem?:[e]            Obs...:[e1                            ]
+ DOCTOS foram furtados/roubados?:[f]   Quais?:[f1                            ]
+------------------------------------------------------------------------------
+ Tipo.....:[c1|c2   ]
+ Endereco.:[c3                                                               ]
+ Bairro...:[c4                  ] Cidade....:[c5                  ]  U.F.:[c6]
+ Complemen:[c11                      ]
+ Ponto Ref:[c7                                                      ]Zona:[c ]
+ Regiao ..:[c8                            ]
+ Data.....:[c9        ]           Hora......:[c10  ]              Periodo:[d]
+ No. B.O..:[d2   ]                Emissor...:[d3      ]
+ Atend....:[d4                                                     ]
+ (F1)Help, (F3)Refer, (F4)Condutor, (F5)Espelho, (F6)Hist, (F7)Imp, (F9)Fax
+}
+end
+
+tables
+datmservico   ,
+datmservicocmp,
+datmlcl,
+datmligacao
+
+attributes
+
+a1   = formonly.servico          , noentry;
+a2   = datmligacao.c24solnom     , noentry;
+
+b1   = datmservico.nom           , upshift
+                                 , comments = " Nome";
+b2   = formonly.doctxt           , noentry;
+b6   = datmservico.corsus        , upshift
+                                 , comments = " Susep";
+b7   = datmservico.cornom        , upshift
+                                 , comments = " Corretor";
+b8   = formonly.cvnnom           , noentry;
+b9   = datmservico.vclcoddig     , format = "&&&&&&"
+                                 , comments = " Codigo do veiculo";
+b10  = datmservico.vcldes        , upshift
+                                 , comments = " Descricao do veiculo";
+b11  = datmservico.vclanomdl     , upshift
+                                 , comments = " Ano do veiculo";
+b12  = datmservico.vcllicnum     , upshift
+                                 , comments = " Placa do veiculo";
+b13  = formonly.vclcordes        , downshift
+                                 , comments = " Cor do veiculo";
+
+e    = datmservico.atdrsdflg     , upshift
+                                 , comments = " CHASSI ou PLACA conferem ? (S)im ou (N)ao";
+e1   = datmservico.atddfttxt     , upshift ;
+f    = datmservico.atdlclflg     , upshift
+                                 , comments = " Documentos do veiculo foram furtados/roubados ? (S)im ou (N)ao";
+f1   = datmservico.atddoctxt     , upshift ;
+
+c1   = datmservicocmp.c24sintip  , upshift
+                                 , comments = " (R)oubo ou (F)urto";
+c2   = formonly.sintipdes        , noentry;
+c3   = formonly.lgdtxt           , upshift
+                                 , comments = " Local do sinistro";
+c4   = datmlcl.lclbrrnom         , upshift
+                                 , comments = " Bairro do sinistro";
+c5   = datmlcl.cidnom            , upshift
+                                 , comments = " Cidade do sinistro";
+c6   = datmlcl.ufdcod            , upshift
+                                 , comments = " U.F. do sinistro";
+c7   = datmlcl.lclrefptotxt      , upshift
+                                 , comments = " Ponto de referencia do local";
+c    = datmlcl.endzon            , upshift
+                                 , comments = " Somente para Capital S.P, NO/SU/LE/OE,CE";
+c8   = formonly.eqprgides        , noentry;
+c9   = datmservicocmp.sindat     , comments = " Data da ocorrencia do sinistro";
+c10  = datmservicocmp.sinhor     , picture = "##:##"
+                                 , comments = " Hora aproximada do sinistro";
+c11  = datmlcl.endcmp            , upshift                                
+                                 , comments = " Complemento do endereco";                                 
+d    = datmservicocmp.c24sinhor  , upshift
+                                 , comments = " Ocorreu durante (D)ia ou (N)oite";
+d2   = datmservicocmp.bocnum     , upshift
+                                 , comments = " Numero do B.O.";
+d3   = datmservicocmp.bocemi     , upshift
+                                 , comments = " Orgao emissor do B.O.";
+d4   = formonly.atdtxt           , noentry;
+end
+
+instructions
+  delimiters " "
+end

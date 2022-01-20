@@ -1,0 +1,33 @@
+{--------------------------------------------------------------------
+ Nome do Form: cto00m08                                     Roberto
+ Pop-up de naturezas PSS
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+          Naturezas de Servicos PSS
+------------------------------------cto00m08--
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+
+}
+end
+
+attributes
+   a  =  formonly.ntzdes                    , noentry;
+   b  =  formonly.ntzcod type dec, invisible, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cto00m08(ntzdes thru ntzcod)
+end
+

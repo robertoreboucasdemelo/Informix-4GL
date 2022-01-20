@@ -1,0 +1,44 @@
+{############################################################################
+# Nome do Modulo: CTC20M06                                    Sergio Burini #
+#                                                                PSI 237248 #
+# CADASTRO DE PROCESSOS DA BONIFICACAO.                            MAR/2009 #
+############################################################################}
+
+database porto
+
+screen
+{
+
+
+-----------------------------------------------------------------------------     
+                         CADASTRO DE PROCESSOS BONIFICAÇÃO
+-------------------------------------------------------------------ctc20m06-- 
+ 
+                                                                   
+                                                                   
+           Codigo:[a   ]                                                         
+                                                                                 
+           Descrição:[b                                          ]               
+                                                                                 
+           Data Atualização:[c                  ]                                
+                                                                                 
+           Usuario Atualização:[d                                ]                                                                                        
+          
+                                                                              
+   
+                                                                                                            
+}
+
+tables
+   dpakprtbnfprc
+   
+attributes
+   a = dpakprtbnfprc.prtbnfprccod, comments = " Codigo do Processo";
+   b = dpakprtbnfprc.prtbnfprcdes, comments = " Descrição do Processo", upshift;
+   c = dpakprtbnfprc.atldat,       noentry;
+   d = formonly.funnom,         noentry;
+end
+
+instructions
+  delimiters " "
+end   

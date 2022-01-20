@@ -1,0 +1,36 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts06m07                                        Pedro
+                                                             Marcelo
+ Mostra cidades do Roteiro de Vistoria Previa                 Out/95
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Regioes para V. Previa
+----------------cts06m07--
+[a                   |b  ]
+[a                   |b  ]
+[a                   |b  ]
+[a                   |b  ]
+[a                   |b  ]
+[a                   |b  ]
+[a                   |b  ]
+
+}
+end
+
+tables
+   avckreg
+
+attributes
+   a   = avckreg.vstregsgl, noentry;
+   b   = avckreg.vstregcod, invisible;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts06m07(vstregsgl thru vstregcod)
+end
+

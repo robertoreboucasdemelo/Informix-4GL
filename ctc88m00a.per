@@ -1,0 +1,51 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC88M00a.PER                                             #
+# ANALISTA RESP..: ROBERT LIMA                                               #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: LISTA DE CIDADES COM QRV2 ATIVADO.                        #
+#............................................................................#
+# DESENVOLVIMENTO: ROBERT LIMA                                               #
+# LIBERACAO......: 29/11/2010                                                #
+#............................................................................}
+
+database formonly
+
+screen
+{
+
+------------------------------------------------------------------------------
+                    CADASTRO DE CIDADES X QRV2 ATIVADO
+-------------------------------------------------------------------ctc88m00a--
+
+ Sede:                             UF: SEQ:  DT ATIVA   HOR ATIV FUNC ATIVA
+ 
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+[x|c1                             |c2][c3  ][c4        |c5      |y           ]
+
+}
+end
+
+attributes
+x   = formonly.aux           ,upshift;
+c1  = formonly.cidnom        ,upshift;
+c2  = formonly.ufdcod        ,upshift;
+c3  = formonly.cidsedqrvseq  ,upshift;
+c4  = formonly.atvdat        ,upshift;
+c5  = formonly.atvhor        ,upshift;                                 
+y   = formonly.funmatass     ,noentry;
+
+
+instructions
+    delimiters " "
+    screen record s_ctc88m00a[10](aux thru funmatass)

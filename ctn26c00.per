@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN26C00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de etapas para acompanhamento de servicos                    Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Etapas
+-----------ctn26c00--
+[a              ][b ]
+[a              ][b ]
+[a              ][b ]
+[a              ][b ]
+[a              ][b ]
+[a              ][b ]
+
+}
+end
+
+tables
+   datketapa
+
+attributes
+   a  = datketapa.atdetpdes, noentry;
+   b  = datketapa.atdetpcod, noentry, invisible;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn26c00(atdetpdes thru atdetpcod)
+end

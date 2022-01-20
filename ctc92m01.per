@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc92m01                                                Helder
+                                                                      Oliveira
+ Cadastro de Planos                                                   Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m01--
+
+ Codigo.............:[a   ]
+
+ Descricao..........:[b                                                     ]
+
+ Limite Pane........:[c   ]
+ Limite Residencial.:[d   ]
+ Data de Corte......:[e         ]
+ KM.................:[f     ]
+
+
+ -> Atualizado..:[g          ] por [h                 ]
+
+ -> Observacoes.:[x                                                         ]
+                 [y                                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+ attributes
+    a  = formonly.cod             , comments = " Digite o Codigo do Plano"       ,upshift;
+    b  = formonly.descricao       , comments = " Descricao do Plano"             ,upshift;
+    c  = formonly.limite          , comments = " Limite de Pane"                 ;
+    d  = formonly.ressrvlimqtd    , comments = " Limite de Residencia"           ;
+    e  = formonly.srvlimdat       , comments = " Data de Corte"                  ;
+    f  = formonly.km              , comments = " Quilometragem"                  ;
+
+    g  = formonly.atldat          ,noentry;
+    h  = formonly.funnom          ,noentry;
+
+    x  = formonly.obs1            ,noentry;
+    y  = formonly.obs2            ,noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

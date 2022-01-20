@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<title>Emissao Saude</title>
+
+<script><!--
+
+function ebfConcatLeft(param, size, character){
+   var contador = param.length;
+
+   if(param.length != size){
+      while(contador < size){
+         param = character + param;	
+         contador++;
+      }
+   }
+   return param;
+}
+
+var sesnum = '@sesnum@';
+var usrcod = '@usrcod@';
+var empcod = '@empcod@';
+var usrtip = '@usrtip@';
+var portal = 3;
+var nomeportal = 'Sistemas Corporativos';
+
+var codigo = empcod * 100000;
+var auxiliar = codigo + parseFloat(usrcod);
+var matricula = new String(auxiliar);
+var nomeportal = 'Portonet'
+
+matricula = usrtip + ebfConcatLeft(matricula, 7, 0);   
+//var url = 'http://nt578/porto2/central_servicos.html?sel=' + nomeportal + '&mat=' + matricula;
+//var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc1/porto1/f_emiss_re_prod.html?sel=' + nomeportal + '&mat=' + matricula;
+//var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc1/porto1/f_sinistro_aluguel_prod.html?sel=' + nomeportal + '&mat=' + matricula;
+//var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc1/porto1/f_sinistro_goc_prod.html?sel=' + nomeportal + '&mat=' + matricula;
+//var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc1/porto1/f_sinistro_re_prod.html?sel=' + nomeportal + '&mat=' + matricula;
+//var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc1/porto1/f_sinistro_transp_prod.html?sel=' + nomeportal + '&mat=' + matricula;
+var url = 'https://wwws.portoseguro.com.br/atendimento-online/xwc/xwc.dll?f=F9004&ct=EMIS_SAUDE_PROD_CHAT&sel=' + nomeportal + '&mat=' + matricula;
+
+var loc = url;
+var prop = "left=0,top=0,toolbar=0,location=0,directories=0,status=1,menubar=0,scrollbars=yes,resizable=1,width=500,height=500";
+   
+   // Abre janela
+   janela=window.open(url,"_blank",prop).focus();
+
+   if (window.opener) {
+      window.close(); 
+   }else{
+      window.history.back();
+   }
+
+
+</script>
+
+</head>
+<body>
+</body>
+</html>

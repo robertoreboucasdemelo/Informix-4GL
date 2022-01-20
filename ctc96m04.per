@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc96m04
+
+ Cadastro de Plano                                                   jun/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                    
+-------------------------------------------------------------------ctc96m04---
+Produto:[e    ] [f                                                        ]
+------------------------------------------------------------------------------
+  Codigo  Descricao                                                          
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+[a      | b                                                               ] 
+------------------------------------------------------------------------------
+ Alterado em: [c         ] por: [d                                       ]  
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+     a  = formonly.codigo    ,upshift, comments = 'Codigo';   
+     b  = formonly.descricao ,upshift, comments = 'Descricao';
+     c  = formonly.atldat    ,upshift;                        
+     d  = formonly.funnom    ,upshift;                        
+     e  = formonly.codprd    ,upshift, comments = "Codigo do produto";                                 
+     f  = formonly.desprd    ,upshift, comments = "Descrição do produto";                                 
+end
+
+instructions
+    screen record s_ctc96m04 (codigo thru descricao)
+    delimiters " "
+end

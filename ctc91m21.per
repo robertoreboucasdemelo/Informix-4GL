@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m21
+
+ Cadastro de Carga Itau                                              Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                      CORRECAO ARQUIVO ORIGINAL DE CARGA
+-------------------------------------------------------------------ctc91m21---
+Versao/Linha:[a1       |a2       ]            Apolice/Item:[b1       |b2     ]
+Companhia....:  [c1]-[c2                                                ]
+Ramo.........: [d1 ]-[d2                                                ]
+Produto......:[e1  ]-[e2                                                ]
+Plano........:[f1  ]-[f2                            ]
+Serv.Prestado: [g1 ]-[g2                                                ]
+Garantia CR..:[h1  ]-[h2                                                |h]
+Servico CR...: [i1 ]-[i2                                                ]
+Empresa......: [j1 ]-[j2                                                ]
+Score........:[k1  ]-[k2                                                ]
+Segmento.....:[l1  ]-[l2                                                |l3]
+Codigo UBB...:  [m1]-[m2                                                ]
+Tipo Carga...:[n1  ]-[n2                  ]    Canal Venda..:[o1  ][o2       ]
+Tipo Veiculo.:[p1  ]-[p2                                                ]
+Modalid.Frota:[q1  ]-[q2                                                ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a1 = formonly.itaasiarqvrsnum    ,noentry, reverse;
+   a2 = formonly.itaasiarqlnhnum    ,noentry, reverse;
+   b1 = formonly.itaaplnum          ,noentry, reverse;
+   b2 = formonly.itaaplitmnum       ,noentry, reverse;
+   c1 = formonly.itaciacod          ,comments = "Codigo da Companhia";
+   c2 = formonly.itaciades          ,noentry;
+   d1 = formonly.itaramcod          ,comments = "Codigo do Ramo";
+   d2 = formonly.itaramdes          ,noentry;
+   e1 = formonly.itaprdcod          ,comments = "Codigo do Produto";
+   e2 = formonly.itaprddes          ,noentry;
+   f1 = formonly.itasgrplncod       ,comments = "Codigo do Plano";
+   f2 = formonly.itasgrplndes       ,noentry;
+   g1 = formonly.itaasisrvcod       ,comments = "Codigo do Servico de Assistencia Prestado";
+   g2 = formonly.itaasisrvdes       ,noentry;
+   h1 = formonly.rsrcaogrtcod       ,comments = "Codigo da Garantia do Carro Reserva";
+   h2 = formonly.rsrcaogrtdes       ,noentry;
+   h  = formonly.rsrcaogrtcoditau   ,noentry, invisible;
+   i1 = formonly.itarsrcaosrvcod    ,comments = "Codigo do Servico de carro reserva";
+   i2 = formonly.itarsrcaosrvdes    ,noentry;
+   j1 = formonly.itaempasicod       ,comments = "Codigo da Assistencia Empresa";
+   j2 = formonly.itaempasides       ,noentry;
+   k1 = formonly.itacliscocod       ,comments = "Codigo do Score do cliente";
+   k2 = formonly.itacliscodes       ,noentry;
+   l1 = formonly.itaclisgmcod       ,comments = "Codigo do Segmento do cliente";
+   l2 = formonly.itaclisgmdes       ,noentry;
+   l3 = formonly.itasgmcod          ,noentry, invisible;
+   m1 = formonly.ubbcod             ,comments = "Codigo UBB (tipo veiculo Unibanco)";
+   m2 = formonly.vcltipdesubb       ,noentry;
+   n1 = formonly.itavclcrgtipcod    ,comments = "Codigo do Tipo de Carga do Veiculo";
+   n2 = formonly.itavclcrgtipdes    ,noentry;
+   o1 = formonly.vndcnlcod          ,comments = "Codigo do Canal de Venda";
+   o2 = formonly.vndcnldes          ,noentry;
+   p1 = formonly.vcltipcod          ,comments = "Codigo do Tipo de Veiculo";
+   p2 = formonly.vcltipdes          ,noentry;      
+   q1 = formonly.frtmdlcod          ,comments = "Codigo da Modalidade de Frota";
+   q2 = formonly.frtmdldes          ,noentry;    
+end
+
+instructions
+   screen record s_ctc91m21 (itaasiarqvrsnum thru frtmdldes)
+   delimiters " "
+end

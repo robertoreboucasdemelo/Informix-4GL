@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte00m02                                                   Akio
+                                                                          Ruiz
+                                                                        Wagner
+ Consultas do sistema de atendimento ao corretor                      Jul/2000
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------cte00m02--
+ Data do atendimento:[a1        ]   [a2        ]
+
+ ([d])Susep:[d1    ]      ([e])Agrupamento      ([f])Assunto
+------------------------------------------------------------------------------
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+------------------------------------------------------------------------------
+
+}
+end
+
+
+attributes
+   a1  =  formonly.datini    type date;
+   a2  =  formonly.datfim    type date;
+   d   =  formonly.selcorsus          ,upshift;
+   d1  =  formonly.corsus             ,upshift;
+   e   =  formonly.selagpnom          ,upshift;
+   f   =  formonly.selassnom          ,upshift;
+   x   =  formonly.texto              ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cte00m02(texto)
+end

@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts14m02                                                  Pedro
+                                                                       Marcelo
+ Localiza Marcacao de Vistoria Sinistro                               Jun/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts14m02--
+ Dt Realiz:[l1        ]  Vistoria:[l2    ][l3  ]  Placa:[l4     ] [lt        ]
+------------------------------------------------------------------------------
+ Realizacao  No. Vistoria  Veiculo                                   Placa
+
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+[l5        ][l6    ][l7  ][l8                                      ][l9     ]
+
+}
+end
+
+tables
+   datmvstsin
+
+attributes
+
+   l1  = datmvstsin.vstdat
+        ,comments = " Data da realizacao da vistoria"
+        ,autonext;
+   l2  = formonly.sinvstnum
+        ,comments = " Numero da vistoria"
+        ,autonext;
+   l3  = formonly.sinvstano
+        ,comments = " Ano da vistoria"
+        ,autonext;
+   l4  = formonly.placa
+        ,comments = " Placa do veiculo"
+        ,autonext
+        ,upshift;
+   lt  = formonly.total                    ,noentry;
+   l5  = formonly.vstretdat                ,noentry;
+   l6  = formonly.sinvstnum2               ,noentry;
+   l7  = formonly.sinvstano2               ,noentry;
+   l8  = formonly.veiculo                  ,noentry;
+   l9  = formonly.vcllicnum                ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_cts14m02(vstretdat thru vcllicnum)
+end

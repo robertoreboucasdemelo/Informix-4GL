@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m01                                              Marcelo
+                                                                     Gilberto
+ Direcionamento de solicitacao de reparo nos vidros                  Mar/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Envio de solicitacao de reparo de vidros
+--------------------------------cts19m01--
+
+   Enviar pedido para:[a][a1        ]
+
+   Numero do FAX.....:[a2  ][a3       ]
+
+
+
+}
+end
+
+tables
+   datmreclam
+
+attributes
+   a  = formonly.enviar    , comments = " Enviar para (I)mpressora ou (F)ax",
+                             upshift, required;
+   a1 = formonly.envdes    , upshift, noentry;
+   a2 = datmreclam.dddcod  , comments = " Codigo do DDD",
+                             autonext, upshift ;
+   a3 = datmreclam.faxnum  , comments = " Numero do FAX de destino";
+end
+
+instructions
+  delimiters " "
+end

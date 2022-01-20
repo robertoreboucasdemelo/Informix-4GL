@@ -1,0 +1,85 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB25M00                                                 Raji
+     
+ Acerto de Servicos                                                  Mar/2003
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+                                                                    [h       ]
+ Servico:[h5     ]-[h6] Situacao:[g]  Periodo:[h2        ][h3        ]
+ Prestador:[h1    ] Cronograma:[h4] Classificar:[i] Empresa:[e1][e2          ]
+--------------------------------------------------------------------ctb25m00--
+ Servico/Etapa     Dt Acerto/Etapa     Valor Inicial    Valor Informado
+   
+[r1                |r2      |r3      ][r4             ][r5             ]
+[r6               ][r7      |r8      ][r9                                    ]
+
+[r1                |r2      |r3      ][r4             ][r5             ]
+[r6               ][r7      |r8      ][r9                                    ]
+
+[r1                |r2      |r3      ][r4             ][r5             ]
+[r6               ][r7      |r8      ][r9                                    ]
+
+[r1                |r2      |r3      ][r4             ][r5             ]
+[r6               ][r7      |r8      ][r9                                    ]
+------------------------------------------------------------------------------
+}
+end
+
+tables
+   dbsmsrvacr,
+   datksrvtip,
+   dpaksocor,
+   datmservico
+
+attributes
+ h  = formonly.relogio         type char, reverse, noentry;
+
+ h5 = formonly.atdsrvnum       type decimal(7,0);
+ h6 = formonly.atdsrvano       type decimal(2,0),autonext;
+
+ g  = formonly.anlokaflg       type char, upshift, autonext,
+      comments = "N=Nao analisado, P=Aguardando Pendencia, S=analiSado, L-Liberar por alcada";
+
+ h2 = formonly.periodoini      type date, autonext;
+
+ h3 = formonly.periodofim      type date, autonext;
+
+ h1 = formonly.pstcoddig       type decimal(6,0), autonext,
+      comments = " Informe o codigo do prestador ou branco p/ TODOS";
+
+ h4 = dpaksocor.crnpgtcod,     upshift,   autonext;
+
+ i  = formonly.Classifica     type char, upshift,autonext,
+      comments = "Classifica Por  <D>ATA LIBERACAO  <S>ERVICO  <V>ALOR";
+
+ e1 = formonly.ciaempcod,      comments = " Codigo da empresa.";
+ e2 = formonly.empsgl,         noentry;
+
+
+ r1 = formonly.servico         type char, noentry;
+
+ r2 = formonly.prsokadat       type date, format ="dd/mm/yy", noentry;
+
+ r3 = formonly.prsokahor       type date, noentry;
+
+ r4 = dbsmsrvacr.incvlr,       format = "<<<<,<<<,<<&.&&", noentry;
+
+ r5 = dbsmsrvacr.fnlvlr,       format = "<<<<,<<<,<<&.&&", noentry;
+
+ r6 = formonly.etapa           type char, noentry;
+ 
+ r7 = formonly.srvprsacndat    type date, format ="dd/mm/yy", noentry;
+
+ r8 = formonly.srvprsacnhor    type char, noentry;
+ 
+ r9 = formonly.percurso        type char, noentry;
+end
+
+instructions
+ delimiters " "
+ screen record s_ctb25m00(servico thru percurso)
+end

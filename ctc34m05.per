@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m05                                               Gilberto
+                                                                       Marcelo
+ Cadastro de fabricantes de equipamentos para veiculos                Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m05--
+      Codigo......:[a1  ]
+------------------------------------------------------------------------------
+
+
+      Nome........:[a2                                                ]
+
+      Abreviacao..:[a3             ]
+
+      Situacao....:[s]
+
+
+      Incluido...:[a4        ] por [a41                ]
+      Atualizado.:[a5        ] por [a51                ]
+
+
+
+}
+end
+
+tables datkeqpfab
+
+attributes
+   a1   = formonly.eqpfabcod,
+          comments = " Codigo do fabricante"                      ;
+
+   a2   = datkeqpfab.eqpfabnom,
+          comments = " Nome do fabricante",                        upshift;
+
+   a3   = datkeqpfab.eqpfababv,
+          comments = " Abreviacao do nome do fabricante",          upshift;
+
+   s    = datkeqpfab.eqpfabstt,
+          comments = " Situacao do fabricante: (A)tivo ou (C)ancelado", upshift;
+
+   a4   = datkeqpfab.caddat,                           noentry;
+   a41  = formonly.cadfunnom,                          noentry;
+
+   a5   = datkeqpfab.atldat,                           noentry;
+   a51  = formonly.funnom,                             noentry;
+end
+
+instructions
+     delimiters " "
+end

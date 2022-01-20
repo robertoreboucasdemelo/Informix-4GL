@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC56M05                                                 Raji
+                                                                             
+ Exibe pop-up para selecao do clausula                               Mar/2002
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                    Modalidade
+----------------------------------------------ctc56m05--
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+[a                                                ][b  ]
+
+}
+End
+
+tables
+   rgpkmodal
+
+Attributes
+ a  = rgpkmodal.rmemdlnom       ,noentry;
+ b  = rgpkmodal.rmemdlcod       ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc56m05(rmemdlnom thru rmemdlcod)
+End

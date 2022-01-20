@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty21g00                                                Helder Oliveira
+
+ Cadastros                                                            Jan/2011
+-----------------------------------------------------------------------------}
+database formonly
+screen size 24 by 80
+
+{
+                                                       >PROP.:|[a          ]|
+------------------------------------------------------------------------------ 
+ ([m])[a1                    ][b1 ]  [c1                            ][d]
+ ([m])[a1                    ][b1 ]  [c1                            ][d]
+ ([m])[a1                    ][b1 ]  [c1                            ][d]
+ ([m])[a1                    ][b1 ]  [c1                            ][d]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   m   = formonly.marca type char , upshift ;
+
+   a1  = formonly.ppwtrxhordat    , noentry ;
+
+   b1  = formonly.ppwtrxqtd       , noentry ;
+
+   c1  = formonly.sitdesc         , noentry ;
+
+   d   = formonly.situacao        , noentry , invisible;
+
+    a   = formonly.proposta        , noentry ;
+
+instructions
+ delimiters "  "
+    screen record sa_cty21g02 (marca thru situacao)
+
+end

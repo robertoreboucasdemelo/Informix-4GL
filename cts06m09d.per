@@ -1,0 +1,68 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m09d
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+[a                                                                           ]
+-----------------------------------------------------------------|cts06m09d|--
+ DtAgd P Em UF/Cidade/Bairro                             Periodo Horario
+------------------------------------------------------------------------------
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+[b    |c|d |e                                           |f                   ]
+------------------------------------------------------------------------------
+Veiculo..:[g    |h                                    ]QAcn:[i   ]QPend:[j   ]
+Prestador:[k    |l                     ]Socorr:[m     |n                     ]
+Cel:[o   |p         ]Email:[q                                                ]
+Env SMS?.:[r]                          Confirma?.:[s]        [t              ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+
+    a = formonly.f_VeiculoAnterior   type char, noentry;
+
+    b = formonly.f_DiaMesVistoria    type char, noentry;
+    c = formonly.f_Prioridade        type char, noentry;
+    d = formonly.f_CodigoEmpresa     type char, noentry;
+    e = formonly.f_EnderecoExibicao  type char, noentry;
+    f = formonly.f_HorarioPref       type char, noentry;
+
+    g = formonly.f_SiglaVeiculo      type char, upshift;
+    h = formonly.f_NomeVeiculo       type char, noentry;
+    i = formonly.f_QtdVistoriasAcn   type char, noentry;
+    j = formonly.f_QtdVistoriasPend  type char, noentry;
+
+    k = formonly.f_CodigoPrestador   type char, noentry;
+    l = formonly.f_NomePrestador     type char, noentry;
+
+    m = formonly.f_CodigoSocorrista  type char, noentry;
+    n = formonly.f_NomeSocorrista    type char, noentry;
+
+    o = formonly.f_DDD               type char;
+    p = formonly.f_Celular           type char;
+    q = formonly.f_Email             type char;
+
+    r = formonly.f_EnviaSMS          type char, upshift, autonext;
+    s = formonly.f_Confirma          type char, upshift, autonext;
+    t = formonly.f_TipoEnvio         type char, noentry;
+
+end
+
+instructions
+    delimiters ' '
+    screen record s_cts06m09d(f_DiaMesVistoria
+                         thru f_HorarioPref)
+end
+

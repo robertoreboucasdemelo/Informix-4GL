@@ -1,0 +1,31 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M09                                              Marcelo
+                                                                     Gilberto
+ Dados para solicitacao de carro extra                               Dez/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+        Dados para Solicitacao de Carro Extra
+----------------------------------------------cts15m09--
+
+ Tipo de Locacao:[a|a1             ]
+
+[b                                                     ]
+}
+end
+
+tables
+   datmavisrent
+
+attributes
+   a   = datmavisrent.vclloctip;  
+   a1  = formonly.vcllocdes    , noentry;
+   b   = formonly.msgfun type char, noentry;
+end
+
+instructions
+  delimiters " "
+end

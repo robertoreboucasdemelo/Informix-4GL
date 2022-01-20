@@ -1,0 +1,28 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts05m00b                                             Aguinaldo
+ Nome do segurado que recebeu a informacao da LOJACK                 Mai/2003
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------cts05m00b--
+  ATENCAO
+  Informe o nome de quem foi orientado a contatar a
+  Central 24horas da LOJACK.                     
+  Fone: 0800-7728476                   
+  NOME..:[a                   ]     
+
+}
+end
+
+tables
+datmservico
+
+attributes
+  a  = formonly.nome     ,upshift, comments = " Digite o nome ";              
+end
+instructions
+  delimiters " " 
+end

@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M07                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de grupo tarifario (veiculos)                 Dez/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m07--
+ Cod. Grupo:[a5    ][a10                                     ]
+ Situacao..:[s]
+
+ Incluido..:[a30       ]por[a35                ]
+ Atualizado:[a40       ]por[a45                ]
+------------------------------------------------------------------------------
+ Codigo  Descricao
+------------------------------------------------------------------------------
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+ [b5   ][b10                                                         ]
+
+}
+end
+
+tables dbskgtf, dbsrvclgtf
+
+attributes
+
+   a5  = formonly.socgtfcod,
+         comments = " Codigo do grupo tarifario";
+   a10 = dbskgtf.socgtfdes,                           upshift,
+         comments = " Descricao do grupo tarifario";
+   s   = dbskgtf.socgtfstt,
+         comments = " Situacao do grupo: (A)tiva, (C)ancelada";
+
+   a30  = dbskgtf.caddat,                             noentry;
+   a35  = formonly.cadfunnom,                         noentry;
+   a40  = dbskgtf.atldat,                             noentry;
+   a45  = formonly.funnom,                            noentry;
+
+   b5  = dbsrvclgtf.vclcoddig,                        noentry;
+   b10 = formonly.vcldes,                             noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb10m07(vclcoddig thru vcldes)

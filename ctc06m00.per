@@ -1,0 +1,41 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC06M00                     Criacao: 14/09/94 - Pedro
+
+ Manutencao dos tipos de servicos
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc06m00--
+        Tipo                 Descricao
+------------------------------------------------------------------------------
+
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+
+}
+end
+
+tables dpckserv
+
+attributes
+a0   = dpckserv.pstsrvtip, autonext;
+a1   = dpckserv.pstsrvdes, upshift;
+
+end
+
+instructions
+     delimiters " "
+end

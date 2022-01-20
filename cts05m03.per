@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts05m03                                                  Pedro
+                                                                       Marcelo
+ Atualiza numero do fax do corretor                                   Out/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Atualize Numero do Fax para Contato
+-----------------------------------------cts05m03--
+
+ [a     ][b                                       ]
+
+ DDD:[c   ]
+
+ FAX:[d                                       ]
+
+
+}
+end
+
+tables
+   gcakcorr, gcaksusep, gcakfilial
+
+attributes
+
+   a   = gcaksusep.corsus  , reverse, noentry;
+   b   = gcakcorr.cornom   , reverse, noentry;
+
+   c   = gcakfilial.dddcod , comments = " Codigo do DDD",
+                             autonext;
+   d   = gcakfilial.factxt , comments = " Numero do fax",
+                             upshift , autonext;
+
+instructions
+  delimiters " "
+end

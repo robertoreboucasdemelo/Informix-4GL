@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS14M14                                              Marcelo
+                                                                     Gilberto
+ Pesquisa numero da proposta                                         Set/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Origem Prp:[a ][b                        ]Numero Prp:[c       ]
+------------------------------------------------------cts14m14--
+
+ Proponente:[d                                                 ]
+
+ Confirma ?:[e]
+
+
+ (F17)Abandona
+}
+end
+
+tables  gcamproponente
+
+attributes
+  a = formonly.prporg     type decimal    ,
+      comments = " Origem da Proposta";
+  b = formonly.prporgdes  type char       , noentry;
+  c = formonly.prpnumdig  type decimal    ,
+      comments = " Numero da Proposta";
+
+  d = formonly.segnom            ,noentry ;
+  e = formonly.confirma          ,upshift ,
+      comments = " Confirma ? (S)im ou (N)ao";
+end
+
+instructions
+   delimiters " "

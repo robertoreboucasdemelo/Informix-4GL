@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m01                                               Beatriz
+                                                                       Araujo
+ Cadastro de/para Origem                                              Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc93m01--
+  Origem : [a  ] - [a1             ] Assunto : [g  ] - [g1                 ] 
+------------------------------------------------------------------------------
+                                                                            
+  Decorrencia do servico: [b  ] - [b1                             ]           
+                                                                            
+  Bem atendido..........: [c  ] - [c1                             ]          
+                                                                            
+  Status................: [d  ] - [d1                             ]
+   
+                                                                            
+  Incluido...: [e         ] por [e1            ]                             
+  Atualizado.: [f         ] por [f1            ]                            
+                                                                            
+------------------------------------------------------------------------------
+}
+end
+tables datkdcrorg,datksrvtip,datkassunto
+
+attributes
+    a  = datkdcrorg.atdsrvorg ;
+    a1 = datksrvtip.srvtipabvdes, noentry ;
+    b  = datkdcrorg.srvdcrcod ;
+    b1 = formonly.srvdcrdes,  noentry;
+    c  = datkdcrorg.bemcod ;
+    c1 = formonly.bemdes,  noentry;
+    d  = datkdcrorg.atoflg ;
+    d1 = formonly.atoflgdes, noentry;
+    e  = datkdcrorg.caddat, noentry;
+    e1 = formonly.funcad, noentry;
+    f  = datkdcrorg.atldat, noentry;
+    f1 = formonly.funatl, noentry;
+    g  = datkdcrorg.c24astcod    ,upshift; 
+    g1 = datkassunto.c24astdes     ,noentry,upshift;
+end
+
+instructions          
+     delimiters " "   
+end 

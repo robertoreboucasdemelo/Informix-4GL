@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do form: ctc00m20                                        Robert
+ Manutenção do cadastro complemntode informações do prestador PJ
+              - Circular 380 -                               Jun/2010
+--------------------------------------------------------------------}
+
+database formonly                                                                
+screen                                                                        
+{                                                                             
+---------------------------------------------------------------------ctc00m20-
+    De acordo com a Circular 380/2008 da Susep, é obrigatório informar:
+   [g                                                                ]
+   [g                                                                ]
+------------------------------------------------------------------------------
+                            [d                    ]
+   Nome                                               CPF           PEP
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+  [a                                               ] [b            ][c]
+------------------------------------------------------------------------------
+[e                                                                          ] 
+[e                                                                          ] 
+}  
+end
+                                                                                                                
+attributes                                                             
+
+a  = formonly.nome  ,upshift ,comments = "Nome";
+b  = formonly.cpf   ,autonext,comments = "CPF";
+c  = formonly.PEP   ,upshift ,comments = "PEP";  
+d  = formonly.texto ,upshift ,noentry,reverse;
+e  = formonly.texto2,upshift ,noentry,wordwrap;
+g  = formonly.texto3,upshift ,noentry,wordwrap;
+end                                                          
+                                                             
+instructions                                                 
+delimiters " "                                               
+                                                             
+screen record s_ctc00m20[7]( nome, 
+                             cpf,
+                             PEP
+                             )                                                               

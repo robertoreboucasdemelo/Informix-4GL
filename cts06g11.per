@@ -1,0 +1,97 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS06G11                                               Adriano
+
+ Funcoes Genericas - Digitacao de endereco padronizada                Nov/2009
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   [a0                                                                  ]
+------------------------------------------------------------------cts06g11--
+ Cep do Local:[a1   |a2 ]                           [b                     ]
+[b2        ].:[a3                                      ]  [b1          ]
+ Cidade......:[a4                                           ]  UF..:[a5]
+ Tipo Logr...:[a6        ]
+ Logradouro..:[a7                                                          ]
+[b5        ].:[a8   ]                     [t1                              ]
+ Bairro......:[a10                                     ]Zona:[a9]
+[e              ][e1 ]
+----------------------------------------------------------------------------
+ Complemento.:[v1                  ]
+[lit1         |p1                                               ]
+              [p2                                               ]
+              [p3                                               ]
+              [p4                                               ]
+ Contato.....:[c2                ]Cel.:[d1  |d2       ]Tel.:[d3  |d4       ]
+[winv                                   |l1        |l2         |c1        ]
+}
+end
+
+ tables datmlcl
+
+ attributes
+   a0  = formonly.cabtxt     , reverse
+                             , noentry;
+   a1  = datmlcl.lgdcep      , autonext
+                             , comments = " CEP do logradouro ";
+   a2  = datmlcl.lgdcepcmp   , autonext
+                             , format = "&&&"
+                             , comments = " Complemento do CEP do logradouro ";
+   b   = formonly.obsofic    , noentry;
+   b2  = formonly.des        , noentry;
+   b5  = formonly.lblnum     , noentry;
+   a3  = datmlcl.lclidttxt   , upshift
+                             , comments = " Identificacao do local ";
+   b1  = formonly.staofic    , noentry;
+   a4  = datmlcl.cidnom      , upshift
+                             , comments = " Cidade ";
+   a5  = datmlcl.ufdcod      , upshift
+                             , comments = " Sigla da unidade da federacao ";
+   a6  = datmlcl.lgdtip      , upshift
+                             , comments = " Tipo do logradouro: avenida, rua, praca, travessa";
+   a7  = datmlcl.lgdnom      , upshift
+                             , comments = " Logradouro ";
+   a8  = datmlcl.lgdnum      , format = "#####"
+                             , comments = " Numero do logradouro ";
+   a10 = datmlcl.brrnom      , upshift
+                             , comments = " Bairro ";
+   a9  = datmlcl.endzon      , upshift
+                             , comments = " Zona da cidade ";
+   e   = formonly.txtocrlcl  , noentry;
+   e1  = formonly.ocrlclstt  , upshift
+                             , comments = "Local de risco";
+   c2  = datmlcl.lclcttnom   , upshift
+                             , comments = " Pessoa para contato no local ";
+   d1  = datmlcl.celteldddcod, comments = " Codigo de DDD do local ";
+   d2  = datmlcl.celtelnum   , comments = " Telefone do local ";
+   d3  = datmlcl.dddcod      , comments = " Codigo de DDD do celular do contato ";
+   d4  = datmlcl.lcltelnum   , comments = " Celular do contato ";
+
+   p1  = formonly.ptoref1    , upshift
+                             , comments = " Ponto de referencia do logradouro "
+                             , autonext;
+   p2  = formonly.ptoref2    , upshift
+                             , comments = " Ponto de referencia do logradouro "
+                             , autonext;
+   p3  = formonly.ptoref3    , upshift
+                             , comments = " Ponto de referencia do logradouro "
+                             , autonext;
+   p4  = formonly.ptoref4    , upshift
+                             , comments = " Ponto de referencia do logradouro "
+                             , autonext;
+   winv = formonly.lclbrrnom , invisible, noentry;
+   l1  = datmlcl.lclltt      , invisible, noentry;
+   l2  = datmlcl.lcllgt      , invisible, noentry;
+   c1  = datmlcl.lclrefptotxt, invisible, noentry;
+   t1  = formonly.latlontxt  , noentry;
+   v1   = formonly.endcmp  , upshift
+                           , comments = " Complemento do endereco: apartamento, bloco, casa, quadra, lote ";
+   lit1 = formonly.pontoref,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+ end

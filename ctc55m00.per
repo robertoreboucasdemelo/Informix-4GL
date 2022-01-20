@@ -1,0 +1,46 @@
+database formonly
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc55m00--
+ Ramo........: [a   ] [a1                                                    ]
+ Modalidade..: [g   ] [g1                                                    ]
+ Clausula....: [b    ][b1                                                    ]
+ Qtd.Atend...: [c  ]
+-----------------------------------------------------------------------------
+        Natureza              Qtd.Atend  Grupo de Problema
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+ [d  ][e                    ] [f  |x]  [h                              |i    ]
+
+}
+
+attributes
+
+a  = formonly.ramcod;
+a1 = formonly.ramnom,noentry;
+g  = formonly.rmemdlcod;
+g1 = formonly.rmemdlnom, noentry;
+b  = formonly.clscod, upshift;
+b1 = formonly.clsdes,noentry;
+c  = formonly.atdqtd;
+d  = formonly.socntzcod;
+e  = formonly.socntzdes,noentry;
+f  = formonly.ntzatdqtd;
+x  = formonly.ghost,invisible;
+h  = formonly.c24pbmgrpdes;
+i  = formonly.c24pbmgrpcod, noentry;
+
+Instructions
+  delimiters " "
+  screen record s_ctc55m00 (socntzcod thru c24pbmgrpcod)
+end
+
+
+

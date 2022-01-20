@@ -1,0 +1,41 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m03                                      R.Fornax
+
+ Popup Pacote                                                Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m03--
+                              POPUP DE PACOTES
+------------------------------------------------------------------------------
+ Pacote  Nome                              Limite    Unidade
+
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+ [a    ] [b                            ] [c       ] [d                 ]
+
+ [e                                                                    ]
+
+
+}
+end
+
+attributes
+   a  = formonly.paccod   ;
+   b  = formonly.pacdes   ;
+   c  = formonly.paclim   ;
+   d  = formonly.pacuni   ;
+   e  = formonly.msg      ;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m03(paccod thru pacuni)
+end

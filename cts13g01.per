@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts13g01                                              Gilberto
+                                                                      Marcelo
+ Consulta observacoes do bloqueio                                    Mai/1998
+-----------------------------------------------------------------------------}
+
+ Database porto
+
+ Screen
+{
+         Observacoes do bloqueio [a     ]
+------------------------------------------cts13g01--
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+[b                                                 ]
+
+}
+End
+
+ tables
+    datmblqobs
+
+ Attributes
+  a  = datmblqobs.blqnum      ,reverse     ,noentry;
+  b  = datmblqobs.blqobstxt                ,noentry;
+ End
+
+ Instructions
+  delimiters " "
+  screen record s_cts13g01(blqobstxt)

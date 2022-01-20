@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc41m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de controladoras de MDT's                                   Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc41m00--
+           Codigo Identificacao....:[a1   ]                   [q             ]
+------------------------------------------------------------------------------
+Meio Conexao............:[a2        ]
+Numero Tentativas.......:[a3]
+Intervalo Tentativas....:[a4   ]milisegundos
+Atraso Ataque...........:[a5   ]milisegundos
+Polaridade Canal........:[p]
+Situacao................:[s][s2                 ]
+Grupo de Acionamento....:[c1 ]-[c11                         ]
+Frequencia de Trabalho..:[d1 ]-[d2                               ]
+Tempo Atualizacao Rapida:[e   ]segundos
+Velocidade Limite.......:[f  ] km/h
+Tempo Atualizacao Lenta.:[g   ]segundos
+Contingencia SMS........:[h   |h1                                           ]
+Incluido................:[b4        ]por[b41                ]
+Atualizado..............:[b5        ]por[b51                ]
+}
+end
+
+tables datkmdtctr, datkacngrp, datkgeral
+
+attributes
+  a1  = datkmdtctr.mdtctrcod, comments = " Codigo da controladora (ID hardware)";
+  a2  = datkmdtctr.mdtcnxsrvdes, upshift, comments = " Meio de conexao (controladora/servidor)";
+  a3  = datkmdtctr.mdtcmuttvqtd, comments = " Numero de tentativas em caso de erro de comunicacao (0-9)";
+  a4  = datkmdtctr.mdtttvitv, comments = " Intervalo de tempo entre tentativas (0-65535 milisegundos)";
+  a5  = datkmdtctr.mdtaatitv, comments = " Atraso no ataque (0-65535 milisegundos)";
+  p   = datkmdtctr.mdtcnlplr, comments = " Polaridade do canal: 0,1,2 ou 3";
+  s   = datkmdtctr.mdtctrstt, comments = " Situacao da controladora";
+  s2  = formonly.mdtctrsttdes, noentry;
+  q   = formonly.ctrmdtqtddes, reverse, noentry;
+  b4  = datkmdtctr.caddat, noentry;
+  b41 = formonly.cadfunnom, noentry;
+  b5  = datkmdtctr.atldat, noentry;
+  b51 = formonly.funnom, noentry;
+  c1  = datkmdtctr.gpsacngrpcod, comments = " Grupo de Acionamento que trabalhara a Controladora";
+  c11 = datkacngrp.gpsacngrpdes, noentry;
+  d1  = datkmdtctr.mdtfqcnum, comments = " Frequencia de Radio que esta trabalhando";
+  d2  = datkmdtctr.mdtfqcdes, upshift, comments = "Local onde esta a instalada a Frequencia";
+  e   = datkmdtctr.segrpdatltmpqtd, comments = " Tempo Atualizacao Rapida dos sinais GPS";
+  f   = datkmdtctr.fqctrclimvlcqtd, comments = " Velocidade Limite para troca de tempo de atualizacao";
+  g   = datkmdtctr.seglntatltmpqtd, comments = " Tempo Atualizacao Lenta dos sinais GPS";
+  h   = formonly.infctr, upshift, comments = "Envio de servico via SMS - contingencia - S ou N ";
+  h1  = formonly.previsao, noentry;
+
+end
+
+instructions
+  delimiters " "
+end

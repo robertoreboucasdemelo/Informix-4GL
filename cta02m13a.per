@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTA02M13A                                         LUCAS SCHEID
+ TELA TEMPORARIA PARA AGENDAMENTO.                                   JUL/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+                           RELACAO DE AGENDAMENTOS
+------------------------------------------------------------------cta02m13a---
+ Data Agend.:[l         ] Licenca:[a      ] Chassi:[b           ][c       ]
+------------------------------------------------------------------------------
+ Posto               Data        Horar. Licenca  Veiculo          ATV. N.Agd
+------------------------------------------------------------------------------
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+[d|e               ][f         ][g    ][h      ][i              ] [j] [k     ]
+
+ (F8)Seleciona   (F17)Abandona
+}
+end
+
+attributes
+  l = formonly.dtagenda        type date;
+  a = formonly.vcllicnum_input type char, upshift;
+  b = formonly.vclchsinc       type char, upshift, autonext;
+  c = formonly.vclchsfnl       type char, upshift;
+
+  d = formonly.sinvstpsttip    type integer,                 noentry;
+  e = formonly.sinvstpstnom    type char,                    noentry;
+  f = formonly.vstagndat       type date,                    noentry;
+  g = formonly.vstagnhor       type datetime hour to minute, noentry;
+  h = formonly.vcllicnum       type char,                    noentry;
+  i = formonly.vcltipnom       type char,                    noentry;
+  j = formonly.vstatvtipcod    type char,                    noentry;
+  k = formonly.vstagnnum       type integer,                 noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cta02m13a(sinvstpsttip,
+                            sinvstpstnom,
+                            vstagndat,
+                            vstagnhor,
+                            vcllicnum,
+                            vcltipnom,
+                            vstatvtipcod,
+                            vstagnnum)
+       

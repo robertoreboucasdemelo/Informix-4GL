@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do form: cts21m02                                     Gilberto
+
+ Informacoes sobre o Sinistro (Vistoria Sinistro R.E.)        Nov/95
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+               Historico do Sinistro
+------------------------------------------cts21m02--
+[h1                                                ]
+[h2                                                ]
+[h3                                                ]
+
+            Relacao de Bens Sinistrados
+
+[o1                                                ]
+[o2                                                ]
+[o3                                                ]
+
+}
+end
+
+
+attributes
+   h1  = formonly.hist1       ,upshift    ,autonext;
+   h2  = formonly.hist2       ,upshift    ,autonext;
+   h3  = formonly.hist3       ,upshift    ,autonext;
+
+   o1  = formonly.obs1        ,upshift    ,autonext;
+   o2  = formonly.obs2        ,upshift    ,autonext;
+   o3  = formonly.obs3        ,upshift    ,autonext;
+end
+
+instructions
+   delimiters " "
+end
+

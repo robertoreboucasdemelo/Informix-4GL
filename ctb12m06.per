@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB12M06                                              Marcelo
+                                                                     Gilberto
+ Acerto de valor (custo) com prestadores                             Abr/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+    Acerta valor do servico
+-----------------------ctb12m06--
+
+ Valor inicial:[a               ]
+
+ Valor final..:[b               ]
+
+ Confirma.....:[c]
+
+}
+end
+
+tables
+  datmpreacp, datmservico
+
+attributes
+  a  = datmpreacp.srvinccst , comments = " Valor inicial do servico",
+                              format = "#,###,###,##&.&&";
+  b  = datmservico.atdcstvlr, comments = " Valor final do servico",
+                              format = "#,###,###,##&.&&";
+  c  = formonly.confirma    , comments = " Confirma valor? (S)im ou (N)ao" ,
+                              upshift;
+end
+
+instructions
+  delimiters " "
+end

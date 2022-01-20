@@ -1,0 +1,37 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTB10M05                                            Gilberto
+                                                                    Marcelo
+ Mostra todas as tarifas do porto socorro                            Nov/96
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Tarifas do Porto Socorro
+----------------------------------------ctb10m05--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   dbsktarifasocorro
+
+attributes
+   a   = dbsktarifasocorro.soctrfdes               ,noentry;
+   b   = dbsktarifasocorro.soctrfcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb10m05(soctrfdes thru soctrfcod)
+end
+

@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn35c00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de fabricantes de equipamentos para veiculos de assistencia  Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Fabricantes
+-----------------------------------------------ctn35c00--
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+[a                                                ][b   ]
+
+}
+end
+
+ tables
+    datkeqpfab
+
+ attributes
+    a  = datkeqpfab.eqpfabnom, noentry;
+    b  = datkeqpfab.eqpfabcod, noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctn35c00(eqpfabnom thru eqpfabcod)
+ end

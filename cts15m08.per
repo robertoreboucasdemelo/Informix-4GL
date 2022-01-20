@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M08                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Informa dados reserva por departamento                               Set/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+ Codigo Empresa..:[a |a1                               ]
+ Codigo Sucursal.:[b    |b1                               ]
+ Matr.Solicitante:[c     |c1                           ]
+[f                |d      |d1                              ]
+
+ Confirma.:[e]
+
+}
+end
+
+tables
+  datmavisrent
+
+attributes
+
+a = datmavisrent.slcemp   , comments = " Codigo da Empresa do solicitante"
+                          , format = "&&"
+                          , autonext;
+a1= formonly.empnom       , noentry;
+
+b = datmavisrent.slcsuccod, comments = " Codigo da Sucursal do solicitante"
+                          , format = "###&&"
+                          , autonext;
+b1= formonly.sucnom       , noentry;
+
+c = datmavisrent.slcmat   , comments = " Codigo da Matricula do solicitante"
+                          , format = "&&&&&&"
+                          , autonext;
+c1= formonly.funnom       , noentry;
+
+f = formonly.teldep       , noentry;
+d = datmavisrent.slccctcod, comments = " Codigo Centro de Custo solicitante para debito"
+                          , format = "&&&&&&&"
+                          , autonext;
+d1= formonly.cctnom       , noentry;
+e = formonly.confirma     , comments = " Confirma dados ? (S)im ou (N)ao "
+                          , upshift;
+
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m06                                              Gilberto
+                                                                      Marcelo
+ Exibe parcelas da apolice a partir da cobranca                      Set/1997
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cta01m06--
+ Parc Vencimento          Valor  Sit.    Dt.Pagto.  Dt.Proces.     Valor Pago
+
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+ [g ][i         ][k            ] [m  ] [n         ][o         ][p            ]
+------------------------------------------------------------------------------
+ F.Pag:[w                             ]End.:[x                               ]
+
+
+}
+end
+
+ tables  fctrpevparc, fctmtitulos, fctmpag, fcakcobr, fctmportador
+
+ attributes
+    g =  fctrpevparc.parnum;
+    i =  fctmtitulos.vctdat                             ,noentry;
+    k =  fctmtitulos.parvlr,  format = "#########&.&&"  ,noentry;
+    m =  formonly.situacao                              ,noentry;
+    n =  fctmpag.pgtdat                                 ,noentry;
+    o =  fctmpag.cptdat                                 ,noentry;
+    p =  fctmpag.pgtvlr,      format = "#########&.&&"  ,noentry;
+
+    w =  fcakcobr.cobtipdes                             ,noentry;
+    x =  formonly.edstipdes                             ,noentry;
+
+    instructions
+       delimiters " "
+       screen record s_cta01m06(parnum thru pgtvlr)
+ end

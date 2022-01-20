@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m29                                      R.Fornax
+
+ Cadastro de Segmento X Assunto                              Out/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m29--
+ Segmento...:[a   ][b                                                     ]
+------------------------------------------------------------------------------
+ Assunto  Nome
+
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ]
+ [c  ] [d                                                                 ] 
+------------------------------------------------------------------------------
+ Atualizado..:[e          ] por [f                                        ]
+------------------------------------------------------------------------------
+ [g                                                                       ]
+
+}
+end
+
+attributes
+   a  = formonly.itaclisgmcod           ,noentry;
+   b  = formonly.itaclisgmdes           ,noentry;
+   c  = formonly.c24astcod              ,comments = " Digite o Codigo do Assunto"     ,upshift;
+   d  = formonly.c24astdes              ,noentry;
+   e  = formonly.atldat                 ,noentry;
+   f  = formonly.funmat                 ,noentry;
+   g  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc91m29(c24astcod thru c24astdes)
+end

@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn43c02                                               Marcelo
+                                                                      Gilberto
+ Consulta mensagem(texto) enviada para MDT's                          Ago/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn43c02--
+                     TEXTO DA MENSAGEM.:[a1        ]
+------------------------------------------------------------------------------
+              Texto
+
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+             [a2                                                ]
+
+}
+
+tables
+   datmmdtmsgtxt
+
+attributes
+
+   a1  = datmmdtmsgtxt.mdtmsgnum          ,noentry;
+   a2  = datmmdtmsgtxt.mdtmsgtxt          ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn43c02(mdtmsgtxt)

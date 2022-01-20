@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------                  
+ Nome do Form: cta01m64                                                Roberto                  
+                                                                                                
+ Localiza Cobertura Provisoria e Vistoria Previa por Nome             Mar/2008                  
+-----------------------------------------------------------------------------}                  
+                                                                                                
+database formonly                                                                                  
+screen                                                                   
+{                                                                                               
+                                                                                                
+                       Localiza Vistoria/Cobertura                                                                                               
+-------------------------------------------------------------------cta01m64---                  
+  Nome...: [a                                                  ]                                             
+------------------------------------------------------------------------------                  
+    [b        ]  Nome                                       Data Solicitacao
+------------------------------------------------------------------------------                  
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]              
+[x][c         ][d                                           ] [e         ]                                                                                                                       
+------------------------------------------------------------------------------
+[f                                                                       ]                  
+                     [g                             ]          
+}                                                                                                                                                                                       
+end                                                                              
+                                                                                            
+attributes                                                                                      
+a  = formonly.pesnom     , upshift, comments = " Digite o Nome do Segurado";                                                                                     
+b  = formonly.doc        , noentry;
+x  = formonly.seta                ;                                                                       
+c  = formonly.docnum     , noentry;                                                    
+d  = formonly.segnom     , noentry;                                                              
+e  = formonly.datsol     , noentry;
+f  = formonly.situacao   , noentry; 
+g  = formonly.obs        , noentry;                                                             
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+end                                                                                             
+                                                                                                
+instructions                                                                                    
+   delimiters " "                                                                               
+   screen record s_cta01m64(seta thru datsol)                                                 
+end                                                                                             

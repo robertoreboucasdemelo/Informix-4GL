@@ -1,0 +1,42 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cta02m26.per
+
+ Avisos de sinistro na Web
+----------------------------------------------------------------------------}
+
+database porto
+screen
+
+{
+[a                                                                   ]
+------------------------------------------------------------cta02m26--
+  Numero de aviso
+----------------------------------------------------------------------
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+|[b       ]      |
+----------------------------------------------------------------------
+}
+
+end
+
+ tables sanmavs
+
+ attributes
+
+    a  = formonly.cabtxt        ,reverse    ,noentry;
+    b  = sanmavs.sinavsnum         ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cta02m26(sinavsnum)
+ end

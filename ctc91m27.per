@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m27                                      R.Fornax
+
+ Cadastro de Segmentos X Natureza                            Jul/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m27--
+                           SEGMENTOS POR NATUREZA
+------------------------------------------------------------------------------
+ Plano...:[a   ]-[b                                                      ]
+ Natureza:[c   ]-[d                                                      ]
+------------------------------------------------------------------------------
+ Segmento    Descricao                           Dt. Inicial   Dt. Final
+
+ [e    ]   [f                                 ]  [g         ] [h         ]
+ [e    ]   [f                                 ]  [g         ] [h         ]
+ [e    ]   [f                                 ]  [g         ] [h         ]
+ [e    ]   [f                                 ]  [g         ] [h         ]
+ [e    ]   [f                                 ]  [g         ] [h         ]
+ [e    ]   [f                                 ]  [g         ] [h         ]
+------------------------------------------------------------------------------
+ Atualizado..:[i          ] por [j                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.itaasiplncod     ,noentry;
+   b  = formonly.itaasiplndes     ,noentry;
+   c  = formonly.socntzcod        ,noentry;
+   d  = formonly.socntzdes        ,noentry;
+   e  = formonly.itaclisgmcod     ,comments = " Digite o Segmento"               ,upshift;
+   f  = formonly.itaclisgmdes     ,noentry;
+   g  = formonly.vigincdat        ,comments = " Digite a Vigencia Inicial"       ,upshift;
+   h  = formonly.vigfnldat        ,comments = " Digite a Vigencia Final"         ,upshift;
+   i  = formonly.atldat           ,noentry;
+   j  = formonly.funnom           ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc91m27(itaclisgmcod   thru vigfnldat)
+end

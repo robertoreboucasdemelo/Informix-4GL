@@ -1,0 +1,30 @@
+database formonly
+
+screen size 24 by 80
+
+{
+                  Selecione o Condutor do Veiculo                       
+-----------------------------------------------------------cts18m11------
+ Segurado..........:[a                                                |d]
+ Principal Condutor:[b                                                |e]
+[c             |f]                                                          
+}
+
+end
+
+attributes
+
+ a = formonly.segnom     type char ,noentry ;
+ b = formonly.condutor   type char ,noentry;
+ c = formonly.outro      type char ,noentry;
+ d = formonly.selsegnom  type char 
+                        ,comments= "(F17) Abandona  (F8)Seleciona";
+ e = formonly.selprpcon  type char 
+                        ,comments= "(F17) Abandona  (F8)Seleciona";
+ f = formonly.seloutros  type char 
+                        ,comments= "(F17) Abandona  (F8)Seleciona";
+ 
+instructions
+   delimiters " "
+end
+

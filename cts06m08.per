@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS06M08                                              Marcelo
+                                                                     Gilberto
+ Exibe todas as finalidades para vistoria previa                     Jul/1997
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+           Finalidades
+-------------------------cts06m08--
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+[a                             ][b]
+
+}
+End
+
+tables
+   iddkdominio
+
+Attributes
+ a  = iddkdominio.cpodes       ,noentry, upshift;
+ b  = iddkdominio.cpocod       ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts06m08(cpodes thru cpocod)
+End

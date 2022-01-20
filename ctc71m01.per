@@ -1,0 +1,39 @@
+database formonly
+	
+screen size 24 by 70
+{
+                         Localiza Local
+---------------------------------------------------------ctc71m01--
+Cidade:[a                                               ]  UF:[b  ]
+Bairro:[c                                               ]
+Local :[d                                               ]
+--------------------------------------------------------------------
+Local
+[e                                               ][f         ]
+[g                                                           ]
+
+[e                                               ][f         ]
+[g                                                           ]
+
+[e                                               ][f         ]
+[g                                                           ]
+
+--------------------------------------------------------------------
+ <F17> Abandona         <F7>Endereco         <F8> Seleciona 
+}
+
+end
+attributes
+
+a = formonly.cidnom    ,upshift            ;
+b = formonly.ufdcod    ,upshift            ;
+c = formonly.brrnom    ,upshift            ;
+d = formonly.local     ,upshift            ;
+e = formonly.c24fxolcldes,noentry          ;
+f = formonly.c24fxolclcod,invisible,noentry;
+g = formonly.lgdnom   ,upshift,noentry;
+
+instructions
+    delimiters " "
+
+    screen record s_ctc71m01[03](c24fxolcldes,c24fxolclcod,lgdnom)

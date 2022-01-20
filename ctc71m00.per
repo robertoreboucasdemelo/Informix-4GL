@@ -1,0 +1,44 @@
+database porto
+screen size 24 by 80
+{
+------------------------------------------------------------------ctc71m00--
+ Codigo :[a1   ]
+ Nome...:[b1                                                          ]
+----------------------------------------------------------------------------
+
+ Cep do Local.:[c2   ]-[c3 ]
+ Cidade.......:[d1                             ]                 UF..:[d2]
+ Tipo do Logr.:[e1                             ]
+ Logradouro...:[f1                                                       ]
+ Numero.......:[g1     ]           Complemento:[g2                       ]
+ Bairro.......:[h1                            ]            Zona:[h2      ]
+
+
+
+
+     (F17)Abandona     (F5)Responsaveis
+
+}
+end
+
+tables
+datkfxolcl
+
+attributes
+  a1 = formonly.c24fxolclcod type smallint,comments="Digite o Codigo do Local ";
+  b1 = formonly.c24fxolcldes type char ,
+       upshift,comments = "Digite a Descricao do local ";
+  c2 = formonly.lgdcep type integer;
+  c3 = formonly.lgdcepcmp type decimal;
+  d1 = formonly.cidnom type char    ,upshift ;
+  d2 = formonly.ufdcod type char    ,upshift ;
+  e1 = formonly.lgdtip type char    ,upshift;
+  f1 = formonly.lgdnom type char    ,upshift;
+  g1 = formonly.lgdnum type smallint,upshift;
+  g2 = formonly.lgdcmp type char    ,upshift;
+  h1 = formonly.brrnom type char    ,upshift;
+  h2 = formonly.brrzonnom type char ,upshift;
+end
+
+Instructions
+  delimiters " "

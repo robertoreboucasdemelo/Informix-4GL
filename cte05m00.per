@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte05m00
+ Autor.......: Saymon, Meta
+ Tela de cadastro de integracao de assunto CRM x Informix.
+                                                                       SET/2012
+}
+
+database formonly
+
+screen size 24 by 80
+{
+                      *** INTEGRACAO CRM x INFORMIX ***
+-------------------------------------------------------------------cte05m00---
+ ASSUNTO CRM ...:[astnom                                                    ]
+
+ SUB ASSUNTO CRM:[suanom                                                 ]
+
+
+ VIGENCIA INCIAL:[viginidat    ]            VIGENCIA FINAL:[vigfimdat    ]
+
+
+ RECALCULO......:[r](S/N)
+
+
+ TIPO ENDOSSO...:[tpe] [txttpe                                               ]
+
+ TEXTO ENDOSSO..:[txe]
+------------------------------------------------------------------------------
+  <CTRL-C> SAIR
+
+}
+
+end
+
+attributes
+
+astnom    = formonly.astnom, upshift,comments = 'Informe o assunto';
+suanom    = formonly.suanom, upshift ,comments = 'Informe o Subassunto';
+viginidat = formonly.viginidat type date, format = 'dd/mm/yyyy' ,comments = 'Informe a Data Inicial';
+vigfimdat = formonly.vigfimdat type date, format = 'dd/mm/yyyy' ,comments = 'Informe a Data Final';
+r         = formonly.rccflg type char, include  = ("S","N"), upshift,comments = 'Informe se é Recalculo';
+tpe       = formonly.edstipcod;
+txttpe    = formonly.txttpe ,noentry;
+txe       = formonly.edstxtcod ;
+
+end
+
+instructions
+  delimiters " "
+end
+

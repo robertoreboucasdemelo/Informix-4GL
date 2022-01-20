@@ -1,0 +1,53 @@
+{----------------------------------------------------------------------------
+  Nome do Modulo: CTS00m42                                      Fabio Costa  
+                                                                 PSI 260142  
+  POP UP DETALHES DA INTERFACE DA RESERVA DE VEICULO               DEZ/2010  
+-----------------------------------------------------------------------------}
+database formonly 
+Screen size 24 by 80
+{
+--------------------------------------------------------------------cts00m42--
+ SERVICO:[f0           ]                      Locadora:[f1                  ]
+ Status[f2      ]:[f3                    ] Localizador:[f4                  ]
+ 
+ Ultima solicitacao
+ Tipo:[f5                 ]      Status:[f6                    ]
+ Envio:[f7                 ]    Retorno:[f14                ]
+ Mensagem:
+[f8                                                                          ]
+[f9                                                                          ]
+ Historico de comunicacao:
+ Tipo                Data/hora envio      Data/hora retorno    Status
+[f10               ][f11                ][f12                ][f13           ]
+[f10               ][f11                ][f12                ][f13           ]
+[f10               ][f11                ][f12                ][f13           ]
+[f10               ][f11                ][f12                ][f13           ]
+ 
+}
+end
+
+attributes
+
+   f0  = formonly.servico     , noentry;
+   f1  = formonly.lcvnom      , noentry;
+   f2  = formonly.tipo_doc    , noentry;
+   f3  = formonly.sttdoc      , noentry;
+   f4  = formonly.localizador , noentry;
+   f5  = formonly.ultitftipdes, noentry;
+   f6  = formonly.ultitfsttdes, noentry;
+   f7  = formonly.ultenvhordat, noentry;
+   f14 = formonly.ultrethordat, noentry;
+   f8  = formonly.ultsttcrides01, noentry;
+   f9  = formonly.ultsttcrides02, noentry;
+   
+   f10 = formonly.itftipdes   , noentry;
+   f11 = formonly.itfenvhordat, noentry;
+   f12 = formonly.itfrethordat, noentry;
+   f13 = formonly.itfsttdes   , noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cts00m42[4] (itftipdes, itfenvhordat, itfrethordat, itfsttdes)
+end

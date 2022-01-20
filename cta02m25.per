@@ -1,0 +1,42 @@
+{uTELA DE TRANSFERENCIA DE LIGACAO CENTRAL x ANALISTA SINISTRO}
+
+database porto
+
+screen size 24 by 80
+
+{
+                       TRANSFIRA A LIGACAO
+  RAMAL: [a   ] - ANALISTA: [b     ] - [c                        ]
+-----------------------------------------------------cta02m25---------
+
+ A Area de Sinistro continuara o preenchimento?(S/N):[d]
+
+ Analista que continuara o preenchimento: [e     ] [f                 ]
+
+ Motivo nao transferencia: [g]
+
+ Confirma? (S/N): [h]
+}
+end 
+
+tables
+ssamsin
+
+attributes
+
+   a = formonly.ramal, noentry;
+   b = formonly.funmat, noentry;
+   c = formonly.funnom type char,noentry;
+   d = formonly.flgsinis type char, upshift,autonext, include = ("S","N");
+   e = formonly.funmatatd, comments="Informe a Matricula";
+   f = formonly.funnomatd type char, noentry;
+   g = formonly.mtvcod type char, upshift,autonext,
+    comments = "1-Analista indisponivel 2-Ramal ocupado 3-Ligagao nao atendida",
+    include = ("1","2","3","4","");
+   h = formonly.flgconf type char, upshift,autonext, include = ("S","N");
+
+end 
+
+instructions
+ delimiters '[]'
+end

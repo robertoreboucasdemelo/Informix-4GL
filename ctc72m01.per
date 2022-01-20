@@ -1,0 +1,51 @@
+database formonly
+screen size 24 by 80
+{
+--------------------------------------------------------------ctc72m01-------
+  Cidade: [a                             ]  UF [b ]
+  
+  Placa                       Hora
+  Final  Dia da semana    Inicio    Fim     Distancia(km)  Situacao
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+   [c]   [d|x|d1     ]    [e    ]  [f    ]    [g  ]        [h|y|h1      ] 
+
+}
+end
+
+attributes
+a  = formonly.cidnom        ,upshift, comments='Informe a cidade do rodizio';  
+b  = formonly.ufdcod        ,upshift, comments='Informe o estado do rodizio'; 
+c  = formonly.vclplcfnlnum  ,autonext, comments='Informe o numero final da placa';
+d  = formonly.rdzsmndianum  ,autonext, comments='Informe o dia da semana';
+x  = formonly.tracox        ,noentry;
+d1 = formonly.cplDiaDesc    ,noentry;
+e  = formonly.vclrdzinchor  ,autonext, comments='Informe a hora inicial';
+f  = formonly.vclrdzfnlhor  ,autonext, comments='Informe a hora final';
+g  = formonly.rdzlcldst     ,comments='Informe a distancia em Km';
+h  = formonly.rdzsttflg     ,autonext, upshift, comments='Informe (N) p/rodizio Normal ou (S) p/rodizio Suspenso';
+y  = formonly.tracoy        ,noentry;
+h1 = formonly.cplFlagDesc   ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_tela(formonly.vclplcfnlnum,
+                       formonly.rdzsmndianum,
+                       formonly.tracox,
+                       formonly.cplDiaDesc,
+                       formonly.vclrdzinchor,
+                       formonly.vclrdzfnlhor,
+                       formonly.rdzlcldst,
+                       formonly.rdzsttflg,
+                       formonly.tracoy,
+                       formonly.cplFlagDesc)
+end

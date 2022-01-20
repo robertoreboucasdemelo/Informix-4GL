@@ -1,0 +1,44 @@
+database formonly
+screen
+{
+
+                      CADASTRO DE ENDERECOS DO PRESTADOR
+                       
+------------------------------------------------------------------ctc00m25a---
+
+[x                                                                           ]
+
+[a1                                                                          ]
+ 
+ 
+ TIPO:[b1        ]LOGRAD:[c1                                     ]NUM:[d1    ]
+ BAIRRO:[e1                  ] CIDADE:[f1                            ] UF:[g1]
+ COMPL.:[h1                                           ]     CEP: [i1   ]-[i2 ]
+
+
+
+
+
+
+}
+end
+
+attributes
+
+   x  = formonly.descricao, noentry;
+   a1 = formonly.domtipdes, upshift, reverse;
+   b1 = formonly.lgdtip type char,    upshift;
+   c1 = formonly.endlgd type char,    upshift;
+   d1 = formonly.lgdnum type smallint;
+   e1 = formonly.endbrr type char,    upshift;
+   f1 = formonly.endcid type char,    upshift;
+   g1 = formonly.ufdsgl type char,    upshift;
+   h1 = formonly.lgdcmp type char,    upshift;
+   i1 = formonly.endcep type decimal,    autonext;
+   i2 = formonly.endcepcmp type decimal;
+
+
+end
+instructions
+   delimiters ' '
+end

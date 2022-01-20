@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn46c00                                               Gilberto
+                                                                       Marcelo
+ Pesquisa logradouros na base de mapas                                Out/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn46c00--
+ U.F.......:[a1]           Cidade.:[a2                                       ]
+ Logradouro:[a3                                           ] Nr:[a4   ] Psq:[p]
+------------------------------------------------------------------------------
+ Logr..:[b1                                                                  ]
+ Bairro:[b2                                      ]   Numero:[b3    |b4    ]
+ [b5        ][b6         ][b7   ][b8                                         ]
+ Logr..:[b1                                                                  ]
+ Bairro:[b2                                      ]   Numero:[b3    |b4    ]
+ [b5        ][b6         ][b7   ][b8                                         ]
+ Logr..:[b1                                                                  ]
+ Bairro:[b2                                      ]   Numero:[b3    |b4    ]
+ [b5        ][b6         ][b7   ][b8                                         ]
+ Logr..:[b1                                                                  ]
+ Bairro:[b2                                      ]   Numero:[b3    |b4    ]
+ [b5        ][b6         ][b7   ][b8                                         ]
+}
+end
+
+ tables datkmpacid, datkmpabrr, datkmpalgd, datkmpalgdsgm
+
+ attributes
+
+    a1 = formonly.ufdcodpsq,                           upshift,
+         comments = " Codigo da U.F.";
+    a2 = formonly.cidnompsq,                           upshift,
+         comments = " Nome da cidade";
+    a3 = formonly.lgdnompsq,                           upshift,
+         comments = " Nome do logradouro";
+    a4 = formonly.lgdnumpsq                            type decimal,
+         comments = " Numero no logradouro";
+    p  = formonly.tippsq,                              upshift,
+         comments = " Pesquisa: (F)onetica, (P)arcial";
+
+    b1 = formonly.lgdnom,                              noentry;
+    b2 = datkmpabrr.brrnom,                            noentry;
+    b3 = datkmpalgdsgm.mpalgdincnum,                   noentry;
+    b4 = datkmpalgdsgm.mpalgdfnlnum,                   noentry;
+    b5 = datkmpalgdsgm.lclltt,      invisible,         noentry;
+    b6 = datkmpalgdsgm.lcllgt,      invisible,         noentry;
+    b7 = datkmpacid.ufdcod,         invisible,         noentry;
+    b8 = datkmpacid.cidnom,         invisible,         noentry;
+
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctn46c00(lgdnom thru cidnom)
+

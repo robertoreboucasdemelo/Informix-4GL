@@ -1,0 +1,69 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m02                                               Almeida
+
+ Simulacao dos procedimentos cadastrados                             Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc21m03--
+Data/Hr:[a1        ][a2   ] Assunto:[a3 ] Docto:[a4  |a5   |a6       ][a7    ]
+------------------------------  CONDICOES  -----------------------------------
+[b1][b2                   ][b3][b4                                       ][b5]
+[b1][b2                   ][b3][b4                                       ][b5]
+[b1][b2                   ][b3][b4                                       ][b5]
+[b1][b2                   ][b3][b4                                       ][b5]
+[b1][b2                   ][b3][b4                                       ][b5]
+----------------------------  PROCEDIMENTOS  ---------------------------------
+    [c1][c2                                                          ][c3   ]
+    [c1][c2                                                          ][c3   ]
+    [c1][c2                                                          ][c3   ]
+    [c1][c2                                                          ][c3   ]
+    [c1][c2                                                          ][c3   ]
+    [c1][c2                                                          ][c3   ]
+
+ (F17)Abandona, (F8)Conferencia
+}
+end
+
+ tables dattprt, datmprtprc
+
+ attributes
+
+    a1 = formonly.viginc,
+         comments = " Data de referencia";
+    a2 = formonly.viginchor,
+         comments = " Hora de referencia";
+    a3 = formonly.c24astcod        ,upshift,
+         comments = " Codigo do assunto";
+    a4 = formonly.ramcod,
+         comments = " Ramo";
+    a5 = formonly.succod,
+         comments = " Codigo da sucursal";
+    a6 = formonly.aplnumdig,
+         comments = " Numero da apolice (com digito)";
+    a7 = formonly.itmnumdig,
+         comments = " Numero do item da apolice (com digito)";
+
+    b1 = datmprtprc.prtcpointcod   ,invisible ,noentry;
+    b2 = dattprt.prtcponom         ,upshift,
+         comments = " Informe o nome do campo";
+    b3 = formonly.sinal            ,upshift,
+         comments = " Informe: (=)Regra ou (<>)Excessao";
+    b4 = datmprtprc.prtprccntdes   ,upshift,
+         comments = " Informe o conteudo do campo";
+    b5 = dattprt.prtcpointnom      ,invisible ,noentry;
+
+    c1 = formonly.prctxtseq        ,invisible  ,noentry;
+    c2 = formonly.prctxt                       ,noentry;
+    c3 = formonly.prtprcnum                    ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m03_1(prtcpointcod thru prtcpointnom)
+    screen record s_ctc21m03_2(prctxtseq    thru prtprcnum)
+ end

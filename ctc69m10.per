@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m10                                      R.Fornax
+
+ Cadastro de Servico X Clausula/Plano X Categoria Tarifaria  Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m10--
+                         CONCESSAO POR CATEGORIA TARIFARIA
+------------------------------------------------------------------------------
+ Clausula...:[a   ]-[b                                                      ]
+ Servico....:[c   ]-[d                                                      ]
+------------------------------------------------------------------------------
+ Codigo     Categoria Tarifaria
+
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+------------------------------------------------------------------------------
+ Atualizado..:[h          ] por [i                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.clscod         ,noentry;
+   b  = formonly.clsnom         ,noentry;
+   c  = formonly.srvcod         ,noentry;
+   d  = formonly.srvnom         ,noentry;
+   e  = formonly.trfctgcod      ,comments = " Digite a Categoria Tarifaria"    ,upshift;
+   f  = formonly.ctgtrfdes      ,noentry;
+   x  = formonly.trfctgcsscod   ,invisible ,noentry;  
+   h  = formonly.regatldat      ,noentry;
+   i  = formonly.funnom         ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m10(trfctgcod thru trfctgcsscod)
+end

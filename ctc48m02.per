@@ -1,0 +1,41 @@
+Database porto
+
+screen
+{
+                       PROBLEMAS
+----------------------------------------------ctc48m02--
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ] 
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+[a  ][b                                     ][c        ]
+
+}
+end
+
+tables
+   datkpbmgrp
+   datksrvtip
+
+attributes
+ a  = datkpbmgrp.c24pbmgrpcod    ,invisible, noentry;
+ b  = datkpbmgrp.c24pbmgrpdes    ,noentry;
+ c  = datksrvtip.srvtipabvdes    ,noentry;
+end
+
+instructions
+ delimiters " "
+ screen record s_ctc48m02(c24pbmgrpcod thru srvtipabvdes)
+end

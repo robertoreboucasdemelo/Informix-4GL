@@ -1,0 +1,29 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m02                                              Marcelo
+                                                                     Gilberto
+ Clausulas de apolice de automovel                                   Jul/1997
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+ CLAUSULAS [b01                   ]
+[a01][a02                         ]
+[a01][a02                         ]
+[a01][a02                         ]
+[a01][a02                         ]
+[a01][a02                         ]
+}
+end
+
+attributes
+   a01 = formonly.clscod, noentry;
+   a02 = formonly.clsdes, noentry;
+   b01 = formonly.perfil type char, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m02(clscod thru clsdes)
+end

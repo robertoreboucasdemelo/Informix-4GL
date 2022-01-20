@@ -1,0 +1,84 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M10                                              Marcelo
+                                                                     Gilberto
+ Acompanhamento de servicos                                          Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+                         ACOMPANHAMENTO DE SERVICOS                 [h0      ]
+--------------------------------------------------------------------cts00m10--
+ Srv:[f8     |f9] Dt:[f1        ] Hr:[f2a  ]a[f2b  ]   Tp Serv:[f3|f4        ]
+ Etp:[f6|f7    ] Pst:[f10  |f10a         ] Sigla:[f11  ]   Emp:[f5]GrpDst:[gr]
+ Idx:[i]     INIxQTH:[f]      UltAtv:[u  ]   Ord:[o]     Total:[f14   ]
+------------------------------------------------------------------------------
+ Servico             Combinado com cliente  Etapa     Prestador         Sigla
+
+[a1 |a1e|a2          ]Comb[a3   ]de[a4   ][a5      ][a6   |a7         ][a8  ]
+[a9                                                                          ]
+
+[a1 |a1e|a2          ]Comb[a3   ]de[a4   ][a5      ][a6   |a7         ][a8  ]
+[a9                                                                          ]
+
+[a1 |a1e|a2          ]Comb[a3   ]de[a4   ][a5      ][a6   |a7         ][a8  ]
+[a9                                                                          ]
+
+[a1 |a1e|a2          ]Comb[a3   ]de[a4   ][a5      ][a6   |a7         ][a8  ]
+[a9                                                                          ]
+}
+end
+
+tables
+   datketapa ,
+   datmsrvacp,
+   datmservico
+
+attributes
+   h0   = formonly.agora        type datetime hour to second
+                                          , noentry, reverse;
+   f8   = formonly.atdsrvnum    type dec , format = "&&&&&&&"
+                                         , autonext
+                          , comments = " Numero do servico para acompanhamento";
+
+   f9   = formonly.atdsrvano    type dec , format = "&&"
+                          , comments = " Ano do servico para acompanhamento" ;
+   f1   = formonly.etpdat       type date, autonext
+                                          , comments = " Data combinada com o cliente";
+
+   f2a  = formonly.etphorini             type date, format='##:##', autonext, comments = " Hora inicial para pesquisa - Combinada com cliente";
+   f2b  = formonly.etphorfim             type date, format='##:##', autonext, comments = " Hora final para pesquisa - Combinada com cliente";
+   f3   = formonly.atdsrvorg             , upshift, comments = " Origem do servico";
+   f4   = formonly.srvtipdes             , noentry;
+   f6   = formonly.etpcod       type dec , comments = " Etapa do servico";
+   f7   = formonly.etpdes                , noentry;
+
+   f10  = formonly.pstcoddig             , autonext;
+   f10a = formonly.nomgrr                , noentry ;
+   f11  = formonly.atdvclsgl             , upshift, autonext;
+   f5   = formonly.empcod                , autonext;
+   gr   = formonly.vcldtbgrpcod          , autonext;
+   i    = formonly.srvidx                , upshift, autonext, comments = " (S) Indexados   (N) NÃO Indexados   (T) TODOS";
+   f    = formonly.dstiniqth             , upshift, autonext, comments = " (P) INI Perto do QTH   (L) INI Longe do QTH   (T) TODOS";
+   u    = formonly.ultatv                , upshift, autonext, comments = " Última atividade do prestador no serviço";
+   o    = formonly.ordlst                , upshift, autonext, comments = " (D) Data/hora combinada com cliente   (U) Última atv do prestador no serv";
+   f14  = formonly.totqtd       type char, noentry;
+
+   a1   = formonly.tipprg       type char, noentry;
+   a1e  = formonly.empsgl       type char, noentry;
+   a2   = formonly.servico      type char, noentry;
+   a3   = formonly.hracmb       type char, noentry;
+   a4   = formonly.diacmb       type char, noentry;
+   a5   = formonly.etpdessrv    type char, noentry;
+   a6   = formonly.pstcoddigsrv type char, noentry;
+   a7   = formonly.nomgrrsrv    type char, noentry;
+   a8   = formonly.atdvclsglsrv type char, noentry;
+   a9   = formonly.infacnacp    type char, noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cts00m10(tipprg thru infacnacp)
+end

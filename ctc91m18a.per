@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc91m18a                                          Marcos Goes
+
+ Cadastro complementar de Oficinas Referenciadas Itau                Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m18a-
+[l1                                                                          ]
+ CEP.......:[g1   |g2 ]  Latitude...:[g3         ] Longitude.:[g4         ]
+ Tp.Lograd.:[c1        ] Logradouro.:[c2                                     ]
+ Numero....:[d1        ] Complemento:[d2                                     ]
+ Bairro....:[e1                                                ] Zona:[e2]
+ Cidade....:[f1                                                ] UF..:[f2]
+[l2                                                                          ]
+ Contato...:[h0                                                ]
+ DDD/Telef.:[h1  |h2       ] DDD/Fax...:[h3  |h4       |k5        |k6        ]
+ E-Mail....:[i1                                                              ]
+ Hor.Atend.:[k1   ]as[k2   |k3                                               ]
+
+
+
+------------------------------------------------------------------------------
+
+}
+end
+
+ attributes
+    g1 = formonly.cepnum      type decimal  , upshift, comments = " ENDERECO - CEP",autonext, format = "&&&&&";
+    g2 = formonly.cepcplnum   type decimal  , upshift, comments = " ENDERECO - Complemento CEP", format = "&&&";
+    g3 = formonly.lcllttnum   , upshift, comments = " Latitude" ;
+    g4 = formonly.lcllgnnum   , upshift, comments = " Longitude";
+    c1 = formonly.lgdtipdes   , upshift, comments = " ENDERECO - Tipo de Logradouro";
+    c2 = formonly.lgdnom      , upshift, comments = " ENDERECO - Nome do Logradouro";
+    d1 = formonly.lgdnum      , upshift, comments = " ENDERECO - Numero";
+    d2 = formonly.cpldes      , upshift, comments = " ENDERECO - Complemento";
+    e1 = formonly.brrnom      , upshift, comments = " ENDERECO - Bairro";
+    e2 = formonly.endzonsgl   , upshift, comments = " ENDERECO - Zona (CE/NO/SU/LE/OE)";
+    f1 = formonly.cidnom      , upshift, comments = " ENDERECO - Cidade";
+    f2 = formonly.ufdsgl      , upshift, comments = " ENDERECO - UF";
+    h0 = formonly.cttnom      , upshift, comments = " Nome pessoa contato";
+    h1 = formonly.teldddnum   type decimal, upshift, comments = " DDD Telefone"   , format = "##&&";
+    h2 = formonly.telnum      type decimal, upshift, comments = " Numero Telefone", format = "&&&&&&&&&";
+    h3 = formonly.faxdddnum   type decimal, upshift, comments = " DDD Fax"        , format = "##&&";
+    h4 = formonly.faxnum      type decimal, upshift, comments = " Numero Fax"     , format = "&&&&&&&&&";
+    i1 = formonly.ofnmaides   , upshift, comments = " Endereco E-Mail";
+    k1 = formonly.horainicio  , upshift, comments = " Hora Inicio do Atendimento", autonext,picture = "##:##";
+    k2 = formonly.horafinal   , upshift, comments = " Hora Final do Atendimento" , autonext,picture = "##:##";
+    k3 = formonly.atdsmndiades, upshift, comments = " Dias da semana de Atendimento";
+    l1 = formonly.label3      , upshift, noentry;
+    l2 = formonly.label4      , upshift, noentry;
+    k5 = formonly.atdinihor   , upshift, noentry, invisible;
+    k6 = formonly.atdfnlhor   , upshift, noentry, invisible;
+
+ end
+
+ instructions
+      delimiters " "
+ end

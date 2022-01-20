@@ -1,0 +1,46 @@
+{#--------------------------------------------------------------------------#
+# Nome do Modulo: CTC20M08                                      Fabio Costa #
+#                                                                PSI 258610 #
+# Tela generica de cadastro de parametros                          AGO/2010 #
+#--------------------------------------------------------------------------#}
+database formonly
+screen size 24 by 80
+{
+
+
+------------------------------------------------------------------------------
+[tit                                                                         ]
+-------------------------------------------------------------------ctc20m08---
+
+  [cab                                                                       ]
+                                       
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+  [a                        ][b     ][c      ] [d         ] [e               ]
+
+  [msg                                                                       ]
+  
+}
+
+attributes
+   tit = formonly.titulo, noentry;
+   cab = formonly.cabec , noentry;
+   msg = formonly.msg   , noentry;
+   
+   a   = formonly.param , noentry;
+   b   = formonly.vlrdec  type dec(5,2), format='##&.&&',
+                          comments = " Digite o valor do parametro ";
+   c   = formonly.unidad, noentry;
+   d   = formonly.atldat, noentry;
+   e   = formonly.funnom, noentry;  
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc20m08(param thru funnom)
+end

@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN07C02                                              Marcelo
+                                                                     Gilberto
+ Exibe pop-up para selecao do tipo de servico                        Ago/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+              Tipos de [a         ]
+----------------------------------------ctn07c02--
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+[b                                       ][c     ]
+
+}
+End
+
+tables
+   avckservico
+
+Attributes
+ a  = formonly.cabec          ,noentry;
+ b  = avckservico.srvdes      ,noentry;
+ c  = avckservico.srvcod      ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn07c02(srvdes thru srvcod)

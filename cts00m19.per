@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M19                                              Marcelo 
+                                                                     Gilberto
+                                                                     Wagner   
+ Consulta fax enviados VIDROS                                        Mar/1999
+-----------------------------------------------------------------------------}
+
+Database porto   
+Screen size 24 by 80
+{
+
+--------------------------------------------------------------------cts00m19--
+ Servico         Data Envio   Hr.Envio   Seq.envio   Fax                      
+------------------------------------------------------------------------------
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+[b1           ] [b2        ] [b3      ] [b4       ] [b5                  ][x]
+
+------------------------------------------------------------------------------
+}
+End
+
+Tables 
+  datmfax
+
+Attributes
+  b1   = formonly.faxch1              ,noentry;
+  b2   = datmfax.faxenvdat           , noentry;
+  b3   = datmfax.faxenvhor           , noentry;
+  b4   = datmfax.faxch2              , noentry;
+  b5   = formonly.faxsttdes          , upshift, noentry;
+  x    = formonly.retornoflg         , invisible, noentry;
+End
+
+Instructions
+  delimiters " " 
+  screen record s_cts00m19(faxch1  thru retornoflg)               
+End

@@ -1,0 +1,24 @@
+database formonly
+screen
+{
+-----------------------------------------ctn52c00b---
+ATUALIZA TAXA DE ATUALIZACAO DOS MDTs
+
+Atualizacao Rapida: [a    ]  (00:30 a 30:00 minutos)
+Velocidade Limite :    [b ]  (5 a 30 km/h)
+Atualizacao Lenta : [c    ]  (03:00 a 50:00 minutos)
+-----------------------------------------------------
+
+                                     <Control-C>-Sair
+}
+end 
+
+attributes
+a = formonly.atlrap, comments = 'Digite hh:mm' ;
+b = formonly.vellim ;
+c = formonly.atllen, comments = 'Digite hh:mm' ;
+end 
+
+instructions
+delimiters " " 
+end 

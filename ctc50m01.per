@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc50m01                                               Gustavo
+                                                                       Marcus
+ Pesquisa cadastro de pontos geograficos                              Dez/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc50m01--
+ UF.:[a1]     Cidade.:[a2                              ]          [a3        ]
+------------------------------------------------------------------------------
+ UF           Cod. Cidade       Cidade
+
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+[b1]         [b2    ]          [b3                                           ]
+
+}
+end
+
+ tables datkmpacid
+
+ attributes
+
+    a1 = formonly.ufdcodpsq,                           upshift,
+         comments = " Codigo da UF";
+    a2 = formonly.cidnompsq,                           upshift,
+         comments = " Nome da cidade";
+    a3 = formonly.total,                               noentry;
+
+    b1 = datkmpacid.ufdcod,                         noentry;
+    b2 = datkmpacid.mpacidcod,                      noentry;
+    b3 = datkmpacid.cidnom,                         noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctc50m01(ufdcod thru cidnom)
+

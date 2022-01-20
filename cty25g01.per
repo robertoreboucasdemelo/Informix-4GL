@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m28                                                Roberto
+
+ Localiza Clientes Itau                                               Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+                          LOCALIZA SEGURADO ITAU RESIDENCIA
+--------------------------------------------------------------------cty25g01--
+    Nome do Segurado                          Dt.Inicial   Dt.Final   
+------------------------------------------------------------------------------
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+[x][a                                       ][b         ][c         ]
+------------------------------------------------------------------------------
+ Documento:[e                                        ]Situacao...:[f         ]
+                                                      Dt.Emissao.:[h         ]
+------------------------------------------------------------------------------
+                        (F17)Abandona, (F8)Seleciona
+------------------------------------------------------------------------------
+}
+end
+tables datmresitaapl,
+       datmresitaaplitm
+
+attributes
+
+x  = formonly.seta               , invisible;
+a  = datmresitaapl.segnom        , upshift
+                                 , noentry;
+b  = datmresitaapl.incvigdat     , noentry;
+c  = datmresitaapl.fnlvigdat     , noentry;
+e  = formonly.documento          , noentry;
+f  = formonly.sitdoc             , noentry;                                 
+h  = datmresitaapl.adnicldat     , noentry;
+
+
+instructions
+   delimiters " "
+   screen record s_cta00m28(seta thru fnlvigdat )
+end                                                   

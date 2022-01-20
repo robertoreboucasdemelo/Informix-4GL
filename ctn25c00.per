@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN25C00                                              Marcelo
+                                                                     Gilberto
+ Pop-up de tipos de assistencia                                      Jul/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+  Tipos de Assistencia
+----------------ctn25c00--
+[a                   ][b ]
+[a                   ][b ]
+[a                   ][b ]
+[a                   ][b ]
+[a                   ][b ]
+[a                   ][b ]
+
+}
+End
+
+tables
+   datkasitip
+
+Attributes
+ a  = datkasitip.asitipdes, noentry;
+ b  = datkasitip.asitipcod, noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn25c00(asitipdes thru asitipcod)
+End

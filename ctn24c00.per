@@ -1,0 +1,67 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN24C00                     Criacao: 26/10/94 - Pedro
+
+ Consulta Postos do Porto Socorro por Nome guerra/razao/cgc
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn24c00--
+ Nome:[a1                                 ]Guerra/Razao:[a2]CGC:[a3          ]
+ Empresa :[a4][a5                         ]
+------------------------------------------------------------------------------
+ N.Guerra:[a8                                      ]Codigo:[a9    ][a        ]
+ Endereco:[a10                                     ]Bairro:[a11              ]
+ Cidade..:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels....:[a15 ][a16                                     ]
+ Horario.:[a17  ]as[a18  ]   Sab.:[a19  ]as[a20  ]  Dom...:[a21  ]as[a22  ]
+ Obs.....:[a23                                               ]      [a24   ]
+
+ N.Guerra:[a8                                      ]Codigo:[a9    ][a        ]
+ Endereco:[a10                                     ]Bairro:[a11              ]
+ Cidade..:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels....:[a15 ][a16                                     ]
+ Horario.:[a17  ]as[a18  ]   Sab.:[a19  ]as[a20  ]  Dom...:[a21  ]as[a22  ]
+ Obs.....:[a23                                               ]      [a24   ]
+
+}
+
+tables gkpkpos, dpaksocor
+
+attributes
+  a1  = formonly.nomepsq                     ,upshift ,
+        comments = " Nome para pesquisa";
+  a2  = formonly.tipo                        ,upshift ,
+        comments = " (G)uerra, (R)azao social, (P)arcial de nome";
+  a3  = dpaksocor.cgccpfnum                  ,autonext,
+        comments = " Numero do CGC/CPF";
+
+  a4   = formonly.ciaempcod                  ,comments = "Codigo da empresa", reverse;
+  a5   = formonly.empnom                     ,noentry, reverse;
+  a8   = dpaksocor.nomgrr                    ,noentry;
+  a9   = dpaksocor.pstcoddig                 ,noentry;
+  a    = formonly.situacao                   ,noentry;
+  a10  = dpaksocor.endlgd                    ,noentry;
+  a11  = dpaksocor.endbrr                    ,noentry;
+  a12  = dpaksocor.endcid                    ,noentry;
+  u2   = dpaksocor.endufd                    ,noentry;
+  a13  = dpaksocor.endcep                    ,noentry;
+  a14  = dpaksocor.endcepcmp                 ,noentry;
+  a15  = dpaksocor.dddcod                    ,noentry;
+  a16  = dpaksocor.teltxt                    ,noentry;
+  a17  = dpaksocor.horsegsexinc              ,noentry;
+  a18  = dpaksocor.horsegsexfnl              ,noentry;
+  a19  = dpaksocor.horsabinc                 ,noentry;
+  a20  = dpaksocor.horsabfnl                 ,noentry;
+  a21  = dpaksocor.hordominc                 ,noentry;
+  a22  = dpaksocor.hordomfnl                 ,noentry;
+  a23  = dpaksocor.pstobs                    ,noentry;
+  a24  = formonly.tabela                     ,noentry;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctn24c00(nomgrr thru tabela)
+end

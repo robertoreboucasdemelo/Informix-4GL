@@ -1,0 +1,85 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc46m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de configuracoes de MDT's                                   Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc46m00--
+ Codigo Configuracao.........:[a1   ]
+------------------------------------------------------------------------------
+
+ Descricao...................:[a2                                            ]
+ Intervalo Transmissao.......:[a3  ]    Intervalo Retransmissao.:[a4   ]
+ Intervalo Reinicio Tentativa:[a5   ]   Polaridade Canal........:[l]
+
+ Intervalo MDT em Movimento..:[a7   ]   Intervalo MDT Parado....:[a8   ]
+ Velocidade MDT Parado.......:[a9 ]     Envia Identificador PTT.:[p|p1       ]
+ Apaga Mensagem Display MDT..:[d]       Utiliza Funcao 1 do MDT.:[f]
+ Utiliza Funcao 2 do MDT.....:[u]
+
+ Situacao....................:[s]
+ Incluido....................:[b4        ] por [b41                ]
+ Atualizado..................:[b5        ] por [b51                ]
+
+}
+end
+
+tables datkmdtcfg
+
+attributes
+
+   a1  = formonly.mdtcfgcod     type decimal,
+         comments = " Codigo da configuracao do MDT";
+
+   a2  = datkmdtcfg.mdtcfgdes,                      upshift,
+         comments = " Descricao da configuracao do MDT";
+
+   a3  = datkmdtcfg.mdttrxtmpitv,
+         comments = " Intervalo para transmissao (0-9999 milisegundos)";
+
+   a4  = datkmdtcfg.mdtrtrtmpitv,
+         comments = " Intervalo para retransmissao (0-53612 milisegundos)";
+
+   a5  = datkmdtcfg.mdtttvrinitvmin,
+         comments= " Intervalo para reinicio de transmissao (00:00-16:30 minutos)";
+   l   = datkmdtcfg.mdtcnlplrcod,
+         comments = " Polaridade do canal: 0,1,2 ou 3";
+
+   a7  = datkmdtcfg.mdtmvtitvmin,
+         comments = " Intervalo para transmissao MDT em movimento (00:30-30:00 mintos)";
+
+   a8  = datkmdtcfg.mdtprditvmin,
+         comments = " Intervalo para transmissao MDT parado (03:00-50:00 minutos)";
+   a9  = datkmdtcfg.mdtlimvlc,
+         comments = " Velocidade limite para considerar MDT parado (5-30 KM)";
+
+   p   = datkmdtcfg.mdtptdenvcod,
+         comments = " Envia sinal identificador de PTT (portadora)";
+   p1  = formonly.mdtptdenvdes,                       noentry;
+
+   d   = datkmdtcfg.mdtmsgapgflg,                     upshift,
+         comments = " Permite apagar mensagem do display MDT: (S)im ou (N)ao";
+
+   f   = datkmdtcfg.mdtfncpriflg,                     upshift,
+         comments = " Utiliza funcao 1 do MDT: (S)im, (N)ao";
+
+   u   = datkmdtcfg.mdtfncsegflg,                     upshift,
+         comments = " Utiliza funcao 2 do MDT: (S)im, (N)ao";
+
+   s   = datkmdtcfg.mdtcfgstt,                        upshift,
+         comments = " Situacao da configuracao: (A)tiva ou (C)ancelada";
+
+   b4  = datkmdtcfg.caddat,                           noentry;
+   b41 = formonly.cadfunnom,                          noentry;
+
+   b5  = datkmdtcfg.atldat,                           noentry;
+   b51 = formonly.funnom,                             noentry;
+end
+
+instructions
+     delimiters " "
+end

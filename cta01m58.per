@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA01M58                                               Marcelo
+                                                                      Gilberto
+ Veiculos cadastrados para atendimento no cartao                      Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cta01m58--
+                  Veiculos com atendimento Porto Socorro
+------------------------------------------------------------------------------
+ Veiculo                                Cor           Ano   Placa
+
+[e10                                   |e11         ][e12 ][e13     ][e14][e1]
+[e10                                   |e11         ][e12 ][e13     ][e14][e1]
+[e10                                   |e11         ][e12 ][e13     ][e14][e1]
+[e10                                   |e11         ][e12 ][e13     ][e14][e1]
+
+}
+end
+ tables eccmcontrato, epcmproposta, epcmitem
+
+attributes
+   e10 = formonly.vcldes          type char, noentry;
+   e11 = formonly.vclcordes       type char, noentry;
+   e12 = epcmitem.vclanomdl,                 noentry;
+   e13 = epcmitem.vcllicnum,                 noentry;
+   e14 = formonly.cartip          type char, noentry;
+   e1  = epcmitem.pcaprpitm      {invisibl}, noentry;
+end
+instructions
+   delimiters " "
+   screen record s_cta01m58 (vcldes thru pcaprpitm)
+end

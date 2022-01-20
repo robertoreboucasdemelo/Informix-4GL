@@ -1,0 +1,35 @@
+{--------------------------------------------------------------------
+ Nome do form: ctc00m21a                                       Robert
+ Complemento do cadastro de prestadores - Circular 380    
+                                                             Ago/2010
+--------------------------------------------------------------------}
+
+                 
+database formonly
+screen       
+   
+{                     
+                    [a                              ]
+-----------------------------------------------------------------ctc00m21-
+De acordo com a Circular 380/2008 da Susep é obrigatório informar:
+Para prestadores PJ: Patrimônio líquido e Receita operacional bruta anual
+--------------------------------------------------------------------------
+
+    Patrimonio liquido..............:[d|b                               ]
+    
+    Receita operacional bruta anual.:[e|c                               ]
+
+} 
+end
+
+attributes  
+
+a  = formonly.texto,noentry,reverse,upshift;
+b  = formonly.liqptrfxades    ,upshift ,noentry;
+c  = formonly.anobrtoprrctdes,upshift ,noentry;
+d  = formonly.liqptrfxacod,upshift ,comments = "Patrimonio liquido"; 
+e  = formonly.anobrtoprrctvlr,upshift ,comments = "Receita operaciona bruta anual"; 
+end           
+              
+instructions  
+delimiters " "

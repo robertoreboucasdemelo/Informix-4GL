@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB10M01                                               Gilberto
+                                                                       Marcelo
+ Cadastro de custos dos prestadores                                   Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m01--
+                Codigo.........:[a1   ]
+------------------------------------------------------------------------------
+
+                Descricao......:[a2                                      ]
+
+                Forma calculo..:[a21  ][a22                 ]
+
+                Ordem exibicao.:[a23  ]
+
+                Adicionais para:[b][b1                       ] 
+
+                Situacao.......:[s]
+
+
+                Incluido.......:[a3        ] por [a31                ]
+                Atualizado.....:[a4        ] por [a41                ]
+}
+end
+
+tables dbskcustosocorro
+
+attributes
+   a1   = formonly.soccstcod,
+          comments = " Codigo do custo"                           ;
+   a2   = dbskcustosocorro.soccstdes,
+          comments = " Descricao do custo",       upshift         ;
+   a21  = dbskcustosocorro.soccstclccod,
+          comments = " Forma Calculo: 1-Valor fixo, 2-Variavel hora, 3-Variavel km",                                                       upshift;
+   a22  = formonly.soccstclcdes,                          noentry;
+   a23  = dbskcustosocorro.soccstexbseq,
+          comments = " Ordem de exibicao (para efeito digitacao)";
+   b    = dbskcustosocorro.soctip,            
+          comments = " Adicional para: (1)-Porto Socorro (2)-Carro-extra (3)-RE";  
+   b1   = formonly.soctipdes, noentry;
+   s    = dbskcustosocorro.soccstsitcod,
+          comments = " Situacao do custo: (A)tivo ou (C)ancelado", upshift;
+
+   a3   = dbskcustosocorro.caddat,                        noentry;
+   a31  = formonly.cadfunnom,                             noentry;
+
+   a4   = dbskcustosocorro.atldat,                        noentry;
+   a41  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

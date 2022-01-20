@@ -1,0 +1,37 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTB10M09                                            Gilberto
+                                                                    Marcelo
+ Mostra todos os grupos tarifarios do Porto Socorro                  Dez/96
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Grupos tarifarios do Porto Socorro
+----------------------------------------ctb10m09--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   dbskgtf
+
+attributes
+   a   = dbskgtf.socgtfdes               ,noentry;
+   b   = dbskgtf.socgtfcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb10m09(socgtfdes thru socgtfcod)
+end
+

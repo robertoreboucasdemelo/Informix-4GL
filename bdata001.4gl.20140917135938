@@ -1,0 +1,1371 @@
+#-----------------------------------------------------------------------------#
+# Porto Seguro Cia Seguros Gerais                                             #
+#.............................................................................#
+# Sistema........: Regras Siebel                                              #
+# Modulo.........: bdata001                                                   #
+# Objetivo.......: Batch de Geracao do Arquivo Para o Siebel                  #
+# Analista Resp. : Amilton Pinto                                              #
+# PSI            :                                                            #
+#.............................................................................#
+# Desenvolvimento: R.Fornax                                                   #
+# Liberacao      : 05/09/2013                                                 #
+#.............................................................................#
+
+database porto
+
+define m_path_origem1    char(100)
+define m_path_origem2    char(100)
+define m_path_origem3    char(100)
+define m_path_log        char(100)
+define m_path_arq_esp    char(100)
+define m_path_arq_ser    char(100)
+define m_path_arq_cla    char(100)
+define m_bdata001_prep   smallint
+define m_mensagem        char(150)
+
+
+define mr_especialidade record
+  srvespnum like datksrvesp.srvespnum ,
+  srvespnom like datksrvesp.srvespnom ,
+  regatldat like datksrvesp.regatldat
+end record
+
+
+define mr_processo1 record
+  srvgrptipcod  like datksrvgrptip.srvgrptipcod ,
+  srvgrptipnom  like datksrvgrptip.srvgrptipnom ,
+  srvcod        like datksrv.srvcod             ,
+  srvnom        like datksrv.srvnom
+end record
+
+
+define mr_processo2 record
+  succod                  like abbmdoc.succod                      ,
+  aplnumdig               like abbmdoc.aplnumdig                   ,
+  itmnumdig               like abbmdoc.itmnumdig                   ,
+  edsnumref               like abamdoc.edsnumdig                   ,
+  segnumdig               like abbmdoc.segnumdig                   ,
+  clalclcod               like abbmdoc.clalclcod                   ,
+  cbtcod                  like abbmcasco.cbtcod                    ,
+  ctgtrfcod               like abbmcasco.ctgtrfcod                 ,
+  clcdat                  like abbmcasco.clcdat                    ,
+  clscod                  like abbmclaus.clscod                    ,
+  empcod                  like datkplncls.empcod                   ,
+  ramcod                  like datkplncls.ramcod                   ,
+  plnclscod               like datkplncls.plnclscod                ,
+  srvgrptipcod            like datksrvgrptip.srvgrptipcod          ,
+  srvgrptipnom            like datksrvgrptip.srvgrptipnom          ,
+  srvcod                  like datksrv.srvcod                      ,
+  srvnom                  like datksrv.srvnom                      ,
+  srvplnclsevnlimvlr      like datksrvplncls.srvplnclsevnlimvlr    ,
+  srvplnclsevnlimundnom   like datksrvplncls.srvplnclsevnlimundnom ,
+  srvespnum               like datksrvesp.srvespnum                ,
+  srvespnom               like datksrvesp.srvespnom                ,
+  clssrvesplimvlr         like datkclssrvesp.clssrvesplimvlr       ,
+  clssrvesplimundnom      like datkclssrvesp.clssrvesplimundnom    ,
+  undsrvcusvlr            like datkclssrvesp.undsrvcusvlr          ,
+  undsrvcusundnom         like datkclssrvesp.undsrvcusundnom       ,
+  empnom                  like gabkemp.empnom                      ,
+  srvplnclscod            like datksrvplncls.srvplnclscod          ,
+  lclclartccod            like datklclclartc.lclclartccod          ,
+  endcid                  like gsakend.endcid                      ,
+  endufd                  like gsakend.endufd                      ,
+  emsdat                  like abamapol.emsdat                     ,
+  codcls                  like datkplncls.clscod                   ,
+  clsnom                  like datkplncls.clsnom                   ,
+  clssitflg               like datkplncls.clssitflg                ,
+  codprod                 smallint
+end record
+
+
+define mr_funapol  record
+   resultado       char(01),
+   dctnumseq       decimal(04,00),
+   vclsitatu       decimal(04,00),
+   autsitatu       decimal(04,00),
+   dmtsitatu       decimal(04,00),
+   dpssitatu       decimal(04,00),
+   appsitatu       decimal(04,00),
+   vidsitatu       decimal(04,00)
+end record
+
+define mr_data record
+  inicio date ,
+  fim    date
+end record
+
+#========================================================================
+main
+#========================================================================
+
+   # Funcao responsavel por preparar o programa para a execucao
+   # - Prepara as instrucoes SQL
+   # - Obtem os caminhos de processamento
+   # - Cria o arquivo de log
+   #
+
+
+   call bdata001_cria_log()
+
+   call bdata001_exibe_inicio()
+
+   call fun_dba_abre_banco("CT24HS")
+
+   set lock mode to wait 10
+   set isolation to dirty read
+
+   let m_bdata001_prep = false
+
+
+   display "##################################"
+   display " CRIANDO TEMPORARIA... "
+   display "##################################"
+
+   if not bdata001_cria_temporaria() then
+   	  exit program
+   end if
+
+   display "##################################"
+   display " PREPARANDO... "
+   display "##################################"
+
+   call bdata001_prepare()
+
+
+   display "##################################"
+   display " RECUPERANDO CAMINHOS... "
+   display "##################################"
+
+   call bdata001_obtem_caminhos()
+
+
+   display "##################################"
+   display " CARREGANDO TEMPORARIA... "
+   display "##################################"
+
+
+   if bdata001_carrega_temporaria() then
+
+   	   display "##################################"
+       display " CARREGANDO ESPECIALIDADE... "
+       display "##################################"
+
+       call bdata001_carrega_especialidade()
+   end if
+
+   drop table t_especialidade
+   display "##################################"
+   display " CARREGANDO GRUPOS E SERVICOS... "
+   display "##################################"
+
+   call bdata001_carrega_servico()
+
+
+   if bdata001_valida_carga() then
+
+        display "##################################"
+        display " CARREGANDO APOLICES FULL... "
+        display "##################################"
+
+        if not bdata001_carga_full() then
+           exit program
+        end if
+
+   else
+
+   	    initialize mr_data.* to null
+
+   	    call bdata001_carga_diaria()
+
+   	    call bdata001_recupera_arquivo_diario()
+
+
+   	    display "##################################"
+   	    display " CARREGANDO APOLICES DIARIA... "
+   	    display "##################################"
+
+   	    call bdata001_carrega_beneficio()
+
+   end if
+
+   call bdata001_exibe_final()
+
+
+#========================================================================
+end main
+#========================================================================
+
+#===============================================================================
+ function bdata001_prepare()
+#===============================================================================
+
+define l_sql char(10000)
+
+ let l_sql = ' select codigo            '
+          ,  '      , nome              '
+          ,  '   from t_especialidade   '
+          ,  '  order by codigo         '
+ prepare p_bdata001_001 from l_sql
+ declare c_bdata001_001 cursor for p_bdata001_001
+
+ let l_sql = ' select count(*)        '
+          ,  '  from datksrvesp       '
+          ,  '  where srvespnum   = ? '
+ prepare p_bdata001_002 from l_sql
+ declare c_bdata001_002 cursor for p_bdata001_002
+
+ let l_sql =  ' insert into datksrvesp     '
+           ,  '   (srvespnum               '
+           ,  '   ,srvespnom               '
+           ,  '   ,regatldat)              '
+           ,  ' values(?,?,?)              '
+ prepare p_bdata001_003 from l_sql
+
+
+ let l_sql =  ' select a.srvgrptipcod  ,              '
+             ,'        a.srvgrptipnom  ,              '
+             ,'        c.srvcod        ,              '
+             ,'        c.srvnom                       '
+             ,' from datksrvgrptip a ,                '
+             ,'      datksrvgrp b    ,                '
+             ,'      datksrv c                        '
+             ,' where a.srvgrptipcod = b.srvgrptipcod '
+             ,' and b.srvcod = c.srvcod               '
+             ,' and a.srvgrptipsitflg = "A"           '
+             ,' and b.regsitflg = "A"                 '
+  prepare p_bdata001_004 from l_sql
+  declare c_bdata001_004 cursor for p_bdata001_004
+
+
+  let l_sql =  ' select a.emsdat    ,            '
+              ,'        b.succod    ,            '
+              ,'        b.aplnumdig ,            '
+              ,'        b.itmnumdig              '
+              ,' from abamapol a,                '
+              ,'      abbmdoc  b                 '
+              ,' where a.succod = b.succod       '
+              ,'   and a.aplnumdig = b.aplnumdig '
+              ,'   and a.emsdat = ?              '
+              ,' group by 1,2,3,4                '
+              ,' order by 1,2,3,4                '
+  prepare p_bdata001_005 from l_sql
+  declare c_bdata001_005 cursor for p_bdata001_005
+
+
+  let l_sql = ' select min(dctnumseq) '
+             ,' from abbmdoc          '
+             ,' where succod    = ?	  '
+             ,'   and aplnumdig = ?	  '
+             ,'   and itmnumdig = ?	  '
+  prepare p_bdata001_006 from l_sql
+  declare c_bdata001_006 cursor for p_bdata001_006
+
+
+  let l_sql = ' select edsnumdig            '
+             ,' from abamdoc                '
+             ,' where abamdoc.succod    = ? '
+             ,' and   abamdoc.aplnumdig = ? '
+             ,' and   abamdoc.dctnumseq = ? '
+  prepare p_bdata001_007 from l_sql
+  declare c_bdata001_007 cursor for p_bdata001_007
+
+
+  let l_sql =  ' select segnumdig,    '
+              ,'        clalclcod     '
+              ,' from  abbmdoc        '
+              ,' where succod    =  ? '
+              ,' and   aplnumdig =  ? '
+              ,' and   itmnumdig =  ? '
+              ,' and   dctnumseq =  ? '
+  prepare p_bdata001_008 from l_sql
+  declare c_bdata001_008 cursor for p_bdata001_008
+
+
+  let l_sql =  ' select cbtcod    ,   '
+              ,'        ctgtrfcod ,   '
+              ,'        clcdat        '
+              ,' from abbmcasco       '
+              ,' where succod    = ?  '
+              ,' and   aplnumdig = ?  '
+              ,' and   itmnumdig = ?  '
+              ,' and   dctnumseq = ?  '
+  prepare p_bdata001_009 from l_sql
+  declare c_bdata001_009 cursor for p_bdata001_009
+
+
+  let l_sql =  ' select clscod       '
+              ,' from abbmclaus      '
+              ,' where succod    = ? '
+              ,' and   aplnumdig = ? '
+              ,' and   itmnumdig = ? '
+              ,' and   dctnumseq = ? '
+  prepare p_bdata001_010 from l_sql
+  declare c_bdata001_010 cursor for p_bdata001_010
+
+
+  let l_sql = ' select plnclscod          '
+            , '   from datkplncls         '
+            , '  where empcod =  ?        '
+            , '  and   ramcod =  ?        '
+            , '  and   clscod =  ?        '
+            , '  and   clsviginidat <=  ? '
+            , '  and   clsvigfimdat >=  ? '
+            , '  and   regsitflg = "A"    '
+  prepare p_bdata001_011 from l_sql
+  declare c_bdata001_011 cursor for p_bdata001_011
+
+  let l_sql = ' select c.srvgrptipcod           ,   '
+             ,'        c.srvgrptipnom           ,   '
+             ,'        d.srvcod                 ,   '
+             ,'        d.srvnom                 ,   '
+             ,'        a.srvplnclsevnlimvlr     ,   '
+             ,'        a.srvplnclsevnlimundnom  ,   '
+             ,'        f.srvespnum              ,   '
+             ,'        f.srvespnom              ,   '
+             ,'        e.clssrvesplimvlr        ,   '
+             ,'        e.clssrvesplimundnom     ,   '
+             ,'        e.undsrvcusvlr           ,   '
+             ,'        e.undsrvcusundnom        ,   '
+             ,'        a.srvplnclscod           ,   '
+             ,'        g.clscod                 ,   '
+             ,'        g.clsnom                 ,   '
+             ,'        g.clssitflg                  '
+             ,' from datksrvplncls a,               '
+             ,'      datksrvgrp b   ,               '
+             ,'      datksrvgrptip c,               '
+             ,'      datksrv d      ,               '
+             ,'      datkclssrvesp e,               '
+             ,'      datksrvesp f   ,               '
+             ,'      datkplncls g                   '
+             ,' where a.srvcod     = b.srvgrpcod    '
+             ,' and b.srvgrptipcod = c.srvgrptipcod '
+             ,' and b.srvcod       = d.srvcod       '
+             ,' and a.srvplnclscod = e.srvplnclscod '
+             ,' and e.srvespcod    = f.srvespnum    '
+             , 'and g.plnclscod    = a.plnclscod    '
+             ,' and a.plnclscod    = ?              '
+  prepare p_bdata001_012 from l_sql
+  declare c_bdata001_012 cursor for p_bdata001_012
+
+  let l_sql = ' select empnom     '
+             ,' from gabkemp      '
+             ,' where empcod = ? 	'
+  prepare p_bdata001_013 from l_sql
+  declare c_bdata001_013 cursor for p_bdata001_013
+
+
+  let l_sql = ' select count(*)         '
+             ,' from datkcbtcss         '
+             ,' where srvclscod   =  ?  '
+             ,' and   cbtcod      =  ?  '
+  prepare p_bdata001_014 from l_sql
+  declare c_bdata001_014 cursor for p_bdata001_014
+
+
+  let l_sql = ' select count(*)        '
+             ,' from datktrfctgcss     '
+             ,' where srvclscod   =  ? '
+             ,' and   trfctgcod   =  ? '
+  prepare p_bdata001_015 from l_sql
+  declare c_bdata001_015 cursor for p_bdata001_015
+
+
+  let l_sql = ' select lclclartccod       '
+             ,' from datklclclartc        '
+             ,' where srvclscod    =  ?   '
+             ,' and   lclclacod    =  ?   '
+  prepare p_bdata001_016 from l_sql
+  declare c_bdata001_016 cursor for p_bdata001_016
+
+
+  let l_sql = ' select count(*)              '
+             ,' from datkrtcece a ,          '
+             ,'      glakcid    b   	       '
+             ,' where a.cidcod = b.cidcod    '
+             ,' and   a.lclclartccod =  ?    '
+             ,' and   b.cidnom   	   =  ?    '
+             ,' and   b.ufdcod       =  ?    '
+  prepare p_bdata001_017 from l_sql
+  declare c_bdata001_017 cursor for p_bdata001_017
+
+
+
+  let l_sql = ' select endcid ,      '
+             ,'        endufd        '
+             ,' from gsakend         '
+             ,' where segnumdig =  ? '
+             ,' and   endfld    =  1 '
+  prepare p_bdata001_018 from l_sql
+  declare c_bdata001_018 cursor for p_bdata001_018
+
+
+  let l_sql =  ' update datkplncls     '
+            ,  ' set irdclsflg = "S"   '
+            ,  ' where plnclscod = ?   '
+  prepare p_bdata001_019 from l_sql
+
+  let l_sql = ' select cpodes        '
+             ,' from datkdominio     '
+             ,' where cponom =  ?    '
+             ,' and   cpocod =  ?    '
+  prepare p_bdata001_020 from l_sql
+  declare c_bdata001_020 cursor for p_bdata001_020
+
+
+  let l_sql =  ' update datkdominio    '
+             , ' set   cpodes =  ?     '
+             , ' where cponom =  ?     '
+             , ' and   cpocod =  ?     '
+  prepare p_bdata001_021 from l_sql
+
+
+
+  let m_bdata001_prep = true
+
+#========================================================================
+end function
+#========================================================================
+
+
+#========================================================================
+ function bdata001_carrega_temporaria()
+#========================================================================
+
+     whenever error continue
+
+    load from m_path_arq_esp delimiter ';' insert into t_especialidade
+
+    whenever error stop
+
+    if sqlca.sqlcode <> 0 then
+      let m_mensagem = '(ERRO ' , sqlca.sqlcode ,') - ERRO NA ABERTURA DO ARQUIVO DE IMPORTACAO!'
+      call ERRORLOG(m_mensagem);
+      return false
+    end if
+
+
+     return true
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_carrega_especialidade()
+#========================================================================
+
+initialize mr_especialidade.* to null
+
+   #--------------------------------------------------------
+    # Recupera os Dados da Temporaria
+   #--------------------------------------------------------
+
+   open c_bdata001_001
+    foreach c_bdata001_001 into mr_especialidade.srvespnum
+   	                        , mr_especialidade.srvespnom
+
+         let mr_especialidade.regatldat = today
+
+         if bdata001_valida_especialidade() then
+           call bdata001_inclui_especialidade()
+         end if
+
+     end foreach
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_valida_especialidade()
+#========================================================================
+
+define l_cont integer
+
+let l_cont = 0
+
+
+     #--------------------------------------------------------
+    # Valida Se a Especialidade Ja Foi Cadastrada
+    #--------------------------------------------------------
+
+    open c_bdata001_002 using mr_especialidade.srvespnum
+
+    whenever error continue
+    fetch c_bdata001_002 into l_cont
+    whenever error stop
+
+    if l_cont >  0  then
+       return false
+    end if
+
+
+     return true
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_inclui_especialidade()
+#========================================================================
+
+  whenever error continue
+   execute p_bdata001_003 using mr_especialidade.srvespnum
+                              , mr_especialidade.srvespnom
+                              , mr_especialidade.regatldat
+
+
+   whenever error continue
+
+   if sqlca.sqlcode <> 0 then
+      let m_mensagem = 'ERRO(',sqlca.sqlcode,') NA INCLUSAO DA ESPECIALIDADE! ', mr_especialidade.srvespnum
+      call ERRORLOG(m_mensagem);
+      display m_mensagem
+   end if
+
+
+#========================================================================
+end function
+#========================================================================
+
+
+
+
+
+
+#========================================================================
+function bdata001_cria_log()
+#========================================================================
+
+   define l_path char(200)
+
+   let l_path = null
+   let l_path = f_path("DAT","LOG")
+
+   if l_path is null or
+      l_path = " " then
+      let l_path = "."
+   end if
+
+   let l_path = m_path_log clipped, "bdata001.log"
+
+   call startlog(l_path)
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+function bdata001_obtem_caminhos()
+#========================================================================
+
+define lr_param record
+	dia  integer,
+  mes  integer,
+  ano  integer,
+  data char(08)
+end record
+
+initialize lr_param.* to null
+
+   let lr_param.dia = day(today)
+   let lr_param.mes = month(today)
+   let lr_param.ano = year(today)
+
+
+   let m_path_origem1    = " "
+   let m_path_origem2    = " "
+   let m_path_origem3    = " "
+   let m_path_log        = " "
+
+   let lr_param.data = lr_param.dia using "&&", lr_param.mes using "&&", lr_param.ano using "&&&&"
+
+   call bdata001_recupera_dir_esp()
+   let m_path_arq_esp  = m_path_origem1 clipped, "/especialidade.txt"
+   call bdata001_recupera_dir_ser()
+   let m_path_arq_ser  = m_path_origem2 clipped, "/servicos_", lr_param.data, ".txt"
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+function bdata001_recupera_arquivo_diario()
+#========================================================================
+
+define lr_param record
+	dia  integer,
+  mes  integer,
+  ano  integer,
+  data char(08)
+end record
+
+initialize lr_param.* to null
+
+   let lr_param.dia = day(mr_data.inicio)
+   let lr_param.mes = month(mr_data.inicio)
+   let lr_param.ano = year(mr_data.inicio)
+
+   let lr_param.data = lr_param.dia using "&&", lr_param.mes using "&&", lr_param.ano using "&&&&"
+
+   call bdata001_recupera_dir_ben()
+   let m_path_arq_cla  = m_path_origem3 clipped, "/beneficios_", lr_param.data, ".txt"
+
+
+#========================================================================
+end function
+#========================================================================
+
+
+#========================================================================
+ function bdata001_cria_temporaria()
+#========================================================================
+
+   create temp table t_especialidade(codigo integer  ,
+                                     nome  char(60)  ,
+                                     grupo  integer  ,
+                                     descricao char(60))
+
+  if sqlca.sqlcode <> 0 then
+      let m_mensagem = '(ERRO ' , sqlca.sqlcode ,') - ERRO NA CRIACAO DA TABELA TEMPORARIA!'
+      call ERRORLOG(m_mensagem);
+      display m_mensagem
+      return false
+  end if
+
+  return true
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_carrega_servico()
+#========================================================================
+
+initialize mr_processo1.* to null
+
+
+    start report bdata001_report1 to m_path_arq_ser
+
+    #--------------------------------------------------------
+    # Recupera os Dados do Grupo X Servico X Especialidade
+    #--------------------------------------------------------
+
+    open c_bdata001_004
+    foreach c_bdata001_004 into mr_processo1.srvgrptipcod
+  	                          , mr_processo1.srvgrptipnom
+                              , mr_processo1.srvcod
+                              , mr_processo1.srvnom
+
+         output to report bdata001_report1()
+
+    end foreach
+
+    finish report bdata001_report1
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ report bdata001_report1()
+#========================================================================
+
+ output
+  report to printer
+  page      length  66
+  left      margin  00
+  top       margin  00
+  bottom    margin  00
+
+   format
+
+   on every row
+
+
+        print column 001, mr_processo1.srvgrptipcod using "&&&&&"     , "|"
+                        , mr_processo1.srvgrptipnom clipped           , "|"
+                        , mr_processo1.srvcod       using "&&&&&"     , "|"
+                        , mr_processo1.srvnom       clipped           , "|"
+
+
+
+
+#========================================================================
+end report
+#========================================================================
+
+#========================================================================
+ function bdata001_carrega_beneficio()
+#========================================================================
+
+define lr_retorno record
+	 cont  integer,
+	 grava smallint
+end record
+
+initialize mr_processo2.* to null
+
+let mr_processo2.empcod  = 1
+let mr_processo2.ramcod  = 531
+let mr_processo2.codprod = 27
+let lr_retorno.cont      = 0
+let lr_retorno.grava     = false
+
+
+     begin work;
+
+     start report bdata001_report2 to m_path_arq_cla
+
+    #--------------------------------------------------------
+    # Recupera o Nome da Empresa
+    #--------------------------------------------------------
+
+     open c_bdata001_013 using mr_processo2.empcod
+
+     whenever error continue
+     fetch c_bdata001_013 into mr_processo2.empnom
+     whenever error stop
+
+
+    #--------------------------------------------------------
+    # Recupera os Dados da Apolice
+    #--------------------------------------------------------
+
+    open c_bdata001_005 using mr_data.inicio
+
+    foreach c_bdata001_005 into mr_processo2.emsdat
+    	                        , mr_processo2.succod
+  	                          , mr_processo2.aplnumdig
+                              , mr_processo2.itmnumdig
+
+
+       #-------------------------------------------------------
+       # Recupera a Ultima Situacao da Apolice
+       #-------------------------------------------------------
+
+        call f_funapol_ultima_situacao(mr_processo2.succod    ,
+                                       mr_processo2.aplnumdig ,
+                                       mr_processo2.itmnumdig )
+        returning mr_funapol.*
+
+
+        if mr_funapol.dctnumseq is null  then
+
+            #--------------------------------------------------------
+            # Recupera a Ultima Sequencia da Apolice
+            #--------------------------------------------------------
+
+            open c_bdata001_006 using mr_processo2.succod    ,
+                                      mr_processo2.aplnumdig ,
+                                      mr_processo2.itmnumdig
+
+            whenever error continue
+            fetch c_bdata001_006 into mr_funapol.dctnumseq
+            whenever error stop
+
+
+        end if
+
+
+        #------------------------------------------------------
+        # Recupera o Numero do Endosso
+        #------------------------------------------------------
+
+        open c_bdata001_007 using mr_processo2.succod    ,
+                                  mr_processo2.aplnumdig ,
+                                  mr_funapol.dctnumseq
+
+        whenever error continue
+        fetch c_bdata001_007 into mr_processo2.edsnumref
+        whenever error stop
+
+        if sqlca.sqlcode = notfound  then
+           let mr_processo2.edsnumref = 0
+        end if
+
+
+        #------------------------------------------------------
+        # Recupera Numero do Segurado e Classe de Localizacao
+        #------------------------------------------------------
+
+
+        open c_bdata001_008 using mr_processo2.succod    ,
+                                  mr_processo2.aplnumdig ,
+                                  mr_processo2.itmnumdig ,
+                                  mr_processo2.edsnumref
+        whenever error continue
+        fetch c_bdata001_008 into mr_processo2.segnumdig ,
+                                  mr_processo2.clalclcod
+        whenever error stop
+
+        #------------------------------------------------------
+        # Recupera Cidade do Segurado
+        #------------------------------------------------------
+
+        open c_bdata001_018 using mr_processo2.segnumdig
+
+        whenever error continue
+        fetch c_bdata001_018 into mr_processo2.endcid ,
+                                  mr_processo2.endufd
+        whenever error stop
+
+        #------------------------------------------------------
+        # Recupera Cobertura, Categoria e Data de Calculo
+        #------------------------------------------------------
+
+        open c_bdata001_009 using mr_processo2.succod    ,
+                                  mr_processo2.aplnumdig ,
+                                  mr_processo2.itmnumdig ,
+                                  mr_funapol.dctnumseq
+        whenever error continue
+        fetch c_bdata001_009 into mr_processo2.cbtcod    ,
+                                  mr_processo2.ctgtrfcod ,
+                                  mr_processo2.clcdat
+        whenever error stop
+
+        #--------------------------------------------------------
+        # Recupera os Dados da Clausula
+        #--------------------------------------------------------
+
+        open c_bdata001_010 using mr_processo2.succod    ,
+                                  mr_processo2.aplnumdig ,
+                                  mr_processo2.itmnumdig ,
+                                  mr_funapol.dctnumseq
+        foreach c_bdata001_010 into mr_processo2.clscod
+
+             #--------------------------------------------------------
+             # Regra 1 - Verifica se a Clausula Existe no Motor
+             #--------------------------------------------------------
+
+             open c_bdata001_011 using   mr_processo2.empcod ,
+                                         mr_processo2.ramcod ,
+                                         mr_processo2.clscod ,
+                                         mr_processo2.clcdat ,
+                                         mr_processo2.clcdat
+             whenever error continue
+             fetch c_bdata001_011 into   mr_processo2.plnclscod
+             whenever error stop
+
+             if sqlca.sqlcode = notfound  then
+                  continue foreach
+             end if
+
+
+             #--------------------------------------------------------
+             # Recupera os Dados do Motor de Regras
+             #--------------------------------------------------------
+
+             open c_bdata001_012 using mr_processo2.plnclscod
+
+             foreach c_bdata001_012 into mr_processo2.srvgrptipcod           ,
+                                         mr_processo2.srvgrptipnom           ,
+                                         mr_processo2.srvcod                 ,
+                                         mr_processo2.srvnom                 ,
+                                         mr_processo2.srvplnclsevnlimvlr     ,
+                                         mr_processo2.srvplnclsevnlimundnom  ,
+                                         mr_processo2.srvespnum              ,
+                                         mr_processo2.srvespnom              ,
+                                         mr_processo2.clssrvesplimvlr        ,
+                                         mr_processo2.clssrvesplimundnom     ,
+                                         mr_processo2.undsrvcusvlr           ,
+                                         mr_processo2.undsrvcusundnom        ,
+                                         mr_processo2.srvplnclscod           ,
+                                         mr_processo2.codcls                 ,
+                                         mr_processo2.clsnom                 ,
+                                         mr_processo2.clssitflg
+
+
+                   #------------------------------------------------------
+                   # Regra 2 - Verifica Se Tem Cobertura
+                   #------------------------------------------------------
+
+                   open c_bdata001_014 using mr_processo2.srvplnclscod ,
+                                             mr_processo2.cbtcod
+
+                   whenever error continue
+                   fetch c_bdata001_014 into lr_retorno.cont
+                   whenever error stop
+
+                   if lr_retorno.cont = 0 then
+                      continue foreach
+                   end if
+
+
+
+                   #------------------------------------------------------
+                   # Regra 3 - Verifica Se Tem Categoria
+                   #------------------------------------------------------
+
+                   open c_bdata001_015 using mr_processo2.srvplnclscod ,
+                                             mr_processo2.ctgtrfcod
+
+                   whenever error continue
+                   fetch c_bdata001_015 into lr_retorno.cont
+                   whenever error stop
+
+                   if lr_retorno.cont = 0 then
+                      continue foreach
+                   end if
+
+
+                   #------------------------------------------------------
+                   # Regra 4 - Verifica Se Tem Restricao por Classe
+                   #------------------------------------------------------
+
+                   open c_bdata001_016 using mr_processo2.srvplnclscod ,
+                                             mr_processo2.clalclcod
+
+                   whenever error continue
+                   fetch c_bdata001_016 into mr_processo2.lclclartccod
+                   whenever error stop
+
+                   if sqlca.sqlcode <> notfound then
+
+
+                        #------------------------------------------------------
+                        # Regra 5 - Verifica Se a Cidade tem Permissao
+                        #------------------------------------------------------
+
+                        open c_bdata001_017 using mr_processo2.lclclartccod ,
+                                                  mr_processo2.endcid       ,
+                                                  mr_processo2.endufd
+
+                        whenever error continue
+                        fetch c_bdata001_017 into lr_retorno.cont
+                        whenever error stop
+
+                        if lr_retorno.cont = 0 then
+                           continue foreach
+                        end if
+
+                   end if
+
+                   output to report bdata001_report2()
+
+                   let lr_retorno.grava = true
+
+             end foreach
+
+             if lr_retorno.grava then
+             	  call bdata001_atualiza_exportado()
+             	  let lr_retorno.grava = false
+             end if
+
+        end foreach
+
+
+    end foreach
+
+    finish report bdata001_report2
+
+    commit work;
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ report bdata001_report2()
+#========================================================================
+
+ output
+  report to printer
+  page      length  66
+  left      margin  00
+  top       margin  00
+  bottom    margin  00
+
+   format
+
+   on every row
+
+        print column 001   ,mr_processo2.empcod                  using "&&"                   , "|"
+                            ,mr_processo2.codprod                 using "&&"                   , "|"
+                            ,mr_processo2.succod                  using "&&&&&"                , "|"
+                            ,mr_processo2.ramcod                  using "&&&&&"                , "|"
+                            ,mr_processo2.aplnumdig               using "&&&&&&&&&&"           , "|"
+                            ,mr_processo2.itmnumdig               using "&&&&&"                , "|"
+                            ,mr_processo2.edsnumref               using "&&&&&&&&&&"           , "|"
+                            ,mr_processo2.codcls                  using "&&&&&"                , "|"
+                            ,mr_processo2.clsnom                  clipped                      , "|"
+                            ,mr_processo2.clssitflg               clipped                      , "|"
+                            ,mr_processo2.srvgrptipcod            using "&&&&&"                , "|"
+                            ,mr_processo2.srvgrptipnom            clipped                      , "|"
+                            ,mr_processo2.srvcod                  using "&&&&&"                , "|"
+                            ,mr_processo2.srvnom                  clipped                      , "|"
+                            ,mr_processo2.srvplnclsevnlimvlr      using "<<<<<<<<<<<<<.<<"     , "|"
+                            ,mr_processo2.srvplnclsevnlimundnom   clipped                      , "|"
+                            ,mr_processo2.srvespnum               using "&&&&&"                , "|"
+                            ,mr_processo2.srvespnom               clipped                      , "|"
+                            ,mr_processo2.clssrvesplimvlr         using "<<<<<<<<<<<<<.<<"     , "|"
+                            ,mr_processo2.clssrvesplimundnom      clipped                      , "|"
+                            ,mr_processo2.undsrvcusvlr            using "<<<<<<<<<<<<<.<<"     , "|"
+                            ,mr_processo2.undsrvcusundnom         clipped                      , "|"
+
+
+
+#========================================================================
+end report
+#========================================================================
+
+#========================================================================
+function bdata001_exibe_inicio()
+#========================================================================
+define l_data  date,
+       l_hora  datetime hour to second
+
+let l_data = today
+let l_hora = current
+
+   display " "
+   display "-----------------------------------------------------------"
+   display " INICIO bdata001 - CARGA DE APOLICES PARA O SIEBEL         "
+   display "-----------------------------------------------------------"
+   display " "
+   display " INICIO DO PROCESSAMENTO....: ", l_data, " ", l_hora
+   call errorlog("------------------------------------------------------")
+   let m_mensagem = "INICIO DO PROCESSAMENTO....: ", l_data, " ", l_hora
+   call errorlog(m_mensagem)
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+function bdata001_exibe_final()
+#========================================================================
+   define l_data  date,
+          l_hora  datetime hour to second
+
+
+   let l_data = today
+   let l_hora = current
+
+   display " "
+   display " TERMINO DO PROCESSAMENTO...: ", l_data, " ", l_hora
+   let m_mensagem = " TERMINO DO PROCESSAMENTO...: ", l_data, " ", l_hora
+   call errorlog(m_mensagem)
+   call errorlog("------------------------------------------------------")
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_atualiza_exportado()
+#========================================================================
+
+   whenever error continue
+   execute p_bdata001_019 using mr_processo2.plnclscod
+
+   whenever error continue
+
+   if sqlca.sqlcode <> 0 then
+      let m_mensagem = 'ERRO(',sqlca.sqlcode,') NA ATUALIZACAO DA FLAG EXPORTADO! ', mr_especialidade.srvespnum
+      call ERRORLOG(m_mensagem);
+      display m_mensagem
+   end if
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_valida_carga()
+#========================================================================
+
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+
+initialize lr_retorno.* to null
+
+let lr_retorno.cponom = "bdata001_full"
+let lr_retorno.cpocod = 1
+
+
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+
+  if lr_retorno.cpodes =  "S"  then
+     return true
+  end if
+
+
+  return false
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_carga_diaria()
+#========================================================================
+
+  let mr_data.inicio = today - 1
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+function bdata001_recupera_arquivo_full()
+#========================================================================
+
+define lr_param record
+  mes  integer,
+  ano  integer,
+  data char(06)
+end record
+
+initialize lr_param.* to null
+
+
+   let lr_param.mes = month(mr_data.inicio)
+   let lr_param.ano = year(mr_data.inicio)
+
+   let lr_param.data = lr_param.mes using "&&", lr_param.ano using "&&&&"
+
+   let m_path_arq_cla  = "beneficios_", lr_param.data, ".txt"
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_recupera_data_inicio()
+#========================================================================
+
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+
+initialize lr_retorno.* to null
+
+let lr_retorno.cponom = "bdata001_inicio"
+let lr_retorno.cpocod = 1
+
+
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+
+  if lr_retorno.cpodes is not null  then
+     let mr_data.inicio =  lr_retorno.cpodes
+  end if
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_recupera_data_fim()
+#========================================================================
+
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+
+initialize lr_retorno.* to null
+
+let lr_retorno.cponom = "bdata001_fim"
+let lr_retorno.cpocod = 1
+
+
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+
+  if lr_retorno.cpodes is not null  then
+     let mr_data.fim =  lr_retorno.cpodes
+  end if
+
+
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_carga_full()
+#========================================================================
+
+define lr_retorno record
+   mesant smallint,
+   mesatu smallint
+end record
+
+initialize lr_retorno.* , mr_data.* to null
+
+let lr_retorno.mesant = 13
+
+  call bdata001_recupera_data_inicio()
+
+  call bdata001_recupera_data_fim()
+
+  if mr_data.inicio is null or
+  	 mr_data.fim    is null then
+  	  let m_mensagem = "Datas Invalidas!"
+  	  call ERRORLOG(m_mensagem);
+  	  display m_mensagem
+  	  return false
+  end if
+
+  if mr_data.fim	< mr_data.inicio then
+  	  let m_mensagem = "Data Final Maior Que a Inicial"
+      call ERRORLOG(m_mensagem);
+      display m_mensagem
+      return false
+  end if
+
+
+
+  while mr_data.inicio <=  mr_data.fim
+
+  	   let lr_retorno.mesatu = month(mr_data.inicio)
+  	   display "PROCESSANDO DATA...", mr_data.inicio
+
+  	   if lr_retorno.mesatu <> lr_retorno.mesant then
+  	        call bdata001_recupera_arquivo_full()
+  	        call bdata001_atualiza_data()
+  	        let lr_retorno.mesant = lr_retorno.mesatu
+  	   end if
+
+       call bdata001_carrega_beneficio()
+
+       let mr_data.inicio = mr_data.inicio + 1 units day
+
+
+  end while
+  call bdata001_atualiza_data()
+  return true
+#========================================================================
+end function
+#========================================================================
+
+#========================================================================
+ function bdata001_atualiza_data()
+#========================================================================
+
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+
+initialize lr_retorno.* to null
+
+let lr_retorno.cponom = "bdata001_inicio"
+let lr_retorno.cpocod = 1
+let lr_retorno.cpodes = mr_data.inicio
+
+   whenever error continue
+   execute p_bdata001_021 using lr_retorno.cpodes,
+                                lr_retorno.cponom,
+                                lr_retorno.cpocod
+   whenever error continue
+
+   if sqlca.sqlcode <> 0 then
+      let m_mensagem = 'ERRO(',sqlca.sqlcode,') NA ATUALIZACAO DA DATA! '
+      call ERRORLOG(m_mensagem);
+      display m_mensagem
+   end if
+
+
+#========================================================================
+end function
+#========================================================================
+#========================================================================
+ function bdata001_recupera_dir_esp()
+#========================================================================
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+initialize lr_retorno.* to null
+let lr_retorno.cponom = "bdata001_dir_esp"
+let lr_retorno.cpocod = 1
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+  if lr_retorno.cpodes is not null  then
+     let m_path_origem1 = lr_retorno.cpodes
+  else
+  	 let m_path_origem1 = "."
+  end if
+#========================================================================
+end function
+#========================================================================
+#========================================================================
+ function bdata001_recupera_dir_ser()
+#========================================================================
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+initialize lr_retorno.* to null
+let lr_retorno.cponom = "bdata001_dir_ser"
+let lr_retorno.cpocod = 1
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+  if lr_retorno.cpodes is not null  then
+     let m_path_origem2 = lr_retorno.cpodes
+  else
+  	 let m_path_origem2 = "."
+  end if
+#========================================================================
+end function
+#========================================================================
+#========================================================================
+ function bdata001_recupera_dir_ben()
+#========================================================================
+define lr_retorno record
+	cponom  like datkdominio.cponom,
+	cpocod  like datkdominio.cpocod,
+	cpodes  like datkdominio.cpodes
+end record
+initialize lr_retorno.* to null
+let lr_retorno.cponom = "bdata001_dir_ben"
+let lr_retorno.cpocod = 1
+  open c_bdata001_020 using  lr_retorno.cponom ,
+                             lr_retorno.cpocod
+  whenever error continue
+  fetch c_bdata001_020 into lr_retorno.cpodes
+  whenever error stop
+  if lr_retorno.cpodes is not null  then
+     let m_path_origem3 = lr_retorno.cpodes
+  else
+  	 let m_path_origem3 = "."
+  end if
+#========================================================================
+end function
+#========================================================================

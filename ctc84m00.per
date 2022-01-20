@@ -1,0 +1,45 @@
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctc84m00---
+ SUSEP.:[a1    ]   CORRETOR.:[a2                                   ]
+ STATUS:[a]        VIGENCIA FINAL ENTRE:[a4        ]e[a5        ]
+ UNID. :[a6 ][a7                      ] CELULA:[a8][a9                       ]
+------------------------------------------------------------------------------
+   SUSEP    CORRETOR                         CEL NOVO VIG.INICIAL  VIG.FINAL
+------------------------------------------------------------------------------
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+[x|b1    ] [b2                               ] [b4 ] [b5        ] [b3        ]
+------------------------------------------------------------------------------
+<F5>Altera Vig.Inicial <F6>Altera Vig.Final <F7>Altera Celula <F8>Salvar 
+}
+attributes
+   a1 = formonly.susep      type char, upshift; 
+   a2 = formonly.corretor   type char, upshift; 
+   a  = formonly.stt        type char, upshift, comments = "(A)ntigo / (N)ovo"; 
+   a4 = formonly.vigfni     type date;
+   a5 = formonly.vigfnf     type date;
+   a6 = formonly.unocod     type char, autonext;
+   a7 = formonly.unonome    type char, autonext;
+   a8 = formonly.celcod     type char, autonext;
+   a9 = formonly.celnome    type char, autonext;
+   x  = formonly.ghost      type char, invisible, autonext;
+   b1 = formonly.corsus     type char, upshift, noentry;
+   b2 = formonly.cornom     type char, upshift, noentry;
+   b3 = formonly.vigdat     type date;
+   b4 = formonly.celatd		  type smallint, autonext;
+   b5 = formonly.vigincdat  type date;
+end   
+
+instructions
+   delimiters ' '
+   screen record s_ctc84m00[9](ghost thru vigincdat)
+end   
+

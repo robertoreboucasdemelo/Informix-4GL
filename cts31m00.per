@@ -1,0 +1,132 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS31M00                                               Roberto
+ Laudo - Assistencia Funeral                                         Mai/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]   Laudo - Assistencia ao Funeral    [a2             ]
+--------------------------------------------------------------------cts31m00--
+[b1                                      ]  [b2                              ]
+------------------------------------------------------------------------------
+[c1 ] [c2                                      ]
+------------------------------------------------------------------------------
+ Solicitante:[d1                       ] Relacao com Segurado:[d2|d3         ]
+ Telefones de Contato:[e1                                                    ]
+
+ Falecido(a)..:[f1                                     ]           Idade:[f2 ]
+ Data do Obito:[g1        ]Causa da Morte:[g2|g3         ] Corpo Liberado?:[h]
+ Parentesco com o Segurado.:[i1|i2        ] Altura:[i3  ] Peso:[i4  ]Kg
+ Local de Retirada do Corpo:[j1|j2         ]End:[j3                          ]
+ Bairro....:[l1                  ] Cidade....:[l2                     ]UF:[l3]
+ Complemen.:[l4                       ] 
+ Ponto Ref.:[m1                                                    ] Zona:[m2]
+ Havera Velorio?:[n]           Funeral...:[n1|n2          ]Possui Jazigo?.:[o]
+ Serv.Lib..:[p]                Imed?:[q]    Form:[r]      Valor:[s1          ]
+[t                                                                           ]
+}
+end
+
+tables
+datmligacao   ,
+datmservico   ,
+datmlcl       ,
+datmfnrsrv
+
+attributes
+
+a1   = formonly.servico                                       ,
+       noentry                                                ;
+a2   = datmligacao.c24solnom                                  ,
+       noentry                                                ;
+b1   = datmservico.nom                                        ,
+       comments = "Nome"                                      ,
+       upshift                                                ;
+b2   = formonly.doctxt                                        ,
+       noentry                                                ;
+c1   = datmligacao.c24astcod                                  ,
+       noentry                                                ;
+c2   = formonly.c24astdes                                     ,
+       noentry                                                ;
+d1   = formonly.sol                                           ,
+       comments = "Nome do Solicitante"                       ,
+       upshift                                                ;
+d2   = datmfnrsrv.segdclprngracod                             ,
+       comments = "Grau de Parentesco com o Segurado"         ;
+d3   = formonly.segdclprngrades                               ,
+       noentry                                                ;
+e1   = datmfnrsrv.cttteltxt                                   ,
+       comments = "Telefones de Contato"                      ,
+       upshift                                                ;
+f1   = datmfnrsrv.flcnom                                      ,
+       comments = "Nome do Falecido"                          ,
+       upshift                                                ;
+f2   = datmfnrsrv.flcidd                                      ,
+       comments = "Idade do Falecido"                         ;
+g1   = datmfnrsrv.obtdat                                      ,
+       comments = "Data do Obito"                             ;
+g2   = datmfnrsrv.mrtcaucod                                   ,
+       comments = "Causa da Morte"                            ;
+g3   = formonly.mrtcaudes                                     ,
+       noentry                                                ;
+h    = datmfnrsrv.libcrpflg                                   ,
+       comments = "Corpo Liberado: (S)im ou (N)ao"            ,
+       upshift                                                ;
+i1   = datmfnrsrv.segflcprngracod                             ,
+       comments = "Grau de Parentesco com o Falecido"         ;
+i2   = formonly.segflcprngrades                               ,
+       noentry                                                ;
+i3   = datmfnrsrv.flcalt                                      ,
+       comments = "Altura do Falecido"                        ;
+i4   = datmfnrsrv.flcpso                                      ,
+       comments = "Peso do Falecido"                          ;
+j1   = datmfnrsrv.crpretlclcod                                ,
+       comments = "Local de Retirada do Corpo"                ;
+j2   = formonly.crpretlcldes                                  ,
+       noentry                                                ;
+j3   = datmlcl.lgdnom                                         ,
+       noentry                                                ;
+l1   = datmlcl.lclbrrnom                                      ,
+       noentry                                                ;
+l2   = datmlcl.cidnom                                         ,
+       noentry                                                ;
+l3   = datmlcl.ufdcod                                         ,
+       noentry                                                ;
+l4   = datmlcl.endcmp                                         ,  
+       upshift                                                ,                               
+       comments = " Complemento do endereco"; 
+m1   = datmlcl.lclrefptotxt                                   ,
+       noentry                                                ;
+m2   = datmlcl.endzon                                         ,
+       noentry                                                ;
+n    = datmfnrsrv.velflg                                      ,
+       comments = "Havera Velorio: (S)im ou (N)ao"            ,
+       upshift                                                ;
+n1   = datmfnrsrv.fnrtip                                      ,
+       comments = "Codigo do Funeral"                         ;
+n2   = formonly.fnrdes                                        ,
+       noentry                                                ;
+o    = datmfnrsrv.jzgflg                                      ,
+       comments = "Possui Jazigo: (S)im ou (N)ao"             ,
+       upshift                                                ;
+p    = datmservico.atdlibflg                                  ,
+       comments = "Libera Servico: (S)im ou (N)ao"            ,
+       upshift                                                ;
+q    = formonly.imdsrvflg                                     ,
+       comments = " Servico Imediato ? (S)im ou (N)ao"        ,
+       upshift                                                ;
+r    = formonly.frmflg                                        ,
+       comments = "Entrada Via Formulario: (S)im ou (N)ao"    ,
+       upshift                                                ;
+s1   = datmfnrsrv.frnasivlr                                   ,
+       comments = "Valor do Funeral"                          ;
+t    = formonly.msgfun                                        ,
+       noentry                                                ;
+end
+
+instructions
+  delimiters " "
+end
+

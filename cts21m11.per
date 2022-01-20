@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts21m11                                               Priscila
+ Listar Cobertura/Natureza de Sinistro de R.E.                        Jun/2006
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts21m11--
+ Servico:[a1         ]
+------------------------------------------------------------------------------
+ Cobertura                   Natureza                      Valor             
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+[c1 ]-[c2                    ][n1]-[n2                     ][v1              ]
+
+}
+end
+
+tables datrpedvistnatcob
+
+attributes
+
+a1   = formonly.vistoria  ,noentry;
+c1   = formonly.cbttip    ,noentry;
+c2   = formonly.cbttipnom ,noentry;
+n1   = formonly.sinntzcod ,noentry;
+n2   = formonly.sinntzdes ,noentry;
+v1   = formonly.orcvlr    ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cts21m11(cbttip, cbttipnom, 
+                           sinntzcod, sinntzdes, orcvlr)
+end

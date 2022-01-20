@@ -1,0 +1,37 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC44M03P                                              Beatriz
+                                                                     Araujo
+ Janela para opções de escolha                                       Nov/2009
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+[c0                                      ]
+-------------------------------ctc44m03p--
+ Marque com um "X" os crachás a serem
+ solicitados.
+     
+  [a][b                       ] [c ]  
+  [a][b                       ] [c ]
+  [a][b                       ] [c ]
+
+ (F8)CONFIRMA  (F17)CANCELA   
+}
+
+end
+
+attributes
+  c0 = formonly.cabtxt   type char, reverse  , noentry;
+   
+  a = formonly.aux           type char, upshift, autonext;
+  b = formonly.ciaempdes     type char, upshift, noentry;
+  c = formonly.ciaempcod     type integer, noentry, invisible;
+    
+end
+
+instructions  
+   delimiters  " "   
+   screen record s_empresas[3](aux,ciaempdes,ciaempcod) 
+end

@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts64m10a                                      Helder Oliveira
+
+ Popup Motivos Carro Reserva                                         Mai/2011
+-----------------------------------------------------------------------------}
+database formonly
+screen size 24 by 80
+
+{
+                   MOTIVOS
+--------------------------------------cts64m10a--
+ ([m])[a1  |b1                                  ]
+ ([m])[a1  |b1                                  ]
+ ([m])[a1  |b1                                  ]
+ ([m])[a1  |b1                                  ]
+ ([m])[a1  |b1                                  ]
+ ([m])[a1  |b1                                  ]
+-------------------------------------------------
+
+}
+end
+
+attributes
+   m   = formonly.marca type char , upshift , comments=" X - Seleciona ";
+
+   a1  = formonly.codigo          , noentry ;
+
+   b1  = formonly.descricao       , noentry ;
+
+
+instructions
+ delimiters "  "
+    screen record sa_cts64m10a (marca thru descricao)
+
+end

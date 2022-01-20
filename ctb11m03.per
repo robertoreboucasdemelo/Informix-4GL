@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M03                                              Marcelo
+                                                                     Gilberto
+ Manutencao das observacoes da Ordem de pagamento                    Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb11m03--
+                             Observacoes
+
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+          [a5                                                ][s ]
+
+
+}
+End
+
+Tables dbsmopgobs
+
+Attributes
+  a5   = dbsmopgobs.socopgobs,                  upshift,
+         comments = " Observacao";
+  s    = dbsmopgobs.socopgobsseq,  invisible,   noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb11m03(socopgobs thru socopgobsseq)
+End

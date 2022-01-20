@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC18M04                                              Wagner
+
+ Manutencao nos dados Favorecido locadoras/lojas                     Jun/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+              Informacoes para Pagamento
+----------------------------------------------ctc18m04--
+ Opcao Pagto.:[a ][a2        ]
+ Favorecido..:[a3                                      ]
+ Cgc/Cpf.....:[a4          ][a5  ][a6]
+ Data Nascimento: [e         ]          Sexo:[f]
+ Ins. municipal:[d1                  ]
+ Tipo Conta:[p][p2         ]
+ No.Banco..:[b1   ]   [b2                              ]
+ No.Agencia:[b3   ][b][b4                              ]
+ No.Conta..:[c1          ][c2]
+
+}
+end
+
+tables datklcvfav
+
+attributes
+  a    = datklcvfav.pgtopccod,
+         comments = " Opcao de pagamento (1)-Dep.Conta, (2)-Cheque ou (3)-Bol.Banco";
+  a2   = formonly.pgtopcdes, noentry;
+
+  a3   = datklcvfav.favnom, upshift,
+         comments = " Nome do favorecido";
+  a4   = datklcvfav.cgccpfnum,
+         comments = " Numero do Cgc/Cpf do favorecido";
+  a5   = datklcvfav.cgcord,
+         format = "&&&&",
+         comments = " Codigo da Filial do Cgc do favorecido";
+  a6   = datklcvfav.cgccpfdig,
+         format = "&&",
+         comments = " Digito do Cgc/Cpf do favorecido";
+
+  d1   = datklcvfav.mncinscod,
+         comments = " Inscricao municipal da loja";
+         
+  p    = datklcvfav.bcoctatip,
+         comments = " Tipo Conta: 1-Conta Corrente, 2-Poupanca";
+         
+  p2   = formonly.bcoctatipdes, noentry;
+
+  b1   = datklcvfav.bcocod,
+         format = "&&&&&",
+         comments = " Codigo do banco";
+  b2   = formonly.bconom;
+  b3   = datklcvfav.bcoagnnum,
+         comments = " Numero da agencia";
+  b    = datklcvfav.bcoagndig,
+         comments = " Digito da agencia", upshift;
+  b4   = formonly.bcoagnnom;
+  c1   = formonly.bcoctanum,
+         comments = " Numero da conta corrente";
+  c2   = datklcvfav.bcoctadig,
+         comments = " Digito da conta corrente";
+  
+   e   = datklcvfav.lcdnscdat,                         
+         comments = " Data de Nascimento";            
+                                                      
+   f   = datklcvfav.lcdsexcod,                         
+          comments = " Sexo: M-Masculino, F-Feminino", upshift; 
+end
+
+instructions
+   delimiters " "
+end

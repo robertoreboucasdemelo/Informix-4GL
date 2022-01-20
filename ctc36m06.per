@@ -1,0 +1,64 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc36m06                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Consulta Vistorias por fase, situacao, data, sigla e prestador      Dez/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc36m06--
+ Sigla...:[a  ]                     Prestador:[b     ][b1                   ]
+ Situacao:[c][c1                  ] Periodo..:[d1        ]a[d2        ]
+------------------------------------------------------------------------------
+   Numero  Veiculo                                 Prestador   [e           ]
+           Data        Situacao                    Fase
+
+[g       ][h    ][i                                ][j                   ]
+          [l         ][m                   ]        [n         ]
+
+[g       ][h    ][i                                ][j                   ]
+          [l         ][m                   ]        [n         ]
+
+[g       ][h    ][i                                ][j                   ]
+          [l         ][m                   ]        [n         ]
+
+
+}
+End
+
+Tables datmsocvst, datkveiculo, dpaksocor, datmvstfas
+
+Attributes
+  a   = formonly.sigla,
+        comments = " Sigla do veiculo para pesquisa",      upshift;
+  b   = formonly.prestador,
+        comments = " Codigo Prestador para pesquisa"              ;
+  b1  = formonly.presdesc,                                 noentry;
+  c   = formonly.situacao,
+         comments = " 1-Agend., 2-Confirm., 3-Dig.Incompl., 4-Digitada, 5-Realiz. ou 6-Cancelada";
+  c1  = formonly.sitdesc,                                  noentry;
+  d1  = formonly.dataini     type date,
+         comments = " Data inicial do periodo para pesquisa"      ;
+  d2  = formonly.datafim     type date,
+         comments = " Data final do periodo para pesquisa"        ;
+  e   = formonly.total,                                    noentry;
+
+  g   = datmsocvst.socvstnum,                              noentry;
+  h   = datkveiculo.atdvclsgl,                             noentry;
+  i   = formonly.vcldesc,                                  noentry;
+  j   = dpaksocor.nomgrr,                                  noentry;
+  l   = datmsocvst.socvstdat,                              noentry;
+  m   = formonly.socvstsit_des,                            noentry;
+  n   = formonly.socvstfasnum_des,                         noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctc36m06(socvstnum thru socvstfasnum_des)
+End
+
+
+

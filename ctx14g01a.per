@@ -1,0 +1,33 @@
+
+{-----------------------------------------------------------------------------
+ Nome do Form: ctx14g01a                                               Amilton 
+                                                                              
+ Mostra sentidos de pista                                             Out/2010
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+[t                     ]
+-------------ctx14g01a--
+[a                     ]
+[a                     ]
+[a                     ]
+[a                     ]
+[a                     ]
+
+}
+end
+
+attributes
+   t  = formonly.titulo                ,noentry,reverse;
+   a  = formonly.fundes                ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_ctx14g01a(fundes)
+end
+

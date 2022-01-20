@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M02                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de vigencias de tarifas                       Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m02--
+ Nro Vig...:[a5   ]   Tarifa:[a10  ][a15                                     ]
+ Vigencia..:[a20       ]a[a25       ]
+
+ Incluido..:[a30       ]por[a35                ]
+ Atualizado:[a40       ]por[a45                ]
+------------------------------------------------------------------------------
+   Grupo  Descricao                   Custo  Descricao                  Valor
+------------------------------------------------------------------------------
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+ [b5    ][b10                      ][b15   ][b20                 ][b25       ]
+
+}
+end
+
+tables dbsmvigtrfsocorro, dbstgtfcst, dbskgtf, dbskcustosocorro
+
+attributes
+
+   a5  = formonly.soctrfvignum,
+         comments = " Codigo da vigencia"                     ;
+   a10 = dbsmvigtrfsocorro.soctrfcod,
+         comments = " Codigo da tarifa"                       ;
+   a15 = formonly.soctrfdes,                          noentry;
+   a20 = dbsmvigtrfsocorro.soctrfvigincdat,
+         comments = " Data do inicio da vigencia"             ;
+   a25 = dbsmvigtrfsocorro.soctrfvigfnldat,
+         comments = " Data do final da vigencia"              ;
+
+   a30  = dbsmvigtrfsocorro.caddat,                   noentry;
+   a35  = formonly.cadfunnom,                         noentry;
+   a40  = dbsmvigtrfsocorro.atldat,                   noentry;
+   a45  = formonly.funnom,                            noentry;
+
+   b5  = dbstgtfcst.socgtfcod,                        noentry;
+   b10 = dbskgtf.socgtfdes,                           noentry;
+   b15 = dbstgtfcst.soccstcod,                        noentry;
+   b20 = dbskcustosocorro.soccstdes,                  noentry;
+   b25 = dbstgtfcst.socgtfcstvlr,format="######&.&&", noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb10m02(socgtfcod thru socgtfcstvlr)

@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m37                                               R.Fornax
+
+ Cadastro de Parametros Limpeza do Movimento                          Nov/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m37--
+                            CADASTRO DE PARAMETROS
+------------------------------------------------------------------------------
+
+ Carga ............:[a]
+ Manter............:[b         ] dias
+ Quebra............:[d    ]
+ Diretorio Arquivo.:[e                                                     ]
+
+
+
+
+Atualizado..:[f          ] por [g                                          ]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.flag_full            , comments = " Processa Carga Full ?"                           ,upshift;  
+    b  = formonly.dias                 , comments = " Informe a Quantidade de Dias pata Manter"        ,upshift;  
+    d  = formonly.qtd_quebra           , comments = " Informe a Quantidade de Registros para Commit"   ,upshift;
+    e  = formonly.diretorio            , comments = " Informe o Diretorio do Arquivo"                  ,upshift;  
+    f  = formonly.atldat               , noentry;
+    g  = formonly.funmat               , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

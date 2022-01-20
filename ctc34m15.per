@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTC34M15                                          LUCAS SCHEID
+
+ TELA DE MANUTENCAO DO CADASTRO DE PADRAO/VISTORIA DO VEICULO.       MAR/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc34m15---
+   Codigo...:[a     ]                 Prestador:[b     ][c                   ]
+------------------------------------------------------------------------------
+   Backlight:[d    ][d1                       ]
+   Display..:[e    ][e1                       ]
+------------------------------------------------------------------------------
+                                   Vistoria
+------------------------------------------------------------------------------
+
+[x]Data.....:[f         ]           Situacao:[g    |g1                       ]
+   Problema.:[h    |h1                       ]     Revistoriar em:[i         ]
+   Inclusao.:[j         ] por [j1    |k                   ]
+   Alteracao:[l         ] por [l1    |m                   ]
+
+   (F1)Incluir   (F2)Excluir   (F6)Alterar   (F17)Abandonar
+
+
+}
+end
+
+attributes
+  a  = formonly.socvclcod type integer, comments = "   Codigo do veiculo";
+  b  = formonly.pstcoddig type integer, noentry;
+  c  = formonly.nomgrr type char, noentry;
+  d  = formonly.bckcod type integer, comments = "   Codigo do backlight";
+  d1 = formonly.bckdes type char, noentry;
+  e  = formonly.dpycod type integer, comments = "   Codigo do display";
+  e1 = formonly.dpydes type char, noentry;
+
+  x  = formonly.navega type char, invisible;
+  f  = formonly.vstsitdat type date, format = "dd/mm/yyyy", comments = "   Data da Vistoria";
+  g  = formonly.vstsitcod type integer, comments = "   Codigo da Situacao da Vistoria";
+  g1 = formonly.vstsitdes type char, noentry;
+  h  = formonly.vstpbmcod type integer, comments = "   Codigo do Problema da Vistoria";
+  h1 = formonly.vstpbmdes type char, noentry;
+  i  = formonly.revdat type date, format = "dd/mm/yyyy", comments = "   Data de Revistoria";
+  j  = formonly.caddat type date, format = "dd/mm/yyyy", noentry;
+  j1 = formonly.cadmat type integer, noentry;
+  k  = formonly.nome_inclusao type char, noentry;
+  l  = formonly.atldat type date, format = "dd/mm/yyyy", noentry;
+  l1 = formonly.atlmat type integer, noentry;
+  m  = formonly.nome_alteracao type char, noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc34m15 (navega thru nome_alteracao)
+end

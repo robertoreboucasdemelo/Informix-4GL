@@ -1,0 +1,175 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc44m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de socorrista                                               Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc44m00--
+ Cod.:[a1      ]    Nome:[a2                                  ]   [a5      ]
+------------------------------------------------------------------------------
+ Nome Sigla.:[a3        ]            Situacao....:[s|s1                      ]
+ Sexo.......:[x]                     Data Nascto.:[a4        ]
+ Est.Civil..:[c][c1                 ]Altura/Peso.:[c2  |c3 ]
+ Cms/Clc/Sap:[d1   ][d2][d3]         Numero RG...:[d4        |d5]
+ Numero CPF..:[e1       |e2  |e3]
+ Cart. Prof.:[f1        |f2  |f3]    Numero CNH..:[f4          ]Categ.:[f5|f6]
+ 1a. Habilit:[g1        ]            Vld.Exm.Med.:[g2        ]
+ Celular....:[g3  ][g4       ]       Func. Porto.:[h1|h2    |h]
+ Nextel.....:[g5  ][g6        ] [g7       ]
+ Parente....:[i                                                 ]
+ Tipo Socor.:[j |k|k1              ] Analise PS...:[l |m|m1                ]
+ Dt.Ul.Radar:[n         ]            Analise Radar:[o |p|p1                ]
+ Incluido...:[z2        ]por[z3                 ]
+ Atualizado.:[z4        ]por[z5                 ]  Possui Seguro de vida: [w]
+}
+end
+
+tables datksrr
+
+ attributes
+
+   a1   = formonly.srrcoddig,
+          comments = " Codigo do socorrista (com digito)";
+
+   a2   = datksrr.srrnom,                              upshift,
+          comments = " Nome completo do socorrista";
+
+   a3   = datksrr.srrabvnom,                           upshift,
+          comments = " Nome abreviado do socorrista";
+
+   s    = datksrr.srrstt,
+          comments = " Situacao do socorrista";
+   s1   = formonly.srrsttdes,                          noentry;
+
+   x    = datksrr.sexcod,                              upshift,
+          comments = " Sexo: (F)eminino, (M)asculino";
+
+   a4   = datksrr.nscdat,
+          comments = " Data de nascimento";
+
+   a5 	= formonly.l_qual_srr		      type char,noentry;
+
+
+   c    = datksrr.estcvlcod,
+          comments = " Estado civil";
+   c1   = formonly.estcvldes,                          noentry;
+
+   c2   = datksrr.pesalt,
+          comments = " Altura (ex.: 1.80)";
+
+   c3   = datksrr.pespso,
+          comments = " Peso";
+
+   d1   = datksrr.srrcmsnum,                           upshift,
+          comments = " Numero da camisa";
+
+   d2   = datksrr.srrclcnum,
+          comments = " Numero da calca";
+
+   d3   = datksrr.srrcldnum,
+          comments = " Numero da calcado";
+
+   d4   = formonly.rgenum            type decimal,
+          comments = " Numero do RG";
+
+   d5   = datksrr.rgeufdcod,                           upshift,
+          comments = " Estado emissor do RG";
+
+   e1   = datksrr.cgccpfnum,
+          comments = " Numero do CGC/CPF", autonext;
+
+   e2   = datksrr.cgcord,
+          comments = " Ordem do CGC/CPF";
+
+   e3   = datksrr.cgccpfdig,
+          comments = " Digito do CGC/CPF";
+
+   f1   = datksrr.cprnum,
+          comments = " Numero da carteira profissional";
+
+   f2   = datksrr.cprsernum,
+          comments = " Serie da carteira profissional";
+
+   f3   = datksrr.cprufdcod,                           upshift,
+          comments = " Estado emissor da carteira profissional";
+
+   f4   = datksrr.cnhnum,
+          comments = " Numero da CNH";
+
+   f5   = datksrr.cnhautctg,                           upshift,
+          comments = " Categoria Automovel da CNH";
+
+   f6   = datksrr.cnhmotctg,                           upshift,
+          comments = " Categoria Moto da CNH";
+
+   g1   = datksrr.cnhpridat,
+          comments = " Data da primeira habilitacao";
+
+   g2   = datksrr.exmvctdat,
+          comments = " Data do vencimento do exame medico";
+
+   g3   = datksrr.celdddcod,
+          comments = " DDD do celular";
+
+   g4   = datksrr.celtelnum,
+          comments = " Numero do telefone celular";
+
+   h1   = datksrr.empcod,
+          comments = " Codigo da empresa (se funcionario da Porto)";
+
+   h2   = datksrr.funmat,
+          comments = " Numero da matricula (se funcionario da Porto)";
+
+   h    = formonly.funmatdig                           type dec,
+          comments = " Digito da matricula " ;
+
+   g5   = datksrr.nxtdddcod,
+         comments = " DDD Nextel";
+
+   g6   = datksrr.nxtide,
+         comments = " Id Nextel";
+
+   g7   = datksrr.nxtnum,
+         comments = " Numero Nextel";
+
+   i    = datksrr.srrprnnom,                           upshift,
+          comments = " Nome do parente na Porto (se houver)";
+
+
+   j    = formonly.srrtip           type smallint, format = '##';
+
+   k   = formonly.separador1       type char,noentry;
+
+   k1   = formonly.descsocor        type char, noentry;
+
+   l    = formonly.socanlsitcod     type smallint, format = '##';
+
+   m   = formonly.separador2       type char,noentry;
+
+   m1   = formonly.descps           type char, noentry;
+
+   n    = formonly.rdranlultdat     type date, format = 'dd/mm/yyyy', noentry;
+
+   o    = formonly.rdranlsitcod     type smallint, format = '##';
+
+   p   = formonly.separador3       type char,noentry;
+
+   p1   = formonly.descradar        type char, noentry;
+
+   z2   = datksrr.caddat,                              noentry;
+   z3   = formonly.cadfunnom,                          noentry;
+   z4   = datksrr.atldat,                              noentry;
+   z5   = formonly.funnom,                             noentry;
+
+   w    = formonly.socvidseg        type char,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+
+end

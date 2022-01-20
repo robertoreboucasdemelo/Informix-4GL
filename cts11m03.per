@@ -1,0 +1,33 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTS11M03                                        Marcelo
+                                                               Gilberto
+ Mostra todos os motivos para assistencia a passageiro         Jun/1997
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      Motivos
+---------------cts11m03--
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+
+}
+end
+
+tables
+   datkasimtv
+
+attributes
+   c  = datkasimtv.asimtvcod;
+   c1 = datkasimtv.asimtvdes;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts11m03(asimtvcod thru asimtvdes)
+end

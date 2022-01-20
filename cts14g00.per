@@ -1,0 +1,49 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts14g00                                          Almeida
+
+ Simulacao dos procedimentos cadastrados                             Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                                     ]
+--------------------------------------------------------------cts14g00--
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+
+}
+
+end
+
+ tables datmprctxt
+
+ attributes
+
+    a  = formonly.cabtxt        ,reverse    ,noentry;
+
+    b  = datmprctxt.prctxtseq   ,invisible  ,noentry;
+    e  = datmprctxt.prctxt                  ,noentry;
+    f  = datmprctxt.prtprcnum               ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts14g00(prctxtseq thru prtprcnum)
+ end

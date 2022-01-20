@@ -1,0 +1,60 @@
+{----------------------------------------------------------------------
+ Nome do Form: CTN18C00                                       Marcelo
+                                                              Gilberto
+ Consulta LOJAS para locacao de veiculos                      Ago/1996
+----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+
+--------------------------------------------------------------------ctn18c00--
+ Locadora:[h0  ][h1                                 ]Empresa:[e1][e2         ]
+------------------------------------------------------------------------------
+ Locadora.:[a0                                     |b001   ]Qlf:[i001        ]
+ Endereco.:[b003                             ]CEP:[b006 |b06]Tp:[b012        ]
+ Bair/Cid.:[b004                             |b005                ]Entrega:[c]
+ Telefone.:[b007][b008                              ]Fax:[b009     ][a1 |inv ]
+
+ Locadora.:[a0                                     |b001   ]Qlf:[i001        ]
+ Endereco.:[b003                             ]CEP:[b006 |b06]Tp:[b012        ]
+ Bair/Cid.:[b004                             |b005                ]Entrega:[c]
+ Telefone.:[b007][b008                              ]Fax:[b009     ][a1 |inv ]
+
+ Locadora.:[a0                                     |b001   ]Qlf:[i001        ]
+ Endereco.:[b003                             ]CEP:[b006 |b06]Tp:[b012        ]
+ Bair/Cid.:[b004                             |b005                ]Entrega:[c]
+ Telefone.:[b007][b008                              ]Fax:[b009     ][a1 |inv ]
+}
+
+tables datkavislocal, datklocadora
+
+attributes
+h0   = formonly.loccod            , required;
+h1   = formonly.locnom            , noentry, upshift;
+e1   = formonly.ciaempcod ;
+e2   = formonly.empsgl            ,noentry;
+
+a0   = datklocadora.lcvnom        , comments = "(F17)Abandona,(F5)Cadastro,(F7)LocEntr,(F8)Selec,(F9)Veic,(F10)PtReferencia";
+b001 = datkavislocal.lcvextcod    , noentry, upshift;
+i001 = formonly.lojqlfdes         , reverse, noentry, upshift;
+b003 = datkavislocal.endlgd       , noentry, upshift;
+b006 = datkavislocal.endcep       , noentry;
+b06  = datkavislocal.endcepcmp    , noentry;
+b012 = formonly.lcvlojtipdes      , noentry, upshift;
+b004 = datkavislocal.endbrr       , noentry, upshift;
+b005 = formonly.endcid            , noentry, upshift;
+c    = formonly.entrega           , noentry, upshift;
+b007 = datkavislocal.dddcod       , noentry;
+b008 = datkavislocal.teltxt       , noentry;
+b009 = datkavislocal.facnum       , noentry;
+a1   = datklocadora.lcvcod        , noentry, invisible;
+inv  = datkavislocal.aviestcod    , noentry, invisible ;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctn18c00(lcvnom thru aviestcod)
+end

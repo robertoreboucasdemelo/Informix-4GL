@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc44m01                                               Gilberto
+                                                                       Marcelo
+ Pop-up de dados da filiacao                                          Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                      Dados sobre filiacao
+----------------------------------------------------------ctc44m01--
+
+ Nome da Mae...:[a1                                                ]
+ Nome do Pai...:[a2                                                ]
+
+ Nacionalidade.:[a3                                      ]
+ Natural de....:[a4]
+
+}
+end
+
+ tables datksrr
+
+ attributes
+
+   a1  = datksrr.maenom,                           upshift,
+         comments = " Nome do mae";
+
+   a2  = datksrr.painom,                           upshift,
+         comments = " Nome do pai";
+
+   a3  = datksrr.nacdes,                           upshift,
+         comments = " Nacionalidade";
+
+   a4  = datksrr.ufdcod,                           upshift,
+         comments = " Natural do estado";
+
+ end
+
+ instructions
+      delimiters " "
+ end

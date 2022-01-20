@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc44m05                                               Gilberto
+                                                                       Marcelo
+ Pesquisa cadastro de socorristas                                     Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size  24 by 80
+
+{
+--------------------------------------------------------------------ctc44m05--
+ Nome.....:[a1                          ] Sit.:[a2][a3          ][a4         ]
+ Prestador:[a5    ][a6                  ] Ass.:[a7 ][a8                      ]
+ CPF......:[a9        |b ]                Ntz.:[a10][a11                     ]
+------------------------------------------------------------------------------
+   Codigo  Nome do socorrista/Prestador                             Situacao
+[b1      ][b2                                                ]     [b3       ]
+          [b4    ][b5                  ]
+
+[b1      ][b2                                                ]     [b3       ]
+          [b4    ][b5                  ]
+
+[b1      ][b2                                                ]     [b3       ]
+          [b4    ][b5                  ]
+
+[b1      ][b2                                                ]     [b3       ]
+          [b4    ][b5                  ]
+}
+end
+
+tables datksrr, dpaksocor
+
+ attributes
+
+    a1  = formonly.srrnom,                      upshift,
+          comments = " Nome do socorrista";
+    a2  = formonly.srrstt,
+          comments = " Situacao do socorrista";
+    a3  = formonly.srrsttdes,                   noentry;
+    a4  = formonly.total,                       noentry;
+    a5  = formonly.pstcoddig,
+          comments = " Codigo do prestador";
+    a6  = formonly.nomgrr,  upshift,            noentry;
+    a7  = formonly.asitipcod,
+          comments = " Codigo da assistencia";
+    a8  = formonly.asitipdes,                   noentry;
+    a9  = dpaksocor.cgccpfnum,                   autonext,
+          comments = " Numero do CPF";
+    b   = dpaksocor.cgccpfdig,                   autonext;      
+    a10 = formonly.socntzcod,
+          comments = " Codigo da Natureza";
+    a11 = formonly.socntzdes,                   noentry;         
+    b1  = datksrr.srrcoddig,                    noentry;
+    b2  = formonly.srrnomarr,                   noentry;
+    b3  = formonly.srrsttdesarr,                noentry;
+    b4  = formonly.pstcoddigarr,                noentry;
+    b5  = formonly.nomgrrarr,                   noentry;
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctc44m05(srrcoddig thru nomgrrarr)
+

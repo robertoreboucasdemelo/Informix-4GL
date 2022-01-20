@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN16C01                                             Marcelo
+                                                                    Gilberto
+ Mostra reservas solicitadas/confirmadas por apolice                Mar/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn16c01--
+                                       ---- Reserva -----  ---- Pagamento ----
+   No.Servico     Locadora   Solicitado  Retirada Diarias    Retirada Diarias
+
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+[a |a1     |a2][b           |b1        |c         |d     ][e         ][f     ]
+
+
+}
+end
+
+tables
+   datmservico, datmavisrent, datmalugveic
+
+attributes
+   a   = datmservico.atdsrvorg           , format = "&&"     , noentry;
+   a1  = datmservico.atdsrvnum           , format = "&&&&&&&", noentry;
+   a2  = datmservico.atdsrvano           , format = "&&"     , noentry;
+   b   = formonly.lcvnom                 , noentry;
+   b1  = datmservico.atddat              , noentry;
+   c   = datmavisrent.aviretdat          , noentry;
+   d   = datmavisrent.aviprvent          , format = "##,###", noentry;
+   e   = datmalugveic.vclalgdat          , noentry;
+   f   = datmalugveic.algdiaqtd          , format = "##,###", noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn16c01(atdsrvorg thru algdiaqtd)
+end
+

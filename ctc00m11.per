@@ -1,0 +1,44 @@
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc00m11--
+ Prestador:[a1      |a2                                                     ]
+------------------------------------------------------------------------------
+    Cod     Descricao               Dt Cadastro     Funcionario
+
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+
+
+}
+end
+
+ tables dpaksocor, datrassprs, datkasitip
+
+ attributes
+
+    a1 = datrassprs.pstcoddig                ,noentry;
+    a2 = dpaksocor.rspnom                      ,noentry;
+
+    b  = datrassprs.asitipcod                ,upshift,
+         comments = " Codigo da assistencia";
+    b1 = datkasitip.asitipdes                ,noentry;
+
+    b2 = datrassprs.caddat                   ,noentry;
+    b3 = formonly.cadfunnom                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc00m11(asitipcod thru cadfunnom)
+ end

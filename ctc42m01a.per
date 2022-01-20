@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc42m01a                                                Sergio
+                                                                        Burini
+ Cadastro de SIMCards                                                 Jun/2008
+-----------------------------------------------------------------------------}
+
+
+database formonly
+
+screen
+{---------------------------------------------------------
+
+                   MANUTENCAO DO SIMCARD
+
+ Status: [a|a1      ] Operadora: [b|b1                 ]
+ SIMCARD: [c                                           ]
+ DDD: [ d  ] Telefone: [e        ]
+ Usu. Atl.[f        ]  Ult. Atl.[g                     ]
+ Ult. Snl.[h                     ]
+
+
+
+}
+end
+
+attributes
+   a  = formonly.recsinflg type integer, reverse, comments = "Sinal Recebido (R) e Sinal Informado (I)";
+   a1 = formonly.recsinflgdes, noentry, reverse;
+   b  = formonly.celoprcod, reverse, comments = "COD Operadora transmissora do sinal";
+   b1 = formonly.celoprcoddes, reverse, noentry;
+   c  = formonly.cdssimintcod, reverse, comments = "Numero do SIMCard.";
+   d  = formonly.dddcod, reverse, comments = "DDD";
+   e  = formonly.celnum, reverse, comments = "Fone Celular";
+   f  = formonly.funmat, noentry, reverse;
+   g  = formonly.atldat, noentry, reverse;
+   h  = formonly.sinutmdat, noentry, reverse;
+end
+
+instructions
+   delimiters " "
+end

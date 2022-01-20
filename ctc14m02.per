@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC14M02                                                 Pedro
+                                                                      Marcelo
+ Mostra acao a ser tomada pelo sistema de acordo c/ o assunto        Jun/1995
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+          Acao a ser tomada
+---------------------------ctc14m02--
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+[a                             ][b  ]
+
+}
+End
+
+tables
+   datkassunto
+
+Attributes
+ a  = formonly.prgdes            ,noentry;
+ b  = datkassunto.prgcod         ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc14m02(prgdes thru prgcod)
+End

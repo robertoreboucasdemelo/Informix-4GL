@@ -1,0 +1,47 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc32m03                                               Marcelo
+                                                                     Gilberto
+ Manutencao do Cadastro de Observacoes do Bloqueio                   Abr/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc32m03--
+ Observacoes p/ bloqueio.:[a     ]
+------------------------------------------------------------------------------
+      Observacao
+
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+     [b1                                                ]  [b2]
+
+
+}
+end
+
+ tables datmblqobs
+
+ attributes
+
+    a  = datmblqobs.blqnum                   ,noentry;
+
+    b1 = datmblqobs.blqobstxt                ,upshift,
+         comments = " Linha de observacao (texto)";
+
+    b2 = datmblqobs.blqobsseq,  invisible    ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc32m03(blqobstxt thru blqobsseq)
+ end

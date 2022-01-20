@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts50m00                                               Nilo   
+
+ Consulta Ligacoes em Abandono                                       Abr/2008
+-----------------------------------------------------------------------------}
+
+database formonly
+screen 
+{
+-------------------------------------------------------------------cts50m00---
+                      HISTORICO DE RETORNOS DE SERVICO    
+     
+    Serviço   Ano  Dt. Aciona.   Prest.                           Valor        
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]                                                                  
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+[x][a        |b  ][c           ][d    |e                        ][f          ]
+                                                                                            
+}                                                                                           
+end                                                                           
+
+attributes
+   x = formonly.flgsrv;
+   a = formonly.atdsrvnum, noentry;
+   b = formonly.atdsrvano, noentry;
+   c = formonly.atdetpdat, noentry;
+   d = formonly.pstcoddig, noentry;
+   e = formonly.nomgrr   , noentry;
+   f = formonly.atdcstvlr, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb25m01a[15] (flgsrv thru atdcstvlr)
+end

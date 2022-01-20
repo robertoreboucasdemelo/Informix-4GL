@@ -1,0 +1,74 @@
+{------------------------------------------------------------------------------
+ Nome do Form: ctc44m04                                               Marcelo
+                                                                      Gilberto
+ Manutencao no cadastro de enderecos do socorrista                    Jun/1999
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                          Dados sobre o endereco
+---------------------------------------------------------------ctc44m04--
+
+ Tipo Logr.:[b         ]
+ Logradouro:[b0                                                         ]
+ Numero....:[b1   ]
+ Complem...:[b2                            ]
+ Bairro....:[b3                                      ]
+ Cidade....:[b4                                           ]    UF.:[b5]
+ CEP.......:[b6   |b7 ]     Telefone.:[b8  |b9       ]
+ Ponto Ref.:[b10                                     ]
+ Observacao:[b11                                               ]
+
+}
+end
+
+ tables datksrr, datksrrend
+
+ attributes
+
+   b   = datksrrend.lgdtip,                  upshift,
+         comments = " Tipo do logradouro: avenida, rua, praca, travessa";
+
+   b0  = datksrrend.lgdnom,                  upshift,
+         comments = " Logradouro";
+
+   b1  = datksrrend.lgdnum,
+         comments = " Numero";
+
+   b2  = datksrrend.endlgdcmp,               upshift,
+         comments = " Complemento do endereco";
+
+   b3  = datksrrend.brrnom,                  upshift,
+         comments = " Nome do bairro";
+
+   b4  = datksrrend.cidnom,                  upshift,
+         comments = " Nome da cidade";
+
+   b5  = datksrrend.ufdcod,                  upshift,
+         comments = " Sigla da unidade federativa";
+
+   b6  = datksrrend.endcep,
+         comments = " CEP";
+
+   b7  = datksrrend.endcepcmp,               upshift,
+         comments = " Complemento do CEP";
+
+   b8  = datksrrend.dddcod,                  upshift,
+         comments = " DDD";
+
+   b9  = datksrrend.telnum,
+         comments = " Numero do telefone";
+
+   b10 = datksrrend.lgdrefptodes,            upshift,
+         comments = " Ponto de referencia";
+
+   b11 = datksrrend.srrendobs,               upshift,
+         comments = " Observacoes";
+
+ end
+
+instructions
+   delimiters " "
+end

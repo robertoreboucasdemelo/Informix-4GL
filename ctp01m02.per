@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTP01M02                                               Marcelo
+                                                                      Gilberto
+ Pesquisa Telemarketing - avaliacao do servico                        Fev/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[c1 ][c2                                        ]
+----------------------------------------ctp01m02--
+[p1][p2                 ][p3]  [h]
+[p1][p2                 ][p3]  [h]
+[p1][p2                 ][p3]  [h]
+[p1][p2                 ][p3]  [h]
+
+}
+end
+
+tables
+   datmpesquisa, datrpesqaval
+
+attributes
+   c1 = datmpesquisa.psqcod              ,upshift,
+        comments = " Codigo da pesquisa";
+   c2 = formonly.psqdes                  ,noentry;
+
+   p1  = datrpesqaval.avlitmcod          ,noentry;
+   p2  = formonly.avlitmdes              ,noentry;
+   p3  = datrpesqaval.avlpsqnot          ,format = "#&",
+         comments = " Nota de 0 a 10";
+   h   = formonly.histflg                ,upshift,
+         comments = " Historico: (S)im ou (N)ao ?";
+
+instructions
+  delimiters " "
+  screen record s_ctp01m02(avlitmcod thru histflg)
+end

@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc45m01                                               Gilberto
+                                                                       Marcelo
+ Pesquisa cadastro de pontos geograficos                              Set/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc45m01--
+ UF.:[a1]     Cidade.:[a2                              ]          [a3        ]
+------------------------------------------------------------------------------
+ UF Cidade                           Bairro                          Zn
+
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+[b1|b2                              |b3                             |b4|b5   ]
+
+}
+end
+
+ tables datkgpsgeopto
+
+ attributes
+
+    a1 = formonly.ufdcodpsq,                           upshift,
+         comments = " Codigo da UF";
+    a2 = formonly.cidnompsq,                           upshift,
+         comments = " Nome da cidade";
+    a3 = formonly.total,                               noentry;
+
+    b1 = datkgpsgeopto.ufdcod,                         noentry;
+    b2 = datkgpsgeopto.cidnom,                         noentry;
+    b3 = datkgpsgeopto.brrnom,                         noentry;
+    b4 = datkgpsgeopto.endzon,                         noentry;
+    b5 = datkgpsgeopto.geoptocod,   invisible,         noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctc45m01(ufdcod thru geoptocod)
+

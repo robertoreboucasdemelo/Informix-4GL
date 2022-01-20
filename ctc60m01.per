@@ -1,0 +1,73 @@
+{---------------------------------------------------------------------------
+              *** Porto  Seguro  Cia.  de  Seguros  Gerais ***
+............................................................................
+
+ Sistema.: Ct24hs   - Central 24hs e Pronto Socorro
+ Modulo..: ctc60m01 - Manutencao prestadores
+ Analista: Wagner Agostinho
+ PSI.....:                OSF: 10570
+
+ Desenvolvimento: Fabrica de Software  -  Talita Menezes - DEZ/02
+----------------------------------------------------------------------------}
+
+database porto
+
+screen
+
+{
+
+
+--------------------------------------------------------------------ctc60m01--
+        Codigo:[a     ]-[a2                                      ]
+------------------------------------------------------------------------------
+
+  Nome Guerra.:[b                   ]
+
+  Telefone....:[c   ][c2                                      ]
+  Fax.........:[d        ]
+  Acionamento.:[e][e2      ]
+
+
+
+
+
+
+
+}
+
+tables
+   dpaksocor
+
+attributes
+
+   a  = dpaksocor.pstcoddig
+                 ,autonext;
+
+   a2 = dpaksocor.nomrazsoc
+                 ,noentry;
+
+   b  = dpaksocor.nomgrr
+                 ,noentry;
+
+   c  = dpaksocor.dddcod
+                 ,autonext;
+
+   c2 = dpaksocor.teltxt
+                 ,autonext;
+
+   d  = dpaksocor.faxnum
+                 ,autonext;
+
+   e  = dpaksocor.intsrvrcbflg
+                 ,autonext;
+
+   e2 = formonly.intdescr
+                 ,noentry;
+
+end
+
+instructions
+
+   delimiters " "
+
+end

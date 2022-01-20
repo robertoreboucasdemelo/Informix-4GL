@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m11                                        Helder Oliveira
+
+ Popup CAR                                                            Abr/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+---------------------------------------------------cto00m11---
+  Codigo                  Descricao                  KM
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+[x|a  ][b                                      ][c          ]
+--------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    x  = formonly.aux;
+    a  = formonly.atdcencod    ,noentry ;
+    b  = formonly.atdcennom    ,noentry ;
+    c  = formonly.dist_total   ,noentry ;
+
+
+end
+
+instructions
+    screen record s_cto00m11 (aux thru dist_total)
+    delimiters " "
+end

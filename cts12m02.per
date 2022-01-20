@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts12m02                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Laudo - Remocao de Perda Total (Informacoes complementares)          Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+          Informacoes complementares da RPT
+---------------------------------------------cts12m02--
+
+      Veiculo desmontado ? :[a]
+
+      Estadia .......... ? :[b]
+
+      Tel.solicitante .....:[c1  ][c2       ]
+
+ (F17)Abandona
+}
+end
+
+
+tables
+datmrpt
+
+attributes
+
+a  = formonly.rptvclsitdsmflg,
+       upshift, autonext, comments = " Veiculo desmontado (S)im ou (N)ao ";
+b  = formonly.rptvclsitestflg,
+       upshift, autonext, comments = " Estadia (S)im ou (N)ao ";
+c1 = formonly.dddcod,
+       autonext, comments = " Codigo de DDD do solicitante ";
+c2 = formonly.telnum,
+       autonext, comments = " Telefone do solicitante ";
+end
+
+instructions
+  delimiters " "
+end
+

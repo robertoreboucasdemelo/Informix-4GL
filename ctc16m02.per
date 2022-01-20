@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc16m02                                               Raji   
+                                                                              
+ Cadastro grupo de naturezas de socorro                               Jul/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc16m02--
+               Codigo......:[a1]
+------------------------------------------------------------------------------
+
+
+               Descricao...:[a2                            ]
+
+
+
+
+
+               Incluido....:[b1        ]por[b2                 ]
+
+               Atualizado..:[b3        ]por[b4                 ]
+
+
+
+}
+end
+
+ tables datksocntzgrp
+
+ attributes
+    a1 = datksocntzgrp.socntzgrpcod, format = "&&"
+                                   , comments = " Codigo da natureza";
+    a2 = datksocntzgrp.socntzgrpdes, upshift
+                                   , comments = " Descricao da natureza";
+    b1 = datksocntzgrp.caddat      , noentry;
+    b2 = formonly.cadfunnom        , noentry;
+    b3 = datksocntzgrp.atldat      , noentry;
+    b4 = formonly.atlfunnom        , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

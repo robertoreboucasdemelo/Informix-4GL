@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN03C00                     Criacao: 24/10/94 - Pedro
+
+ Consulta Distrito Policial/Batalhoes por Cep
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn03c01--
+                     Tipo..:[t ][a001      ]
+------------------------------------------------------------------------------
+ Ident.:[a002                                    ] Codigo:[a003]
+ End...:[a004                                    ] Bairro:[a005             ]
+ Tel...:[a006][a007                             ]  Cep...:[a008 ][b01]
+ Tipo..:[a009       ] Cidade:[a010              ]  UF....:[u1]
+
+ Ident.:[a002                                    ] Codigo:[a003]
+ End...:[a004                                    ] Bairro:[a005             ]
+ Tel...:[a006][a007                             ]  Cep...:[a008 ][b01]
+ Tipo..:[a009       ] Cidade:[a010              ]  UF....:[u1]
+
+ Ident.:[a002                                    ] Codigo:[a003]
+ End...:[a004                                    ] Bairro:[a005             ]
+ Tel...:[a006][a007                             ]  Cep...:[a008 ][b01]
+ Tipo..:[a009       ] Cidade:[a010              ]  UF....:[u1]
+}
+end
+
+tables dpakbat
+
+attributes
+t    = formonly.battip,  upshift,  comments = " (B)atalhao ou (D)policial";
+a001 = formonly.nometipo,noentry;
+a002 = dpakbat.batnom,   noentry;
+a003 = dpakbat.batnum,   noentry;
+a004 = dpakbat.endlgd,   noentry;
+a005 = dpakbat.endbrr,   noentry;
+a006 = dpakbat.dddcod,   noentry;
+a007 = dpakbat.teltxt,   noentry;
+a008 = dpakbat.endcep,   noentry;
+b01  = dpakbat.endcepcmp,noentry;
+a009 = formonly.tipo,    noentry;
+a010 = dpakbat.endcid,   noentry;
+u1   = dpakbat.endufd,   noentry;
+end
+
+instructions
+     screen record s_ctn03c01(batnom thru endufd)
+     delimiters " "
+end

@@ -1,0 +1,36 @@
+
+database formonly
+screen
+{
+--------------------------------------------------------------------cts40m00--
+ Cliente                        Cidade/UF              Atendimento Etapa
+------------------------------------------------------------------------------
+[a1                            |a2                    |a3         |a4        ]
+[a5                                                                          ]
+
+[a1                            |a2                    |a3         |a4        ]
+[a5                                                                          ]
+
+[a1                            |a2                    |a3         |a4        ]
+[a5                                                                          ]
+
+[a1                            |a2                    |a3         |a4        ]
+[a5                                                                          ]
+
+[a1                            |a2                    |a3         |a4        ]
+[a5                                                                          ]
+                    F6-Atualiza            F8-Laudo
+}
+
+attributes
+   a1 = formonly.nom         type char;
+   a2 = formonly.local       type char;
+   a3 = formonly.atendimento type char;
+   a4 = formonly.atdetpdes   type char;
+   a5 = formonly.servicos    type char;
+end
+
+instructions
+  delimiters ' '
+  screen record s_cts40m00[5] (nom thru servicos)
+end

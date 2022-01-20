@@ -1,0 +1,54 @@
+database formonly
+screen
+{                         
+                          ENDERECOS DO PRESTADOR
+         Codigo:[x     ]-[x2                                      ]                          
+-------------------------------------------------------------------ctc00m25---
+[a1                                                                          ]
+ TIPO:[b1        ]LOGRAD:[c1                                     ]NUM:[d1    ]
+ BAIRRO:[e1                  ] CIDADE:[f1                            ] UF:[g1]
+ COMPL.:[h1                            ] CEP: [i1   ]-[i2 ]
+               
+[a1                                                                          ]
+ TIPO:[b1        ]LOGRAD:[c1                                     ]NUM:[d1    ]
+ BAIRRO:[e1                  ] CIDADE:[f1                            ] UF:[g1]
+ COMPL.:[h1                            ] CEP: [i1   ]-[i2 ]
+               
+[a1                                                                          ]
+ TIPO:[b1        ]LOGRAD:[c1                                     ]NUM:[d1    ]
+ BAIRRO:[e1                  ] CIDADE:[f1                            ] UF:[g1]
+ COMPL.:[h1                            ] CEP: [i1   ]-[i2 ]
+ 
+}
+end
+
+attributes
+   x  = formonly.pstcoddig, comments = " Codigo do prestador", reverse;
+   x2 = formonly.nomrazsoc, comments = " Razao social do prestador", upshift, reverse;
+   a1 = formonly.domtipdes, upshift,noentry, reverse;
+   b1 = formonly.lgdtip, upshift,noentry;
+   c1 = formonly.endlgd, upshift,noentry;
+   d1 = formonly.lgdnum,noentry;
+   e1 = formonly.endbrr, upshift,noentry;
+   f1 = formonly.endcid, upshift,noentry;
+   g1 = formonly.endufd, upshift,noentry;
+   h1 = formonly.lgdcmp, upshift,noentry;
+   i1 = formonly.endcep,noentry;
+   i2 = formonly.endcepcmp,noentry;
+
+
+end
+instructions
+   delimiters ' '
+   screen record s_ctc00m25 ( domtipdes
+                             ,lgdtip
+                             ,endlgd
+                             ,lgdnum
+                             ,endbrr
+                             ,endcid
+                             ,endufd
+                             ,lgdcmp
+                             ,endcep
+                             ,endcepcmp)
+
+end

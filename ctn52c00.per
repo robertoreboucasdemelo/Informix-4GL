@@ -1,0 +1,48 @@
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctn52c00---
+Periodo:[a         ]a[b         ]
+Veiculo:[c    ]                           Tipo:[d |e                         ]
+------------------------------------------------------------------------------
+  MDT   SGL       Motorista      Inconsist. Processamento    Ult.Posicao
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+[a1   |a2   |a3    |a4          |a5        |a6        |a7   |a8        |a9   ]
+                                                Total Inconsistencias:[t    ]
+
+ (F4)Poll  (F5)Atualiz.Servidor  (F6)Tempo  (F8)Ult.Posicao  (Control-c)Sair
+}
+end
+
+attributes
+a  = formonly.caddat_de  type date, format = "dd/mm/yyyy";
+b  = formonly.caddat_ate type date, format = "dd/mm/yyyy";
+c  = formonly.atdvclsgl, upshift, comments = " Sigla do veiculo";
+d  = formonly.mdtinctip type integer;
+e  = formonly.descricao, noentry;
+a1 = formonly.mdtcod,        noentry;
+a2 = formonly.sgl,           noentry;
+a3 = formonly.scrrcoddig,    noentry;
+a4 = formonly.srrnom,  noentry;
+a5 = formonly.inconsistencia , noentry;
+a6 = formonly.caddat, noentry;
+a7 = formonly.cadhor, noentry;
+a8 = formonly.atdtrxdat, noentry;
+a9 = formonly.atdtrxhor, noentry;
+t  = formonly.total type integer, format = "&&&&&", color = black reverse;
+
+end
+
+instructions
+   screen record s_ctn52c00 (mdtcod thru atdtrxhor)
+   delimiters " "
+end

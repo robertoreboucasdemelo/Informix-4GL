@@ -1,0 +1,40 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctcs67m04                                              
+                                                              Marcia Franzon
+ Janela para confirmacao de mensagens                                ago/2013
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+---------------------------------------------------------------ctcs67m04--
+                        SERVIÇO INDISPONÍVEL NO MOMENTO            
+                        
+--------------------------------------------------------------------------
+ NOME    : [a                           ] CPF/CNPJ :[b                  ]
+ TEL CEL : [e          ]                  TEL RES  :[f          ]
+
+      Servico : [g         ]-[h ][n                   ]
+
+                       DESEJA ABRIR O SERVICO ?
+
+
+}
+
+end
+
+attributes
+
+   a  = formonly.clinom    type char , noentry;
+   b  = formonly.cpfcpjnum type char , noentry;
+   e  = formonly.celtelnum , noentry;
+   f  = formonly.telnum    , noentry;
+   g  = formonly.srvnum    type integer  , format = '#######&&&' , noentry;
+   h  = formonly.rlzsrvano type smallint , format = '&&' ,  noentry;
+   n  = formonly.srvnom    type char , noentry;
+end
+
+instructions
+   delimiters  " "
+end

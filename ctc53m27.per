@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m27                                      R.Fornax
+                                                             
+ Cadastro de Assunto X Bloco                                 Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m27--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+------------------------------------------------------------------------------
+ Bloco     Nome                                     
+                                                 
+ [e    ] [f                                                                ] 
+ [e    ] [f                                                                ] 
+ [e    ] [f                                                                ] 
+ [e    ] [f                                                                ] 
+ [e    ] [f                                                                ]  
+ [e    ] [f                                                                ]  
+------------------------------------------------------------------------------
+ Atualizado..:[g          ] por [h                                         ]
+------------------------------------------------------------------------------
+ [i                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;    
+   b  = formonly.desper                 ,noentry;    
+   c  = formonly.c24astcod              ,noentry;    
+   d  = formonly.c24astdes              ,noentry;   
+   e  = formonly.blocod                 ,comments = " Digite o Codigo do Bloco"    ,upshift;   
+   f  = formonly.blodes                 ,noentry;
+   g  = formonly.atldat                 ,noentry;
+   h  = formonly.funmat                 ,noentry;
+   i  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m27(blocod thru blodes)
+end

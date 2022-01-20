@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M34                                                 Wagner
+ Espelho da conclusao do Servico                                      Set/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     Acionamento em[o0        ]as[o1   ]por[o2                  ]
+------------------------------------------------------------cts00m34--
+ Etapa....:[c |c1             ]   [c2                  ]   [c21     ]
+ Prestador:[c3    |c4                       ]
+ Cidade...:[c41                                             ]
+ Telefone.:[c5  ][c6                                      ]
+ Contato..:[c7                                      ]
+ Veiculo..:[c8   |c81   |c82                                         ]
+ Socorris.:[c9    |c91       ]    Tel.: [c92 ] [c93      ]
+ Previsao.:[c14  ]           Distancia:[c15      ] km
+[c10       |c11              ]    [c12       |c13            |c16    ]
+ Tp Envio.:[x]
+
+
+}
+end
+
+ Tables
+   dpaksocor, datmservico, datmtrptaxi, datmsrvacp, datketapa, datksrr
+
+ Attributes
+   o0  = datmservico.cnldat    , noentry;
+   o1  = formonly.atdfnlhor    , noentry;
+   o2  = formonly.operador     , noentry;
+   c   = datmsrvacp.atdetpcod  , comments = " Etapa para acionamento";
+   c1  = datketapa.atdetpdes   , reverse, noentry;
+   c2  = formonly.retorno      , noentry;
+   c21 = formonly.envio        , noentry;
+   c3  = datmservico.atdprscod , noentry;
+   c4  = dpaksocor.nomgrr      , noentry;
+  c41  = formonly.cidufdprs    , noentry;
+   c5  = dpaksocor.dddcod      , noentry;
+   c6  = dpaksocor.teltxt      , noentry;
+   c7  = datmservico.c24nomctt , noentry;
+   c8  = datmservico.atdvclsgl , noentry;
+   c81 = datmservico.socvclcod , noentry;
+   c82 = formonly.socvcldes    , noentry;
+   c9  = formonly.srrcoddig    , noentry;
+   c91 = datksrr.srrabvnom     , noentry;
+   c92 = datksrr.celdddcod     , noentry;
+   c93 = datksrr.celtelnum     , noentry;
+   c10 = formonly.valor        , noentry;
+   c11 = datmservico.atdcstvlr , noentry;
+   c12 = formonly.veiculo      , noentry;
+   c13 = datmtrptaxi.pasasivcldes, noentry;
+   c16 = formonly.l_descveiculo   ,noentry;
+   c14 = datmservico.atdprvdat  ,noentry;
+   c15 = formonly.dstqtd       , noentry;
+   x   = formonly.envtipcod     , noentry;
+ end
+
+ instructions
+   delimiters " "
+ end

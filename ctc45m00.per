@@ -1,0 +1,68 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc45m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de pontos geograficos para GPS                              Set/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc45m00--
+           Codigo.....:[a1   ]
+------------------------------------------------------------------------------
+
+           U.F........:[a2]
+           Cidade.....:[a3                                           ]
+           Bairro.....:[a4                                      ]
+           Zona.......:[a5]
+
+           Latitude.........:[a6        ]
+           Longitude........:[a7        ]
+           Grp. Acionamneto.:[a8 ]
+
+           Incluido...:[b4        ] por [b41                ]
+           Atualizado.:[b5        ] por [b51                ]
+
+
+}
+end
+
+ tables datkgpsgeopto
+
+ attributes
+
+   a1  = datkgpsgeopto.geoptocod,
+         comments = " Codigo do ponto geografico";
+
+   a2  = datkgpsgeopto.ufdcod,                 upshift,
+         comments = " Codigo da UF";
+
+   a3  = datkgpsgeopto.cidnom,                 upshift,
+         comments = " Nome da cidade";
+
+   a4  = datkgpsgeopto.brrnom,                 upshift,
+         comments = " Nome do bairro";
+
+   a5  = datkgpsgeopto.endzon,                 upshift,
+         comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+
+   a6  = datkgpsgeopto.lclltt,
+         comments = " Latitude do local";
+
+   a7  = datkgpsgeopto.lcllgt,
+         comments = " Longitude do local";
+
+   a8  = datkgpsgeopto.gpsacngrpcod,
+         comments = " Grupo de Acionamento que pertence este ponto";
+
+   b4  = datkgpsgeopto.caddat,                 noentry;
+   b41 = formonly.cadfunnom,                   noentry;
+
+   b5  = datkgpsgeopto.atldat,                 noentry;
+   b51 = formonly.funnom,                      noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

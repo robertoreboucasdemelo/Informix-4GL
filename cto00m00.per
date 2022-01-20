@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m00                                              Wagner
+                                                                     Akio
+ Pop-up de tipos de solicitante                                      Mar/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+  Tipos de Solicitante
+---------------cto00m00--
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+
+}
+End
+
+tables
+   datksoltip
+
+Attributes
+ a  = datksoltip.c24soltipdes, noentry;
+ b  = datksoltip.c24soltipcod, noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m00(c24soltipdes thru c24soltipcod)
+End

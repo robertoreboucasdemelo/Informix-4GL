@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m39                                      R.Fornax
+                                                             
+ Cadastro de Grupo X Produto                                 Abr/2016
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m39--
+ Grupo......:[a   ][b                                                       ]
+------------------------------------------------------------------------------
+ Produto  Descricao                                  
+                                                 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+ [c    ] [d                                                                ] 
+------------------------------------------------------------------------------
+ Atualizado..:[e          ] por [f                                         ]
+------------------------------------------------------------------------------
+ [j                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.grpprdcod              ,noentry;    
+   b  = formonly.grpprddes              ,noentry;   
+   c  = formonly.itaprdcod              ,comments = " Digite o Codigo do Produto"     ,upshift;   
+   d  = formonly.itaprddes              ,noentry;
+   e  = formonly.atldat                 ,noentry;
+   f  = formonly.funmat                 ,noentry;
+   j  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc91m39(itaprdcod thru itaprddes)
+end

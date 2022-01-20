@@ -1,0 +1,56 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC87M00A.PER                                             #
+# ANALISTA RESP..: SERGIO BURINI                                             #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: EXIBIÇÃO DE ORIENTAÇÃO DE PREENCHIMENTO DE ENDEREÇO.      #
+#............................................................................#
+# DESENVOLVIMENTO: SERGIO BURINI                                             #
+# LIBERACAO......: 18/06/2009                                                #
+#............................................................................#
+#                        * * *  ALTERACOES  * * *                            #
+#                                                                            #
+# DATA        AUTOR FABRICA   PSI/OSF       ALTERACAO                        #
+# ----------  -------------   ------------  -------------------------------- #
+#                                                                            #
+# -------------------------------------------------------------------------- }
+
+database formonly
+
+screen
+
+{											
+[cab                                                                       ]            
+-----------------------------------------------------------------ctc87m00a--            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]            
+[a                                                                         ]                        
+                                                                                        
+[obs                                                                       ]            
+}                                                                           
+end
+
+attributes
+cab = formonly.cab type char, noentry;
+a   = formonly.prnorntxt    , upshift;
+obs = formonly.obs type char, noentry ;
+
+instructions
+    delimiters " "
+    screen record s_ctc87m00a[12](prnorntxt)   
+
+
+
+
+ 

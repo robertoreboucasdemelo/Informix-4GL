@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M00B
+                                                                      Roberto
+ Tela Valida o Usuario e Senha do Funcionario                         Mar/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+           Solicite a Liberacao do Atendimento
+----------------------------------------------cts15m00b--
+
+ Codigo Empresa..:[a |a1                                 ]
+ Matr.Funcionario:[b     |b1                             ]
+
+ Senha....:([c              ])
+
+
+}
+end
+
+tables
+  datkfun
+
+attributes
+
+  a  = datkfun.empcod    ,comments = " Codigo da Empresa"
+		         ,format = "&&"
+                         ,autonext;
+  a1 = formonly.empsgl   ,noentry
+			 ,upshift;
+  b  = datkfun.funmat    ,comments = " Matricula do Funcionario"
+		         ,format = "&&&&&&"
+                         ,autonext;
+  b1 = formonly.funnom   ,noentry
+			 ,upshift;
+  c  = datkfun.funsnh    ,comments = " Senha do Funcionario"
+		         ,invisible
+			 ,upshift;
+
+end
+
+instructions
+  delimiters " "
+end
+

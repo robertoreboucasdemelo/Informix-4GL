@@ -1,0 +1,49 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m22                                      R.Fornax
+                                                             
+ Cadastro de Alerta X Clausula                               Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m22--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ] 
+ Clausula...:[e   ][f                                                       ] 
+------------------------------------------------------------------------------
+                                   
+                                   ALERTA   
+                                       
+ Linha1.....:    [g                                       ] 
+ Linha2.....:    [h                                       ] 
+ Linha3.....:    [i                                       ] 
+ Linha4.....:    [j                                       ] 
+------------------------------------------------------------------------------
+ Atualizado..:[l          ] por [m                                         ]
+------------------------------------------------------------------------------
+ [n                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;    
+   b  = formonly.desper                 ,noentry;    
+   c  = formonly.c24astcod              ,noentry;    
+   d  = formonly.c24astdes              ,noentry;    
+   e  = formonly.clscod                 ,noentry;       
+   f  = formonly.clsdes                 ,noentry;                                                          
+   g  = formonly.linha1                 ,comments = " Digite a Primeira Linha" ,upshift;  
+   h  = formonly.linha2                 ,comments = " Digite a Segunda Linha"  ,upshift;                                              
+   i  = formonly.linha3                 ,comments = " Digite a Terceira Linha" ,upshift;      
+   j  = formonly.linha4                 ,comments = " Digite a Quarta Linha"   ,upshift;      
+   l  = formonly.atldat                 ,noentry;
+   m  = formonly.funmat                 ,noentry;
+   n  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb29m00a                                             Alberto
+
+ Pop-up de tipos de parametros                                       Ago/2006
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+  Parametros Porto Socorro
+
+-------------------------------------ctb29m00a--
+[a                             |b              ]
+[a                             |b              ]
+[a                             |b              ]
+[a                             |b              ]
+[a                             |b              ]
+[a                             |b              ]
+
+}
+End
+
+tables
+   datkgeral
+
+Attributes
+ a  = datkgeral.grlinf, noentry;
+ b  = datkgeral.grlchv, noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctb29m00a( grlinf thru grlchv )
+End
+ 

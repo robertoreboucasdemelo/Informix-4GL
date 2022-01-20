@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA07M00a                                             Ruiz
+ Consult a ultima inclusao do condutor para apolice                  Fev/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+               Consulta ao Condutor do Veiculo
+-----------------------------------------------------cta07m00a--
+
+ Principal Motorista: [a                                      ]
+             C.P.F..: [b           ]-[c ]
+ Segurado...........: [d                                      ]
+             C.P.F..: [e           ]-[f ]
+
+ Outros.............: [g                                      ]
+             C.P.F..: [h           ]-[i ]
+
+}
+End
+
+Tables aeikcdt,
+       gsakseg
+
+Attributes
+  a    = aeikcdt.cdtnom       ,        noentry, upshift;
+  b    = formonly.cgccpfnumc  ,        noentry, upshift;
+  c    = formonly.cgccpfdigc  ,        noentry, upshift;
+  d    = gsakseg.segnom       ,        noentry, upshift;
+  e    = formonly.cgccpfnums  ,        noentry, upshift;
+  f    = formonly.cgccpfdigs  ,        noentry, upshift;
+  g    = formonly.newcdtnom   ,        noentry, upshift;
+  h    = formonly.cgccpfnumn  ,        noentry, upshift;
+  i    = formonly.cgccpfdign  ,        noentry, upshift;
+End
+
+instructions
+  delimiters " "
+end

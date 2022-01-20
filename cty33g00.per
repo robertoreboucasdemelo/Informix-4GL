@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty33g00                                               R.Fornax
+
+ Limites / Utilizacoes - Servico a Residencia                         Fev/2014
+-----------------------------------------------------------------------------}
+
+database formonly 
+screen
+
+
+{
+              Limites de Utilizacao[a]
+
+[b                                             ]
+--------------------------------------cty33g00--
+ Assistencia               Qtd.Utiliz   Limite
+
+ [c                      ]   [d   ]     [e   ]
+ [c                      ]   [d   ]     [e   ]
+ [c                      ]   [d   ]     [e   ]
+ [c                      ]   [d   ]     [e   ]
+ [c                      ]   [d   ]     [e   ]
+ 
+ [f                                          ]  
+}
+
+attributes                            
+    a = formonly.controle              ;           
+    b = formonly.cabecalho    , noentry;           
+    c = formonly.assistencia  , noentry;           
+    d = formonly.qtd_uti      , noentry; 
+    e = formonly.qtd_lim      , noentry;           
+    f = formonly.msg          , noentry;                                      
+end                                   
+                                       
+ instructions                          
+    delimiters " "   
+    screen record s_cty33g00(assistencia thru qtd_lim)                    
+ end                                   

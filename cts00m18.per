@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M18                                              Marcelo
+                                                                     Gilberto
+ Acionamento de prestador para retorno ao local                      Out/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+     Retorno do Prestador para Execucao do Servico
+------------------------------------------cts00m18--
+ Retorno informado?:[c]
+
+ Informado para....:[d                             ]
+
+
+}
+end
+
+tables datmsrvre
+
+attributes
+   c  = datmsrvre.atdsrvretflg                , upshift;
+   d  = formonly.atdsrvretctt                 , upshift;
+end
+
+instructions
+  delimiters " "
+end

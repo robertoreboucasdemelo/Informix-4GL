@@ -1,0 +1,50 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc32m01                                               Marcelo
+                                                                     Gilberto
+ Manutencao do Relacionamento Bloqueio/Assuntos                      Abr/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc32m01--
+ Assuntos p/ bloqueio.:[a     ]
+------------------------------------------------------------------------------
+ Cod  Descricao                                                            Sit
+
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+[b  ][b1                                                                 ] [s]
+
+
+}
+end
+
+ tables datrastblq
+
+ attributes
+
+    a  = datrastblq.blqnum                   ,noentry;
+
+    b  = datrastblq.c24astcod                ,upshift,
+         comments = " Codigo do assunto";
+
+    b1 = formonly.c24astdes                  ,noentry;
+
+    s  = datrastblq.astblqsit,   required    ,upshift,
+         comments = " Situacao: (A)tivo, (C)ancelado";
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc32m01(c24astcod thru astblqsit)
+ end

@@ -1,0 +1,31 @@
+database porto
+screen size 30 by 80
+{
+--------------------------------------ctc59m02--
+Selecione a(s)[nom           ]    F8 para salvar
+------------------------------------------------
+      Código          [nom2          ]
+[a]   [a0 ]           [f000                    ]
+[a]   [a0 ]           [f000                    ]
+[a]   [a0 ]           [f000                    ]
+[a]   [a0 ]           [f000                    ]
+[a]   [a0 ]           [f000                    ]
+
+}
+end
+
+tables
+datkasitip
+
+attributes
+nom  = formonly.nom, noentry;
+nom2 = formonly.nom2, noentry;
+a    = formonly.aux, upshift;
+a0   = datkasitip.asitipcod, noentry;
+f000 = datkasitip.asitipdes, noentry;
+end
+
+instructions
+    delimiters " "
+    screen record assistencias[5] (aux thru datkasitip.asitipdes)
+end

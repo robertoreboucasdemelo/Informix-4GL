@@ -1,0 +1,99 @@
+{-----------------------------------------------------------------------------
+ Nome do form: cte00m00                                                   Ruiz
+                                                                          Akio
+ Cadastro de codigos de assunto                                       Abr/2000
+ ----------------------------------------------------------------------------
+                         * * * A L T E R A C A O * * *
+ Analista Resp. : Ligia Mattge
+ PSI            : 170178 - OSF: 18902
+ ----------------------------------------------------------------------------
+ Data        Autor Fabrica  Alteracao
+ ----------  -------------  -------------------------------------------------
+ 20/05/2003  Gustavo(FSW)   Incluir campo maienvflg.
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------------------------------(cte00m00)--
+ Codigo do Assunto...........:[a  ]
+ Descricao...................:[a1                                      ]
+
+ Cod. agrupamento............:[b ] [b1                                      ]
+ Cod. programa...............:[c ] [c1                                      ]
+
+ Aceita Pendencia?...........:[g]
+ Aceita Historico?...........:[h]
+ Aceita Acao p/ outras Areas?:[i]
+ Acesso pela Web?............:[k]
+ Exibe o Assunto?............:[l]
+ Centro de Custo.............:[i0    ][i1                  ] Peso..: [j]
+ Situacao....................:[d]
+ Incluido....................:[e         ] por [e1                 ]
+ Atualizado..................:[f         ] por [f1                 ]
+
+}
+end
+
+ tables dackass
+        dackassagp
+        dackprgext
+        isskfunc
+
+ attributes
+   a  = dackass.corasscod                       ,upshift,
+        comments = " Codigo do Assunto";
+
+   a1 = dackass.corassdes                       ,upshift,
+        comments = " Descricao do Assunto";
+
+   b  = dackassagp.corassagpcod                 ,upshift,
+        comments = " Codigo do Agrupamento";
+
+   b1 = dackassagp.corassagpdes                 ,upshift,
+        comments = " Descricao do Agrupamento";
+
+   c  = dackprgext.prgextcod                    ,upshift,
+        comments = " Codigo do Programa";
+
+   c1 = dackprgext.prgextdes                    ,upshift,
+        comments = " Descricao do Programa";
+
+   g  = dackass.corasspndflg                    ,upshift,
+        comments = " Aceita Pendencia (S/N)";
+
+   h  = dackass.corasshstflg                    ,upshift,
+        comments = " Aceita Historico (S/N)";
+
+   i  = dackass.maienvflg                       ,upshift, autonext,
+        comments = " Aceita Acao (S/N)";
+
+   i0 = dackass.slccctcod                       ,upshift,
+        comments = " Numero do Centro de custo";
+
+   i1 = formonly.cctnom                         ,noentry;
+
+   j  = dackass.corasspsocod                    ,upshift,
+        comments = " Peso da ligacao";
+
+   d  = dackass.corassstt                       ,upshift,
+        comments = " Situacao: (A)tivo ou (C)ancelado";
+
+
+   e  = dackass.caddat                          ,noentry;
+   e1 = formonly.cadfunnom                      ,noentry;
+   f  = dackass.atldat                          ,noentry;
+   f1 = formonly.funnom                         ,noentry;
+
+   k = dackass.webrlzflg, upshift,
+       comments = "Acesso pela Web (S/N)";
+
+   l = dackass.atdexbflg, upshift,
+       comments = "Exibe o Assunto (S/N)";
+
+ end
+
+ instructions
+      delimiters " "
+ end

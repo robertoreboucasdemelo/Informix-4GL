@@ -1,0 +1,70 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB13M00                                                  Pedro
+                                                                       Marcelo
+ Controle de Servicos - Horarios e Kilometragem                       Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+
+--------------------------------------------------------------------ctb13m00--
+ Servico..:[a |a1     |a2]                         Sit..:[s][s1        ]
+ Prestador:[a3    ][a4                            ]Soc..:[a5      |a51       ]
+ Veiculo..:[a6   ][a7    ][a8                       ]    Custo:[a9           ]
+------------------------------------------------------------------------------
+               SAIDA      |       CHEGADA     |       TRAJETO
+  Seq.     Hora      Km   |    Hora      Km   |   De            Para
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+  [b0]   [b1   ] [b2    ] |  [b3   ] [b4    ] |  [b5        ]  [b6        ]
+
+}
+end
+
+ tables datmservico, datmtrajeto, dpaksocor, datksrr
+
+ attributes
+   a   = datmservico.atdsrvorg, format = "&&",    noentry;
+   a1  = datmservico.atdsrvnum, comments = " Numero do servico"
+                              , format = "&&&&&&&", autonext;
+   a2  = datmservico.atdsrvano, comments = " Ano do servico"
+                              , format = "&&";
+   s   = datmservico.atdfnlflg, upshift, noentry;
+   s1  = formonly.sitdes      , upshift, noentry;
+   a3  = datmservico.atdprscod, format = "&&&&&&"
+                              , noentry;
+   a4  = dpaksocor.nomrazsoc  , upshift, noentry;
+   a5  = datmservico.srrcoddig, comments = " Codigo do socorrista";
+   a51 = datksrr.srrabvnom    , noentry;
+   a6  = datmservico.atdvclsgl, comments = " Sigla do veiculo"
+                             , upshift;
+   a7  = datmservico.socvclcod, noentry;
+   a8  = formonly.vcldes,       noentry;
+
+   a9  = datmservico.atdcstvlr, format = "##,###,##&.&&"
+                              , noentry;
+
+   b0  = datmtrajeto.trjnumseq, noentry;
+   b1  = datmtrajeto.trjorghor, comments = " Hora da saida";
+   b2  = datmtrajeto.trjorgkmt, comments = " Kilometragem da saida";
+   b3  = datmtrajeto.trjdsthor, comments = " Hora da chedada";
+   b4  = datmtrajeto.trjdstkmt, comments = " Kilometragem da chegada";
+   b5  = datmtrajeto.trjorglcl, comments = " Local de partida"
+                              , upshift;
+   b6  = datmtrajeto.trjdstlcl, comments = " Local de destino"
+                              , upshift;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctb13m00(trjnumseq thru trjdstlcl)
+ end

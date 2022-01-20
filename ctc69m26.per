@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m26                                               R.Fornax
+
+ Cadastro de Parametros da Azul                                       Mar/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m26--
+                            CADASTRO DE PARAMETROS
+------------------------------------------------------------------------------
+
+ Processa.......:[a] 
+ Carga Full.....:[b]
+ Carga Diaria...:[c]
+ Apolice Full...:[d          ] ate [e          ] 
+ Apolice Diaria.:[f          ] ate [g          ]
+ Quebra.........:[h    ]
+
+
+
+Atualizado..:[i          ] por [j                                          ]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.processa             , comments = " Processa Azul ?"                    ,upshift;
+    b  = formonly.flag_full            , comments = " Processa Carga Full ?"              ,upshift;  
+    c  = formonly.flag_diaria          , comments = " Processa Carga Diaria ?"            ,upshift;  
+    d  = formonly.azlaplcod_ini_full   , comments = " Informe o Inicio da Apolice Full"   ,upshift;  
+    e  = formonly.azlaplcod_fim_full   , comments = " Informe o Fim da Apolice Full"      ,upshift;
+    f  = formonly.azlaplcod_ini_dia    , comments = " Informe o Inicio da Apolice Diaria" ,upshift;  
+    g  = formonly.azlaplcod_fim_dia    , noentry;   
+    h  = formonly.qtd_quebra           , comments = " Informe a Quantidade de Registros para Commit"   ,upshift;     
+    i  = formonly.atldat               , noentry;
+    j  = formonly.funmat               , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

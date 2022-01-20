@@ -1,0 +1,72 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m30                                               Roberto
+
+ Localiza apolices do Ramo Vida Individual                           Abr/2007
+
+-----------------------------------------------------------------------------
+ 28/10/08 - Carla Rampazzo - PSI 230650 - Decreto 6523
+          - Incluir campo de Atendimento
+-----------------------------------------------------------------------------}
+
+
+database porto
+screen
+{
+-------------------------------------------------------------------cta01m30--
+              Localiza apolices               [k                       ]
+-----------------------------------------------------------------------------
+ Solicitante:[a              ]              Tipo:[b |b1                ]
+-------------------------- Chaves de Localizacao ----------------------------
+ Ramo.........:[c   |c1                                      ]
+ Sucursal.....:[j    |j1                                      ][l           ]
+ Apolice......:[m       ]
+ Segurado.....:[d                                    ] Pessoa:[e]
+ Cgc/Cpf......:[f1          ][f2  ][f3]
+ Proposta.....:[g |h       ]
+ Sem Docto....:[i]
+}
+end
+
+
+ tables gtakramo ,
+        gsakseg  ,
+        datksoltip
+
+
+ attributes
+    k  = formonly.atdnum     type char   ;
+    a  = formonly.solnom        , noentry;
+    b  = datksoltip.c24soltipcod, noentry;
+    b1 = datksoltip.c24soltipdes, noentry;
+    c  = gtakramo.ramcod        , noentry;
+    c1 = gtakramo.ramnom        , noentry;
+    d  = formonly.segnom        , upshift
+                                , comments = " Localiza pelo nome do segurado";
+    e  = formonly.pestip        , upshift
+                                , comments = " Tipo pessoa: (F)isica ou (J)uridica";
+    f1 = gsakseg.cgccpfnum      , autonext
+                                , comments = " Numero do CGC/CPF";
+    f2 = gsakseg.cgcord         , autonext
+                                , comments = " Numero da filial";
+    f3 = gsakseg.cgccpfdig      , autonext
+                                , comments = " Digito do CGC/CPF";
+    g  = formonly.prporg          type decimal
+                                , autonext
+                                , comments = " Localiza pela proposta";
+    h  = formonly.prpnumdig       type decimal
+                                , comments = " Localiza pela proposta";
+    i = formonly.semdocto      , upshift, comments = " Informe 'S' para ligacao sem docto";
+    j  = formonly.succod          type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    j1 = formonly.sucnom        , noentry;
+    l  = formonly.c24paxtxt     , noentry;
+    m  = formonly.aplnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+
+ end
+
+ instructions
+    delimiters " "
+ end

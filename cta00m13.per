@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m13                                               Marcelo
+
+ Consulta itens da apolice
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+                  Itens da apolice
+----------------------------------------------cta00m13--
+    Item  Veiculo                     Placa    Chassi
+
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+[a      ][b                         ][c      ][d       ]
+
+}
+end
+
+tables abbmitem
+
+attributes
+   a = abbmitem.itmnumdig, format = "#######";
+   b = formonly.vcldes;
+   c = formonly.vcllicnum;
+   d = formonly.vclchsfnl;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m13(itmnumdig thru vclchsfnl)
+end

@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA05M01                                               Marcelo
+                                                                      Gilberto
+ Exibe todos os codigos de situacao para reclamacoes                  Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+   Situacao Reclamacao
+---------------cta05m01--
+[a |b                   ]
+[a |b                   ]
+[a |b                   ]
+[a |b                   ]
+
+}
+end
+
+tables
+iddkdominio
+
+attributes
+   a  = iddkdominio.cpocod   ,noentry;
+   b  = iddkdominio.cpodes   ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_cta05m01(cpocod thru cpodes)

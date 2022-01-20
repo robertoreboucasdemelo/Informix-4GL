@@ -1,0 +1,148 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m01                                               Marcelo
+
+ Localiza apolices (Auto, R.E, Transportes)                        Nov/1994
+------------------------------------------------------------------------------
+
+ Alterado em 28/08/2001 por BenildaJMonteiro Psi - 132306
+------------------------------------------------------------------------------
+ 07/10/08 - Carla Rampazzo - PSI 230650 - Decreto 6523 
+	  - Incluir campo de Atendimento
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+-----------------------------(Localiza Apolices)-------------------cta00m01--
+ Convenio:[x1 |x2                ]                   Atendimento:[q         ]
+-----------------------------------------------------------------------------
+ Solicitante:[a              ]Avs.SinisTransp:[x]Tipo:[b |b1                ]
+-------------------------- Chaves de Localizacao ----------------------------
+ Ramo.........:[c   |c1                                      ] Cartao:[l]
+ Placa........:[g      ]  Susep: [a5    ][a6                         ]
+ Sucursal.....:[d    |d1                                      ][p           ]
+ Apolice......:[e       ] Item.:[f     ]Cert:[c2                            ]
+ Segurado.....:[j                                    ] Pessoa:[k]
+ Cgc/Cpf......:[k1          ][k2  ][k3]
+ Proposta.....:[n |o       ]  Vist.Previa:[r1      |r] Vist.Dom.:[h1      |h]
+ Cob.Prov.....:[i1      |i]                            Sem Docto:[y]
+ Protecao Patrimonial:[z]  PSS [z1]
+ Transportes..:[c3]                    Consulta Averbacao Numero:[c4    ]
+ Chassi.......:[m        ]
+ Sinistro.....:[s1  |s2    |s3  ]        Aviso Sin.F10......:[s4    |s5  ]
+ Vst.Sin.Auto.V10 V11.:[v1    |v2  ][v]  Vistoria Sin.RE.V12:[t1    |t2  ][t]
+ Avs.Sin.Auto.N10 N11.:[u1    |u2  ][u]  [w        ]
+}
+end
+
+
+ tables abamdoc    ,
+        abbmveic   ,
+        gtakramo   ,
+        gsakseg    ,
+        datksoltip ,
+        avlmlaudo  ,
+        avbmcobert ,
+        datmatd6523,
+        datkdominio,
+        gsaktel
+
+
+ attributes
+
+    q  = datmatd6523.atdnum     , autonext
+                                , comments = " Numero do Atendimento";
+    a  = formonly.solnom        , upshift
+                                , comments = " Nome do solicitante";
+    x  = formonly.flgavstransp  , upshift
+                                , comments = " Marque (S) para Comunicar Sinistro de Transportes";
+    b  = datksoltip.c24soltipcod, comments = " Tipo do solicitante";
+    b1 = datksoltip.c24soltipdes, noentry;
+    z  = formonly.ies_ppt       , upshift, autonext
+                                , comments = " Protecao Patrimonial? (S)im ou (N)ao";
+    z1 = formonly.ies_pss       , upshift, autonext
+                                , comments = " Porto Seguro Servicos? (S)im ou (N)ao";
+    a5 = formonly.corsus        , upshift;
+    a6 = formonly.cornom        , upshift , noentry;
+    c  = gtakramo.ramcod        , autonext
+                                , comments = " Localiza por apolice";
+    c1 = gtakramo.ramnom        , noentry;
+    l  = formonly.flgcar        , autonext, upshift
+                                , comments = " Cartao de Credito da Porto: (S)im ou (N)ao";
+    c3 = formonly.transp        , autonext , upshift
+                                , comments = " Localiza apolice do Transportes(S/N)";
+    c4 = formonly.trpavbnum     , autonext
+                                , comments = " Digite o Numero da Averbacao";
+    d  = formonly.succod          type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    d1 = formonly.sucnom        , noentry;
+    e  = formonly.aplnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    f  = formonly.itmnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    c2 = formonly.etpctrnum       type decimal
+                                , autonext
+                                , comments = " Localiza pelo nr do certificado";
+    g  = abbmveic.vcllicnum     , upshift
+                                , comments = " Localiza pela placa do veiculo";
+    j  = formonly.segnom        , upshift
+                                , comments = " Localiza pelo nome do segurado";
+    k  = formonly.pestip        , upshift
+                                , comments = " Tipo pessoa: (F)isica ou (J)uridica";
+
+    k1 = gsakseg.cgccpfnum      , autonext
+                                , comments = " Numero do CGC/CPF";
+    k2 = gsakseg.cgcord         , autonext
+                                , comments = " Numero da filial";
+    k3 = gsakseg.cgccpfdig      , autonext
+                                , comments = " Digito do CGC/CPF";
+    m  = abbmveic.vclchsfnl     , upshift
+                                , comments = " Localiza pelo chassi do veiculo";
+    n  = formonly.prporg          type decimal
+                                , autonext
+                                , comments = " Localiza pela proposta";
+    o  = formonly.prpnumdig       type decimal
+                                , comments = " Localiza pela proposta";
+    y = formonly.semdocto      , upshift, comments = " Informe 'S' para ligacao sem docto";
+    p  = formonly.c24paxtxt     , noentry;
+    r  = formonly.vp            , upshift
+                                , comments = "Consulta por Vistoria Previa? (S)im ou (N)ao";
+    r1 = avlmlaudo.vstnumdig    , noentry;
+    h  = formonly.vd            , upshift
+                                , comments = "Consulta por Vistoria Domiciliar? (S)im ou (N)ao";
+    h1 = formonly.vstdnumdig    , noentry;
+    i  = formonly.cp            , upshift
+                                , comments = "Consulta por Cobertura Provisoria? (S)im ou (N)ao";
+    i1 = avbmcobert.cbpnum      , noentry;
+    v1 = formonly.sinautnum     , autonext
+                                , comments = "Numero da Vistoria do Sin.Auto";
+    v2 = formonly.sinautano     , comments = "Ano da Vistoria Sin.Auto"   ;
+    v  = formonly.flgauto       , upshift,comments="Consulta por data?(S/N)";
+    s1 = formonly.sinramcod     , comments = "Ramo do sinistro"           ;
+    s2 = formonly.sinnum        , comments = "Numero do sinistro"         ;
+    s3 = formonly.sinano        , comments = "Ano do sinistro"            ;
+    s4 = formonly.sinvstnum     , autonext
+                                , comments = "Numero do aviso de sinistro";
+    s5 = formonly.sinvstano     , comments = "Ano do aviso de sinistro"   ;
+    t1 = formonly.sinrenum      , autonext
+                                , comments = "Numero da Vistoria Sin.RE";
+    t2 = formonly.sinreano      , comments = "Ano da Vistoria Sin.RE"   ;
+    t  = formonly.flgre         , upshift,comments = "Consulta por data?(S/N)" ;
+    u1 = formonly.sinavsnum     , autonext
+                                , comments = "Numero do Aviso Sin. AUTO";
+    u2 = formonly.sinavsano     , comments = "Ano do Aviso Sin.AUTO"   ;
+    u  = formonly.flgavs        , upshift,comments = "Consulta por data?(S/N)" ;
+    w  = formonly.obs           , noentry;
+    x1 = datkdominio.cpocod     , autonext
+                                , comments = "Numero do Convenio";
+    x2 = datkdominio.cpodes     , noentry;           
+    
+                   
+ end
+
+ instructions
+    delimiters " "
+ end

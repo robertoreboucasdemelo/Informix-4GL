@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts09g01                                                  Pedro
+                                                                       Marcelo
+ Atualiza numero do fax do corretor                                   Out/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      [a1                                 ]
+--------------------------------------------------cts09g01--
+
+ [a     ][b                                       ]
+
+ DDD   :[c   ]
+
+ FAX   :[d                                       ]
+
+ E-Mail:[e                                                 ]
+
+
+}
+end
+
+tables
+   gcakcorr, gcaksusep, gcakfilial
+
+attributes
+   a1  = formonly.txt      , noentry;
+   a   = gcaksusep.corsus  , reverse, noentry;
+   b   = gcakcorr.cornom   , reverse, noentry;
+
+   c   = gcakfilial.dddcod , comments = " Codigo do DDD",
+                             autonext;
+   d   = gcakfilial.factxt , comments = " Numero do fax",
+                             upshift;
+   e   = gcakfilial.maides , comments = " Endereco Eletronico";
+
+instructions
+  delimiters " "
+end

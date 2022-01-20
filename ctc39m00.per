@@ -1,0 +1,64 @@
+database formonly
+
+screen
+{
+-------------------------------------------------------------------ctc39m00---
+ Socorrista    :                     Consult. :[r ]-[q                       ]  
+
+ Tipo Pessoa   :[a]                  CNPJ/CPF :[b1       ]/[b2  ]-[b3]   
+ Nome          :[c                                       ]
+ RG            :[d         ]         UF       :[e ]   
+ Dt. Nascimento:[f         ]         Idade    :[g  ]
+ Nr. CNH       :[h           ]       Categoria:[i ]    Dt.1a Hab.:[j         ]
+ 
+ Situacao      :[k ]-[l                      ]Data ultima analise:[m         ]
+ Incluido em   :[n1        ]as[n2   ]por[n3|n4    |n5                  ]
+ Atualizado em :[o1        ]as[o2   ]por[o3|o4    |o5                  ]
+
+   Prestador                                            Data
+[z|p1    |x|p2                                      ]  [p3        ]
+[z|p1    |x|p2                                      ]  [p3        ]
+[z|p1    |x|p2                                      ]  [p3        ]
+}
+end 
+attributes
+   a  = formonly.pestip       type char, upshift, autonext;
+   b1 = formonly.cgccpfnum    type dec(11),format='#########',autonext;
+   b2 = formonly.cgcord       type smallint, format='####';
+   b3 = formonly.cgccpfdig    type smallint, format='##';
+   c  = formonly.pstcndnom    type char, upshift;
+   d  = formonly.rgenum       type decimal(10,0), format='##########';
+   e  = formonly.rgeufdcod    type char, upshift, autonext;
+   f  = formonly.nscdat       type date;
+   g  = formonly.idade        type smallint, noentry;
+   h  = formonly.cnhnum       type decimal(12,0), format='############';
+   i  = formonly.cnhctgcod    type char, upshift;
+   j  = formonly.cnhpridat    type date;
+   k  = formonly.pstcndsitcod type smallint, format='&&',color = black reverse;
+   l  = formonly.descrsit     type char, noentry,color = black reverse;
+   m  = formonly.rdranlultdat type date, noentry;
+   n1 = formonly.caddat       type date, noentry;
+   n2 = formonly.cadhor       type datetime hour to minute, noentry;
+   n3 = formonly.cademp       type smallint, format='&&', noentry;
+   n4 = formonly.cadmat       type integer, format='&&&&&&', noentry;
+   n5 = formonly.cadnome      type char, noentry;
+   o1 = formonly.atldat       type date, noentry;
+   o2 = formonly.atlhor       type datetime hour to minute, noentry;
+   o3 = formonly.atlemp       type smallint, format='&&', noentry;
+   o4 = formonly.atlmat       type integer, format='&&&&&&', noentry;
+   o5 = formonly.atlnome      type char, noentry;
+   z  = formonly.ghost        type char, autonext, invisible;
+   p1 = formonly.codpres      type smallint, format='&&&&&&';
+   x  = formonly.masctela     type char, noentry;
+   p2 = formonly.nompres      type char, noentry;
+   p3 = formonly.datpres      type date, noentry;
+   r  = formonly.pstcndconcod type smallint, format='&&',color = black reverse;
+   q  = formonly.descrcon     type char, noentry,color = black reverse;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc39m00(ghost thru datpres)
+end
+
+

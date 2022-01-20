@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA08M00                                                  Ruiz 
+
+ Mostra Servicos Gratuitos da Apolice                                 Abr/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+ 
+{
+--------------------------------------------------------------------cta08m00--
+ Vigencia Apolice:[a         ]a[a1        ]   Cat.:[a2 ]
+ Veiculo.........:[b    ][b1                                                ]
+ Ano.Modelo......:[c    ]   Placa :[d      ]  Chassi : [e                   ]
+ Corretor........:[f     ]  [g                         ]
+ Cidade Trafego..:[h                                                     ]
+------------------------------------------------------------------------------
+ Cod.     Descricao
+------------------------------------------------------------------------------
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+[i1  ]   [i2                                      ]([j])[k           ]
+
+[l                                                                           ]
+}
+end
+tables
+agckdisp
+adbmbaixa
+
+attributes
+a    = formonly.viginc  ,            noentry;
+a1   = formonly.vigfnl  ,            noentry;
+a2   = formonly.ctgtrfcod,           noentry;
+b    = adbmbaixa.vclcoddig,          noentry;
+b1   = formonly.vclnom,              noentry;
+c    = adbmbaixa.vclanomdl,          noentry;
+d    = adbmbaixa.vcllicnum,          noentry;
+e    = formonly.chassi,              noentry;
+f    = formonly.corsus type char,    noentry;
+g    = formonly.cornom    ,          noentry;
+h    = formonly.vclcircid ,          noentry;
+i1   = agckdisp.discoddig,           noentry;
+i2   = agckdisp.disnom,              noentry;
+j    = formonly.opcao ,              upshift;
+k    = formonly.descr,               noentry;
+l    = formonly.msg,                 noentry;
+end
+
+instructions
+     delimiters " "
+     screen record s_cta08m00 (discoddig thru descr)
+end

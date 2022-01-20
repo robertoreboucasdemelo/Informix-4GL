@@ -1,0 +1,57 @@
+{-------------------------------------------------------------------------------
+ Nome do Form: CTN05C03                                                Ruiz   
+                                                                               
+ Mostra os postos dos servicos gratuitos                               Abr/2002
+-------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn05c03--
+Servico:[c003][c004                                  ]
+------------------------------------------------------------------------------
+                                                                             
+R.Social:[a003                                    ] Codigo:[a004  ][b001     ]
+Endereco:[a005                                    ]   Bairro:[a006           ]
+Cidade..:[a007                ][uf]Tel:[a008][a009                           ]
+Horarios:[a010                                                               ]
+         [a011                                                               ]
+[a012                                                                        ]
+
+Observ..:[a013                                                              ]
+         [a014                                                              ]
+[a015                                                                        ]
+[a016                                                                        ]
+
+
+}
+end
+
+tables avckposto, agckdisp, avckservico
+
+attributes
+c003 = agckdisp.discoddig , comments = " Codigo do servico";
+c004 = formonly.descricao ,             noentry;
+a003 = avckposto.pstsgl   ,             noentry;
+a004 = avckposto.vstpstcod,             noentry;
+b001 = formonly.tpposto   ,             noentry,reverse;
+a005 = avckposto.endlgd   ,             noentry;
+a006 = avckposto.endbrr   ,             noentry;
+a007 = avckposto.endcid   ,             noentry;
+uf   = avckposto.endufd   ,             noentry;
+a008 = avckposto.dddcod   ,             noentry;
+a009 = avckposto.teltxt   ,             noentry;
+a010 = formonly.horsegsex ,             noentry;
+a011 = formonly.horsabdom ,             noentry;
+a012 = formonly.disposit  ,             noentry;
+a013 = formonly.c24obs1   ,    upshift, noentry;
+a014 = formonly.c24obs2   ,    upshift, noentry;
+a015 = formonly.aviso1    ,    upshift, noentry;
+a016 = formonly.aviso2    ,    upshift, noentry;
+end
+
+instructions
+     screen record s_ctn05c03(pstsgl thru aviso2)
+     delimiters " "
+end

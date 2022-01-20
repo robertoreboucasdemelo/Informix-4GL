@@ -1,0 +1,50 @@
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctb10m10---
+
+ Nro. Tarifa..: [a1  ] [a2                                       ]
+ Natureza RE..: [a3  ] [a4                                       ]
+
+ Cadastro ....: [a5        ] por [a6                             ]
+
+Vigencia  Vigencia Valor   Vlr.Srv.  Vlr.desc  Comp.
+ Inicial   Final   Servico   Adici.  Srv.Mult   MO    Alterado por
+--------  -------- -------- --------  ------- ------- ------------------------
+
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+[b1      |b2      |b3      |b4      |b6      |b7      |b9                  |a]
+
+
+}
+end
+
+attributes
+
+a1 = formonly.soctrfcod;
+a2 = formonly.soctrfdes,noentry;
+a3 = formonly.socntzcod;
+a4 = formonly.socntzdes,noentry;
+a5 = formonly.caddat,   noentry;
+a6 = formonly.nome,     noentry;
+
+b1 = formonly.viginc type date, format = "dd/mm/yy";
+b2 = formonly.vigfnl type date, format = "dd/mm/yy";
+b3 = formonly.srvrmevlr;
+b4 = formonly.srvrmedifvlr;
+b6 = formonly.srvrmedscmltvlr;
+b7 = formonly.mobcmpvlr;
+{b8 = formonly.atldat type date, format = "dd/mm/yy" , noentry;}
+b9 = formonly.funnom,noentry;
+a  = formonly.ghost,invisible, noentry;
+
+end
+
+instructions
+   screen record s_ctb10m10[06](viginc thru ghost)
+   delimiters " "
+

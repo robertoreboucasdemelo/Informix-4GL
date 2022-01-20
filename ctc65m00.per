@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc65m00                                     Luiz Alberto, Meta 
+ Cadastro de naturezas de socorro                                     Set/2007
+-----------------------------------------------------------------------------}
+
+database porto 
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc65m00--
+   Codigo......:[a ] - [b                                 ]
+------------------------------------------------------------------------------
+  Grupo      Descricao                 Informa        Tempos em HHH:MM       
+                                      Prestador  Acionamento  Aceite   Aviso 
+  [d ]      [e                       ]   [f]    [g      ]   [h      ][i      ]
+  [d ]      [e                       ]   [f]    [g      ]   [h      ][i      ]
+  [d ]      [e                       ]   [f]    [g      ]   [h      ][i      ]
+  [d ]      [e                       ]   [f]    [g      ]   [h      ][i      ]
+  [d ]      [e                       ]   [f]    [g      ]   [h      ][i      ]
+
+ F1-Inc  F2-Exc  F3-Prox  F4-Ant  F17-Sair 
+------------------------------------------------------------------------------
+}
+end
+
+tables
+ datrgrpntz
+end 
+
+attributes
+a = formonly.socntzcod       type smallint;
+b = formonly.socntzdes       type char, noentry;
+d = formonly.socntzgrpcod    type smallint;
+e = formonly.socntzgrpdes    type char, noentry;
+f = datrgrpntz.srvabrprsinfflg, upshift;
+g = datrgrpntz.atmacnatchorqtd;
+h = datrgrpntz.srvacthorqtd;
+i = datrgrpntz.cliavsenvhorqtd;
+end
+
+instructions
+ delimiters ' '
+ screen record s_ctc65m00[5] ( socntzgrpcod thru cliavsenvhorqtd)
+end

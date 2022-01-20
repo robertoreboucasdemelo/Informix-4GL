@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC11M00                                        Pedro
+                                                             Marcelo
+ Custo dos servicos realizados pela frota porto               Dez/94
+--------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc11m00--
+                      VALORES PARA CUSTO DOS SERVICOS
+------------------------------------------------------------------------------
+
+
+   Hora Trabalhada..:[c1               ]
+
+
+   Km Rodado Guincho:[c2               ]
+
+
+   Km Rodado Veiculo:[c3               ]
+
+
+
+
+
+}
+end
+
+attributes
+   c1   = formonly.hortrab       type dec(15,5), format = "---,---,--&.&&&&&",
+          comments = " Valor da Hora Trabalhada";
+   c2   = formonly.kmguincho     type dec(15,5), format = "---,---,--&.&&&&&",
+          comments = " Valor do KM Rodado Guincho";
+   c3   = formonly.kmveiculo     type dec(15,5), format = "---,---,--&.&&&&&",
+          comments = " Valor do KM Rodado Veiculo";
+end
+
+instructions
+   delimiters " "
+end
+

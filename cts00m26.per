@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M26                                              Marcus  
+                                                                     Ruiz     
+ Informacoes sobre a etapa do acionamento pela internet              Ago/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+-----------------------------------------------------------------cts00m26--
+                  Informacoes sobre a Etapa Internet           
+---------------------------------------------------------------------------
+ Status...:[b5             ]     Data...:[b10       ]     Hora...:[b15  ]      
+ Origem...:[b20                ] Usuario:[b30                  ]-[b40    ]
+ Prestador:[b50                  ]
+
+ Motivo:..:[b60                                                    ]
+                                                               
+ Obs......:[b70                                                    ]         
+
+}
+End
+
+Tables datmsrvint,isskfunc,datketapa
+
+Attributes
+  b5   = datketapa.atdetpdes  ,        noentry;
+  b10  = datmsrvint.caddat    ,        noentry;
+  b15  = datmsrvint.cadhor    ,        noentry;
+  b20  = formonly.origem      ,        noentry;
+  b30  = isskfunc.funnom      ,        noentry;
+  b40  = isskfunc.dptsgl      ,        noentry;
+  b50  = formonly.nomgrr      ,        noentry;
+  b60  = formonly.etpmtvdes   ,        noentry;
+  b70  = formonly.srvobs      ,        noentry;
+End
+
+Instructions
+  delimiters " "
+End

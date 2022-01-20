@@ -1,0 +1,32 @@
+{--------------------------------------------------------------------
+ Nome do form: cts00m18                                        Robert
+ PopUp faixa mensal - Circular 380                           Jun/2010
+--------------------------------------------------------------------}
+                                                             
+database formonly                                               
+screen                                                       
+{                                                        
+ [b                              ]
+------------------------cts00m18--                   
+ [a                             ]                   
+ [a                             ]
+ [a                             ]
+ [a                             ]
+ [a                             ]
+ [a                             ]
+}                                                            
+                                                             
+end                                                          
+                                                                                                                
+attributes                                                             
+
+a = formonly.faixa_mensal                                    
+	    ,noentry;	                                     
+b = formonly.texto,reverse
+	    ,noentry;
+end                                                          
+                                                             
+instructions                                                 
+delimiters " "                                               
+                                                             
+screen record s_ctc00m18_faixa[6](faixa_mensal)              

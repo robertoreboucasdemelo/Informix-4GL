@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m027                                             Gilberto
+                                                                      Marcelo
+ Pesquisa apolice por licenca - Garantia estendida (ramo 16)         OUT/1997
+-----------------------------------------------------------------------------}
+
+ Database porto
+ Screen
+{
+--------------------------------------------------------------------cta01m27--
+ Suc    Apolice   Vg.Inicial   Vig.Final   Segurado
+------------------------------------------------------------------------------
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+[a    ][b        ][c         ][d         ][e                            |f   ]
+
+}
+ End
+
+ Tables  rsamseguro, rsdmdocto, gsakseg
+
+ Attributes
+   a = rsamseguro.succod;
+   b = rsamseguro.aplnumdig;
+   c = rsdmdocto.viginc;
+   d = rsdmdocto.vigfnl;
+   e = gsakseg.segnom; 
+   f = rsamseguro.ramcod, invisible, noentry;
+ End
+
+ Instructions
+   delimiters " "
+  screen record s_cta01m27 (succod thru ramcod)
+ End

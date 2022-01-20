@@ -1,0 +1,262 @@
+#-----------------------------------------------------------------------------# 
+# Porto Seguro Cia Seguros Gerais                                             # 
+#.............................................................................# 
+# Sistema........: Regras Siebel                                              # 
+# Modulo.........: ctc69m01                                                   # 
+# Objetivo.......: Cadastro de Descricao                                      # 
+# Analista Resp. : Amilton Pinto                                              # 
+# PSI            :                                                            # 
+#.............................................................................# 
+# Desenvolvimento: R.Fornax                                                   # 
+# Liberacao      : 14/08/2013                                                 # 
+#.............................................................................# 
+
+globals  "/homedsa/projetos/geral/globals/glct.4gl"      
+
+define   m_prepare  smallint  
+
+define mr_ctc69m01 record  
+     cabtxt     char(60)   
+   , linha1     char(60)   
+   , linha2     char(60)   
+   , linha3     char(60)   
+   , linha4     char(60)  
+   , rodtxt     char(60) 
+   , confirma   char(01)   
+end record  
+
+define mr_retorno record
+	  texto char(240)
+end record
+
+
+#------------------------------------------------------------------------------    
+function ctc69m01_prepare()                                                        
+#------------------------------------------------------------------------------    
+                                                                                   
+define l_sql char(1000)                                                            
+                                                                                   
+    let l_sql = ' select srvgrptipdestxt    '                                           
+              , '  from datksrvgrptip       '                                
+              , '  where srvgrptipcod = ?   '                                           
+    prepare p_ctc69m01_001 from l_sql                                                  
+    declare c_ctc69m01_001 cursor for p_ctc69m01_001                                   
+    
+    let l_sql = ' select srvdestxt    '           
+              , '  from datksrv       '   
+              , '  where srvcod = ?   '              
+    prepare p_ctc69m01_002 from l_sql                                                  
+    declare c_ctc69m01_002 cursor for p_ctc69m01_002                                   
+                                                                 
+
+    let m_prepare = true
+
+
+end function
+
+#------------------------------------------------------------ 
+ function ctc69m01_inclui(lr_param)                            
+#------------------------------------------------------------ 
+ 
+define lr_param record   
+	prog   integer,
+	codigo integer          
+end record                 
+
+initialize mr_ctc69m01.*, mr_retorno.* to null
+
+if m_prepare is null or      
+   m_prepare <> true then    
+   call ctc69m01_prepare()   
+end if                       
+  
+  open window ctc69m01 at 9,8 with form "ctc69m01"
+  attribute(border, form line first, message line last - 1) 
+                                                  
+  call ctc69m01_cabecalho_rodape(lr_param.prog)   
+     
+  call ctc69m01_carrega(lr_param.prog,lr_param.codigo)       
+    
+  call ctc69m01_input()   
+  
+  close window ctc69m01            
+
+  return mr_retorno.texto
+
+end function
+
+#------------------------------------------------------------                                       
+ function ctc69m01_input()                                                       
+#------------------------------------------------------------              
+                                                                                                                                        
+define lr_retorno record
+	confirma char(01)
+end record
+
+initialize lr_retorno.* to null
+
+
+      
+  input by name mr_ctc69m01.linha1,   
+  	            mr_ctc69m01.linha2,   
+  	            mr_ctc69m01.linha3,                     
+                mr_ctc69m01.linha4 without defaults               
+                                                                          
+                                                                          
+     before field linha1                                                                                                                         
+            display by name mr_ctc69m01.linha1  attribute (reverse)     
+                                                                          
+     after  field linha1                                              
+            display by name mr_ctc69m01.linha1
+            
+     before field linha2                                                  
+            display by name mr_ctc69m01.linha2  attribute (reverse)       
+                                                                          
+     after  field linha2                                                  
+            display by name mr_ctc69m01.linha2                           
+            
+     before field linha3                                           
+            display by name mr_ctc69m01.linha3  attribute (reverse)
+                                                                   
+     after  field linha3                                           
+            display by name mr_ctc69m01.linha3                     
+     
+     before field linha4                                           
+            display by name mr_ctc69m01.linha4  attribute (reverse)
+                                                                   
+     after  field linha4                                           
+            display by name mr_ctc69m01.linha4                     
+     
+    
+     let lr_retorno.confirma = cts08g01("C","S","",    
+                                       " CONFIRMA",          
+                                       " DESCRICAO?",              
+                                       "")                
+    
+     if lr_retorno.confirma = "N" then
+     	  next field linha1
+     end if	  
+    
+    
+     let mr_retorno.texto = mr_ctc69m01.linha1, 
+                            mr_ctc69m01.linha2,
+                            mr_ctc69m01.linha3,
+                            mr_ctc69m01.linha4
+         
+   end input  
+    
+       
+end function  
+ 
+#------------------------------------------------------------                                                              
+ function ctc69m01_cabecalho_rodape(lr_param)                            
+#------------------------------------------------------------ 
+
+define lr_param record  
+	prog integer          
+end record                 
+
+   case lr_param.prog 
+   	 when 1
+   	 	   let mr_ctc69m01.cabtxt = "                    DESCRICAO DO GRUPO"
+     when 2
+         let mr_ctc69m01.cabtxt = "                  DESCRICAO DO SERVICO"  
+   end case
+
+   let mr_ctc69m01.rodtxt = "                       <CTRL-C> Sair" 
+   
+   display by name mr_ctc69m01.cabtxt 
+   display by name mr_ctc69m01.rodtxt
+
+end function
+
+#------------------------------------------------------------       
+ function ctc69m01_consulta(lr_param)                                 
+#------------------------------------------------------------       
+                                                                    
+define lr_param record                                              
+	prog   integer,
+	codigo integer                                                      
+end record                                                          
+                                                                    
+initialize mr_ctc69m01.*, mr_retorno.* to null 
+
+   if m_prepare is null or     
+     m_prepare <> true then   
+     call ctc69m01_prepare()  
+   end if                                        
+                                                                    
+  open window ctc69m01 at 9,8 with form "ctc69m01"                  
+  attribute(border, form line first, message line last - 1)         
+                                                                    
+  call ctc69m01_cabecalho_rodape(lr_param.prog)                            
+                                                                    
+  call ctc69m01_carrega(lr_param.prog,lr_param.codigo)  
+  
+  call ctc69m01_seleciona()                                           
+                                                                    
+  close window ctc69m01                                                                                        
+                                                                    
+end function
+
+#------------------------------------------------------------                                                                         
+ function ctc69m01_carrega(lr_param)                                        
+#------------------------------------------------------------                 
+                                                                              
+define lr_param record                                                        
+	prog   integer, 
+	codigo integer  	                                                                
+end record 
+
+define lr_retorno record
+	descricao char(240)                                                                   
+end record
+
+initialize lr_retorno.* to null
+                                                                              
+   case lr_param.prog                                                         
+   	 when 1     
+   	 	   open c_ctc69m01_001 using lr_param.codigo
+   	 	   whenever error continue    
+   	 	   fetch c_ctc69m01_001 into lr_retorno.descricao 
+   	 	   whenever error stop
+   	 	
+   	  when 2                                              	
+   	  	   open c_ctc69m01_002 using lr_param.codigo      	
+   	  	   whenever error continue                       	
+   	  	   fetch c_ctc69m01_002 into lr_retorno.descricao 	
+   	  	   whenever error stop                            	   
+   	 	            	 	                               
+   end case         
+   
+   let mr_ctc69m01.linha1  = lr_retorno.descricao[01,60]
+   let mr_ctc69m01.linha2  = lr_retorno.descricao[61,120]
+   let mr_ctc69m01.linha3  = lr_retorno.descricao[121,180]
+   let mr_ctc69m01.linha4  = lr_retorno.descricao[181,240]  
+   
+   display by name mr_ctc69m01.linha1  
+   display by name mr_ctc69m01.linha2  
+   display by name mr_ctc69m01.linha3  
+   display by name mr_ctc69m01.linha4  
+
+end function
+
+#------------------------------------------------------------ 
+ function ctc69m01_seleciona()                          
+#------------------------------------------------------------                                                           
+                                                                              
+   input by name mr_ctc69m01.confirma without defaults 
+   	
+      before field confirma                                          	
+             display by name mr_ctc69m01.confirma  attribute (reverse)	
+                                                                    	  
+      after  field confirma                                              
+             display by name mr_ctc69m01.confirma                         
+                                                                               
+      on key (interrupt) 
+         exit input      
+   
+   end input
+   
+                                                                               
+end function                                                                  

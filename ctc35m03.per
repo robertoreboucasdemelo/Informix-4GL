@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC35M03                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de Itens de vistoria                                        Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m03--
+      Codigo......:[a1  ]
+------------------------------------------------------------------------------
+
+
+      Descricao...:[a2                                                ]
+
+      Situacao....:[s]
+
+
+
+
+      Incluido....:[a3        ]por[a31                ]
+      Atualizado..:[a4        ]por[a41                ]
+
+
+
+}
+end
+
+tables datkvstitm
+
+attributes
+ a1   = formonly.socvstitmcod,
+        comments = " Codigo do item "                      ;
+
+ a2   = datkvstitm.socvstitmdes,
+        comments = " Descricao do item ",          upshift;
+
+ s    = datkvstitm.socvstitmsit,
+        comments = " Situacao do item: (A)tivo ou (C)ancelado", upshift;
+
+ a3   = datkvstitm.caddat,                              noentry;
+ a31  = formonly.cadfunnom,                             noentry;
+
+ a4   = datkvstitm.atldat,                              noentry;
+ a41  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

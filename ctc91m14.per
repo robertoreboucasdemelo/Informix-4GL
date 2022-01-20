@@ -1,0 +1,67 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc91m14                                                Helder
+                                                                      Oliveira
+ Cadastro CAR                                                         Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m14--
+ Cod.:[a1  ]  Nome.:[a2                                              ]Ativo[a]
+[l1                                                                          ]
+ Tp.Usuario:[b]  Empresa...:[b1]  Matricula.:[b2    ]
+ Nome......:[b3                                                ]
+[l2                                                                          ]
+ CEP.......:[g1   |g2 ]  Latitude...:[g3         ] Longitude.:[g4         ]
+ Tp.Lograd.:[c1        ] Logradouro.:[c2                                     ]
+ Numero....:[d1        ] Complemento:[d2                                     ]
+ Bairro....:[e1                                                 ]
+ Cidade....:[f1                                                 ] UF.:[f2]
+[l3                                                                          ]
+ DDD/Telef.:[h1  |h2       ]  DDD/Fax...:[h3  |h4       ]
+ Hor.Atend.:[i1   ]as[i2   |i3                                              ]
+------------------------------------------------------------------------------
+  Alterado em: [k1        ] por: [k2                                      ]
+------------------------------------------------------------------------------
+}
+end
+
+ attributes
+    a1 = formonly.atdcencod   , upshift, comments = " Codigo do CAR";
+    a2 = formonly.atdcennom   , upshift, comments = " Nome do CAR";
+    a  = formonly.atoflg      , upshift, comments = " C.A.R. Ativo ? (S/N)";
+    b  = formonly.rspusrtip   , upshift, comments = " Tipo de Usuario do Responsavel";
+    b1 = formonly.rspempcod   , upshift, comments = " Codigo da Empresa do Responsavel";
+    b2 = formonly.rspfunmat   , upshift, comments = " Matricula do Responsavel";
+    b3 = formonly.rspfunnom   , upshift, noentry;
+    g1 = formonly.cepnum      type decimal  , upshift, comments = " ENDERECO - CEP",autonext, format = "&&&&&";
+    g2 = formonly.cepcmpnum   type decimal  , upshift, comments = " ENDERECO - Complemento CEP", format = "&&&";
+    c1 = formonly.lgdtipdes   , upshift, comments = " ENDERECO - Tipo de Logradouro";
+    c2 = formonly.lgdnom      , upshift, comments = " ENDERECO - Nome do Logradouro";
+    d1 = formonly.lgdnum      , upshift, comments = " ENDERECO - Numero";
+    d2 = formonly.endcmpdes   , upshift, comments = " ENDERECO - Complemento";
+    e1 = formonly.brrnom      , upshift, comments = " ENDERECO - Bairro";
+    f1 = formonly.cidnom      , upshift, comments = " ENDERECO - Cidade";
+    f2 = formonly.endufdsgl   , upshift, comments = " ENDERECO - UF";
+    g3 = formonly.atdcenltt   , upshift, comments = " Latitude"  ;
+    g4 = formonly.atdcenlgt   , upshift, comments = " Longitude" ;
+    h1 = formonly.teldddnum   , upshift, comments = " DDD Telefone";
+    h2 = formonly.telnum      , upshift, comments = " Numero Telefone";
+    h3 = formonly.faxdddnum   , upshift, comments = " DDD Fax";
+    h4 = formonly.faxnum      , upshift, comments = " Numero Fax";
+    i1 = formonly.atdinchor   , upshift, comments = " Hora Inicio do Atendimento",autonext,picture = "##:##";
+    i2 = formonly.atdfnlhor   , upshift, comments = " Hora Final do Atendimento",autonext,picture = "##:##";
+    i3 = formonly.atdsemdiades, upshift, comments = " Dias da semana de Atendimento";
+    k1 = formonly.atldat      , upshift, noentry;
+    k2 = formonly.atlfunnom   , upshift, noentry;
+    l1 = formonly.label1      , upshift, noentry;
+    l2 = formonly.label2      , upshift, noentry;
+    l3 = formonly.label3      , upshift, noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

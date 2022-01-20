@@ -1,0 +1,84 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta19m00                                               JUNIOR 
+ Espelho da Apolice Itau.                                            Jul/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+Atendimento...:[a         ] Suc:[b2   |b7                                    ]
+--------------------------------------------------------------------cta21m00--
+ Cia:[b1] Apl:[b3       ] Item:[b4     ] End:[b5   ][b6                      ]
+------------------------------------------------------------------------------
+ Servico.....:[h   |h1                                                       ]
+ Produto.....:[c1  |c2                                                       ]
+  
+------------------------------------------------------------------------------
+ Proposta:[e1                ]         |Tp. Morad..: [f1|f4                  ]
+ Vig.Apl.:[e4        ]a[e5        ]    |Tp. Resid..: [f2|f5                  ]
+ Segmento:[e6                         ]|
+ Situacao:[e7             ]            |
+ -----------------------------------------------------------------------------
+ Segurado:[g1                                                                ]
+ Fone....:[g2  ][g3       ]            |Tipo....:[l          ]
+ Susep...:[g4    ]                     |CGC/CPF.:[j                          ]
+ Corretor:[g5                         ]|VIP.....:[w  ]
+ Fone....:[g6  ][g7       ][x]         |
+------------------------------------------------------------------------------
+[d                                                                           ]
+}
+end
+tables gcakcorr       ,
+       gcaksusep      ,
+       gabksuc        ,
+       datmatd6523
+
+attributes
+
+   a   = datmatd6523.atdnum          , noentry, format = "<<<<<<<<&&";
+   b1  = formonly.itaciacod          , noentry; 
+   b2  = formonly.succod type decimal, noentry, format = "###&&";
+   b3  = formonly.aplnum             , noentry;
+   b4  = formonly.aplitmnum          , noentry;
+   b5  = formonly.aplseqnum          , noentry;
+   b6  = formonly.solnom             , upshift, noentry;
+   b7  = gabksuc.sucnom              , upshift, noentry;
+   c1  = formonly.prdcod             , noentry;
+   c2  = formonly.prddes             , upshift, noentry;
+   e1  = formonly.prpnum             , noentry;
+   e4  = formonly.itaaplvigincdat    , noentry;
+   e5  = formonly.itaaplvigfnldat    , noentry;
+   e6  = formonly.sgmdes             , noentry;
+   e7  = formonly.sitdoc             , noentry;   
+   f1  = formonly.rscsegimvtipcod    , noentry;
+   f2  = formonly.rscsegrestipcod    , noentry;   
+   f4  = formonly.rscsegimvtipdes    , noentry;
+   f5  = formonly.rscsegrestipdes    , noentry;
+   g1  = formonly.segnom             , upshift, noentry;
+   g2  = formonly.segresteldddnum    , noentry;
+   g3  = formonly.segrestelnum       , noentry;
+   g5  = gcakcorr.cornom             , upshift, noentry;
+   g4  = gcaksusep.corsus            , upshift, noentry;
+   g6  = formonly.dddtel type decimal, noentry, format = "&&&&";
+   g7  = formonly.numtel type decimal, noentry;   
+   h   = formonly.srvcod             , noentry;
+   h1  = formonly.srvdes             , upshift, noentry;
+   j   = formonly.cgccpf type decimal, noentry;      
+   l   = formonly.pestip             , noentry;
+   d   = formonly.label2             , noentry;
+   w   =   formonly.vipsegflg        , upshift, noentry;
+   x   = formonly.seta               , invisible;
+   
+   
+   
+   
+   
+   
+   
+   
+   
+end 
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,60 @@
+ database porto
+ screen size 24 by 80
+{
+
+
+----------------------------------------------------------------(ctc58m01)---
+Agrupamento :[f  ] - [f01                                               ]
+-----------------------------------------------------------------------------
+Ramo               Centro de Custo        Peso       Vigencia          Stt 
+------------------ ---------------------- ---- ----------------------- ------
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+[a1  |a2          |a3   ][a4             ][b] [a6        ][a7         ][c][g]
+
+[obs                                                                        ] 
+}
+
+tables
+   dattastcct
+  ,dattagpcct
+  ,datkassunto
+  ,datkastagp
+  ,ctokcentrosuc
+  ,gtakramo
+
+attributes
+
+f= formonly.c24astagp         type char, upshift, comments =
+"Codigo do Agrupamento";
+f01= formonly.c24astagpdes      type char, upshift, noentry; 
+a1=dattagpcct.ramcod,comments="Codigo do ramo";
+a2=gtakramo.ramnom,noentry;
+a3=dattagpcct.cctcod,comments="Codigo do centro de custo";
+a4=ctokcentrosuc.cctnom,noentry;
+b=dattagpcct.corasspsocod,comments="Peso";
+a6=dattagpcct.viginc,comments="Vigencia inicial";
+a7=dattagpcct.vigfnl,comments="Vigencia final";
+c=dattagpcct.cctagpstt,comments="Situacao";
+g=formonly.flg type char, noentry ;
+obs = formonly.obs type char, noentry ;
+end
+
+instructions
+  delimiters " "
+  screen record s_tela[09]
+      (ramcod,
+       ramnom,
+       cctcod,
+       cctnom,
+       corasspsocod,
+       viginc,
+       vigfnl,
+       cctagpstt,flg)
+End

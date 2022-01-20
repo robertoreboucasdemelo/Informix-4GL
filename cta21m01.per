@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta19m01                                               FORNAX 
+ Espelho da Apolice Itau. Consulta Endereco Segurado                  Jul/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+--------------------------------------------------------------------cta21m01--
+                             ENDERECO RISCO                                    
+------------------------------------------------------------------------------
+ Logradouro.:[a1                                       ]Numero..:[a2   ]       
+ Complemento:[a3                                       ]                       
+ Bairro.....:[a4                                       ]CEP.....:[a5   |a6 ]
+ Cidade.....:[a7                                       ]UF......:[a8]          
+ Tel.Resid..:[a9  ]-[a10       ]
+------------------------------------------------------------------------------
+                            ENDERECO SEGURADO                                 
+------------------------------------------------------------------------------
+ Logradouro.:[b1                                       ]Numero..:[b2   ]       
+ Complemento:[b3                                       ]                       
+ Bairro.....:[b4                                       ]CEP.....:[b5   |b6 ]
+ Cidade.....:[b7                                       ]UF......:[b8]         
+ Tel.Resid..:[b9  ]-[b10       ]  
+------------------------------------------------------------------------------
+}
+end
+tables 
+  gcaksusep
+attributes
+
+   a1  = formonly.rsclgdnom      ;
+   a2  = formonly.rsclgdnum      ;
+   a3  = formonly.rsccpldes   ;
+   a4  = formonly.rscbrrnom      ;
+   a5  = formonly.rsccepcod      type integer, format='&&&&&';
+   a6  = formonly.rsccepcplcod   type integer, format='&&&';
+   a7  = formonly.rsccidnom      ;
+   a8  = formonly.rscestsgl      ;
+   a9  = formonly.ddd_telefone_risco;
+   a10 = formonly.telefone_risco    ;
+                                      
+   b1  = formonly.seglgdnom         ;
+   b2  = formonly.seglgdnum         ;
+   b3  = formonly.seglcacpldes       ;
+   b4  = formonly.brrnom         ;
+   b5  = formonly.cepcod         type integer, format='&&&&&';
+   b6  = formonly.cepcplcod      type integer, format='&&&';
+   b7  = formonly.segcidnom         ;
+   b8  = formonly.estsgl         ;
+   b9  = formonly.dddcod   ; 
+   b10 = formonly.telnum      ;
+                                      
+end 
+   
+instructions
+   delimiters " "
+end
+   
+   
+   

@@ -1,0 +1,97 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M00                                              Marcelo
+                                                                     Gilberto
+ Aviso de sinistro                                                   Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+ Aviso:[a10   |a15 ]     AVISO DE SINISTRO[a30     ]         [a20            ]
+--------------------------------------------------------------------cts18m00--
+[b10                                               ] Fone..:[b20 |b25      ]
+[b30                                     ]  [b35   ] Fone..:[b40 |b45      ]
+[b50                                               ] Placa.:[b55    ][b60  ]
+ Chassi..:[b70                 ] Fab/Mod:[b80 |b85 ] Sinist:[b90       |b95  ]
+ Apolice.:[b96                             ]
+------------------------------------------------------------------------------
+ Terceiro:[c10                                 ]Cgc/Cpf:[c20      ][c25 ][c2]
+ Endereco:[c30                                     ]
+ Bairro..:[c40                 ]   Cidade....:[c45                 ]  UF:[c4]
+ Telefone:[c50 ][c55      ]
+                                                                          [c7]
+ Veic/Bem:[c60  |c65                                     ]Cor....:[c70       ]
+ Chassi..:[c80                 ]   Licenca...:[c85    ]   Fab/Mod:[c90 ][c95 ]
+ Seguro ?:[d] Seguradora:[d10                      ]    Apolice.:[d15        ]
+ Vig.Apol:[d16       ] a [d17       ] Guinchado:[e][e10][e15                 ]
+[x]
+}
+end
+
+tables
+   ssamavs,
+   ssammot,
+   ssamavsvcl,
+   abbmveic,
+   abamapol
+attributes
+
+a10  = ssamavs.sinavsnum      , noentry, format = "&&&&&&";
+a15  = ssamavs.sinavsano      , noentry;
+a20  = formonly.solnom        , noentry;
+a30  = formonly.cabtxt        , noentry;
+
+b10  = formonly.segnom        , upshift, noentry;
+b20  = formonly.segdddcod     , noentry;
+b25  = formonly.segtelnum     , noentry;
+b30  = formonly.cornom        , upshift, noentry;
+b35  = formonly.corsus        , noentry;
+b40  = formonly.cordddcod     , noentry;
+b45  = formonly.cortelnum     , noentry;
+b50  = formonly.vcldes        , noentry;
+b55  = abbmveic.vcllicnum              , comments = " Placa do veiculo";
+b60  = abbmveic.vclcoddig     , noentry, invisible;
+b70  = ssamavsvcl.vclchsnum   , noentry;
+b80  = abbmveic.vclanofbc     , noentry;
+b85  = abbmveic.vclanomdl     , noentry;
+b90  = ssamavs.sinocrdat      , noentry;
+b95  = ssamavs.sinocrhor      , noentry;
+b96  = formonly.apolice       , noentry;
+
+c10  = ssamavs.sinrclnom      , upshift, comments = " Nome do terceiro";
+c20  = ssamavs.cgccpfnum               , comments = " CGC/CPF do terceiro";
+c25  = ssamavs.cgcord                  , format = "&&&&",
+                                         comments = " Ordem do CGC";
+c2   = ssamavs.cgccpfdig               , format = "&&",
+                                         comments = " Digito do CGC/CPF";
+c30  = ssammot.endlgd         , upshift, comments = " Endereco do terceiro";
+c40  = ssammot.endbrr         , upshift, comments = " Bairro do terceiro";
+c45  = ssammot.endcid         , upshift, comments = " Cidade do terceiro";
+c4   = ssammot.endufd         , upshift, comments = " Sigla de UF";
+c50  = formonly.trcdddcod              , comments = " DDD do terceiro";
+c55  = formonly.trctelnum              , comments = " Telefone do terceiro";
+c60  = formonly.trcvclcod      type dec, comments = " Codigo do veiculo do terceiro";
+c65  = ssamavsvcl.sinbemdes   , upshift, comments = " Bem (ou veiculo) do terceiro";
+c7   = formonly.trccorcod      type dec, invisible, noentry;
+c70  = formonly.trccordes              , comments = " Cor do veiculo do terceiro";
+c80  = formonly.trcvclchs     , upshift, comments = " Chassi do veiculo do terceiro";
+c85  = formonly.trcvcllic     , upshift, comments = " Placa do veiculo do terceiro";
+c90  = formonly.trcanofbc              , comments = " Ano de fabricacao do veiculo do terceiro";
+c95  = formonly.trcanomdl              , comments = " Ano modelo do veiculo do terceiro";
+
+d    = ssamavs.sinrclsgrflg   , upshift, comments = " Terceiro possui seguro? (S)im ou (N)ao";
+d10  = ssamavs.sinrclsgdnom   , upshift, comments = " Companhia seguradora do terceiro";
+d15  = ssamavs.sinrclapltxt   , upshift, comments = " Numero da apolice de seguro do terceiro";
+d16  = abamapol.viginc        , comments = "Vigencia Inicial da Apolice";
+d17  = abamapol.vigfnl        , comments = "Vigencia Final da Apolice";
+e    = ssamavs.sinvclguiflg   , upshift, comments = " Veiculo foi guinchado ? (S)im ou (N)ao";
+e10  = formonly.sinvclguitxt  , noentry;
+e15  = ssamavs.sinvclguinom   , upshift, comments = " Empresa que guinchou o veiculo";
+x    = formonly.filler        ;
+end
+
+instructions
+  delimiters " "
+end

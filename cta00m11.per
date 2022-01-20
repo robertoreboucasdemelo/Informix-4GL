@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m11                                                 Pedro
+
+ Consulta Apolices Encontradas Pela Pesquisa (AUTO)                  Dez/1994
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+--------------------------------------------------------------------cta00m11--
+    Documento                       Dt.Emissao  Inic. Vig.  Term. Vig.
+ Segurado  Nome                             Veiculo                    Susep
+------------------------------------------------------------------------------
+[l][a                             ][b         ][c         ][d         ]
+[e       ][f                              ][g                        ][h     ]
+[l][a                             ][b         ][c         ][d         ]
+[e       ][f                              ][g                        ][h     ]
+[l][a                             ][b         ][c         ][d         ]
+[e       ][f                              ][g                        ][h     ]
+[l][a                             ][b         ][c         ][d         ]
+[e       ][f                              ][g                        ][h     ]
+[l][a                             ][b         ][c         ][d         ]
+[e       ][f                              ][g                        ][h     ]
+------------------------------------------------------------------------------
+ Documento: [i       ]
+------------------------------------------------------------------------------
+
+}
+End
+
+Attributes
+ l = formonly.lixo             , invisible;
+ a = formonly.documento        , noentry;
+ b = formonly.emsdat type date , noentry;
+ c = formonly.viginc type date , noentry;
+ d = formonly.vigfnl type date , noentry;
+ e = formonly.segcod           , noentry;
+ f = formonly.segnom           , noentry;
+ g = formonly.vcldes           , noentry;
+ h = formonly.corsus           , noentry;
+ i = formonly.informacao       , noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta00m11(lixo, documento, emsdat, viginc, vigfnl, segcod,
+                          segnom, vcldes, corsus)
+End

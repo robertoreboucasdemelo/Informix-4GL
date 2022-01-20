@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m02                                               Gilberto
+                                                                       Marcelo
+ Observacoes sobre a situacao do veiculo (bloqueado/cancelado)        Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m02--
+ Veiculo:[a     |a2   |a3                                                    ]
+------------------------------------------------------------------------------
+
+ Situacao..:[b1][b2       ]
+
+
+ Observacao:[c1                                                ]
+            [c2                                                ]
+            [c3                                                ]
+
+
+ Incluido..:[d1        ] as [d2   ] por [d3                 ]
+ Atualizado:[d4        ]            por [d5                 ]
+
+
+
+}
+end
+
+ tables datkveiculo, datkvclsit
+
+ attributes
+    a    = datkvclsit.socvclcod,                           noentry;
+    a2   = formonly.atdvclsgl,                             noentry;
+    a3   = formonly.vcldes,                                noentry;
+
+    b1   = datkveiculo.socoprsitcod,
+           comments = " Situacao do veiculo";
+    b2   = formonly.socoprsitcoddes,                       noentry;
+
+    c1   = formonly.obs1,                                  upshift,
+           comments = " Observacoes sobre situacao do veiculo";
+    c2   = formonly.obs2,                                  upshift,
+           comments = " Observacoes sobre situacao do veiculo";
+    c3   = formonly.obs3,                                  upshift,
+           comments = " Observacoes sobre situacao do veiculo";
+
+    d1   = datkvclsit.caddat,                              noentry;
+    d2   = datkvclsit.cadhor,                              noentry;
+    d3   = formonly.cadfunnom,                             noentry;
+
+    d4   = datkvclsit.atldat,                              noentry;
+    d5   = formonly.funnom,                                noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

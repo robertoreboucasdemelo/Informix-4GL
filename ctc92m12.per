@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc92m12                                      R.Fornax
+                                                             
+ Cadastro de Plano X Assistencia                             Abr/2015
+--------------------------------------------------------------------}
+ 
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m12--
+ Perfil.....:[a   ][b                                                       ]
+------------------------------------------------------------------------------
+ Assistencia   Nome                                                Limite
+                                                 
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+ [c    ] [d                                                    ]   [e  ]
+------------------------------------------------------------------------------
+ Atualizado..:[f          ] por [g                                         ]
+------------------------------------------------------------------------------
+ [h                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.cod                    ,noentry;    
+   b  = formonly.descricao              ,noentry;    
+   c  = formonly.asitipcod              ,comments = " Digite o Codigo de Assitencia"  ,upshift;   
+   d  = formonly.asitipdes              ,noentry;
+   e  = formonly.limite                 ,comments = " Informe a Quantidade Limite"    ,upshift;
+   f  = formonly.atldat                 ,noentry;
+   g  = formonly.funmat                 ,noentry;
+   h  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc92m12(asitipcod thru limite)
+end

@@ -1,0 +1,82 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB02m00                                               Wagner
+
+ Protocolo da ordem de pagamento - Carro-Extra                        Out/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb02m00--
+ Numero O.P.....:[o2      ]Situacao.:[o4|o6                           ][e1   ]
+------------------------------------------------------------------------------
+ Tipo Favorecido.:[f] [f01         ]  Empresa.:[e2][e3                ]
+ Cod. Locadora...:[o8 ]    [o9                                           ]
+ Cod. Loja.......:[o10    ][o11                                          ]
+ Cod. Segurado...:[s01     ][s02                                     ]
+ 
+ Tipo Pessoa.....:[t]        Cgc/Cpf.:[o12         ][o13 ][t2]
+ Tipo do Docto...:[d1][d2             ]
+ Numero do Docto.:[d3      ]
+ Data Entrega....:[o14       ]
+ Data Pagamento..:[o15       ]
+ Total Servicos..:[o16   ]
+ Total Valor.....:[o17             ]
+ Total Relacoes..:[o18   ]
+[o19                                                                         ]
+}
+end
+
+tables dbsmopg,       dpaksocor,
+       datklocadora,  datkavislocal, dbsmopgitm,
+       gsakseg
+
+attributes
+   o2   = formonly.socopgnum  , comments = " Numero da Ordem de Pagamento";
+   o4   = dbsmopg.socopgsitcod, comments = " Situacao da Ordem de Pagamento";
+   o6   = formonly.socopgsitdes,                          noentry;
+   e1   = formonly.empresa,                               noentry;
+   f    = formonly.favtip, comments = " Favorecido: (3)Segurado, (4)Locadora";
+   f01  = formonly.favtipdes,                             noentry;
+   e2   = formonly.empcod, comments = " Código da empresa ";
+   e3   = formonly.empnom,                                noentry;
+   
+   
+   o8   = formonly.lcvcod type smallint, format = "#&&", comments = " Codigo da Locadora ";
+   o9   = datklocadora.lcvnom, noentry;
+   o10  = formonly.lcvextcod, upshift, comments = " Codigo da Locadora ";
+   o11  = datkavislocal.aviestnom,                        noentry;
+   s01  = formonly.segnumdig, comments = " Código do segurado";
+   s02  = gsakseg.segnom,                                 noentry;
+   
+   t    = dbsmopg.pestip,                                 upshift,
+          comments = " Pessoa: (F)isica, (J)uridica";
+
+   o12  = dbsmopg.cgccpfnum, comments = " Numero do Cgc/Cpf";
+   o13  = dbsmopg.cgcord   , format = "&&&&", comments = " Codigo da Filial do Cgc";
+   t2   = dbsmopg.cgccpfdig, format = "&&", comments = " Digito do Cgc/Cpf";
+
+   d1   = dbsmopg.socpgtdoctip,
+          comments = " Tipo Docto: 1-Nota Fiscal, 2-Recibo, 3-R.P.A, 4-Nota Fiscal Eletrônica";
+   d2   = formonly.socpgtdocdes, noentry;
+   d3   = dbsmopgitm.nfsnum, format = "&&&&&&&&",
+          comments = " Numero da Nota Fiscal / Recibo / R.P.A. / Nota Fiscal Eletrônica";
+
+   o14  = dbsmopg.socfatentdat,
+          comments = " Data do protocolo da Ordem de Pagamento";
+   o15  = dbsmopg.socfatpgtdat,
+          comments = " Data do pagamento da Ordem de Pagamento";
+   o16  = dbsmopg.socfatitmqtd,
+          comments = " Quantidade total de servicos";
+   o17  = dbsmopg.socfattotvlr,  format = "###########&&.&&",
+          comments = " Valor total dos servicos";
+   o18  = dbsmopg.socfatrelqtd,
+          comments = " Total de relacoes de servicos";
+   o19  = formonly.linhamsg,                               noentry;
+ 
+end
+
+instructions
+     delimiters " "
+end

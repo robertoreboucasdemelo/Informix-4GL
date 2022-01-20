@@ -1,0 +1,41 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc77m00                                     Cristiane
+                                                            Silva
+ Pop-up de numeracao final servicos aos prestadores	    Nov/2005
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc77m00--
+        Codigo: [a    ] [b                                            ]
+------------------------------------------------------------------------------
+            	   	   Numeracao Final
+
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+			[n]	[c ]
+
+(F1)Inclui (F2)Exclui (F6)Modifica (F17)Abandona
+}
+end
+
+tables dpaksocor, dpakdtbpst
+
+attributes
+  a = dpaksocor.pstcoddig, 	noentry;
+  b = dpaksocor.nomrazsoc,	noentry;
+  n = formonly.navega         , invisible;
+  c = formonly.atdfnlnum ;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc77m00(navega thru atdfnlnum)
+end

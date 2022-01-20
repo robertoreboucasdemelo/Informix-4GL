@@ -1,0 +1,68 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB04M11                                              Wagner  
+                                                                 
+ Exibe totais (qtd/valor) por tipo de servico para RE                Dez/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb04m11--
+ Valor Total..:[v10       ][v50            ]         I.N.S.S....:[i40       ]
+ Impostos.....:[v20       ]Valor Base...:[i10       ]P.I.S......:[i41       ]
+ Descontos....:[v30       ]Imposto Renda:[i20       ]C.O.F.I.N.S:[i42       ]
+ Valor Liquido:[v40       ]I.S.S........:[i30       ]C.S.L.L....:[i43       ]
+------------------------------------------------------------------------------
+    Tipo Servico                     Quantidade                   Valor
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+   [a10                           ]    [a15    ] [t]   [a20            ]
+
+}
+End
+
+tables datksrvtip
+
+attributes
+  v10  = formonly.totvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  v20  = formonly.impvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  v30  = formonly.dscvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  v40  = formonly.liqvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  v50  = formonly.difvlr         , noentry;
+
+  i10  = formonly.basvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  i20  = formonly.irfvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  i30  = formonly.issvlr         type decimal,
+                                 format = "---,--&.&&", noentry;
+  i40  = formonly.inssvlr        type decimal,
+                                 format = "---,--&.&&", noentry;
+  i41  = formonly.pisretvlr      type decimal,
+                                 format = "---,--&.&&", noentry;
+  i42  = formonly.cofretvlr      type decimal,
+                                 format = "---,--&.&&", noentry;
+  i43  = formonly.cslretvlr      type decimal,
+                                 format = "---,--&.&&", noentry;
+
+  a10  = datksrvtip.srvtipdes,   upshift,                    noentry;
+  a15  = formonly.acmqtd         type decimal,
+                                 format = "###,##&",         noentry;
+  a20  = formonly.acmvlr         type decimal,
+                                 format = "----,---,--&.&&", noentry;
+  t    = datksrvtip.atdtip,      invisible,                  noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb04m11(srvtipdes thru atdtip)
+End

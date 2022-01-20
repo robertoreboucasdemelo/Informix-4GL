@@ -1,0 +1,49 @@
+database formonly 
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc10m00--
+                               Codigo:[a    ]
+------------------------------------------------------------------------------ 
+
+ Empresa.........:[b                                                 ]
+ CNPJ............:[c             ]/[c1  ]-[c2]                        
+ Telefone........:[d           ]                       Fax:[e           ]
+ Endereço........:[f                                       ]
+ Bairro..........:[g                   ]                    
+ Cidade..........:[h                                            ] UF.:[i ]
+ Reserva Passagem:[j]
+ Emite a Passagem:[k]
+ Situacao........:[l]
+ Atualizado......:[m           |n    ] por [o      |p                    ]
+
+}
+end
+
+attributes 
+
+a  = formonly.aerciacod,comments='Informe o codigo da Cia Aerea';
+b  = formonly.aercianom, upshift,comments='Informe o nome da Cia Aerea';
+c  = formonly.cgccpfnumdig,comments='Informe o cnpj da Cia Aerea';
+c1 = formonly.cgccpford;
+c2 = formonly.cgccpfdig;
+d  = formonly.fonnum,comments='Informe o telefone da Cia Aerea';
+e  = formonly.faxnum,comments='Informe o fax da Cia Aerea';
+f  = formonly.enddes, upshift,comments='Informe o endereco da Cia Aerea'; 
+g  = formonly.endbrr, upshift,comments='Informe o bairro da Cia Aerea';
+h  = formonly.cidnom, upshift,comments='Informe a cidade  da Cia Aerea';
+i  = formonly.ufdcod, upshift,comments='Informe a uf da Cia Aerea';
+j  = formonly.aerpsgrsrflg, upshift, autonext,comments='Informe se a Cia reserva passagem (S/N)';
+k  = formonly.aerpsgemsflg, upshift, autonext,comments='Informe se a Cia emite a passagem (S/N)';   
+l  = formonly.aercmpsit, upshift, autonext,comments='Informe a situacao do cadastro A-ativo, C-cancelado';
+m  = formonly.atldat, noentry;
+n  = formonly.atlhor, noentry; 
+o  = formonly.funmat, noentry;
+p  = formonly.funnom, noentry;
+
+end 
+
+instructions       
+  delimiters ' '
+
+end                

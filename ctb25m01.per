@@ -1,0 +1,65 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB25M01                                                 Raji
+
+ Acerto de Servicos                                                  Mar/2003
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen
+
+{
+[e1                                                  ][e    ]
+        Analise/Acerto de valor e seus adicionais
+---------------------------------------------------ctb25m01--
+Natureza:[a0                    ] Custo TABELA:[a1          ]
+ Custo  Descricao dos adicionais      Opcao/Qtd        Valor
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+---------------- Total dos adicionais  ------- [a6          ]
+                       Custo total OP  ------- [a7          ]
+                            SEM PARAR [a9     ][a10         ]
+                            PREMIO    [a12    ][a13         ]
+[e2                                           ][e3          ]
+                 Custo total do servico .....: [a11         ]
+--- Motivo da Pendencia / Observacoes ------------------------
+[b1                                                         ]
+[b1                                                         ]
+[b1                                                         ]
+--------------------------------------------------------------
+ (F17)Abandona, (F8)Seleciona, (F6)Retornos
+}
+End
+
+Tables dbsmopgitm , dbsmopgcst, dbskcustosocorro
+     , datmservico, dbarsemprrsrv   , dbsmsrvacr
+
+Attributes
+  e1  = formonly.limite,                            noentry;
+  e   = formonly.empresa,                           noentry;
+  e2  = formonly.custopeca,                         noentry;
+  e3  = dbsmsrvacr.segpgoexdvlr, format = "-----,--&.&&", noentry;
+  a0  = formonly.socntzdes,                         noentry;
+  a1  = formonly.vlrcstini type dec(10,2), comments = " Informe o valor do custo inicial",
+                               format = "-----,--&.&&";
+  a2  = dbsmopgcst.soccstcod,                       noentry;
+  a3  = dbskcustosocorro.soccstdes,                 noentry;
+  a4  = dbsmopgcst.cstqtd, comments = " Opcao / Quantidade";
+  a5  = dbsmopgcst.socopgitmcst  ,format = "-----,--&.&&",
+                                  comments = " Informe o valor correspondente";
+  a   = dbskcustosocorro.soccstclccod,  invisible,  noentry;
+  a6  = formonly.totcstadc type dec(10,2)  , noentry, format = "-----,--&.&&";
+  a7  = datmservico.atdcstvlr, noentry, format = "-----,--&.&&";
+  a9  = dbarsemprrsrv.pdgqtd;
+  a10 = dbarsemprrsrv.pdgttlvlr, format = "-----,--&.&&";
+  a11 = formonly.totsrv type dec(10,2)  , noentry, format = "-----,--&.&&";
+  a12 = formonly.prmqtd type smallint , noentry;
+  a13 = formonly.prmvlr type dec(5,2),  noentry, format = "-----,--&.&&";
+  b1  = formonly.dbsmsrvacrobs,autonext,comments= "Informe o motivo de pendencia ou observacoes";
+End
+
+Instructions
+  delimiters " ";
+  screen record s_ctb25m01(soccstcod thru soccstclccod);
+  screen record s_ctb25m01a (dbsmsrvacrobs);
+End

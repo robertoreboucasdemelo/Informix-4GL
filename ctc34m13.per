@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTC34M13                                          LUCAS SCHEID
+
+ TELA DE MANUTENCAO DO CADASTRO DE PROBLEMA DE VISTORIA DO VEICULO.  FEV/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc34m13---
+
+  Codigo....:[a    ]
+
+  Descricao.:[b                        ]
+
+  Incluido..:[c         ] por [d                                       ]
+  Atualizado:[e         ] por [f                                       ]
+
+
+
+
+
+
+
+
+
+}
+end
+
+attributes
+  a = formonly.vstpbmcod type integer, comments = "  Codigo do problema de vistoria";
+  b = formonly.vstpbmdes type char, upshift, comments = "  Descricao do problema de vistoria";
+  c = formonly.caddat type date, format = "dd/mm/yyyy", noentry;
+  d = formonly.funnom_cad type char, noentry;
+  e = formonly.atldat type date, format = "dd/mm/yyyy", noentry;
+  f = formonly.funnom_atl type char, noentry;
+end
+
+instructions
+  delimiters " "
+end

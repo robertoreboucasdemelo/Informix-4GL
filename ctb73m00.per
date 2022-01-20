@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb73m00                                                  Zyon
+ PSI 188603 
+ Cadastro de Indicadores de Performance                            Abril/2005
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctb73m00--
+                            INDICADORES DE PERFORMANCE           
+------------------------------------------------------------------------------
+
+   Codigo ..........:[a       ]
+
+   Descricao .......:[b                                                 ]
+
+   Criterio ........:[c][d              ]
+
+   Valor ...........:[e            ]
+
+   Situacao ........:[f][g         ]
+
+   Criacao .........:[h         ][i       ] por [j][k ][l     ]
+   Atualizacao .....:[m         ][n       ] por [o][p ][q     ]
+
+}
+end
+
+tables
+   dpakprfind
+
+attributes 
+   a = dpakprfind.prfindcod;
+   b = dpakprfind.prfinddes;
+   c = dpakprfind.prfindcrtcod, comments = "C-Classificatorio, B-Bonificacao"
+			      ,upshift; 
+   d = formonly.criterio;
+   e = dpakprfind.bnfvlr; 
+   f = dpakprfind.prfindstt, comments = "A-Ativo, C-Cancelado"
+			   ,upshift; 
+   g = formonly.situacao; 
+   h = dpakprfind.caddat, noentry;
+   i = formonly.cadhor, noentry; 
+   j = dpakprfind.cadusrtip, noentry;
+   k = dpakprfind.cademp, noentry;
+   l = dpakprfind.cadmat, noentry;
+   m = dpakprfind.atldat, noentry;
+   n = formonly.atlhor, noentry;
+   o = dpakprfind.atlusrtip, noentry;
+   p = dpakprfind.atlemp, noentry;
+   q = dpakprfind.atlmat, noentry;
+end 
+
+instructions
+   delimiters " " 
+end 

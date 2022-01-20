@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts05m01                                                  Pedro
+                                                                       Marcelo
+ Informa senha veiculo furtado c/ sistema alarme a distancia          Set/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   [a                                          ]
+-----------------------------------------cts05m01--
+
+           Placa do veiculo:[b      ]
+
+           Senha do alarme.:[c     ]
+
+
+}
+end
+
+tables
+  datmservico,
+  datmservicocmp
+
+attributes
+
+  a  = formonly.cabec,        reverse        ,noentry;
+
+  b  = datmservico.vcllicnum                 ,upshift,
+       comments = " Placa do veiculo furtado/roubado";
+  c  = datmservicocmp.vicsnh                 ,upshift,
+       comments = " Senha do sistema de acionamento a distancia";
+
+end
+
+instructions
+  delimiters " "
+end

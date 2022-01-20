@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC30M02                                              Wagner
+ Exibe pop-up para selecao da lojas                                  Out/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+               Lojas Locadoras
+------------------------------------ctc30m02--
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+[a                               |b |c       ]
+
+}
+End
+
+tables
+   datkavislocal
+
+Attributes
+ a  = datkavislocal.aviestnom      ,noentry;
+ b  = datkavislocal.aviestcod      ,noentry, invisible;
+ c  = datkavislocal.lcvextcod      ,noentry;
+end
+
+Instructions
+ delimiters " "
+ screen record s_ctc30m02(aviestnom thru lcvextcod)

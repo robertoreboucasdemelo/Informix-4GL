@@ -1,0 +1,64 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m03                                               Ruiz    
+ Solicitacao de reparo para danos nos vidros do veiculo- s/docto -    Mai/2001
+-----------------------------------------------------------------------------}
+
+ database porto   
+ screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts19m03--
+                               ------------------ FRANQUIAS ------------------
+  TIPOS DE VEICULOS:([a])      Para-  Trase-  Lat.   Lat.  Oculo  Oculo Quebra
+ 1)10,14,16,18,20 e 22,        brisa  iro     esq.   dir.  esq.   dir.  Vento
+   exceto Astra ano/modelo 
+   inferior a 98(inclusive)                                        
+   Golf,Honda Civic Nacional 
+   e Silverado:..............  95.00  95.00  40.00  40.00  40.00  40.00  0.00
+         Vidro(s) Avariado(s)  ([b])  ([c]) ([d])   ([e])  ([f])  ([g]) ([h])
+                                                                              
+ 2)Astra,Golf e Honda
+   Civic Nacional:........... 130.00 130.00  60.00  60.00  60.00  60.00  0.00
+         Vidro(s) Avariado(s)  ([i])  ([j])  ([k])  ([l])  ([m])  ([n]) ([o])
+                                                                              
+ 3)11,15,17,19,21,23, F1000
+   Especial e Silverado...... 270.00 270.00 130.00 130.00 130.00 130.00  0.00
+        Vidro(s) Avariado(s)   ([p])  ([q])  ([r])  ([s])  ([t])  ([u]) ([v])
+
+}
+ end
+
+ tables
+   datmservico
+
+ attributes
+   a    = formonly.veiculo       , upshift, autonext
+                                 , comments = "Tipo de  Veiculo de 1 a 3 ";
+   b    = formonly.prbrisa11     , upshift;  
+   c    = formonly.traseiro12    , upshift;  
+   d    = formonly.latesq13      , upshift; 
+   e    = formonly.latdir14      , upshift; 
+   f    = formonly.oculoesq15    , upshift;
+   g    = formonly.oculodir16    , upshift;
+   h    = formonly.qvent17       , upshift; 
+                                                                             
+   i    = formonly.prbrisa21     , upshift; 
+   j    = formonly.traseiro22    , upshift; 
+   k    = formonly.latesq23      , upshift; 
+   l    = formonly.latdir24      , upshift; 
+   m    = formonly.oculoesq25    , upshift;
+   n    = formonly.oculodir26    , upshift;
+   o    = formonly.qvent27       , upshift;  
+                                                                              
+   p    = formonly.prbrisa31     , upshift; 
+   q    = formonly.traseiro32    , upshift; 
+   r    = formonly.latesq33      , upshift; 
+   s    = formonly.latdir34      , upshift; 
+   t    = formonly.oculoesq35    , upshift;
+   u    = formonly.oculodir36    , upshift;
+   v    = formonly.qvent37       , upshift; 
+ end
+  
+ instructions
+   delimiters " " 
+ end

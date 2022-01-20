@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc42m02                                                 Sergio
+                                                                        Burini
+ Cadastro de Socorristas com o SIMCards Bloquado                      Jun/2008
+-----------------------------------------------------------------------------}
+
+
+database formonly
+
+screen
+{
+--------------------------------------------------------------------ctc42m02--
+                  
+                  VEICULOS BLOQUEADOS POR DIVERGENCIA DE SINCARDS
+
+ [x]Blq.: [a     ] Sigla: [b    ] Vcl: [c        ] Tip.: [d                 ]
+ Prest.: [e                           ] Dat Bloq.: [f         ] as [g       ]  
+
+ [x]Blq.: [a     ] Sigla: [b    ] Vcl: [c        ] Tip.: [d                 ]
+ Prest.: [e                           ] Dat Bloq.: [f         ] as [g       ]  
+ 
+ [x]Blq.: [a     ] Sigla: [b    ] Vcl: [c        ] Tip.: [d                 ]
+ Prest.: [e                           ] Dat Bloq.: [f         ] as [g       ]  
+ 
+ [x]Blq.: [a     ] Sigla: [b    ] Vcl: [c        ] Tip.: [d                 ]
+ Prest.: [e                           ] Dat Bloq.: [f         ] as [g       ]
+ 
+ (F8) Desbloqueia
+}
+end 
+
+attributes                                                                                        
+   x  = formonly.aux,          noentry, reverse;   
+   a  = formonly.blqseq,       noentry, reverse;
+   b  = formonly.atdvclsgl,    noentry, reverse;
+   c  = formonly.socvclcod,    noentry, reverse;
+   d  = formonly.socvcltipdes, noentry, reverse;
+   e  = formonly.nomgrr,       noentry, reverse;
+   f  = formonly.blqdat,       noentry, reverse;
+   g  = formonly.blqhor,       noentry, reverse;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc42m02 [4] (aux thru blqhor)
+end

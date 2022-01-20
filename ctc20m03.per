@@ -1,0 +1,47 @@
+{############################################################################
+# Nome do Modulo: CTC20M03                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CADASTRO DE ASSISTENCIA/NATUREZA DOS GRUPOS DE SERVIÇO.          NOV/2008 #
+############################################################################}
+
+database porto
+
+screen
+{
+------------------------------------------------------------------------------     
+                PARAMETROS DO GRUPO DE SERVICOS[x                            ]
+--------------------------------------------------------------------ctc20m03--                                                                                   
+                                         
+  Origem            Assis./Nat           Dat Atl.            Usu Atl       
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+ [a  |a1           |b  |b1              |c                  |d            ]
+                          (F1)Inserir      (F2)Deletar
+}
+
+tables
+   dpakbnfgrppar
+
+attributes
+   x  = formonly.titulo,    noentry;
+   a  = formonly.atdsrvorg, comments = " Codigo do Criterio da Bonificação";
+   a1 = formonly.srvtipdes, noentry;
+   b  = formonly.codpar,    comments = " Descrição do Criterio da Bonificação", upshift;
+   b1 = formonly.despar,    noentry;
+   c  = formonly.atldat,    noentry;
+   d  = formonly.funnom,    noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc20m03(atdsrvorg thru funnom)
+end   
+   

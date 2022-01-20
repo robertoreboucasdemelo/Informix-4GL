@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta18m00                                           Marcos Goes
+ Endereco Segurado Itau                                              Set/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+--------------------------------------------------------------------cta18m00--
+[q                                                                           ]
+------------------------------------------------------------------------------
+ Logradouro.:[a                                       ] Numero..:[b          ]
+ Complemento:[c                                                              ]
+ Bairro.....:[d                             ]           CEP.....:[e1   ]-[e2 ]
+ Cidade.....:[f                                       ] UF......:[g ] [x]
+ Tel.Resid..:[h1  ][h2       ]                          Loc.Ris.:[i1   ]-[i2 ]
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+}
+end
+tables  datmitaapl      ,
+        datmitaaplitm   ,
+        datkitarsrcaosrv,
+        datkitaempasi   ,
+        datkitaprd      ,
+        datkitavclcrgtip,
+        datkitarsrcaogar,
+        datkubbvcltip   ,
+        datkitaaplcanmtv
+
+attributes
+
+   a   =   datmitaapl.seglgdnom             , upshift, noentry;
+   b   =   datmitaapl.seglgdnum             , noentry;
+   c   =   datmitaapl.segendcmpdes          , upshift, noentry;
+   d   =   datmitaapl.segbrrnom             , upshift, noentry;
+   e1  =   datmitaapl.segcepnum             , noentry;
+   e2  =   datmitaapl.segcepcmpnum          , noentry;
+   f   =   datmitaapl.segcidnom             , upshift, noentry;
+   g   =   datmitaapl.segufdsgl             , upshift, noentry;
+   h1  =   datmitaapl.segresteldddnum       , noentry;
+   h2  =   datmitaapl.segrestelnum          , noentry;
+   i1  =   datmitaaplitm.rsclclcepnum       , noentry;
+   i2  =   datmitaaplitm.rcslclcepcmpnum    , noentry;
+   q   =   formonly.label1                  , noentry;
+   x   =   formonly.seta                    , invisible;
+
+
+instructions
+   delimiters " "
+end

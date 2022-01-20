@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn43c01                                               Marcelo
+                                                                      Gilberto
+ Consulta log das mensagens enviadas para MDT's                       Ago/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn43c01--
+                       LOG DA MENSAGEM.:[a1        ]
+------------------------------------------------------------------------------
+     Dt.Transm.   Hr.Transm.   Situacao da Transmissao
+
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+    [r1        ]  [r2      ]   [r3][r4                                      ]
+
+}
+
+tables
+   datmmdtlog
+
+attributes
+
+   a1  = datmmdtlog.mdtmsgnum    ,format = "#####&&&&&", noentry;
+   r1  = datmmdtlog.atldat       ,noentry;
+   r2  = datmmdtlog.atlhor       ,noentry;
+   r3  = datmmdtlog.mdtmsgstt    ,noentry;
+   r4  = formonly.mdtmsgsttdes   ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn43c01(atldat thru mdtmsgsttdes)
+end

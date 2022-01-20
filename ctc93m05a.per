@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m05a                                               Beatriz
+                                                                       Araujo
+ Tela Historico de contabilizacao                                     Mar/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------ctc93m05a--             
+                    HISTORICO DA PARAMETRIZACAO
+-------------------------------------------------------------------
+ [a                                                             ] 
+ [a                                                             ] 
+ [a                                                             ] 
+ [a                                                             ] 
+ [a                                                             ] 
+ [a                                                             ] 
+ [a                                                             ]
+ [a                                                             ]
+ [a                                                             ]
+ [a                                                             ]
+ [a                                                             ]
+ [a                                                             ]
+ [a                                                             ]
+                                              <Ctrl-C> Cancela
+}
+end
+
+attributes
+   a  = formonly.texto            type char,upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc93m05a[13] (texto)
+end

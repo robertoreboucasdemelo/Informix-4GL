@@ -1,0 +1,53 @@
+{Nome do Form: CTC16M01                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Relaciona natureza com ramo/clausulas                                Out/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Clausulas relacionadas a natureza[a |a1                ]
+-----------------------------------------------ctc16m01--
+
+ Ramo......: [b   |b1                                  ]
+ Modalidade: [d   |d1                                  ]
+ 
+ Cod.Clausula  Descricao
+
+[c  ]         [c1                                      ]
+[c  ]         [c1                                      ]
+[c  ]         [c1                                      ]
+
+
+}
+end
+
+tables
+  datrsocntzsrvre,
+  rgpkmodal
+attributes
+
+a = formonly.socntzcod type dec(2,0), noentry, format = "&&";
+a1= formonly.socntzdes,     noentry;
+
+b = datrsocntzsrvre.ramcod, comments = " Codigo do Ramo",
+                            autonext;
+b1= formonly.ramnom,        noentry;
+
+d = rgpkmodal.rmemdlcod,    comments = 'Codigo da Modalidade',
+                            autonext;
+d1= rgpkmodal.rmemdlnom,    noentry;                           
+
+c = datrsocntzsrvre.clscod, comments = " Codigo da clausula",
+                            autonext;
+c1= formonly.clsdes,        noentry;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc16m01(clscod thru clsdes)
+end
+

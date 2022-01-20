@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc15m00                                               Marcelo
+                                                                      Gilberto
+ Cadastro de tipos de servico                                         Abr/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m00--
+ Codigo......:[a ]
+------------------------------------------------------------------------------
+
+
+ Abreviacao..:[a1        ]
+
+ Descricao...:[a2                            ]
+
+ Incluido....:[b1        ]por[b2                 ]
+ Atualizado..:[b3        ]por[b4                 ]
+
+ Observacao..:[c                                                           ]
+
+
+}
+end
+
+ tables datksrvtip
+
+ attributes
+    a  = datksrvtip.atdsrvorg   , upshift
+                                , comments = " Origem do tipo de servico";
+    a1 = datksrvtip.srvtipabvdes, upshift
+                                , comments = " Descricao abreviada do tipo de servico";
+    a2 = datksrvtip.srvtipdes   , upshift
+                                , comments = " Descricao completa do tipo de servico";
+    b1 = datksrvtip.caddat      , noentry;
+    b2 = formonly.cadfunnom     , noentry;
+    b3 = datksrvtip.atldat      , noentry;
+    b4 = formonly.atlfunnom     , noentry;
+    c  = formonly.obs           , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

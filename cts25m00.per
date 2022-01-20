@@ -1,0 +1,48 @@
+database formonly
+
+screen
+
+{
+[t                                                                           ]
+------------------------------------------------------------------ cts25m00 --
+
+Sigla  Prv.Ct24h  Prv.Srr  Dist Acn  Dist QTH  Decorrido  Prev Ini  Tempo Rest
+
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+[a    ]  [b    ]  [c    ]  [d      ] [e      ]  [f     ]  [g     ]   [h     ]
+
+(F6)Atualiza  (F8)Frota  (F17) Abandona 
+}
+
+attributes
+
+   t = formonly.resumo    type char ;
+   a = formonly.atdvclsgl type char ;
+   b = formonly.atdhorpvt type char ;
+   c = formonly.atdprvdat type char ;
+   d = formonly.distacn   type dec(6,4) , format='#&.&&&&';
+   e = formonly.distqti   type dec(6,4) , format='#&.&&&&';
+   f = formonly.decorri   type char ;
+   g = formonly.previni   type char ;
+   h = formonly.prevtot   type char ;
+
+instructions
+   delimiters " "
+   screen record s_cts25m00[11] ( atdvclsgl
+                                , atdhorpvt
+                                , atdprvdat
+                                , distacn
+                                , distqti
+                                , decorri
+                                , previni
+                                , prevtot )
+end

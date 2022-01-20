@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m23                                               Roberto
+
+ Localiza PSS                                                        Jan/2010
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+------------------------------------------------------------------cta00m23----
+                          Consulta Clientes PSS
+------------------------------------------------------------------------------  
+ CNPJ/CPF                NOME                                         CEP
+------------------------------------------------------------------------------
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+[l][a                    ][b                                     ][c        ]
+------------------------------------------------------------------------------
+Endereco:[d                                   ]Bairro:[e                    ]
+Cidade..:[f                                   ]UF....:[g ]
+
+[h                                                                          ]
+}
+end
+tables gsakpes
+attributes
+
+l = formonly.seta      ,invisible;     
+a = formonly.cgccpf              ;
+b = gsakpes.pesnom     ,  noentry;
+c = formonly.endcep    ,  noentry;
+d = formonly.endlgd    ,  noentry;
+e = formonly.endbrr    ,  noentry;
+f = formonly.endcid    ,  noentry;
+g = formonly.endufd    ,  noentry;
+h = formonly.obs       ,  noentry; 
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m23(seta thru endcep)
+end

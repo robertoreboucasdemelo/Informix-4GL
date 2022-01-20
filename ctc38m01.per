@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc38m01                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Impressao laudo/vistorias                                           Jan/1999
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc38m01--
+ Sigla veiculo:[a    ][a1                                                    ]
+------------------------------------------------------------------------------
+
+
+
+ Nro.vistoria.:[b     ]
+
+
+ Tipo de laudo:[c  ][c1                                                      ]
+
+
+ Nr.de Vias...:[c2]
+
+
+
+
+}
+End
+
+Tables datmsocvst, datkveiculo, datkvstlautip
+
+Attributes
+  a   = formonly.atdvclsgl,
+        comments = " Sigla do veiculo para pesquisa",     upshift;
+  a1  = formonly.vcldesc,                                 noentry;
+  b   = formonly.socvstnum,
+        comments = " Nro. da vistoria para pesquisa"             ;
+  c   = formonly.socvstlautipcod,
+        comments = " Tipo de laudo para pesquisa";
+  c1  = datkvstlautip.socvstlautipdes,                    noentry;
+  c2  = formonly.nrvias,
+        comments = " Nr. de vias limitado de 1 ate 10";
+
+
+End
+
+Instructions
+  delimiters " "
+End
+
+
+

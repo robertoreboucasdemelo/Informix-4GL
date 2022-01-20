@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc92m09                                     R.Fornax
+
+ Cadastro Plano Residencia                                  Ago/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m09--
+ Plano........:[a  ][b                                                      ]
+ Limite Total.:[c  ]
+------------------------------------------------------------------------------
+ Natureza  Descricao                             Corr.   Nao Corr.  Limite
+
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+ [e    ]   [f                                  ]  [g]       [h]      [i ] 
+ [e    ]   [f                                  ]  [g]       [h]      [i ]
+------------------------------------------------------------------------------
+ Atualizado..:[j          ] por [l                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.itaasiplncod       ,noentry;
+   b  = formonly.itaasiplndes       ,noentry;
+   c  = formonly.ressrvlimqtd       ,noentry;
+   e  = formonly.socntzcod          ,comments = " Informe o Codigo da Natureza" ,upshift;
+   f  = formonly.socntzdes          ,noentry;
+   g  = formonly.ctisrvflg          ,comments = " Permite Servico para Correntista? <S> ou <N>"     ,upshift;
+   h  = formonly.ctinaosrvflg       ,comments = " Permite Servico para Nao Correntista? <S> ou <N>" ,upshift;
+   i  = formonly.utzlmtqtd          ,comments = " Digite a Quantidade de Limite";
+   j  = formonly.atldat             ,noentry;
+   l  = formonly.funnom             ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc92m09(socntzcod  thru utzlmtqtd)
+end

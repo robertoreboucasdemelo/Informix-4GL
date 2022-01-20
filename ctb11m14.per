@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M14                                              Marcelo
+                                                                     Gilberto
+ Exibe contabilizacao da ordem de pagamento                          Dez/1997
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb11m14--
+  Codigo  Tipo Despesa                         Quantidade              Valor
+
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+   [a5]  [a10                              ]     [a15    ]  [a20            ]
+
+}
+End
+
+Tables dbsmopgitm
+
+Attributes
+  a5   = formonly.ctbdspcod      type decimal,
+                                 format = "&&",              noentry;
+  a10  = formonly.ctbdspdes,     upshift,                    noentry;
+  a15  = formonly.ctbdspqtd      type decimal,
+                                 format = "###,##&",         noentry;
+  a20  = formonly.ctbdspvlr      type decimal,
+                                 format = "----,---,--&.&&", noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb11m14(ctbdspcod thru ctbdspvlr)
+End

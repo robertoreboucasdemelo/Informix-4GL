@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts26m00                                                  Ruiz
+ Previsao/Programacao do servico de vidros                            Jun/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Previsao do Servico
+-----------------------cts26m00--
+ Previsao Chegada na loja:[a    ]
+
+ Programacao da ida ate a loja:
+                Data:[c         ]
+                Hora:[d    ]
+
+}
+end
+
+tables
+datmservico
+
+attributes
+
+a    = datmservico.atdhorpvt,           comments = " Previsao em horas/minutos",
+                                         autonext;
+c    = formonly.atddatprg     type date, comments = " Data Programada"  ,
+                                         autonext;
+d    = datmservico.atdhorprg,            comments = " Hora Programada"  ,
+                                         autonext;
+end
+
+instructions
+  delimiters " "
+end

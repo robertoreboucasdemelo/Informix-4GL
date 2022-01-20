@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------------
+ Porto Seguro Cia Seguros Gerais                                           
+ ..........................................................................
+ Sistema       : Central 24 horas                                          
+ Modulo        : cta02m28                                                  
+ Analista Resp.: Alberto Rodrigues
+ PSI           : 
+ Objetivo      : Exibir o total servicos pagos e valores                              
+...........................................................................
+ Desenvolvimento: Amilton Pinto,Meta
+ Liberacao      : 
+...........................................................................
+                                                                           
+                  * * * Alteracoes * * *                                   
+                                                                           
+ Data        Autor  Fabrica  Origem    Alteracao                           
+ ----------  -------------- --------- -------------------------------------
+
+ ---------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Documento:[a                               ]
+----------------------------------cta02m28 --
+      
+      Demostrativo de Servicos Pagos 
+ 
+ Quantidade...: [b        ]              
+ Valor........: [c        ]
+                                                
+}
+end
+
+tables
+datmservico
+
+attributes
+  a  = formonly.cabec      type char, noentry;
+  b  = formonly.qtde       ,noentry;       
+  c  = formonly.vlr        type decimal,
+                           format="#####&.&&"   , noentry;
+end
+
+Instructions                                           
+  delimiters " "                                       
+end                                                    

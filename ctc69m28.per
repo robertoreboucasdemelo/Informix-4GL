@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m28                                               R.Fornax
+
+ Cadastro de Parametros da Porto                                      Mar/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m28--
+                            CADASTRO DE PARAMETROS
+------------------------------------------------------------------------------
+
+ Processa..........:[a] 
+ Carga Full........:[b]
+ Data Inicial......:[c         ] ate [d         ] 
+ Quebra............:[e    ]
+ Dias Retroativo...:[f  ]
+
+
+
+
+Atualizado..:[g          ] por [h                                          ]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.processa             , comments = " Processa Porto ?"                                ,upshift;
+    b  = formonly.flag_full            , comments = " Processa Carga Full ?"                           ,upshift;  
+    c  = formonly.data_ini             , comments = " Informe a Data Inicial da Carga Full"            ,upshift;  
+    d  = formonly.data_fim             , comments = " Informe a Data Final da Carga Full"              ,upshift;  
+    e  = formonly.qtd_quebra           , comments = " Informe a Quantidade de Registros para Commit"   ,upshift;
+    f  = formonly.qtd_ret              , comments = " Informe a Quantidade de Dias "                   ,upshift;   
+    g  = formonly.atldat               , noentry;
+    h  = formonly.funmat               , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

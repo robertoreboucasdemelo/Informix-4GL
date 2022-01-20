@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte01m01c                                              Ruiz    
+ Texto livre para pager                                               mai/2007
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+  [a                                                 ]
+-------------------------------------------cte01m01c--
+  [b                                                 ]
+  [b                                                 ]
+  [b                                                 ]
+  [b                                                 ]
+
+ Escreva o texto acima como se fosse uma linha continua
+ (F17)Abandona                  
+}
+end
+
+attributes
+
+a  = formonly.cab           , upshift, noentry, reverse;
+b  = formonly.texto         , upshift, autonext;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cte01m01c(texto)
+end

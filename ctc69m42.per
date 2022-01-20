@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m42                                               R.Fornax
+
+ Cadastro de Regras Itau                                              Abr/2016
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m42--
+
+ Codigo........: [a   ]
+ Empresa.......: [b   ] - [b1                                               ]
+ Ramo..........: [c   ] - [c1                                               ]
+ Plano.........: [d   ] - [d1                                               ]
+ Grupo Produto.: [e   ] - [e1                                               ]
+ Vig.Inicial...: [f         ]
+ Vig.Final.....: [g         ]
+ Paga..........: [h]
+ Exportado.....: [i]
+ Situacao......: [j]
+
+ Observacoes.: [l                                                           ]
+ Atualizado..: [m          ] por [n                 ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.plnclscod      , comments = " Digite o Codigo do Plano/Clausula"    ,upshift;
+    b  = formonly.empcod         , comments = " Codigo da Empresa"                    ,upshift;
+    b1 = formonly.empnom         , noentry;
+    c  = formonly.ramcod         , comments = " Codigo do Ramo"                       ,upshift;
+    c1 = formonly.ramnom         , noentry;
+    d  = formonly.clscod         , comments = " Digite a Clausula"                    ,upshift;
+    d1 = formonly.clsnom         , noentry;
+    e  = formonly.prfcod         , comments = " Digite o Codigo do Grupo de Produto"  ,upshift;     
+    e1 = formonly.desper         , noentry;                                                         
+    f  = formonly.clsviginidat   , comments = " Vigencia Inicial"                     ,upshift;
+    g  = formonly.clsvigfimdat   , comments = " Vigencia Final"                       ,upshift;
+    h  = formonly.clssitflg      , comments = " Clausula Paga S-im ou N-ao"           ,upshift;
+    i  = formonly.irdclsflg      , noentry;
+    j  = formonly.regsitflg      , comments = " Situacao A-tivo ou I-nativo"          ,upshift;
+    l  = formonly.obs1           , noentry;
+    m  = formonly.regatldat      , noentry;
+    n  = formonly.funnom         , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

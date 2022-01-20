@@ -1,0 +1,71 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctn44c01                                               Gilberto
+                                                                       Marcelo
+ Consulta dados recebidos dos MDT's                                   Ago/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80 
+
+{
+--------------------------------------------------------------------ctn44c01--
+            SEQ.MOVTO..:[a1        ]  -  TRANSMISSAO MDT..:[a13    ]
+------------------------------------------------------------------------------
+ Dt/Hr Trans:[a2        ][a3      ]
+ MDT/Veiculo:[a4  ][a5   ][a6    ][a7                                        ]
+ Tipo Movto.:[a8][a9                                        ]
+ Botao......:[a10 ][a11            ]
+ Digitacao..:[a12   ]
+ UF/Cidade..:[b1][b2                                           ]
+ Bairro.....:[b3                                      ]  Zona:[b4]
+ GPS Valido.:[v]       Latitude , Longitude: [b5           ] , [b6           ]
+ Direcao....:[b7  ]
+ Velocidade.:[b8   ]
+ Funcionario:[c5    ][c6                                             ]
+ Situacao...:[c1  ][c2                                                ]
+ Erro.......:[c3  ][c4                                                ]
+ (F17)Abandona, (F8)Logradouro
+}
+end
+
+ tables datmmdtmvt,
+        datkmdtbot,
+        datmmdterr,
+        datkveiculo
+
+ attributes
+
+   a1  = datmmdtmvt.mdtmvtseq                     ,noentry;
+   a2  = datmmdtmvt.caddat                        ,noentry;
+   a3  = datmmdtmvt.cadhor                        ,noentry;
+   a4  = datmmdtmvt.mdtcod                        ,noentry;
+   a5  = datkveiculo.atdvclsgl                    ,noentry;
+   a6  = datkveiculo.socvclcod                    ,noentry;
+   a7  = formonly.vcldes                          ,noentry;
+   a8  = datmmdtmvt.mdtmvttipcod                  ,noentry;
+   a9  = formonly.mdtmvttipdes                    ,noentry;
+   a10 = datmmdtmvt.mdtbotprgseq                  ,noentry;
+   a11 = datkmdtbot.mdtbottxt                     ,noentry;
+   a12 = datmmdtmvt.mdtmvtdigcnt                  ,noentry;
+   a13 = datmmdtmvt.mdttrxnum                     ;
+
+   b1  = datmmdtmvt.ufdcod                        ,noentry;
+   b2  = datmmdtmvt.cidnom                        ,noentry;
+   b3  = datmmdtmvt.brrnom                        ,noentry;
+   b4  = datmmdtmvt.endzon                        ,noentry;
+   v   = datmmdtmvt.mdtmvtsnlflg                  ,noentry;
+   b5  = datmmdtmvt.lclltt                        ,noentry;
+   b6  = datmmdtmvt.lcllgt                        ,noentry;
+   b7  = datmmdtmvt.mdtmvtdircod                  ,noentry;
+   b8  = datmmdtmvt.mdtmvtvlc                     ,noentry;
+
+   c1  = datmmdtmvt.mdtmvtstt                     ,noentry;
+   c2  = formonly.mdtmvtsttdes                    ,noentry;
+   c3  = datmmdterr.mdterrcod                     ,noentry;
+   c4  = formonly.mdterrdes                       ,noentry;
+   c5  = formonly.funmat                          ,noentry;
+   c6  = formonly.funnom                          ,noentry;
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,80 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctx37g00                                                Beatriz 
+                                                                        Fornax
+ Bloqueio do socorrista                                               Out/2014
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctx37g00--
+ Cod.:[y1      ]    Nome:[y2                                  ]   [y3      ]
+------------------------------------------------------------------------------
+
+   Motivo do Bloqueio...:[a]-[a1            ]      [b               ]
+
+   Data Inicial.........:[c         ]       Hora Inicial.....:[c1   ]
+   Data Final...........:[d         ]       Hora Final.......:[d1   ]
+
+   Tempo total bloqueio :[e                                                ]
+
+   Observacao :
+  [f1                                                                      ]
+  [f2                                                                      ]
+  [f3                                                                      ]
+   Incluido.............:[z2        ]por[z3                 ]
+   Atualizado...........:[z4        ]por[z5                 ]
+}
+end 
+
+tables datksrr
+
+attributes
+
+   y1 = formonly.srrcoddig, noentry;
+
+   y2 = formonly.srrnom, noentry;
+
+   y3 = formonly.l_qual_srr, noentry;
+
+   a  = formonly.srrblqmtv,
+        comments = " Motivo do bloqueio do socorrista";
+
+   a1 = formonly.srrblqmtvdes, noentry;
+
+   b  = formonly.srrblqsttdes type char, noentry;
+
+   c  = formonly.srrblqdatini type date, format = 'dd/mm/yyyy',
+        comments = " Data do primeiro dia do bloqueio                    (F3) Dia corrente";
+
+   c1 = formonly.srrblqhorini type date, format = 'hh:mm',
+        comments = " Hora do inicio do bloqueio                          (F3) Hora corrente";
+
+   d  = formonly.srrblqdatfnl type date, format = 'dd/mm/yyyy',
+        comments = " Data do ultimo dia do bloqueio  (F4) Indeterminado  (F3) Dia corrente";
+
+   d1 = formonly.srrblqhorfnl type date, format = 'hh:mm',
+        comments = " Hora do final do bloqueio                           (F3) Hora corrente";
+
+   e  = formonly.tempo type char, noentry;
+
+   f1 = formonly.srrblqtxt1 type char,
+        comments = " Observacao";
+
+   f2 = formonly.srrblqtxt2 type char,
+        comments = " Observacao";
+
+   f3 = formonly.srrblqtxt3 type char,
+        comments = " Observacao";
+
+   z2 = formonly.caddat,   noentry;
+   z3 = formonly.cadfunnom,noentry;
+   z4 = formonly.atldat,   noentry;
+   z5 = formonly.funnom,   noentry;
+
+end
+
+instructions
+   delimiters " "
+end

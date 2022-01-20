@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTC00M23                                           Robert
+                                                               
+ Cad de Config Gerenciamento de especialidades                  Dez/2010
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+    CADASTRO DE CONFIG GERENCIAMENTO DE ESPECIALIDADES - PORTO SOCORRO        
+--------------------------------------------------------------------ctc00m23--
+
+
+         Codigo.................:[a  ]
+
+         Grupo de distribuição..:[b |b1                  ]
+
+         Tipo de viatura........:[c |c1                           ]
+
+         Assistencia............:[d |d1                  ]
+
+         Incluido...:[e         |f       ] por [g                  ]
+         Atualizado.:[e1        |f1      ] por [g1                 ]
+
+------------------------------------------------------------------------------
+ (F17) Abandona
+}
+
+end
+
+tables
+   dpaksocor
+
+attributes
+
+   a   = formonly.espcnfcod;
+   
+   b   = formonly.vcldtbgrpcod;
+   b1  = formonly.vcldtbgrpdes,noentry;
+   
+   c   = formonly.socvcltip;
+   c1  = formonly.cpodes,noentry;
+   
+   d   = formonly.asitipcod;
+   d1  = formonly.asitipdes,noentry;
+   
+   e   = formonly.caddat ,noentry,reverse;
+   e1  = formonly.atldat ,noentry,reverse;
+   
+   f   = formonly.cadhor ,noentry,reverse;
+   f1  = formonly.atlhor ,noentry,reverse;
+   
+   g   = formonly.cadmat ,noentry,reverse;
+   g1  = formonly.atlmat ,noentry,reverse;
+end
+
+instructions
+   delimiters " "

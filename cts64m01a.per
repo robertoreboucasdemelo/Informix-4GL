@@ -1,0 +1,35 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts64m01a                                 Amilton
+                                                         Pinto
+ Pop-up de motivos Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+---------------------------cts64m01a------
+                Motivos                  
+-----------------------------------------   
+([m])[a ][b                       ] [c  ]  
+([m])[a ][b                       ] [c  ]  
+([m])[a ][b                       ] [c  ]  
+
+[o                                      ]
+}
+end
+
+attributes
+   m   = formonly.marca             type char  , upshift ;  
+   a  =  formonly.itarsrcaomtvcod   type dec   , noentry;
+   b  =  formonly.itarsrcaomtvdes              , noentry;
+   c  =  formonly.dialimqtd        , noentry;         
+   o  =  formonly.obs              , noentry;         
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts64m01a(marca thru dialimqtd)
+end
+

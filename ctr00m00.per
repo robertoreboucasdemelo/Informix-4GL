@@ -1,0 +1,20 @@
+database formonly
+screen size 22 by 50
+{
+       PERIODO    
+----------------------
+[a][f000             ]
+[a][f000             ]
+[a][f000             ]
+Posicione no periodo 
+desejado e tecle <F8>.
+}
+end
+attributes
+  a  = formonly.cod_per, noentry, invisible;
+  f000 = formonly.des_per, noentry;
+end
+instructions
+  screen record sa_periodos[3] (cod_per, des_per)
+  delimiters " "
+end

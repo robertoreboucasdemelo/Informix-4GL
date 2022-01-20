@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC30M01                                              Marcelo
+                                                                     Gilberto
+ Exibe pop-up para selecao da locadora                               Ago/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                 Locadoras
+------------------------------------ctc30m01--
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+
+}
+End
+
+tables
+   datklocadora
+
+Attributes
+ a  = datklocadora.lcvnom      ,noentry;
+ b  = datklocadora.lcvcod      ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc30m01(lcvnom thru lcvcod)

@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN28C01                                               Marcelo
+                                                                      Gilberto
+ Consulta log das impressoes remotas                                  Set/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn28c01--
+                     LOG DA TRANSMISSAO.:[a1        ]
+------------------------------------------------------------------------------
+  Data Transm.  Hora Transm.  Cod. Retorno da Transmissao
+
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+  [r1        ]  [r2       ]   [r3][r4                                      ]
+
+}
+
+tables
+   datmtrxlog
+
+attributes
+
+   a1  = datmtrxlog.atdtrxnum    ,format = "&&&&&&&&&&", noentry;
+   r1  = datmtrxlog.atdtrxlogdat ,noentry;
+   r2  = datmtrxlog.atdtrxloghor ,noentry;
+   r3  = datmtrxlog.atdtrxretcod ,noentry;
+   r4  = formonly.atdtrxretdes   ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn28c01(atdtrxlogdat thru atdtrxretdes)
+end

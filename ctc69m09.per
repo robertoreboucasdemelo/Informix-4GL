@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m09                                      R.Fornax
+
+ Cadastro de Servico X Clausula/Plano X Cobertura            Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m09--
+                           CONCESSAO POR COBERTURA
+------------------------------------------------------------------------------
+ Clausula...:[a   ]-[b                                                      ]
+ Servico....:[c   ]-[d                                                      ]
+------------------------------------------------------------------------------
+ Codigo     Cobertura
+
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+ [e    ]   [f                                                           ][x ]
+------------------------------------------------------------------------------
+ Atualizado..:[h          ] por [i                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.clscod        ,noentry;
+   b  = formonly.clsnom        ,noentry;
+   c  = formonly.srvcod        ,noentry;
+   d  = formonly.srvnom        ,noentry;
+   e  = formonly.cbtcod        ,comments = " Digite a Cobertura"    ,upshift;
+   f  = formonly.cbtdes        ,noentry;
+   x  = formonly.cbtcsscod     ,invisible ,noentry;
+   h  = formonly.regatldat     ,noentry;
+   i  = formonly.funnom        ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m09(cbtcod thru cbtcsscod)
+end

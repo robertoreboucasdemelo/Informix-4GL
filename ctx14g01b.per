@@ -1,0 +1,36 @@
+
+{-----------------------------------------------------------------------------
+ Nome do Form: ctx14g01b                                                Jorge 
+                                                                              
+ Mostra Faixas Horarias de Atendimento                               Fev/2013
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+[t                     ]
+------------------------------ctx14g01b-
+[a                                     ]
+[a                                     ]
+[a                                     ]
+[a                                     ]
+[a                                     ]
+[a                                     ]
+[a                                     ]
+[a                                     ]
+
+}
+end
+
+attributes
+   t  = formonly.titulo                ,noentry,reverse;
+   a  = formonly.fundes                ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_ctx14g01(fundes)
+end
+

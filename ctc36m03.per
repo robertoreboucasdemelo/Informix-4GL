@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC36M03                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Manutencao dos itens do laudo de vistoria                           Dez/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc36m03--
+ Numero Vistoria:[a1      ]   Situacao.:[a2][a3                            ]
+------------------------------------------------------------------------------
+  Item/Descricao            Verif./Descricao      Grupo/Descricao          Rev
+
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+ [b5 |b10                 ][b15|b20             ][b25|b30                 ][b]
+
+}
+End
+
+tables datmsocvst,    datkvstitmgrp, datkvstitm, datkvstitmver, datmvstmvt
+
+Attributes
+  a1  = formonly.socvstnum,
+        comments = " Numero da Vistoria "                  ;
+  a2  = datmsocvst.socvstsit,                       noentry;
+  a3  = formonly.sitdesc,                           noentry;
+
+  b5  = datmvstmvt.socvstitmcod,
+        comments = " Codigo do item de vistoria "          ;
+  b10 = datkvstitm.socvstitmdes,                    noentry;
+  b15 = datmvstmvt.socvstitmvercod,
+        comments = " Codigo da verificacao do item "       ;
+  b20 = datkvstitmver.socvstitmverdes,              noentry;
+  b25 = datmvstmvt.socvstitmgrpcod,                 noentry;
+  b30 = datkvstitmgrp.socvstitmgrpdes,              noentry;
+  b   = formonly.revidesc,                          noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc36m03(socvstitmcod thru revidesc)
+End
+

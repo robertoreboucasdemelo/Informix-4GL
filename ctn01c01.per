@@ -1,0 +1,68 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTN01C01                     Criacao: 26/10/94 - Pedro
+
+ Consulta Postos do Porto Socorro Por Cep.
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn01c01--
+Guincho.:[b ][c                                   ] 24 Horas:[d]
+------------------------------------------------------------------------------
+
+Sigla...:[a001                                    ]Codigo.:[a002  ][a003     ]
+Endereco:[a004                                    ]Bairro.:[a005            ]
+Cidade..:[a006                ]  U.F:[uf]          Cep....:[a007 ][e  ]
+Horarios: 2 a 6a[a008 ][a009 ]   Sab:[a010 ][a011 ]Domingo:[a012 ][a013 ][f ]
+Fones...:[a014][a015                                     ][a016            ]
+Contato.:[a017                                    ]Patio..:[g] [a018        ]
+
+Sigla...:[a001                                    ]Codigo.:[a002  ][a003     ]
+Endereco:[a004                                    ]Bairro.:[a005            ]
+Cidade..:[a006                ]  U.F:[uf]          Cep....:[a007 ][e  ]
+Horarios: 2 a 6a[a008 ][a009 ]   Sab:[a010 ][a011 ]Domingo:[a012 ][a013 ][f ]
+Fones...:[a014][a015                                     ][a016            ]
+Contato.:[a017                                    ]Patio..:[g] [a018        ]
+}
+end
+
+tables gkpkpos, dpaksocor, dpckguincho
+
+attributes
+b    = formonly.gchtip,    comments = " Informe o tipo de guincho. (99)Seleciona TODOS",
+                           autonext;
+c    = dpckguincho.gchdes, noentry;
+d    = formonly.srvnteflg  type char,
+                           comments = " Somente atendimento 24 horas: (S)im ou (N)ao ",
+                           upshift,
+                           autonext;
+a001 = gkpkpos.nomgrr     ,noentry;
+a002 = gkpkpos.pstcoddig  ,noentry;
+a003 = formonly.situacao  ,noentry;
+a004 = gkpkpos.endlgd     ,noentry;
+a005 = gkpkpos.endbrr     ,noentry;
+a006 = gkpkpos.endcid     ,noentry;
+uf   = gkpkpos.endufd     ,noentry;
+a007 = gkpkpos.endcep     ,noentry;
+e    = gkpkpos.endcepcmp  ,noentry;
+a008 = dpaksocor.horsegsexinc,noentry;
+a009 = dpaksocor.horsegsexfnl,noentry;
+a010 = dpaksocor.horsabinc,noentry;
+a011 = dpaksocor.horsabfnl,noentry;
+a012 = dpaksocor.hordominc,noentry;
+a013 = dpaksocor.hordomfnl,noentry;
+f    = formonly.atlocal   ,noentry;
+a014 = gkpkpos.dddcod     ,noentry;
+a015 = gkpkpos.teltxt     ,noentry;
+a016 = formonly.desc24h   ,noentry;
+a017 = dpaksocor.rspnom   ,noentry;
+g    = dpaksocor.patpprflg,noentry;
+a018 = dpaksocor.qldgracod,noentry;
+end
+
+instructions
+     screen record s_ctn01c01(nomgrr thru qldgracod)
+     delimiters " "
+end

@@ -1,0 +1,27 @@
+{ -----------------------------------------------------------------------------
+ Nome do Form: cta02m13d                                      Helder -Nov/2010
+  -----------------------------------------------------------------------------
+}
+database formonly
+screen size 25 by 80
+
+{
+                INFORME DADOS PARA CONTATO DO JIT
+--------------------------------------------------------cta02m13d--
+ Nome.........:[a                                                ]
+ DDD Telefone.:[b ][c       ]
+                           F8 - Confirma
+}
+end
+
+Attributes
+  a = formonly.nome, upshift, autonext;
+  b = formonly.ddd, upshift, autonext;
+  c = formonly.telefone, upshift;
+
+end
+
+Instructions
+  delimiters " "
+
+End

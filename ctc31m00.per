@@ -1,0 +1,45 @@
+{---------------------------------------------------------------------------
+ Nome do Form: CTC31M00                                             Marcelo
+                                                                    Gilberto
+ Manutencao dos itens de pagamento de locacoes                      Ago/1996
+---------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc31m00--
+        Cod.       Tipo                 Descricao
+------------------------------------------------------------------------------
+
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+        [a0]      [a][a1       ]       [a2                            ]
+
+
+
+}
+end
+
+tables dblkpagitem
+
+attributes
+a0   = dblkpagitem.c24pgtitmcod, noentry;
+a    = dblkpagitem.c24pgtitmtip, required, comments = " Tipo do item: (1)Excedente ou (2)Desconto";
+a1   = formonly.c24pgttipdes   , noentry , upshift;
+a2   = dblkpagitem.c24pgtitmdes, required, upshift,
+                                           comments = " Descricao do item";
+
+end
+
+instructions
+     delimiters " "
+     screen record s_ctc31m00(c24pgtitmcod thru c24pgtitmdes)
+end

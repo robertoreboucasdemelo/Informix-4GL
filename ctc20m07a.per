@@ -1,0 +1,53 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc00m17a                                              Jorge
+
+ Cadastro de penalidade Bonificacao do prestador                     Nov/2013
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctc20m07a--
+   [c                                                                   ]
+ Prestador:[c1      |c2                                                     ]
+------------------------------------------------------------------------------
+ Dt.Inicial    Dt.Final     Dt Cadastro    Funcionario
+
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+[a1        ][a2        ]   [a3        ]   [a4                  ]
+
+[b1                                                              ]
+[b1                                                              ]
+
+
+}
+end
+
+ tables dpamprsbnsple
+
+ attributes
+
+   a1 = formonly.bnspleviginidat;
+   a2 = formonly.bnsplevigfnldat;
+   a3 = formonly.regatldat, noentry;
+   a4 = formonly.altfunnom, noentry;
+   
+   b1 = formonly.plemtvtxt, noentry, wordwrap;
+  
+
+   c  = formonly.cabec, noentry,reverse;
+   c1 = formonly.pstcoddig     ,noentry;
+   c2 = formonly.rspnom        ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc20m07a(bnspleviginidat thru altfunnom)
+ end

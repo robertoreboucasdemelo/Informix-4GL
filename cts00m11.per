@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M11                                              Marcelo
+                                                                     Gilberto
+ Consulta etapas do acompanhamento do servico                        Ago/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts00m11--
+ No.Servico:[a5           ]-[a10                           ]
+------------------------------------------------------------------------------
+ Etapa           Realizacao         Responsavel         Prestador
+
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+[b5             |b10       |b15  |b|b20                |b25                  ]
+[b1             |b2                |b3                                       ]
+
+}
+End
+
+Tables datmsrvacp, datksrvtip, datketapa
+
+Attributes
+  a5   = formonly.srvnum      ,        noentry;
+  a10  = datksrvtip.srvtipdes ,        noentry;
+
+  b5   = datketapa.atdetpdes  ,        noentry;
+  b10  = datmsrvacp.atdetpdat ,        noentry;
+  b15  = datmsrvacp.atdetphor ,        noentry;
+  b    = datmsrvacp.atdsrvseq ,        invisible;
+  b20  = formonly.funnom      ,        noentry;
+  b25  = formonly.nomgrr      ,        noentry;
+  b1   = formonly.acionado, noentry;
+  b2   = formonly.tentativa, noentry;
+  b3   = formonly.motivo, noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_cts00m11(atdetpdes thru motivo)
+End

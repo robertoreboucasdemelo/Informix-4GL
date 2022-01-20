@@ -1,0 +1,23 @@
+database formonly
+screen
+{
+    Apolice    Situacao     A.Familiar
+------------------------------cta01m30a-
+  [a        ] [b         ] [c         ]
+  [a        ] [b         ] [c         ]
+  [a        ] [b         ] [c         ]
+  [a        ] [b         ] [c         ]
+<F8>Seleciona <Ctrl-C>Retorna
+}
+end
+
+attributes
+   a = formonly.aplnumdig;
+   b = formonly.sgrstt   ;
+   c = formonly.temaft   ;
+end
+
+instructions
+   delimiters '  '
+   screen record s_cta01m31a[4] (aplnumdig,sgrstt,temaft)
+end

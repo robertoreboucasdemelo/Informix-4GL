@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts07g00                                               Gilberto
+                                                                       Marcelo
+ Informacoes para servico com prestador no local                      Nov/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+        Informacoes sobre prestador no local
+--------------------------------------------cts07g00--
+
+ Prestador.:[a1    ][a2                       ]
+ Contato...:[a3                                      ]
+
+[a4         |a5               ]
+
+ Confirma..:[g]
+
+
+}
+end
+
+tables datmservico, dpaksocor
+
+attributes
+
+  a1 = datmservico.atdprscod                 ,noentry;
+  a2 = dpaksocor.nomgrr                      ,noentry;
+  a3 = datmservico.c24nomctt                 ,upshift,
+       comments = " Informacoes para contato com o prestador";
+
+  a4 = formonly.valor                        ,noentry;
+  a5 = datmservico.atdcstvlr                 ,format = "<<,<<<,<<<,<<&.&&",
+       comments = " Valor estimado do servico";
+
+  g  = formonly.confirma                     ,upshift,
+       comments = " Confirma: (S)im ou (N)ao";
+
+end
+
+instructions
+  delimiters " "
+end

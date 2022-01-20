@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc63m01                                      Humberto Santos
+																															Helder Oliveira
+ Matricula Associadas ao Menu                                         Jul/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+-------------------------------------------------------------------ctc63m01--
+  Matricula  Nome                                             Departamento
+  
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+ [a     ]   [b                                                 |e      ]
+------------------------------------------------------------------------------
+   Alterado em: [c         ] por: [d                                       ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    a  = formonly.funmat  ,upshift, autonext, comments = 'Matricula';
+    b  = formonly.funnom  ,upshift, noentry,  comments = 'Nome funcionario';
+    e  = formonly.dptsgl  ,upshift, noentry,  comments = 'Sigla do departamento';
+    c  = formonly.atldat  ,upshift;
+    d  = formonly.funnom1 ,upshift;
+   
+    
+
+end
+
+instructions   
+    delimiters " "
+     screen record s_ctc63m01 (funmat thru dptsgl)
+     															
+end

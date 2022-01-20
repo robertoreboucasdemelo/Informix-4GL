@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB03m01                                              Wagner
+
+ Consulta ordem de pagamento por datas (pagto/entrega) e locadora    Mai/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb03m01--
+ Tipo....:[c|c5     ]           Data:[c10       ]a[c11       ]
+ Locadora:[c15|c20            ] Loja:[c25    |c30                            ]
+------------------------------------------------------------------------------
+ No. O.P.   Entrega/Fase Pagamento   Favorecido/Situacao        [c40         ]
+[a5      ]  [a10       ][a15       ][a20                                     ]
+[a35       ][a25                   ][a30                                     ]
+
+[a5      ]  [a10       ][a15       ][a20                                     ]
+[a35       ][a25                   ][a30                                     ]
+
+[a5      ]  [a10       ][a15       ][a20                                     ]
+[a35       ][a25                   ][a30                                     ]
+
+[a5      ]  [a10       ][a15       ][a20                                     ]
+[a35       ][a25                   ][a30                                     ]
+
+}
+End
+
+Tables dbsmopg, dbsmopgfav, datklocadora
+
+Attributes
+  c   = formonly.tipdat,
+        comments = " 1- Data de Entrega, 2- Data de Pagamento";
+  c5  = formonly.tipdatdes,                          noentry;
+  c10 = formonly.incdat   type date,
+        comments = " Data inicial para pesquisa ";
+  c11 = formonly.fnldat   type date,
+        comments = " Data final para pesquisa ";
+  c15 = dbsmopg.lcvcod,    format = "&&&",
+        comments = " Codigo da Locadora ";
+  c20 = datklocadora.lcvnom,                         noentry;
+  c25 = formonly.lcvextcod,                          upshift,
+         comments = " Codigo da Locadora ";
+  c30  = formonly.aviestnom,                         noentry;
+  c40 = formonly.total,                              noentry;
+
+  a5  = dbsmopg.socopgnum,       format="&&&&&&&&",  noentry;
+  a10 = dbsmopg.socfatentdat,                        noentry;
+  a15 = dbsmopg.socfatpgtdat,                        noentry;
+  a20 = dbsmopgfav.socopgfavnom,                     noentry;
+  a35 = formonly.socopgorgdes,                       noentry;
+  a25 = formonly.socopgfasdes,                       noentry;
+  a30 = formonly.socopgsitdes,                       noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb03m01(socopgnum thru socopgsitdes)
+End
+

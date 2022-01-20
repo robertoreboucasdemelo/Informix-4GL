@@ -1,0 +1,28 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA02M09                                              Marcelo
+                                                                     Gilberto
+ Informa o numero da posicao de atendimento (P.A.)                   Abr/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Informe a posicao de atendimento
+------------------------cta02m09--
+
+      P.A. No.:[a     ]
+
+}
+end
+
+tables
+   datmligacao
+
+attributes
+   a   = datmligacao.c24paxnum,
+         comments = " Numero da posicao de atendimento",   autonext;
+
+instructions
+  delimiters " "
+end

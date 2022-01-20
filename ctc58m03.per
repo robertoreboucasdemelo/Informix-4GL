@@ -1,0 +1,50 @@
+ database porto
+ screen 
+{
+Ramo               Centro de Custo         Peso       Vigencia            
+Stt   Dat. Atl.     
+------------------------------------------------------------(ctc58m03)----- 
+[a1  |a2         ] [a3   |a4              ] [a5  ][a6        ][a7         ] 
+  [a8] [a9         ] [desc                                               ]
+[a1  |a2         ] [a3   |a4              ] [a5  ][a6        ][a7         ] 
+  [a8] [a9         ] [desc                                               ]
+[a1  |a2         ] [a3   |a4              ] [a5  ][a6        ][a7         ] 
+  [a8] [a9         ] [desc                                               ]
+}
+
+tables
+   dattastcct
+  ,dattagpcct
+  ,datkassunto
+  ,datkastagp
+  ,ctokcentrosuc
+  ,gtakramo
+  ,isskfunc
+
+attributes
+a1=dattagpcct.ramcod,noentry;
+a2=gtakramo.ramnom,noentry;
+a3=dattagpcct.cctcod,noentry;
+a4=ctokcentrosuc.cctnom,noentry;
+a5=dattagpcct.corasspsocod,noentry;
+a6=dattagpcct.viginc,noentry;
+a7=dattagpcct.vigfnl,noentry;
+a8=dattagpcct.cctagpstt,noentry;
+a9=dattagpcct.atldat,noentry;
+desc = formonly.desc type char;
+end
+
+instructions
+  delimiters " "
+  screen record s_tela[03]
+      (ramcod,
+       ramnom,
+       cctcod,
+       cctnom,
+       corasspsocod,
+       viginc,
+       vigfnl,
+       cctagpstt,
+       atldat, 
+       desc)
+End

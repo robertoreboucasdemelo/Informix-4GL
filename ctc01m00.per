@@ -1,0 +1,71 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC01M00                     Criacao: 10/08/94 - Pedro
+
+ Manutencao de Distrito policial e batalhoes/cia
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc01m00--
+          Tipo....:[t ][a00        ]           Codigo..:[a000]
+------------------------------------------------------------------------------
+
+ Identif.:[a001                                    ]
+
+
+ Endereco:[a002                                    ]
+
+ Bairro..:[a003                ]               Cidade..:[a004                ]
+
+ U.F.....:[uf]                                 Cep.....:[a005 ][c00]
+
+ Tels....:[a006][a007                                    ]
+
+
+Ultima Atualizacao em :[a008      ]
+}
+end
+
+tables dpakbat
+
+attributes
+t    = dpakbat.battip,
+                       comments = " (D)elegacia Policia, (B)atalhoes/cias",
+                       upshift,
+                       autonext,
+                       include = ("B", "D");
+a00  = formonly.descricao;
+
+a000 = formonly.batcod,comments = " Codigo D.policial/Batalhao";
+a001 = dpakbat.batnom, required,
+                       autonext,
+                       upshift;
+a002 = dpakbat.endlgd, required,
+                       autonext,
+                       upshift;
+a003 = dpakbat.endbrr, required,
+                       autonext,
+                       upshift;
+a004 = dpakbat.endcid, required,
+                       autonext,
+                       upshift;
+uf   = dpakbat.endufd, required,
+                       upshift,
+                       autonext;
+a005 = dpakbat.endcep, required,
+                       autonext;
+c00  = dpakbat.endcepcmp,
+                       required,
+                       autonext;
+a006 = dpakbat.dddcod, autonext;
+a007 = dpakbat.teltxt, comments = " Telefones",
+                       autonext;
+a008 = dpakbat.atldat,
+                       noentry;
+end
+
+instructions
+     delimiters " "
+end

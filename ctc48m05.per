@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC48M05                                                 Nilo
+
+ Mostra o cadastro de naturezas para o grupo 106 (c24pbmgrpcod)      Dez/2008
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+        Codigos das Naturezas 
+------------------------------ctc48m05--
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+ [x][a    ][b                          ]
+[c                                     ]
+
+}
+End
+
+tables
+   datksocntz
+
+Attributes
+ x  = formonly.opcao type char ,upshift  ,include=("X"),autonext;
+ a  = datksocntz.socntzcod     ,invisible,noentry;
+ b  = datksocntz.socntzdes     ,noentry;
+ c  = formonly.mensagem        ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc48m05(opcao thru socntzdes)
+End

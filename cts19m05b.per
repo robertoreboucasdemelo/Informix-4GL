@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m05b                                          Lucas Scheid
+ Filtro p/informar os tipos de servicos na busca das lojas/oficinas.  Jun/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+ INFORME O(S) ITEM(NS) PARA A BUSCA
+------------------------cts19m05b---
+
+        Para-brisa...:([a])
+        Traseiro.....:([b])
+        Lateral......:([c])
+        Oculo........:([d])
+        Quebra vento.:([e])
+        Retrovisor...:([f])
+        Farol........:([g])
+        Farol Milha..:([h])
+        Farol Neblina:([i])
+        Pisca........:([j])
+        Lanterna.....:([k])
+
+}
+end
+
+attributes
+  a = formonly.parabrisa    type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  b = formonly.traseiro     type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  c = formonly.lateral      type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  d = formonly.oculo        type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  e = formonly.quebravento  type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  f = formonly.retrovisor   type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  g = formonly.farol        type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  h = formonly.farolmilha   type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  i = formonly.farolneblina type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  j = formonly.pisca        type char, upshift, autonext, comments = "  Escolha marcando um X ";
+  k = formonly.lanterna     type char, upshift, autonext, comments = "  Escolha marcando um X ";
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,37 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTB10M06                                            Gilberto
+                                                                    Marcelo
+ Mostra todos os custos do porto socorro                             Nov/96
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Custos do Porto Socorro
+----------------------------------------ctb10m06--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   dbskcustosocorro
+
+attributes
+   a   = dbskcustosocorro.soccstdes               ,noentry;
+   b   = dbskcustosocorro.soccstcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb10m06(soccstdes thru soccstcod)
+end
+

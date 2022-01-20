@@ -1,0 +1,47 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g07                                    R.Fornax
+                                                         
+ Extrato de Servicos a Residencia Itau                     Ago/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------cts12g07--
+                      EXTRATOS DE SERVICO A RESIDENCIA
+------------------------------------------------------------------------------
+                                                                     
+   Natureza                                       Limite   Utilizado  Saldo
+                                                                     
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+[a|b                                          ]    [c  ]     [d  ]    [e  ]
+
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  =  formonly.socntzcod type dec, invisible,noentry;
+   b  =  formonly.socntzdes      , noentry;
+   c  =  formonly.limite         , noentry;
+   d  =  formonly.utilz          , noentry;
+   e  =  formonly.saldo          , noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g07(socntzcod thru saldo)
+end
+

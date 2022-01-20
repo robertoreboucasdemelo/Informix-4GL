@@ -1,0 +1,49 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC24M01                                               Marcelo
+                                                                      Gilberto
+ Manutencao dos procedimentos operacionais                            Mar/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc24m01--
+ Convenio..:[a0]-[a1                  ]
+ Topico....:[b0]-[b1                  ]
+------------------------------------------------------------------------------
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+                          
+}
+end
+
+Tables datktopcvn , datkdestopcvn
+
+Attributes
+a0   = datktopcvn.cvnnum , noentry  ;
+a1   = formonly.convenio , noentry  ;
+
+b0   = datktopcvn.cvntopcod , noentry  ;
+b1   = datktopcvn.cvntopnom , noentry  ;
+
+c0   = datkdestopcvn.cvntopdes    , upshift  ,
+                                    autonext ;
+c1   = datkdestopcvn.cvntopdesseq , noentry  ,
+                                    invisible;
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctc24m01(cvntopdes thru cvntopdesseq)
+End

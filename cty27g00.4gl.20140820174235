@@ -1,0 +1,1343 @@
+#------------------------------------------------------------------------------#
+# Porto Seguro Cia Seguros Gerais                                              #
+#..............................................................................#
+# Sistema       : Ct24h                                                        #
+# Modulo        : cty27g00.4gl                                                 #
+# Analista Resp.: Alberto                                                      #
+# PSI           : 2012-22101                                                   #
+# Dados de Cobranca do servico                                                 #
+#..............................................................................#
+# Desenvolvimento: CDS Egeu, Alberto Rodrigues                                 #
+# Liberacao      :                                                             #
+#..............................................................................#
+#                                                                              #
+#                  * * * Alteracoes * * *                                      #
+#                                                                              #
+# Data        Autor Fabrica  Origem    Alteracao                               #
+#------------------------------------------------------------------------------#
+# 08/08/2013  Merge                                                            #
+#------------------------------------------------------------------------------#
+
+globals "/homedsa/projetos/geral/globals/glct.4gl"
+
+
+define m_prepara_sql   smallint
+
+define l_popup     char(60)
+define l_opcao     integer
+define l_opcaoband integer
+
+define l_confirma  char (01)
+
+define out record
+    res          dec(1),
+    msg          char(50),
+    pgtfrm       integer,
+    flag_pvisa   char(1),
+    nome_band    char(20),
+    cod_band     char(1)
+end record
+
+ define mr_cty27g00 record
+    prpnum     like datmpgtinf.prpnum
+   ,servico    char(11)
+   ,pgtfrmcod  like datmpgtinf.pgtfrmcod
+   ,clinom     like datmcrdcrtinf.clinom
+   ,numcar1    char(04)
+   ,numcar2    char(04)
+   ,numcar3    char(04)
+   ,numcar4    char(04)
+   ,crtnum     like datmcrdcrtinf.crtnum
+   ,bndcod     like datmcrdcrtinf.bndcod
+   ,crtvlddat  like datmcrdcrtinf.crtvlddat
+   ,cbrparqtd     smallint
+ end record
+
+define l_retorno integer
+
+define l_metodo       char(15)
+define l_pcapticrpcod char(100)
+
+define m_host         like ibpkdbspace.srvnom #Saymon ambnovo
+
+define l_erro integer
+
+define l_result integer
+
+# Chave para Buscar numero da PROPOSTA
+# insert into datkgeral
+# values("NUMULTPRP",1000000,"28/12/2012","10:24:00",1,3627)
+
+ #main
+ #
+ #
+ # defer interrupt
+ # set lock mode to wait
+ #
+ # options
+ #    prompt  line last,
+ #    comment line last,
+ #    message line last,
+ #    accept  key  F40
+ #
+ # initialize mr_cty27g00.* to null
+ # initialize l_opcao, l_opcaoband to null
+ #
+ #{ Cartoes para teste:
+ #  3530112345678904
+ #  4152740270059115
+ #  4121770540786112
+ #  4121770049070117
+ #  4121770049070125
+ #  4121770342864117
+ #  4152740189178113
+ #  4121770562392112
+ #  4152740000569128
+ #  4152750042037117
+ #  4121770571088115
+ #  4152750013031115
+ #  4152740123112111
+ #  4121770265084115
+ #  4152740087378112
+ #  4121770000006118
+ #  4121770151583113
+ #  4121770466572116
+ #  4152740057743113
+ #  4121770482678111
+ #}
+ #
+ # if m_prepara_sql is null or
+ #    m_prepara_sql <> true then
+ #    call cty27g00_prepara()
+ # end if
+ # call cty27g00_entrada_dados(1) #mr_cty27g00.prpnum)# Pegar Global glct.4gl
+ #
+ #  call cty27g00_consulta_dados(1000017)
+ #
+ #end main
+
+ function cty27g00()
+
+    initialize l_erro to null
+    initialize l_result to null
+
+    let l_result = 0
+
+    call cty27g00_entrada_dados("","","")
+
+ end function
+
+#---------------------------#
+function cty27g00_prepara()
+#---------------------------#
+ define l_sql   char(700)
+
+ let l_sql =  null
+
+ #------[SELECIONA PROPOSTA]----
+
+ let l_sql = " select a.orgnum    , a.atdsrvnum , a.atdsrvano, ",
+             "        a.pgtfrmcod , b.clinom    , b.crtnum   , ",
+             "        b.bndcod    , b.crtvlddat , b.cbrparqtd, ",
+             "        c.carbndnom                              ",
+             " from   datmpgtinf a, outer datmcrdcrtinf b,    ",
+             "        fcokcarbnd c                            ",
+             " where  a.orgnum = b.orgnum                     ",
+             " and    a.prpnum = b.prpnum                     ",
+             " and    a.prpnum = ?                            ",
+             " and    b.pgtseqnum = (select max(d.pgtseqnum)  ",
+             "            from datmcrdcrtinf d                ",
+             "           where d.prpnum =  ? )                ",
+             " and    b.bndcod = c.carbndcod                  ",
+             " order by b.pgtseqnum desc                      "
+  prepare p_cty27g00_001 from l_sql
+  declare c_cty27g00_001 cursor for p_cty27g00_001
+
+  #------[INSERE PROPOSTA]----
+  # Forma de Pagto - datmpgtinf - informacao pagamento (Armazena informações da forma de pagamento)
+
+  let l_sql = " insert into datmpgtinf( "
+             ,"  orgnum    , "
+             ,"  prpnum    , "
+             ,"  atdsrvnum , "
+             ,"  atdsrvano , "
+             ,"  pgtfrmcod , "
+             ,"  funtipcod , "
+             ,"  empcod    , "
+             ,"  usrmatnum , "
+             ,"  atldat    ) "
+             ,"  values (?,?,?,?,?,?,?,?,?) "
+  prepare p_cty27g00_002 from l_sql
+
+  #------[INSERE PROPOSTA]----
+  # Forma de Pagto - datmcrdcrtinf - informacao cartao credito (Armazena informação dos cartões outras bandeiras)
+
+  let l_sql = " insert into datmcrdcrtinf( "
+             ," orgnum    , "
+             ," prpnum    , "
+             ," pgtseqnum , "
+             ," clinom    , "
+             ," crtnum    , "
+             ," bndcod    , "
+             ," crtvlddat , "
+             ," cbrparqtd ) "
+             ," values (?,?,?,?,?,?,?,?) "
+  prepare p_cty27g00_002a from l_sql
+
+  #------[ATUALIZA PROPOSTA]----
+  let l_sql = " Update datmpgtinf set(funtipcod,empcod,usrmatnum, atldat) = (?,?,?,?)"
+             ," Where prpnum = ? "
+   prepare p_cty27g00_003 from l_sql
+
+  #------[BUSCA ULTIMO SEQUENCIAL DE PROPOSTA]----
+  let l_sql = "select max(prpnum) ",
+              "from datmpgtinf "
+  prepare p_cty27g00_004 from l_sql
+  declare c_cty27g00_004 cursor with hold for p_cty27g00_004
+
+  #------[BUSCA ULTIMA SEQUENCIAL DE CARTAO DE CREDITO]----
+  let l_sql = "select max(pgtseqnum) ",
+              "from datmcrdcrtinf ",
+              "where prpnum = ? "
+  prepare p_cty27g00_004a from l_sql
+  declare c_cty27g00_004a cursor with hold for p_cty27g00_004a
+
+
+  #------[BUSCA NOVO NUMERO DE PROPOSTA]----
+  let l_sql = ' select grlinf[01,10] ',
+              ' from datkgeral ',
+              ' where grlchv = "NUMULTPRP" ',
+              ' for update of grlinf '
+  prepare p_cty27g00_005 from l_sql
+  declare c_cty27g00_005 cursor with hold for p_cty27g00_005
+
+  #------[ATUALIZA NUMERO DE PROPOSTA]----
+  let l_sql = ' update ',
+              ' datkgeral ',
+              ' set (grlinf, ',
+              ' atldat, ',
+              ' atlhor) = (?, ?, ?) ',
+              ' where grlchv = "NUMULTPRP" '
+  prepare p_cty27g00_006 from l_sql
+
+  let m_prepara_sql = true
+
+end function
+
+#---------------------------------------#
+ function cty27g00_entrada_dados(param)
+#---------------------------------------#
+
+ define param record
+        prpnum    like datmpgtinf.prpnum,
+        atdsrvnum like datmpgtinf.atdsrvnum,
+        atdsrvano like datmpgtinf.atdsrvano
+ end record
+ define lr_cty27g00 record
+        orgnum    like datmpgtinf.orgnum
+       ,prpnum    like datmpgtinf.prpnum
+       ,servico   char(11)
+       ,atdsrvnum like datmpgtinf.atdsrvnum
+       ,atdsrvano like datmpgtinf.atdsrvano
+       ,pgtfrmcod like datmpgtinf.pgtfrmcod
+       ,funtipcod like datmpgtinf.funtipcod
+       ,empcod    like datmpgtinf.empcod
+       ,usrmatnum like datmpgtinf.usrmatnum
+       ,atldat    like datmpgtinf.atldat
+       ,pgtseqnum like datmcrdcrtinf.pgtseqnum
+       ,clinom    like datmcrdcrtinf.clinom
+       ,crtnum    like datmcrdcrtinf.crtnum
+       ,bndcod    like datmcrdcrtinf.bndcod
+       ,crtvlddat like datmcrdcrtinf.crtvlddat
+       ,cbrparqtd like datmcrdcrtinf.cbrparqtd
+       ,numcar1   char(04)
+       ,numcar2   char(04)
+       ,numcar3   char(04)
+       ,numcar4   char(04)
+
+
+
+
+ end record
+
+ define d_cty27g00 record
+    orgnum     like datmpgtinf.orgnum
+   ,prpnum     like datmpgtinf.prpnum
+   ,servico    char(11)
+   ,pgtfrmcod  like datmpgtinf.pgtfrmcod
+   ,clinom     like datmcrdcrtinf.clinom
+   ,numcar1    char(04)
+   ,numcar2    char(04)
+   ,numcar3    char(04)
+   ,numcar4    char(04)
+   ,crtnum     like datmcrdcrtinf.crtnum
+   ,bndcod     like datmcrdcrtinf.bndcod
+   ,crtvlddat  like datmcrdcrtinf.crtvlddat
+   ,cbrparqtd  smallint
+ end record
+
+ define d_cartao record
+        numcar1   char(04)
+       ,numcar2   char(04)
+       ,numcar3   char(04)
+       ,numcar4   char(04)
+
+ end record
+
+ define lr_aux       record
+        resultado    smallint
+       ,mensagem     char(60)
+ end record
+
+ define lr_retorno record
+        coderro         smallint
+       ,msgerro         char(10000)
+       ,pcapticrpcod    like fcomcaraut.pcapticrpcod
+ end record
+
+ define l_flg char(03)
+
+ define l_cartao char(100)
+ define n_cartao decimal(19,0)
+
+ define l_pgtfrmcod  like datkpgtfrm.pgtfrmcod
+ define l_pgtfrmdes  like datkpgtfrm.pgtfrmdes
+
+ define l_bndcod     like fcokcarbnd.carbndcod
+ define l_bnddes     like fcokcarbnd.carbndnom
+
+ define l_today       date,
+        l_time        datetime hour to second
+
+ define l_data        char(19)
+
+ define retorno record
+        prpnum  like datmpgtinf.prpnum,
+        sqlcode integer,
+        msg     char(80)
+ end record
+
+ define ws      record
+        prpnum  like datmpgtinf.prpnum,
+        atldat  like datkgeral.atldat,
+        atlhor  like datkgeral.atlhor
+ end record
+
+ define l_prompt_key char (01)
+
+ initialize  retorno.*  to  null
+ initialize  ws.*, l_prompt_key  to  null
+
+ initialize  lr_cty27g00.*  to  null
+ initialize  d_cty27g00.*   to  null
+ initialize  lr_retorno.*   to  null
+ initialize  l_pgtfrmcod    to  null
+ initialize  l_bndcod       to  null
+
+
+ initialize l_today, l_time, l_data to null
+
+ let lr_cty27g00.prpnum = param.prpnum
+ let l_cartao = ""
+ let n_cartao = 0
+
+ if m_prepara_sql is null or
+    m_prepara_sql <> true then
+    call cty27g00_prepara()
+ end if
+
+ let lr_cty27g00.atdsrvnum = param.atdsrvnum ## Alberto Inclusao com numero de Servico
+ let lr_cty27g00.atdsrvano = param.atdsrvano ## Alberto Inclusao com numero de Servico
+
+ initialize l_bnddes, l_pgtfrmdes to null
+ let l_bnddes    = " "
+ let l_pgtfrmdes = " "
+ if lr_cty27g00.prpnum is null or
+    lr_cty27g00.prpnum = ""    or
+    lr_cty27g00.prpnum = 0     then
+    initialize l_bnddes, l_pgtfrmdes to null
+    call cty27g00_numprp()
+    returning  retorno.prpnum
+              ,retorno.sqlcode
+              ,retorno.msg
+
+    let d_cty27g00.prpnum  = retorno.prpnum
+    let lr_cty27g00.prpnum = d_cty27g00.prpnum
+    let lr_cty27g00.orgnum = 29
+    let d_cty27g00.orgnum  = lr_cty27g00.orgnum
+    let g_documento.prpnum = d_cty27g00.prpnum
+    let l_flg = "INC"
+
+    let lr_cty27g00.atdsrvnum = param.atdsrvnum
+    let lr_cty27g00.atdsrvano = param.atdsrvano
+
+    let lr_cty27g00.servico  =  lr_cty27g00.atdsrvnum using "&&&&&&&&", "-",
+                                lr_cty27g00.atdsrvano using "&&"
+    let d_cty27g00.servico   =  lr_cty27g00.servico
+
+ else
+
+    let l_bnddes    = " "
+    let l_pgtfrmdes = " "
+
+    if g_documento.prpnum_flg = "CON" then
+       let l_flg = "CON"
+    else
+       let l_flg = "ALT"
+    end if
+
+    let lr_cty27g00.orgnum = 29
+    let d_cty27g00.orgnum  = lr_cty27g00.orgnum
+
+    # NUMERO DA PROPOSTA
+    let d_cty27g00.prpnum   = lr_cty27g00.prpnum  using "&&&&&&&&"
+
+    whenever error continue
+    open c_cty27g00_001 using lr_cty27g00.prpnum, lr_cty27g00.prpnum
+    whenever error stop
+
+    whenever error continue
+    fetch c_cty27g00_001 into lr_cty27g00.orgnum
+                             ,lr_cty27g00.atdsrvnum
+                             ,lr_cty27g00.atdsrvano
+                             ,lr_cty27g00.pgtfrmcod
+                             ,lr_cty27g00.clinom
+                             ,lr_cty27g00.crtnum
+                             ,lr_cty27g00.bndcod
+                             ,lr_cty27g00.crtvlddat
+                             ,lr_cty27g00.cbrparqtd
+                             ,l_bnddes
+    whenever error stop
+    if sqlca.sqlcode = 100 then
+       error "Proposta nao localizada !"
+       return
+    else
+       #Obter descricao do tipo de forma de pagamento
+       call cto00m12_nome_frmpgto( lr_cty27g00.pgtfrmcod
+                                  ,l_pgtfrmdes)
+            returning  lr_aux.resultado
+                      ,lr_aux.mensagem
+                      ,l_pgtfrmdes
+
+       # Descriptografa o numero do cartao
+       call ffctc890("D",lr_cty27g00.crtnum )
+            returning lr_retorno.*
+
+       let n_cartao          = lr_retorno.pcapticrpcod
+       let l_cartao          = n_cartao
+
+       let lr_cty27g00.numcar1 = l_cartao[1 , 4]
+       let lr_cty27g00.numcar2 = l_cartao[5 , 8]
+       let lr_cty27g00.numcar3 = l_cartao[9 ,12]
+       let lr_cty27g00.numcar4 = l_cartao[13,16]
+       if lr_cty27g00.pgtfrmcod = 1  then
+          let lr_cty27g00.numcar1  = "XXXX"
+          let lr_cty27g00.numcar2  = "XXXX"
+          let lr_cty27g00.numcar3  = "XXXX"
+       end if
+       let lr_cty27g00.servico  =  lr_cty27g00.atdsrvnum using "&&&&&&&&", "-",
+                                   lr_cty27g00.atdsrvano using "&&"
+
+       let d_cty27g00.servico   =  lr_cty27g00.servico
+       let d_cty27g00.pgtfrmcod =  lr_cty27g00.pgtfrmcod
+       let d_cty27g00.clinom    =  lr_cty27g00.clinom
+       let d_cty27g00.numcar1   =  lr_cty27g00.numcar1
+       let d_cty27g00.numcar2   =  lr_cty27g00.numcar2
+       let d_cty27g00.numcar3   =  lr_cty27g00.numcar3
+       let d_cty27g00.numcar4   =  lr_cty27g00.numcar4
+       let d_cty27g00.bndcod    =  lr_cty27g00.bndcod
+       let d_cty27g00.crtvlddat =  lr_cty27g00.crtvlddat
+       let d_cty27g00.cbrparqtd =  lr_cty27g00.cbrparqtd
+       let d_cty27g00.crtnum    =  lr_cty27g00.crtnum
+
+       close c_cty27g00_001
+
+    end if
+
+ end if
+
+#----------------------------------------------------------------------------------
+
+ open window w_cty27g00 at 4,2 with form 'cty27g00'
+ attribute(border, form line 1 )
+
+ input by name d_cty27g00.orgnum thru d_cty27g00.cbrparqtd without defaults
+
+    before field orgnum
+
+      display by name d_cty27g00.orgnum
+                     ,d_cty27g00.prpnum
+                     ,d_cty27g00.servico
+                     ,d_cty27g00.pgtfrmcod
+                     ,l_pgtfrmdes
+                     ,d_cty27g00.clinom
+                     ,d_cty27g00.numcar1
+                     ,d_cty27g00.numcar2
+                     ,d_cty27g00.numcar3
+                     ,d_cty27g00.numcar4
+                     ,d_cty27g00.bndcod
+                     ,l_bnddes
+                     ,d_cty27g00.crtvlddat
+                     ,d_cty27g00.cbrparqtd
+
+       if g_documento.prpnum_flg = "CON" then
+          error  " Digite Ctrl+C para encerrar a consulta!"
+          prompt "" for char l_prompt_key
+          exit input
+       end if
+
+        if g_documento.prpnum_flg = "ALT"  or
+           d_cty27g00.pgtfrmcod <> 1       then
+           if d_cty27g00.pgtfrmcod <> 1 then
+              error "Dados com forma de pagamento <",l_pgtfrmdes,">, nao podem ser alterados." sleep 4
+              prompt "" for char l_prompt_key
+              exit input
+           end if
+
+       end if
+
+       if (g_documento.acao       = "ALT"    or
+           g_documento.prpnum_flg = "ALT")   and
+           g_documento.atdsrvnum is not null then
+
+           # Consiste se foi efetuada uma tranasação para o serviço.
+           # Caso tenha sido, nao permitir mais alteração.
+           call cty27g00_consiste(g_documento.atdsrvnum,
+                                  g_documento.atdsrvano )
+           returning l_erro
+           if l_erro > 0 or
+              l_erro is null then
+              error "Dados nao podem ser alterados !" sleep 3
+              exit input
+           else
+              next field clinom
+           end if
+       end if
+
+       next field pgtfrmcod
+       display by name d_cty27g00.orgnum
+                      ,d_cty27g00.prpnum
+                      ,d_cty27g00.servico
+                      ,d_cty27g00.pgtfrmcod
+                      ,l_pgtfrmdes
+                      ,d_cty27g00.clinom
+                      ,d_cty27g00.numcar1
+                      ,d_cty27g00.numcar2
+                      ,d_cty27g00.numcar3
+                      ,d_cty27g00.numcar4
+                      ,d_cty27g00.bndcod
+                      ,l_bnddes
+                      ,d_cty27g00.crtvlddat
+                      ,d_cty27g00.cbrparqtd
+
+       next field pgtfrmcod
+    after field orgnum
+       display by name d_cty27g00.orgnum
+
+    before field prpnum
+       display by name d_cty27g00.prpnum
+
+    after field prpnum
+       display by name d_cty27g00.prpnum
+
+       display by name d_cty27g00.prpnum
+                      ,d_cty27g00.servico
+                      ,d_cty27g00.pgtfrmcod
+                      ,d_cty27g00.clinom
+                      ,d_cty27g00.numcar1
+                      ,d_cty27g00.numcar2
+                      ,d_cty27g00.numcar3
+                      ,d_cty27g00.numcar4
+                      ,d_cty27g00.bndcod
+                      ,d_cty27g00.crtvlddat
+                      ,d_cty27g00.cbrparqtd
+
+    before field servico
+       display by name d_cty27g00.servico
+
+    after field servico
+       display by name d_cty27g00.servico
+
+    before field pgtfrmcod
+       display by name d_cty27g00.pgtfrmcod attribute(reverse)
+
+    after  field pgtfrmcod
+           display by name d_cty27g00.pgtfrmcod
+
+           if fgl_lastkey() = fgl_keyval("up")    or
+              fgl_lastkey() = fgl_keyval("left")  then
+              next field pgtfrmcod
+           end if
+
+           if d_cty27g00.pgtfrmcod is null then
+              error "Tipo de forma de pagamento deve ser informado!"
+              initialize  l_pgtfrmcod    to  null
+              initialize  l_bndcod       to  null
+
+              #-- Exibe popup dos tipos de Forma de pagto --#
+              let d_cty27g00.pgtfrmcod = cto00m12(l_pgtfrmcod)
+              display by name d_cty27g00.pgtfrmcod
+              display by name l_pgtfrmdes
+           end if
+
+           #Obter descricao do tipo de forma de pagamento
+           call cto00m12_nome_frmpgto( d_cty27g00.pgtfrmcod
+                                      ,l_pgtfrmdes)
+                returning lr_aux.resultado
+                         ,lr_aux.mensagem
+                         ,l_pgtfrmdes
+
+           display by name l_pgtfrmdes
+           if lr_aux.resultado <> 1 then
+              error lr_aux.mensagem
+              next field pgtfrmcod
+           end if
+
+           display by name d_cty27g00.pgtfrmcod
+           display by name l_pgtfrmdes
+           if lr_cty27g00.pgtfrmcod = 1                     and
+              g_documento.prpnum is not null                and
+              d_cty27g00.pgtfrmcod <> lr_cty27g00.pgtfrmcod and
+              l_flg = "ALT"                                 then
+              error "Forma de pagamento <OUTRAS BANDEIRAS>, nao pode ser alterado! " sleep 3
+              let d_cty27g00.pgtfrmcod = 1
+              next field pgtfrmcod
+           end if
+
+           if d_cty27g00.pgtfrmcod <> 1 then
+              let l_confirma = cts08g01( "C","S","",
+                                          "CONFIRMA FORMA DE PAGAMENTO POR",l_pgtfrmdes,"")
+              if l_confirma  = "S" then
+
+                 if l_flg = "INC" then
+                    call cts40g03_data_hora_banco(1) returning l_today, l_time
+                    let l_data = extend(l_today, year to year), "-",
+                                 extend(l_today, month to month), "-",
+                                 extend(l_today, day to day), " ",l_time
+
+                    let lr_cty27g00.orgnum    = 29
+                    let lr_cty27g00.pgtseqnum = 1
+
+                    whenever error continue
+                    execute p_cty27g00_002 using  lr_cty27g00.orgnum
+                                                 ,d_cty27g00.prpnum
+                                                 ,lr_cty27g00.atdsrvnum
+                                                 ,lr_cty27g00.atdsrvano
+                                                 ,d_cty27g00.pgtfrmcod
+                                                 ,g_issk.usrtip
+                                                 ,g_issk.empcod
+                                                 ,g_issk.usrcod
+                                                 ,l_data
+                    whenever error stop
+                    if sqlca.sqlcode <> 0 then
+                       error "Problemas ao Inserir registro <p_cty27g00_002 2>. Erro <",sqlca.sqlcode, ">" sleep 3
+                       next field pgtfrmcod
+                    else
+                       error "Forma de pagamento gravada com sucesso !" sleep 2
+                       let g_documento.prpnum = d_cty27g00.prpnum
+                       let int_flag = true
+                       exit input
+                    end if
+                 else
+                    # Alteração
+                    whenever error continue
+
+                    call cts40g03_data_hora_banco(1) returning l_today, l_time
+                    let l_data = extend(l_today, year to year), "-",
+                                 extend(l_today, month to month), "-",
+                                 extend(l_today, day to day), " ",l_time
+                    whenever error continue
+                    execute p_cty27g00_003 using  g_issk.usrtip
+                                                 ,g_issk.empcod
+                                                 ,g_issk.usrcod
+                                                 ,l_data
+                                                 ,d_cty27g00.prpnum
+                    whenever error stop
+                    if sqlca.sqlcode <> 0 then
+                       error "Problemas ao Atualizar registro <p_cty27g00_003>. Erro <",sqlca.sqlcode, ">"
+                       next field pgtfrmcod
+                    end if
+                 end if
+              else
+                  next field pgtfrmcod
+              end if
+           end if
+
+           next field clinom
+
+    before field clinom
+       display by name d_cty27g00.clinom attribute(reverse)
+
+    after field clinom
+       display by name d_cty27g00.clinom
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          if l_flg = "ALT" then
+             next field clinom
+          else
+             next field pgtfrmcod
+          end if
+       end if
+
+       if d_cty27g00.clinom is null or
+          d_cty27g00.clinom = " " then
+          error "Nome obrigatorio !" sleep 1
+          next field clinom
+       end if
+
+       if length(d_cty27g00.clinom) < 7 then
+          error "Campo Nome deve ter no minimo 07 caracteres" sleep 1
+          next field clinom
+       end if
+
+       next field numcar1
+
+    before field numcar1
+       display by name d_cty27g00.numcar1 attribute(reverse)
+
+    after field numcar1
+       if d_cty27g00.numcar1 != 'XXXX' then
+          let d_cartao.numcar1 = d_cty27g00.numcar1
+       end if
+       let d_cty27g00.numcar1 = 'XXXX'
+       display by name d_cty27g00.numcar1
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          next field clinom
+       end if
+
+       if d_cty27g00.numcar1 is null then
+          next field numcar1
+       end if
+
+       if length(d_cty27g00.numcar1) <= 3 then
+          error "Numero invalido !" sleep 1
+          next field numcar1
+       end if
+
+       next field numcar2
+
+    before field numcar2
+
+       display by name d_cty27g00.numcar2 attribute(reverse)
+
+    after field numcar2
+       if d_cty27g00.numcar2 != 'XXXX' then
+          let d_cartao.numcar2 = d_cty27g00.numcar2
+       end if
+       let d_cty27g00.numcar2 = 'XXXX'
+       display by name d_cty27g00.numcar2
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          let d_cty27g00.numcar1 = 'XXXX'
+          next field numcar1
+       end if
+
+       if d_cty27g00.numcar2 is null then
+          next field numcar2
+       end if
+
+       if length(d_cty27g00.numcar2)<= 3 then
+          error "Numero invalido !" sleep 1
+          next field numcar2
+       end if
+
+       next field numcar3
+
+    before field numcar3
+
+       display by name d_cty27g00.numcar3 attribute(reverse)
+
+    after field numcar3
+       if d_cty27g00.numcar3 != 'XXXX' then
+          let d_cartao.numcar3 = d_cty27g00.numcar3
+       end if
+       let d_cty27g00.numcar3 = 'XXXX'
+
+       display by name d_cty27g00.numcar3
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          let d_cty27g00.numcar2 = 'XXXX'
+          next field numcar2
+       end if
+
+       if d_cty27g00.numcar3 is null then
+          next field numcar3
+       end if
+
+       if length(d_cty27g00.numcar3)<= 3 then
+          error "Numero invalido !" sleep 1
+          next field numcar3
+       end if
+
+       next field numcar4
+
+    before field numcar4
+
+       display by name d_cty27g00.numcar4 attribute(reverse)
+
+    after field numcar4
+       display by name d_cty27g00.numcar4
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          let d_cty27g00.numcar3 = 'XXXX'
+          next field numcar3
+       end if
+
+       if d_cty27g00.numcar4 is null then
+          next field numcar4
+       end if
+
+       if length(d_cty27g00.numcar4)<= 3 then
+          error "Numero invalido !" sleep 1
+          next field numcar4
+       end if
+
+       let d_cty27g00.numcar1 = d_cartao.numcar1
+       let d_cty27g00.numcar2 = d_cartao.numcar2
+       let d_cty27g00.numcar3 = d_cartao.numcar3
+
+       initialize l_cartao to null
+       let  l_cartao = d_cty27g00.numcar1,
+                       d_cty27g00.numcar2,
+                       d_cty27g00.numcar3,
+                       d_cty27g00.numcar4
+
+       let  n_cartao = l_cartao
+
+       let d_cty27g00.crtnum = l_cartao
+       call ffcoc001_valid(n_cartao)
+       returning  out.res
+                 ,out.msg
+                 ,out.pgtfrm
+        if out.res <> 0 then
+           error out.msg
+           next field numcar1
+        end if
+
+        display by name d_cty27g00.bndcod attribute(reverse)
+
+        let  l_cartao = d_cty27g00.numcar1,
+                        d_cty27g00.numcar2,
+                        d_cty27g00.numcar3,
+                        d_cty27g00.numcar4
+        let n_cartao  = l_cartao
+        let d_cty27g00.crtnum = l_cartao
+
+        # Criptografa o numero do Cartao
+        call ffctc890("C", n_cartao )
+             returning lr_retorno.*
+
+        let l_cartao = lr_retorno.pcapticrpcod
+
+        call ffcoc001_band(n_cartao) -- param.pcacarnum
+        returning  out.res
+                  ,out.msg
+                  ,out.pgtfrm
+                  ,out.flag_pvisa
+                  ,out.nome_band
+                  ,out.cod_band
+        if out.cod_band <> 4 and
+           out.cod_band <> 5 then
+           error "Bandeira Invalida. Somente VISA OU MASTERCARD " sleep 2
+           next field numcar1
+        end if
+
+        let d_cty27g00.bndcod = out.cod_band
+        let l_bnddes          = out.nome_band
+
+        display by name d_cty27g00.bndcod attribute(reverse)
+        display by name l_bnddes  attribute(reverse)
+        next field crtvlddat
+
+    before field crtnum
+       display by name d_cty27g00.crtnum
+    after field crtnum
+       display by name d_cty27g00.crtnum
+
+
+    before field bndcod
+        display by name d_cty27g00.bndcod attribute(reverse)
+
+     after field bndcod
+        display by name d_cty27g00.bndcod
+        next field crtvlddat
+
+    before field crtvlddat
+       display by name d_cty27g00.crtvlddat attribute(reverse)
+
+    after field crtvlddat
+       display by name d_cty27g00.crtvlddat
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          next field numcar4
+       end if
+
+       display by name d_cty27g00.crtvlddat
+
+       if d_cty27g00.crtvlddat is null then
+          error "Data Invalida!"
+          next field crtvlddat
+       end if
+
+    before field cbrparqtd
+       display by name d_cty27g00.cbrparqtd attribute(reverse)
+
+    after field cbrparqtd
+       display by name d_cty27g00.cbrparqtd
+
+       if fgl_lastkey() = fgl_keyval('up') or
+          fgl_lastkey() = fgl_keyval('left') then
+          next field crtvlddat
+       end if
+       if d_cty27g00.cbrparqtd = 0 or
+          d_cty27g00.cbrparqtd is null  then
+          error "Quantidade de Parcela Invalida!"
+          next field cbrparqtd
+       end if
+
+       let l_confirma = cts08g01( "C","S","",
+                                  "CONFIRMA DADOS DE COBRANCA DO SERVICO","","")
+       if l_confirma   =  "S" then
+          if d_cty27g00.numcar1 = "XXXX" or
+             d_cty27g00.numcar2 = "XXXX" or
+             d_cty27g00.numcar3 = "XXXX" then
+             error "Cartao invalido !"
+             next field pgtfrmcod
+          end if
+          if l_flg = "INC" then
+             call cts40g03_data_hora_banco(1) returning l_today, l_time
+             let l_data = extend(l_today, year to year), "-",
+                          extend(l_today, month to month), "-",
+                          extend(l_today, day to day), " ",l_time
+
+             let lr_cty27g00.orgnum    = 29
+             let lr_cty27g00.pgtseqnum = 1
+
+             call ffctc890("C", n_cartao )
+                  returning lr_retorno.*
+             let  l_cartao = lr_retorno.pcapticrpcod
+             whenever error continue
+             execute p_cty27g00_002 using  lr_cty27g00.orgnum
+                                          ,d_cty27g00.prpnum
+                                          ,lr_cty27g00.atdsrvnum
+                                          ,lr_cty27g00.atdsrvano
+                                          ,d_cty27g00.pgtfrmcod
+                                          ,g_issk.usrtip
+                                          ,g_issk.empcod
+                                          ,g_issk.usrcod
+                                          ,l_data
+             whenever error stop
+             if sqlca.sqlcode <> 0 then
+                error "Problemas ao Inserir registro <p_cty27g00_002 2>. Erro <",sqlca.sqlcode, ">" sleep 5
+                next field pgtfrmcod
+             end if
+             whenever error continue
+             if d_cty27g00.pgtfrmcod = 1 then
+                whenever error continue
+                open    c_cty27g00_004a using g_documento.prpnum
+                fetch   c_cty27g00_004a into  lr_cty27g00.pgtseqnum
+                let  lr_cty27g00.pgtseqnum = lr_cty27g00.pgtseqnum + 1
+                whenever error stop
+                if sqlca.sqlcode <> 0 then
+                   error "Problemas ao localizar registro <c_cty27g00_004a>. Erro <",sqlca.sqlcode, ">" sleep 3
+                else
+                   if lr_cty27g00.pgtseqnum is null or
+                      lr_cty27g00.pgtseqnum = 0     then
+                      let lr_cty27g00.pgtseqnum = 1
+                   end if
+                   whenever error continue
+                   execute p_cty27g00_002a using  lr_cty27g00.orgnum
+                                                 ,d_cty27g00.prpnum
+                                                 ,lr_cty27g00.pgtseqnum
+                                                 ,d_cty27g00.clinom
+                                                 ,l_cartao
+                                                 ,d_cty27g00.bndcod
+                                                 ,d_cty27g00.crtvlddat
+                                                 ,d_cty27g00.cbrparqtd
+
+                   whenever error stop
+                   if sqlca.sqlcode <> 0 then
+                      error "Problemas ao Inserir registro <p_cty27g00_002a>. Erro <",sqlca.sqlcode, ">"
+                      next field pgtfrmcod
+                   else
+                      error "Forma de pagamento gravada com sucesso !" sleep 2
+                      let int_flag = true
+                      exit input
+
+                   end if
+                end if
+             end if
+          else
+             # Alteração
+             whenever error continue
+
+             call cts40g03_data_hora_banco(1) returning l_today, l_time
+             let l_data = extend(l_today, year to year), "-",
+                          extend(l_today, month to month), "-",
+                          extend(l_today, day to day), " ",l_time
+             whenever error continue
+             execute p_cty27g00_003 using  g_issk.usrtip
+                                          ,g_issk.empcod
+                                          ,g_issk.usrcod
+                                          ,l_data
+                                          ,d_cty27g00.prpnum
+             whenever error stop
+             if sqlca.sqlcode <> 0 then
+                error "Problemas ao Atualizar registro <p_cty27g00_003>. Erro <",sqlca.sqlcode, ">"
+             else
+                whenever error continue
+
+                 if m_prepara_sql is null or
+                    m_prepara_sql <> true then
+                    call cty27g00_prepara()
+                 end if
+
+                open    c_cty27g00_004a using d_cty27g00.prpnum
+                fetch   c_cty27g00_004a into  lr_cty27g00.pgtseqnum
+                let  lr_cty27g00.pgtseqnum = lr_cty27g00.pgtseqnum + 1
+
+                whenever error stop
+                if sqlca.sqlcode <> 0 then
+                   error "Problemas ao localizar registro <c_cty27g00_004a>. Erro <",sqlca.sqlcode, ">"
+                else
+                   whenever error continue
+                   execute p_cty27g00_002a using  lr_cty27g00.orgnum
+                                                 ,d_cty27g00.prpnum
+                                                 ,lr_cty27g00.pgtseqnum
+                                                 ,d_cty27g00.clinom
+                                                 ,l_cartao
+                                                 ,d_cty27g00.bndcod
+                                                 ,d_cty27g00.crtvlddat
+                                                 ,d_cty27g00.cbrparqtd
+
+                   whenever error stop
+                   if sqlca.sqlcode <> 0 then
+                      error "Problemas ao Inserir registro <p_cty27g00_002a>. Erro <",sqlca.sqlcode, ">"
+                      next field pgtfrmcod
+                   end if
+                   whenever error continue
+                end if
+                error "Forma de pagamento atualizada com sucesso!."
+             end if
+             whenever error continue
+          end if
+          # IMPLEMENTAR RETORNO
+          let int_flag = true
+          exit input
+       else
+          next field pgtfrmcod
+       end if
+
+ on key (f17,control-c, interrupt)
+
+       if d_cty27g00.pgtfrmcod is null then
+          call cts08g01 ("A","N",""
+                        ,"FALTA DADOS DE COBRANCA DO SERVICO, "
+                        ,"SELECIONE UMA DAS OPCOES DE PAGAMENTOS.", " " )
+               returning l_confirma
+           next field pgtfrmcod
+       else
+
+           if d_cty27g00.pgtfrmcod >= 1 then
+              if d_cty27g00.numcar1 is null  or
+                 d_cty27g00.numcar2 = ""     or
+                 d_cty27g00.numcar3 = ""     or
+                 d_cty27g00.numcar4 = ""     or
+                (d_cty27g00.bndcod is null  or
+                 d_cty27g00.bndcod = "")    or
+                (d_cty27g00.crtvlddat   is null  or
+                 d_cty27g00.crtvlddat   = "")    or
+                (d_cty27g00.cbrparqtd  = 0      or
+                 d_cty27g00.cbrparqtd  is null) then
+                 call cts08g01("A","N",""
+                              ,"DADOS INCOMPLETOS PARA COBRANCA"
+                              ,"DO SERVICO.", "" )
+                      returning l_confirma
+                 next field pgtfrmcod
+              end if
+           end if
+       end if
+
+       let int_flag = true
+       exit input
+ end input
+
+ close window w_cty27g00
+
+end function
+
+#----------------------------#
+function cty27g00_numprp()
+#----------------------------#
+
+  define retorno record
+         prpnum  like datmpgtinf.prpnum,
+         sqlcode integer,
+         msg     char(80)
+  end record
+
+  define ws      record
+         prpnum  like datmpgtinf.prpnum,
+         atldat  like datkgeral.atldat,
+         atlhor  like datkgeral.atlhor
+  end record
+
+#@INICIALIZADA PELA COMPILADA-NAO APAGAR@#
+
+  initialize  retorno.*  to  null
+
+  initialize  ws.*  to  null
+
+  call cty27g00_prepara()
+
+  initialize retorno, ws to null
+  whenever error continue
+  open c_cty27g00_005
+
+  fetch c_cty27g00_005 into ws.prpnum
+  whenever error stop
+
+  if  sqlca.sqlcode <> 0  then
+      let retorno.sqlcode = sqlca.sqlcode
+      let retorno.msg     = " Erro na busca do numero da proposta! "
+      let retorno.prpnum  = null
+      return retorno.*
+  end if
+
+  let ws.prpnum = ws.prpnum + 1
+
+  # ---> BUSCA A DATA E HORA DO BANCO
+  call cts40g03_data_hora_banco(2)
+       returning ws.atldat, ws.atlhor
+
+  whenever error continue
+  execute p_cty27g00_006 using ws.prpnum, ws.atldat, ws.atlhor
+  whenever error stop
+
+  if  sqlca.sqlcode <> 0  then
+      let retorno.sqlcode = sqlca.sqlcode
+      let retorno.msg     = " Erro na atualizacao do numero da proposta! "
+      let ws.prpnum       = null
+  end if
+
+  let retorno.prpnum = ws.prpnum
+
+  return retorno.*
+
+end function
+
+# Funcionalidadade para verificar se foi efetuada uma transasação
+# para o serviço.
+# Caso tenha sido, nao permitir mais alteração.
+#---------------------------------------------------------------
+function cty27g00_consiste(l_param)
+#---------------------------------------------------------------
+ define l_param record
+        atdsrvnum like datmpgtinf.atdsrvnum
+       ,atdsrvano like datmpgtinf.atdsrvano
+ end record
+
+ define l_result integer
+
+ initialize l_result to null
+
+ let l_result = 0
+
+ whenever error continue
+
+ select count(*) into l_result
+ from   datmefutrn
+ where  atdsrvnum = l_param.atdsrvnum
+ and    atdsrvano = l_param.atdsrvano
+
+ whenever error stop
+
+ if sqlca.sqlcode <> 0 then
+    if sqlca.sqlcode = 100 then
+       let l_result = 0
+    else
+       error "Problemas na Entidade de situação das transações <datmefutrn> "
+       let l_result = null
+    end if
+ end if
+
+ return l_result
+
+end function
+
+# Funcionalidadade para verificar os Grupos de Assuntos, 'PSA','RCS' e 'RVC'
+# Caso faca parte, retornara verdadeiro para abrir a tela de Forma de Pagto
+#---------------------------------------------------------------------------
+function cty27g00_consiste_ast(l_c24astcod)
+#---------------------------------------------------------------------------
+
+ define l_c24astcod like datmligacao.c24astcod
+
+ define l_result integer
+
+ initialize l_result to null
+
+ let l_result = 0
+
+ whenever error continue
+
+ declare c_cty27g00_007 cursor for
+ select  1
+ from    datkassunto
+ where   c24astagp in ('PSA') and c24aststt = 'A' and  c24astcod = l_c24astcod
+ union all
+ select  1
+ from datkassunto
+ where c24astcod in ('RCS','RVC') and c24aststt = 'A' and  c24astcod = l_c24astcod
+
+ whenever error continue
+
+ open  c_cty27g00_007
+
+ whenever error stop
+
+ whenever error continue
+ fetch c_cty27g00_007 into l_result
+ whenever error stop
+
+ if sqlca.sqlcode <> 0 then
+    if sqlca.sqlcode = 100 then
+       let l_result = 0
+    else
+       error "Grupo de Assuntos nao encontrado<PSA,RCS e RVC>"
+       let l_result = null
+    end if
+ else
+    let l_result = 1
+ end if
+
+ return l_result
+
+end function
+
+# Atualiza o Numero do Servico na Forma de Pagto
+#-----------------------------------------------------------------
+ function cty27g00_grv_srv(l_param)
+#-----------------------------------------------------------------
+
+ define l_param record
+        prpnum    like datmpgtinf.prpnum,
+        atdsrvnum like datmservico.atdsrvnum,
+        atdsrvano like datmservico.atdsrvano
+ end record
+
+ define cty27g00_ret integer
+
+ let cty27g00_ret = 0
+
+ whenever error continue
+
+ update datmpgtinf
+ set    atdsrvnum = l_param.atdsrvnum,
+        atdsrvano = l_param.atdsrvano
+ where  prpnum    = l_param.prpnum
+
+ whenever error stop
+
+ if sqlca.sqlcode <> 0 then
+    error " Problemas na atualizacao <datmpgtinf> ", sqlca.sqlcode
+    let cty27g00_ret = 0
+ else
+    let cty27g00_ret = 1
+ end if
+
+ return cty27g00_ret
+
+end function
+
+# Busca Numero de proposta
+#-----------------------------------------------------------------
+ function cty27g00_proposta(l_param)
+#-----------------------------------------------------------------
+
+ define l_param record
+        atdsrvnum like datmservico.atdsrvnum,
+        atdsrvano like datmservico.atdsrvano
+ end record
+
+ define cty27g00_prpnum like datmpgtinf.prpnum
+
+ initialize cty27g00_prpnum to null
+
+ whenever error continue
+ select a.prpnum
+ into   cty27g00_prpnum
+ from   datmpgtinf a, outer datmcrdcrtinf b
+ where  a.orgnum    = b.orgnum
+ and    a.prpnum    = b.prpnum
+ and    a.atdsrvnum = l_param.atdsrvnum
+ and    a.atdsrvano = l_param.atdsrvano
+ and    b.pgtseqnum = (select max(d.pgtseqnum)
+                         from datmcrdcrtinf d
+                        where d.prpnum = b.prpnum )
+ whenever error stop
+
+ if sqlca.sqlcode <> 0 then
+    error " Problemas na pesquisa do servico <datmpgtinf> ", sqlca.sqlcode
+    let cty27g00_prpnum = null
+ end if
+
+ whenever error continue
+
+ return cty27g00_prpnum
+
+end function
+
+#------------------------------------------------------------------------------------
+function cty27g00_pesq_prp(param) # Carrega Globais qdo chamado da tela radiO_cartao
+#------------------------------------------------------------------------------------
+
+ define param record
+        atdsrvnum like datmpgtinf.atdsrvnum,
+        atdsrvano like datmpgtinf.atdsrvano
+ end record
+
+ define lr_assunto record
+        resultado smallint
+       ,mensagem  char(100)
+       ,c24astcod like datmligacao.c24astcod
+       ,lignum    like datmligacao.lignum
+ end record
+
+ define cty27g00_ret integer
+
+ initialize lr_assunto.* to null
+ let cty27g00_ret = 0
+
+ # Obter o Ligacao Original do Assunto pelo Servico
+ select min(lignum) into lr_assunto.lignum
+ from   datmligacao
+ where  atdsrvnum = param.atdsrvnum
+ and    atdsrvano = param.atdsrvano
+
+ ##-- Obter o assunto da ligacao  --##
+ call cts20g03_dados_ligacao( 2, lr_assunto.lignum  )
+ returning lr_assunto.resultado
+          ,lr_assunto.mensagem
+          ,lr_assunto.c24astcod
+
+ # consistir se faz parte do agrupamento.
+ # Se sim, buscar numero de proposta e armazenar na global.
+ call cty27g00_consiste_ast(lr_assunto.c24astcod)
+      returning cty27g00_ret
+
+ if cty27g00_ret = 1 then
+    let g_documento.prpnum    = cty27g00_proposta(param.atdsrvnum,
+                                                  param.atdsrvano)
+    let g_documento.c24astcod = lr_assunto.c24astcod
+    let g_documento.lignum    = lr_assunto.lignum
+ end if
+
+end function

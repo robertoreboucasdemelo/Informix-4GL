@@ -1,0 +1,60 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc48m00                                                   Raji
+
+ Cadastro de codigos de problema                                      Nov/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc49m00--
+ Cod. agrupamento...:[a    ]
+
+ Descricao..........:[a1                                      ]
+
+ Codigo Origem Srv..:[b ] [b1                                 ]
+
+ Situacao Problema..:[c][c1          ]
+
+
+
+
+
+
+ Incluido...........:[e         ] por [e1                 ]
+ Atualizado.........:[f         ] por [f1                 ]
+
+}
+end
+
+ tables datkpbmgrp
+        datksrvtip
+
+ attributes
+    a  = datkpbmgrp.c24pbmgrpcod                 ,upshift,
+         comments = " Codigo do Agrupamento";
+
+    a1 = datkpbmgrp.c24pbmgrpdes                 ,upshift,
+         comments = " Descricao do Agrupamento";
+
+    b  = datkpbmgrp.atdsrvorg                    ,upshift,
+         comments = " Org.Servico  (1) P.Socorro  (6) D.A.F.  (9) Socorro R.E.  (13) Sinistro R.E.";
+
+    b1 = datksrvtip.srvtipabvdes                 ,upshift,
+         comments = " Descricao da Org. Servico";
+
+    c  = datkpbmgrp.c24pbmgrpstt                 ,upshift,
+         comments = " (A) Ativo   (C) Cancelado";
+    c1 = formonly.c24pbmgrpsttdes ;
+
+    e  = datkpbmgrp.caddat                       ,noentry;
+    e1 = formonly.cadfunnom                      ,noentry;
+    f  = datkpbmgrp.atldat                       ,noentry;
+    f1 = formonly.funnom                         ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

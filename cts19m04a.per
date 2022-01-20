@@ -1,0 +1,54 @@
+{----------------------------------------------------------------------------|
+| Porto Seguro Cia Seguros Gerais                                            |
+|............................................................................|
+| Sistema       : Central 24hs                                               |
+| Tela          : cts19m08a                                                  |
+| Analista Resp : Roberto Melo                                               |
+|                 Exibe Saldo Disponivel para utilização nos B14             |
+|............................................................................|
+| Desenvolvimento: Amilton Pinto / Meta                                      |
+| Liberacao      : 28/08/2009                                                |
+|----------------------------------------------------------------------------|
+|                                                                            |
+|                          * * * Alteracoes * * *                            |
+|                                                                            |
+| Data       Autor Fabrica  Origem     Alteracao                             |
+| ---------- -------------- ---------- --------------------------------------}
+
+
+                                                                              
+database formonly
+screen                                                                        
+{
+   Vidros Disponiveis
+---------------------------cts19m04a--------
+Clausulas..: [e  ]
+
+    Vidros               Saldo    Excedido  
+[b                     ][c   ]     [d  ]    
+[b                     ][c   ]     [d  ]    
+[b                     ][c   ]     [d  ]    
+[b                     ][c   ]     [d  ]    
+[b                     ][c   ]     [d  ]
+[b                     ][c   ]     [d  ]
+[b                     ][c   ]     [d  ]
+[b                     ][c   ]     [d  ]
+[b                     ][c   ]     [d  ]
+[b                     ][c   ]     [d  ]
+--------------------------------------------
+
+}
+end
+
+attributes   
+   b = formonly.vidro           ,noentry;
+   c = formonly.saldo           ,noentry;   
+   d = formonly.execedido       ,noentry;
+   e = formonly.clscod          ,noentry;      
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts19m04a(vidro thru execedido)
+end

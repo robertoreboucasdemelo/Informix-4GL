@@ -1,0 +1,59 @@
+{
+ ==============================================================================
+   Form       : cts17m02
+   Sistema    : RE - Central 24 hs
+   Objetivo   : Permitir a abertura de multiplos laudos de servicos RE
+   Autor      : Perola
+   Data       : 13/08/2003
+ =============================================================================
+}
+database formonly
+screen size 24 by 80
+
+{
+------------------------------------------------------------------ cts17m02 --
+  Numero de Copias: [a]    Data Ocorrencia: [b         ]     Hora: [c    ]
+------------------------------------------------------------------------------
+ Natureza                         Problema                    Servico 
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+[d |e                           ][f   |g                    ][h            ]
+------------------------------------------------------------------------------
+
+
+(F9) Conclui	(F17) Abandona
+}
+end
+
+attributes
+
+a = formonly.numcopia      type dec  , format = '#';
+
+b = formonly.orrdat        type date , format = 'dd/mm/yyyy';
+
+c = formonly.orrhor        type datetime hour to minute , picture = '##:##';
+
+d = formonly.socntzcod     type smallint , format = "&&";
+
+e = formonly.socntzdes     type char , noentry;
+
+f = formonly.c24pbmcod     type smallint , format = "&&&&";
+
+g = formonly.c24pbmdes     type char , noentry;
+
+h = formonly.servico       type char , noentry;
+
+end
+
+instructions
+
+   delimiters " "
+   screen record s_cts17m02[09] (socntzcod thru servico)
+
+end

@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB12M11                                              Marcelo
+                                                                     Gilberto
+ Consulta totais de OPs/servicos pagos por situacao/dia              Dez/1999
+-----------------------------------------------------------------------------}
+
+Database formonly
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb12m11--
+ Tipo:[c][c5       ]     Data:[c10       ] a [c20       ]
+ Empresa:[e1][e2               ]
+------------------------------------------------------------------------------
+ Situacao                  OPs  Servicos   Custo Adicional      Valor Total
+
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+[a10                  ][a20 ][a30     ][a40               ][a50               ]
+
+}
+End
+
+Attributes
+   c   = formonly.tipdat      , comments = " 1- Data de Entrega, 2- Data de Pagamento";
+   c5  = formonly.tipdatdes   , noentry;
+   c10 = formonly.data          type date
+                              , comments = " Data para pesquisa";
+   c20 = formonly.data2          type date;
+   e1  = formonly.ciaempcod   , comments = " Codigo da empresa";
+   e2  = formonly.empsgl      , noentry;
+
+   a10 = formonly.socopgsitdes, noentry;
+   a20 = formonly.qtdopg        type decimal
+                              , format = "###&"
+                              , noentry;
+   a30 = formonly.qtdsrv        type decimal
+                              , format = "#######&"
+                              , noentry;
+   a40 = formonly.socopgitmcst         type decimal
+   	                      , format = "###,###,###,##&.&&"
+                              , noentry;
+   a50 = formonly.opgvlr        type decimal
+                              , format = "###,###,###,##&.&&"
+                              , noentry;
+end
+
+Instructions
+   delimiters " "
+   screen record s_ctb12m11(socopgsitdes thru opgvlr)
+End

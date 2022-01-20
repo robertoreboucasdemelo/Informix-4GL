@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB18M01                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Data entrega do movimento dos servicos p/paramento                   Dez/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+    Datas de entrega do movimento para pagamento
+-----------------------------------------------ctb18m01--
+
+ Cronograma:   [a1|a2                                  ]
+
+ Datas ....:   [b1        ]
+               [b1        ]
+               [b1        ]
+               [b1        ]
+               [b1        ]
+
+
+}
+end
+
+tables
+  dbsmcrnpgtetg
+
+attributes
+
+a1= formonly.crnpgtcod type dec(2,0),
+    noentry, format = "&&";
+a2= formonly.crnpgtdes,
+    noentry;
+
+b1= formonly.crnpgtetgdat,
+    comments = " Data de entrega",
+    autonext;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb18m01(crnpgtetgdat)
+end
+

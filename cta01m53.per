@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m53                                               Marcelo
+                                                                      Gilberto
+ Resultado da Pesquisa (quando mais de um item for encontrado)        Jan/1996
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+---------------------------------------------------------------------cta01m53-
+                 VEICULOS ENCONTRADOS NA PESQUISA POR PLACA
+------------------------------------------------------------------------------
+ Nome Titular                               Numero do Cartao
+ Veiculo                                    Cor            Ano    Placa
+
+[c1                                      ] [c2                 ]
+[v1                                      ] [v2          ] [v3  ] [v4      ]
+[inv      ]
+[c1                                      ] [c2                 ]
+[v1                                      ] [v2          ] [v3  ] [v4      ]
+[inv      ]
+[c1                                      ] [c2                 ]
+[v1                                      ] [v2          ] [v3  ] [v4      ]
+[inv      ]
+[c1                                      ] [c2                 ]
+[v1                                      ] [v2          ] [v3  ] [v4      ]
+[inv      ]
+
+}
+end
+ tables eccmitem, eccmpti   , eccmcta    , eccmcli
+
+attributes
+   c1  = eccmcli.pcaclinom                                         ,noentry;
+   c2  = formonly.cartao  type dec, format = "#### #### #### ####" ,noentry;
+   v1  = formonly.veiculo         type char                        ,noentry;
+   v2  = formonly.cor             type char                        ,noentry;
+   v3  = eccmitem.vclanomdl                                        ,noentry;
+   v4  = eccmitem.vcllicnum                                        ,noentry;
+   inv = eccmpti.pcapticod        , invisible                      ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m53 (pcaclinom  thru  pcapticod)
+end

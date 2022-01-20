@@ -1,0 +1,44 @@
+database formonly
+screen
+{
+-------------------------------------------------------------------cta00m20---
+
+ Nr. Contrato..:[a          ]
+ Cliente.......:[b                                                           ]
+ Endereco
+ Cep...........:[c    |c1 ]
+ Cidade........:[d                            ]                UF:[e ]
+ Logradouro....:[f                                            ]
+ Numero........:[g    ]                               Complemento:[h         ]
+ Bairro........:[i                            ]
+ Tel. Portaria.:[j   |j1       ]
+ Email Portaria:[k                                                           ]
+
+
+
+
+
+}
+end
+
+attributes
+
+a  = formonly.ligdctnum, comments = ' Numero de contrato';
+b  = formonly.solnom   , comments = ' Nome do solicitante', upshift;
+c  = formonly.lgdcep     type decimal(5,0), format = '&&&&&', autonext;
+c1 = formonly.lgdcepcmp  type decimal(3,0), format = '&&&', autonext;
+d  = formonly.cidnom   , upshift;
+e  = formonly.ufdcod   , autonext, upshift;
+f  = formonly.lgdnom   , upshift;
+g  = formonly.lgdnum   ;
+h  = formonly.dctitm   , upshift;
+i  = formonly.lclbrrnom, upshift;
+j  = formonly.dddport  , comments = ' DDD do telefone da portaria', autonext;
+j1 = formonly.telport  , comments = ' Telefone da portaria', autonext;
+k  = formonly.email    , comments = ' Email da portaria', downshift;
+
+instructions
+
+   delimiters " "
+
+end

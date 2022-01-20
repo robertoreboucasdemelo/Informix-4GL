@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts14m11                                                  Pedro
+                                                                       Marcelo
+ Historico da Vistoria de Sinistro                                    Jul/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts14m11--
+   HISTORICO DA VISTORIA DE SINISTRO[a          ] N.Atendimento:[c        ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+}
+end
+
+tables
+datmsinhist
+
+attributes
+
+a    = formonly.vistoria    ,reverse ,noentry;
+b    = datmsinhist.c24vstdsc,upshift;
+c    = formonly.atdnum;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cts14m11(c24vstdsc)
+end

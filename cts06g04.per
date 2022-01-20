@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS06G04                                               Marcelo
+                                                                      Gilberto
+ Funcoes Genericas - Pesquisa padrao de cidade                        Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                     Localiza cidade
+-----------------------------------------------------cts06g04--
+ Cidade:[x1                                           ]UF:[x2]
+---------------------------------------------------------------
+ Estado  Cidade
+
+  [a1]  [a2                                           |b1    ]
+  [a1]  [a2                                           |b1    ]
+  [a1]  [a2                                           |b1    ]
+  [a1]  [a2                                           |b1    ]
+  [a1]  [a2                                           |b1    ]
+
+}
+end
+
+ tables glakcid
+
+ attributes
+    x1 = formonly.digcidnom  , upshift
+                             , comments = " Cidade ";
+    x2 = formonly.digufdcod  , upshift
+                             , comments = " Sigla da unidade da federacao ";
+
+    a1 = glakcid.ufdcod      , noentry;
+    a2 = glakcid.cidnom      , noentry;
+    b1 = glakcid.cidcod      , invisible
+                             , noentry;
+ end
+
+ instructions
+    screen record s_cts06g04 (ufdcod thru cidcod)
+    delimiters " "
+ end

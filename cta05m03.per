@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA05M03                                              Marcelo
+                                                                     Gilberto
+ Direcionamento do envio do pedido de desculpas                      Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+    Envio do pedido de desculpas
+------------------------------cta05m03--
+
+   Enviar pedido para:[a][a1         ]
+
+   Numero FAX........:[b0  ][b1       ]
+
+
+
+}
+end
+
+tables
+  datmreclam
+
+attributes
+
+a  = formonly.enviar    , comments = " Enviar para (I)mpressora ou (F)ax",
+                          upshift, required;
+a1 = formonly.envdes    , upshift, noentry;
+b0 = datmreclam.dddcod  , comments = " Codigo do DDD",
+                          autonext, upshift ;
+b1 = datmreclam.faxnum  , comments = " Numero do FAX de destino";
+
+end
+
+instructions
+  delimiters " "
+end

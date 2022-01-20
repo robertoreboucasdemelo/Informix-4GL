@@ -1,0 +1,34 @@
+{--------------------------------------------------------------------
+ Nome do form: ctc00m20a                                       Robert
+ Manutenção do cadastro complemntode informações do prestador PJ
+              - Circular 380 -                               Jun/2010
+--------------------------------------------------------------------}
+
+database formonly                                                                
+screen                                                                        
+{      
+                   [d                    ]                                                                     
+-------------------------------------------------ctc00m20a--
+
+ Nome....:[a                                               ]
+ 
+ CPF.....:[b        ]-[b1]        PEP.....:[c]
+ 
+------------------------------------------------------------
+ F17(Abandonar) F6(Help)
+}  
+end
+                                                                                                                
+attributes                                                             
+
+a  = formonly.nome  ,upshift ,comments = "Nome";
+b  = formonly.cgcNum   ,autonext,comments = "CPF";
+b1 = formonly.cgcDig,comments = "CPF Digito";
+c  = formonly.PEP   ,upshift ,comments = "PEP";  
+d  = formonly.texto,upshift,noentry,reverse;
+
+end                                                          
+                                                             
+instructions                                                 
+delimiters " "                                               
+                                                             

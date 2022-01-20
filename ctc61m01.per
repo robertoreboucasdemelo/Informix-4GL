@@ -1,0 +1,46 @@
+database porto
+screen size 24 by 80
+{
+-----------------------------------------------------------------ctc61m01-----
+  Codigo...........:[a1 ][a2                            ]
+  Aciona Automatico:[b]
+  Situacao.........:[s|s2        ]
+
+  Equipamentos necessarios para atender o local/condicao do veiculo:
+[c1]-[c2                            ]
+[c1]-[c2                            ]
+[c1]-[c2                            ]
+[c1]-[c2                            ]
+[c1]-[c2                            ]
+[c1]-[c2                            ]
+
+ Incluido..:[d1        ]por[d2    ]-[d3                       ] 
+ Atualizado:[e1        ]por[e2    ]-[e3                       ]
+
+ (F2)Exclui (F17)Abandona
+}
+end 
+tables
+   datkvclcndlcl, datrlclcndvclgch
+end 
+attributes
+ a1 = datkvclcndlcl.vclcndlclcod;
+ a2 = datkvclcndlcl.vclcndlcldes, upshift;
+ b  = datkvclcndlcl.atmacnflg, upshift;
+ s  = datkvclcndlcl.vclcndlclsit, upshift;
+ s2 = formonly.descricaosit  type char, noentry;
+ c1 = formonly.soceqpcod;
+ c2 = formonly.soceqpdes  type char, upshift, noentry;
+ d1 = datkvclcndlcl.caddat, noentry;
+ d2 = datkvclcndlcl.cadmat, noentry;
+ d3 = formonly.cadnomefunc, upshift, noentry;
+ e1 = datkvclcndlcl.atldat, noentry;
+ e2 = datkvclcndlcl.atlmat, noentry;
+ e3 = formonly.atlnomefunc, upshift, noentry;
+end
+ 
+instructions
+  delimiters " "
+  screen record s_ctc61m01(formonly.soceqpcod, 
+                           formonly.soceqpdes)
+end

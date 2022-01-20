@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc50m00                                               Gustavo
+                                                                       Marcus
+ Pesquisa cadastro de pontos geograficos                              Dez/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------------------------------ctc50m00---
+ Codigo.....:[a1   ]
+-----------------------------------------------------------------------------
+
+ U.F........:[a2]
+ Cidade.....:[a3                                           ]
+
+ Latitude....:[a4        ]
+ Longitude...:[a5        ]
+ Grp. Aciona.:[a6 ]-[a7                                           ]
+
+ Incluido...:[b4        ]
+
+
+
+
+}
+end
+
+ tables
+ datkmpacid,
+ datkacngrp,
+ datkgpsgeopto
+
+ attributes
+
+   a1  = datkmpacid.mpacidcod,
+         comments = " Codigo da cidade";
+
+   a2  = datkmpacid.ufdcod,                 upshift,
+         comments = " Codigo da UF";
+
+   a3  = datkmpacid.cidnom,                 upshift,
+         comments = " Nome da cidade";
+
+   a4  = datkmpacid.lclltt,
+         comments = " Latitude do local";
+
+   a5  = datkmpacid.lcllgt,
+         comments = " Longitude do local";
+
+   a6  = datkmpacid.gpsacngrpcod,
+         comments = " Grupo de Acionamento que pertence esta cidade";
+
+   a7  = datkacngrp.gpsacngrpdes,
+         comments = " Descricao do Grupo de Acionamento";
+
+   b4  = datkmpacid.caddat,                 noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

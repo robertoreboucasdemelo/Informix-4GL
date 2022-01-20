@@ -1,0 +1,60 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA05M05                                              Wagner
+
+ Resumo das reclamacoes                                              Mai/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cta05m05--
+                     Quantidade de reclamacoes por periodo
+------------------------------------------------------------------------------
+      Periodo de :[a1        ]ate:[a2        ]     Sigla do Assunto:[a]
+------------------------------------------------------------------------------
+ Recl.   Pendente   Em Analise Aguard.Ret. Solucionada Improcedent   Acordo
+ ----- ----------- ----------- ----------- ----------- ----------- ----------
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+ [b0 ] [b1       ] [b2       ] [b3       ] [b4       ] [b5       ] [b6      ]
+
+ Total:[c1       ] [c2       ] [c3       ] [c4       ] [c5       ] [c6      ]
+
+[c7                                                         |c8    ]
+}
+End
+
+Attributes
+ a1  = formonly.rcldtini         type date, autonext,
+                                 comments = " Data inicial para pesquisa";
+ a2  = formonly.rcldtfim         type date, autonext,
+                                 comments = " Data final para pesquisa";
+ a   = formonly.rclsglast        type char, upshift,
+                                 comments = " Sigla do assunto 'W', 'X', 'K', '1' ou '5'";
+
+ c1  = formonly.rcltotpen        type dec , format = "#####,##&", noentry;
+ c2  = formonly.rcltotana        type dec , format = "#####,##&", noentry;
+ c3  = formonly.rcltotagu        type dec , format = "#####,##&", noentry;
+ c4  = formonly.rcltotsol        type dec , format = "#####,##&", noentry;
+ c5  = formonly.rcltotimp        type dec , format = "#####,##&", noentry;
+ c6  = formonly.rcltotaco        type dec , format = "####,##&",  noentry;
+ c7  = formonly.rcltxt           type char, noentry;
+ c8  = formonly.rcltotlin        type dec , format = "##,#&&", noentry;
+
+ b0  = formonly.rclastcod        type char;
+ b1  = formonly.rclastpen        type dec , format = "#####,##&", noentry;
+ b2  = formonly.rclastana        type dec , format = "#####,##&", noentry;
+ b3  = formonly.rclastagu        type dec , format = "#####,##&", noentry;
+ b4  = formonly.rclastsol        type dec , format = "#####,##&", noentry;
+ b5  = formonly.rclastimp        type dec , format = "#####,##&", noentry;
+ b6  = formonly.rclastaco        type dec , format = "####,##&",  noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta05m05(rclastcod thru rclastaco)
+End

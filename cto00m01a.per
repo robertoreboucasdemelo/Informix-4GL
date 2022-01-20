@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTO00M01                                                 Ruiz
+                                                                        Akio
+ Pesquisa fonetica por nome                                          Abr/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+ Funcionario:[a                                       ]
+------------------------------------------------cto00m01a--
+     Nome                                   Emp  Matricula
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+ [b                                       ] [c ] [d     ]
+-----------------------------------------------------------
+
+}
+End
+
+tables
+   isskfunc
+
+Attributes
+ a  = formonly.nome,comments = "Digite:Primeira Letra Maiscula ou deixe em branco";
+ b  = isskfunc.rhmfunnom         ,noentry;
+ c  = isskfunc.empcod            ,noentry;
+ d  = isskfunc.funmat            ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m01(rhmfunnom thru funmat)
+End

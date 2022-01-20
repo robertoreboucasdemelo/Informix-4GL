@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA05M02                                              Marcelo
+                                                                     Gilberto
+ Consulta etapas da apuracao da reclamacao                           Jul/1997
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------cta05m02--
+ Reclamacao:[a5        ] - [a10][a15                                     ]
+------------------------------------------------------------------------------
+ Descricao da Etapa          Assunto --- Realizacao ----  --- Responsavel ---
+
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+[b5                           |b7 ] [b10       |b15     ][b20                ]
+
+}
+End
+
+Tables datmsitrecl, datmligacao
+
+Attributes
+  a5   = datmsitrecl.lignum   ,        noentry, format = "#####&&&&&";
+  a10  = datmligacao.c24astcod,        noentry, upshift;
+  a15  = formonly.c24astdes   ,        noentry, upshift;
+
+  b5   = formonly.rclsitdes   ,        noentry, upshift;
+  b7   = formonly.c24astcod   ,        noentry, upshift;
+  b10  = datmsitrecl.rclrlzdat,        noentry;
+  b15  = datmsitrecl.rclrlzhor,        noentry;
+  b20  = formonly.funnom,              noentry, upshift;
+End
+
+Instructions
+  delimiters " "
+  screen record s_cta05m02(rclsitdes thru funnom)
+End

@@ -1,0 +1,76 @@
+{--------------------------------------------------------------------
+ Nome do form: cts00m20                                     Gilberto
+                                                             Marcelo
+ Localiza veiculo mais proximo da ocorrencia                  Out/99
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                 Localiza veiculo mais proximo da ocorrencia
+--------------------------------------------------------------------cts00m20--
+ Grupo....: [c1][c2            ]Tp Assist:[c3|c4      ]Empresa:[e1|e2        ]
+ Atividade: [c6 ]
+------------------------------------------------------------------------------
+ Veiculo:[d1   ] [d2 ][d3    |d4                             |d41            ]
+ Socorr.:[d5    |d6        ]
+ AST....:[d7                                                                 ]
+ G.P.S .:[d8|d9                     |d10                                  |z1]
+ OBS ...:[d11                           ]Sinal.:[d12      ]Dist:[d13      ]Km
+[d14   ] [d15     ][d16      ]
+
+ Veiculo:[d1   ] [d2 ][d3    |d4                             |d41            ]
+ Socorr.:[d5    |d6        ]
+ AST....:[d7                                                                 ]
+ G.P.S .:[d8|d9                     |d10                                  |z1]
+ OBS ...:[d11                           ]Sinal.:[d12      ]Dist:[d13      ]Km
+[d14   ] [d15     ][d16      ]                                    [c5        ]
+
+}
+end
+
+ tables
+    dattfrotalocal, datkveiculo
+
+ attributes
+   c1  = formonly.vcldtbgrpcod               type decimal,
+         comments = " Grupo de distribuicao";
+   c2  = formonly.vcldtbgrpdes,                   noentry;
+   c3  = formonly.asitipcod,
+         comments = " Tipo de assistencia";
+   c4  = formonly.asitipabvdes,                   noentry;
+   c6  = formonly.c24atvpsq,                       upshift,
+        comments="Informe: QRV, QRU, QRA, QRX, QTP, INI, FIM";
+
+   e1  = formonly.ciaempcod,
+         comments = " Codigo da empresa";
+   e2  = formonly.empsgl,                         noentry;
+
+   d1  = datkveiculo.atdvclsgl,   reverse,        noentry;
+   d2  = dattfrotalocal.c24atvcod,                noentry;
+   d3  = dattfrotalocal.socvclcod,                noentry;
+   d4  = formonly.socvcltipdes,                   noentry;
+   d41 = formonly.vcleqpdes,                      noentry;
+   d5  = dattfrotalocal.srrcoddig,                noentry;
+   d6  = formonly.srrabvnom,                      noentry;
+   d7  = formonly.srrasides,                      noentry;
+   d8  = formonly.ufdcod_gps,                     noentry;
+   d9  = formonly.cidnom_gps,                     noentry;
+   d10 = formonly.brrnom_gps,                     noentry;
+   z1  = formonly.endzon_gps,                     noentry;
+   d11 = formonly.obspostxt,                      noentry;
+   d12 = formonly.espera,                         noentry;
+   d13 = formonly.dstqtd,
+         color = black reverse where d13 is not null, noentry;
+   d14 = formonly.atdprscod,      invisible,      noentry;
+   d15 = formonly.lclltt   ,      invisible,      noentry;
+   d16 = formonly.lcllgt   ,      invisible,      noentry;
+   c5  = formonly.total,                          noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts00m20(atdvclsgl thru lcllgt)
+ end
+

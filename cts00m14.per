@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M14                                              Marcelo
+                                                                     Gilberto
+ Direciona e imprime laudo de servico para prestador                 Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+         Direcionamento da impressao do laudo
+----------------------------------------------cts00m14--
+
+      Enviar laudo para:[a][a1        ]
+
+      Nome de Guerra...:[b                   ]
+
+      Numero do Fax....:[c   ][d        ]
+
+
+}
+end
+
+tables
+  dpaksocor
+
+attributes
+
+  a  = formonly.enviar    ,comments = " Enviar para (I)mpressora ou (F)ax"
+                          ,autonext
+                          ,upshift;
+  a1 = formonly.envdes    ,noentry;
+  b  = dpaksocor.nomgrr   ,reverse
+                          ,noentry;
+  c  = dpaksocor.dddcod   ,reverse
+                          ,comments = " Codigo do DDD"
+                          ,autonext
+                          ,upshift;
+  d  = dpaksocor.faxnum   ,reverse
+                          ,comments = " Numero do FAX de destino"
+                          ,autonext
+                          ,upshift ;
+end
+
+instructions
+  delimiters " "
+end

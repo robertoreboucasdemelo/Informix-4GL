@@ -1,0 +1,44 @@
+{----------------------------------------------------------------------------
+#---------------------------------------------------------------------    #
+# Porto Seguro Cia Seguros Gerais                                         #
+# ....................................................................    #
+# Sistema       : Central 24h                                             #
+# Modulo        : cts03m00                                                #
+# Analista Resp.: Amilton Pinto                                           #
+# PSI           : 219444                                                  #
+# Objetivo      : Limites para a clausula 46/46R                          #
+#.....................................................................    #
+# Desenvolvimento: Amilton Pinto                                          #
+# Liberacao      :                                                        #
+#.....................................................................    #
+----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+          Limites de Utilizacao
+
+--------------------------------cts03m04---
+
+    Assistencia      Qtd.Utilizada  Limite
+
+    Guincho/Tecnico      [b2 ]     [b3 ]
+    Chaveiro             [b4 ]     [b5 ]    
+
+
+}
+end
+
+ attributes    
+    b2 = formonly.gui_util ; 
+    b3 = formonly.gui_lim  ; 
+    b4 = formonly.chav_util; 
+    b5 = formonly.chav_lim ; 
+
+ end
+
+ instructions
+    delimiters " "    
+ end

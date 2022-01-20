@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m21                                               Gilberto
+                                                                       Marcelo
+ Exibe alertas para operadores do radio                               Dez/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a1                                                                 ]
+-----------------------------------------------------------cts00m21--
+ Alerta
+
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+[b1                                                ][b2   |b3         ]
+
+}
+end
+
+ tables datkveiculo, datmfrtale
+
+ attributes
+
+    a1 = formonly.cabec,                               noentry;
+    b1 = formonly.opraledes,                           noentry;
+    b2 = datkveiculo.atdvclsgl,                        noentry;
+    b3 = datmfrtale.socvclaleseq,    invisible,        noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_cts00m21(opraledes thru socvclaleseq)
+

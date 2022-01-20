@@ -1,0 +1,40 @@
+database formonly
+
+screen
+{
+-------------------------------------------------------------------ctc78m00---
+  Tipo de Equipamento : [a  ] [b                                             ]
+------------------------------------------------------------------------------
+ Limite de IS :[j             ] Reais
+ Limite de Distancia:[k       ] Metros
+------------------------------------------------------------------------------
+     Categoria Tarifaria                             Alteracao
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+ [e  |f                             |g          ]por[h      |i               ]
+
+ (F1) - Inclui (F2) - Excluir  (F17) - Sair
+
+}
+end
+
+attributes
+  a  = formonly.soceqpcod  type integer;
+  b  = formonly.soceqpdes  type char, noentry;
+  j  = formonly.eqpimsvlr  type decimal, format = "###,###,##&.&&";
+  k  = formonly.eqpacndst  type integer;
+  e  = formonly.ctgtrfcod  type integer;
+  f  = formonly.ctgtrfdes  type char, noentry;
+  g  = formonly.caddat     type date, noentry;
+  h  = formonly.cadmat     type decimal, noentry;
+  i  = formonly.funnom_cad type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc78m00(ctgtrfcod thru funnom_cad)
+end

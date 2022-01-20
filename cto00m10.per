@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m10                                                Roberto
+ Popup Generico do Itau                                               Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+Codigo    Descricao
+-----------------------------------------cto00m10--
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+
+}
+end
+
+attributes
+   a  = formonly.codigo   ;
+   b  = formonly.descricao;
+end
+
+instructions
+    delimiters " "
+    screen record s_cto00m10 (codigo, descricao)
+end
+

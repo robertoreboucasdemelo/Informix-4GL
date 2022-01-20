@@ -1,0 +1,56 @@
+{------------------------------------------------------------------------------
+ Nome do Form: ctn24c01
+ Pesquisa prestador/socorrista                                        Nov/2002
+------------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+                  Pesquisa prestador/socorrista
+---------------------------------------------------------------ctn24c01--
+ Nome pesquisa:[f1                                 ] (G)uerra/(R)azao:[f]
+ Sigla Veiculo:[f2   ]   [f3                                            ]
+ Socorrista...:[f4      ][f5                                            ]
+ Cod.prestador:[f6     ]
+
+ Prest. :[a1    |a2                                   ]Qld:[a20         ]
+ Veiculo:[a3    |a4                                           ]Sit.:[a40]
+ Socorr.:[a5    |a6                                             ][a7    ]
+
+ Prest. :[a1    |a2                                   ]Qld:[a20         ]
+ Veiculo:[a3    |a4                                           ]Sit.:[a40]
+ Socorr.:[a5    |a6                                             ][a7    ]
+}
+end
+
+tables datmservico, dpaksocor, datkveiculo,
+       dattfrotalocal, datksrr
+
+attributes
+
+  f1 = formonly.nomepsq, upshift, comments = " Nome para pesquisa ";
+  f  = formonly.tipo, upshift,    comments = " (G)uerra, (R)azao social (P)arcial";
+  f2 = formonly.sglveiculo                   ,upshift;
+  f3 = formonly.nomveiculo                   ,noentry;
+  f4 = formonly.socorcod                     ;
+  f5 = formonly.socornom                     ,noentry;
+  f6 = formonly.pstcoddig                    ;
+
+
+  a1 = datmservico.atdprscod                 ,noentry;
+  a2 = dpaksocor.nomgrr                      ,noentry;
+  a20= formonly.qualid                       ,noentry;
+  a3 = datkveiculo.atdvclsgl;
+  a4 = formonly.vcldes                       ,noentry;
+  a40= formonly.c24atvcod                    ,noentry;
+
+  a5 = dattfrotalocal.srrcoddig;
+  a6 = datksrr.srrabvnom                     ,noentry;
+  a7 = formonly.socvclcod                    ,invisible;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn24c01(atdprscod thru socvclcod)
+end

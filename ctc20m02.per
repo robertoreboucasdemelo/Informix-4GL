@@ -1,0 +1,51 @@
+{############################################################################
+# Nome do Modulo: CTC20M02                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CADASTRO DE GRUPOS DE SERVIÇOS.                                  NOV/2008 #
+############################################################################}
+
+database porto
+
+screen
+{
+
+
+-----------------------------------------------------------------------------     
+                         CADASTRO DE GRUPOS DE SERVIÇO
+-------------------------------------------------------------------ctc20m02-- 
+ 
+                                                                   
+                                                                   
+           Codigo:[a   ]                                                         
+                                                                                 
+           Descrição:[b                                          ]               
+                                                                                 
+           Data Atualização:[c                  ]                                
+                                                                                 
+           Usuario Atualização:[d                                ]                                                                                        
+          
+                                                                              
+   
+                                                                                                            
+}
+
+tables
+   dpaksrvgrp
+   
+attributes
+   a = dpaksrvgrp.prtbnfgrpcod, comments = " Codigo do Grupo de Serviço";
+   b = dpaksrvgrp.prtbnfgrpdes, comments = " Descrição do Grupo de Serviço", upshift;
+   c = dpaksrvgrp.atldat,       noentry;
+   d = formonly.funnom,         noentry;
+end
+
+instructions
+  delimiters " "
+end   
+   
+   
+   
+   
+   
+   
+   

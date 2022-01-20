@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn31c00                                               Almeida
+
+ Mostra todos os Assuntos                                            maio/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+               Assuntos
+-------------------------------------ctn31c00--
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+
+}
+End
+
+tables
+   datkassunto
+
+Attributes
+ a  = datkassunto.c24astcod,noentry;
+ b  = datkassunto.c24astdes,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn31c00(c24astcod thru c24astdes)
+End

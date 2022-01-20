@@ -1,0 +1,40 @@
+database formonly
+screen size 24 by 80
+
+{
+    Assunto: [d  ] [e                                          ]
+    Motivo.: [d1 ] [e1                                         ]
+------------------------------------------------------------ctc26m02---
+Codigo  Descricao Sub Motivo                                    Status
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+[a  ]   [b                                                 ]    [c]
+
+            (F1)-Inclui  (F2)-Exclui  (F17)-Abandona
+}
+end
+
+attributes
+
+   d  = formonly.c24astcod, upshift;
+   d1 = formonly.rcuccsmtvcod, upshift;
+   e  = formonly.c24astdes, upshift, noentry;
+   e1  = formonly.rcuccsmtvdes, upshift, noentry;
+
+
+   a  = formonly.rcuccsmtvsubcod , comments = "Digite o Codigo do Submotivo"   , upshift;
+   b  = formonly.rcuccsmtvsubdes , comments = "Digite a Descricao do Submotivo", upshift;
+   c  = formonly.mtvsubflg       , comments = "Status <A>tivo <C>ancelado"     , upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc26m02(rcuccsmtvsubcod thru mtvsubflg)
+end

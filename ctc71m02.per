@@ -1,0 +1,45 @@
+{
+ ###########################################################################
+ #                       PORTO SEGURO CIA DE SEGUROS GERAIS
+ #
+ # Sistema   : 
+ # Programa  : Pesquisa dos responsaveis do local
+ # Modulo    : ctc71m02.per
+ #
+ # Objetivo: Pesquisa dos responsaveis pelo registro gravado.
+ #
+ # Analista Responsavel: Glauce
+ # Programador         : Paula Romanini
+ # Data da Criacao     : 12/03/2004 - Fabrica de Software
+ # PSI/OSF             : 183024/33529
+ ##############################################################################
+}
+
+database formonly
+screen size 24 by 78
+
+{
+                        Responsaveis
+----------------------------------------------------ctc71m02---
+
+ Incluido..: [a               ]por[a1                         ]
+ Atualizado: [b               ]por[b1                         ]
+ Cancelado.: [c               ]por[c1                         ]
+
+
+<F17> Abandona
+}
+
+End
+
+Attributes
+ a = formonly.cadhordat;
+ a1= formonly.cadnom;
+ b = formonly.atlhordat;
+ b1= formonly.atlnom;
+ c = formonly.canhordat;
+ c1= formonly.cannom;
+
+Instructions
+  delimiters " "
+

@@ -1,0 +1,50 @@
+{----------------------------------------------------------------------
+ Nome do Form: CTC15M02                                      Marcelo
+                                                             Gilberto
+ Manutencao do Relacionamento Tipo de Servico/Assistencia    Jul/1998
+----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m02--
+       Origem do Servico:[a    ][b                              ]
+------------------------------------------------------------------------------
+ Tipo de Assistencia         Atualizado por                     Data Atualiz.
+
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+[c |d                   ]   [e |e1    ][f                   ]   [g         ]
+
+
+}
+end
+
+tables
+   datksrvtip, datkasitip, datrasitipsrv
+
+attributes
+   a  = datksrvtip.atdsrvorg    , noentry;
+   b  = datksrvtip.srvtipdes    , noentry;
+   c  = datrasitipsrv.asitipcod , format = "&&"
+                                , comments = " Codigo do tipo de assistencia";
+   d  = datkasitip.asitipdes    , noentry;
+   e  = formonly.atlemp type dec, format = "&&"
+                                , noentry;
+   e1 = formonly.atlmat type dec, format = "&&&&&&"
+                                , noentry;
+   f  = formonly.atlnom         , noentry;
+   g  = formonly.atldat         , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc15m02(asitipcod thru atldat)
+end

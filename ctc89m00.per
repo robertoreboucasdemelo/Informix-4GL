@@ -1,0 +1,51 @@
+{----------------------------------------------------------------------------#
+# PORTO SEGURO CIA SEGUROS GERAIS                                            #
+#............................................................................#
+# SISTEMA........: PORTO SOCORRO                                             #
+# MODULO.........: CTC89M00.PER                                              #
+# ANALISTA RESP..: SERGIO BURINI                                             #
+# PSI/OSF........:                                                           #
+# OBJETIVO.......: CADASTRO DE CIDADES COM ALERTA DE SMS.                    #
+#............................................................................#
+# DESENVOLVIMENTO: SERGIO BURINI                                             #
+# LIBERACAO......: 25/11/2009                                                #
+#............................................................................}
+
+database formonly
+
+screen
+{
+
+------------------------------------------------------------------------------
+                CADASTRO DE CIDADES X AVISOS AO CLIENTE VIA SMS
+--------------------------------------------------------------------ctc89m00--
+
+ Sede:                                   UF:   Tipo:
+
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+   [x|c1                                   |c2]  [c3|c4                     ]
+
+[y                                        ] Ordenado por:[z                 ]
+}
+end
+
+attributes
+x   = formonly.aux       ,upshift;
+c1  = formonly.cidnomsms ,upshift;
+c2  = formonly.ufdcodsms ,upshift;
+c3  = formonly.envsst    ,upshift;
+c4  = formonly.descodsms ,upshift;
+y   = formonly.msgfun    ,noentry;
+z   = formonly.msgord    ,noentry;
+
+instructions
+    delimiters " "
+    screen record s_ctc89m00[10](aux thru descodsms)

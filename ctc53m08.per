@@ -1,0 +1,53 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m08                                      R.Fornax
+                                                             
+ Cadastro de Clausula X Natureza                             Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m08--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+ Clausula...:[e   ][f                                                       ]
+------------------------------------------------------------------------------
+ Natureza  Nome                           Data Ini     Data Fim     Limite
+                                                                        
+ [g    ] [h                            ] [i         ] [j         ]  [o  ]
+ [g    ] [h                            ] [i         ] [j         ]  [o  ]
+ [g    ] [h                            ] [i         ] [j         ]  [o  ]
+ [g    ] [h                            ] [i         ] [j         ]  [o  ]
+ [g    ] [h                            ] [i         ] [j         ]  [o  ]
+------------------------------------------------------------------------------
+ Atualizado..:[l          ] por [m                                         ]
+------------------------------------------------------------------------------
+ [n                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;    
+   b  = formonly.desper                 ,noentry;    
+   c  = formonly.c24astcod              ,noentry;    
+   d  = formonly.c24astdes              ,noentry;    
+   e  = formonly.clscod                 ,noentry;
+   f  = formonly.clsdes                 ,noentry;
+   g  = formonly.socntzcod              ,comments = " Digite o Codigo da Natureza"    ,upshift;   
+   h  = formonly.socntzdes              ,noentry;
+   i  = formonly.datini                 ,comments = " Digite a Data Inicial"          ,upshift; 
+   j  = formonly.datfim                 ,comments = " Digite a Data Final"            ,upshift; 
+   o  = formonly.limite                 ,comments = " Digite o Limite por Natureza"   ;         
+   l  = formonly.atldat                 ,noentry;
+   m  = formonly.funmat                 ,noentry;
+   n  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m08(socntzcod thru limite)
+end

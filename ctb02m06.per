@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02M06                                              Wagner
+
+ Manutencao dos itens da ordem de pagamento para carro-extra         out/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb02m06--
+ Numero O.P...:[o2      ]   Situacao.:[o4][o6                         ][e1   ]
+------------------------------------------------------------------------------
+ Nro.nota    Numero do   -----Diarias-----  -----------Valores----------
+  Fiscal      Servico    Saldo Sol Utl Pag   Inicial  Exc/Desc    Total   Seq
+
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+                                      [o10                      |o8          ]
+
+}
+End
+
+Tables dbsmopg, dbsmopgitm, datmservico
+
+Attributes
+  o2   = formonly.socopgnum,    noentry;
+  o4   = formonly.socopgsitcod, noentry;
+  o6   = formonly.socopgsitdes, noentry;
+  e1   = formonly.empresa,      noentry;
+  o8   = formonly.gratuita,     upshift, noentry;
+  o10  = formonly.motivo,       noentry;
+
+  a2   = formonly.nfsnum        type dec(8,0), format = "&&&&&&&&", noentry;
+  a4   = formonly.atdsrvorg     type smallint, format = "&&", noentry;
+  a6   = formonly.atdsrvnum     type dec(7,0), format = "&&&&&&&", comments = " Numero da ordem de servico";
+  a8   = formonly.atdsrvano     type smallint, format = "&&", comments = " Ano da ordem de servico";
+  a10  = formonly.qtd_saldo     type decimal , format = "##&&", noentry;
+  a12  = formonly.qtd_solic     type decimal , format = "#&&" , noentry;
+  a14  = formonly.c24utidiaqtd  type smallint, format = "#&&" , comments = " Quantidade de diarias utilizadas";
+  a16  = formonly.c24pagdiaqtd  type smallint, format = "#&&" , comments = " Quantidade de diarias a serem pagas";
+  a18  = formonly.socopgtotvlr  type decimal , format = "-----&.&&", comments = " Valor inicial da reserva";
+  a20  = formonly.socopgitmcst  type decimal , format = "----&.&&" , noentry;
+  a22  = formonly.socopgitmvlr  type decimal , format = "-----&.&&", comments = " Valor pago da reserva";
+  a24  = formonly.socopgitmnum, noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb02m06(nfsnum thru socopgitmnum)
+End
+

@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTS11M02                                        Marcelo
+                                                               Gilberto
+ Exibe servicos solicitados pela apolice                       Nov/1996
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+               Servicos solicitados pela apolice
+-----------------------------------------------------cts11m02--
+ Servico    Data/Hora Atend.   Solicitante      Tipo
+
+[a            ][b         ][c    ][d              ][e         ]
+[a            ][b         ][c    ][d              ][e         ]
+[a            ][b         ][c    ][d              ][e         ]
+[a            ][b         ][c    ][d              ][e         ]
+[a            ][b         ][c    ][d              ][e         ]
+
+}
+end
+
+tables
+   datmservico
+
+attributes
+   a   = formonly.servico                ,noentry;
+   b   = datmservico.atddat              ,noentry;
+   c   = formonly.atdhor                 ,noentry;
+   d   = datmservico.c24solnom           ,noentry;
+   e   = formonly.c24soltipdes           ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts11m02(servico thru c24soltipdes)
+end

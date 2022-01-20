@@ -1,0 +1,48 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts14g01                                               Almeida
+
+ Procedimentos cadastrados - condicoes satisfeitas                   Mai/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                                     ]
+--------------------------------------------------------------cts14g01--
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+[b    ][c                                                           ]
+
+}
+
+end
+
+ tables datmprctxt
+
+ attributes
+
+    a  = formonly.cabtxt        ,reverse    ,noentry;
+
+    b  = datmprctxt.prctxtseq   ,invisible  ,noentry;
+    c  = datmprctxt.prctxt                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts14g01(prctxtseq thru prctxt)
+ end

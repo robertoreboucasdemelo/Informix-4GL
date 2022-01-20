@@ -1,0 +1,70 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctp01m00                                                  Pedro
+                                                                       Marcelo
+ Pesquisa Telemarketing - Consulta dados do Servico                   Mar/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctp01m00--
+ Servico...:[a |a1     |a2]                              Quant.Contatos:[a3  ]
+------------------------------------------------------------------------------
+ Segurado..:[b1                                     |a4             ][b2     ]
+ Telefone..:[b3  |b4                                     ]
+ Documento.:[b5                              ]
+ Veiculo...:[b6                                     ]Placa...:[b7     ]
+------------------------------------------------------------------------------
+ Motivo....:[c1                                                              ]
+ Solicit...:[c2             ][c           ] Atendente...:[c3                 ]
+ Solicitado:[c4        ]as[c5   ]           Programado..:[c6        ]as[c7   ]
+------------------------------------------------------------------------------
+ Prestador.:[d1                       ] Socorrista..:[d2      |d21       ]
+ Previsao..:[d3   ]                     Hora Chegada:[d4   ]   Atraso:[d5    ]
+ Historico.:[d6                                                              ]
+ Ult.Contat:[d7                                                ]
+
+}
+end
+
+ tables
+   datmservico, datmpesquisa, datksrr    ,
+   dpaksocor  , datmligacao , datmtrajeto
+
+ attributes
+   a   = datmservico.atdsrvorg, format = "&&"         ;
+   a1  = datmservico.atdsrvnum, format = "&&&&&&&"    ,
+         comments = " Numero do Servico";
+   a2  = datmservico.atdsrvano, format = "&&"         ,
+         comments = " Ano do Servico";
+   a3  = datmpesquisa.cttqtd                  ,noentry;
+   a4  = formonly.cvnnom                      ,noentry;
+   b2  = formonly.vitimas                     ,noentry;
+
+   b1  = datmservico.nom                      ,noentry;
+   b3  = formonly.dddcodseg                   ,noentry;
+   b4  = formonly.teltxtseg                   ,noentry;
+   b5  = formonly.doctxt                      ,noentry;
+   b6  = datmservico.vcldes                   ,noentry;
+   b7  = datmservico.vcllicnum                ,noentry;
+   c1  = formonly.mtvdes                      ,noentry;
+   c2  = datmligacao.c24solnom                ,noentry;
+   c   = formonly.c24soltipdes                ,noentry;
+   c3  = formonly.funnom                      ,noentry;
+   c4  = datmservico.atdlibdat                ,noentry;
+   c5  = datmservico.atdlibhor                ,noentry;
+   c6  = datmservico.atddatprg                ,noentry;
+   c7  = datmservico.atdhorprg                ,noentry;
+   d1  = dpaksocor.nomgrr                     ,noentry;
+   d2  = datmservico.srrcoddig                ,noentry;
+   d21 = datksrr.srrabvnom                    ,noentry;
+   d3  = datmservico.atdhorpvt                ,noentry;
+   d4  = datmtrajeto.trjdsthor                ,noentry;
+   d5  = formonly.atrhor                      ,noentry;
+   d6  = formonly.hsttxt                      ,noentry;
+   d7  = formonly.ultctt                      ,noentry;
+
+ instructions
+   delimiters " "
+ end

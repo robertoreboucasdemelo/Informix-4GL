@@ -1,0 +1,33 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTS66M03                                        Amilton
+                                                               Pinto
+ Mostra todos os motivos para assistencia a passageiro         Ago/2012
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+      Motivos
+---------------cts66m03--
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+[c ][c1                  ]
+
+}
+end
+
+tables
+   datkasitip
+
+attributes
+   c  = datkasitip.asitipcod;
+   c1 = datkasitip.asitipdes;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts66m03(asitipcod thru asitipdes)
+end

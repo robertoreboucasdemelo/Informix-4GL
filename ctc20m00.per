@@ -1,0 +1,48 @@
+{############################################################################
+# Nome do Modulo: CTC20M00                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CAPA BONIFICAÇÃO PRESTADORES.                                    NOV/2008 #
+############################################################################}
+
+database porto
+
+screen
+{
+
+
+------------------------------------------------------------------------------ 
+                         BONIFICAÇÃO DE PRESTADORES
+--------------------------------------------------------------------ctc20m00--                                                                                  
+                                                                    
+        Codigo Bonificação:[a         ]                                             
+                                                                              
+        Prestador:[b    |b1                                                ]  
+                                                                              
+        Qtd Serviços: [c    ]                                                 
+                                                                              
+        Qtd Bonificação: [d    ]   
+        
+        Qtd Aceitas: [e    ]                                              
+                                                                              
+        Valor Bonificação: [f           ]                                     
+                                    
+        Data da Inclusão: [g            ]                                                                         
+}
+
+tables
+   dpakprtbnf
+   
+attributes
+   a  = dpakprtbnf.prtbnfcod, comments = " Codigo da Bonificação";
+   b  = dpakprtbnf.pstcoddig, comments = " Descrição do Criterio da Bonificação";
+   b1 = formonly.nomgrr,      noentry;
+   c  = dpakprtbnf.srvqtd,    noentry;
+   d  = dpakprtbnf.bnfqtd,    noentry;
+   e  = dpakprtbnf.actbnfqtd, noentry;
+   f  = dpakprtbnf.bnfvlr,    noentry;
+   g  = dpakprtbnf.bnfdat,    noentry;
+end
+
+instructions
+  delimiters " "
+end

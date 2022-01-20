@@ -1,0 +1,34 @@
+{--------------------------------------------------------------------
+ Nome do form: cts01m03                           Autor: Lucas Scheid
+
+ Exibe as naturezas e especialidades atendidas pelo prestador. Out/05
+---------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+                 SERVICOS QUE O SOCORRISTA ATENDE            
+------------------------------------------------------------------cts01m03--
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+ [a                             |x|b                                       ]
+
+ (F17)Abandona
+}
+end
+
+attributes
+  a = formonly.socntzdes type char, noentry;
+  x = formonly.traco     type char, noentry;
+  b = formonly.espdes    type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cts01m03(socntzdes thru espdes)
+end

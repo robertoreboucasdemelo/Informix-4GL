@@ -1,0 +1,40 @@
+{
+-----------------------------------------------------------------------------
+ Nome do form: CTB83m01                                        Cristiane Silva
+
+ Pesquisa Centro de Custo com Local                              Jul/2007
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+-------------------------------------------------------------ctb83m01--
+ Centro de Custo		 Descricao
+-----------------------------------------------------------------------
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+[n|b         ][c                                              ]
+
+ (F8)Seleciona (F17)Abandona
+}
+
+end
+
+tables ctgkdpt, ctgrlcldpt
+
+attributes
+  n = formonly.navega, invisible;
+  b = formonly.cctdptcod;
+  c = formonly.cctdptnom, upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctb83m01(navega thru cctdptnom)
+end

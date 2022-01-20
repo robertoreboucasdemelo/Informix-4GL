@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc48m06                                               Beatriz
+                                                                       Araujo
+ Relacionar o problema com a empresa e o assunto                     Jan/2013
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+------------------------------------------------------------------------------
+      Problema..:[a    ]-[b                             ]
+--------------------------------------------------------------------ctc48m06--
+   Empresa                      Assunto
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+  [d ] [e                 ]   [f  ] [g                               ]
+
+            F2-Excluir  F3-Prox  F4-Ant  Ctrl+c -Sair
+}
+end
+
+ tables datkpbm
+        gabkemp
+        datkassunto
+        datrempligatdprb
+
+attributes
+   
+   a = datrempligatdprb.c24pbmcod;
+   b = datkpbm.c24pbmdes;
+
+   d = datrempligatdprb.ciaempcod    ,format='&&';
+   e = gabkemp.empnom             , noentry;
+   f = datrempligatdprb.c24astcod ,upshift;
+   g = datkassunto.c24astdes      ,noentry;
+
+end
+
+instructions
+   delimiters ' '
+   screen record s_ctc48m06[12](ciaempcod thru c24astdes)
+end

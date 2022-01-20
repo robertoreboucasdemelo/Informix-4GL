@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m04                                               Gilberto
+                                                                       Marcelo
+ Cadastro de equipamentos para veiculos de assistencia                Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m04--
+      Codigo.....:[a1   ]
+------------------------------------------------------------------------------
+
+      Descricao..:[a2                                             ]
+
+      Abreviacao.:[a3        ]
+
+      Fabricante.:[f]
+
+      Situacao...:[s]
+
+
+      Incluido...:[a6        ] por [a61                ]
+      Atualizado.:[a7        ] por [a71                ]
+
+
+}
+end
+
+tables datkvcleqp, datkeqpfab
+
+attributes
+   a1   = formonly.soceqpcod,
+          comments = " Codigo do equipamento"                    ;
+
+   a2   = datkvcleqp.soceqpdes,
+          comments = " Descricao do equipamento",         upshift;
+
+   a3   = datkvcleqp.soceqpabv,
+          comments = " Abreviacao da descricao do equipamento",    upshift;
+
+   f    = datkvcleqp.soceqpfabobrflg,
+          comments = " Obrigatorio informar fabricante: (S)im ou (N)ao",upshift;
+   s    = datkvcleqp.soceqpstt,
+          comments = " Situacao do equipamento: (A)tivo ou (C)ancelado",upshift;
+
+   a6   = datkvcleqp.caddat,                              noentry;
+   a61  = formonly.cadfunnom,                             noentry;
+
+   a7   = datkvcleqp.atldat,                              noentry;
+   a71  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

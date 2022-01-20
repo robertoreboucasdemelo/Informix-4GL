@@ -1,0 +1,46 @@
+{------------------------------------------------------------------------------
+ Nome do Form: cts03g00                                               Marcelo
+                                                                     Gilberto
+ Verifica solicitacoes anteriores (24/48 horas)                      Jun/1998
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                                    ]
+----------------------------------------------------------------cts03g00--
+ Atendimento   Servico     Tipo      Nat/Tipo Codigo Prestador       Vcl
+
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+[b1   |b2   |b3           |b5        |b9     |b6    |b7            |b8   ]
+
+}
+end
+
+ tables dpaksocor, datmservico, datksrvtip
+
+ attributes
+
+    a  = formonly.cabec       ,reverse             ,noentry;
+
+    b1 = formonly.atdsrvdat                        ,noentry;
+    b2 = datmservico.atdhor                        ,noentry;
+    b3 = formonly.servico                          ,noentry;
+    b5 = datksrvtip.srvtipabvdes                   ,noentry;
+    b9 = formonly.tipnat                           ,noentry;
+    b6 = datmservico.atdprscod                     ,noentry;
+    b7 = dpaksocor.nomgrr                          ,noentry;
+    b8 = datmservico.atdvclsgl                     ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts03g00(atdsrvdat thru atdvclsgl)
+ end

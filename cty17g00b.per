@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty17g00b                                              Roberto
+
+ Recupera E-mail                                                     Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                          INFORME O E-MAIL            
+------------------------------------------------------------cty17g00b-
+
+ E-mail.: [a                                                         ]
+          
+----------------------------------------------------------------------
+              (Enter) - Incluir             (Ctrl-C) - Sair
+}
+
+end
+
+attributes
+a = formonly.maides,reverse,   downshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_cty17g00b  (maides);
+end
+

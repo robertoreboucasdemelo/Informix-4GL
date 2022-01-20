@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn54c00                                                   Raji
+ Consultas do sistema de atendimento ao prestador                     Out/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------ctn54c00--
+ Data do atendimento:[a1        ]   [a2        ]
+------------------------------------------------------------------------------
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+[x                                                                           ]
+------------------------------------------------------------------------------
+
+}
+end
+
+
+attributes
+   a1  =  formonly.datini    type date;
+   a2  =  formonly.datfim    type date;
+   x   =  formonly.texto      ,noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn54c00(texto)
+end

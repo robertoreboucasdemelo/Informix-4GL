@@ -1,0 +1,78 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta06m00                                                  Akio
+ Dados de sinistro do atendimento da perda parcial                   Mar/2000
+
+ *** OSF 26816 - Fabrica de Software, Katiucia ***
+ *** Analista: Eliane Lopes       Data: 25/09/2003
+ *** Objetivo: Incluir novos campos no cabecalho da tela
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+ ATENDIMENTO PERDA [a      ]    SUCURSAL [a1                                 ]
+ ANALISTA [a2                 ] FILA [a3        ] ATENDENTE [a4              ]
+--------------------------------------------------------------------cta06m00--
+[b1       |b2      |b3                            ] Tipo....:[b4             ]
+ Veiculo.:[b5                                     ] Placa...:[b6     ]
+ Oficina.:[b7     ][b8                            ] Tipo....:[b9             ]
+          [b10                                                               ]
+          [b11                                    ]
+------------------------------------------------------------------------------
+                SINISTRO               |               LIBERACAO
+ Sinistro..:[c1  |c2     |c3  |c ]     | Data Lib..:[d1        ]
+ Tipo Perda:[c4             ]          | Cod. Lib..:[d2][d3        ]
+ Situacao..:[c5                       ]| Vlr.Fatur.:[d4            ]
+ Natureza..:[c6|c7          ]          | Vlr.Franq.:[d5            ]
+ Data Sinis:[c8        ]               | [e]
+ Data Aviso:[c9        ]               |
+ Data Abert:[c10       ]               |
+------------------------------------------------------------------------------
+}
+
+end
+
+ tables ssamsin  ,
+        ssamitem
+
+ attributes
+    a   = formonly.prdtipcab        , noentry;
+    a1  = formonly.sucnom           , noentry;
+    a2  = formonly.ananom           , noentry;
+    a3  = formonly.paxnum           , noentry;
+    a4  = formonly.solnom           , noentry;
+    b1  = formonly.reclamante       , noentry;
+    b2  = formonly.segnumdig        , noentry;
+    b3  = formonly.segnom           , noentry;
+    b4  = formonly.tiporeclam       , noentry;
+    b5  = formonly.vcldes           , noentry;
+    b6  = formonly.vcllicnum        , noentry;
+    b7  = formonly.ofnnumdig        , noentry;
+    b8  = formonly.nomrazsoc        , noentry;
+    b9  = formonly.tipofic          , noentry;
+    b10 = formonly.ofnendtxt        , noentry;
+    b11 = formonly.ofntelnum        , noentry;
+    c1  = formonly.sinramcod        , noentry;
+    c2  = formonly.sinnum           , noentry;
+    c3  = formonly.sinano           , noentry;
+    c   = formonly.sinitmseq        , noentry;
+    c4  = formonly.prdtip           , noentry;
+    c5  = formonly.situacao         , noentry;
+    c6  = ssamitem.sinntzcod        , noentry;
+    c7  = formonly.natureza         , noentry;
+    c8  = ssamsin.orrdat            , noentry;
+    c9  = ssamsin.avsdat            , noentry;
+    c10 = formonly.abertdat         , noentry;
+    d1  = ssamitem.anllibdat        , noentry;
+    d2  = ssamitem.anllibtip        , noentry;
+    d3  = formonly.liberacao        , noentry;
+    d4  = formonly.apvtotvlr type dec(11,2), noentry,format="<<<,<<<,<<&.&&";
+    d5  = formonly.frqvlr    type dec(11,2), noentry,format="<<<,<<<,<<&.&&";
+    e   = formonly.branco           , noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cta06m00(branco)
+ end

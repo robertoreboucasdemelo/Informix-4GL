@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m07                                      R.Fornax
+                                                             
+ Cadastro de Assunto X Limite                                Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m07--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+------------------------------------------------------------------------------
+ Clausula  Nome                   Data Ini     Data Fim    IS  Okm  Lim  Nat 
+                                                                   
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j] 
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j]
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j]
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j]
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j]
+ [e  ] [f                      ] [g         ] [h         ] [o] [p] [i  ] [j]
+------------------------------------------------------------------------------
+ Atualizado..:[l          ] por [m                                         ]
+------------------------------------------------------------------------------
+ [n                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;    
+   b  = formonly.desper                 ,noentry;    
+   c  = formonly.c24astcod              ,noentry;    
+   d  = formonly.c24astdes              ,noentry;    
+   e  = formonly.clscod                 ,comments = " Digite o Codigo da Clausula"        ,upshift;   
+   f  = formonly.clsdes                 ,noentry;
+   g  = formonly.datini                 ,comments = " Digite a Data Inicial"              ,upshift; 
+   h  = formonly.datfim                 ,comments = " Digite a Data Final"                ,upshift;  
+   o  = formonly.is                     ,comments = " Agrega Limite IS? <S> ou <N>"       ,upshift;  
+   p  = formonly.okm                    ,comments = " Agrega Limite 0Km? <S> ou <N>"      ,upshift;       
+   i  = formonly.limite                 ,comments = " Digite o Limite por Clausula"               ;  
+   j  = formonly.flag_lim               ,comments = " Limite por Natureza? <S> ou <N>"    ,upshift;  
+   l  = formonly.atldat                 ,noentry;
+   m  = formonly.funmat                 ,noentry;
+   n  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m07(clscod thru flag_lim)
+end

@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc21m02a                                      Helder Oliveira
+
+ POPUP Empresas                                                     Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                      PROCEDIMENTO [a   ]
+---------------------------------------------------ctc21m02a---
+   Empresa  Nome
+   [b   ]   [c                                               ]
+   [b   ]   [c                                               ]
+   [b   ]   [c                                               ]
+   [b   ]   [c                                               ]
+   [b   ]   [c                                               ]
+   [b   ]   [c                                               ]
+ 
+                      (F17) - Abandona
+}
+end
+
+attributes
+   a   = formonly.procedimento , noentry ;
+
+   b  = formonly.empcod      , noentry ;
+
+   c  = formonly.empnom      , noentry ;
+ 
+
+instructions
+ delimiters "  "
+    screen record sa_ctc21m02a (empcod thru empnom)
+end

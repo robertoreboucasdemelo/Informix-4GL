@@ -1,0 +1,70 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC00M05                                              Marcelo
+                                                                     Gilberto
+ Manutencao nos dados bancarios dos prestadores                      Jan/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+              Informacoes para Pagamento
+----------------------------------------------ctc00m05--
+ Opcao Pagto.:[a ][a2        ]
+ Favorecido..:[a3                                      ]
+ Tipo Pessoa.:[t]  Cgc/Cpf:[a4          ][a5  ][a6]
+ Data Nascimento: [d         ]          Sexo:[e]
+ Tipo Conta:[p][p2         ]
+ No.Banco..:[b1   ]   [b2                              ]
+ No.Agencia:[b3   ][b][b4                              ]
+ No.Conta..:[c1          ][c2]
+
+}
+end
+
+tables dpaksocorfav
+
+attributes
+  a    = dpaksocorfav.socpgtopccod,                      noentry;
+  a2   = formonly.socpgtopcdes,                          noentry;
+
+  a3   = dpaksocorfav.socfavnom,                         upshift,
+         comments = " Nome do favorecido";
+  t    = dpaksocorfav.pestip,                            upshift,
+         comments = " Pessoa: (F)isica, (J)uridica";
+  a4   = dpaksocorfav.cgccpfnum,
+         comments = " Numero do Cgc/Cpf do favorecido";
+  a5   = dpaksocorfav.cgcord,
+         format = "&&&&",
+         comments = " Codigo da Filial do Cgc do favorecido";
+  a6   = dpaksocorfav.cgccpfdig,
+         format = "&&",
+         comments = " Digito do Cgc/Cpf do favorecido";
+  d    = dpaksocorfav.nscdat,                        
+         comments = " Data de Nascimento";         
+  
+  e    = dpaksocorfav.sexcod,                              upshift,              
+         comments = " Sexo: M-Masculino, F-Feminino";  
+  
+  p    = dpaksocorfav.bcoctatip,
+         comments = " Tipo Conta: 1-Conta Corrente, 2-Poupanca";
+  p2   = formonly.bcoctatipdes,                          noentry;
+
+  b1   = dpaksocorfav.bcocod,
+         format = "&&&&&",
+         comments = " Codigo do banco";
+  b2   = formonly.bconom;
+  b3   = dpaksocorfav.bcoagnnum,
+         comments = " Numero da agencia";
+  b    = dpaksocorfav.bcoagndig,
+         comments = " Digito da agencia",                 upshift;
+  b4   = formonly.bcoagnnom;
+  c1   = formonly.bcoctanum,
+         comments = " Numero da conta corrente";
+  c2   = dpaksocorfav.bcoctadig,
+         comments = " Digito da conta corrente";
+end
+
+instructions
+   delimiters " "
+end

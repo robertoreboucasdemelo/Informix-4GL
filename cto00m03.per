@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTO00M03                                                 Ruiz
+                                                                        Akio
+ Mostra o cadastro de agrupamento                                    Abr/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+     Codigos de Agrupamentos
+-----------------------------cto00m03--
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+[a    ][b                             ]
+---------------------------------------
+
+}
+End
+
+tables
+   dackassagp
+
+Attributes
+ a  = dackassagp.corassagpcod    ,invisible, noentry;
+ b  = dackassagp.corassagpdes    ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m03(corassagpcod thru corassagpdes)
+End

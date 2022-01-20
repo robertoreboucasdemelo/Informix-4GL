@@ -1,0 +1,59 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc44m03                                               Marcelo
+                                                                     Gilberto
+ Manutencao do relacionamento Socorrista X Prestador                 Jul/1999
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc44m03--
+ Codigo....:[a1      ]     Nome:[a2                                          ]
+------------------------------------------------------------------------------
+ Vg.Inicial    Vg.Final  Vinculo         Prestador
+
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+[b1        ][b2        ][b|b3          ][b4    |b5                           ]
+
+}
+end
+
+ tables datksrr, datrsrrpst
+
+ attributes
+
+   a1 = datksrr.srrcoddig,                   noentry;
+   a2 = datksrr.srrnom,                      noentry;
+
+   b1 = datrsrrpst.viginc,
+        comments = " Vigencia inicial do vinculo";
+
+   b2 = datrsrrpst.vigfnl,
+        comments = " Vigencia final do vinculo";
+
+   b  = formonly.pstvintip,
+        comments = " (1)Autonomo, (2)Funcionario";
+
+   b3 = formonly.pstvindes,                  noentry;
+
+   b4 = formonly.pstcoddig,
+        comments = " Codigo do prestador";
+
+   b5 = formonly.nomgrr,                     noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc44m03(viginc thru nomgrr)
+ end

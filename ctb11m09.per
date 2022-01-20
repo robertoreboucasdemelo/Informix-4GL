@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB11M09                                              Marcelo
+                                                                     Gilberto
+ Batimento do lote de pagamentos (O.P. - Porto Socorro)              Dez/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+                    BATIMENTO QUANTIDADES/VALORES DA O.P.
+--------------------------------------------------------------------ctb11m09--
+                  [a5                                     ]
+
+
+                      Protocolo              Digitado             Diferenca
+                 --------------        --------------        --------------
+  Quantidade.: [a10            ]     [a15            ]     [a20            ]
+
+  Valor......: [a25            ]     [a30            ]     [a35            ]
+
+
+
+
+}
+End
+
+Tables dbsmopg, dbsmopgitm
+
+Attributes
+  a5   = formonly.msgcab,                                     noentry;
+
+  a10  = dbsmopg.socfatitmqtd,                                noentry;
+  a15  = formonly.socopgitmqtd,                               noentry;
+  a20  = formonly.socopgdifqtd,                               noentry;
+
+  a25  = dbsmopg.socfattotvlr,    format = "###########&.&&", noentry;
+  a30  = dbsmopgitm.socopgitmvlr, format = "###########&.&&", noentry;
+  a35  = formonly.socopgdifvlr    type decimal,
+                                  format = "###########&.&&", noentry;
+End
+
+Instructions
+  delimiters " "
+End

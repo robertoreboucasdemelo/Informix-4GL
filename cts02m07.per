@@ -1,0 +1,149 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTS02M07                                    AUTOR: LUCAS SCHEID
+ LAUDO - D.A.F./PORTO SOCORRO E LAUDO - REMOCOES                      NOV/2006
+ PSI 205206 - AZUL SEGUROS
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]   [a                             ]  [a2             ]
+-------------------------------------------------------------------cts02m07---
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ]          [b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+-------------------------------------------------------------[waz         ]---
+[c1 ][c2                                           |c3                       ]
+                                                          [c4                ]
+ Formulario:[o]    Cam/Util.:[c]   [d2        |d0  |d1                       ]
+ Endereco..:[f1                                                              ]
+ Bairro....:[f2                  ] Cidade....:[f3                     ]UF:[f4]
+ Complemen.:[f11                      ]      Resp.Local:[f9                  ]
+ Tel.Local.:[f7  ][f8       ]                Tel.Celul.:[f12 |f13      ]
+ Ponto Ref.:[f5                                                    ] Zona:[f6]
+ Sinistro..:[s1        ][s2   ]   [f10        |e]      [f0      |f]  [g0  |g2]
+ Tp.Assist.:[g |g1      ]          Destino...:[h]       Acomp.?:[i]  [d ]
+ Prioridade:[k|k1    |k2         |l]          [m]       Srv.Lib:[n]  Imed?:[j]
+ Atd./Lib.:[x                                               |x2        |x3   ]
+[y                                                                          ]
+}
+end
+
+tables
+  datmlcl
+
+attributes
+
+a   = formonly.titulo type char, noentry;
+a1  = formonly.servico type char, noentry;
+a2  = formonly.c24solnom type char, noentry;
+b1  = formonly.nom    type char, comments = " Nome", upshift;
+b2  = formonly.doctxt type char, noentry;
+b6  = formonly.corsus type char, comments = " Susep", upshift;
+b7  = formonly.cornom type char, comments = " Corretor", upshift;
+b8  = formonly.cvnnom type char, noentry, invisible;
+b9  = formonly.vclcoddig type integer, format = "&&&&&&",
+      comments = " Codigo do veiculo";
+b10 = formonly.vcldes type char, comments = " Descricao do veiculo", upshift;
+b11 = formonly.vclanomdl type datetime year to year,
+      comments = " Ano do veiculo", autonext;
+b12 = formonly.vcllicnum type char, comments = " Placa do veiculo",
+      upshift;
+b13 = formonly.vclcordes type char, comments = " Cor do veiculo",
+      downshift;
+c1  = formonly.c24astcod type char, noentry;
+c2  = formonly.c24astdes type char, noentry;
+c3  = formonly.refasstxt type char, noentry;
+c4  = formonly.desapoio, noentry;
+o   = formonly.frmflg type char,
+      comments = " Entrada via formulario: (S)im ou (N)ao",
+      upshift;
+c   = formonly.camflg type char,
+      comments = " Caminhao/Utilitario: (S)im ou (N)ao",
+      upshift;
+d2  = formonly.problema type char,
+      noentry;
+d0  = formonly.c24pbmcod type integer,
+      comments = " Codigo problema ou defeito reclamado",
+      upshift;
+d1  = formonly.atddfttxt ,
+      comments = " Problema ou defeito reclamado",
+      upshift;
+d   = formonly.atdsrvorg type integer, noentry, invisible;
+f0  = formonly.vitimas type char, noentry;
+f   = formonly.sinvitflg type char, upshift,
+      comments = " Houve vitimas: (S)im ou (N)ao";
+f1  = formonly.lgdtxt,
+      comments = " Local onde esta o veiculo", upshift;
+f2  = formonly.lclbrrnom type char, upshift;
+f3  = formonly.cidnom type char, upshift;
+f4  = formonly.ufdcod type char, upshift;
+f5  = formonly.lclrefptotxt,
+      comments = " Ponto de referencia do local", upshift;
+f6  = formonly.endzon type char,
+      comments = " Somente para Capital S.P, NO/SU/LE/OE,CE",
+      upshift;
+f7  = formonly.dddcod type char,
+      comments = " DDD do local onde esta o veiculo";
+f8  = formonly.lcltelnum type char,
+      comments = " Telefone do local onde esta' o veiculo";
+f9  = formonly.lclcttnom type char,
+      comments = " Responsavel no local",
+      upshift;
+f10 = formonly.em_residencia type char,
+      noentry;
+f11 = datmlcl.endcmp , upshift ,
+      comments = " Complemento do endereco";
+f12 = datmlcl.celteldddcod  ,
+      comments = " Codigo DDD do Celular";
+f13 = datmlcl.celtelnum     ,
+      comments = " Telefone Celular";
+e   = formonly.atdrsdflg type char,
+      comments = " (S)im ou (N)ao",
+      upshift;
+g0  = formonly.bo type char,
+      noentry;
+g   = formonly.asitipcod type integer,
+      comments = " Tipo da assistencia",
+      upshift;
+g1  = formonly.asitipabvdes type char, noentry;
+g2  = formonly.bocflg,
+      upshift,
+      comments = " Fez B.O.?: (S)im ou (N)ao, (P)esquisa delegacia";
+h   = formonly.dstflg type char,
+      comments = " Destino: (S)im ou (N)ao",
+      upshift;
+i   = formonly.rmcacpflg,
+      comments = " Acompanha Remocao ? (S)im ou (N)ao",
+      upshift;
+j   = formonly.imdsrvflg type char,
+      comments = " E' servico imediato ? (S)im ou (N)ao",
+      upshift;
+k   = formonly.atdprinvlcod type integer,
+      comments =
+      " Nivel de Prioridade no atendimento: (1)Baixa, (2)Normal ou (3)Urgente";
+k1  = formonly.atdprinvldes, noentry;
+k2  = formonly.prsloccab, noentry;
+l   = formonly.prslocflg,
+      comments = " Prestador no local: (S)im ou (N)ao", upshift;
+m   = formonly.srvprlflg type char,
+      comments = " Servico particular: (S)im ou (N)ao", upshift,
+      invisible;
+n   = formonly.atdlibflg type char,
+      comments = " Servico liberado: (S)im ou (N)ao", upshift;
+x   = formonly.atdtxt, noentry;
+x2  = formonly.atdlibdat type date, format ="dd/mm/yyyy", noentry;
+x3  = formonly.atdlibhor type datetime hour to minute, noentry;
+s1  = formonly.sindat type date, format = "dd/mm/yyyy", autonext,
+      comments = " Data em que ocorreu o sinistro";
+s2  = formonly.sinhor type datetime hour to minute, picture = "##:##",
+      comments = " Hora em que ocorreu o sinistro";
+y   = formonly.msgfun type char, noentry;
+waz = formonly.msg_azul type char, noentry;
+
+end
+
+instructions
+  delimiters " "
+end

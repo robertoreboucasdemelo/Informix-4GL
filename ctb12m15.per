@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB12M15                                              Wagner    
+ Manutencao dos custos e adicionais do servico P.Socorro             Nov/2002
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+   Acerto de valor e seus adicionais - Servicos P.Socorro
+---------------------------------------------------ctb12m15--
+
+ Custo inicial total do servico...............:[a0          ]
+
+ Custo do servico sem os adicionais (SAIDA)...:[a1          ]
+
+ Custo  Descricao dos adicionais      Opcao/Qtd        Valor
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+                      Total dos adicionais....:[a6          ]
+                      Custo total do servico..:[a7          ]
+                      Custo total fechado.....:[a8          ]
+}
+End
+
+Tables dbsmopgitm, dbsmopgcst, dbskcustosocorro, datmservico
+
+Attributes
+  a0 = formonly.srvinccst type dec(10,2), comments = " Informe o valor total do custo inicial",
+                              format = "-----,--&.&&";
+  a1 = formonly.vlrcstini type dec(10,2), comments = " Informe o valor do servico ",
+                              format = "-----,--&.&&";
+  a2 = dbsmopgcst.soccstcod,                       noentry;
+  a3 = dbskcustosocorro.soccstdes,                 noentry;
+  a4 = dbsmopgcst.cstqtd, comments = " Opcao / Quantidade";
+  a5 = dbsmopgcst.socopgitmcst  ,format = "-----,--&.&&",
+                                 comments = " Informe o valore correspondente";
+  a  = dbskcustosocorro.soccstclccod,  invisible,  noentry;
+  a6 = formonly.totcstadc type dec(10,2)  , noentry, format = "-----,--&.&&";
+  a7 = datmservico.atdcstvlr, noentry, format = "-----,--&.&&";
+  a8 = formonly.vlrfechado type dec(10,2), comments = " Informe o valor fechado do servico ",
+                              format = "-----,--&.&&";
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb12m15(soccstcod thru soccstclccod)
+End
+

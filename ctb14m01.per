@@ -1,0 +1,35 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTB14M01                                     Marcelo
+                                                            Gilberto
+                                                            Wagner
+ Pop-up de Eventos de analise de servicos                   Nov/1999
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+    Eventos de analise de servicos
+--------------------------------ctb14m01--
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+   [a1]    [a2                       ]
+
+}
+end
+
+attributes
+ a1 =  formonly.c24evtcod                 , noentry;
+ a2 =  formonly.c24evtrdzdes              , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb14m01(c24evtcod thru c24evtrdzdes)
+end
+

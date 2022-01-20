@@ -1,0 +1,45 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g99                                  Patricia
+                                                         Wissinievski
+ Pop-up de naturezas Ramos Elementares (Saldos/Valores)  Abr/2010
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+----------------------------------------------------------------cts12g99--
+Limite Maximo de Indenizacao(L.M.I.):R$[e        ]Saldo Disp.:[d        ]
+--------------------------------------------------------------------------
+   Naturezas                                         Valor/Qtd Disponivel
+--------------------------------------------------------------------------   
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+[a|b                                               ]      [c         ][x]
+
+
+}
+end
+
+attributes
+   a  =  formonly.socntzcod type dec, invisible,noentry;
+   b  =  formonly.socntzdes         , noentry;
+   c  =  formonly.vrlqtd            , noentry;
+   x  =  formonly.tipo              , invisible,noentry;                
+   d  =  formonly.saldo type decimal,
+                  format="-<<<<&.&&", noentry;
+   e  =  formonly.limite type decimal,
+                  format="#####&.&&"   , noentry;   
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g99(socntzcod thru tipo)
+end
+

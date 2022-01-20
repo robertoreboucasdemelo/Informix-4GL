@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M03                                              Marcelo
+                                                                     Gilberto
+ Direcionamento da impressao da reserva                              Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+       Solicitacao de Reserva VIA ONLINE
+--------------------------------------------cts15m16--
+ 
+------------------------------------------------------
+               MENSAGEM PARA LOCADORA
+------------------------------------------------------
+ [c001                                              ]
+ [c002                                              ]
+
+}
+end
+
+tables
+  datklocadora
+
+attributes
+
+
+
+c001 = formonly.msg1           ,comments = " Primeira linha de mensagem"       ,
+                                autonext,
+                                upshift ;
+c002 = formonly.msg2           ,comments = " Segunda linha de mensagem"       ,
+                                autonext,
+                                upshift ;
+end
+
+instructions
+  delimiters " "
+end

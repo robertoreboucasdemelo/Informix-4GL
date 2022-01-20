@@ -1,0 +1,30 @@
+database formonly
+screen 
+{
+                             ENDERECOS DO CLIENTE                               
+-------------------------------------------------------------------ctc68m00---
+ Produto         Documento      Endereco                         Cidade    UF
+
+[a              |b              |c                              |d        |e ]
+[a              |b              |c                              |d        |e ]
+[a              |b              |c                              |d        |e ]
+[a              |b              |c                              |d        |e ]
+[a              |b              |c                              |d        |e ]
+
+(F17)Abandona  (F8)Seleciona
+}
+END
+
+attributes 
+
+a = formonly.prdnom, noentry ;
+b = formonly.docnum, noentry ;
+c = formonly.lgdtxt, noentry ;
+d = formonly.cidnom, noentry ;
+e = formonly.ufdcod, noentry ;
+end
+
+instructions
+  delimiters " "
+   screen record s_ctc68m00[5] (prdnom ,docnum,lgdtxt,cidnom,ufdcod);
+end

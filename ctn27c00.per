@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN27C00                                              Marcelo
+                                                                     Gilberto
+ Consulta servicos enviados por fax                                  Set/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn27c00--
+ Sistema...:[a1                  ]Sub-sistema:[a2][a3         ]
+ Data Envio:[a4        ]          Situacao...:[a] [a5              ]
+ No. Docto.:[a6     ][a7]                                       [a8          ]
+------------------------------------------------------------------------------
+     Tipo Docto.   No. Docto.  Seq. Envio  Hr.Envio  Situacao
+------------------------------------------------------------------------------
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+    [b1         ][b2         ][b3        ][b4      ][b5              ][b6][x]
+
+}
+End
+
+Tables
+  datmservico, datmfax, gfxmfax
+
+Attributes
+  a1   = formonly.faxsisdsc    , upshift, noentry;
+  a2   = formonly.faxsubcod    , comments = " (RS)Reserva, (FU)Furto, (AL)Alarme, (PS)P.Socorro, (RC)Reclamacao, (VD)Vidros"
+                               , upshift;
+  a3   = formonly.faxsubdsc    , upshift, noentry;
+  a4   = datmfax.faxenvdat     , comments = " Data de Envio";
+  a    = gfxmfax.faxsttcod     , comments = " (0)Nao Transmitidos, (1)Transmitidos, ( )Todos";
+  a5   = formonly.faxsttdsc    , upshift, noentry;
+  a6   = datmservico.atdsrvnum , format = "&&&&&&&", comments = " Numero do Servico"
+                               , autonext;
+  a7   = datmservico.atdsrvano , format = "&&", comments = " Ano do Servico";
+  a8   = formonly.total        , noentry;
+
+  b1   = formonly.faxsubdes    , upshift, noentry;
+  b2   = datmfax.faxch1        , format="######## ##", noentry;
+  b3   = datmfax.faxch2        , noentry;
+  b4   = datmfax.faxenvhor     , noentry;
+  b5   = formonly.faxsttdes    , upshift, noentry;
+  b6   = formonly.faxsubsis    , invisible, noentry;
+  x    = formonly.retornoflg   , invisible, noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctn27c00(faxsubdes thru retornoflg)
+End

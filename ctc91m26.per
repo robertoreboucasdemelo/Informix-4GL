@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc91m26                                      R.Fornax
+
+ Cadastro de Segmentos X Motivo                              Jul/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m26--
+                           SEGMENTOS POR MOTIVO
+------------------------------------------------------------------------------
+ Motivo...:[a   ]-[b                                                      ]
+------------------------------------------------------------------------------
+ Segmento    Descricao                   Dt. Inicial  Dt. Final     Diarias
+
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+ [c    ]   [d                          ] [e         ] [f         ]  [g   ]
+
+------------------------------------------------------------------------------
+ Atualizado..:[h          ] por [i                                         ]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+   a  = formonly.itarsrcaomtvcod     ,noentry;
+   b  = formonly.itarsrcaomtvdes     ,noentry;
+   c  = formonly.itaclisgmcod        ,comments = " Digite o Segmento"               ,upshift;
+   d  = formonly.itaclisgmdes        ,noentry;
+   e  = formonly.vigincdat           ,comments = " Digite a Vigencia Inicial"       ,upshift;
+   f  = formonly.vigfnldat           ,comments = " Digite a Vigencia Final"         ,upshift;
+   g  = formonly.rsrcaodiaqtd        ,comments = " Digite a Quantidade de Diarias"  ,upshift;
+   h  = formonly.atldat              ,noentry;
+   i  = formonly.funnom              ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc91m26(itaclisgmcod   thru rsrcaodiaqtd)
+end

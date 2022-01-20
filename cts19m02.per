@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS19M02                                               Marcelo
+                                                                      Gilberto
+                                                                      Wagner
+ Informa ddd/telefone do segurado envio Carglass                      Dez/1999
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+          DDD/Telefone para contato
+-------------------------------------cts19m02--
+
+ DDD.......: [a   ]
+
+ Telefone..: [b                        ]
+
+
+}
+end
+
+attributes
+
+a = formonly.segdddcod,
+    comments = " Codigo de DDD";
+
+b = formonly.segteltxt,
+    comments = " Numero do telefone";
+
+end
+
+
+instructions
+  delimiters " "
+end

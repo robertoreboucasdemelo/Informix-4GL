@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g04                                  Amilton
+                                                         Pinto
+ Pop-up de naturezas Saldos  Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+----------------------------------------------------------------cts12g04--
+   Naturezas                                        Utilz  limite  Saldo
+--------------------------------------------------------------------------
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+[a|b                                               ] [c  ]  [d  ]   [e  ]
+
+
+}
+end
+
+attributes
+   a  =  formonly.socntzcod type dec, invisible,noentry;
+   b  =  formonly.socntzdes      , noentry;
+   c  =  formonly.utilz          , noentry;
+   d  =  formonly.Limite         , noentry;
+   e  =  formonly.saldo          , noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g04(socntzcod thru saldo)
+end
+

@@ -1,0 +1,31 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc92m05a
+
+ Popup Tipo de Assunto                                                Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+              TIPOS DE ASSUNTO
+-----------------------------------ctc92m05a--
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+                F8 - Escolhe
+}
+end
+
+attributes
+   a  = formonly.itaasiplntipcod , upshift, comments = "Tipo de Assunto";
+   b  = formonly.itaasiplntipdes , noentry;
+end
+
+instructions
+   screen record s_ctc92m05a (itaasiplntipcod thru itaasiplntipdes)
+   delimiters " "
+end

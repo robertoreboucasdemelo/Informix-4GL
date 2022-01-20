@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB10M06                                              Wagner
+
+ Consulta   dos itens da ordem de pagamento para carro-extra         out/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb02m10--
+ Numero O.P...:[o2      ]   Situacao.:[o4][o6                            ]
+------------------------------------------------------------------------------
+ Nro.nota    Numero do   -----Diarias-----  -----------Valores----------
+  Fiscal      Servico    Saldo Sol Utl Pag   Inicial  Exc/Desc    Total   Seq
+
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+[a2      ][a4|a6     |a8][a10 |a12|a14|a16][a18      |a20     |a22      |a24 ]
+
+
+}
+End
+
+Tables dbsmopg, dbsmopgitm, datmservico
+
+Attributes
+  o2   = formonly.socopgnum,                          noentry;
+  o4   = dbsmopg.socopgsitcod,                        noentry;
+  o6   = formonly.socopgsitdes,                       noentry;
+
+  a2   = dbsmopgitm.nfsnum,                    noentry;
+  a4   = datmservico.atdsrvorg,                format = "&&", noentry;
+  a6   = dbsmopgitm.atdsrvnum,                 format = "&&&&&&&", noentry;
+  a8   = dbsmopgitm.atdsrvano,                 format = "&&", noentry;
+  a10  = formonly.qtd_saldo       type decimal,format = "##&&", noentry;
+  a12  = formonly.qtd_solic       type decimal,format =  "#&&", noentry;
+  a14  = dbsmopgitm.c24utidiaqtd,              format =  "#&&", noentry;
+  a16  = dbsmopgitm.c24pagdiaqtd,              format =  "#&&", noentry;
+  a18  = formonly.socopgtotvlr  type decimal,  format = "-----&.&&", noentry;
+  a20  = formonly.socopgitmcst  type decimal,  format = "----&.&&",  noentry;
+  a22  = dbsmopgitm.socopgitmvlr,              format = "-----&.&&", noentry;
+  a24  = dbsmopgitm.socopgitmnum,              noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb02m10(nfsnum thru socopgitmnum)
+End
+

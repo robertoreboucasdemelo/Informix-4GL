@@ -1,0 +1,30 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTA02M00C                                      Helder -Nov/2010
+ ------------------------------------------------------------------------------
+}
+database formonly
+screen size 25 by 80
+
+{
+                A T E N C A O
+----------------------------------cta02m00c-
+ [a                                      ] 
+ [b                                      ]
+ [c                                      ]
+  	              
+          [d]F17 - Abandona
+}
+end
+
+Attributes
+  a = formonly.linha1;
+  b = formonly.linha2;
+  c = formonly.linha3;
+  d  = formonly.confirma type char, invisible;
+  
+end
+
+Instructions
+  delimiters " "
+  
+End

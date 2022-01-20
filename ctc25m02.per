@@ -1,0 +1,58 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc25m02                                               Marcus 
+
+ Consulta de procedimentos de tela                                  Abr/2002
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc25m02--
+       Data.:[a         ] Hora.:[b    ]       No Procedimento.:[k    ]
+------------------------------------------------------------------------------
+ Proc  Tela                           Vigencia Incial   Vigencia Final   Sit
+
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+[l    ][c        ][d                  ][f         |g    ][h         |i    ][j]
+
+ (F17)Abandona, (F2)Exclui, (F8)Consulta texto
+}
+end
+
+ tables datktelprc,datktel
+
+ attributes
+
+    a  = formonly.viginc1,
+         comments = " Data de vigencia para pesquisa (a partir de)";
+    b  = formonly.viginchor1  type date, picture ="##:##",
+         comments = " Horario de vigencia para pesquisa (a partir de)";
+    k  = formonly.telprccod1,
+         comments = " Numero do procedimento";
+
+    l  = datktelprc.telprccod               ,noentry;
+    c  = datktel.telnom                     ,noentry;
+    d  = datktel.teldsc                     ,noentry;
+    f  = formonly.viginc        type date   ,noentry;
+    g  = formonly.viginchor type date, picture ="##:##", noentry;
+    h  = formonly.vigfnl        type date,
+         comments = " Data vigencia final";
+    i  = formonly.vigfnlhor     type date, picture ="##:##",
+         comments = " Hora vigencia final";
+    j  = datktelprc.prcsitcod               ,upshift,
+         comments = " Situacao: (A)tivo, (C)ancelado, (P)rovisorio";
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc25m02(telprccod thru prcsitcod)
+ end

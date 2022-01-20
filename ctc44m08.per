@@ -1,0 +1,41 @@
+database porto
+
+screen
+{
+--------------------------------------------------------------------ctc44m08--
+    Cod         Nome         Cod      Prestador               Data Bloqueio
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+[y][a       ]  [b         ] [c     ] [d                   ]  [e         ]
+ 
+ [x                                                                   ] 
+
+}
+end
+
+tables dpaksocor, datksrr, datmsegsemsrrblq
+
+attributes
+y = formonly.aux,               autonext ;
+a = datksrr.srrcoddig,          noentry ;
+b = datksrr.srrabvnom,          noentry ;
+c = dpaksocor.pstcoddig,        noentry ;
+d = dpaksocor.nomgrr,           noentry ;
+e = datmsegsemsrrblq.srrblqdat, noentry ;
+x = formonly.rodape,            noentry ;   
+
+
+instructions
+  delimiters " "
+  screen record s_socorrista[12](aux thru srrblqdat) 
+    
+    

@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb27m02                                                Zyon
+ Pesquisa Mensagens para Prestadores                                 OUT/2004
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctb27m02---
+ Msg:[a    ] Periodo:[b         ] [c         ] Prestador:[d     ] Estado:[e]
+------------------------------------------------------------------------------
+Mensagem                            Prestador                   Estado 
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+[f     |g                          |h     |i                   |j|k         ]
+ (F17) Encerra
+}
+end
+
+tables
+   dpakprsmsg
+  ,dparprsmsgdst
+  ,dpaksocor
+
+attributes
+   a = formonly.msgcod;
+   b = formonly.datainc type date;
+   c = formonly.datafnl type date;
+   d = formonly.prstcod;
+   e = formonly.estsit, comments="1=Aguardando,2=Lida,0 ou Branco=Todas";
+   f = dparprsmsgdst.prsmsgcod;
+   g = dpakprsmsg.prsmsgtitdes;
+   h = dparprsmsgdst.pstcoddig;
+   i = dpaksocor.nomgrr;
+   j = dparprsmsgdst.prsmsgdstsit;
+   k = formonly.sitdes;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb27m02(prsmsgcod thru sitdes)
+end

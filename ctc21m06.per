@@ -1,0 +1,40 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc21m06                                               Almeida
+
+ Simulacao dos procedimentos cadastrados                             jan/1999
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  [d                                                                  ] 
+          Texto
+
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+  [a    ][b                                                           ]
+
+ (F17)Abandona, (F1)Inclui, (F2)Exclui
+}
+end
+
+ tables dattprt,datmprtprc,datmprctxt,datktelprc,isskdepto
+
+ attributes
+
+    a  = datmprctxt.prctxtseq,   invisible     ,noentry;
+    b  = formonly.prctxt,        autonext      ,upshift,
+         comments = " Texto com procedimentos";
+    d  = formonly.descrdp, noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc21m06(prctxtseq thru prctxt)
+ end

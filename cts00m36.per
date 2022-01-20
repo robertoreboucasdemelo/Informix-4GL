@@ -1,0 +1,47 @@
+database formonly
+screen
+{
+-------------------------------------------------------------------cts00m36---
+                              LOCALIZA SERVICOS PROGRAMADOS
+
+Periodo...........: [a         ] a [b         ]
+Codigo Prestador..: [c     ][d                                       ]
+Tipo Servico......: [e ][f             ]
+Nome Solicitante..: [g                                       ]
+Placa.............: [h      ] 
+Empresas..........: [i] PORTO SEGURO        [n] ALARMES MONITORADOS 
+                    [j] AZUL                [o] SAUDE
+                    [l] ITAU                [p] CARTAO
+                    [m] VIDA                [q] PSS
+------------------------------------------------------------------------------
+
+
+
+}
+end
+
+attributes
+
+a  = formonly.data_inicial  type date, format='dd/mm/yyyy',comments = " Informe a data inicial para pesquisa";
+b  = formonly.data_final    type date, format='dd/mm/yyyy',comments = " Informe a data final para pesquisa";
+c  = formonly.atdprscod     type decimal, format='#####&',comments = " Informe o codigo do prestador";
+d  = formonly.nomgrr        type char, noentry;
+e  = formonly.atdsrvorg     type smallint, format='&&',comments = " Informe o tipo de servico";
+f  = formonly.srvtipabvdes  type char, noentry;
+g  = formonly.nome          type char, upshift,comments = " Informe parte do nome do solicitante"; 
+h  = formonly.vcllicnum     type char, upshift,comments = " Informe a placa do veiculo"; 
+
+i   = formonly.empauxpor  type char   , upshift      , autonext; 
+j   = formonly.empauxazu  type char   , upshift      , autonext;  
+l   = formonly.empauxita  type char   , upshift      , autonext;  
+m   = formonly.empauxvid  type char   , upshift      , autonext;  
+n   = formonly.empauxpro  type char   , upshift      , autonext; 
+o   = formonly.empauxsau  type char   , upshift      , autonext; 
+p   = formonly.empauxcar  type char   , upshift      , autonext;  
+q   = formonly.empauxpss  type char   , upshift      , autonext;   
+
+end
+
+instructions
+     delimiters " "
+end

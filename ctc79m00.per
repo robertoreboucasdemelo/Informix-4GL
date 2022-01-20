@@ -1,0 +1,37 @@
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------ctc79m00---
+  Veiculo: [a    ][a1                           ]
+------------------------------------------------------------------------------
+ Tp Guincho:[b    ]DESCR.:[b1                                                ]
+ Incluido..:[c         ] por [d     ][e                   ]
+
+ Tp Guincho:[b    ]DESCR.:[b1                                                ]
+ Incluido..:[c         ] por [d     ][e                   ]
+
+ Tp Guincho:[b    ]DESCR.:[b1                                                ]
+ Incluido..:[c         ] por [d     ][e                   ]
+
+ Tp Guincho:[b    ]DESCR.:[b1                                                ]
+ Incluido..:[c         ] por [d     ][e                   ]
+
+ (F1) - Inclui (F2) - Excluir  (F17) - Sair
+
+}
+end
+
+attributes
+  a  = formonly.vclcoddig  type integer;
+  a1 = formonly.vclmdlnom  type char, noentry;
+  b  = formonly.soceqpcod  type integer;
+  b1 = formonly.soceqpdes  type char, upshift, noentry;
+  c  = formonly.caddat     type date, noentry;
+  d  = formonly.cadmat     type decimal, noentry;
+  e  = formonly.funnom_cad type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc79m00(soceqpcod thru funnom_cad)
+end

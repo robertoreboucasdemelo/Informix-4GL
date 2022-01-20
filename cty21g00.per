@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty21g00                                                Helder Oliveira
+
+ Cadastros                                                            Jan/2011
+-----------------------------------------------------------------------------}
+database formonly
+screen size 24 by 80
+
+{
+
+-------------------------------------------------------------------cty21g00---
+       1°Proposta:|[a |b       ]|       X     2°Proposta:|[c ][d       ]|
+------------------------------------------------------------------------------
+
+
+     
+
+        
+        
+                  
+                   
+
+
+
+------------------------------------------------------------------------------
+  
+}
+end
+
+attributes
+
+    a  = formonly.prporgpcp1    , upshift , autonext , comments='> Digite o numero da primeira origem'   ;
+    b  = formonly.prpnumpcp1    , upshift , autonext , comments='> Digite o numero da primeira proposta' ;
+    c  = formonly.prporgpcp2    , upshift , autonext , comments='> Digite o numero da segunda origem'    ;
+    d  = formonly.prpnumpcp2    , upshift , autonext , comments='> Digite o numero da segunda proposta'  ;
+
+end
+
+instructions
+      delimiters " "
+end

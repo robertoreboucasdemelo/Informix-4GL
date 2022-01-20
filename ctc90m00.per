@@ -1,0 +1,42 @@
+database formonly
+
+screen
+{
+--------------------------------------------------------------------ct90m00--
+   Cod   Sgl  Prestador               Laudo          Dat Vist.   M   Sq FtD  
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ] 
+[a|b    |c     |d                    |e             |f         | g|  h |i  ]    
+
+ [x                                                                       ]
+ [y                                                                       ]
+}
+end
+
+attributes
+a = formonly.aux,       autonext;
+b = formonly.socvclcod, noentry ;
+c = formonly.atdvclsgl, noentry ;
+d = formonly.nomgrr,    noentry ;
+e = formonly.vstnum,    noentry ;
+f = formonly.vstdat,    noentry ;
+g = formonly.dbqmtvtip,    noentry ; 
+h = formonly.evtseq,    noentry ; 
+i = formonly.qtdfot,    noentry ;
+x = formonly.rodape,    noentry ;
+y = formonly.rodape2,    noentry ; 
+
+
+
+instructions
+    delimiters " "
+    screen record s_vistorias[12](aux thru qtdfot) 

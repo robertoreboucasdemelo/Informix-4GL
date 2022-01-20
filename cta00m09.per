@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m09                                          Danilo Sgrott
+ Registro de atendimento central de operações                         Jun/2010
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+{
+--------------------------------------------------------------------cta00m09--
+                  R E G I S T R O  D E  A T E N D I M E N T O 
+
+ Empresa:[a                ] Serviço:[b             ] Atendimento:[c        ]
+------------------------------------------------------------------------------
+  Tp. de Contato: [d ]    [e                                                 ]
+
+  Tp. de Cliente: [f ]    [g                                                 ]
+ [h              ][i     ][j                                             ]
+      
+  Assunto.......: [k  ]   [l                                       ]
+ [m              ][n  ]   [o                                                 ]
+
+  Confirma......: [p] (S-Sim / N-Nao)
+         
+------------------------------------------------------------------------------
+ Dt.Início:[q         ][r        ] Fim: [s         ][t        ] 
+ Atendente:[u         ][v                                                   ]
+    
+}
+end
+
+
+ attributes
+    a  = formonly.cliente,reverse,noentry;
+    b  = formonly.servico,reverse,noentry;
+    c  = formonly.atdnum, reverse,upshift,noentry;
+    d  = formonly.cdcontato,comments = "Informe/Selecione o código do tipo de contato.";
+    e  = formonly.dscontato,upshift,noentry;
+    f  = formonly.cdcliente,comments = "Informe/Selecione o código do tipo de Cliente.";
+    g  = formonly.dscliente,upshift,noentry;
+    h  = formonly.ident,upshift;
+    i  = formonly.cdidentificacao,comments = "Informe/Selecione o código da identificação do Cliente.";
+    j  = formonly.dsidentificacao,comments = "Informe a Descrição da identificação do Cliente.",upshift;
+    k  = formonly.cdassunto,comments = "Informe/Selecione o código do assunto.",upshift;
+    l  = formonly.dsassunto,noentry;
+    m  = formonly.sub,upshift,noentry;
+    n  = formonly.cdsubassunto,comments = "Informe/Selecione o SubAssunto.",upshift;
+    o  = formonly.subassunto,noentry;
+    p  = formonly.confirma,comments = "Informe 'S' para finalizar o registro de atendimento.",upshift;
+    q  = formonly.dtinicial,noentry;
+    r  = formonly.hrinicial,noentry;
+    s  = formonly.dtfinal,noentry;
+    t  = formonly.hrfinal,noentry;
+    u  = formonly.funmat,noentry;
+    v  = formonly.funnom,noentry;
+ end
+ 
+ instructions
+    delimiters " "
+ end

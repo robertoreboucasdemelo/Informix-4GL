@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN19C00                                         Pedro
+                                                              Marcelo
+ Consulta Sucursais dos Convenios                              Nov/95
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn19c00--
+                  Convenio..:[t ][a001                ]
+------------------------------------------------------------------------------
+ Nome..:[a002                                    ] Codigo:[a003 ]
+ End...:[a004                                    ] Bairro:[a005              ]
+ Tel...:[a006][a007     ]  Fax.:[a071     ]        Cep...:[a008 ][b01]
+ Cidade:[a010              ]                       UF....:[u1]
+
+ Nome..:[a002                                    ] Codigo:[a003 ]
+ End...:[a004                                    ] Bairro:[a005              ]
+ Tel...:[a006][a007     ]  Fax.:[a071     ]        Cep...:[a008 ][b01]
+ Cidade:[a010              ]                       UF....:[u1]
+
+ Nome..:[a002                                    ] Codigo:[a003 ]
+ End...:[a004                                    ] Bairro:[a005              ]
+ Tel...:[a006][a007     ]  Fax.:[a071     ]        Cep...:[a008 ][b01]
+ Cidade:[a010              ]                       UF....:[u1]
+}
+end
+
+tables datkscv
+
+attributes
+t    = datkscv.cvnnum      ,      comments = " Codigo do Convenio" ;
+a001 = formonly.cvnnom     ,      noentry;
+a002 = datkscv.scvsucnom   ,      noentry;
+a003 = datkscv.scvsuccod   ,      noentry;
+a004 = datkscv.scvendlog   ,      noentry;
+a005 = datkscv.scvendbrr   ,      noentry;
+a006 = datkscv.scvdddcod   ,      noentry;
+a007 = datkscv.scvtelnum   ,      noentry;
+a071 = datkscv.scvfaxnum   ,      noentry;
+a008 = datkscv.scvendcep   ,      noentry;
+b01  = datkscv.scvendcepcmp,      noentry;
+a010 = datkscv.scvendcid   ,      noentry;
+u1   = datkscv.scvufd      ,      noentry ;
+end
+
+instructions
+     screen record s_ctn19c00(scvsucnom thru scvufd)
+     delimiters " "
+end

@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC23M00                                               Gilberto
+                                                                       Marcelo
+ Manutencao na agenda de telefones (Nome)                             Fev/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc23m00--
+Codigo....:[a5    ]
+Nome......:[a10                                     ]
+Observacao:[a15                                                         ]
+------------------------------------------------------------------------------
+      Tipo  Descricao       DDD      Numero   Ramal        Cod. Bip
+------------------------------------------------------------------------------
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+      [b0] [b5        ]    [b07 ] [b10      ] [b12 ]     [b15      ]
+
+}
+end
+
+tables datkpesagetel, datkagendatel
+
+attributes
+
+  a5  = formonly.pescod    ,comments = " Codigo"                          ;
+  a10 = formonly.pesnom    ,comments = " Nome"                    ,upshift;
+  a15 = formonly.pesobs    ,comments = " Observacoes"             ,upshift;
+
+  b0  = datkagendatel.teltipcod ,comments = " Tipo de Telefone"           ;
+  b5  = formonly.teltipdes                                       ,noentry;
+  b07 = datkagendatel.dddcod    ,comments = " Codigo DDD"                 ;
+  b10 = datkagendatel.telnum    ,comments = " Numero do Telefone"         ;
+  b12 = datkagendatel.rmlnum    ,comments = " Ramal do Telefone"          ;
+  b15 = datkagendatel.bipnum    ,comments = " Numero do Bip"              ;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc23m00(teltipcod thru bipnum)

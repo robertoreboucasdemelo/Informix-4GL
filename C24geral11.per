@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: c24geral11                                                Pedro
+                                                                       Marcelo
+ Mostra todas as sucursais                                            Abr/1995
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+Codigo    Descricao
+-------------------------------------c24geral11--
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+[a    ]   [b                                    ]
+
+}
+end
+tables
+   gabksuc
+
+attributes
+   a  = gabksuc.succod;
+   b  = gabksuc.sucnom;
+end
+
+instructions
+    delimiters " "
+    screen record c24geral11(succod, sucnom)
+end
+

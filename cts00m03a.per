@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m03a                                             Jose    
+                                                                     Kurihara
+ Pop-up de Tipos de Servico                                          Dez/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+       Tipos de Servico   
+----------------------cts00m03a--
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+[a   ][b                        ]
+
+}
+end
+
+ attributes
+    a  = formonly.srvorgtipcod  type smallint, noentry;
+    b  = formonly.srvorgtip     type char    , noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts00m03a(srvorgtipcod thru srvorgtip)

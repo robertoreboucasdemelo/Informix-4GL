@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m05                                                  Pedro
+                                                                       Marcelo
+ Emite Marcacao de Vistoria Previa Domiciliar                         Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06m05--
+ Data Realizacao:[l1        ]  Sucursal...:[l2   ][l21                       ]
+ Tipo Vistoria..:[v]           No.Vistoria:[l3       ]     Impr.Depto:[l4    ]
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+end
+
+tables
+   datmvistoria
+
+attributes
+
+   l1  = formonly.vstdat      type date               ,
+         comments = " Data da Realizacao da Vistoria"  ;
+   v   = formonly.vstc24tip                           ,
+         comments = " Tipo da vistoria: (0)Volante, (1)Central 24 Horas" ;
+   l2  = formonly.succod      type dec                ,
+         comments = " Sucursal";
+   l21 = formonly.sucnom                      ,noentry;
+
+   l3  = datmvistoria.vstnumdig                       ,
+         comments = " Numero da vistoria previa";
+   l4  = formonly.dptsgl                              ,
+         comments = " Nome do departamento (para exibir impressoras)";
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,43 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTN13C01                                               Marcelo
+                                                                      Gilberto
+ Manutencao dos procedimentos operacionais                            Mar/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Convenio:[a0                  ]     Topico:[b0                  ]
+--------------------------------------------------------------------ctn13c01--
+
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+
+}
+end
+
+Tables datktopcvn , datkdestopcvn
+
+Attributes
+a0   = formonly.cvndes            , noentry ;
+b0   = datktopcvn.cvntopnom       , noentry ;
+c0   = datkdestopcvn.cvntopdes    , noentry ;
+c1   = datkdestopcvn.cvntopdesseq , noentry ,
+                                    invisible;
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctn13c01(cvntopdes thru cvntopdesseq)
+End

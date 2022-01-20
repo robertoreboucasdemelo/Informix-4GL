@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTO00M05                                                 Akio
+                                                                        Ruiz
+ Pesquisa de corretores                                              Abr/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+ Corretor:[a                                       ]
+-------------------------------------------------cto00m05--
+      Nome                                    Susep
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+  [b                                       ] [c     ]
+-----------------------------------------------------------
+
+}
+End
+
+tables
+   gcakcorr,
+   gcaksusep
+
+Attributes
+ a  = formonly.infcornom         ,upshift;
+ b  = gcakcorr.cornom            ,noentry;
+ c  = gcaksusep.corsus           ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m05(cornom thru corsus)
+End

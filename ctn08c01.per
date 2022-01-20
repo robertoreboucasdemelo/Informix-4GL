@@ -1,0 +1,53 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN08C01                     Criacao: 25/10/94 - Pedro
+
+ Consulta escritorios de corretagem
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn08c01--
+
+ R.social:[a002                                    ]Codigo.:[a003]
+ Endereco:[a004                                    ]Nro/Cmp:[a005 ][a006     ]
+ Bairro..:[a007            ]                        Cidade.:[a008            ]
+ UF......:[u2]                                      Cep....:[a009 ][c00]
+ Tels....:[a010][a011                                     ]
+ Fax.....:[a012                ] Contato:[a013                               ]
+
+
+ R.social:[a002                                    ]Codigo.:[a003]
+ Endereco:[a004                                    ]Nro/Cmp:[a005 ][a006     ]
+ Bairro..:[a007            ]                        Cidade.:[a008            ]
+ UF......:[u2]                                      Cep....:[a009 ][c00]
+ Tels....:[a010][a011                                     ]
+ Fax.....:[a012                ] Contato:[a013                               ]
+
+}
+end
+
+tables gabkesc
+
+attributes
+a002 = gabkesc.escnom,    noentry;
+a003 = gabkesc.esccod,    noentry;
+a004 = gabkesc.endlgd,    noentry;
+a005 = gabkesc.endnum,    noentry;
+a006 = gabkesc.endcmp,    noentry;
+a007 = gabkesc.endbrr,    noentry;
+a008 = gabkesc.endcid,    noentry;
+u2   = gabkesc.endufd,    noentry;
+a009 = gabkesc.endcep,    noentry;
+c00  = gabkesc.endcepcmp, noentry;
+a010 = gabkesc.dddcod,    noentry;
+a011 = gabkesc.teltxt,    noentry;
+a012 = gabkesc.factxt,    noentry;
+a013 = gabkesc.rspnom,    noentry;
+end
+
+instructions
+     screen record s_ctn08c01(escnom thru rspnom)
+     delimiters " "
+end

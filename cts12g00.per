@@ -1,0 +1,35 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g00                                     Marcelo
+                                                            Gilberto
+ Pop-up de naturezas (socorro/sinistro) Ramos Elementares   Mai/1998
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+            Naturezas de[c       ]
+------------------------------------cts12g00--
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+[a                                       ][b ]
+
+}
+end
+
+attributes
+   c  =  formonly.ntztiptxt                 , noentry;
+   a  =  formonly.ntzdes                    , noentry;
+   b  =  formonly.ntzcod type dec, invisible, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g00(ntzdes thru ntzcod)
+end
+

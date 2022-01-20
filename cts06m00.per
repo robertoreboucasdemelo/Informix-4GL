@@ -1,0 +1,136 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m00                                                  Pedro
+                                                                       Marcelo
+ Marcacao de Vistoria Previa Domiciliar                               Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06m00--
+ N.Vistoria:[a1       ] Srv:[a0|a2     |a3] Solic:[a4          |a5|a6        ]
+ Data Real.:[a7        ]Tipo Vist:[b|b1     ] Sucursal:[c1|c2                ]
+ Empresa...:[c4 |c5                   ] Finalidade:[c |c3                    ]
+ Placa.....:[k4     ] Chassi:[k5                  ] Renavam:[r1         ]
+ Veiculo...:[l     ] [k              ][k1             ][k2                   ]
+ Cor.......:[k3         ]Fabr/Mod:[k6  ]/[k7  ][k8                           ]
+ Local.....:[d                                               ] Cep:[d1   |d2 ]
+ Bairro....:[d3                  ] Cidade..:[d4                  ]   U.F.:[d5]
+ Complemen.:[d9                       ]                   Cel:[d10 |d11      ]
+ Ponto Ref.:[d6                                        ] Fone:[d7  |d8       ]
+ Susep.....:[e     |e1                                 ] Fone:[e2  |e3       ]
+ Nome/Razao:[f1                                                ] Tp.Pessoa:[f]
+ Cgc/Cpf...:[f2          |f3  |f4] Contato:[g                                ]
+ E-mail Seg:[m0                                                ]
+ Hor.Pref..:[l1                            ]
+ Prioridade:[h|h1    ]      Autorizado Por:[j         ]
+[k9                                                                          ]
+}
+end
+
+tables
+    datmligacao,
+    datmservico,
+    datmlcl,
+    datmvistoria,
+    datksoltip
+
+attributes
+
+    a1  = formonly.vstnumdig,       comments = " Numero da vistoria";
+    a0  = datmservico.atdsrvorg,    format   = "&&",
+                                    noentry;
+    a2  = datmservico.atdsrvnum,    format   = "&&&&&&&",
+                                    comments = " Numero do servico";
+    a3  = datmservico.atdsrvano,    format   = "&&",
+                                    comments = " Ano do servico";
+    a4  = datmligacao.c24solnom,    upshift,
+                                    comments = " Nome do solicitante";
+    a5  = formonly.c24soltipcod,    comments = " Tipo do solicitante";
+    a6  = datksoltip.c24soltipdes,  noentry;
+    a7  = datmvistoria.vstdat,      comments = " Data para realizacao da vistoria";
+    b   = formonly.vstc24tip        type decimal,
+                                    comments = " Tipo da vistoria: (0)Volante ou (1)Central 24 Horas";
+    b1  = formonly.vstc24des,       noentry;
+    c1  = datmvistoria.succod,      format   = "&&",
+                                    comments = " Sucursal para realizacao da vistoria";
+    c2  = formonly.sucnom,          noentry;
+    c4  = datmservico.ciaempcod,    format   = "&&&",
+                                    comments = " Empresa da vistoria ";
+    c5  = formonly.empnom,          noentry;
+    c   = datmvistoria.vstfld,      comments = " Finalidade da vistoria";
+    c3  = formonly.vstflddes,       noentry;
+
+    k4  = datmvistoria.vcllicnum,   upshift,
+                                    comments = " Placa do veiculo";
+    k5  = datmvistoria.vclchsnum,   upshift,
+                                    comments = " Chassi do veiculo";
+    r1  = datmvistoria.vclrnvnum,   upshift,
+                                    comments = " Renavam do veiculo";
+    l   = datmservico.vclcoddig,    upshift,
+                                    comments = " Codigo do veiculo";
+    k   = datmvistoria.vclmrcnom,   upshift,
+                                    comments = " Marca do veiculo";
+    k1  = datmvistoria.vcltipnom,   upshift,
+                                    comments = " Tipo do veiculo";
+    k2  = datmvistoria.vclmdlnom,   upshift,
+                                    comments = " Modelo do veiculo";
+    k3  = formonly.vclcordes,       downshift,
+                                    comments = " Cor do veiculo";
+    k6  = formonly.vclanofbc,       comments = " Ano Fabricacao do veiculo";
+    k7  = formonly.vclanomdl,       comments = " Ano Modelo do veiculo";
+    k8  = formonly.atdtxt,          noentry;
+
+    d   = formonly.lgdtxt,          upshift,
+                                    comments = " Local para realizacao da vistoria";
+    d1  = datmlcl.lgdcep;
+    d2  = datmlcl.lgdcepcmp,        format   = "&&&";
+    d3  = datmlcl.lclbrrnom,        upshift,
+                                    comments = " Bairro do local para realizacao da vistoria";
+    d4  = datmlcl.cidnom,           upshift,
+                                    comments = " Cidade do local para realizacao da vistoria";
+    d5  = datmlcl.ufdcod,           upshift,
+                                    comments = " UF do local para realizacao da vistoria";
+    d6  = datmlcl.lclrefptotxt,     upshift,
+                                    comments = " Ponto de referencia";
+    d7  = datmlcl.dddcod,           comments = " DDD para contato";
+    d8  = datmlcl.lcltelnum,        comments = " Telefone para contato";
+    d9  = datmlcl.endcmp,           upshift ,
+                                    comments = " Complemento do endereco";
+    d10  = datmlcl.celteldddcod  , comments = " Codigo DDD do Celular";
+    d11  = datmlcl.celtelnum     , comments = " Telefone Celular";
+
+
+    e   = formonly.corsus,          upshift,
+                                    comments = " SUSEP do corretor";
+    e1  = formonly.cornom,          upshift,
+                                    comments = " Nome do corretor";
+    e2  = datmvistoria.cordddcod,   comments = " DDD do corretor";
+    e3  = datmvistoria.cortelnum,   comments = " Telefone do corretor";
+
+    f1  = formonly.segnom,          upshift,
+                                    comments = " Nome ou Razao Social ";
+    f   = formonly.pestip,          upshift,
+                                    comments = " Tipo da pessoa: (F)isica ou (J)uridica";
+    f2  = datmvistoria.cgccpfnum,   comments = " CGC/CPF do segurado";
+    f3  = datmvistoria.cgcord,      format   = "&&&&",
+                                    comments = " Ordem do CGC";
+    f4  = datmvistoria.cgccpfdig,   format   = "&&",
+                                    comments = " Digito do CGC/CPF do segurado";
+    m0  = datmvistoria.segematxt,   comments = " E-mail do segurado";
+    g   = datmlcl.lclcttnom,        upshift,
+                                    comments = " Contato no local";
+    l1  = datmvistoria.prfhor,      upshift,
+                                    comments = " Selecione o Horario Preferencial ";
+    h   = datmservico.atdprinvlcod, comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+    h1  = formonly.atdprinvldes,    noentry;
+    j   = datmvistoria.atdatznom,   upshift,
+                                    comments = " Nome do responsavel pela autorizacao";
+    k9  = formonly.msgpalm,         noentry,
+                                    color = black reverse;
+
+instructions
+    delimiters " "
+end
+

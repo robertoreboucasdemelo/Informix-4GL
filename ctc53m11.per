@@ -1,0 +1,52 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m11                                      R.Fornax
+
+ Cadastro de Motivo X Tipo Assistencia                       Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m11--
+ Perfil.....:[a   ][b                                                       ]
+ Assunto....:[c   ][d                                                       ]
+ Clausula...:[e   ][f                                                       ]
+ Tipo.......:[g   ][h                                                       ]
+------------------------------------------------------------------------------
+ Motivo  Nome                                              KM      Atende
+
+ [i  ] [j                                                ] [l   ]   [p]
+ [i  ] [j                                                ] [l   ]   [p]
+ [i  ] [j                                                ] [l   ]   [p]
+ [i  ] [j                                                ] [l   ]   [p]
+------------------------------------------------------------------------------
+ Atualizado..:[m          ] por [n                                         ]
+------------------------------------------------------------------------------
+ [o                                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.codper                 ,noentry;
+   b  = formonly.desper                 ,noentry;
+   c  = formonly.c24astcod              ,noentry;
+   d  = formonly.c24astdes              ,noentry;
+   e  = formonly.clscod                 ,noentry;
+   f  = formonly.clsdes                 ,noentry;
+   g  = formonly.asitipcod              ,noentry;
+   h  = formonly.asitipdes              ,noentry;
+   i  = formonly.asimtvcod              ,comments = " Digite o Codigo do Motivo de Assistencia" ,upshift;
+   j  = formonly.asimtvdes              ,noentry;
+   l  = formonly.limite                 ,comments = " Digite o Limite de KM por Motivo de Assistencia" ;
+   p  = formonly.atende                 ,comments = " Atende? <S> ou <N>"    ,upshift;
+   m  = formonly.atldat                 ,noentry;
+   n  = formonly.funmat                 ,noentry;
+   o  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m11(asimtvcod thru atende)
+end

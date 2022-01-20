@@ -1,0 +1,77 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc42m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de MDT's                                                    Jul/1999
+-----------------------------------------------------------------------------}
+
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc42m00--
+       Codigo MDT........:[a1   ]   Sigla Veiculo:[a6   ]
+------------------------------------------------------------------------------
+
+       Controladora......:[a2   ] [a21 ]
+
+       Equipamento.......:[a3   ][a31                                 ]
+       Programacao.......:[a4   ][a41                                 ]
+       Grupo de Mensagem.:[a5   ][a51                                 ]
+
+       Codigo do veiculo.:[a61   |a62                                    ]
+
+       Situacao..........:[s][s2                 ]
+
+       Incluido..........:[b4        ] por [b41                ]
+       Atualizado........:[b5        ] por [b51                ]
+
+}
+end
+
+ tables datkmdt, datkmdtcfg, datkmdtprg, datkveiculo, datkmdtctr
+
+ attributes
+
+   a1  = formonly.mdtcod,
+         comments = " Codigo do MDT (ID hardware)";
+
+   a2  = datkmdt.mdtctrcod,
+         comments = " Codigo de identificacao da controladora";
+
+   a21 = datkmdtctr.gpsacngrpcod, invisible, noentry;
+
+   a3  = datkmdtcfg.mdtcfgcod,
+         comments = " Codigo da configuracao";
+
+   a31 = datkmdtcfg.mdtcfgdes,                        noentry;
+
+   a4  = datkmdt.mdtprgcod,
+         comments = " Codigo de programacao dos botoes";
+
+   a41 = datkmdtprg.mdtprgdes,                        noentry;
+
+   a5  = datkmdt.mdtmsggrpcod,
+         comments = " Codigo do grupo para envio de mensagens";
+
+   a51 = formonly.mdtmsggrpdes,                       noentry;
+
+   a6  = datkveiculo.atdvclsgl,upshift,comments = " Sigla do veiculo ";
+   a61 = datkveiculo.socvclcod,                       noentry;
+   a62 = formonly.vcldes,                             noentry;
+
+   s   = datkmdt.mdtstt,
+         comments = " Situacao do MDT";
+
+   s2  = formonly.mdtsttdes,                          noentry;
+
+   b4  = datkmdt.caddat,                              noentry;
+   b41 = formonly.cadfunnom,                          noentry;
+
+   b5  = datkmdt.atldat,                              noentry;
+   b51 = formonly.funnom,                             noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,58 @@
+{---------------------------------------------------------------------------
+ Nome do form: CTB03M04                                             Wagner
+
+ Consulta acionamento de servicos do locadora  selecionado          Mai/2001
+---------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb03m04--
+ Data de.:[a1        ]a[a10       ]                             [a4          ]
+ Locadora:[a2 |a20                ] Loja:[a3     |a30                        ]
+------------------------------------------------------------------------------
+    Servico        Etapa       ----- Acionamento ----          Usuario
+
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+[b |b1     |b2|b4             |t1|b6        |t2|b7   |b8                     ]
+
+}
+
+ tables
+   datklocadora, datmservico,
+   datketapa,    datmavisrent
+
+ attributes
+   a1  = formonly.datpsq       , noentry;
+   a10 = formonly.datpsq_a     , noentry;
+   a2  = datklocadora.lcvcod   , noentry;
+   a20 = datklocadora.lcvnom   , noentry;
+   a3  = formonly.lcvextcod    , noentry;
+   a30 = formonly.aviestnom    , noentry;
+   a4  = formonly.srvqtdtxt    , noentry;
+
+   b   = datmservico.atdsrvorg , format = "&&"     , noentry;
+   b1  = datmservico.atdsrvnum , format = "&&&&&&&", noentry;
+   b2  = datmservico.atdsrvano , format = "&&"     , noentry;
+   b4  = datketapa.atdetpdes   , noentry;
+   t1  = formonly.txt1         , noentry;
+   b6  = datmservico.cnldat    , noentry;
+   t2  = formonly.txt2         , noentry;
+   b7  = datmservico.atdfnlhor , noentry;
+   b8  = datmavisrent.avilocnom, noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctb03m04(atdsrvorg thru avilocnom)
+ end
+

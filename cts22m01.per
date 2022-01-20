@@ -1,0 +1,40 @@
+database formonly
+screen size 24 by 80
+{
+--------------------------------------------------------------------cts22m01--
+                          Informacoes sobre o Hotel
+
+ Nome do Hotel.....:[a                                       ]
+ Estado............:[k ]
+ Cidade............:[b                   ]
+ Endereco..........:[c                                       ]
+ Bairro............:[c1                                      ]
+ Referencia........:[d                                                       ]
+ Contato no Hotel..:[e                   ]
+ Telefones do Hotel:[f           ]
+ Tipo Acomodacao...:[g                   ]
+[h                  |i         ]
+ Observacoes.......:[j                                                       ]
+
+
+}
+end
+attributes
+
+   a  = formonly.hsphotnom, upshift, comments = 'Informe o nome do hotel';
+   k  = formonly.hsphotuf, upshift, comments = 'Informe o estado do hotel';
+   b  = formonly.hsphotcid, upshift, comments = 'Informe a cidade do hotel';
+   c  = formonly.hsphotend, upshift, comments = 'Informe o emdereco do hotel';
+   c1 = formonly.hsphotbrr, upshift, comments = 'Informe o bairro do hotel';
+   d  = formonly.hsphotrefpnt, upshift, comments = 'Informe um ponto de referencia do hotel';
+   e  = formonly.hsphotcttnom, upshift, comments = 'Informe o nome para contato no hotel';
+   f  = formonly.hsphottelnum, upshift, comments = 'Informe o telefone do hotel';
+   g  = formonly.hsphotacmtip, upshift, comments = 'Informe o tipo de acomodacao do hotel';
+   h  = formonly.valorhospdes type char,noentry;
+   i  = formonly.hsphotdiavlr, comments = 'Informe o valor da diaria do hotel';
+   j  = formonly.obsdes, upshift, comments = 'Informe  alguma observacao!';
+
+end
+instructions
+   delimiters " "
+end

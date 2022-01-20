@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m08                                              Gilberto
+                                                                      Marcelo
+ Exibe vencimentos alternativos da parcela                           Set/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Vencimento alternativo da parcela
+-----------------------------cta01m08--
+
+      Ate dia              Valor
+
+     [a1        ][a2            ]
+     [b1        ][b2            ]
+
+
+
+}
+end
+
+ tables  fctmvctalt
+
+ attributes
+    a1 =  fctmvctalt.vctpridat                           ,noentry;
+    a2 =  fctmvctalt.vctprivlr, format="##########&.&&"  ,noentry;
+
+    b1 =  fctmvctalt.vctsgndat                           ,noentry;
+    b2 =  fctmvctalt.vctsgnvlr, format="##########&.&&"  ,noentry;
+ end
+
+ instructions
+    delimiters " "
+ end

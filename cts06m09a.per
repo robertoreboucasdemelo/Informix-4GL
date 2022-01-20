@@ -1,0 +1,80 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m09a
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+-----------------------------------------------------------------|cts06m09a|--
+Vistoria..:[a1       ] Srv:[b1|c1        |d1] Solic:[e1        |f1|g1        ]
+Data Real.:[h1        ] Hor.Pref:[i1                        ] Pri:[j1|k1     ]
+Empresa...:[l1 |m1                    ] Finalidade:[n1|o1                    ]
+Placa.....:[p1     ]    Chassi:[q1                  ]   Renavam:[r1          ]
+Veiculo...:[s1    ] [t1                                                      ]
+Cor.......:[u1                              ]  Fabricacao/Modelo:[v1  ]/[w1  ]
+Local.....:[a2                                               ] CEP:[b2       ]
+Bairro....:[c2                       ] Cid:[d2                       ] UF:[e2]
+Complem...:[f2                                         ] Cel:[g2             ]
+Ponto Ref.:[h2                                         ] Tel:[i2             ]
+Susep.....:[j2    |k2                                  ] Tel:[l2             ]
+Nome/Razao:[m2                                                ] Tp.Pessoa:[n2]
+Cgc/Cpf...:[o2                  ] Contato:[p2                                ]
+Email.....:[q2                                                ]
+------------------------------------------------------------------------------
+F5-Historico | F8-Altera | Ct+C-Sai | [z]
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+
+    a1 = formonly.f_NumeroVistoria          type char, noentry;
+    b1 = formonly.f_OrigemServico           type char, noentry;
+    c1 = formonly.f_NumeroServico           type char, noentry;
+    d1 = formonly.f_AnoServico              type char, noentry;
+    e1 = formonly.f_NomeSolicitante         type char, noentry;
+    f1 = formonly.f_CodigoTipoSolicitante   type char, noentry;
+    g1 = formonly.f_DescTipoSolicitante     type char, noentry;
+    h1 = formonly.f_DataVistoria            type char, noentry;
+    i1 = formonly.f_HorarioPreferencial     type char, noentry;
+    j1 = formonly.f_CodigoPrioridade        type char, noentry;
+    k1 = formonly.f_DescPrioridade          type char, noentry;
+    l1 = formonly.f_CodigoEmpresa           type char, noentry;
+    m1 = formonly.f_NomeEmpresa             type char, noentry;
+    n1 = formonly.f_CodigoFinalidade        type char, noentry;
+    o1 = formonly.f_DescFinalidade          type char, noentry;
+    p1 = formonly.f_PlacaVeiculo            type char, noentry;
+    q1 = formonly.f_ChassiVeiculo           type char, noentry;
+    r1 = formonly.f_RenavamVeiculo          type char, noentry;
+    s1 = formonly.f_CodigoVeiculo           type char, noentry;
+    t1 = formonly.f_DescVeiculo             type char, noentry;
+    u1 = formonly.f_DescCorVeiculo          type char, noentry;
+    v1 = formonly.f_AnoFabricacaoVeiculo    type char, noentry;
+    w1 = formonly.f_AnoModeloVeiculo        type char, noentry;
+
+    a2 = formonly.f_Endereco                type char, noentry;
+    b2 = formonly.f_CEP                     type char, noentry;
+    c2 = formonly.f_Bairro                  type char, noentry;
+    d2 = formonly.f_Cidade                  type char, noentry;
+    e2 = formonly.f_UF                      type char, noentry;
+    f2 = formonly.f_ComplementoEndereco     type char, noentry;
+    g2 = formonly.f_NumeroCelular           type char, noentry;
+    h2 = formonly.f_PontoReferencia         type char, noentry;
+    i2 = formonly.f_NumeroTelefone          type char, noentry;
+    j2 = formonly.f_Susep                   type char, noentry;
+    k2 = formonly.f_NomeCorretor            type char, noentry;
+    l2 = formonly.f_TelefoneCorretor        type char, noentry;
+    m2 = formonly.f_NomeSegurado            type char, noentry;
+    n2 = formonly.f_TipoPessoa              type char, noentry;
+    o2 = formonly.f_CPF_CNPJ                type char, noentry;
+    p2 = formonly.f_NomeContato             type char, noentry;
+    q2 = formonly.f_EmailSegurado           type char, noentry;
+    z  = formonly.f_qqTecla                 type char, autonext;
+
+end
+
+instructions
+    delimiters ' '
+end
+

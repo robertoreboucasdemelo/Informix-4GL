@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m12                                              Alberto
+                                                                     
+ Pop-up de tipos de Formas de Pagamento                              12/2012
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+  Formas de Pagamento
+---------------cto00m12--
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+
+}
+End
+
+tables
+   datkpgtfrm
+
+Attributes
+ a  = datkpgtfrm.pgtfrmdes, noentry;
+ b  = datkpgtfrm.pgtfrmcod, noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cto00m12(pgtfrmdes thru pgtfrmcod)
+End

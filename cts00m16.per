@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m16                                               Gilberto
+                                                                       Marcelo
+ Informa nova posicao do veiculo  (posicao da frota)                  Jun/1998
+-----------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+            Atualiza posicao da frota
+---------------------------------------------cts00m16--
+
+ Veiculo...:[a    ]
+
+
+ Cidade....:[b                             ] UF...:[c ]
+
+ Bairro....:[d                             ] Zona.:[e ]
+
+
+}
+ end
+
+ Tables datkveiculo, datmfrtpos
+
+ Attributes
+
+    a  = datkveiculo.atdvclsgl           ,reverse      ,noentry;
+
+    b  = datmfrtpos.cidnom                             ,upshift,
+         comments = " Cidade";
+
+    c  = datmfrtpos.ufdcod                             ,upshift,
+         comments = " Unidade federativa";
+
+    d  = datmfrtpos.brrnom                             ,upshift,
+         comments = " Bairro";
+
+    e  = datmfrtpos.endzon                             ,upshift,
+         comments = " (NO)rte, (SU)l, (LE)ste, (OE)ste, (CE)ntro";
+ End
+
+ Instructions
+   delimiters " "
+ End

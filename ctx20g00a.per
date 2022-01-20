@@ -1,0 +1,23 @@
+database formonly
+screen size 24 by 80
+{
+Qtde trocas/reparos de vidros p/ apolice
+----------------------------ctx20g00a---
+
+    Troca dos Vidros.......:[a   ]
+
+    Troca dos Retrovisores.:[b   ]
+
+    Reparos................:[c   ]
+
+
+    (F17) Abandona  (F8) Detalhes
+}
+end
+attributes
+ a = formonly.qtd_troca		type smallint, noentry;
+ b = formonly.qtd_retro		type smallint, noentry;
+ c = formonly.qtd_rep		type smallint, noentry; 	
+
+instructions
+  delimiters " "

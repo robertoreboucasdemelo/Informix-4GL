@@ -1,0 +1,39 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m13                                      R.Fornax
+                                                             
+ Consulta de Coberturas                                      Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m13--
+                          CONSULTA DE COBERTURAS
+------------------------------------------------------------------------------
+   Codigo      Cobertura                                     
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.cbtcod ,noentry;
+   b  = formonly.cbtdes ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m13(cbtcod thru cbtdes)
+end

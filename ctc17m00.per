@@ -1,0 +1,45 @@
+database porto
+screen
+{	
+--------------------------------------------------------------------ctc17m00--
+
+ Codigo......: [a ]
+ 
+ Descricao...: [b                   ]
+
+ Prioridade..: [c ] - [c1   ]
+
+ Situacao....: [d] - [d1       ]
+
+
+ Incluido....: [e         ] por [e1                  ]
+
+ Atualizado..: [f         ] por [f1                  ]
+
+ Observacao..: [g                                                      ]
+
+}
+end 
+tables
+datkemevia
+attributes
+ a  = datkemevia.emeviacod, 
+      comments = 'Codigo da Via Emergencial';
+ b  = datkemevia.emeviades,     upshift, 
+      comments = 'Descricao da Via Emergencial';
+ c  = datkemevia.emeviapri, 
+      comments = 'Prioridade de Atendimento: 01 - Alta, 02 - Media, 03 - Baixa';
+ c1 = formonly.emeviaprides     type char, noentry;
+ d  = datkemevia.emeviasit,     upshift, 
+      comments = 'A - ativo C - cancelado';  
+ d1 = formonly.emeviasitdes     type char, noentry;
+ e  = datkemevia.caddat,        noentry;
+ e1 = formonly.funnomcad        type char, noentry;
+ f  = datkemevia.atldat,        noentry;
+ f1 = formonly.funnomatl        type char, noentry;
+ g  = formonly.obs              type char, noentry;
+end
+ 
+instructions
+  delimiters "  "
+end 

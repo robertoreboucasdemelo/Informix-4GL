@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTE01M05                                              Raji
+
+ Informacoes das alteracoes de status                                Set/2000
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cte01m05--
+ Ligacao: [r0        ]/[r1  ]-[s ]   [r7 ][r8                                ]
+------------------------------------------------------------------------------
+ Descricao da Etapa           ---- Realizacao ----   ----- Responsavel -----
+
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+[r][r9                 ] [t1][r2        ][r3      ] [r6                   ][t]
+
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   dacmatdpndsit,
+   datmligass,
+   dackass
+
+Attributes
+   r0  = dacmatdpndsit.corlignum   , noentry, format = "##########";
+   r1  = dacmatdpndsit.corligano   , noentry, format = "####";
+   s   = dacmatdpndsit.corligitmseq, invisible, noentry;
+   r7  = dackass.corasscod         , upshift;
+   r8  = dackass.corassdes         , noentry, upshift;
+
+   r   = dacmatdpndsit.c24pndsitcod;
+   r9  = formonly.pndsitdes        , noentry, upshift;
+   r2  = dacmatdpndsit.caddat      , noentry, format = "dd/mm/yyyy";
+   r3  = dacmatdpndsit.cadhor      , noentry;
+   t1  = formonly.cademp           , invisible, noentry;
+   t   = formonly.cadmat           , invisible, noentry;
+   r6  = formonly.responsavel      , noentry, upshift;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cte01m05(c24pndsitcod thru responsavel)
+End

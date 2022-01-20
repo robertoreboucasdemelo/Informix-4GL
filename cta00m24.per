@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m24                                                Roberto
+
+ Localiza Contrato                                                    Jan/2010
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80          
+{
+                       Contratos PSS
+---------------------------------------------------cta00m24-
+    Contrato   Vig.Inic     Vig.Fin          Situacao
+------------------------------------------------------------
+[a         ][c         ] [d         ][b                    ]
+[a         ][c         ] [d         ][b                    ]
+[a         ][c         ] [d         ][b                    ]
+[a         ][c         ] [d         ][b                    ]
+[a         ][c         ] [d         ][b                    ]
+[a         ][c         ] [d         ][b                    ]
+
+}
+end
+tables gsakdocngcseg
+
+attributes
+a = formonly.psscntcod    , comments = " Numero do Contrato";      
+c = gsakdocngcseg.viginc  , noentry; 
+d = gsakdocngcseg.vigfnl  , noentry; 
+b = formonly.sitdoc       , noentry;   
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m24(psscntcod thru sitdoc)
+end                                                

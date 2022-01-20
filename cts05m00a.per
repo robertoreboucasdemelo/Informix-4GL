@@ -1,0 +1,28 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts05m00a                                              Ruiz 
+ Nome do segurado que recebeu a informacao da Ituran                  Mar/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------cts05m00a--
+  ATENCAO
+  Informe o nome de quem foi orientado a contatar a
+  Central 24horas da ITURAN.                     
+  Fone: 0800-153600 ou (11)3613-2399
+  NOME..:[a                   ]     
+
+}
+end
+
+tables
+datmservico
+
+attributes
+  a  = formonly.nome     ,upshift, comments = " Digite o nome ";              
+end
+instructions
+  delimiters " " 
+end

@@ -1,0 +1,45 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTS22G00                                              Wagner
+ Verifica solicitacoes anteriores                                    Abr/2001
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                           |a1 ]dias
+---------------------------------------------------------------cts22g00--
+ Atendimento        Servico    [a2             ]Atendente  Solicitante
+                                                  
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+[b1        |b2   |b |b3     |b4|b5             |b6        |b7           ]
+|
+}
+end
+
+ tables datmservico, datksrvtip
+
+ attributes
+    a  = formonly.descr                      ,noentry;
+    a1 = formonly.nrdias type dec            ,noentry,format = "&##";
+    a2 = formonly.tpnat                      ,noentry;
+    b1 = datmservico.atddat                  ,noentry;
+    b2 = datmservico.atdhor                  ,noentry;
+    b  = datmservico.atdsrvorg ,format = "&&",noentry;
+    b3 = datmservico.atdsrvnum ,format = "&&&&&&&",noentry;
+    b4 = datmservico.atdsrvano ,format = "&&",noentry;
+    b5 = datksrvtip.srvtipabvdes             ,noentry;
+    b6 = formonly.atendente                  ,noentry;
+    b7 = datmservico.c24solnom               ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts22g00(atddat thru c24solnom)
+ end

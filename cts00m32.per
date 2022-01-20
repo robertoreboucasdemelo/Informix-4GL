@@ -1,0 +1,31 @@
+database formonly
+screen size 24 by 80
+{ 
+     Dados da ultima alteracao da viatura
+-----------------------------------------cts00m32-------
+
+ Funcionario:[a                             ]
+ Data       :[b         ]    Hora :[c    ]
+
+ Prestador  :[d     ][e                               ]
+ Contato    :[f                                       ]
+ Telefones  :[g                                       ]
+
+}
+end
+attributes
+
+a = formonly.nome,noentry; 
+b = formonly.data,noentry;
+c = formonly.hora,noentry;
+d = formonly.pstcoddig;
+e = formonly.nomrazsoc;
+f = formonly.rspnom;
+g = formonly.teltxt;
+
+end
+
+instructions
+   delimiters "  "
+end
+

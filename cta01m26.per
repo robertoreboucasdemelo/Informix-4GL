@@ -1,0 +1,27 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m26                                              Marcelo
+                                                                     Gilberto
+ Clausulas da apolice de R.E.                                        Set/1997
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+ CLAUSULAS
+[a01 ][a02                         ]
+[a01 ][a02                         ]
+[a01 ][a02                         ]
+[a01 ][a02                         ]
+}
+end
+
+attributes
+   a01 = formonly.clscod, noentry;
+   a02 = formonly.clsdes, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m26(clscod thru clsdes)
+end

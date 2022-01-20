@@ -1,0 +1,49 @@
+{------------------------------------------------------------------------------
+ Analista Responsavel : Ligia Mattge
+ PSI                  : 170178
+ OSF                  : 18902
+ ------------------------------------------------------------------------------
+ Form                 : cte00m04
+ Modulo               : cte00m04
+ Desenvolvimento      : Fabrica de Software - Gustavo Bayarri
+ Data                 : 19/05/2003
+
+-------------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cte00m04--
+Matr. Coordenador Tecnico 1:[c      ] - [d                                   ]
+Matr. Coordenador Tecnico 2:[e      ] - [f                                   ]
+
+ Codigo     Descricao
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+[a  ]      [b                                                             ][g]
+
+(F1)Incluir, (F2)Excluir, (F8)Gravar
+}
+end
+
+attributes
+  c = formonly.tecmat, autonext;
+  d = formonly.tecnom, noentry;
+  e = formonly.anlmat, autonext;
+  f = formonly.anlnom, noentry;
+  a = formonly.coracacod;
+  b = formonly.coracades, upshift;
+  g = formonly.ghost, invisible, noentry;
+
+instructions
+  delimiters " "
+  screen record s_cte00m04[10](coracacod thru ghost)
+end

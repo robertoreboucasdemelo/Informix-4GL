@@ -1,0 +1,64 @@
+database formonly
+screen size 24 by 80
+{
+------------------------------------------------------------------------------
+ Ord. Servico : [f1] [f2      ] [f3]  Valor total do item: [f4          ]
+-------------------------------------------------------------------ctb04m12---
+ Centro de Custo     Descricao                                 Valor
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+   [f5    ]          [f6                               ]     [f7          ]
+
+
+
+
+ <F8 - Salva >  <F2 - Deleta>
+------------------------------------------------------------------------------
+
+}
+
+end
+
+attributes
+
+f1   = formonly.atdsrvorg;
+
+f2   = formonly.atdsrvnum;
+
+f3   = formonly.atdsrvano;
+
+f4   = formonly.valortotal type decimal, format="#,###,###.##" ;
+
+f5   = formonly.cctcod;
+
+f6   = formonly.cctnom;
+
+f7   = formonly.cctratvlr type decimal, format="#,###,###.##";
+
+end
+
+
+
+instructions
+
+    screen record s_ctb04m12[8] (formonly.cctcod,
+
+                              formonly.cctnom,
+
+                              formonly.cctratvlr)
+
+
+
+     delimiters "  "
+
+
+
+end
+
+
+

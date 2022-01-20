@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do form: cte00m03                                                   Raji
+                                                                          Ruiz
+ Cadastro de codigos do programa                                      Ago/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cte00m03--
+ Codigo do Programa.:[a  ]
+
+ Nome do Programa...:[a1       ]
+
+ Descricao..........:[a2                                      ]
+
+ Empresa............:[b]
+
+
+ Incluido...........:[c         ] por [c1    ] [c2                            ]
+
+
+
+
+}
+end
+
+ tables dackprgext
+
+ attributes
+    a  = dackprgext.prgextcod                 ,upshift,
+         comments = " Codigo do Programa";
+
+    a1 = dackprgext.prgsgl                    ,
+         comments = " Nome do Programa";
+
+    a2 = dackprgext.prgextdes                 ,upshift,
+         comments = " Descricao do Programa";
+
+    b  = dackprgext.cademp                    ,upshift,
+         comments = " Empresa";
+
+    c  = dackprgext.caddat                    ,noentry;
+    c1 = dackprgext.cadmat                    ,noentry;
+    c2 = formonly.funnom                      ,noentry;
+
+ end
+
+ instructions
+      delimiters "[]"
+ end

@@ -1,0 +1,87 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m06                                               Gilberto
+                                                                       Marcelo
+ Solicitacao de reparo para danos nos vidros do veiculo               Mar/1998
+-----------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+Servico:[a1           ]  B14 - LAUDO - REPARO NOS VIDROS   [a2             ]
+-------------------------------------------------------------------cts19m06---
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+  Vidro(s) Avariado(s)[d]                                     [msg           ]
+                         Franquia                                 Franquia
+ . Para-Brisa          :[e          ]  . Farol        [t6      ]:[e6         ]
+ . Traseiro            :[e1         ]  . Farol Milha  [t7      ]:[e7         ]
+ . Lateral[t2      ]   :[e2         ]  . Farol Neblina[t8      ]:[e8         ]
+ . Oculo[t3      ]     :[e3         ]  . Pisca        [t9      ]:[e9         ]
+ . Quebra vento        :[e4         ]  . Lanterna     [t10     ]:[e10        ]
+ . Retrovisor[t5      ]:[e5         ]
+ Observacoes:[f                                                 ]
+             [f1                                                ]
+ Srv.Lib....:[g]  [h                                                         ]
+[h1        |h2   ]
+[i                                                                           ]
+}
+end
+
+tables
+  datmservico,
+  datmligacao
+
+attributes
+  a1 = formonly.servico      , noentry;
+  a2 = datmligacao.c24solnom , noentry;
+  b1 = datmservico.nom       , upshift, comments = " Nome";
+  b2 = formonly.doctxt       , noentry;
+  b6 = datmservico.corsus    , upshift, comments = " Susep";
+  b7 = datmservico.cornom    , upshift, comments = " Corretor";
+  b8 = formonly.cvnnom       , noentry;
+  b9 = datmservico.vclcoddig , format = "&&&&&&", comments = " Codigo do veiculo";
+  b10 = datmservico.vcldes   , upshift, comments = " Descricao do veiculo";
+  b11 = datmservico.vclanomdl, comments = " Ano do veiculo";
+  b12 = datmservico.vcllicnum, comments = " Placa do veiculo";
+  b13 = formonly.vclcordes   , downshift, comments = " Cor do veiculo";
+
+  d  = formonly.tipvidro,        upshift, comments = " Tecle <enter> para selecao ";
+  e  = formonly.vdrpbsavrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+  e1 = formonly.vdrvgaavrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+  e2 = formonly.vdrlatavrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+  e3 = formonly.vdrocuavrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+  e4 = formonly.vdrqbvavrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+  e5 = formonly.vdrrtravrfrqvlr  type decimal, format = "<<<<<<<&.&&", noentry;
+
+  e6  = formonly.vlrfaro type decimal, format = "<<<<<<<&.&&", noentry;
+  e7  = formonly.vlrfami type decimal, format = "<<<<<<<&.&&", noentry;
+  e8  = formonly.vlrfane type decimal, format = "<<<<<<<&.&&", noentry;
+  e9  = formonly.vlrpisc type decimal, format = "<<<<<<<&.&&", noentry;
+  e10 = formonly.vlrlant type decimal, format = "<<<<<<<&.&&", noentry;
+
+  f  = formonly.obstxt       ,upshift, comments = " Observacoes ";
+  f1 = formonly.obstxt_1    ,upshift, comments = " Observacoes ";
+  g  = formonly.atdlibflg   ,upshift, comments = " Libera Servico: (S)im ou (N)ao";
+  h  = formonly.atdtxt      ,noentry;
+  h1 = formonly.atdlibdat   ,noentry, invisible;
+  h2 = formonly.atdlibhor   ,noentry, invisible;
+  i  = formonly.msgfun      ,noentry;
+
+  t2 = formonly.vdrlattxt    type char, noentry;
+  t3 = formonly.vdrocutxt    type char, noentry;
+  t5 = formonly.vdrrtrtxt    type char, noentry;
+
+  t6  = formonly.lfarol      type char, noentry;
+  t7  = formonly.lfarolmi    type char, noentry;
+  t8  = formonly.lfarolne    type char, noentry;
+  t9  = formonly.lpisca      type char, noentry;
+  t10 = formonly.llanterna   type char, noentry;
+  msg = formonly.mensagem    type char, noentry;
+end
+
+instructions
+  delimiters " "
+end

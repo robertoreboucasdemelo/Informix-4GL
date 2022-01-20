@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB15M00                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de Fase de analise                                          Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb15m00--
+   Codigo..........:[a1]
+------------------------------------------------------------------------------
+
+
+
+
+   Descricao fase..:[a2                       ]
+
+
+
+
+
+
+   Incluido........:[a3        ] por [b3                 ]
+   Atualizado......:[a4        ] por [b4                 ]
+
+}
+end
+
+tables datkfse
+
+attributes
+   a1   = datkfse.c24fsecod,
+          comments = " Codigo da Fase de analise ";
+
+   a2   = datkfse.c24fsedes,
+          comments = " Descricao da Fase de analise  ",
+          upshift;
+
+   a3   = datkfse.caddat,
+          noentry;
+   b3   = formonly.cadfunnom,
+          noentry;
+
+   a4   = datkfse.atldat,
+          noentry;
+   b4   = formonly.funnom,
+          noentry;
+end
+
+instructions
+     delimiters " "
+end

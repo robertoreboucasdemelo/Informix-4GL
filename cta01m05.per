@@ -1,0 +1,85 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA01M05                                               Marcelo
+
+ Espelho da Apolice
+-----------------------------------------------------------------------------}
+{
+  SISTEMA : Central 24h
+  TELA    : cta01m05.per
+  POR     : FABRICA DE SOFTWARE, Katiucia
+  OSF     : 9377
+  DATA    : 19/11/2002
+  OBJETIVO: Consulta Importancias Seguradas
+}
+database porto
+
+screen size 25 by 80
+{
+              Importancias Seguradas em[a01]
+--------------------------------------------------cta01m05--
+ Casco ...:[b01             ][d01        ][e01             ]
+ Blind ...:[g01             ]
+ DM[c1]...:[b02             ][d02        ][e02             ]
+ DP[c2]...:[b03             ][d03        ][e03             ]
+ Morte ...:[b04             ]
+ Invalidez:[b05             ]             [a02           ]
+ DMH .....:[b06             ]           [a03             ]
+ Bonus Un.:[f ][f1    ]
+[h01                                                       ]
+------------------------------------------------------------
+[v5                                ].....:[x1              ]
+ Auto+Vida             Desconto..........:[x2              ]
+ Desc Class Bonus [z1] Desconto..[z2    ]:[z3              ]
+    Dt/Num. 1.o Sinistro:.........[x3        ]/[x4         ]
+[x5                       ][x6        ]   [x7              ]
+}
+end
+
+tables
+   abamdoc
+
+attributes
+   a01  = formonly.imsmda;
+   a02  = formonly.mdacottxt;
+   a03  = formonly.mdacotvlr type decimal(15,8), format = "###,##&.&&&&&&&&";
+
+   b01  = formonly.autimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b02  = formonly.dmtimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b03  = formonly.dpsimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b04  = formonly.imsmorvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b05  = formonly.imsinvvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b06  = formonly.imsdmhvlr type decimal(15,2), format = "#,###,###,##&.&&";
+
+   c1   = formonly.dmtniv   ;
+   c2   = formonly.dpsniv   ;
+
+   d01  = formonly.frqobrtxt, noentry;
+   d02  = formonly.dmtfrqtxt, noentry;
+   d03  = formonly.dpsfrqtxt, noentry;
+
+   e01  = formonly.frqobrvlr type decimal(14,2), format = "#,###,###,##&.&&";
+   e02  = formonly.dmtobrvlr type decimal(14,2), format = "#,###,###,##&.&&";
+   e03  = formonly.dpsobrvlr type decimal(14,2), format = "#,###,###,##&.&&";
+
+   f    = formonly.bonclacod;
+   f1   = formonly.bondscper type decimal(04,2), format = "<&.&&%";
+
+   g01  = formonly.imsvlr    type decimal(15,2), format = "#,###,###,##&.&&";
+   h01  = formonly.veiblitxt , noentry;
+   v5   = formonly.texto1;
+
+   x1   = formonly.frqvlr    type decimal(14,2), format = "#,###,###,##&.&&";
+   x2   = formonly.frqdsc    type decimal(14,2), format = "#,###,###,##&.&&";
+   x3   = formonly.orrdat;
+   x4   = formonly.sinnum;
+   x5   = formonly.texto;
+   x6   = formonly.dthoje;
+   x7   = formonly.frqhoje   type decimal(14,2), format = "#,###,###,##&.&&";
+   z1   = formonly.classcod;
+   z2   = formonly.classper  type decimal(04,2), format = "<&.&&%";
+   z3   = formonly.classvlr  type decimal(14,2), format = "#,###,###,##&.&&";
+end
+
+instructions
+   delimiters " "
+end

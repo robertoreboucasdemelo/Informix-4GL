@@ -1,0 +1,73 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc52m00                                               Gustavo
+
+ Cadastro de grupo    conforme criterios                             Dez/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------------------------------ctc52m00----
+ Codigo Grupo: [a   ]
+ Descricao...: [b                                                 ]
+ Situacao....: [c] [d        ]
+
+ Cadastrado: [e         ] por [g                               ]
+ Alterado..: [f         ] por [h                               ]
+------------------------------------------------------------------------------
+ Sigla    Desc.                       Nr.Teletrim  Nome
+------------------------------------------------------------------------------
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+[i    ]  [j                       ]  [l      ] [m                        ][z]
+
+}
+
+end
+
+   tables datktltgrp, datktltgrpitm, datkveiculo, htlrust
+
+   attributes
+
+   a = datktltgrp.c24tltgrpnum,
+       comments = "Codigo do Grupo ";
+
+   b = datktltgrp.c24tltgrpdes,           upshift,
+       comments = "Descricao do Grupo";
+
+   c = formonly.c24tltgrpstt,           upshift,
+       comments = "Situacao do Grupo";
+
+   d = formonly.descsit,                  upshift;
+
+   e = datktltgrp.caddat,                 noentry;
+
+   f = datktltgrp.atldat,                 noentry;
+
+   g = formonly.cadnom,                   noentry;
+
+   h = formonly.atlnom,                   noentry;
+
+   i = datktltgrpitm.atdvclsgl,           upshift,
+       comments = "Sigla do Veiculo";
+
+   j = formonly.vcldes,          upshift, noentry,
+       comments = "Descricao do Veiculo";
+
+   l = datktltgrpitm.pgrnum,
+       comments = "Numero do Teletrim";
+
+   m = htlrust.ustnom,          upshift, noentry ,
+       comments = "Nome do proprietario";
+
+   z = formonly.contr,                   noentry , invisible;
+end
+
+  instructions
+    delimiters " "
+    screen record s_ctc52m00(atdvclsgl thru contr)
+

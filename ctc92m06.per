@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc92m06                                      Helder
+                                                             Oliveira
+ Cadastro Motivo Reserva                                    Mar/2011
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m06--
+ Motivo Descricao                      Data de Corte   Sinistro   Diaria(s)
+
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+ [a    ][b                            ] [c         ]     [d]      [e    ]
+------------------------------------------------------------------------------
+ Atualizado..:[f          ] por [g                                        ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.mtv_cod     ,upshift,comments='Codigo do Motivo' ;
+   b  = formonly.mtv_des     ,upshift,comments='Descricao do Motivo' ;
+   c  = formonly.srvlimdat   ,comments='Data de Corte' ;
+   d  = formonly.sinatdflg   ,upshift,comments='Atende Sinistro?' ;
+   e  = formonly.dialimqtd   ,upshift,comments='Quantidade de Diaria' ;
+   f  = formonly.atldat      ,noentry;
+   g  = formonly.funnom      ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc92m06(mtv_cod thru dialimqtd)
+end

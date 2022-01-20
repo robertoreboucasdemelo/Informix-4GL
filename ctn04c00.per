@@ -1,0 +1,55 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTN04C00                                               Marcelo
+                                                                      Gilberto
+ Consulta reguladoras de sinistro de transporte                       Jun/1997
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+------------------------------------------------------------------------------
+                 UF:[p1]       Cidade:[p2                  ]
+--------------------------------------------------------------------ctn04c00--
+
+ Codigo........:[a01     ]
+ Razao Social..:[a02                                     ]
+ Tipo..........:[a03                 ]
+ Endereco......:[a04                                     ]
+ Bairro........:[a05                 ]
+ Cidade........:[a06                 ]       UF..:[a0]
+ Telefone......:[a07 ][a08      ]  Celular..:[a13 ][a14      ]
+ Ultimo Servico:[a09       ]
+ Observacoes...:[a10                                               ]
+                [a11                                               ]
+                [a12                                               ]
+
+ (F17) Abandona
+}
+end
+
+tables sstkprest, glakcid
+
+attributes
+  p1   = glakcid.ufdcod,         upshift;
+  p2   = glakcid.cidnom,         upshift;
+  a01  = sstkprest.sinprscod,    format = "&&&&&&&&";
+  a02  = sstkprest.sinprsnom,    noentry, upshift;
+  a03  = formonly.sinprstip,     noentry, upshift;
+  a04  = sstkprest.endlgd,       noentry, upshift;
+  a05  = sstkprest.endbrr,       noentry, upshift;
+  a06  = sstkprest.endcid,       noentry, upshift;
+  a0   = sstkprest.endufd,       noentry, upshift;
+  a07  = sstkprest.dddcod,       noentry, upshift;
+  a08  = sstkprest.telnum,       noentry, upshift;
+  a13  = sstkprest.cllddd,       noentry, upshift;
+  a14  = sstkprest.clltelnum,    noentry, upshift;
+  a09  = sstkprest.prssrvultdat, noentry, upshift;
+  a10  = formonly.obs1,          noentry, upshift;
+  a11  = formonly.obs2,          noentry, upshift;
+  a12  = formonly.obs3,          noentry, upshift;
+end
+
+instructions
+   delimiters " "
+end

@@ -1,0 +1,33 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts03m02                                               Marcelo
+                                                                      Gilberto
+ Informacoes sobre local onde se encontra veiculo                     Mai/1997
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+            Informacoes sobre o Local
+-----------------------------------------cts03m02--
+ Questione o segurado se o local onde se encontra
+ o veiculo e' de dificil acesso, como por exemplo,
+ garagem, subsolo, estacionamento...
+
+ Registre esta informacao no historico, caso seja
+ necessario.
+
+ Tipo do Guincho:[a][b              ]
+
+}
+end
+
+attributes
+
+a = formonly.atdvcltip  type dec , comments = " Informe: 1-Indiferente, 2-Guincho Pequeno";
+b = formonly.atdvcldsc  type char, noentry;
+end
+
+instructions
+  delimiters " "
+end

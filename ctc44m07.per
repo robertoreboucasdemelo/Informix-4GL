@@ -1,0 +1,33 @@
+database formonly
+screen
+{
+-------------------------------------------------------------------ctc44m07--
+      Codigo:[a       ]-[b                                                ]
+-----------------------------------------------------------------------------
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]
+   [c                                                                   ]   
+
+
+                                                       <Ctrl-C> Cancela
+}
+end
+
+attributes
+   a = formonly.srrcoddig           type decimal, format='######&&',noentry;
+   b = formonly.srrnom              type char, noentry;
+   c = formonly.texto               type char,upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc44m07[11] (texto)
+end

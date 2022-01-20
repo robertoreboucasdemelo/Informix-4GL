@@ -1,0 +1,77 @@
+<title>Iniciando...</title>
+<script>
+var janela;
+function abreAutomaticamente(){
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "http://" +  ebfGetDominio() + "/ct24h/trs/buscaifrm.html");
+	//form.setAttribute("action", "http://" +  ebfGetDominio() + "/gerenciadorinterface/psqclicrm.do");
+	form.setAttribute("target", "popupB");
+	
+	// Properties
+	var calcleft = 0;
+	var calctop = 0;
+	var properties = "left="+calcleft+",top="+calctop+"toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1,maximize=yes,width=" + screen.width + ",height=" + screen.height;
+	
+	// Parameters
+	var parametros = window.location.search.split('?')[1];
+	var paramArray = parametros.split('&');
+	var paramLength = paramArray.length;
+	var paramWithValue  = "";
+	var paramName = "";
+	var paramValue = "";
+	
+	for(var i=0; i<paramLength; i++){
+			paramWithValue = paramArray[i];
+			paramName = paramWithValue.split('=')[0]
+			paramValue = paramWithValue.split('=')[1];	
+			
+			//Create hiddenField in Form			
+			var hiddenField = document.createElement("input"); 
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("id", paramName);
+			hiddenField.setAttribute("name", paramName);
+			hiddenField.setAttribute("value", paramValue);
+			form.appendChild(hiddenField);			
+	}
+	//Add Form in Document.	
+	document.body.appendChild(form);	
+	janela = window.open('', 'popupB', properties);
+	janela.focus();
+	form.submit();
+}
+window.setTimeout(abreAutomaticamente, 100);
+
+function ebfGetDominio() {
+   var url = window.location.href; 
+   url = url.split("/"); 
+   return url[2];
+} 
+
+function fechar(){
+	try{
+		janela.close();
+		window.close();
+	}catch(e){
+		//alert(e.message);
+	}
+}
+/* OpenUI */
+var thisWindowDialogArguments = window.dialogArguments;
+function getDialogArguments() {
+	return thisWindowDialogArguments;
+}
+</script>
+<body onbeforeunload="fechar()">
+	<div id="header" style="background-color:#2c87f0;height:30px;width:107%;text-align:center;">
+		<span id="title" name="title" style="font-family:Tahoma;font-size:9pt;font-weight:bold;color:white;">Sistema de Consulta Doc. do Cliente</span>		
+	</div>
+	<div id="msg" style="background-color:white;height:30px;width:107%;text-align:center;">
+		<br />
+		<img src="loader.gif" />&nbsp;&nbsp;<span style="font-family:Tahoma;font-size:9pt;">Aguarde...</span>		
+	</div>
+	<div id="link" style="background-color:white;height:30px;width:107%;display:none;text-align:center;">
+		<br />
+		<a href="javascript:fechar()">Fechar</a>		
+	</div>
+</body>

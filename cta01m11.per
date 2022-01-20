@@ -1,0 +1,46 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTA01M11                                                 Raji
+
+ Janela para visualizacao da oficina da revenda                      Abr/2002
+ ----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[c0                                                                       ]
+-----------------------------------------------------------------cta01m11--
+Oficina....:[d                                       ] Cod.:[d1    ]
+Endereco...:[d2                                      ]
+Bairro.....:[d3                  ]
+Cidade.....:[d4                       ]  U.F:[d5]    Fone:[d6  |d7       ]
+[c]
+[e                                                                        ]
+[f                                                                        ]
+
+}
+
+end
+
+tables gkpkpos
+
+attributes
+   c0 = formonly.cabtxt   type char, reverse  , noentry;
+   c  = formonly.confirma type char, invisible;
+   e  = formonly.alerta1  type char, noentry;       
+   f  = formonly.alerta2  type char, noentry;       
+
+   d  = gkpkpos.nomrazsoc       ,comments = " Nome completo da oficina";
+   d1 = gkpkpos.pstcoddig       ,comments = " Codigo da oficina";
+   d2 = gkpkpos.endlgd          ,comments = " Endereco da oficina";
+   d3 = gkpkpos.endbrr          ,comments = " Bairro da oficina";
+   d4 = gkpkpos.endcid          ,comments = " Cidade da oficina";
+   d5 = gkpkpos.endufd          ,comments = " Unidade federativa da oficina";
+   d6 = gkpkpos.dddcod          ,comments = " Codigo DDD da oficina";
+   d7 = gkpkpos.telnum1         ,comments = " Telefone da oficina";
+  
+end
+
+instructions
+   delimiters  " "
+end

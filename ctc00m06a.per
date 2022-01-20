@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------
+ Nome do Form: CTC00M06                                        Marcelo
+                                                               Gilberto
+ Mostra os prestadores com o mesmo CGC                         Jan/1997
+-----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[x1                                               ][x2  ][x3          ]
+-------------------------------------------------------------ctc00m06--
+[x4    ]  Codigo   Razao social                              Situacao
+
+  [a   ] [b     ] [c                                       ][d        ]
+  [a   ] [b     ] [c                                       ][d        ]
+  [a   ] [b     ] [c                                       ][d        ]
+  [a   ] [b     ] [c                                       ][d        ]
+  [a   ] [b     ] [c                                       ][d        ]
+  [a   ] [b     ] [c                                       ][d        ]
+
+}
+end
+
+tables
+   dpaksocor
+
+attributes
+   x1  = formonly.cabec                      ,noentry;
+   x2  = formonly.tipo                       ,noentry;
+   x3  = dpaksocor.cgccpfnum                 ,noentry;
+   x4  = formonly.filial                     ,noentry;
+
+   a   = formonly.cgcord  type decimal       ,noentry;
+   b   = dpaksocor.pstcoddig                 ,noentry;
+   c   = dpaksocor.nomrazsoc                 ,noentry;
+   d   = formonly.prssitdes                  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc00m06(cgcord thru prssitdes)
+end

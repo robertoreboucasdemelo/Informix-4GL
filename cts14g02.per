@@ -1,0 +1,49 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts14g00                                          Marcus
+
+ Simulacao dos procedimentos cadastrados                         Abr/2002
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+[a                                                                     ]
+--------------------------------------------------------------cts14g02--
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+[b][e                                                           ][f    ]
+
+}
+
+end
+
+ tables datkprctxt
+
+ attributes
+
+    a  = formonly.cabtxt        ,reverse    ,noentry;
+
+    b  = datkprctxt.telprcseq   ,invisible  ,noentry;
+    e  = datkprctxt.telprctxt              ,noentry;
+    f  = datkprctxt.telprccod              ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts14g02(telprcseq thru telprccod)
+ end

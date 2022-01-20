@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC12M01                                               Marcelo
+                                                                      Gilberto
+ Pesquisa estabelecimentos atraves do nome e tipo de servico          Mar/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc12m01--
+Nome:[a1                       ] Servico:[a2][a3                             ]
+------------------------------------------------------------------------------
+ Nome do Estabelecimento     UF  Cidade                Bairro          Codigo
+
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+[b2                        ][b3][b4                  ][b5            ][b6    ]
+
+}
+end
+
+tables
+  dpckserv, dpaklista
+
+attributes
+
+a1  = formonly.nomepsq                     ,upshift ,
+      comments = " Nome para pesquisa";
+a2  = dpckserv.pstsrvtip                   ,upshift ,
+      comments = " Tipo de servico realizado pelo estabelecimento";
+a3  = formonly.pstsrvdes                   ,noentry ;
+b2  = formonly.nome                        ,noentry ;
+b3  = dpaklista.endufd                     ,noentry ;
+b4  = dpaklista.endcid                     ,noentry ;
+b5  = dpaklista.endbrr                     ,noentry ;
+b6  = dpaklista.emplstcod                  ,noentry ;
+end
+
+instructions
+
+screen record s_ctc12m01 (nome thru emplstcod);
+
+delimiters " "

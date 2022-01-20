@@ -1,0 +1,38 @@
+
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m03                                                 Pedro
+                                                                      Marcelo
+ Mostra todos os Agrupamentos de Assunto                             Dez/1994
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+ Agrupamento
+
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+[b  ]-[a                               ]                                   [c]
+
+}
+End
+
+tables
+   datkastagp
+
+Attributes
+ b  = datkastagp.c24astagp    , noentry; 
+ a  = datkastagp.c24astagpdes , noentry;
+ c  = formonly.espaco         , noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta02m03(c24astagp thru c24astagpdes)
+End

@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m03                                      R.Fornax
+                                                             
+ Cadastro de Motivos                                         Mar/2014 
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m03--
+                            CADASTRO DE MOTIVO  
+------------------------------------------------------------------------------
+   Codigo      Motivo                                     
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]     
+------------------------------------------------------------------------------
+   [c                                                        ]
+
+}
+end
+
+attributes
+   a  = formonly.avialgmtv , comments = " Digite o Codigo do Motivo"    ,upshift;
+   b  = formonly.avialgdes , comments = " Digite a Descricao do Motivo" ;
+   c  = formonly.msg       , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m03(avialgmtv thru avialgdes)
+end

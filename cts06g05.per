@@ -1,0 +1,68 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS06G05                                               Marcelo
+                                                                      Gilberto
+ Funcoes Genericas - Pesquisa padrao de logradouro Guia Postal        Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   [a0                                                                  ]
+------------------------------------------------------------------cts06g05--
+ Tipo Logr.:[a1        ][inv   ]
+ Logradouro:[a2                                                            ]
+ Numero....:[a3   ] Bairro:[a4                                  ] Tp Psq:[p]
+----------------------------------------------------------------------------
+ Logradouro / Bairro
+
+[b1                                                                        ]
+[b2                                             ][b3   |b4 ]
+[b5        |b6                                  |b7                        ]
+[b1                                                                        ]
+[b2                                             ][b3   |b4 ]
+[b5        |b6                                  |b7                        ]
+[b1                                                                        ]
+[b2                                             ][b3   |b4 ]
+[b5        |b6                                  |b7                        ]
+}
+end
+
+ tables
+    glaklgd,
+    glakbrr
+
+ attributes
+    a0 = formonly.cabtxt     , reverse
+                             , noentry;
+    a1 = formonly.diglgdtip  , noentry;
+    inv= formonly.digcidcod  , noentry
+                             , invisible;
+    a2 = formonly.diglgdnom  , upshift
+                             , comments = " Logradouro ";
+    a3 = formonly.diglgdnum    type decimal
+                             , format = "####&"
+                             , noentry;
+    a4 = formonly.digbrrnom  , noentry;
+    p  = formonly.tippsq     , upshift,
+         comments = " Pesquisa: (F)onetica, (P)arcial";
+
+    b1 = formonly.lgdtxt     , noentry;
+    b2 = glakbrr.brrnom      , noentry;
+    b3 = glaklgd.lgdcep      , invisible
+                             , noentry;
+    b4 = glaklgd.lgdcepcmp   , invisible
+                             , format = "&&&"
+                             , noentry;
+    b5 = glaklgd.lgdtip      , invisible
+                             , noentry;
+    b6 = glaklgd.lgdnom      , invisible
+                             , noentry;
+    b7 = glaklgd.lgdnomcmp   , invisible
+                             , noentry;
+ end
+
+ instructions
+    screen record s_cts06g05 (lgdtxt thru lgdnomcmp)
+    delimiters " "
+ end

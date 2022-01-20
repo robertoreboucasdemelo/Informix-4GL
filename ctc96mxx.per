@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc96mXX                                        Amilton Pinto
+
+ Cadastros                                                            Jan/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{                                                                              
+                                                                               
+-----------------------------------------------------------------[e      ]--  
+  Codigo  Descricao                       
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+  [a      |b                                         ] 
+------------------------------------------------------------------------------ 
+   Alterado em: [c         ] por: [d                                       ]   
+------------------------------------------------------------------------------
+ 
+}                                                                              
+end
+
+attributes
+
+    a  = formonly.codigo    ,upshift, comments = 'Codigo';
+    b  = formonly.descricao ,upshift, comments = 'Descricao';
+    c  = formonly.atldat    ,upshift;
+    d  = formonly.funnom    ,upshift;
+    e  = formonly.tela      ;    
+
+end
+
+instructions
+    screen record s_ctc96mxx (codigo thru descricao)
+    delimiters " "
+end

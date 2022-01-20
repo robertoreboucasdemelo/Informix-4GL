@@ -1,0 +1,60 @@
+{----------------------------------------------------------------------
+ Nome do Form: CTC15M04                                      Marcelo
+                                                             Gilberto
+ Manutencao do Relacionamento Tipo de Servico/Etapa          Ago/1998
+----------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m04--
+          Origem do Servico:[a    ][b                              ]
+------------------------------------------------------------------------------
+ Etapa               Status       Cadastrado / Atualizado
+
+[c |c1             ][d|d1       ][e         ]por[f1|f2    |f3                ]
+                                 [g         ]por[h1|h2    |h3                ]
+
+[c |c1             ][d|d1       ][e         ]por[f1|f2    |f3                ]
+                                 [g         ]por[h1|h2    |h3                ]
+
+[c |c1             ][d|d1       ][e         ]por[f1|f2    |f3                ]
+                                 [g         ]por[h1|h2    |h3                ]
+
+[c |c1             ][d|d1       ][e         ]por[f1|f2    |f3                ]
+                                 [g         ]por[h1|h2    |h3                ]
+
+}
+end
+
+tables
+   datksrvtip, datketapa, datrsrvetp
+
+attributes
+   a  = datksrvtip.atdsrvorg    , noentry;
+   b  = datksrvtip.srvtipdes    , noentry;
+   c  = datrsrvetp.atdetpcod    , format = "&&"
+                                , comments = " Codigo da etapa de acompanhamento do servico";
+   c1 = datketapa.atdetpdes     , noentry;
+   d  = datrsrvetp.atdsrvetpstt , upshift
+                                , comments = " Status da etapa para servico: (A)tivo ou (C)ancelado";
+   d1 = formonly.atdsrvetpsttdes, noentry;
+   e  = datrsrvetp.caddat       , noentry;
+   f1 = datrsrvetp.cademp       , format = "&&"
+                                , noentry;
+   f2 = datrsrvetp.cadmat       , format = "&&&&&&"
+                                , noentry;
+   f3 = formonly.cadnom         , noentry;
+   g  = datrsrvetp.atldat       , noentry;
+   h1 = datrsrvetp.atlemp       , format = "&&"
+                                , noentry;
+   h2 = datrsrvetp.atlmat       , format = "&&&&&&"
+                                , noentry;
+   h3 = formonly.atlnom         , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc15m04(atdetpcod thru atlnom)
+end

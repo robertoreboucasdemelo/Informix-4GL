@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts11m04                                               Marcelo
+                                                                      Gilberto
+ Outras informacoes referentes a assistencia a passageiros (taxi)     Jun/1997
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+  Informacoes Adicionais para Assistencia a Passageiros
+-----------------------------------------------cts11m04--
+[a                                                      ]
+[a                                                      ]
+[a                                                      ]
+[a                                                      ]
+[a                                                      ]
+[a                                                      ]
+[a                                                      ]
+
+}
+end
+
+attributes
+   a  = formonly.inftxt, noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_cts11m04(inftxt)
+end

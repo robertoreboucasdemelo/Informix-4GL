@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m04                                               Beatriz
+                                                                       Araujo
+ Cadastro historico de/para Motivo                                   Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc93m04--
+ Origem:[a              ] Empresa:[b              ]  Motivo:[c              ]
+------------------------------------------------------------------------------
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+   [d                                                                       ]
+                                                       <Ctrl-C> Cancela
+}
+end
+tables gabkemp
+
+attributes
+    a = formonly.srvtipabvdes,  noentry ;
+    b = gabkemp.empsgl,     noentry;
+    c = formonly.avialgmtvdes,noentry;
+    d = formonly.texto      type char,upshift;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc93m04[11] (texto)
+end
+
+

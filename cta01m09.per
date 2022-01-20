@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA01M09                                              Marcelo
+                                                                     Gilberto
+ Consulta ligacoes para advertencias ao atendente/operador radio     Jan/1998
+-----------------------------------------------------------------------------}
+
+Database formonly
+Screen size 24 by 80
+
+{
+[a1                                                    ]
+----------------------------------------------cta01m09--
+
+   Antes de qualquer providencia, verifique as ligacoes
+ desta apolice, pois foi encontrado registro de:
+
+        [a2                                      ]
+        [a2                                      ]
+        [a2                                      ]
+        [a2                                      ]
+        [a2                                      ]
+
+}
+End
+
+
+Attributes
+  a1  = formonly.cabec                                ,noentry;
+  a2  = formonly.c24astagpdes                         ,noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_cta01m09(c24astagpdes)
+End

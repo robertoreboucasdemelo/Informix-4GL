@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m06                                          Robson Ruas 
+ Cadastrar Codigo de retencao                                     Abril/2013
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc93m06--
+   Atividade Principal:[a1][a2                       ]Tipo de Pessoa:[a]
+------------------------------------------------------------------------------
+
+   
+                     
+   Codigo de retenção...:[a4                   ]                  
+
+   
+   
+   Incluido.............:[a5        ] por [a6                 ]
+   Atualizado...........:[a7        ] por [a8                 ]
+
+
+   
+   
+
+}
+end
+
+tables dbsmprsatvipsdnc
+
+attributes
+   a1   = dbsmprsatvipsdnc.pcpatvcod, 
+          comments = " Codigo de Atividade", upshift;
+
+   a2   = formonly.pcpatvdes, 
+          noentry;
+          
+   a   = dbsmprsatvipsdnc.pestipcod,
+         comments = " Tipo de Pessoa J ou F", upshift; 
+
+   a4  = dbsmprsatvipsdnc.ipsdnccod,
+         comments = " Codigo de Retencao", upshift;
+          
+   a5  = dbsmprsatvipsdnc.icldat,
+          noentry;
+   
+   a6  = formonly.cadfunnom,
+          noentry;        
+  
+   a7  = dbsmprsatvipsdnc.atldat,
+          noentry;
+          
+   a8  = formonly.atlfunnom, 
+          noentry;        
+
+end
+
+instructions
+     delimiters " "
+end
+

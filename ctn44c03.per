@@ -1,0 +1,77 @@
+database formonly
+
+screen size 24 by 80
+{
+------------------------------------------------------------------------------
+ Coordenadas Graus, Minutos e Segundos
+    Latitude: [a] [a1]º[a2]'[a3]"
+    Longitude:[b][b1 ]º[b2]'[b3]"
+
+
+
+
+ Coordenadas Graus, Minutos e Decimos de Minutos
+    Latitude: [c] [c1]º[c2].[c3 ]'
+    Longitude:[d][d1 ]º[d2].[d3 ]'
+
+ 
+------------------------------------------------------------------------------
+
+}
+end
+
+
+ Attributes
+   a   = formonly.dirltt1      , comments = " Direcao da Latitude: N = (Norte/North); S = (Sul/South);"
+			       , upshift;
+
+   a1  = formonly.graltt1      , comments = " Graus da Latitude"
+			       , upshift;
+
+   a2  = formonly.minltt1      , comments = " Minutos da Latitude"
+			       , upshift;
+
+   a3  = formonly.decltt1      , comments = " Segundos da Latitude"
+			       , upshift;
+
+   b   = formonly.dirlgt1      , comments = " Direcao da Longitude: O/W = (Oeste/West); L/E = (Leste/East);"
+			       , upshift;
+
+   b1  = formonly.gralgt1      , comments = " Graus da Longitude"
+			       , upshift;
+
+   b2  = formonly.minlgt1      , comments = " Minutos da Longitude"
+			       , upshift;
+
+   b3  = formonly.declgt1      , comments = " Segundos da Longitude"
+			       , upshift;
+
+   c   = formonly.dirltt2      , comments = " Direcao da Latitude: N = (Norte/North); S = (Sul/South);"
+			       , upshift;
+
+   c1  = formonly.graltt2      , comments = " Graus da Latitude"
+			       , upshift;
+
+   c2  = formonly.minltt2      , comments = " Minutos da Latitude"
+			       , upshift;
+
+   c3  = formonly.decltt2      , comments = " Decimos de Minutos da Latitude"
+			       , upshift;
+
+   d   = formonly.dirlgt2      , comments = " Direcao da Longitude: O/W = (Oeste/West); L/E = (Leste/East);"
+			       , upshift;
+
+   d1  = formonly.gralgt2      , comments = " Graus da Longitude"
+			       , upshift;
+
+   d2  = formonly.minlgt2      , comments = " Minutos da Longitude"
+			       , upshift;
+
+   d3  = formonly.declgt2      , comments = " Decimos de Minutos da Longitude"
+        		       , upshift;
+
+ end
+
+ instructions
+   delimiters " "
+ end

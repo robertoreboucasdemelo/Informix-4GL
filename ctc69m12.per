@@ -1,0 +1,39 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m12                                      R.Fornax
+                                                             
+ Consulta de Categoria Tarifaria                             Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m12--
+                       CONSULTA DE CATEGORIA TARIFARIA
+------------------------------------------------------------------------------
+   Codigo      Categoria Tarifaria                                     
+   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+   [a    ]   [b                                              ]   
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.ctgtrfcod ,noentry;
+   b  = formonly.ctgtrfdes ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m12(ctgtrfcod thru ctgtrfdes)
+end

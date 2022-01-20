@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTC35M13                                            Gilberto
+                                                                    Marcelo
+                                                                     Wagner
+ Mostra todos os Locais de vistoria                                  Dez/98
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Locais de vistoria
+----------------------------------------ctc35m13--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   datkvstlcl
+
+attributes
+   a   = datkvstlcl.socvstlclnom               ,noentry;
+   b   = datkvstlcl.socvstlclcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc35m13(socvstlclnom thru socvstlclcod)
+end
+

@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------       
+ Nome do Form: ctc83m00b                                             Roberto        
+ Relacionamento dos Grupos de Atendimento                            Fev/2008        
+-----------------------------------------------------------------------------}       
+                                                                                     
+database porto                                                                       
+screen                                                                               
+{                                                                                    
+------------------------------------------------------------------------------       
+       Grupos Existentes               |        Grupos de Atendimento                                                                             
+                                       |                                              
+     [y][a            ]                |        [w][b            ]                 
+     [y][a            ]                |        [w][b            ]                 
+     [y][a            ]                |        [w][b            ]                 
+     [y][a            ]                |        [w][b            ]                 
+     [y][a            ]                |        [w][b            ]                 
+     [y][a            ]                |        [w][b            ]                 
+------------------------------------------------------------------------------                                     
+                                                                                     
+    [x                                                                   ]                    
+------------------------------------------------------------------------------       
+ Relacionado...........:[c         ] por [d                   ]                         
+}                                                                                    
+end                                                                                  
+tables datkassunto                                                                   
+                                                                                     
+                                                                                     
+attributes                                                                           
+                                                                                                                                                    
+ y = formonly.seta1;
+ a = formonly.grpexi       , noentry; 
+ w = formonly.seta2;             
+ b = formonly.grpatd       , noentry;                                               
+ c = formonly.caddat       , noentry;                                                
+ d = formonly.funnom       , noentry;                                                
+ x = formonly.obs          , noentry;                                                
+                                                                                     
+end                                                                                  
+instructions                                                                         
+   delimiters " "                                                                    
+   screen record s_ctc83m00b1(seta1 thru grpexi)
+   screen record s_ctc83m00b2(seta2 thru grpatd)                                
+end                                                                                  

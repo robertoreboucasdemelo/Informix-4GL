@@ -1,0 +1,49 @@
+{
+ -----------------------------------------------------------------------------
+ Nome do Form: CTS05M02                                                  Pedro
+                                                                       Marcelo
+ Direciona e imprime aviso de furto para corretor                     Set/1995
+ Direciona e imprime aviso para acionamento de alarme a distancia
+ -----------------------------------------------------------------------------
+ Alterado em : 10/07/2002      Por: Fabrica de Software, Katiucia
+ OSF         : 4774
+ Objetivo    : Incluir o campo Endereco Eletronico (e-mail)
+}
+
+database porto
+screen size 24 by 80
+
+{
+   CASO QUEIRA ENVIAR O AVISO DE FURTO PARA UM NUMERO DE FAX E EMAIL
+   DIFERENTES DO ANTERIOR, INFORME ABAIXO:
+-------------------------------------------------------------cts05m02---
+
+ Enviar pedido para:[a][a1        ]
+
+ Numero do FAX.....:[a2  ][a3       ]
+
+ E-MAIL ...........:[a4                                                ]
+
+
+}
+end
+
+tables  datklocadora
+
+attributes
+  a  = formonly.enviar    , comments =
+                          " Enviar para (I)mpressora,(F)ax, (E)Mail ou (A) Fax/E-mail",
+                          autonext,
+                          upshift ;
+  a1 = formonly.envdes    , noentry;
+  a2 = formonly.dddcod    type char, comments = " Codigo do DDD",
+                          autonext,
+                          upshift;
+  a3 = formonly.facnum    type dec(10,0),comments = " Numero do FAX de destino",
+                          autonext;
+  a4 = formonly.maides    type char, comments = "Endereco Eletronico";
+end
+
+instructions
+  delimiters " "
+end

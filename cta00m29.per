@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m29                                               Roberto
+
+ Consulta Itens da Apolice Itau.                                     Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+{
+                 Itens da Apolice Itau
+----------------------------------------------cta00m29--
+    Item  Veiculo                                Placa    
+--------------------------------------------------------
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+[a    ][b                                     ][c      ]
+
+}
+end
+
+tables datmitaaplitm
+
+attributes
+   a = datmitaaplitm.itaaplitmnum  , format = "#####";
+   b = formonly.veiculo            , upshift;
+   c = datmitaaplitm.autplcnum     , upshift;  
+end
+
+instructions
+   delimiters " "
+   screen record s_cta00m29(itaaplitmnum thru autplcnum)
+end

@@ -1,0 +1,24 @@
+database formonly
+screen
+{
+------------------------cts42m01----
+
+     Servico:[a1     |a2]
+
+     Valor  :[a3        ]
+
+     Nr.Autz:[a4     ]
+
+------------------------------------
+}
+end
+
+attributes
+   a1 = formonly.atdsrvnum, noentry;
+   a2 = formonly.atdsrvano, noentry;
+   a3 = formonly.orcvlr type dec, comments ='Informe o valor do servico',
+        format="###,###.##";
+   a4 = formonly.atznum,comments ='Informe o nr da autorizacao';
+instructions
+  delimiters ' '
+end

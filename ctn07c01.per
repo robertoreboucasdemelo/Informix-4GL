@@ -1,0 +1,55 @@
+{-------------------------------------------------------------------------------
+ Nome do Form: CTN07C01                                                Marcelo
+                                                                       Gilberto
+ Consulta postos de vistoria via CEP                                   Mar/1996
+-------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn07c01--
+            Tipo:[c001  ][c002                                    ]
+------------------------------------------------------------------------------
+
+R.Social:[a001                                    ]   Codigo:[a002  ]
+Endereco:[a003                                    ]   Bairro:[a004           ]
+Cidade..:[a005                ]-[uf]
+Telefone:[a006][a007                                    ]
+
+Horarios:[a008                                                               ]
+         [a009                                                               ]
+Observ..:[a010                                                              ]
+         [a011                                                              ]
+[a012                                                                        ]
+[a013                                                                        ]
+
+
+}
+end
+
+tables avckposto, agckdisp, avckservico
+
+attributes
+c001 = avckservico.srvcod , comments = " Tipo de Instalacao", upshift;
+c002 = avckservico.srvdes ,             noentry;
+a001 = avckposto.pstsgl   ,             noentry;
+a002 = avckposto.vstpstcod,             noentry;
+a003 = avckposto.endlgd   ,             noentry;
+a004 = avckposto.endbrr   ,             noentry;
+a005 = avckposto.endcid   ,             noentry;
+uf   = avckposto.endufd   ,             noentry;
+a006 = avckposto.dddcod   ,             noentry;
+a007 = avckposto.teltxt   ,             noentry;
+a008 = formonly.horsegsex ,             noentry;
+a009 = formonly.horsabdom ,             noentry;
+a010 = formonly.c24obs1   ,    upshift, noentry;
+a011 = formonly.c24obs2   ,    upshift, noentry;
+a012 = formonly.aviso1    ,    upshift, noentry;
+a013 = formonly.aviso2    ,    upshift, noentry;
+end
+
+instructions
+     screen record s_ctn07c01(pstsgl thru aviso2)
+     delimiters " "
+end

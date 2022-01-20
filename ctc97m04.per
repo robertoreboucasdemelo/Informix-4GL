@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc97m04                                               R.Fornax
+
+ Cadastro de Limites Help Desk                                        Mai/2015
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc97m04--
+                               LIMITES HELP DESK
+------------------------------------------------------------------------------
+  Plano.............:[a  ] [b                                              ]
+------------------------------------------------------------------------------  
+ 
+  
+  Limite Unificado..:[c]
+  Limite Ambos......:[d  ] 
+  Limite Telefonico.:[e  ] 
+  Limite Presencial.:[f  ] 
+
+
+Atualizado..:[g          ] por [h                                          ]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.cod             , noentry;       
+    b  = formonly.descricao       , noentry;       
+    c  = formonly.flg_uni         , comments = " Limite sera Unificado? <S>im ou <N>ao"    ,upshift;
+    d  = formonly.lim_uni         , comments = " Informe o Limite Unificado"               ,upshift;
+    e  = formonly.lim_tel         , comments = " Informe o Limite Telefonico"              ,upshift;  
+    f  = formonly.lim_pre         , comments = " Informe o Limite Presencial"              ,upshift;  
+    g  = formonly.atldat          , noentry;
+    h  = formonly.funmat          , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

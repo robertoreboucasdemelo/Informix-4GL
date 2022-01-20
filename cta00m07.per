@@ -1,0 +1,81 @@
+{-----------------------------------------------------------------------------#
+# Nome do Form: burini.per                                      Sergio Burini #
+#                                                                             #
+# Localiza Apolices Azul Seguros                                     Nov/2006 #
+#-----------------------------------------------------------------------------#
+#07/10/08 - Carla Rampazzo - PSI 230650 - Decreto 6523                        #
+#         - Incluir campo de Atendimento                                      #
+#-----------------------------------------------------------------------------#
+# 05/01/2012 PSI-2011-     Marcos Goes  Inclusao do campo de pesquisa pelo    #
+#            23193/PR                   Sinistro Azul.                        #
+#-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+
+--------------------------------------------------------------------cta00m07--
+ Atendimento:[n         ]            LOCALIZA  APOLICES
+------------------------------------------------------------------------------
+ Solicitante:[a              ]                    Tipo:[b |b1                ]
+-------------------------- Chaves de Localizacao -----------------------------
+ 
+ Ramo.........:[c   |c1                                      ]
+ Sucursal.....:[d    |d1                                       ][p           ]              
+ Apolice......:[e       ]        Item.:[f     ]                            
+ Placa........:[g      ]
+ Segurado.....:[h                                    ] Pessoa:[i]
+ Cgc/Cpf......:[i1          ][i2  ][i3]
+ Chassi.......:[j        ]
+ Sinistro.....:[k           ]
+ 
+ Sem Doct.....:[m]                                           [w        ]
+ 
+}
+end
+
+attributes
+    n  = formonly.atdnum          type decimal(10,0)
+                                , autonext
+                                , comments = " Numero do Atendimento";
+    a  = formonly.solnom        , upshift
+                                , comments = " Nome do solicitante";
+    b  = formonly.c24soltipcod  , comments = " Tipo do solicitante";
+    b1 = formonly.c24soltipdes  , noentry;
+    c  = formonly.ramcod        , autonext
+                                , comments = " Localiza por apolice";
+    c1 = formonly.ramnom        , noentry;
+    d  = formonly.succod          type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    d1 = formonly.sucnom        , noentry;
+    p  = formonly.c24paxtxt     , noentry;    
+    e  = formonly.aplnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    f  = formonly.itmnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    g  = formonly.vcllicnum     , upshift
+                                , comments = " Localiza pela placa do veiculo";
+    h  = formonly.segnom        , upshift
+                                , comments = " Localiza pelo nome do segurado";
+    i  = formonly.pestip        , upshift
+                                , comments = " Tipo pessoa: (F)isica ou (J)uridica";
+    i1 = formonly.cgccpfnum     , autonext
+                                , comments = " Numero do CGC/CPF";
+    i2 = formonly.cgcord        , autonext
+                                , comments = " Numero da filial";
+    i3 = formonly.cgccpfdig     , autonext;
+    j  = formonly.vclchsfnl     , upshift
+                                , comments = " Localiza pelo chassi do veiculo";                                 
+    k  = formonly.azlsinnum     , upshift
+                                , comments = " Localiza pelo numero de sinistro Azul";                                 
+    m  = formonly.semdocto      , upshift, comments = " Informe 'S' para ligacao sem docto";                                
+    w  = formonly.obs           , noentry;
+end
+
+instructions
+   delimiters " "
+end

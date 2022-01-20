@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn33c00                                               Almeida
+
+ Mostra todos Ramos                                                  maio/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+               Ramos
+-------------------------------------ctn33c00--
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+[a   ][b                                     ]
+
+}
+End
+
+tables
+   gtakramo
+
+Attributes
+ a  = gtakramo.ramcod,noentry;
+ b  = gtakramo.ramnom,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn33c00(ramcod thru ramnom)

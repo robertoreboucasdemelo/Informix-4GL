@@ -1,0 +1,43 @@
+{
+-----------------------------------------------------------------------------
+ Nome do form: CTC73m00                                        Cristiane Silva
+
+ Cadastro de Especialidades de Porto Socorro                          Out/2005
+-----------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+-------------------------------------------------------------------------ctg1-
+{
+--------------------------------------------------------------------ctc73m00--
+ Codigo   Descricao/Descricao WEB                                   Situacao
+------------------------------------------------------------------------------
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+[n|a    ][b                   ]                                        [c]
+         [d                                                           ]
+ (F1)Inclui (F6)Modifica (F17)Abandona
+}
+end
+
+tables dbskesp
+
+attributes
+  n = formonly.navega, invisible;
+  a = formonly.espcod;
+  b = formonly.espdes, upshift;
+  d = formonly.webespdes;
+  c = formonly.espsit, upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc73m00(navega thru espsit)
+end

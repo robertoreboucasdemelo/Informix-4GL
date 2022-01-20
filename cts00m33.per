@@ -1,0 +1,31 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m33                                               Marcus  
+                                                                              
+ Calcula distancia entre pontos dos servicos                          Fev/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            Calculo de distancia entre pontos
+------------------------------------------------------cts00m33--
+
+ Distancia QTH - QTI : [a1         ] kms 
+ [b]
+
+}
+end
+
+ tables datkmpacid
+
+ attributes
+
+    a1 = formonly.dstqtd,          reverse,            noentry;
+    b  = formonly.confirma type char, invisible;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_cts00m33(dstqtd thru confirma)
+

@@ -1,0 +1,130 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts26m00                                                   Raji
+
+ Laudo - JIT                                                          Jun/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]     LAUDO DE SERVICO - JIT          [a2             ]
+--------------------------------------------------------------------cts26m00--
+[b1                                      ]    [b2                            ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+[c1 ][c2                                           ][c3                      ]
+
+ Cam/Util.:[d]                   [d0         |d1|d2     |d3]
+ Endereco.:[e1                                                               ]
+ Bairro...:[e2                  ] Cidade....:[e3                  ]  U.F.:[e4]
+ Complemen:[e10                      ]       Resp.Local:[e9                  ]
+ Tel.Local:[e7  |e8       ]                  Tel.Celul.:[e11 |e12      ]
+ Ponto Ref:[e5                                                      ]Zona:[e6]
+ Sinistro.:[h1        ][h2   ]                          Vitimas:[f]  B.O. :[g]
+ Tp.Assist:[k1|k2      ]       Destino...:[i]           Acomp.?:[k]  Imed?:[l]
+ Priorid..:[m|m1    ]         [n1         |n]           Srv.Lib:[o]  Form.:[p]
+ Atd./Lib.:[x                                               |x2        |x3   ]
+[y                                                                          ]
+}
+end
+
+tables
+  datmservico,
+  datmservicocmp,
+  datmligacao,
+  datmlcl,
+  datkasitip
+
+attributes
+
+a1 = formonly.servico        , noentry;
+a2 = datmligacao.c24solnom   , noentry;
+b1 = datmservico.nom         , upshift
+                             , comments = " Nome";
+b2 = formonly.doctxt         , noentry;
+b6 = datmservico.corsus      , upshift
+                             , comments = " Susep";
+b7 = datmservico.cornom      , upshift
+                             , comments = " Corretor";
+b8 = formonly.cvnnom         , noentry;
+b9 = datmservico.vclcoddig   , format = "&&&&&&"
+                             , comments = " Codigo do veiculo";
+b10= datmservico.vcldes      , upshift
+                             , comments = " Descricao do veiculo";
+b11= datmservico.vclanomdl   , autonext
+                             , comments = " Ano do veiculo";
+b12= datmservico.vcllicnum   , upshift
+                             , comments = " Placa do veiculo";
+b13= formonly.vclcordes      , downshift
+                             , comments = " Cor do veiculo";
+c1 = datmligacao.c24astcod   , noentry;
+c2 = formonly.c24astdes      , noentry;
+c3 = formonly.refasstxt      , noentry;
+d  = formonly.camflg         , upshift
+                             , comments = " Caminhao/utilitario: (S)im ou (N)ao";
+d0 = formonly.refatdsrvtxt   , noentry;
+d1 = formonly.refatdsrvorg     type dec
+                             , format = "&&"
+                             , comments = " Origem do Servico de referencia";
+d2 = formonly.refatdsrvnum     type dec
+                             , format = "&&&&&&&"
+                             , comments = " NUmero do Servico de referencia";
+d3 = formonly.refatdsrvano     type dec
+                             , format = "&&"
+                             , comments = " Ano do Servico de referencia";
+e1 = formonly.lgdtxt         , upshift
+                             , comments = " Local onde esta' o veiculo";
+e2 = datmlcl.lclbrrnom       , upshift;
+e3 = datmlcl.cidnom          , upshift;
+e4 = datmlcl.ufdcod          , upshift;
+e5 = datmlcl.lclrefptotxt    , upshift
+                             , comments = " Ponto de referencia do local";
+e6 = datmlcl.endzon          , upshift
+                             , comments = " Somente para Capital S.P, NO/SU/LE/OE/CE";
+e7 = datmlcl.dddcod          , comments = " DDD do local onde esta o veiculo";
+e8 = datmlcl.lcltelnum       , comments = " Telefone do local onde esta o veiculo";
+e9 = datmlcl.lclcttnom       , upshift
+                             , comments = " Responsavel no local";
+e10 = datmlcl.endcmp         , upshift
+                             ,comments = " Complemento do endereco";
+e11 = datmlcl.celteldddcod   ,comments = " Codigo DDD do Celular";
+e12 = datmlcl.celtelnum      ,comments = " Telefone Celular";
+h1 = formonly.sindat         , autonext
+                             , comments = " Data em que ocorreu o sinistro";
+h2 = formonly.sinhor           type datetime hour to minute
+                             , picture = "##:##"
+                             , comments = " Hora em que ocorreu o sinistro";
+f  = datmservicocmp.sinvitflg, upshift
+                             , comments = " Houve vitimas: (S)im ou (N)ao";
+g  = formonly.bocflg         , upshift
+                             , comments = " Fez B.O.?: (S)im ou (N)ao, (P)esquisa delegacia";
+k1 = datkasitip.asitipcod    , comments = " Tipo da assistencia";
+k2 = datkasitip.asitipabvdes , noentry;
+i  = formonly.dstflg         , upshift
+                             , comments = " Local de destino: (S)im ou (N)ao";
+k  = datmservicocmp.rmcacpflg, upshift
+                             , comments = " Acompanha remocao ? (S)im ou (N)ao";
+l  = formonly.imdsrvflg      , upshift
+                             , comments = " E' servico imediato: (S)im ou (N)ao";
+m  = datmservico.atdprinvlcod, comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+m1 = formonly.atdprinvldes   , noentry;
+n1 = formonly.prsloccab      , noentry;
+n  = formonly.prslocflg      , upshift
+                             , comments = " Prestador no local: (S)im ou (N)ao";
+o  = datmservico.atdlibflg   , upshift
+                             , comments = " Servico liberado: (S)im ou (N)ao";
+p  = formonly.frmflg         , upshift
+                             , comments = " Entrada via formulario: (S)im ou (N)ao";
+x  = formonly.atdtxt         , noentry;
+x2 = formonly.atdlibdat      , noentry;
+x3 = datmservico.atdlibhor   , noentry;
+
+y  = formonly.msgfun         , noentry;
+
+end
+
+instructions
+  delimiters " "
+end

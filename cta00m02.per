@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m02                                                 Pedro
+
+ Consulta itens da apolice por licenca/chassi - Automovel            Dez/1994
+-----------------------------------------------------------------------------}
+
+Database Formonly
+Screen
+{
+--------------------------------------------------------------------cta00m02--
+ Documento            Item  Vg.Inicial    Vg.Final  Segurado
+------------------------------------------------------------------------------
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+[h|a    |b   |c        |d      |e         |f         |g                     ]
+------------------------------------------------------------------------------
+Documento:[i       ]
+------------------------------------------------------------------------------
+
+}
+End
+
+attributes
+ h = formonly.marca , invisible ;
+ a = formonly.succod;
+ b = formonly.ramcod;
+ c = formonly.aplnumdig;
+ d = formonly.itmnumdig;
+ e = formonly.viginc;
+ f = formonly.vigfnl;
+ g = formonly.segnom;
+ i = formonly.tipdoc,  noentry;
+
+end
+
+Instructions
+ delimiters " "
+ screen record s_cta00m02(marca thru segnom)
+end

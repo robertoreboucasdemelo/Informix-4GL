@@ -1,0 +1,98 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M00                                                 Pedro
+                                                                      Marcelo
+ Controle de Servicos (RADIO)                                        Abr/1995
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+[cab                                                               ][h       ]
+--------------------------------------------------------------------cts00m00--
+   Servico     Atendimento Programacao Prev. Espera  Enviar  Etapa    Dist(KM)
+------------------------------------------------------------------------------
+[r1           |r2   |r3   |r4   |r5   |r6   |r7    |r8      |r85     |r86    ]
+[r9           |r10                                                    |r101  ]
+[r15      |r11                             |r14  |r12               |r13     ]
+
+[r1           |r2   |r3   |r4   |r5   |r6   |r7    |r8      |r85     |r86    ]
+[r9           |r10                                                    |r101  ]
+[r15      |r11                             |r14  |r12               |r13     ]
+
+[r1           |r2   |r3   |r4   |r5   |r6   |r7    |r8      |r85     |r86    ]
+[r9           |r10                                                    |r101  ]
+[r15      |r11                             |r14  |r12               |r13     ]
+
+[r1           |r2   |r3   |r4   |r5   |r6   |r7    |r8      |r85     |r86    ]
+[r9           |r10                                                    |r101  ]
+[r15      |r11                             |r14  |r12               |r13     ]
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   datmservico,
+   datksrvtip ,
+   datkasitip ,
+   datketapa
+
+Attributes
+   cab = formonly.cabec           type char          , noentry;
+   h   = formonly.relogio         type char, reverse , noentry;
+
+   r1  = formonly.servico         type char          , noentry;
+   r2  = formonly.atdlibdat       type char          , noentry;
+   r3  = formonly.atdlibhor       type char          , noentry;
+   r4  = formonly.atddatprg       type char          ,
+                  color = black reverse where r4 is not null, noentry;
+   r5  = formonly.atdhorprg       type char          , 
+                  color = black reverse where r5 is not null, noentry;
+   r6  = formonly.atdhorpvt       type char          , noentry;
+   r7  = formonly.espera          type char          , noentry;
+   r8  = datkasitip.asitipabvdes                     , noentry;
+   r85 = datketapa.atdetpdes, color = black reverse where 
+                                      r85 MATCHES "RECUSADO" OR   
+                                      r85 MATCHES "EXCEDIDO" OR   
+                                      r85 MATCHES "LIB/RECU" OR   
+                                      r85 MATCHES "LIB/EXED" OR
+                                      r85 MATCHES "EM COTACAO" OR 
+                                      r85 MATCHES "COTADO" OR     
+                                      r85 MATCHES "EMITIR" OR     
+                                      r85 MATCHES "EMITIDA" OR    
+                                      r85 MATCHES "RESERVAR" OR   
+                                      r85 MATCHES "RESERVADO",    
+                                      noentry;
+   r86 = formonly.dstqtd,
+         color = black reverse where r86 is not null, noentry;
+
+   r9  = datksrvtip.srvtipabvdes                     , 
+         color = black reverse where r9 MATCHES '45-MANUT MICR' ,
+                    noentry;
+   r10 = formonly.historico       type char          , noentry;
+
+   r101= formonly.empresa type char, 
+          color = black reverse where r101 MATCHES "PORTO"  OR   
+                                      r101 MATCHES "AZUL S" OR   
+                                      r101 MATCHES "CARTAO" OR   
+                                      r101 MATCHES "PSS" ,
+                                noentry;
+   r11 = formonly.problema        type char          , noentry;
+
+   r12 = formonly.emeviades , color = black reverse
+                              where r12 matches ' *'
+                                 or r12 matches 'NAO ACIONADO AUTOMATICO';
+
+   r13 = formonly.sindex, color = black reverse
+                              where r13 matches 'S/INDEX' , noentry;
+
+   r14 = formonly.urgente type char,invisible, color = black reverse where r14 = "*URG*";
+
+   r15 = formonly.rsdflg type char, color = black reverse where r15 = "PRIORIZAR";
+
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts00m00(servico thru rsdflg)
+End

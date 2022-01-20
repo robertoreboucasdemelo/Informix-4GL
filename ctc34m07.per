@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m07                                               Gilberto
+                                                                       Marcelo
+ Cadastro de grupos de distribuicao (posicao da frota)                Ago/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m07--
+      Codigo......:[a1]
+------------------------------------------------------------------------------
+
+
+
+      Descricao...:[a2                 ]
+
+      Situacao....:[s]
+
+
+
+      Incluido...:[a4        ] por [a41                ]
+      Atualizado.:[a5        ] por [a51                ]
+
+
+
+}
+end
+
+ tables datkvcldtbgrp
+
+ attributes
+    a1   = formonly.vcldtbgrpcod,
+           comments = " Codigo do grupo de distribuicao"                   ;
+
+    a2   = datkvcldtbgrp.vcldtbgrpdes,
+           comments = " Descricao do grupo de distribuicao",        upshift;
+
+    s    = datkvcldtbgrp.vcldtbgrpstt,
+           comments = " Situacao do grupo: (A)tivo ou (C)ancelado", upshift;
+
+    a4   = datkvcldtbgrp.caddat,                                    noentry;
+    a41  = formonly.cadfunnom,                                      noentry;
+
+    a5   = datkvcldtbgrp.atldat,                                    noentry;
+    a51  = formonly.funnom,                                         noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

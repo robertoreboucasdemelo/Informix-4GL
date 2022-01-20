@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta10m00 - Tela para gerar Atendimento Sem Documento
+------------------------------------------------------------------------------
+ 07/10/08 - Carla Rampazzo - PSI 230650 - Decreto 6523
+          - Incluir campo de Atendimento
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+{
+-------------------------------------------------------------------cta10m00--
+ Informacoes para registro de Ligacoes Sem Docto   [g                       ]
+-----------------------------------------------------------------------------
+ Empresa Atd:[e ] [e1                                        ]
+ Pessoa.....:[a]      CGC/CPF:[a1          ][a2  ][a3]
+ Susep......:[b     ][b1                                                 ]
+ Empresa....:[f ] [f1            ]Matricula..:[c     ][c1                   ]
+ Telefone...:[d   ][d1       ]
+
+}
+end
+
+attributes
+
+g  = formonly.atdnum  type char   ;
+a  = formonly.pestip     , upshift , comments = 'Tipo pessoa: (F)isica ou (J)uridica';
+a1 = formonly.cgccpfnum  , autonext, comments = 'Numero do CGC/CPF';
+a2 = formonly.cgcord     , autonext, comments = 'Numero da filial';
+a3 = formonly.cgccpfdig  , autonext, comments = 'Digito do CGC/CPF';
+b  = formonly.corsus     , upshift,  comments = 'Codigo da susep do corretor';
+b1 = formonly.cornom     , noentry;
+c  = formonly.funmat     , comments = 'Matricula do funcionario';
+c1 = formonly.funnom     , noentry;
+d  = formonly.dddcod     , comments = 'DDD da pessoa que esta ligando';
+d1 = formonly.ctttel     , comments = 'Telefone da pessoa que esta ligando';
+e =  formonly.empcodatd  , comments = 'Codigo da Empresa do Atendimento';
+e1 = formonly.empnomatd  , noentry;
+f =  formonly.empcod     , comments = 'Codigo da Empresa da pessoa que esta ligando';
+f1 = formonly.empnom     , noentry;
+
+end
+
+instructions
+   delimiters " "
+end

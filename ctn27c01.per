@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN27C01                                              Marcelo
+                                                                     Gilberto
+ Espelho do retorno do fax                                           Set/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Tp. Docto.:[a1          ]        No. Docto..:[a2         ]
+--------------------------------------------------------------------ctn27c01--
+ Fax Destino.:[a3                  ]
+ Destinatario:[a4                                                          ]
+------------------------------------------------------------------------------
+ Dt Envio....:[b1        ]    Hr Envio...:[b2      ]
+ Dt Resposta.:[b21       ]    Hr Resposta:[b22     ]
+
+ Qtde.Paginas:[b4    ]        Pag.Transm.:[b5    ] Tempo Transm.:[b51      ]
+
+ Cod.Situacao:[b6  ]
+ Mensagem....:[b7                                                          ]
+ Re-discagens:[b8    ]        ID do Fax..:[b9        ]
+
+
+}
+End
+
+Tables
+  datmfax, gfxmfax
+
+Attributes
+  a1  = formonly.faxsubdsc                              ,noentry;
+  a2  = datmfax.faxch1       ,format="######## ##"      ,noentry;
+
+  a3  = gfxmfax.telnum                                  ,noentry;
+  a4  = gfxmfax.faxdstdes                               ,noentry;
+
+  b1  = datmfax.faxenvdat                               ,noentry;
+  b2  = formonly.faxenvhor                              ,noentry;
+  b21 = gfxmfax.faxdat                                  ,noentry;
+  b22 = formonly.faxhor                                 ,noentry;
+  b4  = gfxmfax.faxpagtotqtd  ,format="<<<<<&"          ,noentry;
+  b5  = gfxmfax.faxtrxpagqtd  ,format="<<<<<&"          ,noentry;
+  b51 = gfxmfax.faxtrxtmp                               ,noentry;
+  b6  = gfxmfax.faxsttcod     ,format="<<<&"            ,noentry;
+  b7  = gfxmfax.faxstttxt                               ,noentry;
+  b8  = gfxmfax.faxrdsqtd     ,format="<<<<<&"          ,noentry;
+  b9  = gfxmfax.faxidecod     ,format="<<<<<<<<<&"      ,noentry;
+End
+
+Instructions
+  delimiters " "
+End

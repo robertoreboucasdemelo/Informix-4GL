@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc43m04                                              Marcelo
+                                                                     Gilberto
+ Pop-up para escolha de botoes dos MDTs                              Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Botoes
+--------------------ctc43m04--
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+[a              ][b    ]
+
+}
+end
+
+ tables
+    datkmdtbot
+
+ attributes
+    a  = datkmdtbot.mdtbottxt,      noentry;
+    b  = datkmdtbot.mdtbotcod,      noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc43m04(mdtbottxt thru mdtbotcod)
+ end

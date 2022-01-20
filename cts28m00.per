@@ -1,0 +1,102 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts28m00                                                   Ruiz
+ Comunicacao de Sinistro de Transportes                               Ago/2002
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]   AVISO DE SINISTRO DE TRANSPORTES  [a2             ]
+--------------------------------------------------------------------cts28m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+------------------------------------------------------------------------------
+[c1 ][c2                                                         ]
+ Telefone de Contato:[d   ]-[d1       ]       NUMERO DO AVISO....:[c4        ]
+ Tipo de Sinistro...:[e]  1-Acidente/2-Roubo/3-Outros
+ Natureza Sinistro..:[h ][h1                       ]  Descr.do acidente...:[r]
+ Endereco..:[m                                                               ]
+ Bairro....:[m1                  ] Cidade..:[m2                       ]UF:[m3]
+ Complemen.:[m7                       ]
+ Pais......:[m6                                      ]
+ Ponto Ref.:[m4                                                     ]Zona:[m5]
+ Resp.Local:[n                   ] Data Sinistro.:[o         ]    Hora:[o1   ]
+ Tipo de Transporte.:[j]  1-Aereo/2-Maritimo/4-Terrestre    Origem/Destino:[k]
+ Desc.bens atingidos:[p]  Desc.bens terceiro.:[q]   Comentarios atendente.:[s]
+ Atd./Lib..:[x                                              |x2        |x3   ]
+[y                                                                           ]
+}
+end
+
+tables
+ datmligacao,
+ datmservico,
+ datmlcl,
+ sstmstpavs
+
+attributes
+
+a1 = formonly.servico        , noentry;
+a2 = datmligacao.c24solnom   , noentry;
+b1 = datmservico.nom         , upshift
+                             , comments = " Nome";
+b2 = formonly.doctxt         , noentry;
+b6 = datmservico.corsus      , upshift
+                             , comments = " Susep";
+b7 = datmservico.cornom      , upshift
+                             , comments = " Corretor";
+b8 = formonly.cvnnom         , noentry;
+c1 = datmligacao.c24astcod   , noentry;
+c2 = formonly.c24astdes      , noentry;
+d  = sstmstpavs.sinrclddd    , upshift
+                             , comments = " DDD do Contato";
+d1 = sstmstpavs.sinrcltel    , upshift
+                             , comments = " Fone  do Contato";
+c4 = sstmstpavs.sinavsnum    , noentry;
+e  = formonly.tiposinis      , upshift
+                             , comments = " Escolha 1,2 ou 3";
+h  = sstmstpavs.sinntzcod    , upshift
+                             , comments = " Natureza";
+h1 = formonly.sinntzdes      , noentry;
+r  = formonly.dscacidente    , upshift
+                             , comments = "Flag Descr.Acidente: (S)im ou (N)ao";
+m  = formonly.lgdtxt         , upshift
+                             , comments = " Local do acidente   ";
+m1 = datmlcl.lclbrrnom       , upshift;
+m2 = datmlcl.cidnom          , upshift;
+m3 = datmlcl.ufdcod          , upshift;
+m6 = sstmstpavs.sinocrpainom , noentry;
+m4 = datmlcl.lclrefptotxt    , upshift
+                             , comments = " Ponto de referencia da Ocorrencia";
+m5 = datmlcl.endzon          , upshift
+                             , comments = " Somente para Capital S.P, NO/SU/LE/OE/CE";
+m7 = datmlcl.endcmp          , upshift
+                             ,comments = " Complemento do endereco";
+n  = datmlcl.lclcttnom       , upshift
+                             , comments = " Responsavel no local";
+o  = sstmstpavs.sinocrdat    , autonext
+                             , comments = " Data em que ocorreu o sinistro";
+o1 = formonly.sinocrhor        type datetime hour to minute
+                             , picture = "##:##"
+                             , comments = " Hora em que ocorreu o sinistro";
+j  = formonly.tipotransp     , upshift
+                             , comments = " Escolha 1,2 ou 4";
+k  = formonly.flgorigdes     , upshift
+                             , comments = " Origem ou Destino";
+p  = formonly.flgbensatg     , upshift
+                             , comments = "Flag bens atingidos: (S)im ou (N)ao";
+q  = formonly.flgbenster     , upshift
+                             , comments = "Flag bens terceiros: (S)im ou (N)ao";
+s  = formonly.histatd        , upshift
+                             , comments = "Descricao Atendente: (S)im ou (N)ao";
+x  = formonly.atdtxt         , noentry;
+x2 = formonly.atdlibdat      , noentry;
+x3 = datmservico.atdlibhor   , noentry;
+y  = formonly.msgfun         , noentry;
+
+end
+
+instructions
+  delimiters " "
+end

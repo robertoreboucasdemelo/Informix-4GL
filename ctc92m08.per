@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc92m08                                       Helder Oliveira
+
+ Cadastro de Pessoa VIP                                              Mai/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+--------------------------------------------------------------------ctc92m08--
+ Pessoa  CPF/CNPJ                Nome Segurado
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+   [a]  [b        ]/[c   ]-[d ] [e                                          ]
+------------------------------------------------------------------------------
+ Alterado em: [f         ] por: [g                                          ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    a  = formonly.tipo_pessoa          , comments = 'Tipo de Pessoa (F)isica - (J)uridica', upshift ;
+    b  = formonly.cpf_num type decimal , comments = 'Numero do CPF/CNPJ', format = "&&&&&&&&&";
+    c  = formonly.ord_num type decimal , comments = 'Ordem do CNPJ' , format = "&&&&" ;
+    d  = formonly.cpf_dig type decimal , comments = 'Digito do CPF/CNPJ', format = "&&" ;
+    e  = formonly.seg_nom              , comments = 'Nome do Segurado Pessoa VIP', upshift;
+
+    f  = formonly.atldat    ,upshift;
+    g  = formonly.funnom     ,upshift;
+
+end
+
+instructions
+    screen record s_ctc92m08 (tipo_pessoa thru seg_nom)
+    delimiters " "
+end

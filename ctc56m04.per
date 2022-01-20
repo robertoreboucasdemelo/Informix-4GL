@@ -1,0 +1,54 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC56M04                                               Ruiz    
+ Manutencao dos textos para Clausulas - historico                     Mar/2002
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc56m04--
+ Ramo:[a0  |a1               ] Mdl:[a2 ] Clausula:[a3 |a4                    ]
+------------------------------------------------------------------------------
+     DATA        HORA     MATRICULA                    STATUS
+                           
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+ [c         ] [d       ] [e     ][f                   |h            |g  |i]
+     (F8) Seleciona
+}
+end
+
+Tables isskfunc,
+       datkclstxt
+
+Attributes
+a0   = datkclstxt.ramcod    , noentry  ;
+a1   = formonly.ramnom      , noentry  ;
+a2   = datkclstxt.rmemdlcod , noentry  ;
+
+a3   = datkclstxt.clscod    , noentry  ;
+a4   = formonly.clsdes      , noentry  ; 
+
+c    = formonly.data         , noentry;      
+d    = formonly.hora         , noentry; 
+e    = formonly.funmat       , noentry;
+f    = formonly.funnom       , noentry;
+g    = formonly.seq          , noentry, invisible;
+i    = datkclstxt.clstxtstt  , noentry;
+h    = formonly.sttdes       , noentry;
+
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctc56m04(data      thru sttdes)
+End

@@ -1,0 +1,40 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC29M00                                              Marcelo
+                                                                     Gilberto
+ Tela generica de solicitacao de relatorios                          Mai/1996
+ ----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc29m00--
+ Solicitacao do relatorio:[a       ][b                                       ]
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+end
+
+Tables
+dgbkrel
+
+Attributes
+   a = formonly.relsgl   , upshift;
+   b = dgbkrel.reldes    , noentry, upshift;
+end
+
+Instructions
+   delimiters  " "
+end

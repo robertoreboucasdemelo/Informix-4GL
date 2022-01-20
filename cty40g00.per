@@ -1,0 +1,31 @@
+{-----------------------------------------------------------------------------      
+ Nome do Form: cty40g00                                               R.Fornax      
+                                                                                    
+ Tela de Envio de Protocolo via SMS                                   Jan/2015     
+-----------------------------------------------------------------------------}      
+                                                                                    
+database formonly                                                                   
+screen 
+
+{                                                                                                                                                   
+----------------------------------------------cty40g00-      
+       Informe o Celular para o Envio de SMS                   
+-------------------------------------------------------      
+                                                                       
+                  DDD     Numero         
+                 
+                 [a ]  [b        ]                                                                 
+                                                                                                                                              
+            (F17) Sair   (Enter) Enviar                                    
+                                                                       
+} 
+end
+                                                                     
+attributes                                                                                                           
+    a = formonly.dddtel  ,comments = " Informe o DDD do Telefone";                      
+    b = formonly.numtel  ,comments = " Informe o Numero do Telefone";                  
+end
+                                               
+instructions        
+   delimiters " "   
+end                 

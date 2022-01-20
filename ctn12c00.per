@@ -1,0 +1,38 @@
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctn12c00--
+  Data da Cotacao:[a         ]
+------------------------------------------------------------------------------
+  Moeda                           Tipo                      Valor da Cotacao
+
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+  [b  ] [c                   ]   [d        ]         [e                     ]
+}
+end
+tables gfatmda,
+       gfakmda
+
+attributes
+
+a = gfatmda.mdacotdat;
+b = gfatmda.mdacod,     upshift;
+c = gfakmda.mdanom,     noentry;
+d = formonly.mdatipnom, noentry;
+e = gfatmda.mdacotvlr,  format="#,###,###,###.########";
+end
+
+instructions
+delimiters " "
+screen record s_gfatmda(mdacod,mdanom,mdatipnom,mdacotvlr)
+end

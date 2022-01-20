@@ -1,0 +1,37 @@
+{---------------------------------------------------------------------
+ Nome do form: CTN06C03                      Criacao: 19/10/94 - Pedro
+
+ Consulta tipos de servico
+----------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+ Tipo         Descricao
+---------------------------------------------ctn06c03--
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+ [f1]        [f2                                      ]
+
+}
+
+end
+tables
+dpckserv
+
+attributes
+f1 = dpckserv.pstsrvtip, noentry;
+f2 = dpckserv.pstsrvdes, noentry;
+end
+
+instructions
+     delimiters " "
+end

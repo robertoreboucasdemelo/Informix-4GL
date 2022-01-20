@@ -1,0 +1,39 @@
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb27m00--
+ Mensagem:[a    ] Titulo:[b                             ] Situacao:[c]
+------------------------------------------------------------------------------
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+   [d                                                                     ]
+------------------------------------------------------------------------------
+   (F5)Grava   (F8)Destinatarios  (F17)Encerra 
+------------------------------------------------------------------------------
+}
+end
+
+attributes
+
+a = formonly.prsmsgcod ;
+b = formonly.prsmsgtitdes;
+c = formonly.prsmsgstt, upshift, autonext, comments= "A(Ativa) C(Cancelada)" ;
+d = formonly.prsmsgtxt, autonext;
+end
+
+instructions
+  delimiters " "
+  screen record
+         s_ctb27m00(prsmsgtxt)
+end

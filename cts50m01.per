@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts50m01                                               Nilo   
+
+ Consulta Historico das Ligacoes em Abandono                         Abr/2008
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------cts50m01--
+ Data Ligacao:[a         ]Nro.Telefone:[b           ]Status:[c][d           ]
+------------------------------------------------------------------------------
+  Data        Hora       Telefone     Fila Lig. Nr.Ligacao  Status Ligacao
+------------------------------------------------------------------------------
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+ [e         ][f        ][g           ][h ] [i] [j         ][k                ]
+
+}
+end
+tables datkabn
+      ,isskfunc
+      ,datmabnhst
+attributes
+a = formonly.datlig  type date
+                    ,format = 'dd/mm/yyyy'
+                    ,comments = " Data do Abandono"
+                    ,autonext;
+b = formonly.telefone ,autonext
+                      ,comments = " Telefone do Abandono";
+c = datkabn.abnsit  ,comments = " Status do Abandono (0)-Todos Status";
+d = formonly.abnsitdesc, noentry;
+
+e = datkabn.inidat,   noentry;
+f = datkabn.abninihor,   noentry;
+g = datkabn.abntel, noentry;
+h = datkabn.abnfil, noentry;
+i = datkabn.abncont, noentry;
+j = datkabn.lignum, noentry;
+k = formonly.status, noentry;
+end
+Instructions
+   delimiters " "
+   screen record s_cts50m01(inidat
+		           ,abninihor
+		           ,abntel
+		           ,abnfil
+		           ,lignum
+		           ,abncont
+		           ,status)
+end

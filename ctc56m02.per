@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC56M02                                                 Raji
+                                                                             
+ Exibe pop-up para selecao do clausula                               Mar/2002
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                    Clausulas
+----------------------------------------------ctc56m02--
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+[a                                               ][b   ]
+
+}
+End
+
+tables
+   datkclstxt
+
+Attributes
+ a  = formonly.clsdes       ,noentry;
+ b  = datkclstxt.clscod       ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc56m02(clsdes thru clscod)
+End

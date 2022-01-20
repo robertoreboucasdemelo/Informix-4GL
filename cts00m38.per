@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts00m38
+ Autor.......: Lucas Scheid, Meta
+ Tela de Resumo dos Servicos Pendentes.                              Jan/2005
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+          Resumo de Servicos Pendentes                  
+--------------------------------------cts00m38-- 
+ [ca                  ]             UF    Qtde 
+------------------------------------------------ 
+ [a1                             ] [a2]  [a3 ] 
+ [a1                             ] [a2]  [a3 ] 
+ [a1                             ] [a2]  [a3 ] 
+ [a1                             ] [a2]  [a3 ] 
+ [a1                             ] [a2]  [a3 ] 
+ [a1                             ] [a2]  [a3 ] 
+                                                 
+  (F6) Atualiza  (F8) Seleciona  (F17)Abandona   
+}
+
+end
+
+attributes
+  a1 = formonly.descricao, noentry;
+  a2 = formonly.uf;
+  a3 = formonly.qtde;
+  ca = formonly.campo, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cts00m38 (descricao thru qtde)
+end

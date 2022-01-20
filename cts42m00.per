@@ -1,0 +1,47 @@
+database formonly
+screen
+{
+--------------------------------------------------------------------cts42m00--
+Servico:[a1     |a2]       Data de:[a3        ]a[a4        ]     Total:[a5   ]
+Cliente:[b1                                      ]Etapa:[b2]-[b3             ]
+Nr.Autz:[b4     ]
+Servico            Cliente                                Situacao            
+------------------------------------------------------------------------------
+[c1     |c2]      [c3                                    |c4                 ]
+[c5                                                                          ]
+                                                                              
+[c1     |c2]      [c3                                    |c4                 ]
+[c5                                                                          ]
+                                                                              
+[c1     |c2]      [c3                                    |c4                 ]
+[c5                                                                          ]
+
+[c1     |c2]      [c3                                    |c4                 ]
+[c5                                                                          ]
+------------------------------------------------------------------------------
+ F7-Nr.Aut.  F8-Seleciona  F17-Abandona
+}
+end
+
+attributes
+   a1 = formonly.atdsrvnum   type decimal, format="&&&&&&&", comments='Informe o nr do servico';
+   a2 = formonly.atdsrvano   type decimal, format="&&", comments='Informe o ano do servico';
+   a3 = formonly.atddatini   type date, format="dd/mm/yyyy", comments='Informa a data inicial';
+   a4 = formonly.atddatfnl   type date, format="dd/mm/yyyy", comments='Informa a data final';
+   a5 = formonly.total       type decimal;
+   b1 = formonly.nom         type char, upshift, comments ='Informe o nome do cliente';
+   b2 = formonly.atdetpcod   type decimal, comments ='Informe a etapa do servico';
+   b3 = formonly.atdetpdes   type char;
+   b4 = formonly.atznum      type decimal, comments='Informe o nr da autorizacao do debito';
+
+   c1 = formonly.atdsrvnum2  type char;
+   c2 = formonly.atdsrvano2  type dec(2),format ="&&";
+   c3 = formonly.nom2        type char;
+   c4 = formonly.atdetpdes2  type char;
+   c5 = formonly.endereco    type char;
+end
+
+instructions
+  delimiters ' '
+  screen record s_cts40m00[4] (atdsrvnum2 thru endereco)
+end

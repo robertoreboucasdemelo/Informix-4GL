@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc63m03                                               Anderson
+                                                                     Doblinski
+ Consulta Rastreamento Ligacoes                                       Jan/2012
+-----------------------------------------------------------------------------}
+ 
+database formonly
+screen size 24 by 80
+{
+                          CONSULTA RASTREAMENTO LIGACOES
+--------------------------------------------------------------------ctc63m03--
+    Numero de Ligacao: [a         ]
+    Data da Ligacao..: [a1        ] Horario: [a2   ] as [a3   ] Enviado: [k]
+------------------------------------------------------------------------------
+    Ligacao    Assunto  Horario     Descricao                         Enviado
+------------------------------------------------------------------------------
+[x][b         ][c      ][d         ][e                               ][f    ]
+[x][b         ][c      ][d         ][e                               ][f    ]
+[x][b         ][c      ][d         ][e                               ][f    ]
+[x][b         ][c      ][d         ][e                               ][f    ]
+[x][b         ][c      ][d         ][e                               ][f    ]
+[x][b         ][c      ][d         ][e                               ][f    ]
+------------------------------------------------------------------------------
+ Data....:[j         ] Modulo......:[h        ] Tipo..:[i                   ]
+ Enviado.:[g                                        ]  Envio.: [l  ]%
+------------------------------------------------------------------------------
+                                  (F17)Abandona
+------------------------------------------------------------------------------
+}
+
+
+end
+
+	attributes
+	  a = formonly.lignum          , upshift , comments = "Numero da Ligacao";
+	  a1 = formonly.ligdat         , upshift , comments = "Data da Ligacao";
+	  a2 = formonly.lighorinc      type decimal, comments = "Horario Inicial da Ligacao", format = "##:##";
+	  a3 = formonly.lighorfnl      type decimal, comments = "Horario Final da Ligacao", format = "&&:&&" ;
+	  k = formonly.envio           , upshift ,comments = "Enviado (S/N)";
+	  
+	  x = formonly.seta            , invisible;		
+		b = formonly.s_lignum        , upshift , noentry;
+		c = formonly.c24astcod       , upshift , noentry;
+		d = formonly.s_lighorfnl     , noentry;
+		e = formonly.msgenverrdes    , upshift , noentry;
+		f = formonly.enviado         , upshift , noentry;
+		g = formonly.emaendnom       , upshift , noentry;
+		h = formonly.cpnmdunom       , upshift , noentry; 
+		i = formonly.cpodes          , upshift , noentry;
+		j = formonly.s_ligdat        , noentry;
+		l = formonly.porcentagem     , noentry;
+	
+	
+	instructions
+  	delimiters " "
+  	screen record s_ctc63m03(seta thru enviado)
+  end

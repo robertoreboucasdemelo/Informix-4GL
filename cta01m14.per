@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTA01M14                                          LUCAS SCHEID
+ TELA DE POPUP P/EXIBICAO DE INFOR. - CPF+NOME OU CARTAO+NOME.       SET/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+ [t                                                                     ]
+---------------------------------------------------------------cta01m14---
+
+[a                    |a1                                                ]
+[b                    |c                                                 ]
+[b                    |c                                                 ]
+[b                    |c                                                 ]
+[b                    |c                                                 ]
+[b                    |c                                                 ]
+--------------------------------------------------------------------------
+                    (F8)Seleciona      (F17)Abandona
+}
+end
+
+attributes
+  t  = formonly.titulo_janela type char, noentry;
+  a  = formonly.titulo_popup1 type char, noentry;
+  a1 = formonly.titulo_popup2 type char, noentry;
+  b  = formonly.info1         type char, noentry;
+  c  = formonly.info2         type char, noentry;
+end
+
+instructions
+  delimiters " "
+  screen record s_cta01m14(info1,info2)
+       

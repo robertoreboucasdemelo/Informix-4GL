@@ -1,0 +1,80 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB16M00                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Manutencao analise de servicos                                       Nov/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb16m00--
+ Servico.:[a0|a1     |a2]
+------------------------------------------------------------------------------
+
+
+ Atendimento...:[a3        ][a4   ]          Tipo:[a5             ]
+
+ Prestador.....:[a6   ] [a7                                           ]
+
+ Evento analise:   [b1] [b2                                           ]
+
+ Nova fase.....:   [b3] [b4                       ]
+
+
+ Ultima fase...:   [b5] [b6                       ]
+ Atualizado em.:[b7        ] por:[b8                            ]
+
+}
+end
+
+tables datmsrvanlhst, datmservico, datksrvtip,
+       dpaksocor,     datkevt,     datkfse
+
+attributes
+   a0   = datmservico.atdsrvorg,
+          format = "&&",
+          noentry;
+   a1   = datmservico.atdsrvnum,
+          format = "&&&&&&&",
+          comments = " Numero do servico",
+          autonext;
+   a2   = datmservico.atdsrvano,
+          format = "&&",
+          comments = " Ano do servico",
+          autonext;
+   a3   = datmservico.atddat,
+          noentry;
+   a4   = datmservico.atdhor,
+          noentry;
+   a5   = datksrvtip.srvtipabvdes,
+          noentry;
+   a6   = datmservico.atdprscod,
+          noentry;
+   a7   = dpaksocor.nomgrr,
+          noentry;
+
+   b1   = datmsrvanlhst.c24evtcod,
+          comments = " Codigo do evento de analise para este servico";
+   b2   = datkevt.c24evtrdzdes,
+          noentry;
+   b3   = datmsrvanlhst.c24fsecod,
+          comments = " Codigo da fase de analise para este servico";
+   b4   = datkfse.c24fsedes,
+          noentry;
+
+   b5   = formonly.c24fsecod_ult,
+          noentry;
+   b6   = formonly.c24fsedes_ult,
+          noentry;
+   b7   = datmsrvanlhst.caddat,
+          noentry;
+   b8   = formonly.funnom,
+          noentry;
+end
+
+instructions
+     delimiters " "
+end
+

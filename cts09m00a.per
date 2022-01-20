@@ -1,0 +1,31 @@
+database formonly
+screen size 24 by 80
+
+{
+ CONFIRME A CONGENERE PELO QUAL O VEICULO E SEGURADO
+--------------------------------------------cts09m00a-
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+[a                                            ][b    ]     
+
+        <F8>Seleciona   <F17>Abandona
+}
+
+end
+attributes
+a    = formonly.sgdnom              ;    
+b    = formonly.sgdirbcod,invisible ;
+
+instructions
+   delimiters " "
+
+   screen record s_cts09m00a(sgdnom thru sgdirbcod)
+
+end

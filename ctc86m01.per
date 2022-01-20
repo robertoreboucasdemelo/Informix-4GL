@@ -1,0 +1,44 @@
+{------------------------------------------------------------------------------
+ Nome do Form: ctc86m01                                                 Andre
+
+Cadastro de Tipo de Parametros Portal Prestador                      Nov/2008
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+
+------------------------------------------------------------------ctc86m01----
+
+ 
+ 
+ 
+ 
+ 
+ Descricao........: [a   ] - [b                                         ]
+
+ 
+ Origem Servico...: [c   ] - [d                                         ]
+ 
+
+
+[m                                                                       ] 
+}
+end
+
+tables
+   datksrvtip,
+   iddkdominio
+
+attributes
+  a = iddkdominio.cpocod;
+  b = iddkdominio.cpodes, noentry;
+  c = datksrvtip.atdsrvorg;
+  d = datksrvtip.srvtipabvdes, noentry;
+  m = formonly.mensagem, noentry;
+end
+
+Instructions
+ delimiters " " 
+End

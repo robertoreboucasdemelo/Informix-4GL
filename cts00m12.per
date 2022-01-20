@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M12                                                  Pedro
+                                                                       Marcelo
+ Conclusao do Servico                                                 Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                 Informacoes sobre Prestador Acionado
+---------------------------------------------------------------cts00m12--
+ Prestador:[a1    ][a2                       ]
+ Contato..:[a3                                      ]
+ Veiculo..:[a4   ][a5    |a6                                            ]
+ Socorris.:[a7      |a8        ]
+
+}
+end
+
+ Tables datmsrvacp, datkveiculo, datksrr
+
+ Attributes
+   a1 = datmsrvacp.pstcoddig  , format = "&&&&&&", noentry;
+   a2 = formonly.nomgrr                          , noentry;
+   a3 = datmsrvacp.c24nomctt                     , noentry;
+   a4 = datkveiculo.atdvclsgl                    , noentry;
+   a5 = datmsrvacp.socvclcod                     , noentry;
+   a6 = formonly.socvcldes                       , noentry;
+   a7 = formonly.srrcoddig                       , noentry;
+   a8 = datksrr.srrabvnom                        , noentry;
+ end
+
+ instructions
+   delimiters " "
+ end

@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc53m04                                               R.Fornax
+
+ Cadastro de Segmento/Assuntos                                        Mar/2014
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m04--
+
+
+
+
+
+
+Segmento....:[a   ] - [a1                                                  ]
+
+Atualizado..:[b          ] por [c                                          ]
+
+
+
+
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.codper      , comments = " Digite o Codigo do Segmento"    ,upshift;
+    a1 = formonly.desper      , noentry;
+    b  = formonly.atldat      , noentry;
+    c  = formonly.funmat      , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,57 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTC56M00                                               Raji   
+                                                                              
+ Manutencao dos Textos para Clausulas                                 Fev/2002
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc56m00--
+Empresa   : [a5][a6                                          ]
+Ramo      : [a0  |a1               ] 
+Modalidade: [a2 ]                                 
+Clausula  : [a3  |a4                            ]
+------------------------------------------------------------------------------
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+ [c0                                                                    ][c1 ]
+
+}
+end
+
+Tables datkclstxt
+
+Attributes
+a0   = datkclstxt.ramcod       , autonext , upshift  ,
+                                 comments = " Codigo do Ramo" ;
+
+a1   = formonly.ramnom         , noEntry  ;
+
+a2   = datkclstxt.rmemdlcod    , autonext , upshift  ,
+                                 comments = " Modalidade do Ramo" ;
+
+a3   = datkclstxt.clscod       , autonext , upshift  ,
+                                 comments = " Codigo da Clausula" ;
+a4   = formonly.clsdes         , noEntry  ;
+
+a5 = datkclstxt.ciaempcod      , comments = "Codigo da empresa";
+a6 = formonly.empnom           , noentry;
+c0   = datkclstxt.clstxt       , upshift  ,
+                                 autonext ;
+c1   = datkclstxt.clslin       , noentry  ,
+                                 invisible;
+End
+
+Instructions
+     delimiters " "
+     screen record s_ctc56m00(clstxt thru clslin)
+End

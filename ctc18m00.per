@@ -1,0 +1,99 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC18M00                                              Marcelo
+                                                                     Gilberto
+ CARRO EXTRA: Manutencao do cadastro de LOJAS                        Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+
+{
+--------------------------------------------------------------------ctc18m00--
+         Locadora:[a0  |a1                                      ]
+------------------------------------------------------------------------------
+ Loja....:[b000   |b001                                  ]Tp:[b|b002         ]
+ Codigo..:[inv ] CNPJ:[m       ]/[m1  ]-[m2]             Qld:[j|j001         ]
+ Endereco:[b003                                    ]
+ Bairro..:[b004                                    ] Entrega/Devolucao.:[b011]
+ Cidade..:[b005                          ] UF..:[b0] Ponto Referencia..:[b010]
+ CEP.....:[b006 ][b06]                 Sucursal.:[c1   |c2                   ]
+ Fone....:[b007][b008                                    ] Fax.:[b009     ]
+ Horarios:2a. a 6a.:[c001 ]as[c002 ]   Tarifa...:[d|d0          ]
+          Sabado...:[c003 ]as[c004 ]   Situacao.:[e|e0          ]
+          Domingo..:[c005 ]as[c006 ]   Ch.Caucao:[i ] Tx.Aero.Port.:[i0    ]%
+ Email...:[l                                                 ]
+ Cadastrado em:[f000      ]por[f0|f001  |f002                ]
+ Atualizado em:[g000      ]por[g0|g001  |g002                ]
+ Observacoes..:[h010                                                        ]
+}
+end
+
+tables datkavislocal
+
+attributes
+a0   = datkavislocal.lcvcod      , comments = " Codigo da Locadora";
+a1   = formonly.lcvnom           , noentry;
+inv  = datkavislocal.aviestcod   , noentry;
+b000 = formonly.lcvextcod        , upshift
+                                 , comments = " Codigo da Loja";
+b001 = datkavislocal.aviestnom   , upshift
+                                 , comments = " Nome da Loja";
+b    = datkavislocal.lcvlojtip   , comments = " Tipos de Loja: (1)Corporacao, (2)Franquia ou (3)Franquia/Rede";
+b002 = formonly.lcvlojdes        , noentry;
+b003 = datkavislocal.endlgd      , upshift
+                                 , comments = " Endereco da Loja";
+b004 = datkavislocal.endbrr      , upshift
+                                 , comments = " Bairro";
+b005 = datkavislocal.endcid      , upshift
+                                 , comments = " Cidade";
+b0   = datkavislocal.endufd      , upshift
+                                 , autonext
+                                 , comments = " Sigla da Unidade de Federacao";
+b006 = datkavislocal.endcep      , comments = " CEP";
+b06  = datkavislocal.endcepcmp   , comments = " Complemento do CEP";
+b007 = datkavislocal.dddcod      , comments = " Codigo do DDD";
+b008 = datkavislocal.teltxt      , upshift
+                                 , comments = " Telefone da loja";
+b009 = datkavislocal.facnum      , comments = " Fax da loja";
+b010 = formonly.refptodes        , upshift
+                                 , comments = " Ponto de Referencia";
+b011 = formonly.dlvlojflg        , noentry;
+c001 = datkavislocal.horsegsexinc, autonext;
+c002 = datkavislocal.horsegsexfnl, autonext;
+c003 = datkavislocal.horsabinc   , autonext;
+c004 = datkavislocal.horsabfnl   , autonext;
+c005 = datkavislocal.hordominc   , autonext;
+c006 = datkavislocal.hordomfnl   , autonext;
+d    = datkavislocal.lcvregprccod, comments = " Codigo Tarifa Regional:(1-2-3)";
+d0   = formonly.lcvregprcdes     , noentry ;
+e    = datkavislocal.vclalglojstt, comments = " Situacao: (1)Ativa, (2)Bloqueada, (3)Cancelada ou (4)Desativada";
+e0   = formonly.lojsttdes        , noentry ;
+i    = datkavislocal.cauchqflg   , upshift
+                                 , comments = " Aceita cheque caucao para locacao (S)im ou (N)ao" ;
+i0   = datkavislocal.prtaertaxvlr, format = "##&.&&"
+                                 , comments = " Informe Taxa Aero Portuaria ou (enter)";
+l    = formonly.maides           , comments = 'Informe o endereco do e-mail da loja';
+f000 = datkavislocal.caddat      , noentry ;
+f0   = datkavislocal.cademp      , noentry , format = "&&";
+f001 = datkavislocal.cadmat      , noentry , format = "&&&&&&";
+f002 = formonly.cadnom           , noentry ;
+g000 = datkavislocal.atldat      , noentry ;
+g0   = datkavislocal.atlemp      , noentry , format = "&&";
+g001 = datkavislocal.atlmat      , noentry , format = "&&&&&&";
+g002 = formonly.atlnom           , noentry ;
+h010 = datkavislocal.obs         , upshift
+                                 , comments = " Observacoes";
+j    = formonly.lojqlfcod        , comments = " Qualificacao da loja";
+j001 = formonly.lojqlfdes        , noentry ;
+
+c1 = formonly.succod, comments = "Informe a sucursal aonde a loja entrega nota";
+c2 = formonly.sucnom, noentry;
+m  = formonly.l_auxcgcNum,comments = "CNPJ da loja",autonext;
+m1 = formonly.l_auxcgcOrd,comments = "CNPJ da loja",autonext;
+m2 = formonly.l_auxcgcDig,comments = "CNPJ da loja";
+
+end
+
+instructions
+     delimiters " "
+end

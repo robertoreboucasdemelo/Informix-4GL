@@ -1,0 +1,48 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty05g07                                         Carla Rampazzo
+ Limites / Utilizacoes - Help Desk Casa                               Nov/2010
+-----------------------------------------------------------------------------}
+
+database porto
+screen
+
+
+{
+              Limites de Utilizacao[a]
+
+[b                                             ]
+--------------------------------------cty05g07--
+ Assistencia              Qtd.Utilizada  [g     ]
+
+ ATENDIMENTO TELEFONICO       [c  ]       [d  ]
+ ATENDIMENTO PRESENCIAL       [e  ]       [f  ]
+
+[h                          ] [i  ]
+
+[j                          ] [l  ]       [m  ]
+}
+
+end
+
+tables
+datmservico
+
+attributes
+  a = formonly.l_descanso        ;
+  b = formonly.texto             ;
+  c = formonly.qtd_utz_s66       , noentry;
+  d = formonly.qtd_lmt_s66       , noentry;
+  e = formonly.qtd_utz_s67       , noentry;
+  f = formonly.qtd_lmt_s67       , noentry;
+  g = formonly.limite_msg        , noentry;
+  h = formonly.limite_unico_msg  , noentry;
+  i = formonly.limite_unico_qtd  , noentry;
+  j = formonly.limite_msg_conect , noentry;
+  l = formonly.qtd_utz_s67_206    , noentry;
+  m = formonly.qtd_lmt_s67_206    , noentry;
+
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc69m00                                               R.Fornax
+                                                                      
+ Cadastro de Grupos                                                   Ago/2013
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m00--
+
+ Codigo......:[a   ]
+              
+ Nome........:[b                                                           ]
+              
+ Situacao....:[c]
+              
+              
+ Observacoes.:[f                                                           ] 
+ Observacoes.:[g                                                           ] 
+ 
+ Atualizado..:[d          ] por [e                 ]  
+                       
+  
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.srvgrptipcod     , comments = " Digite o Codigo do Grupo"       ,upshift;
+    b  = formonly.srvgrptipnom     , comments = " Nome do Grupo"                  ,upshift;      
+    c  = formonly.srvgrptipsitflg  , comments = " Situacao A-tivo ou I-nativo"    ,upshift; 
+    d  = formonly.regatldat        , noentry;
+    e  = formonly.funnom           , noentry; 
+    f  = formonly.obs1             , noentry;  
+    g  = formonly.obs2             , noentry;    
+ end
+
+ instructions
+      delimiters " "
+ end

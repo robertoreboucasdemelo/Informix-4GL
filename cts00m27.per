@@ -1,0 +1,66 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M27                                              Marcus  
+                                                                     Ruiz     
+ Tela de Acompanhamento Servicos Internet                            Ago/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts00m27--
+ Situacao:[a|a1             ] Servico.:[a2|a3     |a4]
+ Periodo.:[a6        ]ate[a7        ]                            Total:[a5   ]
+------------------------------------------------------------------------------
+ Servico...:[b            ]  Data:[b1        ] Hora:[b2   ]  Espera:[b3    ]
+ Prestador.:[c     ][c1                                   ]
+ Status....:[d][d1             ] Motivo.:[e][e1                            ]
+ Obs.......:[f                                                               ]
+
+ Servico...:[b            ]  Data:[b1        ] Hora:[b2   ]  Espera:[b3    ]
+ Prestador.:[c     ][c1                                   ]
+ Status....:[d][d1             ] Motivo.:[e][e1                            ]
+ Obs.......:[f                                                               ]
+
+ Servico...:[b            ]  Data:[b1        ] Hora:[b2   ]  Espera:[b3    ]
+ Prestador.:[c     ][c1                                   ]
+ Status....:[d][d1             ] Motivo.:[e][e1                            ]
+ Obs.......:[f                                                               ]
+
+}
+End
+
+Tables datmsrvint,datksrvintetp,dpaksocor,datksrvintmtv
+
+Attributes
+  a    = datksrvintetp.atdetpcod,     
+         comments = " 0-Aguardando  1-Aceito  2-Recusado  3-Cancelado  4-Tempo Excedido";
+  a1   = datksrvintetp.atdetpdes,      noentry;
+  a2   = formonly.atdsrvorg            type dec,format = "&&" , noentry;
+  a3   = formonly.atdsrvnum,         autonext,
+                                       comments = " Numero do Servico";
+  a4   = formonly.atdsrvano,         
+                                       comments = " Ano do servico";
+  a6   = formonly.perini               type date,format = "dd/mm/yyyy",
+                                       comments = " Data inicial";
+  a7   = formonly.perter               type date,format = "dd/mm/yyyy",
+                                       comments = " Data termino";
+  a5   = formonly.total         ,      noentry;
+
+  b    = formonly.servico       ,      noentry;
+  b1   = datmsrvint.caddat      ,      noentry;
+  b2   = datmsrvint.cadhor      ,      noentry;
+  b3   = formonly.espera        ,      noentry;  
+  c    = dpaksocor.pstcoddig    ,      noentry;
+  c1   = dpaksocor.nomgrr       ,      noentry;
+  d    = formonly.atdetpcod     ,      noentry;
+  d1   = formonly.atdetpdes     ,      noentry;
+  e    = datksrvintmtv.etpmtvcod,      noentry;
+  e1   = datksrvintmtv.etpmtvdes,      noentry;
+  f    = datmsrvint.srvobs      ,      noentry; 
+End
+
+Instructions
+  delimiters " "
+  screen record s_cts00m27(servico  thru srvobs)
+End

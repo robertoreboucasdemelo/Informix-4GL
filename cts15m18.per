@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M18                                               Ligia
+                                                                      FORNAX
+ Consulta o resumo da reserva (prorrogacoes)                          Mai/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                             Historico da Reserva
+-------------------------------------------------------------------cts15m18---
+                 Periodo             Diarias  C.Custo  Faturamento       Sit
+
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+[b1        ]-[b2   ]a[b3        ]-[b4   |b5 ] [b6    ][b7               ][b]
+
+}
+end
+
+tables datmrsrsrvrsm, datmprorrog
+
+attributes
+  b1  = datmrsrsrvrsm.retdat;
+  b2  = formonly.rethor;
+  b3  = datmrsrsrvrsm.dvldat;
+  b4  = formonly.dvlhor;
+  b5  = datmrsrsrvrsm.diaqtd;
+  b6  = datmprorrog.cctcod;
+  b7  = formonly.fat;
+  b   = datmprorrog.aviprostt;
+end
+
+instructions
+  delimiters " "
+  screen record s_cts15m18(retdat thru aviprostt)

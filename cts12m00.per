@@ -1,0 +1,107 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts12m00                                                  Pedro
+                                                                       Marcelo
+ Laudo - Remocao de Perda Total                                       Mar/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ]       LAUDO DE SERVICO - RPT        [a2             ]
+--------------------------------------------------------------------cts12m00--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+[c2 ][c3                                                  |c4                ]
+
+ Cam/Util.:[d]   Oficina.:[d1    ] Local.....:[d2                            ]
+ Endereco.:[d3                                                          ]
+ Bairro...:[d4                  ]Cidade..:[d5                        ]U.F:[d6]
+ Complemen:[d12                      ]       Resp.Local:[d11                 ]
+ Tel.Local:[d9  ][d10      ]                 Tel.Celul.:[d13 |d14      ]
+ Pto. Ref.:[d7                                                      ]Zona:[d8]
+ Tp.Assist:[e1|e2      ]           Destino...:[e]
+ Srv.Imed?:[f]   Emiss.Carta:[g]   Serv. Lib?:[h]              Formulario:[j]
+ Atd/Lib..:[i                                             ][i2        ][i3   ]
+
+ [y                                                                          ]
+}
+end
+
+tables datmservico   ,
+       datmservicocmp,
+       datrservapol  ,
+       datmligacao   ,
+       datkasitip    ,
+       datmlcl
+
+attributes
+
+  a1 = formonly.servico        ,noentry;
+  a2 = datmligacao.c24solnom   ,noentry;
+
+  b1  = datmservico.nom,
+        comments = " Nome"                            , upshift;
+  b2  = formonly.doctxt                               , noentry;
+  b6  = datmservico.corsus,
+        comments = " Susep"                           , upshift;
+  b7  = datmservico.cornom,
+        comments = " Corretor"                        , upshift;
+  b8  = formonly.cvnnom                               , noentry;
+  b9  = datmservico.vclcoddig                         , format = "&&&&&&",
+        comments = " Codigo do veiculo"               ;
+  b10 = datmservico.vcldes,
+        comments = " Descricao do veiculo"            , upshift;
+  b11 = datmservico.vclanomdl   ,
+        comments = " Ano do veiculo"                  , autonext;
+  b12 = datmservico.vcllicnum,
+        comments = " Placa do veiculo"                , upshift;
+  b13 = formonly.vclcordes,
+        comments = " Cor do veiculo"                  , downshift;
+
+  c2  = datmligacao.c24astcod                         , noentry;
+  c3  = formonly.c24astdes                            , noentry;
+  c4  = formonly.desapoio                             , noentry;
+  d   = formonly.camflg                               , upshift,
+        comments = " Caminhao/Utilitario: (S)im ou (N)ao";
+  d1  = formonly.pstcoddig                            , upshift,
+        comments = " Pesquisa por codigo da oficina";
+
+  d2  = formonly.lclidttxt                            , noentry;
+  d3  = formonly.lgdtxt                               , noentry;
+  d4  = datmlcl.lclbrrnom                             , noentry;
+  d5  = datmlcl.cidnom                                , noentry;
+  d6  = datmlcl.ufdcod                                , noentry;
+  d7  = datmlcl.lclrefptotxt                          , noentry;
+  d8  = datmlcl.endzon                                , noentry;
+  d9  = datmlcl.dddcod                                , noentry;
+  d10 = datmlcl.lcltelnum                             , noentry;
+  d11 = datmlcl.lclcttnom                             , noentry;
+  d12 = datmlcl.endcmp                                , upshift
+                                                      ,comments = " Complemento do endereco";
+  d13 = datmlcl.celteldddcod                          ,comments = " Codigo DDD do Celular";
+  d14 = datmlcl.celtelnum                             ,comments = " Telefone Celular";
+  e1  = datmservico.asitipcod                         ,
+        comments = " Tipo da assistencia";
+  e2  = datkasitip.asitipabvdes                       , noentry;
+  e   = formonly.dstflg                               , upshift,
+        comments = " Ha' destino: (S)im ou (N)ao";
+  f   = formonly.imdsrvflg                            , upshift,
+        comments = " Servico imediato: (S)im ou (N)ao";
+  g   = formonly.emtcarflg                            , upshift,
+        comments = " Emite carta de autorizacao: (S)im ou (N)ao";
+  h   = datmservico.atdlibflg                         , upshift,
+        comments = " Servico liberado: (S)im ou (N)ao";
+  j   = formonly.frmflg                               , upshift,
+        comments = " Entrada via formulario: (S)im ou (N)ao";
+  i   = formonly.atdtxt                               , noentry;
+  i2  = formonly.atdlibdat                            , noentry;
+  i3  = datmservico.atdlibhor                         , noentry;
+  y   = formonly.msgfun                               , noentry;
+end
+
+instructions
+  delimiters " "
+end

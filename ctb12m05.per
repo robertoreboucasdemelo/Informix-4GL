@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb12m05                                              Marcelo
+                                                                     Gilberto
+ Exibe as ordens de pagamento encontradas para uma O.S.              Out/1997
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+ O.Ps  encontradas para O.S.[h        ]
+------------------------------ctb12m05--
+[a       ][b              ][c          ]
+[a       ][b              ][c          ]
+[a       ][b              ][c          ]
+[a       ][b              ][c          ]
+[a       ][b              ][c          ]
+[a       ][b              ][c          ]
+
+}
+end
+
+tables dbsmopg
+
+attributes
+   h  = formonly.srvref      , noentry;
+
+   a  = dbsmopg.socopgnum    , format = "&&&&&&&&";
+   b  = formonly.socopgsitdes, upshift;
+   c  = dbsmopg.socfatentdat , noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_ctb12m05(socopgnum thru socfatentdat)

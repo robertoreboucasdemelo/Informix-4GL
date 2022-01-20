@@ -1,0 +1,63 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn44c00                                               Marcelo
+                                                                      Gilberto
+ Consulta mensagens recebidas dos MDT's                               Ago/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn44c00--
+Dt.Trans:[l1        ] Veiculo:[l2   ] Tp.Movto:[l3] Situacao:[l] [l4         ]
+------------------------------------------------------------------------------
+ Seq.Movto  T.MDT  Hora     Mdt  Botao/Tp.Movto Situacao        M/S  Dist/Metr
+                                                                    
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+[r1        |r2   ][r3      |r4  |r5            |r6              |r7] [r8     ]
+------------------------------------------------------------------------------
+ Erro:[p2                                                ]
+
+}
+
+ tables
+    datmmdtmvt
+
+ attributes
+
+    l1  = formonly.caddatpsq                  type date,
+          comments = " Data da transmissao";
+
+    l2  = formonly.atdvclsgl               ,upshift,
+          comments = " Sigla do veiculo";
+
+    l3  = formonly.mdtmvttipcod            ,upshift,
+          comments = " Tipo do movimento";
+
+    l   = formonly.mdtmvtstt,
+          comments = " Situacao das transmissoes";
+    l4  = formonly.total                   ,noentry;
+
+    r1  = formonly.mdtmvtseq;
+    r2  = datmmdtmvt.mdttrxnum             ,noentry;
+    r3  = datmmdtmvt.cadhor                ,noentry;
+    r4  = datmmdtmvt.mdtcod                ,noentry;
+    r5  = formonly.mdtmvttipdes            ,noentry;
+    r6  = formonly.mdtmvtsttdes            ,noentry;
+    r7  = formonly.flag                    ,noentry;
+    
+    r8  = formonly.dist                    ,noentry;
+
+    p2  = formonly.mdterrdes               ,noentry;
+
+ instructions
+   delimiters " "
+   screen record s_ctn44c00(mdtmvtseq thru dist)
+ end

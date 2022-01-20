@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts10m00                                                  Pedro
+                                                                       Marcelo
+ Historico do Servico                                                 Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts10m00--
+                    HISTORICO DO SERVICO[a        ]
+------------------------------------------------------------------------------
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+   [b                                                                     ]
+}
+end
+
+tables
+datmservhist
+
+attributes
+
+a    = formonly.servico      ,reverse ,noentry;
+b    = datmservhist.c24srvdsc,upshift;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_cts10m00(c24srvdsc)
+end

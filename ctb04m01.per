@@ -1,0 +1,108 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB04M01                                               Wagner
+
+ Ordem de pagamento - Ramos Elementares (RE)                          Nov/2001
+
+# 28/05/2012 PSI-11-19199PR Jose Kurihara      Prever Aliquota e flag optante #
+-----------------------------------------------------------------------------}
+
+database porto 
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb04m01--
+ Numero O.P...:[a1      ]   Situacao.:[a2][a3                         ][e1   ]
+------------------------------------------------------------------------------
+[b1            ][b2      ][b3                                                ]
+ Entrega......:[c10       ]       Pagamento:[c20       ]     Tarifa..:[c30   ]
+ Qtde Servicos:[c40   ]           Vlr Total:[c50            ]Relacao.:[c60   ]
+ Aliquota.....:[c70  ]
+ Tipo Docto...:[d1|d2            ]Num docto:[n1      ]       Serie NF:[n2 ]
+ Data Emis....:[d3        ]       Sucursal.:[d4   ][d5                       ]
+ Opcao Pagto..: [f][f10       ]   Destino..:[f20 |f25                        ]
+
+ Favorecido...:[g10                                     ]
+ Tipo Pessoa..:[p]                Cgc/Cpf..:[g20         ][g25 ][g2]
+ Tipo Conta...:[g3][g30       ]   Banco....: [g4  ][g40                 ]
+ Agencia......:[g50  ][g][g55                 ]  Conta.:[g60            ][g6]
+ Vlr Desc.:[h15            ]                     Optante pelo Simples:[o]
+
+}
+end
+
+tables dbsmopg   , ctokcentrosuc, fpgkpgtdst  ,
+       dbsmopgfav, gcdkbanco    , gcdkbancoage, gabksuc
+
+attributes
+   a1   = formonly.socopgnum  , comments = " Numero da Ordem de Pagamento" ;
+   a2   = dbsmopg.socopgsitcod, comments = " Situacao da Ordem de Pagamento" ;
+   a3   = formonly.socopgsitdes,                          noentry;
+   e1   = formonly.empresa,                               noentry;
+
+   b1   = formonly.favtipcab,                             noentry;
+   b2   = formonly.favtipcod,                             noentry;
+   b3   = formonly.favtipnom,                             noentry;
+
+   c10  = dbsmopg.socfatentdat,                           noentry;
+   c20  = dbsmopg.socfatpgtdat;
+   c30  = dbsmopg.soctrfcod,    format="<<<<<<",          noentry;
+
+   c40  = dbsmopg.socfatitmqtd;
+   c50  = dbsmopg.socfattotvlr, format = "##########&&.&&";
+   c60  = dbsmopg.socfatrelqtd, format="<<<<<<",          noentry;
+   c70  = dbsmopg.infissalqvlr,  format="#&.&&", comments = "Aliquota do ISS";
+
+   d1   = dbsmopg.socpgtdoctip, comments = " Tipo Docto: 1-Nota Fiscal, 2-Recibo, 3-R.P.A, 4-Nota Fiscal Eletrônica";
+   d2   = formonly.socpgtdocdes, noentry;
+   n1   = formonly.nfsnum type decimal(8,0), format = "&&&&&&&&",
+          comments = " Número da Nota Fiscal / Recibo / R.P.A. / Nota Fiscal Eletrônica ";
+   n2   = formonly.fisnotsrenum,   upshift,
+          comments = " Série da Nota Fiscal ";
+   d3   = dbsmopg.socemsnfsdat, comments = " Data de emissao do documento";
+   d4   = dbsmopg.succod, format = "###&&", comments = " Código da sucursal ";
+   d5   = gabksuc.sucnom, noentry;
+
+   f    = dbsmopgfav.socpgtopccod,
+          comments = " Opcao Pagto: 1-Dep.Conta, 2-Cheque, 3-Boleto";
+   f10  = formonly.socpgtopcdes,                          noentry;
+   f20  = dbsmopg.pgtdstcod,
+          comments = " Codigo do Destino do Pagamento";
+   f25  = fpgkpgtdst.pgtdstdes,                           noentry;
+
+   g10  = dbsmopgfav.socopgfavnom,                        upshift,
+          comments = " Nome do Favorecido";
+   p    = dbsmopgfav.pestip,                              upshift,
+          comments = " Pessoa: (F)isica, (J)uridica";
+   g20  = dbsmopgfav.cgccpfnum,
+          comments = " Numero do Cgc/Cpf do favorecido";
+   g25  = dbsmopgfav.cgcord,
+          format = "&&&&",
+          comments = " Codigo da Filial do Cgc do favorecido";
+   g2   = dbsmopgfav.cgccpfdig,
+          format = "&&",
+          comments = " Digito do Cgc/Cpf do favorecido";
+
+   g3   = formonly.bcoctatip   type decimal,
+          comments = " Tipo Conta: 1-Conta Corrente, 2-Poupanca";
+   g30  = formonly.bcoctatipdes,                          noentry;
+   g4   = dbsmopgfav.bcocod,                              upshift,
+          comments = " Codigo do Banco";
+   g40  = gcdkbanco.bcosgl,                               noentry;
+
+   g50  = dbsmopgfav.bcoagnnum,                           upshift,
+          comments = " Codigo do Agencia";
+   g    = dbsmopgfav.bcoagndig,                           upshift,
+          comments = " Digito da Agencia";
+   g55  = gcdkbancoage.bcoagnnom,                         noentry;
+   g60  = dbsmopgfav.bcoctanum,
+          comments = " Numero da Conta Corrente";
+   g6   = dbsmopgfav.bcoctadig,                           upshift,
+          comments = " Digito da Conta Corrente";
+   h15  = dbsmopg.socopgdscvlr,  format = "##########&&.&&",
+          comments = " Valor a ser Descontado";
+   o    = formonly.simoptpstflg type char,                upshift, noentry;
+end
+
+instructions
+     delimiters " "
+end

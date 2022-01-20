@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC35M02                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de Grupo de itens para vistoria                             Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m02--
+      Codigo......:[a1  ]
+------------------------------------------------------------------------------
+
+
+      Descricao...:[a2                                                ]
+
+      Situacao....:[s]
+
+
+
+
+      Incluido....:[a3        ]por[a31                ]
+      Atualizado..:[a4        ]por[a41                ]
+
+
+
+}
+end
+
+tables datkvstitmgrp
+
+attributes
+ a1   = formonly.socvstitmgrpcod,
+        comments = " Codigo do grupo de itens "                     ;
+
+ a2   = datkvstitmgrp.socvstitmgrpdes,
+        comments = " Descricao do grupo de itens ",          upshift;
+
+ s    = datkvstitmgrp.socvstitmgrpsit,
+        comments = " Situacao do grupo de itens: (A)tivo ou (C)ancelado", upshift;
+
+ a3   = datkvstitmgrp.caddat,                           noentry;
+ a31  = formonly.cadfunnom,                             noentry;
+
+ a4   = datkvstitmgrp.atldat,                           noentry;
+ a41  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

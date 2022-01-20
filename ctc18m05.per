@@ -1,0 +1,78 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC18M00                                              Marcelo
+                                                                     Gilberto
+ CARRO EXTRA: Manutencao do cadastro de LOJAS                        Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc18m00--
+         Locadora...:[a0  ] [a1                                      ]
+         Loja.......:[b0  ] [b1                                      ]
+------------------------------------------------------------------------------
+[n]Cidade..:[c                                            ]      UF..:[c1]
+   Taxa Entrega: [d         ]                      Situacao:[e][e1       ] 
+   Cadastrado em:[f000      ]por[f0|f001  |f002                ]
+   Atualizado em:[g000      ]por[g0|g001  |g002                ]
+
+[n]Cidade..:[c                                            ]      UF..:[c1]
+   Taxa Entrega: [d         ]                      Situacao:[e][e1       ]      
+   Cadastrado em:[f000      ]por[f0|f001  |f002                ]
+   Atualizado em:[g000      ]por[g0|g001  |g002                ]
+
+
+
+
+}
+end
+
+tables datklcletgvclext,
+       glakcid,
+       datklocadora,
+       datkavislocal
+
+attributes
+a0   = datklcletgvclext.lcvcod      , comments = " Codigo da Locadora";
+a1   = datklocadora.lcvnom          , noentry;
+b0   = datkavislocal.lcvextcod      , comments = " Codigo da Loja"; 
+b1   = datkavislocal.aviestnom      , noentry;
+n    = formonly.navega              , invisible;
+c    = glakcid.cidnom               , upshift
+                                    , comments = " Cidade";
+c1   = glakcid.ufdcod               , upshift
+                                    , autonext
+                                  , comments = " Sigla da Unidade de Federacao";
+d    = formonly.etgtaxvlr   , comments = " Taxa de entrega";
+e    = formonly.etglclsitflg, upshift
+                                    , comments = " A[tivo] ou C[ancelado]";
+e1   = formonly.situacao            , noentry ;
+f000 = datklcletgvclext.caddat      , noentry ;
+f0   = datklcletgvclext.cademp      , noentry , format = "&&";
+f001 = datklcletgvclext.cadmat      , noentry , format = "&&&&&&";
+f002 = formonly.cadnom              , noentry ;
+g000 = datklcletgvclext.atldat      , noentry ;
+g0   = datklcletgvclext.atlemp      , noentry , format = "&&";
+g001 = datklcletgvclext.atlmat      , noentry , format = "&&&&&&";
+g002 = formonly.atlnom              , noentry ;
+end
+
+instructions
+     delimiters " "
+     screen record s_tela (formonly.navega,
+                           glakcid.cidnom,
+                           glakcid.ufdcod,
+                           formonly.etgtaxvlr, 
+                           formonly.etglclsitflg, 
+                           formonly.situacao, 
+                           datklcletgvclext.caddat, 
+                           datklcletgvclext.cademp, 
+                           datklcletgvclext.cadmat, 
+                           formonly.cadnom, 
+                           datklcletgvclext.atldat,
+                           datklcletgvclext.atlemp,
+                           datklcletgvclext.atlmat,
+                           formonly.atlnom)
+end
+

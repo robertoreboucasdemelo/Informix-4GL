@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc47m00                                               Gilberto
+                                                                      Wagner A
+ Cadastro de tipos de solicitante                                     Jan/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc47m00--
+ Codigo........:[a  ]
+------------------------------------------------------------------------------
+
+
+ Descricao.....:[a1                  ]
+
+ Ordem Exibicao:[a2]
+
+ Tipo Ligacao   [x] [x2        ]
+
+ Incluido......:[b1        ]por[b2                 ]
+ Atualizado....:[b3        ]por[b4                 ]
+
+
+
+}
+end
+
+ tables datksoltip
+
+ attributes
+    a  = datksoltip.c24soltipcod, comments = " Codigo do tipo de solicitante";
+    a1 = datksoltip.c24soltipdes, upshift
+                                , comments = " Descricao do tipo de solicitante";
+    a2 = formonly.c24soltipord    type decimal
+                                , comments = " Ordem de exibicao ";
+    x  = datksoltip.c24ligtipcod, comments = " Codigo do tipo de ligacao";
+    x2 = formonly.descligacao   , noentry
+                                , comments = " Descricao do tipo de ligacao";
+    b1 = datksoltip.caddat      , noentry;
+    b2 = formonly.cadfunnom     , noentry;
+    b3 = datksoltip.atldat      , noentry;
+    b4 = formonly.atlfunnom     , noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

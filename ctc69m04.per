@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc69m04                                               R.Fornax
+ Popup Generico Siebel                                                Ago/2013
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+Codigo    Descricao
+-----------------------------------------ctc69m04--
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+[a   ] [b                                         ]
+
+}
+end
+
+attributes
+   a  = formonly.codigo   ;
+   b  = formonly.descricao;
+end
+
+instructions
+    delimiters " "
+    screen record s_ctc69m04(codigo, descricao)
+end
+

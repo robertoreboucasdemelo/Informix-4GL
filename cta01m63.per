@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------        
+ Nome do Form: CTA01M63                                              Roberto          
+                                                                        
+ Dados do Veiculo                                                    Jan/2008         
+-----------------------------------------------------------------------------}        
+                                                                                      
+database porto                                                                        
+                                                                                      
+screen size 25 by 80
+
+{                                                                                                                                                
+------------------------------------cta01m63--  
+               Dados do Veiculo   
+---------------------------------------------- 
+Placa...:[a      ]
+Marca...:[b                                  ] 
+Tipo....:[c                                  ] 
+Modelo..:[d                                  ]
+Fab/Mod.:[e1  ]/[e2  ]   
+Chassi..:[f                   ]
+----------------------------------------------
+}
+end
+
+tables
+  abbmveic   ,
+  agbkmarca  ,
+  agbktip    ,
+  agbkveic
+
+attributes 
+
+a  = abbmveic.vcllicnum         ; 
+b  = agbkmarca.vclmrcnom         , noentry;
+c  = agbktip.vcltipnom           , noentry;        
+d  = agbkveic.vclmdlnom          , noentry; 
+e1 = abbmveic.vclanofbc          , noentry;
+e2 = abbmveic.vclanomdl          , noentry;
+f  = formonly.vclchs type char   , noentry; 
+
+instructions              
+   delimiters " "       
+end                     

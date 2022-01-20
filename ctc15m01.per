@@ -1,0 +1,63 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC15M01                                               Marcelo
+                                                                      Gilberto
+ Cadastro de tipos de assistencia                                     Jul/1998
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc15m01--
+           Codigo......:[a1]
+------------------------------------------------------------------------------
+           Abreviacao..:[a2      ]
+
+           Descricao...:[a3                  ]
+
+           Ind. Oficina:[d]
+
+           Situacao....:[a|a4        ]
+
+           Alerta Importante (S/N)? [e]
+
+           Aciona Automatico (S/N)? [f]
+
+           Incluido....:[b1        ]por[b2|b3    |b4                 ]
+           Atualizado..:[c1        ]por[c2|c3    |c4                 ]
+}
+end
+
+ tables datkasitip
+
+ attributes
+    a1 = datkasitip.asitipcod   , comments = " Codigo do tipo de assistencia";
+    a2 = datkasitip.asitipabvdes, upshift
+                                , comments = " Descricao abreviada do tipo de assistencia";
+    a3 = datkasitip.asitipdes   , upshift
+                                , comments = " Descricao completa do tipo de assitencia";
+    a  = datkasitip.asitipstt   , upshift
+                                , comments = " Situacao do tipo de assistencia";
+    a4 = formonly.asitipsttdes  , noentry;
+    e  = datkasitip.vclcndlclflg, upshift;
+    f  = datkasitip.atmacnflg   , upshift;
+    b1 = datkasitip.caddat      , noentry;
+    b2 = datkasitip.cademp      , noentry
+                                , format = "&&";
+    b3 = datkasitip.cadmat      , noentry
+                                , format = "&&&&&&";
+    b4 = formonly.cadfunnom     , noentry;
+    c1 = datkasitip.atldat      , noentry;
+    c2 = datkasitip.atlemp      , noentry
+                                , format = "&&";
+    c3 = datkasitip.atlmat      , noentry
+                                , format = "&&&&&&";
+    c4 = formonly.atlfunnom     , noentry;
+
+    d  = datkasitip.asiofndigflg, upshift
+                                , comments = " Indicacao de Oficina para assistencia(S/N) ";
+ end
+
+ instructions
+      delimiters " "
+ end

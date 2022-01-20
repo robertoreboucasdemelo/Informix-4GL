@@ -1,0 +1,51 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m27.per
+
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+
+
+----------------------------------------------------------------cta02m27------
+Data Aviso    Placa    Ramo  Sucursal     Apolice   Item  Sistema
+                              Origem      Proposta
+------------------------------------------------------------------------------
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+[c         ] [d      ] [e  ]  [f    ]    [g        ] [h  ]  [i  ]
+                              [j  ]      [l        ]
+------------------------------------------------------------------------------
+
+
+}
+end
+tables sanmavs
+      ,sanmsin
+      ,sanmrefdct
+
+attributes
+c  = sanmavs.sinavsdat           , noentry;
+d  = sanmavs.vcllicnum           , noentry;
+e  = sanmavs.ramcod              , noentry;
+f  = sanmsin.succod              , noentry;
+g  = sanmsin.aplnumdig           , noentry;
+h  = sanmsin.itmnumdig           , noentry;
+j  = sanmrefdct.sinavsdctorgcod  , noentry;
+l  = sanmrefdct.sinavsdctnum     , noentry;
+i  = formonly.origem             , noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_cta02m27(sinavsdat thru origem)
+end                                                

@@ -1,0 +1,56 @@
+database formonly
+screen size 24 by 80
+
+{            
+--------------------------------------------------------------ctc72m00-------
+      Origem.........: [a ] - [a1                  ]
+      Vigencia.......: [b         ]
+      Tempo Prog.....: [d    ]H
+      Acion.Internet.: [f] - [f1        ]
+      Cadastrado.....: [g         ][g1      ]-[g2    |g3                  ]
+      Atualizado.....: [h         ][h1      ]-[h2    |h3                  ]
+
+ Cidade Sede                UF  Distancia Tmp Med Atd   Situacao       FxProg
+[i                        ][j ]  [c  ]Km   [m       ]  [k]-[l         ] [n ]
+[i                        ][j ]  [c  ]Km   [m       ]  [k]-[l         ] [n ]
+[i                        ][j ]  [c  ]Km   [m       ]  [k]-[l         ] [n ]
+[i                        ][j ]  [c  ]Km   [m       ]  [k]-[l         ] [n ]
+
+              (Ctrl+C)Abandona           (F8)Grava
+}
+end
+
+attributes
+a  = formonly.atdsrvorg           , autonext, comments ="Informe a origem do servico." ;
+a1 = formonly.srvtipdes           , noentry, upshift;
+b  = formonly.vigincdat           , comments="Informe a data de vigência inicial dos parametros.";
+d  = formonly.acnlmttmp           , autonext, comments="Informe o tempo limite para acionar os servicos programados.";
+f  = formonly.netacnflg           , upshift, comments="Informe (A)tivo ou (I)nativo para internet.";
+f1 = formonly.cplSitNet           , noentry, upshift;
+g  = formonly.caddat              , noentry;
+g1 = formonly.cadhor              , noentry;
+g2 = formonly.cadmat              , noentry;
+g3 = formonly.cadFunnom           , noentry, upshift;
+h  = formonly.atldat              , noentry;
+h1 = formonly.atlhor              , noentry;
+h2 = formonly.atlmat              , noentry;
+h3 = formonly.altFunnom           , noentry, upshift;
+i  = formonly.cidnom              , upshift, comments="Informe o nome da cidade sede para o acionamento.";
+j  = formonly.ufdcod              , autonext, upshift, comments="Informe o estado";
+c  = formonly.cidacndst           , autonext, comments="Informe a distancia em Km." ;
+k  = formonly.acnsttflg           , autonext, upshift, comments="Informe (A)tivo ou (I)nativo para a cidade sede acionada por GPS.";
+l  = formonly.cplSitFlg           , noentry, upshift;
+m  = formonly.atdprvtmp, comments="Informe a previsao de tempo de atendimento";
+n  = formonly.atdhrrfxahorqtd,comments="Informe a quantidade de horas para calculo da Faixa Horaria";
+end
+
+instructions
+  delimiters " "
+  screen record s_tela(formonly.cidnom,
+                       formonly.ufdcod,
+                       formonly.cidacndst,
+                       formonly.atdprvtmp,
+                       formonly.acnsttflg,
+                       formonly.cplSitFlg,
+                       formonly.atdhrrfxahorqtd)
+end

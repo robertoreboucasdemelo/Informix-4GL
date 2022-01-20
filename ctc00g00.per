@@ -1,0 +1,54 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC00G00                                               Marcelo
+                                                                      Gilberto
+ Funcoes Genericas - Digitacao de endereco padronizada                Jun/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  [a0                                                                  ]
+----------------------------------------------------------------ctc00g00--
+
+ Cidade....:[a2                                           ]UF.:[a3]
+ Tipo Logr.:[a6        ]
+ Logradouro:[a7                                                          ]
+ Numero....:[a8   ]
+ Bairro....:[a4                                      ]     CEP:[b1   |b2 ]
+ Ponto Ref.:[c1                            ]
+ Telefone..:[d1  |d2       ]
+
+
+}
+end
+
+ tables datmlcl
+
+ attributes
+    a0 = formonly.cabtxt     , reverse
+                             , noentry;
+    a2 = datmlcl.cidnom      , upshift
+                             , comments = " Cidade ";
+    a3 = datmlcl.ufdcod      , upshift
+                             , comments = " Sigla da unidade da federacao ";
+    a6 = datmlcl.lgdtip      , upshift
+                             , comments = " Tipo do logradouro: avenida, rua, praca, travessa";
+    a7 = datmlcl.lgdnom      , upshift
+                             , comments = " Logradouro ";
+    a8 = datmlcl.lgdnum      , format = "#####"
+                             , comments = " Numero do logradouro ";
+    a4 = datmlcl.brrnom      , upshift
+                             , comments = " Bairro ";
+    b1 = datmlcl.lgdcep      , comments = " CEP do logradouro ";
+    b2 = datmlcl.lgdcepcmp   , format = "&&&"
+                             , comments = " Complemento do CEP do logradouro ";
+    c1 = datmlcl.lclrefptotxt, upshift
+                             , comments = " Ponto de referencia do logradouro ";
+    d1 = datmlcl.dddcod      , comments = " Codigo de DDD do local ";
+    d2 = datmlcl.lcltelnum   , comments = " Telefone do local ";
+ end
+
+ instructions
+    delimiters " "
+ end

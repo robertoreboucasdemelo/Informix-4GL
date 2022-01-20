@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M10                                              Marcelo
+                                                                     Gilberto
+ Locacao de veiculo para corretor                                    Dez/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+ SUSEP Corretor.:[b1    |b2                            ]
+
+ Confirma.......:[b]
+
+
+}
+end
+
+tables
+   gcaksusep
+
+attributes
+   b1  = gcaksusep.corsus      , comments = " SUSEP do Corretor "
+                               , upshift;
+   b2  = formonly.cornom       , noentry;
+   b   = formonly.confirma     , comments = " Confirma ? (S)im ou (N)ao "
+                               , upshift;
+
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,71 @@
+{-----------------------------------------------------------------------------
+ Nome do form: cte00m01                                                   Ruiz
+                                                                          Akio
+ Cadastro de codigos de agrupamento                                   Abr/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cte00m01--
+ Codigo do Agrupamento.:[a  ]
+
+ Descricao.............:[a1                                      ]
+
+ Sigla.................:[b    ]
+
+ Centro de Custo.......:[i0    ][i1                  ] Peso..: [j]
+
+ Departamento..........:[k0    ][k1                                      ]
+ Exclusivo ou Bloqueado:[l][l1       ]
+
+ Situacao..............:[c]
+
+ Incluido..............:[d         ] por [d1                 ]
+ Atualizado............:[e         ] por [e1                 ]
+
+}
+end
+
+ tables dackassagp
+
+ attributes
+    a  = dackassagp.corassagpcod           ,upshift,
+         comments = " Codigo do Agrupamento";
+
+    a1 = dackassagp.corassagpdes           ,upshift,
+         comments = " Descricao do Agrupamento";
+
+    b  = dackassagp.corassagpsgl           ,upshift,
+         comments = " Sigla  do Agrupamento";
+
+    i0 = dackassagp.slccctcod              ,upshift,
+         comments = " Numero do Centro de custo";         
+    i1 = formonly.cctnom                   ,noentry;
+    j  = dackassagp.corasspsocod           ,upshift,
+         comments = " Peso da ligacao";                   
+
+    k0 = dackassagp.dptsgl                 ,downshift,
+         comments = " Sigla do Departamento";
+    k1 = formonly.dptnom,
+         comments = " Nome do Departamento";
+
+    l  = dackassagp.dptassagputztip        ,upshift,
+         comments = "Informe (E)xclusivo ou (B)loqueado para o departamento em questao",
+         include = ("E","B",null);
+    l1 = formonly.status                   ,upshift;
+
+    c  = dackassagp.corassagpstt           ,upshift,
+         comments = " Situacao: (A)tivo ou (C)ancelado";
+
+    d  = dackassagp.caddat                 ,noentry;
+    d1 = formonly.cadfunnom                ,noentry;
+    e  = dackassagp.atldat                 ,noentry;
+    e1 = formonly.funnom                   ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN28C00                                               Marcelo
+                                                                      Gilberto
+ Consulta servicos enviados p/ impressoras remotas                    Set/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn28c00--
+ Servico:[l1     ][l2] Data Trans.:[l3        ] Situacao:[l]   [l4        ]
+------------------------------------------------------------------------------
+ No.Transm.  Situacao                    Data  Hora    Espera  Servico
+
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+[r1        ][r2                        ][r3   |r4      |r|r5   |r6           ]
+
+}
+
+tables
+   datmservico,
+   datmtrxfila
+
+attributes
+
+   l1  = formonly.atdsrvnum type dec               , format = "&&&&&&&",
+         comments = " Numero do Servico";
+   l2  = formonly.atdsrvano type dec               , format = "&&",
+         comments = " Ano do Servico";
+   l3  = formonly.trxdat                  type date,
+         comments = " Data da Transmissao";
+   l   = formonly.atdtrxsit                ,upshift,
+         comments = " Situacao das transmissoes"    ;
+   l4  = formonly.total                    ,noentry;
+
+   r1  = datmtrxfila.atdtrxnum             ,format = "&&&&&&&&&&", noentry;
+   r2  = formonly.situacao                 ,noentry;
+   r3  = datmtrxfila.atdtrxdat             ,noentry;
+   r4  = datmtrxfila.atdtrxhor             ,noentry;
+   r   = datmtrxfila.atdtrxsit             ,noentry, invisible;
+   r5  = formonly.espera                    type datetime minute to second
+                                           ,noentry;
+   r6  = formonly.servico                  ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_ctn28c00(atdtrxnum thru servico)
+end

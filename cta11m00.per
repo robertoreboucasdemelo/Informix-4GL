@@ -1,0 +1,42 @@
+database formonly
+
+screen
+{
+                    Motivos de Recusa 
+---------------------------------------------------------------cta11m00-------
+ Origem do Servico :[a     ][b                             ]
+------------------------------------------------------------------------------
+ Motivo
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+ [c       ][d                   ]
+------------------------------------------------------------------------------
+<F8> - Seleciona                <Control-C> - Cancela
+------------------------------------------------------------------------------
+}
+end 
+
+attributes
+
+a = formonly.atdsrvorg, noentry;
+b = formonly.srvtipdes, noentry;
+c = formonly.srvrcumtvcod, noentry;
+d = formonly.srvrcumtvdes, noentry;
+end 
+
+instructions
+
+   delimiters " "  
+   screen record s_cta11m00(srvrcumtvcod,srvrcumtvdes);
+end  
+
+
+
+

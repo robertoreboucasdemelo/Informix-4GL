@@ -1,0 +1,38 @@
+{--------------------------------------------------------------------------
+ Nome do form: CTC35M09                                            Gilberto
+                                                                    Marcelo
+                                                                     Wagner
+ Mostra todos os Tipos de laudo                                      Dez/98
+--------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Tipos de laudo
+----------------------------------------ctc35m09--
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+[a                                       ][b    ]
+
+}
+end
+
+tables
+   datkvstlautip
+
+attributes
+   a   = datkvstlautip.socvstlautipdes               ,noentry;
+   b   = datkvstlautip.socvstlautipcod   ,invisible  ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc35m09(socvstlautipdes thru socvstlautipcod)
+end
+

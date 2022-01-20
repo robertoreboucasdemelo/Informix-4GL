@@ -1,0 +1,49 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTX25G03                                           LUCAS SCHEID
+ CALCULA DISTANCIA ENTRE DOIS LOGRADOUROS                             JUN/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+                  CALCULO DE DISTANCIA ENTRE LOGRADOUROS
+---------------------------------------------------------------ctx25g03---
+
+ UF .......:[o1]    Cidade:[o2                                           ]
+ Logradouro:[o3                                                          ]
+ Bairro....:[o4                                 ] Numero:[o5   ]
+
+ UF .......:[d1]    Cidade:[d2                                           ]
+ Logradouro:[d3                                                          ]
+ Bairro....:[d4                                 ] Numero:[d5   ]
+
+ Distancia.:[d         ]Km   Tempo Estimado do Percurso:[t       ]minutos
+
+ (F8)Percurso  (F17)Abandona[e]
+}
+end
+
+attributes
+
+  o1 = formonly.ufdcod_origem type char,    noentry;
+  o2 = formonly.cidnom_origem type char,    noentry;
+  o3 = formonly.lgdnom_origem type char,    noentry;
+  o4 = formonly.brrnom_origem type char,    noentry;
+  o5 = formonly.lgdnum_origem type integer, noentry;
+
+  d1 = formonly.ufdcod_destino type char,    noentry;
+  d2 = formonly.cidnom_destino type char,    noentry;
+  d3 = formonly.lgdnom_destino type char,    noentry;
+  d4 = formonly.brrnom_destino type char,    noentry;
+  d5 = formonly.lgdnum_destino type integer, noentry;
+
+  d = formonly.distancia, reverse, noentry;
+  t = formonly.tempo,     reverse, noentry;
+  e = formonly.espera     type char, invisible;
+
+end
+
+instructions
+  delimiters " "
+                                                                             

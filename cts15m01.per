@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M01                                             Pedro
+                                                                    Marcelo
+ Conclusao da reserva apos confirmacao e retorno ao segurado        Ago/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Acionamento em[o0        ]as[o1   ]por[o2                  ]
+------------------------------------------------------cts15m01--
+ Etapa.:[c |c1             ]
+ Loja..:[b1     |b2                                      ][b3  ]
+ End...:[d                                       ]
+ Bairro:[e               ] Cid.:[f                   ]U.F.:[g ]
+ Fones.:[i   ][j                                       ]
+ Hora..:[k    ]as[l    ]Sab:[m    ]as[n    ]Dom:[o    ]as[p    ]
+
+}
+end
+
+tables
+  datmservico,
+  datmsrvacp,
+  datketapa,
+  datkavislocal
+
+attributes
+
+  o0  = datmservico.cnldat           , noentry;
+  o1  = datmservico.atdfnlhor        , noentry;
+  o2  = formonly.c24openom           , noentry;
+  c   = datmsrvacp.atdetpcod         , comments = " Etapa para acionamento ";
+  c1  = datketapa.atdetpdes          , reverse;
+
+  b1  = datkavislocal.lcvextcod      , noentry;
+  b2  = datkavislocal.aviestnom      , noentry;
+  b3  = datkavislocal.aviestcod      , noentry, invisible;
+  d   = datkavislocal.endlgd         , noentry;
+  e   = datkavislocal.endbrr         , noentry;
+  f   = datkavislocal.endcid         , noentry;
+  g   = datkavislocal.endufd         , noentry;
+  i   = datkavislocal.dddcod         , noentry;
+  j   = datkavislocal.teltxt         , noentry;
+  k   = datkavislocal.horsegsexinc   , noentry;
+  l   = datkavislocal.horsegsexfnl   , noentry;
+  m   = datkavislocal.horsabinc      , noentry;
+  n   = datkavislocal.horsabfnl      , noentry;
+  o   = datkavislocal.hordominc      , noentry;
+  p   = datkavislocal.hordomfnl      , noentry;
+
+end
+
+instructions
+  delimiters " "
+end

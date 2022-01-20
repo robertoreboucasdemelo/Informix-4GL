@@ -1,0 +1,76 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m23
+
+ Cadastro Apolice Itau                                                Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                      CORRECAO DE APOLICE INCONSISTENTE[a3   ][a4   ][a5   ]
+-------------------------------------------------------------------ctc91m23---
+Apolice/Item.:[a1       |a2   ]       CPF/CNPJ.....:[b1          ]/[b2  ]-[b3]
+Produto......:[c1  ]-[c2                                                ]
+Plano........:[d1  ]-[d2                                                ]
+Serv.Prestado:[e1  ]-[e2                                                ]
+Garantia CR..:[f1  ]-[f2                                                ]
+Servico CR...:[g1  ]-[g2                                                ]
+Empresa......:[h1  ]-[h2                                                ]
+Score........:[i1  ]-[i2                                                ]
+Segmento.....:[j1  ]-[j2                                                ]
+Codigo UBB...:[k1  ]-[k2                                                ]
+Tipo Carga...:[l1  ]-[l2                                                ]
+Tipo Veiculo.:[m1  ]-[m2                                                ]
+Canal Venda..:[n1  ]-[n2                                                ]
+Modalid.Frota:[o1  ]-[o2                                                ]
+Cancelamento.:[p1  ]-[p2                                                ]
+------------------------------------------------------------------------------
+
+}
+end
+
+
+attributes
+   a1 = formonly.itaaplnum          ,noentry, reverse;
+   a2 = formonly.itaaplitmnum       ,noentry, reverse;
+   a3 = formonly.aplseqnum          ,noentry, invisible;
+   a4 = formonly.itaciacod          ,noentry, invisible;
+   a5 = formonly.itaramcod          ,noentry, invisible;
+   b1 = formonly.segcgccpfnum       ,noentry;{#comments = "";}
+   b2 = formonly.segcgcordnum       ,noentry;{#comments = "";}
+   b3 = formonly.segcgccpfdig       ,noentry;{#comments = "";}
+   c1 = formonly.itaprdcod          ,comments = "Codigo do Produto";
+   c2 = formonly.itaprddes          ,noentry;
+   d1 = formonly.itasgrplncod       ,comments = "Codigo do Plano";
+   d2 = formonly.itasgrplndes       ,noentry;
+   e1 = formonly.itaasisrvcod       ,comments = "Codigo do Servico de Assistencia Prestado";
+   e2 = formonly.itaasisrvdes       ,noentry;
+   f1 = formonly.rsrcaogrtcod       ,comments = "Codigo da Garantia do Carro Reserva";
+   f2 = formonly.itarsrcaogrtdes    ,noentry;
+   g1 = formonly.itarsrcaosrvcod    ,comments = "Codigo do Servico de Carro Reserva";
+   g2 = formonly.itarsrcaosrvdes    ,noentry;
+   h1 = formonly.itaempasicod       ,comments = "Codigo da Assistencia Empresa";
+   h2 = formonly.itaempasides       ,noentry;
+   i1 = formonly.itacliscocod       ,comments = "Codigo do Score do cliente";
+   i2 = formonly.itacliscodes       ,noentry;
+   j1 = formonly.itaclisgmcod       ,comments = "Codigo do Segmento do cliente";
+   j2 = formonly.itaclisgmdes       ,noentry;
+   k1 = formonly.ubbcod             ,comments = "Codigo UBB (tipo veiculo Unibanco)";
+   k2 = formonly.vcltipdesubb       ,noentry;
+   l1 = formonly.itavclcrgtipcod    ,comments = "Codigo do tipo de carga do veiculo";
+   l2 = formonly.itavclcrgtipdes    ,noentry;   
+   m1 = formonly.vcltipcod          ,comments = "Codigo do Tipo de Veiculo";
+   m2 = formonly.vcltipdes          ,noentry;   
+   n1 = formonly.vndcnlcod          ,comments = "Codigo do Canal de Venda";
+   n2 = formonly.vndcnldes          ,noentry;
+   o1 = formonly.frtmdlcod          ,comments = "Codigo da Modalidade de Frota";
+   o2 = formonly.frtmdldes          ,noentry; 
+   p1 = formonly.itaaplcanmtvcod    ,comments = "Codigo do Motivo de Cancelamento";
+   p2 = formonly.itaaplcanmtvdes    ,noentry;     
+end
+
+instructions
+   screen record s_ctc91m23 (itaaplnum thru itaaplcanmtvdes)
+   delimiters " "
+end

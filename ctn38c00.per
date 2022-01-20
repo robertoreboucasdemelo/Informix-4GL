@@ -1,0 +1,67 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn38c00                                               Gilberto
+                                                                       Marcelo
+ Pesquisa cadastro de veiculos do Porto Socorro                       Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn38c00--
+ Sigla....:[a    ]  Placa...:[a2     ]    Eqpto...:[a3  ][a4                 ]
+ Prestador:[a5    |a6                  ]Situacao:[a7|a8       ]Emp.:[e1|e2   ]
+------------------------------------------------------------------------------
+ Cod.  Descricao do veiculo                                        Situacao
+ Sgl.  Prestador                Placa       Fab.  Mod.
+------------------------------------------------------------------------------
+[b1    ][b2                                                       ][b3       ]
+ [b4   ][b5                  ]   [b6     ]   [b7  ][b8  ]
+
+[b1    ][b2                                                       ][b3       ]
+ [b4   ][b5                  ]   [b6     ]   [b7  ][b8  ]
+
+[b1    ][b2                                                       ][b3       ]
+ [b4   ][b5                  ]   [b6     ]   [b7  ][b8  ]
+                                                                  [a9        ]
+
+}
+end
+
+ tables datkveiculo, dpaksocor
+
+ attributes
+
+    a  = formonly.atdvclsglpsq,                        upshift,
+         comments = " Sigla do veiculo"                       ;
+    a2 = formonly.vcllicnumpsq,                        upshift,
+         comments = " Placa do veiculo"                       ;
+    a3 = formonly.soceqpcodpsq,
+         comments = " Codigo do equipamento"                  ;
+    a4 = formonly.soceqpabvpsq,                        noentry;
+    a5 = formonly.pstcoddigpsq,
+         comments = " Codigo do prestador"                    ;
+    a6 = formonly.nomgrrpsq,                           noentry;
+    a7 = formonly.socoprsitcodpsq,
+         comments = " Situacao do veiculo"                    ;
+    a8 = formonly.socoprsitdespsq,                     noentry;
+    e1 = formonly.ciaempcod,
+         comments = " Codigo da empresa"                      ;
+    e2 = formonly.empsgl,                              noentry;
+    a9 = formonly.total,                               noentry;
+
+    b1 = datkveiculo.socvclcod,                        noentry;
+    b2 = formonly.vcldes,                              noentry;
+    b3 = formonly.socoprsitdes,                        noentry;
+    b4 = datkveiculo.atdvclsgl,                        noentry;
+    b5 = dpaksocor.nomgrr,                             noentry;
+    b6 = datkveiculo.vcllicnum,                        noentry;
+    b7 = datkveiculo.vclanofbc,                        noentry;
+    b8 = datkveiculo.vclanomdl,                        noentry;
+
+ end
+
+instructions
+  delimiters " "
+  screen record s_ctn38c00(socvclcod thru vclanomdl)
+

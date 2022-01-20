@@ -1,0 +1,31 @@
+database formonly
+screen size 24 by 80
+{
+             Importancias Seguradas em[a01]
+--------------------------------------------------cta01m17--
+ Casco ...:[b01             ]
+ Blind ...:[g01             ]
+ DM    ...:[b02             ]
+ DP    ...:[b03             ]
+ Morte ...:[b04             ]
+ Invalidez:[b05             ]
+ DMH .....:[b06             ]
+ FRANQUIA.:[b07             ]
+}
+end
+
+attributes
+   a01  = formonly.imsmda;
+   b01  = formonly.autimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   g01  = formonly.imsvlr    type decimal(15,2), format = "#,###,###,##&.&&";
+   b02  = formonly.dmtimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b03  = formonly.dpsimsvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b04  = formonly.imsmorvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b05  = formonly.imsinvvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b06  = formonly.imsdmhvlr type decimal(15,2), format = "#,###,###,##&.&&";
+   b07  = formonly.franqvlr  type decimal(15,2), format = "#,###,###,##&.&&";
+end
+
+instructions
+  delimiters " "
+end

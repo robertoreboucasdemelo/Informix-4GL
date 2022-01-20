@@ -1,0 +1,92 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc32m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de bloqueios de atendimento                                 Abr/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc32m00--
+ No Bloqueio.:[a     ]            Vigencia.:[b1        ]a[b2        ]
+------------------------------------------------------------------------------
+ Apolice.....:[b3  ][b4   ][b5       ][b6     ]
+ Placa.......:[b7     ]
+ Chassi......:[b8                  ]
+ Susep.......:[b10   ][b11                                     ]
+ Prestador...:[b12   ][b13                                     ]
+ Segurado....:[b14     ][b15                                      ]
+ C.Tarifaria.:[w ][w2                                      ]
+
+ Nivel.......:[y][x              ]
+ Relatorio...:[z]
+
+ Incluido....:[s1        ] as [s2   ] por [s3                 ]
+ Atualizado..:[s4        ] as [s5   ] por [s6                 ]
+
+}
+end
+
+ tables gcakcorr, dpaksocor, gsakseg, datkblq, agekcateg
+
+ attributes
+    a   = formonly.blqnum,
+          comments = " Numero do bloqueio";
+
+    b1  = datkblq.viginc,
+          comments = " Vigencia inicial";
+    b2  = datkblq.vigfnl,
+          comments = " Vigencia final";
+
+    b3  = datkblq.ramcod,
+          comments = " Codigo do ramo";
+    b4  = datkblq.succod,
+          comments = " Codigo da sucursal";
+    b5  = datkblq.aplnumdig,
+          comments = " Numero da apolice (com digito)";
+    b6  = datkblq.itmnumdig,
+          comments = " Numero do item (com digito)";
+
+    b7  = datkblq.vcllicnum                     ,upshift,
+          comments = " Placa do veiculo";
+
+    b8  = formonly.chassi                       ,upshift,
+          comments = " Codigo do chassi do veiculo";
+
+    b10 = datkblq.corsus                        ,upshift,
+          comments = " Susep do corretor";
+    b11 = gcakcorr.cornom                       ,noentry;
+
+    b12 = datkblq.pstcoddig,
+          comments = " Codigo do prestador";
+    b13 = dpaksocor.nomrazsoc                   ,noentry;
+
+    b14 = formonly.segnumdig,
+          comments = " Codigo do Segurado";
+    b15 = gsakseg.segnom                        ,noentry;
+
+    w  = datkblq.ctgtrfcod,
+         comments = " Codigo da categoria tarifaria";
+    w2 = agekcateg.ctgtrfdes                    ,noentry;
+
+    y  = datkblq.blqnivcod,
+         comments = " Nivel: (1)Alerta, (2)Senha, (3)Nao atende";
+    x  = formonly.blqnivdes                     ,noentry;
+
+    z  = datkblq.blqanlflg                      ,upshift,
+         comments = " Analise por relatorio";
+
+    s1 = datkblq.caddat                         ,noentry;
+    s2 = datkblq.cadhor                         ,noentry;
+    s3 = formonly.cadfunnom                     ,noentry;
+
+    s4 = datkblq.atldat                         ,noentry;
+    s5 = datkblq.atlhor                         ,noentry;
+    s6 = formonly.funnom                        ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte02m01                                                Ruiz
+                                                                       Akio
+ Mostra todas as funcoes do acompanhamento de pendencias              Mai/2000
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+ Funcoes
+---------cte02m01--
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+[a            ][b ]
+
+}
+end
+
+attributes
+   a  = formonly.fundes                            ,noentry;
+   b  = formonly.funcod  type decimal   ,invisible ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_cte02m01(fundes thru funcod)
+end
+

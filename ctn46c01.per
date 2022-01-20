@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn46c01                                               Gilberto
+                                                                       Marcelo
+ Calcula distancia entre dois logradouros                             Out/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+                 Calculo de distancia entre logradouros
+----------------------------------------------------------------ctn46c01--
+
+ UF .......:[b7   ]    Cidade......:[b8                                  ]
+ Logradouro:[b1                                                          ]
+ Bairro....:[b2                                ] Numeracao:[b3    |b4    ]
+            [b5        ][b6         ]
+ UF .......:[b7   ]    Cidade......:[b8                                  ]
+ Logradouro:[b1                                                          ]
+ Bairro....:[b2                                ] Numeracao:[b3    |b4    ]
+            [b5        ][b6         ]
+ Distancia.:[d1       ]Km
+
+}
+end
+
+ tables datkmpacid, datkmpabrr, datkmpalgd, datkmpalgdsgm
+
+ attributes
+
+    b1 = formonly.lgdnom,                              noentry;
+    b2 = datkmpabrr.brrnom,                            noentry;
+    b3 = datkmpalgdsgm.mpalgdincnum,                   noentry;
+    b4 = datkmpalgdsgm.mpalgdfnlnum,                   noentry;
+    b5 = datkmpalgdsgm.lclltt,      invisible,         noentry;
+    b6 = datkmpalgdsgm.lcllgt,      invisible,         noentry;
+    b7 = datkmpacid.ufdcod,	                       noentry;
+    b8 = datkmpacid.cidnom,                            noentry;	
+
+
+    d1 = formonly.dstqtd,           reverse,           noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctn46c01(lgdnom thru cidnom)
+

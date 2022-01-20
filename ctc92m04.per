@@ -1,0 +1,44 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc92m04                                      Helder
+                                                             Oliveira
+ Cadastro Plano Residencia                                   Mar/2011
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc92m04--
+ Plano.....:[a  ][b                                                        ]
+------------------------------------------------------------------------------
+   Natureza    Descricao                                           Limite
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+   [c    ]     [d                                              ]   [e ]
+------------------------------------------------------------------------------
+ Atualizado..:[f          ] por [g                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.cod                ,noentry;
+   b  = formonly.descricao          ,noentry;
+   c  = formonly.nat_cod            ,upshift; 
+   d  = formonly.nat_desc           ,noentry;
+   e  = formonly.limite             ,upshift; 
+   f  = formonly.atldat             ,noentry;
+   g  = formonly.funnom             ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc92m04(nat_cod thru limite)
+end

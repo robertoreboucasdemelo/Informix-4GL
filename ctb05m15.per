@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB05M15                                              Wagner    
+ Manutencao dos custos e adicionais do servico de RE                 Mar/2002
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+     Acerto de valor e seus adicionais - Servicos RE 
+---------------------------------------------------ctb05m15--
+ Servico de natureza:[a0                            ]
+
+ Custo TABELA do servico.:[a1          ]
+
+ Custo  Descricao dos adicionais      Opcao/Qtd        Valor
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+[a|a2 ][a3                           ][a4      |a5          ]
+                      Total dos adicionais....:[a6          ]
+                      Custo total do servico..:[a7          ]
+
+}
+End
+
+Tables dbsmopgitm, dbsmopgcst, dbskcustosocorro, datmservico
+
+Attributes
+  a0 = formonly.socntzdes,                         noentry;
+  a1 = formonly.vlrcstini type dec(10,2), comments = " Informe o valor do custo inicial",
+                              format = "-----,--&.&&";
+  a2 = dbsmopgcst.soccstcod,                       noentry;
+  a3 = dbskcustosocorro.soccstdes,                 noentry;
+  a4 = dbsmopgcst.cstqtd, comments = " Opcao / Quantidade";
+  a5 = dbsmopgcst.socopgitmcst  ,format = "-----,--&.&&",
+                                 comments = " Informe o valore correspondente";
+  a  = dbskcustosocorro.soccstclccod,  invisible,  noentry;
+  a6 = formonly.totcstadc type dec(10,2)  , noentry, format = "-----,--&.&&";
+  a7 = datmservico.atdcstvlr, noentry, format = "-----,--&.&&";
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb05m15(soccstcod thru soccstclccod)
+End
+

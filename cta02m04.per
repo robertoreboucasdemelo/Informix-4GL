@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m04                                                 Pedro
+                                                                      Marcelo
+ Mostra todos os Assuntos                                            Dez/1994
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+ Assunto
+
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+[b  ][a                                       ]
+
+}
+End
+
+tables
+   datkassunto
+
+Attributes
+ b  = datkassunto.c24astcod       ,noentry;
+ a  = datkassunto.c24astdes       ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta02m04(c24astcod thru c24astdes)
+End

@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc95m00                                               Anderson
+                                                                     Doblinski
+ Cadastro Azul relacionado a porto                                    Jan/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc95m00--
+ 
+ Login Azul...:[a                     ] 
+                               
+ Ativo........:[b]     
+             
+ Tipo Usuario.:[c]  
+             
+ Empresa......:[d ]  
+             
+ Matricula....:[e     ]               
+             
+ Nome:........:[f                                              ] [g]
+ 
+------------------------------------------------------------------------------
+ Atualizado em: [h         ] por: [i                                       ]
+------------------------------------------------------------------------------
+}
+end
+
+	attributes
+		a  = formonly.azlsinlgicod    , upshift , comments = " Codigo do funcionario Azul";
+		b  = formonly.atoflg          , upshift , comments = " Ativo ? (S/N)";
+		c  = formonly.psgusrtipcod    , upshift , comments = " Tipo de Usuario do Responsavel (Ex: F(Funcionario))";
+		d  = formonly.psgempcod type decimal , upshift , comments = " Codigo da Empresa do Responsavel", format="##";
+		e  = formonly.psgmatcod type decimal , upshift , comments = " Matricula do Responsavel", format="######";
+		f  = formonly.rspfunnom       , upshift , noentry;
+		g  = formonly.teste           , upshift , comments = " Tecle enter para confirmar que esse e o responsavel";
+		h  = formonly.atldat          , upshift , noentry;
+		i  = formonly.atlfunnom       , upshift , noentry;
+		
+	end
+	
+ instructions
+      delimiters " "
+ end

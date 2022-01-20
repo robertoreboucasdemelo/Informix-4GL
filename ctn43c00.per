@@ -1,0 +1,62 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn43c00                                               Marcelo
+                                                                      Gilberto
+ Consulta mensagens enviadas para MDT's                               Ago/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn43c00--
+ Servico:[l0|l1     |l2]  Data Trans.:[l3        ]  Situacao:[l ] [l4        ]
+------------------------------------------------------------------------------
+ No.Mensag.  Situacao                    Data        Hora         Servico
+
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+[r1        ][r2                        ][r3        ][r4      |r|r6           ]
+
+}
+
+ tables
+    datmservico,
+    datmmdtmsg,
+    datmmdtlog
+
+ attributes
+
+    l0  = datmservico.atdsrvorg ,format = "&&", noentry;
+    l1  = datmservico.atdsrvnum ,format = "&&&&&&&",
+          comments = " Numero do servico";
+
+    l2  = datmservico.atdsrvano ,format = "&&",
+          comments = " Ano do servico";
+
+    l3  = formonly.mdttrxdat                type date,
+          comments = " Data da transmissao";
+
+    l   = formonly.mdttrxsit type dec      ,format = "&&",
+          comments = " Situacao das transmissoes"    ;
+
+    l4  = formonly.total                   ,noentry;
+
+    r1  = datmmdtmsg.mdtmsgnum             ,format = "#####&&&&&", noentry;
+    r2  = formonly.mdtmsgsttdes            ,noentry;
+    r3  = datmmdtlog.atldat                ,noentry;
+    r4  = datmmdtlog.atlhor                ,noentry;
+    r   = datmmdtmsg.mdtmsgstt             ,noentry, invisible;
+    r6  = formonly.servico                 ,noentry;
+
+ instructions
+   delimiters " "
+   screen record s_ctn43c00(mdtmsgnum thru servico)
+ end

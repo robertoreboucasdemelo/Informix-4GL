@@ -1,0 +1,62 @@
+{---------------------------------------------------------------------------
+ Nome do form: CTB03m03                                             Wagner
+
+ Consulta distribuicao dos servicos por Locadora                    Mai/2001
+---------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb03m03--
+ Data de.:[a1        ]a[a10       ]
+ Locadora:[a2 |a20                ] Loja:[a3     |a30                        ]
+------------------------------------------------------------------------------
+   Codigo  Nome Locadora                                   Loja      Qtde
+
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+  [b1    ][b2                                            |b3      |b4    |b5]
+------------------------------------------------------------------------------
+ Totais: Locadoras: [c1    ]                            Servicos: [c2    ]
+
+}
+
+ tables datklocadora
+
+ attributes
+   a1  = formonly.datapsq,
+         comments = " Data de atendimento inicio";
+   a10 = formonly.datapsq_a,
+         comments = " Data de atendimento fim";
+   a2  = datklocadora.lcvcod,
+         comments = " Codigo da Locadora ";
+   a20 = datklocadora.lcvnom,
+         noentry;
+   a3  = formonly.lcvextcod,                      upshift,
+         comments = " Codigo da Locadora ";
+   a30 = formonly.aviestnom,                      noentry;
+
+   b1  = formonly.lcvcod_dsp                     ,noentry;
+   b2  = formonly.lcvnom_dsp                     ,noentry;
+   b3  = formonly.lcvextcod_dsp                  ,noentry;
+   b4  = formonly.srvtotqtd   type decimal,
+                              format="####&&"    ,noentry;
+   b5  = formonly.aviestcod_dsp                  ,noentry,invisible;
+
+   c1  = formonly.prstotgrl   type decimal,
+                              format="####&&"    ,noentry;
+   c2  = formonly.srvtotgrl   type decimal,
+                              format="####&&"    ,noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctb03m03(lcvcod_dsp thru aviestcod_dsp)
+ end
+

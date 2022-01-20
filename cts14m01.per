@@ -1,0 +1,74 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS14M01                                                  Pedro
+                                                                       Marcelo
+ Marcacao Vistoria Sinistro de Auto                                   Jun/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts14m01--
+ Vistoria:[a1    |a2  ]    VISTORIA SINISTRO AUTO[a3      ]  [a4             ]
+------------------------------------------------------------------------------
+[b1                                     ][b2    |b3                        ]
+[b6                                ]     [b7    ]        [b8                ]
+[b9                                     ][c1  ][c2     ][c3                  ]
+------------------------------------------------------------------------------
+ Vist. G.S.P:[c5|c51                    ] Data Sinistro.:[c6        ]
+ Aviso com ?:[c7|c8       ]               Valor Orcado..:[c9                ]
+-------------------------- DADOS DA OFICINA ----------------------------------
+ Oficina....:[d                                       ]   Cod.:[d1    ]
+ Endereco...:[d2                                      ]
+ Bairro.....:[d3                  ]
+ Cidade.....:[d4                       ]  U.F:[d5]       Fone:[d6  |d7       ]
+------------------------------------------------------------------------------
+ Dt.Vistoria:[d8        ] Tel.Cont:[d9  |d10                 ]Ret:[d11       ]
+ Atualizado.:[e1                                           ]
+}
+end
+
+tables
+   datmvstsin,
+   gkpkpos
+
+attributes
+
+a1  = datmvstsin.sinvstnum    ;
+a2  = datmvstsin.sinvstano    ;
+a3  = formonly.sinvsttip      ;
+a4  = datmvstsin.vstsolnom    ;
+
+b1  = datmvstsin.segnom       ;
+b2  = formonly.doctxt         ;
+b3  = formonly.docnum         ;
+b6  = datmvstsin.cornom       ,comments = " Corretor" ;
+b7  = datmvstsin.corsus       ,comments = " Susep" ;
+b8  = formonly.cvnnom         ,noentry;
+b9  = datmvstsin.vcldes       ,comments = " Descricao do veiculo" ;
+c1  = datmvstsin.vclanomdl    ,comments = " Ano do veiculo" ;
+c2  = datmvstsin.vcllicnum    ,comments = " Placa do veiculo" ;
+c3  = formonly.chassi         ,comments = " Chassi ";
+c5  = datmvstsin.sinvstrgi    ,comments = " Vistoria da Capital e Grande Sao Paulo";
+c51 = formonly.descricao      ;
+c6  = datmvstsin.sindat       ,comments = " Data do sinistro";
+c7  = datmvstsin.sinavs       ,comments = " C-Corretor, O-Oficina, I-Cia";
+c8  = formonly.avisocom       ;
+c9  = datmvstsin.orcvlr       ,format   = "<<<,<<<,<<<,<<&.&&";
+d   = gkpkpos.nomrazsoc       ,comments = " Nome completo da oficina";
+d1  = datmvstsin.ofnnumdig    ,comments = " Codigo da oficina";
+d2  = gkpkpos.endlgd          ,comments = " Endereco da oficina";
+d3  = gkpkpos.endbrr          ,comments = " Bairro da oficina";
+d4  = gkpkpos.endcid          ,comments = " Cidade da oficina";
+d5  = gkpkpos.endufd          ,comments = " Unidade federativa da oficina" ;
+d6  = formonly.dddcodofi      ,comments = " Codigo DDD da oficina";
+d7  = formonly.telnumofi      ,comments = " Telefone da oficina";
+d8  = datmvstsin.vstdat       ,comments = " Data da vistoria";
+d9  = formonly.dddcodctt      ,comments = " Codigo DDD para contato";
+d10 = formonly.telnumctt      ,comments = " Numero telefone para contato";
+d11 = datmvstsin.vstretdat    ,comments = " Data de retorno";
+e1  = formonly.registro       ,noentry;
+
+instructions
+  delimiters " "
+end

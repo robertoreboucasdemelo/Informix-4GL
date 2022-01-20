@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m10                                              Gilberto
+                                                                      Marcelo
+ Exibe matriculas com permissao de liberacao (assuntos/bloqueios)    Mar/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+[x1                                                                ]
+----------------------------------------------------------cta02m10--
+  Matricula  Nome                  Senha
+
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+[a ][b     ][c                   ][d              ][e              ]
+
+
+}
+End
+
+ tables isskfunc, datkfun, datrastfun, datkassunto
+
+ Attributes
+    x1= formonly.cabec,         reverse        ,noentry;
+
+    a = datrastfun.empcod                      ,noentry;
+    b = datrastfun.funmat                      ,noentry;
+    c = isskfunc.funnom                        ,noentry;
+
+    d = datkfun.funsnh,         upshift        ,invisible,
+        comments = " Senha da matricula";
+
+    e = formonly.funsnhcad,     invisible       ,noentry;
+ End
+
+ Instructions
+    delimiters " "
+    screen record s_cta02m10(empcod thru funsnhcad)
+ End

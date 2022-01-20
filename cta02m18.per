@@ -1,0 +1,40 @@
+{----------------------------------------------------------------------
+Programa  : CTA02M18.PER
+Descricao : Exibicao de matriculas com permissao de liberacao de
+            atendimentos
+Sistema   : Central 24h
+Autor     : Mariana Gimenez - Fsw
+Data      : 06/03/2003
+------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------
+     FUNCIONARIOS COM PERMISSAO DE LIBERACAO DE ASSUNTOS  
+---------------------------------------------------cta02m18---
+
+       Emp/Matricula  Nome
+       [a ] [b     ] [c                   ]
+       [a ] [b     ] [c                   ]
+       [a ] [b     ] [c                   ]
+       [a ] [b     ] [c                   ]
+       [a ] [b     ] [c                   ]
+
+}
+
+end 
+
+attributes
+
+a = formonly.empcod;
+b = formonly.funmat;
+c = formonly.funnom;
+end
+
+instructions
+  delimiters " "
+  screen record s_cta02m18(empcod thru funnom) 
+end 
+

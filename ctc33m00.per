@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc33m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de matriculas com permissao de liberacao de codigo assunto  Mar/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc33m00--
+             Empresa.....:[b1]     Matricula...:[b2    ]
+------------------------------------------------------------------------------
+
+
+             Nome........:[b3                 ]
+
+             Departamento:[b4    ]
+
+                          [b45            ]
+             Senha.......:[b5             ]
+
+
+             Incluido....:[s1        ] por [s2                 ]
+             Atualizado..:[s3        ] por [s4                 ]
+
+
+}
+end
+
+ tables isskfunc, datkfun
+
+ attributes
+    b1 = formonly.empcod,
+         comments = " Codigo da empresa";
+    b2 = formonly.funmat,
+         comments = " Matricula do funcionario";
+
+    b3 = isskfunc.funnom                        ,noentry;
+    b4 = isskfunc.dptsgl                        ,noentry;
+
+    b45= formonly.funatusnh,   invisible        ,upshift,
+         comments = " Senha atual para liberacao do assunto";
+    b5 = formonly.funsnh,      invisible        ,upshift,
+         comments = " Nova senha do funcionario para liberacao do assunto";
+
+    s1 = datkfun.caddat                         ,noentry;
+    s2 = formonly.cadfunnom                     ,noentry;
+    s3 = datkfun.atldat                         ,noentry;
+    s4 = formonly.atlfunnom                     ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,33 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTN26C01                                              Marcelo
+                                                                     Gilberto
+ Pop-up de motivos para assistencia                                  Mar/1999
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+ Motivos
+--------------ctn26c01--
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+[a                   |b ]
+
+}
+end
+
+tables datkasimtv
+
+attributes
+   a  = datkasimtv.asimtvdes, noentry;
+   b  = datkasimtv.asimtvcod, noentry, invisible;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn26c01(asimtvdes thru asimtvcod)
+end

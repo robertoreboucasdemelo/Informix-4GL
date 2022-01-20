@@ -1,0 +1,41 @@
+database porto
+screen
+
+{
+                 Informacoes sobre o Contato
+---------------------------------------------------cte02m01a--
+
+ Telefone.:[a   |b                   ]
+
+ Fax......:[c        ]
+
+ Contato..:[d                   ]
+
+[e         |f                                               ]
+
+ PA.......:[g        ]
+
+ Atendente:[h                           ]
+
+ (F17)Abandona [i ]
+}
+end
+
+tables
+  dacmpndret, dacmlig
+
+attributes
+
+  a = dacmpndret.dddcod, noentry;
+  b = dacmpndret.ctttel, noentry;
+  c = dacmpndret.faxnum, noentry;
+  d = dacmpndret.pndretcttnom, noentry;
+  e = formonly.msg type char, noentry;
+  f = formonly.susep_ou_funmat type char, noentry;
+  g = dacmlig.c24paxnum, format = "<<<<<<<<&", noentry;
+  h = formonly.atendnome, noentry;
+  i = formonly.espera, invisible;
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,34 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc92m08a                                       Helder Oliveira
+
+ Popup pesquisa Pessoa VIP                                           Mai/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                   [x                     ]
+-------------------------------------------------------ctc92m08a--
+ Pessoa.....: [a]        
+ CPF / CNPJ.: [b        ]/[c   ]-[d ] 
+ Nome.......: [e                                                ]
+ 
+------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.tipo_pessoa          , comments = 'Tipo de Pessoa (F)isica - (J)uridica', upshift ;
+    b  = formonly.cpf_num type decimal , comments = 'Numero do CPF/CNPJ', format = "&&&&&&&&&";
+    c  = formonly.ord_num type decimal , comments = 'Ordem do CNPJ' , format = "&&&&" ;
+    d  = formonly.cpf_dig type decimal , comments = 'Digito do CPF/CNPJ', format = "&&" ;
+    e  = formonly.seg_nom              , comments = 'Nome do Segurado Pessoa VIP', upshift;
+    x  = formonly.titulo               , noentry;
+end
+
+instructions
+    screen record s_ctc92m08 (tipo_pessoa thru seg_nom)
+    delimiters " "
+end

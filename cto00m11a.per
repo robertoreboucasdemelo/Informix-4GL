@@ -1,0 +1,56 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cto00m11a                                       Helder Oliveira
+
+ Tela de Pesquisa - Endereco do Car                                   Mai/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+   ENDERECO C.A.R. : [n   ][o                                ]
+---------------------------------------------------cto00m11a----
+   Tp.Lograd..:[a         ]
+   Logradouro.:[b                                      ]
+   Complemento:[c                                      ]
+   Numero.....:[d         ]
+   Bairro.....:[e                                             ]
+   Cidade.....:[f                                             ]
+   UF.........:[g ]              CEP......:[h    |i  ]
+   Latitude...:[j          ]     Longitude:[k          ]
+   Telefone...:[l   |m        ]
+   Hor.Atend..:[p    ]as[q    ]
+   Periodo....:[r                                           ][z]
+}
+end
+
+attributes
+
+    a = formonly.lgdtip         , noentry;
+    b = formonly.lgdnom         , noentry;
+    c = formonly.endlgdcmp      , noentry;
+    d = formonly.lgdnum         , noentry;
+    e = formonly.brrnom         , noentry;
+    f = formonly.cidnom         , noentry;
+    g = formonly.ufdcod         , noentry;
+    h = formonly.cep            , noentry;
+    i = formonly.lgdcepcmp      , noentry;
+    j = formonly.lclltt         , noentry;
+    k = formonly.lcllgt         , noentry;
+    l = formonly.dddcod         , noentry;
+    m = formonly.lcltelnum      , noentry;
+    n = formonly.codcar         , noentry;
+    o = formonly.desccar        , noentry;
+    p = formonly.atdinchor      , noentry, picture = "##:##";
+    q = formonly.atdfnlhor      , noentry, picture = "##:##";
+    r = formonly.atdsemdiades   , noentry;
+
+
+    z = formonly.invisible , invisible, comments = '                         (F17)-Abandona';
+end
+
+instructions
+    screen record s_cto00m11a (lgdtip thru lcltelnum)
+    delimiters " "
+end
+

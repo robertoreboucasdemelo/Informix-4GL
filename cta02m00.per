@@ -1,0 +1,94 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTA02M00                                       Pedro - Nov/1994
+                                                         Alterado em: Set/1999
+ Mostra as ultimas ligacoes da apolice                           Por: Gilberto
+ ------------------------------------------------------------------------------
+ em 24/04/07 por solicitacao da Judite/Willian retirou o reverso dos campos
+ assunto e descricao. (ruiz)
+  k  = formonly.c24astcod                    ,
+       color = black reverse where k matches '*K*', noentry;
+  l  = formonly.c24astdes                    ,
+       color = black reverse where l matches 'AZUL*', noentry;
+
+------------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+
+{
+
+[a                                                          ][b              ]
+ Atendimento:[a1        ]
+--------------------------------------------------------------------cta02m00--
+ Atendimento  Data/Hora  Atend. Atendente Solicitante  Tipo     Servico
+ Assunto                                              P.A.      Pgr.
+------------------------------------------------------------------------------
+[y|c         |d         |e    |f         |g           |h       |i            ]
+[k   ][l                                           ] [m     ] [o][n          ]
+[i1     |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       |i11         ]
+[y|c         |d         |e    |f         |g           |h       |i            ]
+[k   ][l                                           ] [m     ] [o][n          ]
+[i1     |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       |i11         ]
+[y|c         |d         |e    |f         |g           |h       |i            ]
+[k   ][l                                           ] [m     ] [o][n          ]
+[i1     |i2][i3    |i4  |i5][i6    |i7  ][i8    |i9  |i10       |i11         ]
+------------------------------------------------------------------------------
+ Assunto:[s1 ][s2                                                            ] 
+[s3                                                                          ]
+[s4                                                                          ] 
+}
+end
+
+Tables
+   datkassunto,
+   datmligacao,
+   datrligsrv,
+   datrligsinvst,
+   datrligsinavs,
+   datrligsin,
+   datketapa,
+   datksoltip,
+   datrligagn,
+   datrligtrpavb,
+   datmatd6523
+
+Attributes
+
+  a  = formonly.cabec               type char, noentry;
+  b  = formonly.solnom                       , noentry;
+  a1 = formonly.atdnum_new          type dec , noentry, format = "#########&";
+
+  y  = formonly.linha                        , invisible;
+  c  = datmatd6523.atdnum         , reverse  , noentry, format = "#########&";
+  d  = datmligacao.ligdat                    , noentry;
+  e  = datmligacao.lighorinc                 , noentry;
+  f  = formonly.funnom                       , noentry;
+  g  = datmligacao.c24solnom                 , noentry, reverse;
+  h  = datksoltip.c24soltipdes               , noentry;
+  i  = formonly.srvtxt              type char, noentry;
+  k  = formonly.astcod                       , noentry;
+  l  = formonly.astdes                       , noentry;
+  m  = datmligacao.c24paxnum                 , noentry, format = "######";
+  o  = formonly.msgenv              type char, noentry;
+  n  = datketapa.atdetpdes                   , noentry;
+  i1 = datrligsrv.atdsrvnum       , invisible, noentry;
+  i2 = datrligsrv.atdsrvano       , invisible, noentry;
+  i3 = datrligsinvst.sinvstnum    , invisible, noentry;
+  i4 = datrligsinvst.sinvstano    , invisible, noentry;
+  i5 = datrligsinvst.ramcod       , invisible, noentry;
+  i6 = datrligsinavs.sinavsnum    , invisible, noentry;
+  i7 = datrligsinavs.sinavsano    , invisible, noentry;
+  i8 = datrligsin.sinnum          , invisible, noentry;
+  i9 = datrligsin.sinano          , invisible, noentry;
+  i10= datrligagn.vstagnnum       , invisible, noentry;
+  i11= datrligtrpavb.trpavbnum    , invisible, noentry;
+  s1 = datmligacao.c24astcod      , upshift  , autonext;
+  s2 = formonly.c24astdes           type char, noentry;
+  s3 = formonly.obs               , noentry;
+  s4 = formonly.obs1              , noentry;  
+End
+
+Instructions
+  delimiters " "
+  screen record s_cta02m00(linha thru trpavbnum)
+End

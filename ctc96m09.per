@@ -1,0 +1,36 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc96m09                                  Amilton
+                                                         Pinto
+ Pop-up de grupos  Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+---------------------------ctc96m09--
+            Grupos                  
+-------------------------------------   
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+[a ][b                              ] 
+
+
+}
+end
+
+attributes
+   a  =  formonly.grpcod     , noentry;
+   b  =  formonly.desnom      , noentry;   
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc96m09(grpcod thru desnom)
+end
+

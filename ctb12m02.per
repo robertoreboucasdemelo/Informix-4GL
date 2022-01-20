@@ -1,0 +1,83 @@
+
+{--------------------------------------------------------------------
+ Nome do form: CTB12M00                                      Gilberto
+                                                              Marcelo
+ Pesquisa prestador por Nome Guerra, Razao ou por O.S.       Fev/1997
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb12m02--
+ Nome:[a1                                 ] Guerra/Razao:[a2] Emp.:[e1][e2   ]
+ Tipo Pessoa..:[t]  Cgc/Cpf:[a3          ][a4  ][f ] Servico..:[a5|a6     |a7]
+ Cidade.......:[b0                          ]UF:[b1] Situacao.:[b|b2         ]
+------------------------------------------------------------------------------
+ Razao.S.:[a8                                     ] Codigo:[a9    ][a        ]
+ N.Guerra:[a91                 ]          Cgc/Cpf.:[c][c2          ][c3  ][cd]
+ Endereco:[a10                                    ] Bairro:[a11              ]
+ Cidade..:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels....:[a15 ][a16                                        ]
+
+ Razao.S.:[a8                                     ] Codigo:[a9    ][a        ]
+ N.Guerra:[a91                 ]          Cgc/Cpf.:[c][c2          ][c3  ][cd]
+ Endereco:[a10                                    ] Bairro:[a11              ]
+ Cidade..:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels....:[a15 ][a16                                        ]
+
+}
+
+tables dpaksocor, dbsmopg, dbsmopgitm, datmservico
+
+attributes
+  a1  = formonly.nomepsq                     ,upshift ,
+        comments = " Nome para pesquisa";
+  a2  = formonly.tipo                        ,upshift ,
+        comments = " (G)uerra, (R)azao social, (P)arcial de nome";
+  e1  = formonly.ciaempcod, comments = "Codigo da empresa";
+  e2  = formonly.empsgl,                      noentry;
+  t   = formonly.pestipc                     ,upshift ,
+        comments = " Pessoa: (F)isica, (J)uridica";
+  a3  = formonly.cgccpfnumc,
+        comments = " Numero do Cgc/Cpf";
+  a4  = formonly.cgcordc     type decimal,  format = "&&&&",
+        comments = " Codigo da Filial do Cgc";
+  f   = formonly.cgccpfdigc  type decimal,  format = "&&",
+        comments = " Digito do Cgc/Cpf";
+  a5  = datmservico.atdsrvorg, format = "&&"    ,noentry;
+  a6  = dbsmopgitm.atdsrvnum , format = "&&&&&&&",
+        comments = " Numero da O.S.";
+  a7  = dbsmopgitm.atdsrvano                 , format = "&&",
+        comments = " Ano da O.S.";
+  b0  = formonly.endcid_d, upshift,
+        comments = " Cidade para pesquisa ";
+  b1  = formonly.endufd_d, upshift,
+        comments = " U.F. para pesquisa ";
+  b   = dpaksocor.prssitcod, upshift,
+        comments = " (A)tivo, (C)ancelado, (P)roposta ou (enter)TODOS";
+  b2   = formonly.prssitdes                  ,noentry;
+
+
+  a8   = dpaksocor.nomrazsoc                 ,noentry;
+  a9   = dpaksocor.pstcoddig                 ,noentry;
+  a    = formonly.situacao                   ,noentry;
+  a91  = dpaksocor.nomgrr                    ,noentry;
+  c    = dpaksocor.pestip                    ,noentry;
+  c2   = dpaksocor.cgccpfnum                 ,noentry;
+  c3   = dpaksocor.cgcord,    format="&&&&"  ,noentry;
+  cd   = dpaksocor.cgccpfdig, format="&&"    ,noentry;
+  a10  = dpaksocor.endlgd                    ,noentry;
+  a11  = dpaksocor.endbrr                    ,noentry;
+  a12  = dpaksocor.endcid                    ,noentry;
+  u2   = dpaksocor.endufd                    ,noentry;
+  a13  = dpaksocor.endcep                    ,noentry;
+  a14  = dpaksocor.endcepcmp                 ,noentry;
+  a15  = dpaksocor.dddcod                    ,noentry;
+  a16  = dpaksocor.teltxt                    ,noentry;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctb12m02(nomrazsoc thru teltxt)
+end

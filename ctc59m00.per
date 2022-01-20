@@ -1,0 +1,175 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC59M00                                               Wagner
+                                                                      Raji
+ Cidades x Cidades Sede                                               Jul/2002
+-----------------------------------------------------------------------------}
+ 
+database porto     
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc59m00--
+ Data:[x0        ]   Cidade:[x1                                 |x2|x3    ]
+------------------------------------------------------------------------------
+   Cotas/[a         ]         [x4|x5|x6                                ]
+                  
+   0h:[ca |ua ]   5h:[cf |uf ]   10h:[ck |uk ]   15h:[cp |dp ]   20h:[cu |uu ]
+ 0h30:[ca2|ua2] 5h30:[cf2|uf2] 10h30:[ck2|uk2] 15h30:[cp2|dp2] 20h30:[cu2|uu2]
+   1h:[cb |ub ]   6h:[cg |ug ]   11h:[cl |ul ]   16h:[cq |uq ]   21h:[cv |uv ]
+ 1h30:[cb2|ub2] 6h30:[cg2|ug2] 11h30:[cl2|ul2] 16h30:[cq2|uq2] 21h30:[cv2|uv2]
+   2h:[cc |uc ]   7h:[ch |uh ]   12h:[cm |um ]   17h:[cr |ur ]   22h:[cw |uw ]
+ 2h30:[cc2|uc2] 7h30:[ch2|uh2] 12h30:[cm2|um2] 17h30:[cr2|ur2] 22h30:[cw2|uw2]
+   3h:[cd |ud ]   8h:[ci |ui ]   13h:[cn |un ]   18h:[cs |us ]   23h:[cx |ux ]
+ 3h30:[cd2|ud2] 8h30:[ci2|ui2] 13h30:[cn2|un2] 18h30:[cs2|us2] 23h30:[cx2|ux2]
+   4h:[ce |ue ]   9h:[cj |uj ]   14h:[co |uo ]   19h:[ct |ut ]
+ 4h30:[ce2|ue2] 9h30:[cj2|uj2] 14h30:[co2|uo2] 19h30:[ct2|ut2]
+ 
+}                                                                        
+end                                                                      
+
+tables datmsrvrgl, glakcid
+
+attributes
+  a  = formonly.util,        upshift, reverse, noentry;
+  
+  x0 = datmsrvrgl.rgldat,    upshift,
+                             comments = " Data do regulador";
+  x1 = glakcid.cidnom,       upshift,
+                             comments = " Cidade do regulador";
+  x2 = glakcid.ufdcod,       upshift,
+                             comments = " UF da cidade do regulador";
+  x3 = datmsrvrgl.cidcod,    noentry;
+
+  x4 = formonly.atdsrvorg    type dec(2,0), reverse,
+                             comments = " Codigo da origem do servico";
+  x5 = formonly.srvrglcod    type dec(2,0), reverse,
+                             comments = " Tipo de servico(auto)/Grupo de Narureza(RE)";
+  x6 = formonly.srvrgldes,   reverse,  noentry;
+
+  ca  = formonly.h0cota     type dec(3,0), format = "#&&", comments = " Cota da meia-noite";
+  ua  = formonly.h0utili    type dec(3,0), format = "#&&", noentry,reverse;
+  ca2 = formonly.h030cota   type dec(3,0), format = "#&&", comments = " Cota das 0h30 horas";       
+  ua2 = formonly.h030utili  type dec(3,0), format = "#&&", noentry,reverse;
+                             
+  cb  = formonly.h1cota     type dec(3,0), format = "#&&", comments = " Cota da 1 hora da manha";
+  ub  = formonly.h1utili    type dec(3,0), format = "#&&", noentry,reverse;
+  cb2 = formonly.h130cota   type dec(3,0), format = "#&&", comments = " Cota das 1h30 horas";
+  ub2 = formonly.h130utili  type dec(3,0), format = "#&&", noentry,reverse;
+                             
+  cc  = formonly.h2cota     type dec(3,0), format = "#&&", comments = " Cota das 2 horas da manha";
+  uc  = formonly.h2utili    type dec(3,0), format = "#&&", noentry,reverse;
+  cc2 = formonly.h230cota   type dec(3,0), format = "#&&", comments = " Cota das 2h30 horas";       
+  uc2 = formonly.h230utili  type dec(3,0), format = "#&&", noentry,reverse; 
+                             
+  cd  = formonly.h3cota     type dec(3,0), format = "#&&", comments = " Cota das 3 horas da manha";
+  ud  = formonly.h3utili    type dec(3,0), format = "#&&", noentry,reverse;
+  cd2 = formonly.h330cota   type dec(3,0), format = "#&&", comments = " Cota das 3h30 horas";
+  ud2 = formonly.h330utili  type dec(3,0), format = "#&&", noentry,reverse;
+                             
+  ce  = formonly.h4cota     type dec(3,0), format = "#&&", comments = " Cota das 4 horas da manha";
+  ue  = formonly.h4utili    type dec(3,0), format = "#&&", noentry,reverse;
+  ce2 = formonly.h430cota   type dec(3,0), format = "#&&", comments = " Cota das 4h30 horas";       
+  ue2 = formonly.h430utili  type dec(3,0), format = "#&&", noentry,reverse;
+                             
+  cf  = formonly.h5cota     type dec(3,0), format = "#&&", comments = " Cota das 5 horas da manha";
+  uf  = formonly.h5utili    type dec(3,0), format = "#&&", noentry,reverse;
+  cf2 = formonly.h530cota   type dec(3,0), format = "#&&", comments = " Cota das 5h30 horas";
+  uf2 = formonly.h530utili  type dec(3,0), format = "#&&", noentry, reverse;
+                             
+  cg  = formonly.h6cota     type dec(3,0), format = "#&&", comments = " Cota das 6 horas da manha";
+  ug  = formonly.h6utili    type dec(3,0), format = "#&&", noentry,reverse;
+  cg2 = formonly.h630cota   type dec(3,0), format = "#&&", comments = " Cota das 6h30 horas";
+  ug2 = formonly.h630utili  type dec(3,0), format = "#&&", noentry, reverse; 
+                               
+  ch  = formonly.h7cota     type dec(3,0), format = "#&&",comments = " Cota das 7 horas da manha";
+  uh  = formonly.h7utili    type dec(3,0), noentry, format = "#&&", reverse;
+  ch2 = formonly.h730cota   type dec(3,0), format = "#&&", comments = " Cota das 7h30 horas";
+  uh2 = formonly.h730utili  type dec(3,0), format = "#&&", noentry, reverse; 
+                             
+  ci  = formonly.h8cota     type dec(3,0), format = "#&&",comments = " Cota das 8 horas da manha";
+  ui  = formonly.h8utili    type dec(3,0), noentry, format = "#&&", reverse;
+  ci2 = formonly.h830cota   type dec(3,0), format = "#&&", comments = " Cota das 8h30 horas";
+  ui2 = formonly.h830utili  type dec(3,0), format = "#&&", noentry, reverse;
+  
+  cj  = formonly.h9cota     type dec(3,0), format = "#&&",comments = " Cota das 9 horas da manha";
+  uj  = formonly.h9utili    type dec(3,0), noentry, format = "#&&", reverse;
+  cj2 = formonly.h930cota   type dec(3,0), format = "#&&", comments = " Cota das 9h30 horas";
+  uj2 = formonly.h930utili  type dec(3,0), format = "#&&", noentry, reverse; 
+                             
+  ck  = formonly.h10cota    type dec(3,0), format = "#&&",comments = " Cota das 10 horas da manha";
+  uk  = formonly.h10utili   type dec(3,0), noentry, format = "#&&", reverse;
+  ck2 = formonly.h1030cota  type dec(3,0), format = "#&&", comments = " Cota das 10h30 horas";
+  uk2 = formonly.h1030utili type dec(3,0), format = "#&&", noentry, reverse;
+                             
+  cl  = formonly.h11cota    type dec(3,0), format = "#&&",comments = " Cota das 11 horas da manha";
+  ul  = formonly.h11utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cl2 = formonly.h1130cota  type dec(3,0), format = "#&&", comments = " Cota das 11h30 horas";
+  ul2 = formonly.h1130utili type dec(3,0), format = "#&&", noentry, reverse;
+  
+  cm  = formonly.h12cota    type dec(3,0), format = "#&&",comments = " Cota do meio-dia";
+  um  = formonly.h12utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cm2 = formonly.h1230cota  type dec(3,0), format = "#&&", comments = " Cota das 12h30 horas";
+  um2 = formonly.h1230utili type dec(3,0), format = "#&&", noentry, reverse;
+    
+  cn  = formonly.h13cota    type dec(3,0), format = "#&&",comments = " Cota das 13 horas";
+  un  = formonly.h13utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cn2 = formonly.h1330cota  type dec(3,0), format = "#&&", comments = " Cota das 13h30 horas";
+  un2 = formonly.h1330utili type dec(3,0), format = "#&&", noentry, reverse;
+  
+  co  = formonly.h14cota    type dec(3,0), format = "#&&",comments = " Cota das 14 horas";
+  uo  = formonly.h14utili   type dec(3,0), noentry, format = "#&&", reverse;
+  co2 = formonly.h1430cota  type dec(3,0), format = "#&&", comments = " Cota das 14h30 horas";
+  uo2 = formonly.h1430utili type dec(3,0), format = "#&&", noentry, reverse;
+  
+  cp  = formonly.h15cota    type dec(3,0), format = "#&&",comments = " Cota das 15 horas";
+  dp  = formonly.h15utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cp2 = formonly.h1530cota  type dec(3,0), format = "#&&", comments = " Cota das 15h30 horas";
+  dp2 = formonly.h1530utili type dec(3,0), format = "#&&", noentry, reverse;
+    
+  cq  = formonly.h16cota    type dec(3,0), format = "#&&",comments = " Cota das 16 horas";
+  uq  = formonly.h16utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cq2 = formonly.h1630cota  type dec(3,0), format = "#&&", comments = " Cota das 16h30 horas";
+  uq2 = formonly.h1630utili type dec(3,0), format = "#&&", noentry, reverse; 
+
+  cr  = formonly.h17cota    type dec(3,0), format = "#&&",comments = " Cota das 17 horas";
+  ur  = formonly.h17utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cr2 = formonly.h1730cota  type dec(3,0), format = "#&&", comments = " Cota das 17h30 horas";
+  ur2 = formonly.h1730utili type dec(3,0), format = "#&&", noentry, reverse;
+
+  cs  = formonly.h18cota    type dec(3,0), format = "#&&",comments = " Cota das 18 horas";
+  us  = formonly.h18utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cs2 = formonly.h1830cota  type dec(3,0), format = "#&&", comments = " Cota das 18h30 horas";
+  us2 = formonly.h1830utili type dec(3,0), format = "#&&", noentry, reverse;
+  
+  ct  = formonly.h19cota    type dec(3,0), format = "#&&",comments = " Cota das 19 horas";
+  ut  = formonly.h19utili   type dec(3,0), noentry, format = "#&&", reverse;
+  ct2 = formonly.h1930cota  type dec(3,0), format = "#&&", comments = " Cota das 19h30 horas";       
+  ut2 = formonly.h1930utili type dec(3,0), format = "#&&", noentry, reverse;
+                            
+  cu  = formonly.h20cota    type dec(3,0), format = "#&&",comments = " Cota das 20 horas";
+  uu  = formonly.h20utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cu2 = formonly.h2030cota  type dec(3,0), format = "#&&", comments = " Cota das 20h30 horas";
+  uu2 = formonly.h2030utili type dec(3,0), format = "#&&", noentry, reverse;
+  
+  cv  = formonly.h21cota    type dec(3,0), format = "#&&",comments = " Cota das 21 horas";
+  uv  = formonly.h21utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cv2 = formonly.h2130cota  type dec(3,0), format = "#&&", comments = " Cota das 21h30 horas";
+  uv2 = formonly.h2130utili type dec(3,0), format = "#&&", noentry, reverse;
+
+  cw  = formonly.h22cota    type dec(3,0), format = "#&&",comments = " Cota das 22 horas";
+  uw  = formonly.h22utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cw2 = formonly.h2230cota  type dec(3,0), format = "#&&", comments = " Cota das 22h30 horas";
+  uw2 = formonly.h2230utili type dec(3,0), format = "#&&", noentry, reverse; 
+
+  cx  = formonly.h23cota    type dec(3,0), format = "#&&",comments = " Cota das 23 horas";
+  ux  = formonly.h23utili   type dec(3,0), noentry, format = "#&&", reverse;
+  cx2 = formonly.h2330cota  type dec(3,0), format = "#&&", comments = " Cota das 23h30 horas";
+  ux2 = formonly.h2330utili type dec(3,0), format = "#&&", noentry, reverse;
+
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc59m00(atdsrvorg thru h2330utili)
+end
+

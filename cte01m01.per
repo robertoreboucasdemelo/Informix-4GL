@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cte01m01                                                  Akio
+
+ Registra o solicitante                                              Abr/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+
+--------------------------------------------------------------------cte01m01--
+[a1                                                ]         [a2             ]
+------------------------------------------------------------------------------
+ Data       Hr Ini Hr Fim Atendente       P.A.  Solicitante            Ligacao
+            Assunto                                                  Documento
+------------------------------------------------------------------------------
+[b         |c    ][d    ][e             ][f    |g              |h1      |h2  ]
+          [i1  ][i3   |i4                                 |j                 ]
+
+[b         |c    ][d    ][e             ][f    |g              |h1      |h2  ]
+          [i1  ][i3   |i4                                 |j                 ]
+
+[b         |c    ][d    ][e             ][f    |g              |h1      |h2  ]
+          [i1  ][i3   |i4                                 |j                 ]
+------------------------------------------------------------------------------
+
+ Assunto...:[k1  ] [k3   |k4                                      ]
+------------------------------------------------------------------------------
+
+}
+end
+ tables
+    dacmlig,
+    dackass
+
+ attributes
+    a1 = formonly.solcab        , noentry;
+    a2 = formonly.solnom        , noentry;
+    b  = formonly.corligdat     , noentry;
+    c  = formonly.ligasshorinc  , noentry;
+    d  = formonly.ligasshorfnl  , noentry;
+    e  = formonly.atendente     , noentry;
+    f  = dacmlig.c24paxnum      , noentry, format="&&&&&";
+    g  = formonly.c24solnom     , noentry;
+    h1 = dacmlig.corlignum      , noentry, format="####&&&&";
+    h2 = dacmlig.corligano      , noentry, format="&&&&";
+    i1 = dackass.corasscod      , noentry, format="&&&&";
+    i3 = formonly.corassagpsgl  , noentry;
+    i4 = formonly.corassdes     , noentry;
+    j  = formonly.docto         , noentry;
+    k1 = formonly.infasscod     ;
+    k3 = formonly.infassagpsgl  , noentry;
+    k4 = formonly.infassdes     , noentry;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cte01m01(corligdat thru docto)
+ end

@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC00M04                                              Marcelo
+                                                                     Gilberto
+ Manutencao no horario de funcionamento dos prestadores              Jan/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   HORARIO DE FUNCIONAMENTO
+--------------------ctc00m04--
+
+ Seg. a Sex.:[a1   ]as[a2   ]
+ Sabado.....:[b1   ]as[b2   ]
+ Domingo....:[c1   ]as[c2   ]
+
+}
+end
+
+tables dpaksocor
+
+attributes
+a1   = dpaksocor.horsegsexinc,
+                 comments = " Horario inicial segunda/sexta",
+                 autonext;
+a2   = dpaksocor.horsegsexfnl,
+                 comments = " Horario final segunda/sexta",
+                 autonext;
+b1   = dpaksocor.horsabinc,
+                 comments = " Horario inicial sabado",
+                 autonext;
+b2   = dpaksocor.horsabfnl,
+                 comments = " Horario final sabado",
+                 autonext;
+c1   = dpaksocor.hordominc,
+                 comments = " Horario inicial domingo",
+                 autonext;
+c2   = dpaksocor.hordomfnl,
+                 comments = " Horario final domingo",
+                 autonext;
+
+end
+
+instructions
+     delimiters " "
+end

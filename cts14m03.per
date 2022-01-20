@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts14m03                                                 Pedro
+                                                                      Marcelo
+ Pop-up de Regioes                                                   Jul/1995
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen size 24 by 80
+
+{
+ Nome da Regiao          Cod.   Sucursal
+-----------------------------------------------cts14m03--
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+[a                      ][b  ][c    ][d                 ]
+
+}
+End
+
+tables
+   gkpkbairro,
+   gabksuc
+
+Attributes
+ a  = gkpkbairro.ofcbrrdes    ,noentry;
+ b  = gkpkbairro.ofnrgicod    ,noentry;
+ c  = gkpkbairro.succod       ,noentry;
+ d  = gabksuc.sucnom          ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cts14m03(ofcbrrdes thru sucnom)
+End

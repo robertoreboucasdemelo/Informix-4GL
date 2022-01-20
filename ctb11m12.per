@@ -1,0 +1,38 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb11m12                                             Marcelo
+                                                                    Gilberto
+ Dados de tributacao                                                Out/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+             Dados do Contribuinte (Tributos)
+-------------------------------------------------ctb11m12--
+
+ Empresa.....:[c ][c10                                    ]
+ Sucursal....:[d    ][d10                                 ]
+ Contribuinte:[e      ][e10                               ]
+ Tipo Contrib: [f][f10                                    ]
+
+}
+end
+
+tables
+   cgpkcontrn
+   cgpkprestn
+
+attributes
+  c   = cgpkprestn.empcod                   , format = "&&";
+  c10 = formonly.empnom                     , upshift, noentry;
+  d   = cgpkprestn.succod                   , format = "###&&";
+  d10 = formonly.sucnom                     , upshift, noentry;
+  e   = cgpkprestn.prscod                   , upshift, noentry;
+  e10 = cgpkcontrn.cntnom                   , upshift, noentry;
+  f   = cgpkprestn.prstip                   , upshift;
+  f10 = formonly.prstipdes                  , upshift, noentry;
+end
+
+instructions
+   delimiters " "
+end

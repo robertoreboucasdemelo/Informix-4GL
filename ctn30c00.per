@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn30c00                                               Almeida
+
+ Mostra todos os Grupos                                              maio/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+         Agrupamentos de assuntos
+-------------------------------------ctn30c00--
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+[a  ][b                                       ]
+
+}
+End
+
+tables
+   datkastagp
+
+Attributes
+ a  = datkastagp.c24astagp,noentry;
+ b  = datkastagp.c24astagpdes,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn30c00(c24astagp thru c24astagpdes)
+End

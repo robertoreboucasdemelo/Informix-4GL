@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m18                                      R.Fornax
+
+ Consulta de Categoria Tarifaria                             Ago/2013
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m18--
+                            CONSULTA DE CLAUSULA
+------------------------------------------------------------------------------
+   Codigo      Clausula                                           Processa
+
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+   [a    ]   [b                                              ]     [c  ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.clscod   ,noentry;
+   b  = formonly.clsdes   ,noentry;
+   c  = formonly.processa ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m18(clscod thru processa)
+end

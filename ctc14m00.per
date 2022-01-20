@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc14m00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de agrupamento de codigos de assunto                        Mar/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc14m00--
+
+ Codigo......:[b  ]
+
+ Descricao...:[b2                              ]
+
+ Departamento:[c     ]-[c1                                       ]
+
+ Empresa.....:[e ]-[e1                    ]
+
+ Situacao....:[s]
+
+ Incluido....:[s1        ] por [s2                 ]
+ Atualizado..:[s3        ] por [s4                 ]
+
+ Observacao..:[x                                                           ]
+
+}
+end
+
+ tables datkastagp
+
+ attributes
+    b  = formonly.c24astagp,
+         comments = " Codigo do Agrupamento"       ,upshift;
+    b2 = datkastagp.c24astagpdes,
+         comments = " Descricao do Agrupamento"    ,upshift;
+    c  = datkastagp.dptsgl,
+         comments = " Sigla do Departamento";
+    c1 = formonly.dptnom                           ,noentry; 
+    e  = datkastagp.ciaempcod,
+         comments = " Codigo da empresa";
+    e1 = formonly.empsgl                            ,noentry; 
+
+    s  = datkastagp.c24astagpsit,
+         comments = " Situacao: (A)tivo ou (C)ancelado"
+                                                   ,upshift;
+    s1 = datkastagp.caddat                         ,noentry;
+    s2 = formonly.cadfunnom                        ,noentry;
+    s3 = datkastagp.atldat                         ,noentry;
+    s4 = formonly.funnom                           ,noentry;
+
+    x  = formonly.observacao                       ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

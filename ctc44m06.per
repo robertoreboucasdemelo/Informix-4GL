@@ -1,0 +1,50 @@
+{----------------------------------------------------------------------------
+ Nome do Form: ctc44m06                                               Marcelo
+                                                                     Gilberto
+ Manutencao do Relacionamento Socorristas/Tipos de assistencia       Nov/1999
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc44m06--
+ Socorrista:[a1      |a2                                                     ]
+------------------------------------------------------------------------------
+    Cod     Descricao               Dt Cadastro     Funcionario
+
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+    [b ]   [b1                  ]   [b2        ]   [b3                  ]
+
+
+}
+end
+
+ tables datksrr, datrsrrasi, datkasitip
+
+ attributes
+
+    a1 = datrsrrasi.srrcoddig                ,noentry;
+    a2 = datksrr.srrnom                      ,noentry;
+
+    b  = datrsrrasi.asitipcod                ,upshift,
+         comments = " Codigo da assistencia";
+    b1 = datkasitip.asitipdes                ,noentry;
+
+    b2 = datrsrrasi.caddat                   ,noentry;
+    b3 = formonly.cadfunnom                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc44m06(asitipcod thru cadfunnom)
+ end

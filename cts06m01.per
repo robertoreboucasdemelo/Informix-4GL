@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m01                                                  Pedro
+                                                                       Marcelo
+ Cancelamento de Marcacao de Vistoria Previa Domiciliar               Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+               INFORMACOES PARA CANCELAMENTO
+----------------------------------------------------cts06m01--
+ Solicit.: [c1             ][t1][t2             ]
+
+ Motivo..: [c2                                               ]
+
+[c3       ][c4                                        ]
+
+}
+end
+
+tables
+   datmligacao,
+   datmvstcanc,
+   datksoltip
+
+attributes
+
+   c1  = datmligacao.c24solnom             ,upshift,
+         comments = " Nome do Solicitante"          ;
+   t1  = datmligacao.c24soltipcod          ,
+         comments = " Tipo do Solicitante";
+   t2  = datksoltip.c24soltipdes           ,noentry;
+   c2  = datmvstcanc.canmtvdes             ,upshift,
+         comments = " Motivo do Cancelamento";
+   c3  = formonly.cabec                     ,noentry;
+   c4  = formonly.registro                  ,noentry;
+
+instructions
+  delimiters " "
+end

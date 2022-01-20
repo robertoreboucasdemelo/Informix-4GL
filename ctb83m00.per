@@ -1,0 +1,49 @@
+database porto
+screen size 24 by 80
+{
+------------------------------------------------------------------------------
+                      CADASTRO TIPO DE PAGAMENTO
+--------------------------------------------------------------------ctb83m00--
+
+Tipo Pagamento...........: [f000  ] [f001                                ]
+Empresa..................: [f014  ] [f015				 ]
+Matricula................: [f002  ] [f003                                ]
+Corretor.................: [f004  ] [f005                                ]
+Sucursal.................: [f012  ] [f013                                ]
+Centro de Custo..........: [f006  ] [f007                                ]
+
+Incluido.........: [f008      ] por [f009                                   ]
+Atualizado.......: [f010      ] por [f011                                   ]
+------------------------------------------------------------------------------
+
+}
+end
+tables
+dbscadtippgt,
+iddkdominio,
+isskfunc,
+ctokcentrosuc,
+gcakcorr,
+dbskgstsuc,
+gabkemp
+attributes
+f000 = dbscadtippgt.pgttipcodps, UPSHIFT, include = (1,2,3);
+f001 = iddkdominio.cpodes, UPSHIFT;
+f002 = dbscadtippgt.pgtmat, UPSHIFT;
+f003 = isskfunc.funnom, UPSHIFT;
+f004 = dbscadtippgt.corsus, UPSHIFT;
+f005 = gcakcorr.cornom, UPSHIFT;
+f006 = dbscadtippgt.cctcod, UPSHIFT;
+f007 = ctokcentrosuc.cctnom, DOWNSHIFT;
+f008 = dbskgstsuc.caddat, UPSHIFT;
+f009 = formonly.funcnomeinc, UPSHIFT;
+f010 = dbskgstsuc.atldat, UPSHIFT;
+f011 = formonly.funcnomeatl, UPSHIFT;
+f012 = formonly.succod, UPSHIFT;
+f013 = formonly.sucnom, UPSHIFT;
+f014 = dbscadtippgt.pgtempcod;
+f015 = gabkemp.empnom, upshift;
+end
+ instructions
+   delimiters " "
+ end

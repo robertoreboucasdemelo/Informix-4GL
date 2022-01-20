@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctb27m02                                                Zyon
+ Pesquisa Mensagens para Prestadores                                 OUT/2004
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+
+{
+-------------------------------------------------------------------ctb27m01---
+ Mensagem:[a   ]Titulo:[b                             ]Situacao:[c|d        ]
+------------------------------------------------------------------------------
+Prestador               Estado       Responsavel            Data/Hora
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+[e     |f              |g|h         |i     |j              |k               ]
+
+  (F17)Encerra, (F1)Inclui, (F2)Exclui
+}
+end
+
+tables
+   dpakprsmsg
+  ,dparprsmsgdst
+  ,dpaksocor
+
+attributes
+   a = dpakprsmsg.prsmsgcod;
+   b = dpakprsmsg.prsmsgtitdes;
+   c = dpakprsmsg.prsmsgstt;
+   d = formonly.sitdes;
+   e = formonly.pstcoddig;
+   f = dpaksocor.nomgrr, noentry, autonext;
+   g = dparprsmsgdst.prsmsgdstsit, noentry, autonext;
+   h = formonly.estdes, noentry, autonext;
+   i = formonly.codigo, noentry, autonext;
+   j = formonly.nome, noentry, autonext;
+   k = formonly.datahora, noentry, autonext;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctb27m01(pstcoddig thru datahora)
+end

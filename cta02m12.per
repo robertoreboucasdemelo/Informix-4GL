@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta02m12                                              Ruiz
+ Solicita o numero do Aviso do Sinistro marcado via Internet         fev/2001
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Solicitacao do Aviso de Sinistro
+---------------------------cta02m12--
+
+ Numero do Aviso: [a         ]
+
+ Ano do Aviso...: [b   ]
+
+}
+end
+
+tables
+   datrligsinavs
+
+attributes
+
+   a  = datrligsinavs.sinavsnum;
+   b  = formonly.sinavsano;
+
+instructions
+  delimiters " "
+end

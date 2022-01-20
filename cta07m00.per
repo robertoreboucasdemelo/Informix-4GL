@@ -1,0 +1,47 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA07M00                                              Ruiz
+ Solicita o nome do condutor do veiculo                              Fev/2001
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+-----------------------------------------------------------cta07m00--
+ Informe o condutor do veiculo para esse evento conforme as opcoes:
+   1-Principal motorista declarado no perfil
+   2-Segurado da apolice
+   3-Outros
+   4-Nao soube informar                              Opcao...:[a]
+---------------------------------------------------------------------
+
+ 1-Principal Motorista: [b                                      ]
+              C.P.F...: [c           ]-[d ]
+ 2-Segurado...........: [e                                      ]
+              C.P.F...: [f           ]-[g ]
+
+ 3-Outros.............: [h                                      ]
+              C.P.F...: [i           ]-[j ]
+ (F17)Abandona
+}
+End
+
+Tables aeikcdt,
+       gsakseg
+
+Attributes
+  a    = formonly.opcao       ,                 upshift;
+  b    = aeikcdt.cdtnom       ,        noentry, upshift;
+  c    = formonly.cgccpfnumc  ,        noentry, upshift;
+  d    = formonly.cgccpfdigc  ,        noentry, upshift;
+  e    = gsakseg.segnom       ,        noentry, upshift;
+  f    = formonly.cgccpfnums  ,        noentry, upshift;
+  g    = formonly.cgccpfdigs  ,        noentry, upshift;
+  h    = formonly.newcdtnom   ,                 upshift;
+  i    = formonly.cgccpfnumn  ,                 upshift;
+  j    = formonly.cgccpfdign  ,                 upshift;
+End
+
+instructions
+  delimiters "[]"
+end

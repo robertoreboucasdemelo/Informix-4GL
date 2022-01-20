@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc53m02                                               R.Fornax
+
+ Cadastro de Parametros                                               Abr/2014
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m02--
+                          CADASTRO DE PARAMETROS
+------------------------------------------------------------------------------
+
+Data de Corte...:[a         ] 
+Liberado........:[b]
+
+
+
+
+
+
+
+Atualizado..:[c          ] por [d                                          ]
+
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+    a  = formonly.data_corte  , comments = " Digite a Data de Corte"    ,upshift;
+    b  = formonly.liberado    , comments = " Nova Regra Liberada?"    ,upshift;
+    c  = formonly.atldat      , noentry;
+    d  = formonly.funmat      , noentry;   
+ end
+
+ instructions
+      delimiters " "
+ end

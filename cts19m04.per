@@ -1,0 +1,78 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts19m04                                               Ruiz
+ Solicitacao de reparo para danos nos vidros do veiculo - documento - Mai/2001
+-----------------------------------------------------------------------------}
+{
+  SISTEMA : Central 24h
+  TELA    : cts19m04.per
+  POR     : FABRICA DE SOFTWARE, Katiucia
+  OSF     : 9377
+  DATA    : 20/11/2002
+  OBJETIVO: Tela de Categoria e Franquia de vidros - com Documento
+}
+
+database formonly
+screen
+
+{
+         VIDRO(S) AVARIADO(S)
+----------------------------cts19m04---
+     Clausula:[msg ]
+                    FRANQUIAS
+     Para-brisa...:[a       ]([b])
+     Traseiro.....:[a1      ]([c])
+     Lateral......:[a2      ]([d])
+     Oculo........:[a3      ]([e])
+     Quebra vento.:[a4      ]([f])
+    [t5            |a5      ]([g])
+    [t6            |a6      ]([h])
+    [t7            |a7      ]([i])
+    [t8            |a8      ]([j])
+    [t9            |a9      ]([k])
+    [t10           |a10     ]([l])
+    [s             ]
+
+}
+end
+
+attributes
+
+  a   = formonly.vdrpbsfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a1  = formonly.vdrvgafrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a2  = formonly.vdrlatfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a3  = formonly.vdrocufrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a4  = formonly.vdrqbvfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a5  = formonly.vdrrtrfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a6  = formonly.farolnfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a7  = formonly.farmilfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a8  = formonly.farnebfrqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a9  = formonly.farpiscaqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  a10 = formonly.farlanteqvlr type decimal(08,2), format = "<,<<&.&&", noentry;
+  msg = formonly.mensagem type char, noentry;
+
+  t5 = formonly.vdrrtrtxt     type char, noentry;
+
+  t6  = formonly.txtfarol         type char, noentry;
+  t7  = formonly.txtfarolmilha    type char, noentry;
+  t8  = formonly.txtfarolneblina  type char, noentry;
+  t9  = formonly.txtpisca         type char, noentry;
+  t10 = formonly.txtlanterna      type char, noentry;
+
+  b  = formonly.prbrisa      , upshift, autonext, comments = " Escolha marcando um X ";
+  c  = formonly.traseiro     , upshift, autonext, comments = " Escolha marcando um X ";
+  d  = formonly.lateral      , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  e  = formonly.oculo        , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  f  = formonly.qvent        , upshift, autonext, comments = " Escolha marcando um X ";
+  g  = formonly.retrovisor   , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  h  = formonly.farol        , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  i  = formonly.farolmilha   , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  j  = formonly.farolneblina , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  k  = formonly.pisca        , upshift, autonext, comments = " Informe: (D)ireito (E)squerdo (A)mbos";
+  l  = formonly.lanterna     , upshift, autonext, comments = " Informe: (D)ireita (E)squerda (A)mbas";
+  s  = formonly.obs          , upshift,noentry; 
+
+end
+
+instructions
+  delimiters " "
+end

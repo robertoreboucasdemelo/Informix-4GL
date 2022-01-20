@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTE03M00                                              Raji
+
+ Acompanhamento de transmissao de fax - URA                          Set/2000
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cte03m00--
+                      STATUS DE TRANSMISSAO FAX - URA
+------------------------------------------------------------------------------
+ Data     :[h1        ]              Origem do Documento :[h3]          Total
+ Situacao :[h][h2           ]        Numero do Documento :[h4      ]    [h5 ]
+------------------------------------------------------------------------------
+ Org. Numero     Data        Hora      Status           DDD   Numero Fax
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+[d1] [d2      ] [d3        ][d4      ][d][d5         ] [d6  ][d7             ]
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   dacmligurastt
+
+Attributes
+   h1  = formonly.faxdat           type date, autonext,
+                                   comments = " Data inicial para pesquisa";
+   h   = formonly.faxsitcod        type dec ,
+                                   comments = " Situacao da transmissao  1-Enviado OK   2-Problema no envio   3-Agendado";
+   h2  = formonly.faxsitdsc        type char, noentry, upshift;
+   h3  = formonly.oridocto         type char,
+                                   comments = " Origem do documento";
+   h4  = formonly.documento        type dec , format = "########",
+                                   comments = " Numero do Documento";
+   h5  = formonly.totqtd           type smallint , format = "&&&", noentry;
+
+   d1  = dacmligurastt.dctorg       , noentry;
+   d2  = dacmligurastt.dctnumdig    , noentry, format = "########";
+   d3  = dacmligurastt.atdtrxdat    , noentry, format = "dd/mm/yyyy";
+   d4  = dacmligurastt.atdtrxhor    , noentry;
+   d   = dacmligurastt.atdtrxenvstt , comments = " 1-Envia do OK   2-Problema no envio   3-Agendado";
+   d5  = formonly.descstt           , noentry;
+   d6  = dacmligurastt.dddcod       ;
+   d7  = dacmligurastt.facnum       , upshift;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cte03m00(dctorg thru facnum)
+End

@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA01M32                                              Roberto
+
+ Espelho da Apolice Funeral                                          Mai/2007
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 25 by 80
+{
+
+--------------------------------------------------------------------cta01m32--
+ Suc.:[a1   ] Apl.:[a2        ]                 [a3                          ]
+------------------------------------------------------------------------------
+[b1                               ]|                SEGURADO
+ Proposta:[b2] [b3         ]       |[c1                                      ]
+ Emissao.:[b4        ]             |[c2      ]  Fone:[c3                     ]
+ Vig.Apl.:[b5        ]a[b6        ]|
+ Situacao:[b7                     ]|                CORRETOR
+ Benef...:[b8 ]                    |[c4                                      ]
+                                   |[c5      ]  Fone:[c6                     ]
+------------------------------------------------------------------------------
+ CLAUSULAS                             VALOR
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+[d1 ][d2                     ][d3][d4        ][d5                            ]
+------------------------------------------------------------------------------
+}
+end
+tables gsakseg   ,
+       gcakcorr  ,
+       gcaksusep ,
+       vtamdoc   ,
+       vgpkprod  ,
+       vtamcap   ,
+       vgpktipcob,
+       iddkdominio
+
+attributes
+   a1  = vtamdoc.succod                , noentry, format = "###&&";
+   a2  = vtamdoc.aplnumdig             , noentry, format = "<<<<<<<& &";
+   a3  = formonly.solnom               , noentry;
+
+   b1  = vgpkprod.vdapdtdes             , noentry;
+   b2  = vtamdoc.prporg                 , noentry;
+   b3  = vtamdoc.prpnumdig              , noentry;
+   b4  = vtamdoc.emsdat                 , noentry;
+   b5  = vtamdoc.viginc                 , noentry;
+   b6  = vtamdoc.vigfnl                 , noentry;
+   b7  = iddkdominio.cpodes             , noentry;
+   b8  = formonly.benefx    type char   , noentry;
+
+
+   c1  = gsakseg.segnom                 , noentry;
+   c2  = gsakseg.segnumdig              , noentry;
+   c3  = formonly.segteltxt type char   , noentry;
+   c4  = gcakcorr.cornom                , noentry;
+   c5  = gcaksusep.corsus               , noentry;
+   c6  = formonly.corteltxt type char   , noentry;
+
+   d1  = vtamcap.vdacbttip               , noentry;
+   d2  = vgpktipcob.vdacbtdes            , noentry;
+   d3  = formonly.moeda type char        , noentry;
+   d4  = formonly.imsvlr type decimal(10,2), format = "<<<,<<&.&&", noentry;
+   d5  = formonly.msg type char          , noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_cta01m32(vdacbttip thru msg)
+end

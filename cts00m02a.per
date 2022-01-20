@@ -1,0 +1,40 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc93m02                                               Beatriz
+                                                                       Araujo
+ Limites do segura Itau                                               SET/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+----------------------cts00m02a---
+          INFORMACOES           
+----------------------------------
+ LIMITE SEGURADO.....: R$[a      ]     
+                                
+ VALOR REFERENCIA(MO): R$[b      ]
+                                
+ PECAS...............: R$[c      ]               
+                                
+ SALDO...............: R$[d      ]               
+                                
+(F17)Abandona [e]
+
+}end
+tables dpakpecrefvlr,datrntzasipln
+
+attributes
+   a = datrntzasipln.ntzvlr      ,noentry;
+   b = dpakpecrefvlr.mobrefvlr   ,noentry;
+   c = dpakpecrefvlr.pecmaxvlr   ,noentry;
+   d = formonly.saldo            ,noentry;
+   e = formonly.aux              ;
+end
+
+instructions
+   delimiters " "
+   
+end
+
+

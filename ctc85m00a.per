@@ -1,0 +1,38 @@
+database porto
+screen size 24 by 80
+{
++--------------------------------------------------------------------ctc85m00a-+
+|                      HISTORICO DOS MESES ANTERIORES                          |
+|    Mes ------   ----- Ganho ------        Mes ------   ----- Ganho ------    |
+|    Janeiro      [            f031]        Julho        [            f037]    |
+|    Fevereiro    [            f032]        Agosto       [            f038]    |
+|    Março        [            f033]        Setembro     [            f039]    |
+|    Abril        [            f034]        Outubro      [            f040]    |
+|    Maio         [            f035]        Novembro     [            f041]    |
+|    Junho        [            f036]        Dezembro     [            f042]    |
++------------------------------------------------------------------------------+
+|(Enter) Sair                                                                  |
++------------------------------------------------------------------------------+
+}
+end
+tables
+dacmrmv
+
+attributes
+f031 = formonly.jan;
+f032 = formonly.fev;
+f033 = formonly.mar;
+f034 = formonly.abr;
+f035 = formonly.mai;
+f036 = formonly.jun;
+f037 = formonly.jul;
+f038 = formonly.ago;
+f039 = formonly.set;
+f040 = formonly.out;
+f041 = formonly.nov;
+f042 = formonly.dez;
+end
+
+instructions
+   delimiters " "
+

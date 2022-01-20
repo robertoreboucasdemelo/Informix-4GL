@@ -1,0 +1,44 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc63m00                                      Helder Oliveira
+                                                               Humberto Santos
+ Cadastros de Menu                                                   Jul/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+
+-------------------------------------------------------------------ctc63m00---
+  Codigo  Descricao do Menu                                        Programa
+  
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+  [a      |b                                                       |e      ]
+------------------------------------------------------------------------------
+   Alterado em: [c         ] por: [d                                       ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+
+    a  = formonly.codigo    , upshift, comments = 'Codigo';
+    b  = formonly.sisdes , comments = 'Descricao do Menu';
+    e  = formonly.prgnom  , comments = 'Programa';
+    c  = formonly.atldat    , upshift;
+    d  = formonly.funnom    , upshift;
+
+end
+
+instructions
+    screen record sctc63m00(codigo thru prgnom)
+    delimiters " "
+end

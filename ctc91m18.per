@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc91m18                                           Marcos Goes
+
+ Cadastro de Oficinas Referenciadas Itau                             Mar/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc91m18--
+ Codigo......:[a1   ]
+[l1                                                                          ]
+ CNPJ........:[b1        ]/[b2  ]-[b3]
+ Razao Social:[c1                                                            ]
+ Fantasia....:[d1                                      ]
+[l2                                                                          ]
+ Ativa.......:[e]
+ Codigo Itau.:[f1       ]
+ Dt. Credenc.:[g1        ]                          Regul.Imagem:[k]
+ Capacidade..:[h1  ]                                Recebim.24h.:[l]
+ Tipo/Linha..:[i1                            ]      Ofic.Lotada.:[m]
+ Avaliacao...:[j1                            ]      Liberacao...:[n         ]
+------------------------------------------------------------------------------
+  Alterado em: [o1        ] por: [o2                                      ]
+------------------------------------------------------------------------------
+
+}
+end
+
+
+ attributes
+    a1 = formonly.itarefofncod           , upshift, comments = " Codigo da Oficina Referenciada";
+    b1 = formonly.cpjcpfnum  type decimal, upshift, comments = " Numero CNPJ",         format = "##&&&&&&&&";
+    b2 = formonly.cpjordnum  type decimal, upshift, comments = " Filial CNPJ",         format = "&&&&";
+    b3 = formonly.cpjcpfdig  type decimal, upshift, comments = " Digito CNPJ",         format = "&&";
+    c1 = formonly.sclraznom              , upshift, comments = " Razao Social";
+    d1 = formonly.fannom                 , upshift, comments = " Nome Fantasia";
+    e  = formonly.atoofnflg              , upshift, comments = " Oficina Ativa? (S/N)";
+    f1 = formonly.itaofncod  type decimal, upshift, comments = " Codigo da Oficina no Itau", format = "########&";
+    g1 = formonly.cdedat                 , upshift, comments = " Data de Credenciamento";
+    h1 = formonly.vclcpdqtd  type decimal, upshift, comments = " Capacidade de veiculos", format = "###&";
+    i1 = formonly.atdlintipdes           , upshift, comments = " Tipos / Linhas Atendidas";
+    j1 = formonly.avades                 , upshift, comments = " Avaliacao";
+    k  = formonly.rgcflg                 , upshift, comments = " Regulacao Imagem? (S/N)";
+    l  = formonly.h24rcbflg              , upshift, comments = " Recebimento 24 horas de veiculos? (S/N)";
+    m  = formonly.lotada                 , upshift, comments = " Oficina Lotada? (S/N)";
+    n  = formonly.ltalibdat              , upshift, comments = " Data previsao de liberacao";
+    o1 = formonly.atldat                 , upshift, noentry;
+    o2 = formonly.atlfunnom              , upshift, noentry;
+    l1 = formonly.label1                 , upshift, noentry;
+    l2 = formonly.label2                 , upshift, noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

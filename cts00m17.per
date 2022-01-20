@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M17                                              Marcelo
+                                                                     Gilberto
+ Acionamento Just In Time                                            Abr/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+           Acionamento JUST IN TIME
+--------------------------------------cts00m17--
+
+ Prestador..:[a1    ][a2                       ]
+ Veiculo....:[a3   ]
+ Socorrista.:[a4    ][a5        ]
+
+
+ Confirma...:[a]
+
+
+}
+end
+
+ Tables dpaksocor, datksrr, datkveiculo
+
+ Attributes
+   a1 = dpaksocor.pstcoddig         ,noentry;
+   a2 = dpaksocor.nomgrr            ,noentry;
+   a3 = datkveiculo.atdvclsgl       ,noentry;
+   a4 = datksrr.srrcoddig           ,noentry;
+   a5 = datksrr.srrabvnom           ,noentry;
+   a  = formonly.confirma           ,upshift,
+        comments = " Confirma acionamento? (S)im ou (N)ao";
+ end
+
+ instructions
+   delimiters " "
+ end

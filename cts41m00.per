@@ -1,0 +1,71 @@
+database formonly
+screen
+{
+[sol            ]           PORTO SOCORRO - PORTOSEG                   [hr   ]
+--------------------------------------------------------------------cts41m00---
+ NOME CLIENTE [a1                               ]CNPJ/CPF:[a2                ]
+------------------------------------------------------------------------------
+ Endereco.:[b                                                                 ]
+ Bairro...:[c1                  ] Cidade.....:[c2                  ] U.F.:[c3]
+ Complemen:[e4                       ]Resp. Local:[e3                         ]
+ Ponto Ref:[d1                                                     ] Zona:[d2]
+ Tel.Local:[e1  ][e2       ]           Tel.Celul.:[e5  |e6       ]
+ Tp.Assist:[f1                  ] Srv. Lib...:[f]              Prs.local.:[g]
+ Atend/Lib:[h                                                                 ]
+ Servico    Natureza            Problema            Etapa            Vlr
+[i1        |i3|i4              | i5|i6             |i8|i9          |i7        ]
+[i1        |i3|i4              | i5|i6             |i8|i9          |i7        ]
+[i1        |i3|i4              | i5|i6             |i8|i9          |i7        ]
+[i1        |i3|i4              | i5|i6             |i8|i9          |i7        ]
+                                          Total: [j         ]
+F1-Inc F2-Canc F5-Nr.Aut. F6-Hist F7-Imp F8-Agend F9-Prestador F10-Etapas
+}
+end
+
+
+
+
+
+
+
+
+attributes
+  sol = formonly.c24solnom    type char, upshift;
+   hr = formonly.hora         type char, upshift;
+   a1 = formonly.nom          type char, upshift;
+   a2 = formonly.cgccpf       type char;
+   b  = formonly.endereco     type char;
+   c1 = formonly.brrnom       type char;
+   c2 = formonly.cidnom       type char;
+   c3 = formonly.ufdcod       type char;
+   d1 = formonly.lclrefptotxt type char;
+   d2 = formonly.endzon       type char;
+   e1 = formonly.dddcod       type char;
+   e2 = formonly.lcltelnum    type char;
+   e3 = formonly.lclcttnom    type char;
+   e4 = formonly.endcmp       type char;
+   e5 = formonly.celteldddcod type char;
+   e6 = formonly.celtelnum    type char;
+
+
+
+   f1 = formonly.asitipabvdes type char;
+   f  = formonly.atdlibflg    type char, upshift;
+   g  = formonly.prslocflg    type char, upshift;
+   h  = formonly.atendlib     type char;
+
+   i1 = formonly.servico type char, noentry;
+   i3 = formonly.socntzcod type smallint, format='&&';
+   i4 = formonly.socntzdes type char, noentry;
+   i5 = formonly.c24pbmcod type smallint;
+   i6 = formonly.c24pbmdes type char, upshift;
+   i8 = formonly.atdetpcod type smallint;
+   i9 = formonly.atdetpdes type char, noentry;
+   i7 = formonly.orcvlr    type decimal, format = "###,##&.&&";
+   j  = formonly.orcvlrtot type decimal, format = "###,##&.&&";
+end
+
+instructions
+  delimiters ' '
+  screen record s_cts41m00[04] (servico thru orcvlr)
+end

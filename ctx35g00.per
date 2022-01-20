@@ -1,0 +1,31 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctx35g00                                               Beatriz
+                                                                       Araujo
+ Popup para quem o servico foi prestado                              Fev/2012
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+       PARA QUEM O SERVICO FOI PRESTADO
+-----------------------------------ctx35g00--
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+ [a |b                                      ] 
+                F8 - Escolhe
+}
+end
+
+attributes
+   a  = formonly.itaasiplntipcod , upshift, comments = "Para quem o servico foi prestado";
+   b  = formonly.itaasiplntipdes , noentry;
+end
+
+instructions
+   screen record s_ctx35g00 (itaasiplntipcod thru itaasiplntipdes)
+   delimiters " "
+end

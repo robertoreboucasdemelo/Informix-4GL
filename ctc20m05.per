@@ -1,0 +1,47 @@
+{############################################################################
+# Nome do Modulo: CTC20M05                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CADASTRO DE VALORES DE FAIXAS.                                   NOV/2008 #
+############################################################################}
+
+database porto
+
+screen
+{
+
+
+-----------------------------------------------------------------------------
+VALORES DO CRITERIO[x                ]DO GRUPO DE SERVICOS DE[y               ] 
+-------------------------------------------------------------------ctc20m05--
+       
+   Min.     Max.           Valor   Data Atl         Usu. Atl
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+ [a     ] [b     ] [c           ] [d              ][e                         ]
+                                 (F2)Deletar
+}
+
+tables
+   dpakbnfvlrfxa
+   
+attributes
+   x = formonly.criterio,            noentry;
+   y = formonly.grupo,            noentry;
+   a = dpakbnfvlrfxa.minper;
+   b = dpakbnfvlrfxa.maxper;
+   c = dpakbnfvlrfxa.fxavlr;
+   d = dpakbnfvlrfxa.atldat,       noentry;
+   e = formonly.funnom,            noentry;
+end   
+   
+instructions
+  delimiters " "
+  screen record s_ctc20m05(minper thru funnom)
+end 

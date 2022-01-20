@@ -1,0 +1,40 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m29                                      R.Fornax
+
+ Cadastro de Emails da Porto                                 Mar/2015
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+------------------------------------------------------------------------------
+                      CADASTRO DE E-MAILS DA PORTO  
+--------------------------------------------------------------------ctc69m29--
+ Codigo  Email
+
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+ [a  ] [b                                                                 ]
+------------------------------------------------------------------------------
+ [c                                                                       ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes  
+   a  = formonly.cpocod              ,comments = " Digite o Codigo "     ,upshift;
+   b  = formonly.cpodes              ,comments = " Digite o E-mail "     ;
+   c  = formonly.msg                 ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m29(cpocod thru cpodes)
+end

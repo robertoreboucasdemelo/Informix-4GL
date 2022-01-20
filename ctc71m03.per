@@ -1,0 +1,41 @@
+{
+ ###########################################################################
+ #                       PORTO SEGURO CIA DE SEGUROS GERAIS
+ #
+ # Sistema   : 
+ # Programa  : Pesquisa de endereco
+ # Modulo    : ctc71m03.per
+ #
+ # Objetivo: Pesquisa do endereco do local selecionado.
+ #
+ # Analista Responsavel: Glauce
+ # Programador         : Paula Romanini
+ # Data da Criacao     : 12/03/2004 - Fabrica de Software
+ # PSI/OSF             : 183024/33529
+ ##############################################################################
+}
+
+database formonly
+screen size 24 by 78
+
+{
+                          Endereco
+----------------------------------------------------ctc71m03---
+
+ Endereco.: [a  |b                              ]  No.[c    ]
+ Bairro...: [d                                  ]
+
+<F17> Abandona
+}
+
+End
+
+Attributes
+ a = formonly.lgdtip;
+ b = formonly.lgdnom;
+ c = formonly.lgdnum;
+ d = formonly.brrnom;
+
+Instructions
+  delimiters " "
+

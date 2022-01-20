@@ -1,0 +1,48 @@
+{------------------------------------------------------------------------------
+ Nome do Form: ctc86m00                                                 Andre
+
+Cadastro de Parametros Portal Prestador                               Nov/2008
+
+------------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+{
+
+
+------------------------------------------------------------------ ctc86m00---
+ 
+ 
+ Tipo......: [a   ] - [a1                                        ]
+ 
+ Grupo.....: [c       ]
+ 
+ Sub-Grupo.: [d       ]    Sub-Grupo Aberto (S/N)....: [e]
+ 
+ Inclui Texto (S/N)..:[f]  Obrigatorio (S/N).........: [g]
+  
+ Parametro.: [b   ] - [b1                                        ]
+  
+
+
+}
+end
+
+tables
+   iddkdominio,
+   datkprt
+
+attributes
+  a = iddkdominio.cpocod;
+  a1 = iddkdominio.cpodes, upshift;
+  b = datkprt.prtitmcod;
+  b1 = datkprt.prtdes, upshift;
+  c = datkprt.prtgrpcod;
+  d = datkprt.prtgrpsubcod;
+  e = datkprt.abrgrpsubflg, upshift;
+  f = datkprt.txticlflg, upshift;
+  g = datkprt.obrtxtflg, upshift;
+end
+
+Instructions
+ delimiters " " 
+End

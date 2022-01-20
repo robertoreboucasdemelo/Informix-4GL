@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02M17                                              Wagner
+
+ Exibe totais dos itens da OP por Centro de Custo                    Nov/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb02m17--
+                                   -Quantidade- ---------- Valores ----------
+Or Emp Suc Centro de Custo         Reser. Diar.    Inicial Exc/Desc     Total
+
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+[b|a  |a1   |a11  |a12              |a15  |a16  |a20      |a22     |a24      ]
+
+ Origem: (R)-Reservas (P)-Prorrogacoes (*)-Reservas/Prorrogacoes
+}
+End
+
+tables datmavisrent
+
+attributes
+  b    = formonly.flgorigem                                , noentry;
+  a    = formonly.slcemp                                   , noentry;
+  a1   = formonly.slcsuccod                                , noentry;
+  a11  = formonly.slccctcod                                , noentry;
+  a12  = formonly.cctnom                                   , noentry;
+  a15  = formonly.acmqtd         type integer,
+                                 format = "####&",           noentry;
+  a16  = formonly.c24utidiaqtd   type integer,
+                                 format = "####&",           noentry;
+  a20  = formonly.acmtot         type decimal,
+                                 format = "-----&.&&",       noentry;
+  a22  = formonly.acmcst         type decimal,
+                                 format = "----&.&&",        noentry;
+  a24  = formonly.acmvlr         type decimal,
+                                 format = "-----&.&&",       noentry;
+End
+
+Instructions
+  delimiters " "
+  screen record s_ctb02m17(flgorigem thru acmvlr)
+End

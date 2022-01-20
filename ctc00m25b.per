@@ -1,0 +1,26 @@
+database formonly
+screen size 24 by 70
+{
+     SELECIONE O ENDERECO A SER COPIADO:
+-------------------------------------ctc00m25---
+ [x] [a                                       ]
+ [x] [a                                       ]
+ [x] [a                                       ]
+ [x] [a                                       ]
+
+     (F8)Selecionar   (F17)Sair
+
+}
+end
+
+attributes
+
+   x = formonly.ghost , invisible;
+   a = formonly.domtipdes, upshift,noentry;
+
+end
+instructions
+   delimiters ' '
+   screen record s_ctc00m25[4](ghost thru domtipdes)
+
+end

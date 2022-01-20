@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta00m50                                               Marcelo
+                                                                      Gilberto
+ Solicitacao de Consulta (CENTRAL 24HS)                               Jan/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+---------------------------------------------------------------------cta00m50-
+                   Localiza Cartoes  PORTO CARD VISA
+------------------------------------------------------------------------------
+
+ Solicitante.:[s1             ]
+
+-------------------------  Chaves de Localizacao  ----------------------------
+
+ No Cartao.:[c2                ]
+
+ Associado.:[c3                                      ]   Tit/Adic. [c]
+
+ Licenca...:[c4     ]
+
+ No CPF....:[c5          ]
+
+
+
+}
+end
+
+tables
+  abbmveic, eccmcli, eccmpti
+
+attributes
+  s1 = formonly.solnom,                                              upshift,
+       comments = " Nome do Solicitante";
+  c2 = eccmpti.pcapticod,
+       comments = "Pesquisa pelo Numero do Cartao",                  upshift;
+  c3 = formonly.nome                                  type char,
+       comments = "Pesquisa pelo Nome do Associado",                 upshift;
+  c  = formonly.tipo                                  type char,
+       comments = "(T)itular ou (A)dicional",                        upshift;
+  c4 = abbmveic.vcllicnum,
+       comments = "Pesquisa por Placa";
+  c5 = eccmcli.pcaclicgccpf,
+       comments = "Pesquisa pelo CPF do Associado";
+end
+
+instructions
+  delimiters " "
+end
+

@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cty37g00                                              Beatriz
+                                                                     Fornax  
+ Pop-up para escolha de informacoes da tabela DATKDOMINIO            Out/2014
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+[a                                       ]
+------------------------------------cty37g00--
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+[b                                       ][c ]
+
+}
+end
+
+ tables
+    datkdominio
+
+ attributes
+    a  = formonly.cabec,               noentry;
+    b  = datkdominio.cpodes,           noentry;
+    c  = datkdominio.cpocod,           noentry, invisible;
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cty38g00(cpodes thru cpocod)
+ end

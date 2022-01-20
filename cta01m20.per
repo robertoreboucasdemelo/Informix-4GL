@@ -1,0 +1,75 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m20                                               Marcelo
+ Consulta Apolice de Ramos Elementares
+-----------------------------------------------------------------------------}
+Database Porto
+
+Screen
+{
+ Atendimento...:[x         ]
+--------------------------------------------------------------------cta01m20--
+[a                                                                          ]
+------------------------------------------------------------------------------
+[g                                  ]|[b                                     ]
+ Modalid.:[h1                      ] |[r                                     ]
+ Ramo/Sub:[e   |f |i                ]|[q       ]  Fone.:[rt                  ]
+ Emissao.:[n         ]               |[c                                     ]
+ Vig. Apl:[l         ]a[m          ] |          CORRETOR [d                  ]
+ Situacao:[s        ]                |[p                                     ]
+[t1   |c1                            ][o       ]  Fone.:[pt                  ]
+[t2   |c2                                                                    ]
+------------------------------------------------------------------------------
+                                     |[w4                                    ]
+                                     | Vig. End. [w5        ]a[w6        ]
+                                     | Seguro em [md1                 ]
+                                     | Premio em [md2                 ]
+                                     | Pgto [u                               ]
+                                     |[v                                     ]
+------------------------------------------------------------------------------
+}
+End
+
+Tables rsdmdocto , rsamseguro, gtakramo  ,
+       gsakseg   , gsakend   , rsampcorre,
+       gcakcorr  , gfbkfpag  , rgpkmodal ,
+       rspmparc  , rsimsitcbt, rgdktip   ,
+       datrligppt
+
+Attributes
+       x   = formonly.atdnum  type dec(10,0), noentry, format = "<<<<<<<<&&";
+       a   = formonly.contrato           ;
+       b   = formonly.protecao           ;
+       c   = formonly.cpfnum             ;
+       d   = formonly.corretor           ;
+       e   = rsamseguro.ramcod           ;
+       f   = rsamseguro.subcod           ;
+       i   = formonly.localdes           ;
+       g   = gtakramo.ramnom             , reverse;
+       h1  = rgpkmodal.rmemdlnom         , reverse;
+       l   = rsdmdocto.viginc            ;
+       m   = rsdmdocto.vigfnl            ;
+       n   = rsdmdocto.emsdat            ;
+       o   = rsampcorre.corsus           ;
+       p   = gcakcorr.cornom             ;
+       pt  = formonly.teltxtcor          ;
+       q   = rsdmdocto.segnumdig         ,
+             format="<<<<<<<<"           ;
+       r   = gsakseg.segnom              ;
+       rt  = formonly.teltxtseg          ;
+       s   = formonly.situacao,   reverse;
+       t1  = formonly.tit_certif         ;
+       t2  = formonly.tit_aparelho       ;
+       c1  = formonly.etpctrnum          ;
+       c2  = formonly.aprlhdesc          ;
+       u   = gfbkfpag.pgtfrmdes          ;
+       w4  = rgdktip.edstipdes           ;
+       w5  = formonly.viginceds type date;
+       w6  = formonly.vigfnleds type date;
+       md1 = formonly.imsmoeda           ;
+       md2 = formonly.prmmoeda           ;
+       v   = formonly.carencia           ;
+end
+
+instructions
+   delimiters " "
+end

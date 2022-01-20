@@ -1,0 +1,37 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn32c00                                               Almeida
+
+ Mostra todas Sucursais                                              maio/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+               Sucursais
+-------------------------------------ctn32c00--
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+[a    ][b                                     ]
+
+}
+End
+
+tables
+   gabksuc
+
+Attributes
+ a  = gabksuc.succod,noentry;
+ b  = gabksuc.sucnom,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctn32c00(succod thru sucnom)
+End

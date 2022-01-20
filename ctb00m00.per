@@ -1,0 +1,85 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTB00M00                                             Marcelo
+                                                                    Gilberto
+ Pagamento de locacoes - Digitacao da capa                          Set/1996
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+
+--------------------------------------------------------------------ctb00m00--
+ Servico:[a9|a0     |a1]    Usuario:[a2                                      ]
+ Loja...:[a3   ]-[a4                                     ]Tipo..:[a5         ]
+ Veiculo:[a]-[a6                                      ]   Motivo:[a7         ]
+------------------------------------------------------------------------------
+ Numero N.F....:[b0      ]                                      [b3          ]
+ Data Vencto...:[b1        ]                                    [b4          ]
+ Data Pagamento:[b2        ]
+
+ Diarias Utiliz:[c0    ]             Diarias Solic:[c2    ]
+ Diarias Pagas.:[c1    ]             Data Retirada:[c3        ]
+
+ Valor Bruto...:[d0               ]  Digitado em..:[e2        ]as[e3   ]
+ Exced/Desconto:[d1               ]  Digitado por.:[e |e0    |e1             ]
+ VALOR LIQUIDO.:[d2               ]
+
+
+}
+
+Tables
+   dblmpagto    ,
+   datkavislocal,
+   datkavisveic ,
+   datmavisrent ,
+   datmservico
+
+Attributes
+a9   = datmservico.atdsrvorg  , format = "&&",     noentry;
+a0   = dblmpagto.atdsrvnum    , format = "&&&&&&&",autonext,
+                                comments=" Numero do Servico";
+a1   = dblmpagto.atdsrvano    , format = "&&",
+                                comments=" Ano do Servico";
+a2   = datmavisrent.avilocnom , upshift, noentry;
+a3   = datkavislocal.lcvextcod, upshift, noentry;
+a4   = datkavislocal.aviestnom, upshift, noentry;
+a5   = formonly.lcvlojdes     , upshift, noentry;
+a    = datkavisveic.avivclgrp , upshift, noentry;
+a6   = formonly.descricao     , upshift, noentry;
+a7   = formonly.motivo        , upshift, noentry;
+
+b0   = dblmpagto.nfsnum       , comments=" Numero da Nota Fiscal",
+                                format = "&&&&&&&&";
+b1   = dblmpagto.nfsvctdat    , comments=" Data de vencimento";
+b2   = dblmpagto.nfspgtdat    , comments=" Data de pagamento";
+b3   = formonly.gratuita      , upshift, noentry;
+b4   = formonly.saldo         , upshift, noentry;
+
+c0   = dblmpagto.c24utidiaqtd , comments=" Diarias utilizadas",
+                                format = "<<<<<&";
+c1   = dblmpagto.c24pagdiaqtd , comments=" Diarias a serem pagas",
+                                format = "<<<<<&";
+c2   = datmavisrent.aviprvent , noentry,
+                                format = "<<<<<&";
+c3   = datmavisrent.vclalgdat , comments=" Data de retirada do veiculo";
+
+d0   = formonly.c24diaparvlr    type dec, comments=" Valor bruto para faturamento",
+                                format = "--,---,---,--&.&&";
+d1   = formonly.c24diadifvlr    type dec, noentry ,
+                                format = "--,---,---,--&.&&",
+                                comments=" Excedente a ser pago";
+d2   = formonly.c24diatotvlr    type dec, comments=" Valor liquido para faturamento",
+                                format = "--,---,---,--&.&&";
+
+e    = dblmpagto.cademp       , noentry , format = "&&";
+e0   = dblmpagto.cadmat       , noentry , format = "&&&&&&";
+e1   = formonly.funnom        , noentry , upshift;
+e2   = dblmpagto.caddat       , noentry ;
+e3   = dblmpagto.cadhor       , noentry ;
+end
+
+instructions
+   delimiters " "
+end

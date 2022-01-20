@@ -1,0 +1,37 @@
+database formonly
+screen size 24 by 80
+{
+      Data     Loja                                 Vidro           Servico
+-------------------------------------------------------------------ctx20g00---
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+  [a         ][b                                  ][c             ][ d     |e]
+
+  Ctrl-C - Encerra
+}
+end
+attributes
+ a = formonly.vdrrprdat		type date, noentry;
+ b = formonly.vdrrprempnom	type char, noentry;
+ c = formonly.vidro		type char, noentry;
+ d = formonly.servico		type char, noentry;
+ e = formonly.casper		type char, autonext;
+
+instructions
+ delimiters " "
+ screen record s_ctx20g00[11] (vdrrprdat, 
+                               vdrrprempnom, 
+                               vidro, 
+                               servico, 
+                               casper)
+
+
+

@@ -1,0 +1,126 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m01                                               Gilberto
+                                                                       Marcelo
+ Cadastro de veiculos do Porto Socorro                                Ago/1998
+
+ ALTERACAO : Inclusao do Campo Tipo de Equipamento de Socorro (socvcltip)
+             OSF 11444, Fabrica de Software, Katiucia
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m01--
+ Sigla..:[aa1  ] Codigo....:[a1     ] Prestador:[a2    ][a3                  ]
+------------------------------------------------------------------------------
+ Propriet..:[a4                                      ] Situacao:[s][s1       ]
+ Tp Aquis..:[e1][e2          ] Nome:[e3                                      ]
+ Veiculo...:[b1   ][b2                                                       ]
+ Renavam...:[t          ]      Tipo de cadastro.:[u  |v                      ]
+ Celular...:[g   |h        ]   Nextel:[k   ] [i         ] [j        ]
+ Tipo Veic.:[e4|e5                  ]     Chassi...:[b4                  ]
+ Placa.....:[b3     ]Fab/Mod.:[b5  |b6  ] Cor......:[b7][b8                  ]
+ Tp Pintura:[b9][b10                 ]    Combust..:[bc][b11                 ]
+ Controle..:[c]        Sigla..:[a    ]    Grp Dist.:[c2][c3                  ]
+ Pager/MDT.:[c4 ]/[c41 ][c42            ] Teletrim.:[c5     |c51             ]
+ Vistoria..:[c6 ]dias                     Local Vst:[c7][c8                  ]
+ Tp.Laudo..:[c9][c10                 ]    Resp.....:[r1][r2                  ]
+
+ Incluido..:[d2        ] por [d3                 ] [f  ]
+ Atualizado:[d4        ] por [d5                 ]
+}
+end
+
+tables datkveiculo, dpaksocor, datkvcldtbgrp, dattfrotalocal
+
+attributes
+   a    = formonly.atdvclsgl,                        upshift,
+          comments = " Sigla do veiculo"                       ;
+   aa1  = formonly.atdvclsglS,                        upshift,
+          comments = " Sigla do veiculo"                       ;
+   a1   = formonly.socvclcod,
+          comments = " Codigo do veiculo";
+   a2   = datkveiculo.pstcoddig,
+          comments = " Codigo do prestador";
+   a3   = dpaksocor.nomgrr,                            noentry;
+   a4   = datkveiculo.vclctfnom,                       upshift,
+          comments = " Nome do proprietario do certificado de propriedade";
+   s    = datkveiculo.socoprsitcod,
+          comments = " Situacao do veiculo";
+   s1   = formonly.socoprsitdes,                       noentry;
+   e1   = datkveiculo.vclaqstipcod,
+          comments = " Codigo do tipo de aquisicao do veiculo";
+   e2   = formonly.aqsdes,                             noentry;
+   e3   = datkveiculo.vclaqsnom,                       upshift,
+          comments = " Nome da aquisicao do veiculo";
+
+   b1   = datkveiculo.vclcoddig,
+          comments = " Codigo para descricao do veiculo(marca/modelo/tipo)";
+   b2   = formonly.vcldes,                             noentry;
+   g    = datkveiculo.celdddcod, comments = "DDD do telefone celular";
+   h    = datkveiculo.celtelnum, comments = "Numero do telefone celular";
+   k    = datkveiculo.nxtdddcod, comments = "DDD Nextel";
+   i    = datkveiculo.nxtide, comments = "Id Nextel";
+   j    = datkveiculo.nxtnum, comments = "Numero Nextel";
+   e4   = datkveiculo.socvcltip,
+          comments = "Informe o Tipo de Equipamento de Socorro";
+   e5   = formonly.socvcldes     type char,            noentry;
+
+   b3   = datkveiculo.vcllicnum,                       upshift,
+          comments = " Placa do veiculo";
+   b4   = formonly.chassi,                             upshift,
+          comments = " Numero do chassi do veiculo";
+   b5   = datkveiculo.vclanofbc,
+          comments = " Ano de fabricacao do veiculo";
+   b6   = datkveiculo.vclanomdl,
+          comments = " Ano modelo do veiculo";
+   b7   = formonly.vclcorcod,
+          comments = " Cor do veiculo";
+   b8   = formonly.vclcordes,                          noentry;
+   b9   = formonly.vclpnttip,
+          comments = " Tipo da pintura";
+   b10  = formonly.vclpntdes,                          noentry;
+   bc   = formonly.vclcmbcod,
+          comments = " Tipo de combustivel ";
+   b11  = formonly.vclcmbdes,                          noentry;
+
+   c    = datkveiculo.socctrposflg,                    upshift,
+          comments = " Posicao controlada pelo radio: (S)im ou (N)ao";
+   c2   = formonly.vcldtbgrpcod,
+          comments = " Codigo do grupo de distribuicao (Radio)";
+   c3   = datkvcldtbgrp.vcldtbgrpdes,                  noentry;
+   c4   = formonly.atdimpcod   type decimal,
+          comments = " Codigo da impressao remota (Pager)";
+   c41  = formonly.mdtcod      type decimal,
+          comments = " Codigo do MDT";
+   c42  = formonly.trxeqpsitdes,                       noentry;
+   c5   = formonly.pgrnum,
+          comments = " Numero do Teletrim";
+   c51  = formonly.ustnom,                             noentry;
+   c6   = datkveiculo.socvstdiaqtd,                    upshift,
+          comments = " Periodicidade para vistoria (em dias)";
+   c7   = datkveiculo.socvstlclcod,
+          comments = " Codigo do local da vistoria";
+   c8   = formonly.socvstlclnom,                       noentry;
+   c9   = datkveiculo.socvstlautipcod,
+          comments = " Codigo do tipo de laudo para vistoria";
+   c10  = formonly.socvstlautipdes,                    noentry;
+
+   d2   = datkveiculo.caddat,                          noentry;
+   d3   = formonly.cadfunnom,                          noentry;
+   d4   = datkveiculo.atldat,                          noentry;
+   d5   = formonly.funnom,                             noentry;
+    f   = dattfrotalocal.gpsacngrpcod,     invisible,  noentry;
+   r1   = dpaksocor.frtrpnflg, upshift;
+   r2   = formonly.frtrpndes, upshift, noentry;
+
+   t    = datkveiculo.rencod , comments = " Renavam do veiculo";
+   u    = datkveiculo.vclcadorgcod , comments = " Origem do cadastro da viatura";
+   v    = formonly.vclcadorgdes , noentry;
+
+end
+
+instructions
+     delimiters " "
+end

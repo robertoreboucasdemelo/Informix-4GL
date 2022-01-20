@@ -1,0 +1,45 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC48M01                                                 RAJI
+
+ Mostra o cadastro de problemas                                      Dez/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+        ESPECIFICACAO DO PROBLEMA / PROVIDENCIA
+----------------------------------------------ctc48m01--
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+[a    ][b                                              ]
+}
+End
+
+tables
+   datkpbm
+
+Attributes
+ a  = datkpbm.c24pbmcod    ,invisible, noentry;
+ b  = datkpbm.c24pbmdes    ,noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc48m01(c24pbmcod thru c24pbmdes)
+End

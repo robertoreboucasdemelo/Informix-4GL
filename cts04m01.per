@@ -1,0 +1,39 @@
+database porto
+screen size 16 by 73
+{
+                   Vistorias Solicitadas por Apolice
+ -------------------------------------------------------------CTS04M01---
+Vistorias       Data/Hora Atend.   Solicitante      Tipo
+
+[a            ][b         ][c    ][d              ][e                   ]
+[a            ][b         ][c    ][d              ][e                   ]
+[a            ][b         ][c    ][d              ][e                   ]
+[a            ][b         ][c    ][d              ][e                   ]
+[a            ][b         ][c    ][d              ][e                   ]
+
+(F17)Abandona  (F8)Seleciona
+
+}
+tables
+   datmligacao
+end
+
+attributes
+
+a = formonly.vistoria,     noentry
+  ;
+b = datmligacao.ligdat,    noentry
+  ;
+c = formonly.atdhor,       noentry
+  ;
+d = datmligacao.c24solnom, noentry
+  ;
+e = formonly.c24soltipdes, noentry
+  ;
+
+
+instructions
+  delimiters " "
+   screen record s_cts04m01[5] (vistoria,  ligdat, atdhor
+                                c24solnom, c24soltipdes);
+end

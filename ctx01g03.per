@@ -1,0 +1,62 @@
+{
+#------------------------------------------------------------------------------#
+# Porto Seguro Cia Seguros Gerais                                              #
+#..............................................................................#
+# Sistema        : Automovel                                                   #
+# Modulo         : ctx01g03                                                    #
+#                  Solicitacao do beneficio "Carro Extra".                     #
+# Analista Resp. : Ligia Mattge                                                #
+# PSI            : 187887                                                      #
+#..............................................................................#
+# Desenvolvimento: META, Marcos M.P.                                           #
+# Data           : 20/12/2004                                                  #
+#------------------------------------------------------------------------------#
+}
+database porto
+
+screen size 24 by 80
+{
+                      LIBERACAO DE BENEFICIO CARRO-EXTRA
+-----------------------------------------------------------------ctx01g03-----
+ Sucursal:[a    |b                                        ]
+ Apolice        Segurado                            Data Atd    Servico
+------------------------------------------------------------------------------
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+[c  |d      |e][f                                  |g         ][h            ]
+
+F5 - Detalhar  F6 - Liberar  F7 - Excluir
+
+}
+end
+
+tables
+   datrligapol,
+   gabksuc,
+   gsakseg,
+   datmservico
+end
+
+attributes
+   a = formonly.succod;
+   b = gabksuc.sucnom, noentry;
+   c = datrligapol.ramcod, noentry;
+   d = formonly.aplnum, noentry;
+   e = formonly.apldig, noentry;
+   f = gsakseg.segnom, noentry;
+   g = datmservico.atddat, noentry;
+   h = formonly.servico, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctx01g03 [10] (ramcod, aplnum, apldig,
+                                  segnom, atddat, servico)
+end

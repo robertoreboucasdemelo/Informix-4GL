@@ -1,0 +1,47 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC29M03                                              Marcelo
+                                                                     Gilberto
+ Informar o periodo do relatorio regional de acionamento             Mai/1996
+ ----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+ Solicitado em[a         ]`as[b       ] por[c       ]-[d                   ]
+ Periodo.....:[e         ]a[f         ] UF:[g ][inv  ]
+
+ Solicitado em[a         ]`as[b       ] por[c       ]-[d                   ]
+ Periodo.....:[e         ]a[f         ] UF:[g ][inv  ]
+
+ Solicitado em[a         ]`as[b       ] por[c       ]-[d                   ]
+ Periodo.....:[e         ]a[f         ] UF:[g ][inv  ]
+
+ Solicitado em[a         ]`as[b       ] por[c       ]-[d                   ]
+ Periodo.....:[e         ]a[f         ] UF:[g ][inv  ]
+
+
+}
+
+end
+
+Tables
+  isskfunc, dgbmparam
+
+Attributes
+a   = formonly.ultsoldat type date, noentry;
+b   = formonly.ultsolhor type char, noentry;
+c   = isskfunc.funmat             , noentry;
+d   = isskfunc.funnom             , noentry;
+e   = formonly.inicial   type date, comments = " Informe o periodo inicial";
+f   = formonly.final     type date, comments = " Informe o periodo final  ";
+g   = formonly.ufdcod    type char, upshift
+                                  , comments = " Informe a Unidade de Federacao";
+inv = dgbmparam.relpamseq         , noentry, invisible;
+end
+
+Instructions
+   delimiters  " "
+   screen record s_ctc29m03(ultsoldat thru relpamseq)
+end

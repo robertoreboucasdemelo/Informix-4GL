@@ -1,0 +1,54 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTN10C00                            Criacao: 25/03/97
+
+ Pesquisa locais de risco (Ramos Elementares) pelo logradouro
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn10c00--
+ Estado....:[a0]     Cidade..:[a1                                        ]
+ Logradouro:[a2                                                          ]
+------------------------------------------------------------------------------
+
+ Logradouro:[f01                                                         ]
+ Bairro....:[f02                                     ]            [inv       ]
+ Cidade....:[f03                                          ]  Cep.:[f04  ][f05]
+
+ Logradouro:[f01                                                         ]
+ Bairro....:[f02                                     ]            [inv       ]
+ Cidade....:[f03                                          ]  Cep.:[f04  ][f05]
+
+ Logradouro:[f01                                                         ]
+ Bairro....:[f02                                     ]            [inv       ]
+ Cidade....:[f03                                          ]  Cep.:[f04  ][f05]
+
+}
+end
+
+tables
+  glaklgd
+  glakcid
+  rlaklocal
+
+attributes
+  a0   = glakcid.ufdcod, autonext, upshift,
+         comments = " Informe a Unidade de Federacao";
+  a1   = glakcid.cidnom, autonext, upshift,
+         comments = " Informe a Cidade";
+  a2   = glaklgd.lgdnom, autonext, upshift,
+         comments = " Informe o Logradouro";
+  f01  = rlaklocal.endlgdnom;
+  f02  = rlaklocal.endbrr   ;
+  f03  = rlaklocal.endcid   ;
+  f04  = rlaklocal.endcep   ;
+  f05  = rlaklocal.endcepcmp;
+  inv  = rlaklocal.lclrsccod, invisible;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctn10c00(endlgdnom thru lclrsccod);
+end

@@ -1,0 +1,103 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB17M00                                              Marcelo 
+                                                                     Gilberto
+                                                                     Wagner   
+ Consulta Analise de servicos                                        Nov/1999
+-----------------------------------------------------------------------------}
+
+Database porto   
+Screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb17m00-- 
+ Servico..:[a |a1     |a2]         Prestador:[b     |b1                     ]
+ Motorista:[b2   |b3              ]Evento...:[b4|b5                  ]
+ Fase.....:[c |c1                 ]Periodo..:[d         ]a[d1        ][d2    ]
+------------------------------------------------------------------------------
+[e |e1     |e2|e3   |e4   ][f            |g                  ]  
+[i    |i1                               ][h                        ]
+[j         |k                  ]
+
+[e |e1     |e2|e3   |e4   ][f            |g                  ]  
+[i    |i1                               ][h                        ]
+[j         |k                  ]
+
+[e |e1     |e2|e3   |e4   ][f            |g                  ]  
+[i    |i1                               ][h                        ]
+[j         |k                  ]
+
+}
+End
+
+Tables datmservico, dpaksocor, datkevt, datkfse, datksrr 
+
+Attributes
+  a   = datmservico.atdsrvorg,          
+        format = "&&",
+        noentry;
+  a1  = datmservico.atdsrvnum,          
+        format = "&&&&&&&",
+        autonext,
+        comments = " Numero do servico em analise";
+  a2  = datmservico.atdsrvano,    
+        format = "&&",
+        comments = " Ano do servico em analise";
+  b   = dpaksocor.pstcoddig,    
+        comments = " Codigo Prestador para pesquisa";
+  b1  = formonly.nomgrr,
+        noentry;
+  b2  = datksrr.srrcoddig, 
+        comments = " Codigo do motorista para a pesquisa"; 
+  b3  = formonly.srrabvnom,     
+        noentry;
+  b4  = datkevt.c24evtcod, 
+        comments = " Codigo do evento ou 'enter' para todos os eventos"; 
+  b5  = formonly.c24evtrdzdes,
+        noentry;
+  c   = datkfse.c24fsecod, 
+        comments = " Codigo da fase ou 'enter' para todas as fases"; 
+  c1  = formonly.c24fsedes,
+        noentry;
+  d   = formonly.dataini     type date,                           
+        comments = " Data inicial do periodo para pesquisa";
+  d1  = formonly.datafim     type date,                           
+        comments = " Data final do periodo para pesquisa";
+  d2  = formonly.total,
+        noentry;
+  e   = formonly.atdsrvorg_arr type smallint,
+        format = "&&",
+        noentry;
+  e1  = formonly.atdsrvnum_arr type dec,
+        format = "&&&&&&&",
+        noentry;
+  e2  = formonly.atdsrvano_arr type dec,
+        format = "&&",
+        noentry;
+  e3  = formonly.atddat_arr type date,
+        format = "dd/mm",    
+        noentry;
+  e4  = formonly.atdhor_arr, 
+        noentry;
+  f   = formonly.srvtipabvdes_arr, 
+        noentry;        
+  g   = formonly.c24evtrdzdes_arr, 
+        noentry;        
+  h   = formonly.c24fsedes_arr, 
+        noentry;        
+  i   = formonly.pstcoddig_arr type dec,    
+        format = "&&&&&",
+        noentry;
+  i1  = formonly.nomgrr_arr,
+        noentry;
+  j   = formonly.caddat_arr type date,
+        noentry;
+  k   = formonly.funnom_arr,
+        noentry;
+end
+
+instructions
+  delimiters " " 
+  screen record s_ctb17m00(atdsrvorg_arr thru funnom_arr)         
+end
+
+

@@ -1,0 +1,44 @@
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc00m16--
+ Prestador:[a1      |a2                                                     ]
+------------------------------------------------------------------------------
+    Cod    Descricao                Dt Cadastro    Funcionario
+
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+    [b  ]  [b1                  ]   [b2        ]   [b3                  ]
+
+
+}
+end
+
+ tables dpaksocor, dparpstntz, datksocntz
+
+ attributes
+
+    a1 = dparpstntz.pstcoddig                ,noentry;
+    a2 = dpaksocor.rspnom                      ,noentry;
+
+    b  = dparpstntz.socntzcod                ,upshift,
+         comments = " Codigo da Natureza";
+    b1 = datksocntz.socntzdes                ,noentry;
+
+    b2 = dparpstntz.atldat                   ,noentry;
+    b3 = formonly.altfunnom                  ,noentry;
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_ctc00m16(socntzcod thru altfunnom)
+ end

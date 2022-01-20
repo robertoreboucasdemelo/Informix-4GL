@@ -1,0 +1,67 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTA05M00                                              Marcelo
+                                                                     Gilberto
+ Acompanhamento de reclamacoes                                       Jul/1997
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{
+--------------------------------------------------------------------cta05m00--
+                       ACOMPANHAMENTO DE RECLAMACOES               [h0      ]
+------------------------------------------------------------------------------
+ Data Reclamacao..:[h1        ]  Situacao:[h |h2             ]  Assunto:[h3 ]
+ Numero Ligacao...:[h4        ]                                [h5          ]
+------------------------------------------------------------------------------
+ Reclamacao  Assunto                                      Situacao     Espera
+
+[r1        ][r7 ][r8                                    ][r |r9              ]
+[r11          |r2   |r3   |r4  |r5               |r6                |r10     ]
+
+[r1        ][r7 ][r8                                    ][r |r9              ]
+[r11          |r2   |r3   |r4  |r5               |r6                |r10     ]
+
+[r1        ][r7 ][r8                                    ][r |r9              ]
+[r11          |r2   |r3   |r4  |r5               |r6                |r10     ]
+------------------------------------------------------------------------------
+}
+End
+
+tables
+   datmligacao,
+   datmsitrecl,
+   datmreclam
+
+Attributes
+   h0  = formonly.agora            type datetime hour to second,
+                                   noentry, reverse;
+   h1  = formonly.rcldat           type date, autonext,
+                                   comments = " Data inicial para pesquisa";
+   h   = formonly.rclsitcod        type dec , format =  "&#",
+                                   comments = " Situacao da reclamacao";
+   h2  = formonly.rclsitdsc        type char, noentry, upshift;
+   h3  = formonly.rclastcod        type char, upshift,
+                                   comments = " Assunto da reclamacao";
+   h4  = formonly.rcllignum        type dec , format = "##########",
+                                   comments = " Numero da ligacao";
+   h5  = formonly.totqtd           type char, noentry;
+
+   r1  = datmreclam.lignum       , noentry, format = "##########";
+   r11 = formonly.servico        , noentry;
+   r2  = datmsitrecl.rclrlzdat   , noentry, format = "dd/mm";
+   r3  = datmsitrecl.rclrlzhor   , noentry;
+   r4  = datmreclam.dddcod       , noentry;
+   r5  = datmreclam.ctttel       , noentry, upshift;
+   r6  = datmreclam.cttnom       , noentry, upshift;
+   r7  = datmligacao.c24astcod   , upshift;
+   r8  = formonly.c24astdes      , noentry, upshift;
+   r   = datmsitrecl.c24rclsitcod;
+   r9  = formonly.rclsitdes      , noentry, upshift;
+   r10 = formonly.pndtmp           type interval hour(04) to minute , noentry;
+End
+
+Instructions
+ delimiters " "
+ screen record s_cta05m00(lignum thru pndtmp)
+End

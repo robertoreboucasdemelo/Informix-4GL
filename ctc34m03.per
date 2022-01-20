@@ -1,0 +1,89 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m03                                               Gilberto
+                                                                       Marcelo
+ Cadastro de apolices dos veiculos do Porto Socorro                   Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m03--
+    [h                                                                  ]
+ Veiculo:[a     |a2   |a3                                                    ]
+------------------------------------------------------------------------------
+ Seq. Seguro.:[a4  ]
+
+ Congenere...:[b3  ][b4                                      ]
+[p1           |b5  ][b6   ][b7       ][b8     ]
+[p2           |b9             ]
+ Vigencia....:[b10       ]a[b11       ]
+
+ Cob. Casco..:[c]
+ Cob. RCF....:[d]
+ Imp. Seg. DM:[e              ]   Imp. Seg. DP.:[f              ]
+ Cob. RC Oper:[g]
+
+ Atualizado..:[s         ] por [s2                 ]
+
+}
+end
+
+ tables datkvclsgr, gcckcong
+
+ attributes
+    a   = datkvclsgr.socvclcod                              ,noentry;
+    a2  = formonly.atdvclsgl                                ,noentry;
+    a3  = formonly.vcldes                                   ,noentry;
+
+    a4  = datkvclsgr.vclsgrseq,
+          comments = " Sequencia do seguro";
+
+    b3  = datkvclsgr.sgdirbcod,
+          comments = " Codigo da congenere (seguradora)";
+    b4  = gcckcong.sgdnom                                   ,noentry;
+
+    p1  = formonly.aplporcab                                ,noentry;
+
+    b5  = datkvclsgr.ramcod,
+          comments = " Codigo do ramo";
+    b6  = datkvclsgr.succod,
+          comments = " Codigo da sucursal";
+    b7  = datkvclsgr.aplnumdig,
+          comments = " Numero da apolice na Porto Seguro (com digito)";
+    b8  = datkvclsgr.itmnumdig,
+          comments = " Numero do item (com digito)";
+
+    p2  = formonly.aplconcab                                ,noentry;
+
+    b9  = datkvclsgr.sgraplnum,
+          comments = " Numero da apolice na Congenere";
+
+    b10 = datkvclsgr.viginc,
+          comments = " Vigencia inicial da apolice";
+    b11 = datkvclsgr.vigfnl,
+          comments = " Vigencia final da apolice";
+
+    c   = datkvclsgr.cbtcscflg                              ,upshift,
+          comments = " Cobertura Casco: (S)im ou (N)ao";
+
+    d   = datkvclsgr.cbtrcfflg                              ,upshift,
+          comments = " Cobertura Risco Civil Facultativo: (S)im ou (N)ao";
+    e   = datkvclsgr.sgrimsdmvlr,  format = "###########&.&&",
+          comments = " Valor da Importancia Segurada - Danos Materiais";
+    f   = datkvclsgr.sgrimsdpvlr,  format = "###########&.&&",
+          comments = " Valor da Importancia Segurada - Danos Pessoais";
+
+    g   = datkvclsgr.cbtrcffvrflg                           ,upshift,
+          comments = " Cobertura Risco Civil Operacional: (S)im ou (N)ao";
+
+    h   = formonly.cabec                            ,noentry,upshift; 
+    
+    s  = datkvclsgr.atldat                                  ,noentry;
+    s2 = formonly.funnom                                    ,noentry;
+
+ end
+
+ instructions
+      delimiters " "
+ end

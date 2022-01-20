@@ -1,0 +1,46 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTS14M13                                              Gilberto
+                                                                      Marcelo
+ Pesquisa vistoria de sinistro de auto (de terceiros)                Fev/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Vistoria:[a     ][b   ]            Data Sinistro:[c         ]
+------------------------------------------------------cts14m13--
+ Terceiro.:[a5                                      ]
+ Veiculo..:[a10                                     ]Mod.:[a15 ]
+ Placa....:[a20    ]
+ Chassi...:[a25                 ]
+
+ Terceiro.:[a5                                      ]
+ Veiculo..:[a10                                     ]Mod.:[a15 ]
+ Placa....:[a20    ]
+ Chassi...:[a25                 ]
+
+}
+end
+
+tables  datmvstsin, ssamsin, ssamterc
+
+attributes
+
+  a   = datmvstsin.sinvstorgnum             ,
+        comments = " Numero vistoria (fornecido pela oficina do grupo)";
+  b   = datmvstsin.sinvstorgano             ,
+        comments = " Ano vistoria (fornecido pela oficina do grupo)";
+  c   = ssamsin.orrdat             ,noentry ;
+
+  a5  = ssamterc.bnfnom            ,noentry ;
+  a10 = ssamterc.sinbemdes         ,noentry ;
+  a15 = ssamterc.vclanomdl         ,noentry ;
+  a20 = ssamterc.vcllicnum         ,noentry ;
+  a25 = formonly.chassi            ,noentry ;
+end
+
+instructions
+   delimiters " "
+   screen record s_cts14m13 (bnfnom thru chassi);
+

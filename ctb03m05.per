@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB03M05                                              Wagner    
+ Exibe pop-up das op's relacionadas a este servico                   Jul/2001
+-----------------------------------------------------------------------------}
+
+Database Formonly
+
+Screen
+{
+    OP'S RELACIONADAS A ESTE SERVICO
+------------------------------ctb03m05--
+  Nr.OP   Diarias        Periodo
+ -------- ------- ---------------------
+[a       |b      |c         |d         ]
+[a       |b      |c         |d         ]
+[a       |b      |c         |d         ]
+[a       |b      |c         |d         ]
+[a       |b      |c         |d         ]
+
+}
+End
+
+Attributes
+ a  = formonly.socopgnum type dec     ,noentry;  
+ b  = formonly.pagas     type integer ,noentry;
+ c  = formonly.rsrincdat              ,noentry;
+ d  = formonly.rsrfnldat              ,noentry;
+end
+
+Instructions
+ delimiters " "
+ screen record s_ctb03m05(socopgnum thru rsrfnldat)

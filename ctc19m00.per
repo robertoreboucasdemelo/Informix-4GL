@@ -1,0 +1,70 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC19M00                                              Marcelo
+                                                                     Gilberto
+ CARRO EXTRA: Manutencao do cadastro de VEICULOS                     Ago/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc19m00--
+          Locadora:[x0  |x1                                      ]
+------------------------------------------------------------------------------
+
+ Codigo Veiculo:[a   ]                          Grupo:[b ]
+
+ Modelo........:[c                                       ]
+ Discriminacao.:[d                                       ]
+
+ Vlr.Franquia:[d01       ] Vlr.Reducao:[d02       ] Vlr.Isencao:[d03       ]
+
+ Situacao......:[e|e0       ]
+
+ Observacoes...:[f                                                ]
+
+ Cadastrado em.:[g         ]por[h0|h1    |h2                  ]
+ Atualizado em.:[i         ]por[j0|j1    |j2                  ]
+}
+end
+
+tables datkavisveic
+
+attributes
+x0   = datkavisveic.lcvcod     , required
+                               , comments = " Codigo da Locadora";
+x1   = formonly.lcvnom         , noentry
+                               , upshift ;
+a    = datkavisveic.avivclcod  , format = "&&&&"
+                               , comments = " Codigo do Veiculo";
+b    = datkavisveic.avivclgrp  , upshift
+                               , comments = " Grupo do Veiculo";
+c    = datkavisveic.avivclmdl  , upshift
+                               , comments = " Modelo do Veiculo";
+d    = datkavisveic.avivcldes  , upshift
+                               , comments = " Discriminacao do Veiculo";
+d01  = datkavisveic.frqvlr     , format = "###,##&.&&"
+                               , comments = " Valor da Franquia do Veiculo";
+d02  = datkavisveic.rduvlr     , format = "###,##&.&&"
+                               , comments = " Taxa da Reducao da franquia do Veiculo";
+d03  = datkavisveic.isnvlr     , format = "###,##&.&&"
+                               , comments = " Taxa da Isencao da franquia do Veiculo";
+e    = datkavisveic.avivclstt  , upshift
+                               , comments = " Situacao: (A)tivo ou (C)ancelado";
+e0   = formonly.vclsttdes      , upshift
+                               , noentry;
+f    = datkavisveic.obs        , upshift
+                               , comments = " Observacoes";
+g    = datkavisveic.caddat     , noentry ;
+h0   = datkavisveic.cademp     , noentry , format = "&&";
+h1   = datkavisveic.cadmat     , noentry , format = "&&&&&&";
+h2   = formonly.cadnom         , noentry ;
+i    = datkavisveic.atldat     , noentry ;
+j0   = datkavisveic.atlemp     , noentry , format = "&&";
+j1   = datkavisveic.atlmat     , noentry , format = "&&&&&&";
+j2   = formonly.atlnom         , noentry ;
+end
+
+instructions
+   delimiters " "
+end

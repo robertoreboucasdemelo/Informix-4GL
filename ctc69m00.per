@@ -1,0 +1,36 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m00                                      R.Fornax
+
+ Popup Servicos                                              Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m00--
+                             POPUP DE SERVICOS
+------------------------------------------------------------------------------
+ Servico  Nome
+
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [a    ] [b                                                            ]
+ [c                                                                    ]
+}
+end
+
+attributes
+   a  = formonly.srvcod   ;
+   b  = formonly.srvdes   ;
+   c  = formonly.msg      ;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m00(srvcod thru srvdes)
+end

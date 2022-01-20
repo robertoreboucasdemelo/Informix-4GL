@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC24M03                                              Marcelo
+                                                                     Gilberto
+ Exibe pop-up para selecao do topico                                 Mar/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+         Topicos
+-------------------ctc24m03--
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+ [a                   ]  [b ]
+
+}
+End
+
+tables
+   datktopcvn
+
+Attributes
+ a  = datktopcvn.cvntopnom       ,noentry;
+ b  = datktopcvn.cvntopcod       ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc24m03(cvntopnom thru cvntopcod)
+End

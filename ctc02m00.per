@@ -1,0 +1,42 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC02M00                     Criacao: 14/09/94 - Pedro
+
+ Manutencao dos tipos de guinchos
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc02m00--
+        Tipo                 Descricao
+------------------------------------------------------------------------------
+
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+        [a0]                [a1                                      ]
+
+
+}
+end
+
+tables dpckguincho
+
+attributes
+a0   = dpckguincho.gchtip, autonext
+                         , comments = " Tipo do guincho";
+a1   = dpckguincho.gchdes, upshift
+                         , comments = " Descricao do guincho";
+end
+
+instructions
+     delimiters " "
+end

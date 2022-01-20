@@ -1,0 +1,41 @@
+{----------------------------------------------------------------------------
+ Nome do Form: cts43g00                                              
+ Exibe as assistencias, qtd utilizada e limite da Azul Seguros.
+ Ligia Mattge dez/2006
+ PSI 205206 - Azul Seguros
+----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+
+          Limites de Utilizacao
+
+--------------------------------cts43g00---
+
+    Assistencia      Qtd.Utilizada  Limite
+
+    [b1             ]      [b2 ]     [b3 ]
+    [b1             ]      [b2 ]     [b3 ]
+    [b1             ]      [b2 ]     [b3 ]
+    [b1             ]      [b2 ]     [b3 ]
+
+
+
+}
+end
+
+tables datkasitip
+
+ attributes
+    b1 = datkasitip.asitipdes;
+    b2 = formonly.qtd_util; 
+    b3 = formonly.qtd_lim; 
+
+ end
+
+ instructions
+    delimiters " "
+    screen record s_cts43g00(asitipdes, qtd_util, qtd_lim)
+ end

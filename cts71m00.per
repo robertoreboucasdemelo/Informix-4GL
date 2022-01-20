@@ -1,0 +1,129 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts71m00                                              Roberto
+
+ Laudo - Porto Socorro Ramos Elementares
+
+------------------------------------------------------------------------------
+ 05/dez/2014 - Marcos Souza (BizTalking)- PSI SPR-2014-28503 - Retirada dos
+                            campos da tela 'lclrsccod' (Locais de Risco) e
+                            'lclrscflg' (Atendimento Local de Risco).
+                            Alteracao de posicao dos campos 'socntzcod'
+                            (Natureza), 'espcod' (Codigo especialidade),
+                            'c24pbmcod' (Problema) e 'atddfttxt' (Problema
+                            apresentado';
+-----------------------------------------------------------------------------
+ 09/mar/2015 - Marcos Souza (BizTalking)- PSI SPR-2015-03912 - Substituicao 
+                            do campo DOCTXT pela data nascimento e num pedido
+-----------------------------------------------------------------------------
+ 24/jul/2015 - Marcos Souza (BizTalking)-SPR-2015-15533-Fechamento Servs GPS 
+                            Desolcar campo 'Prestador Local para posicionamento
+                            após o campo 'Problema'. 
+----------------------------------------------------------------------------- }
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a1           ] Proposta:[a3         ]              [a2             ]
+--------------------------------------------------------------------cts71m00--
+[b1                                      ]Nasc:[b2        ] Pedido:[b3       ]
+[b5    |b6                                  ]
+------------------------------------------------------------------------------
+ Natureza.:[d3  |d4                         ] Esp.:[d2|d21                   ]
+ Problema.:[d8  |d5                         ]          Prestador no local.:[j]
+ Endereco.:[c2                                                               ]
+ Bairro...:[c3                  ]  Cidade.:[c4                  ]    U.F.:[c5]
+ Complemen:[c20                      ]      Resp. Local:[c10                 ]
+ Tel.Local:[c8  |c9       ]                 Tel.Celular:[c11 |c12      ]
+ Ponto Ref:[c6                                                      ]Zona:[c7]
+ Data Ocor:[d1        ]                     Num/Ano Serv Orig.:[d20          ]
+ Tp.Assist:[d6|d7      ]
+[d9        |d90 |d99                           ][e1                      ][e2]
+ Priorid..:[f|f1    ]                       Srv Liberado:[g]  Srv Imediato:[e]
+ Atend/Lib:[i                                                                ]
+
+[y                                                                        ]
+}
+end
+
+tables
+   datmservico ,
+   datmsrvre   ,
+   datmligacao ,
+   datmlcl,
+   datkasitip,
+   datkpbm,
+   dbskesp
+
+attributes
+
+a1   = formonly.srvnum         , noentry;
+a3   = formonly.prpnumdsp      , noentry;
+a2   = datmligacao.c24solnom   , noentry;
+
+b1   = datmservico.nom         , upshift
+                               , comments = " Nome do Segurado";
+b2  = formonly.nscdat type date, upshift
+                               , comments = " Informe a data de Nascimento ";
+b3  = formonly.srvpedcod, noentry, reverse;
+
+b5   = datmservico.corsus      , upshift
+                               , comments = " Susep";
+b6   = datmservico.cornom      , upshift
+                               , comments = " Corretor";
+c2   = formonly.lgdtxt         , upshift
+                               , comments = " Endereco para atendimento";
+c3   = datmlcl.lclbrrnom       , upshift
+                               , comments = " Bairro";
+c4   = datmlcl.cidnom          , upshift
+                               , comments = " Cidade";
+c5   = datmlcl.ufdcod          , upshift
+                               , comments = " Sigla U.F.";
+c6   = datmlcl.lclrefptotxt    , upshift
+                               , comments = " Ponto de referencia";
+c7   = datmlcl.endzon          , upshift
+                               , comments = " Zona: (NO)rte, (SU)l, (LE)ste, (OE)ste ou (CE)ntral";
+c8   = datmlcl.dddcod          , comments = " Codigo do DDD";
+c9   = datmlcl.lcltelnum       , comments = " Telefone do local";
+c10  = formonly.lclcttnom      , upshift
+                               , comments = " Responsavel no local";
+c11  = datmlcl.celteldddcod    , comments = " Codigo DDD do Celular";
+c12  = datmlcl.celtelnum       , comments = " Telefone Celular";
+d1   = datmsrvre.orrdat        , comments = " Data da ocorrencia";
+
+d20  = formonly.servicorg      , noentry;
+d3   = datmsrvre.socntzcod     , comments = " Codigo da natureza da ocorrencia";
+d4   = formonly.socntzdes      , noentry;
+d2   = datmsrvre.espcod        , comments = " Codigo da especialidade do servico";
+d21  = dbskesp.espdes          , noentry;
+d8   = datkpbm.c24pbmcod       , comments = " Codigo problema apresentado"
+                               , upshift;
+d5   = datmservico.atddfttxt   , upshift
+                               , comments = " Problema apresentado";
+d6   = datmservico.asitipcod   , comments = " Tipo de assistencia";
+d7   = datkasitip.asitipabvdes , noentry;
+d9   = formonly.cpltela        , noentry;
+d90  = formonly.srvretmtvcod type smallint
+                               , comments = " Codigo motivo do retorno";
+d99  = formonly.srvretmtvdes type char
+                               , upshift , comments = " Motivo do retorno ";
+e1   = formonly.cplPrest       , noentry;
+e2   = formonly.retprsmsmflg type char
+                               , autonext, upshift;
+e    = formonly.imdsrvflg      , upshift
+                               , comments = " Servico imediato? (S)im ou (N)ao";
+f    = datmservico.atdprinvlcod, comments = " Nivel de Prioridade no atendimento: (1)-Baixa, (2)-Normal ou (3)-Urgente";
+f1   = formonly.atdprinvldes   , noentry;
+g    = datmservico.atdlibflg   , upshift
+                               , comments = " Servico liberado? (S)im ou (N)ao";
+j    = formonly.prslocflg      , upshift
+                               , comments = " Prestador no local: (S)im ou (N)ao";
+i    = formonly.atdtxt         , noentry;
+y    = formonly.msgfun         , noentry;
+c20  = datmlcl.endcmp          , comments = " Digite o complemento de endereco";
+
+end
+
+instructions
+  delimiters " "
+end

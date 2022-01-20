@@ -1,0 +1,61 @@
+{---------------------------------------------------------------------   
+ Porto Seguro Cia Seguros Gerais                                         
+ ....................................................................    
+ Sistema       : Central 24h                                             
+ Modulo        : ctc14m07                                                
+ Analista Resp.: Roberto Melo                                            
+ PSI           :                                                         
+ Objetivo      : Manutencao do Relacionamento Assunto/Clausulas          
+.....................................................................    
+ Desenvolvimento: Amilton , META                                         
+ Liberacao      :                                                        
+.....................................................................    
+                                                                         
+                  * * * Alteracoes * * *                                 
+                                                                         
+ Data        Autor Fabrica  Origem    Alteracao                          
+ ----------  -------------- --------- ------------------------------     
+-------------------------------------------------------------------------}
+
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc14m07--
+ Clausulas p/ assunto:[a  ][b                                                ]
+------------------------------------------------------------------------------
+ Ramo  Clausulas                                               
+-----------------------------------------------------------------------------
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+ [c   ][d  ]  [e                                                        ]  
+
+
+
+}
+end
+
+tables
+   datrastcls
+
+attributes
+   a  = formonly.c24astcod                ,noentry;
+   b  = formonly.c24astdes                ,noentry;
+   c  = formonly.ramcod                   ,upshift,
+        comments = " Codigo do Ramo";
+   d  = formonly.clscod                   ,upshift,
+        comments = " Codigo da Clausula";
+   e  = formonly.clsdes                   ,noentry;   
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc14m07(ramcod thru clsdes)
+end

@@ -1,0 +1,25 @@
+database formonly
+
+screen
+
+{
+   PESQUISA LIGACOES [c        ]   
+------------------(cta02m02a)---
+
+  Data Inicial:[a1        ]
+
+  Data Final..:[b1        ]
+
+}
+
+end
+
+attributes
+ a1 = formonly.dtini   type date, comments = "Informe data inicial para pesquisa";
+ b1 = formonly.dtfim   type date, comments = "Informe data final para pesquisa";
+ c  = formonly.cab    type char, noentry;
+end
+
+instructions
+  delimiters ' '
+end

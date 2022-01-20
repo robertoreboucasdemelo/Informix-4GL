@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTC35M01                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Cadastro de tipos de laudo para vistoria                             Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m01--
+      Codigo......:[a1  ]
+------------------------------------------------------------------------------
+
+
+      Descricao...:[a2                                      ]
+
+      Situacao....:[s]
+
+
+
+
+      Incluido....:[a3        ]por[a31                ]
+      Atualizado..:[a4        ]por[a41                ]
+
+
+
+}
+end
+
+tables datkvstlautip
+
+attributes
+ a1   = formonly.socvstlautipcod,
+        comments = " Codigo do tipo de laudo "                      ;
+
+ a2   = datkvstlautip.socvstlautipdes,
+        comments = " Descricao do tipo de laudo ",          upshift;
+
+ s    = datkvstlautip.socvstlautipsit,
+        comments = " Situacao do tipo de laudo: (A)tivo ou (C)ancelado", upshift;
+
+ a3   = datkvstlautip.caddat,                           noentry;
+ a31  = formonly.cadfunnom,                             noentry;
+
+ a4   = datkvstlautip.atldat,                           noentry;
+ a41  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

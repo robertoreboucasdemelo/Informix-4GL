@@ -1,0 +1,39 @@
+database formonly
+
+screen
+{
+-----------------------------------------------------------------ctc70m02-----
+         Codigo ........:[a     ]
+------------------------------------------------------------------------------
+
+
+         Descricao .....:[b                   ]  
+         
+         Etapa  ........:[c     ][d              ]
+
+         Status ........:[e]
+
+ 
+         Incluido ......:[f         ] por [g                   ]          
+ 
+
+
+
+ 
+------------------------------------------------------------------------------
+}
+end 
+
+attributes
+
+a = formonly.etpmtvcod;
+b = formonly.etpmtvdes, upshift;
+c = formonly.atdetpcod;
+d = formonly.atdetpdes, noentry;
+e = formonly.etpmtvstt, upshift,comments= "A(Ativo)  C(Cancelado)";
+f = formonly.caddat;
+g = formonly.funnom;
+end 
+
+
+ 

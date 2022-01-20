@@ -1,0 +1,46 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTC29M02                                              Marcelo
+                                                                     Gilberto
+ Tela de consulta dos relatorios solicitados                         Mai/1996
+ ----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc29m02--
+                          RELATORIOS SOLICITADOS
+------------------------------------------------------------------------------
+ Relatorio...:[a       ]-[b                                       ][inv  ]
+ Solicitado em[c         ]`as[d       ] por[e       ]-[f                   ]
+
+ Relatorio...:[a       ]-[b                                       ][inv  ]
+ Solicitado em[c         ]`as[d       ] por[e       ]-[f                   ]
+
+ Relatorio...:[a       ]-[b                                       ][inv  ]
+ Solicitado em[c         ]`as[d       ] por[e       ]-[f                   ]
+
+ Relatorio...:[a       ]-[b                                       ][inv  ]
+ Solicitado em[c         ]`as[d       ] por[e       ]-[f                   ]
+
+
+}
+end
+
+Tables
+dgbkrel, isskfunc, dgbmparam
+
+Attributes
+  a   = formonly.relsgl   , noentry;
+  b   = dgbkrel.reldes    , noentry;
+  inv = dgbmparam.relpamseq, noentry, invisible;
+  c   = formonly.ultsoldat, noentry;
+  d   = formonly.ultsolhor, noentry;
+  e   = isskfunc.funmat   , noentry;
+  f   = isskfunc.funnom   , noentry;
+end
+
+Instructions
+   delimiters  " "
+   screen record s_ctc29m02(relsgl thru funnom)
+end

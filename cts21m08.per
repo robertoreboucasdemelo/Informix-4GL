@@ -1,0 +1,26 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts21m08                                                  Ruiz
+                                                                   Junior-fsw
+ Motivo do cancelamento vist. RE - e chamada pelo modulo cts21m03    Ago/2001
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+{
+          DIGITE O MOTIVO DO CANCELAMENTO
+----------------------------------------cts21m08---
+[f001                                             ]
+[f002                                             ]
+
+         (F8)Confirma       (F17)Abandona
+}
+end
+
+attributes
+  f001 = formonly.motivo1 type char, upshift;
+  f002 = formonly.motivo2 type char, upshift;
+end
+
+instructions
+  delimiters " "
+end

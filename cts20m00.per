@@ -1,0 +1,84 @@
+{------------------------------------------------------------------------------
+ Nome do Form: CTS20M00                                               Marcelo
+                                                                      Gilberto
+ Tela de consulta de servico (Lau_ct24h)                              Abr/1997
+------------------------------------------------------------------------------}
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts20m00--
+ SERVICO:[a ][a1     |a2]  LAUDO DE SERVICO -[a3        ]    [a4             ]
+------------------------------------------------------------------------------
+[b1                                      ]  [b2                              ]
+[b3    |b4                                      ] Convenio:[b5               ]
+[b6    |b7                                      ][b8  |b9     ]Cor:[b10      ]
+------------------------------------------------------------------------------
+ Assunto...:[c2 ][c3                                                         ]
+[v1                                   ]
+
+ Endereco..:[d1                                                              ]
+ Bairro....:[d2                  ] Cidade....:[d3                  ] U.F.:[d4]
+ Telefone..:[d5  ][d6       ]      Resp.Local:[d7                  ]
+ Referencia:[d8                                                     ]Zona:[d9]
+ Atend/Lib.:[e1                                                              ]
+[f1                            ]   Tp.Assist.:[f2                  ]
+ Data Pagto:[g1        ]           Valor.....:[g2            ] O.P.:[g3      ]
+}
+end
+
+tables
+  datmservico,
+  datmligacao,
+  datksrvtip ,
+  datkasitip ,
+  datmlcl    ,
+  dbsmopg
+
+attributes
+  a    = datmservico.atdsrvorg   , format   = "&&", noentry;
+  a1   = datmservico.atdsrvnum   , comments = " Numero do servico",
+                                   autonext, format = "&&&&&&&";
+  a2   = datmservico.atdsrvano   , comments = " Ano do servico"   ,
+                                   format = "&&";
+  a3   = datksrvtip.srvtipabvdes , noentry, reverse;
+  a4   = datmligacao.c24solnom   , noentry;
+
+  b1   = datmservico.nom         , noentry;
+  b2   = formonly.doctxt         , noentry;
+  b3   = datmservico.corsus      , noentry;
+  b4   = datmservico.cornom      , noentry;
+  b5   = formonly.cvnnom         , noentry, reverse;
+  b6   = datmservico.vclcoddig   , noentry, format = "&&&&&&";
+  b7   = datmservico.vcldes      , noentry;
+  b8   = datmservico.vclanomdl   , noentry;
+  b9   = datmservico.vcllicnum   , noentry;
+  b10  = formonly.vclcor         , noentry, downshift;
+
+  c2   = datmligacao.c24astcod   , noentry;
+  c3   = formonly.c24astdes      , noentry;
+  v1   = formonly.livre          , noentry;
+
+  d1   = formonly.lgdtxt         , noentry;
+  d2   = datmlcl.lclbrrnom       , noentry;
+  d3   = datmlcl.cidnom          , noentry;
+  d4   = datmlcl.ufdcod          , noentry;
+  d5   = datmlcl.dddcod          , noentry;
+  d6   = datmlcl.lcltelnum       , noentry;
+  d7   = datmlcl.lclcttnom       , noentry;
+  d8   = datmlcl.lclrefptotxt    , noentry;
+  d9   = datmlcl.endzon          , noentry;
+
+  e1   = formonly.atdlibtxt      , noentry;
+
+  f1   = formonly.tmptxt         , noentry;
+  f2   = datkasitip.asitipdes    , noentry, reverse;
+
+  g1   = datmservico.pgtdat      , noentry;
+  g2   = datmservico.atdcstvlr   , noentry, format = "<<<,<<<,<<&.&&";
+  g3   = dbsmopg.socopgnum       , noentry, format = "<<<<<<<&";
+end
+
+instructions
+  delimiters " "
+end

@@ -1,0 +1,65 @@
+{---------------------------------------------------------------------   
+ Porto Seguro Cia Seguros Gerais                                         
+ ....................................................................    
+ Sistema       : Central 24h                                             
+ Modulo        : ctc62m00                                                
+ Analista Resp.: Roberto Melo                                            
+ PSI           :                                                         
+ Objetivo      : Manutencao do Acesso a Tela de Serviços         
+.....................................................................    
+ Desenvolvimento: Roberto Melo                                        
+ Liberacao      :                                                        
+..................................................................... 
+---------------------------------------------------------------------}     
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc62m00--
+                  MATRICULAS COM ACESSO A TELA DE SERVICOS
+------------------------------------------------------------------------------
+ Matricula  Empresa               [c1]  [d1]  [e1]  [f1]  [g1]  [h1]  [i1]
+------------------------------------------------------------------------------
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+ [a     ][b                     ] ([c]) ([d]) ([e]) ([f]) ([g]) ([h]) ([i])
+------------------------------------------------------------------------------
+ Nome Funcionario...:[j                                                      ]
+ 
+}
+end
+
+tables
+   isskfunc
+
+attributes
+   a  = formonly.funmat                   ;
+   b  = formonly.empsgl                   ;
+   c  = formonly.emp1                     ;
+   d  = formonly.emp2                     ;   
+   e  = formonly.emp3                     ;   
+   f  = formonly.emp4                     ;   
+   g  = formonly.emp5                     ;   
+   h  = formonly.emp6                     ;   
+   i  = formonly.emp7                     ; 
+   c1 = formonly.tit1            , noentry;
+   d1 = formonly.tit2            , noentry;
+   e1 = formonly.tit3            , noentry;
+   f1 = formonly.tit4            , noentry;
+   g1 = formonly.tit5            , noentry;
+   h1 = formonly.tit6            , noentry;
+   i1 = formonly.tit7            , noentry;     
+   j  = isskfunc.rhmfunnom       , noentry;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc62m00(funmat thru emp7)
+end

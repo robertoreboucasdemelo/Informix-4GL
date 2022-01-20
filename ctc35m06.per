@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC35M06                                               Gilberto
+                                                                       Marcelo
+                                                                        Wagner
+ Manutencao no cadastro de Laudo de vistorias                         Dez/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc35m06--
+ Nro Laudo.:[a5    ]
+ Tipo laudo:[a10][a15                                     ]
+ Vigencia..:[a20       ] a [a25       ]
+
+ Incluido..:[a30       ]por[a35                ]
+------------------------------------------------------------------------------
+  Grupo/Descricao           Item/Descricao            Verif./Descricao     Rev
+------------------------------------------------------------------------------
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+ [b5 |b10                 ][b15|b20                 ][b25|b30             ][c]
+
+}
+end
+
+tables datmvstlau, datrvstitmver, datkvstitmgrp, datkvstitm, datkvstitmver
+
+attributes
+
+   a5  = formonly.socvstlaunum,                      noentry;
+   a10 = datmvstlau.socvstlautipcod,                 noentry;
+   a15 = formonly.socvstlautipdes,                   noentry;
+   a20 = datmvstlau.viginc,                          noentry;
+   a25 = datmvstlau.vigfnl,                          noentry;
+
+   a30 = datmvstlau.caddat,                          noentry;
+   a35 = formonly.cadfunnom,                         noentry;
+
+   b5  = datrvstitmver.socvstitmgrpcod,
+         comments = " Codigo do grupo de itens ";
+   b10 = datkvstitmgrp.socvstitmgrpdes,              noentry;
+   b15 = datrvstitmver.socvstitmcod,
+         comments = " Codigo do item de vistoria ";
+   b20 = datkvstitm.socvstitmdes,                    noentry;
+   b25 = datrvstitmver.socvstitmvercod,
+         comments = " Codigo da verificacao do item ";
+   b30 = datkvstitmver.socvstitmverdes,              noentry;
+   c   = datrvstitmver.socvstitmrevflg,
+         comments = " Revistoria : (S)im ou (N)ao ", upshift;
+end
+
+instructions
+  delimiters " "
+  screen record s_ctc35m06(socvstitmgrpcod thru socvstitmrevflg)
+
+

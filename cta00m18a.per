@@ -1,0 +1,58 @@
+{-----------------------------------------------------------------------------#
+# Nome do Form: cta00m18a.per                                 Roberto Reboucas#
+#                                                                             #
+# Localiza Documentos por CGC/CPF - Outros Campos                    Ago/2007 #
+#-----------------------------------------------------------------------------}
+
+database formonly
+
+screen
+{
+--------------------------------------------------------------------cta00m18a-
+ Empresa......:[l |l1                                        ]
+ Companhia....:[m   |m1                                                      ]
+ Ramo.........:[a   |a1                                      ]
+ Placa........:[b      ]
+ Sucursal.....:[c    |c1                                        ]
+ Apolice......:[d       ]        Item.:[e     ]
+ Documento....:[f][g             ][h ] [i        ] Sem Docto.:[j]
+}
+end
+
+attributes
+    l  = formonly.ciaempcod     , autonext
+                                , comments = " Codigo da Empresa";
+    l1 = formonly.ciaempnom     , upshift
+                                , noentry;
+    m  = formonly.itaciacod     , autonext                              
+                                , comments = " Codigo da Companhia";    
+    m1 = formonly.itaciades     , noentry;                              
+    a  = formonly.ramcod        , autonext
+                                , comments = " Localiza por apolice";
+    a1 = formonly.ramnom        , noentry;
+    b  = formonly.vcllicnum     , upshift
+                                , comments = " Localiza pela placa do veiculo";
+    c  = formonly.succod          type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    c1 = formonly.sucnom        , noentry;
+    d  = formonly.aplnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    e  = formonly.itmnumdig       type decimal
+                                , autonext
+                                , comments = " Localiza por apolice";
+    f  = formonly.doctip        , upshift
+                                , comments = " Localiza por Documento <C>obertura, <P>roposta ou <V>istoria";
+    g  = formonly.doctxt        , noentry;
+    h  = formonly.prporg          type decimal
+                                , autonext
+                                , comments = " Localiza pela proposta";
+    i  = formonly.doc            type decimal ;
+    j =  formonly.semdocto      , upshift
+                                , comments = " Informe 'S' para ligacao sem docto";
+
+end
+instructions
+   delimiters " "
+end                                                                                                                                                   

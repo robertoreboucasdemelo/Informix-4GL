@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc40m01                                               Marcelo
+                                                                      Gilberto
+ Cadastro de dominios - dados da atualizacao                          Mar/1999
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+             Dados da Atualizacao
+-----------------------------------ctc40m01--
+
+ Data.......:[a         ]     Hora...:[b    ]
+ Responsavel:[c1|c2    |c3                  ]
+
+
+}
+end
+
+ attributes
+    a  = formonly.atldat        , noentry;
+    b  = formonly.atlhor        , noentry;
+    c1 = formonly.atlemp          type dec
+                                , noentry
+                                , format = "&&";
+    c2 = formonly.atlmat          type dec
+                                , noentry
+                                , format = "&&&&&&";
+    c3 = formonly.atlfunnom     , noentry;
+ end
+
+ instructions
+    delimiters " "
+ end

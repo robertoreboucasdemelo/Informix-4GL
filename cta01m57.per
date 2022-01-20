@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta01m57                                               Marcelo
+                                                                      Gilberto
+ POP-UP para Cartoes Adicionais                                       Jan/1996
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen size 24 by 80
+{                                                                   cta01m57
+                           CARTOES ADICIONAIS
+------------------------------------------------------------------------------
+ Numero do Cartao    Seq  Nome                                      Situacao
+------------------------------------------------------------------------------
+[a1                 ][a2][a3                                      ][a4       ]
+[a1                 ][a2][a3                                      ][a4       ]
+[a1                 ][a2][a3                                      ][a4       ]
+[a1                 ][a2][a3                                      ][a4       ]
+[a1                 ][a2][a3                                      ][a4       ]
+
+}
+end
+ tables eccmpti
+
+attributes
+   a1  = formonly.cartao          type decimal,
+         format  =  "#### #### #### ####",    noentry;
+   a2  = eccmpti.pcaptitip,                   noentry;
+   a3  = eccmpti.pcaptinom,                   noentry;
+   a4  = formonly.situacao        type char,  noentry;
+end
+instructions
+   delimiters " "
+   screen record s_cta01m57 (cartao, pcaptitip, pcaptinom, situacao)
+end

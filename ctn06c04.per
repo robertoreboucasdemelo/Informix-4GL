@@ -1,0 +1,64 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN06C04                     Criacao: 27/10/94 - Pedro
+
+ Consulta Prestadores por Servicos
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn06c04--
+ Tipo de servico:[a2 |a3                          ]Empresa:[a4][a5          ]
+------------------------------------------------------------------------------
+ Razao..:[a8                                      ]Codigo:[a9    ][a        ]
+ Ender..:[a10                                     ]Bairro:[a11              ]
+ Cidade.:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels...:[a15 ][a16                                     ]
+ Horario:[a17  ]as[a18  ]   Sab.:[a19  ]as[a20  ]  Dom...:[a21  ]as[a22  ]
+ Obs....:[a23                                             |a231        |a24   ]
+
+ Razao..:[a8                                      ]Codigo:[a9    ][a        ]
+ Ender..:[a10                                     ]Bairro:[a11              ]
+ Cidade.:[a12                 ]  U.F:[u2]          Cep...:[a13  ][a14]
+ Tels...:[a15 ][a16                                     ]
+ Horario:[a17  ]as[a18  ]   Sab.:[a19  ]as[a20  ]  Dom...:[a21  ]as[a22  ]
+ Obs....:[a23                                             |a231        |a24   ]
+
+}
+end
+
+tables dpaksocor,
+       dpckserv
+
+attributes
+a2   = formonly.pstsrvtip         ,comments = " Tipo de servico", autonext;
+a3   = dpckserv.pstsrvdes         ,noentry;
+a4   = formonly.ciaempcod         ,comments=" Codigo da empresa",reverse;
+a5   = formonly.empnom            ,noentry,reverse; 
+a8   = dpaksocor.nomgrr           ,noentry;
+a9   = dpaksocor.pstcoddig        ,noentry;
+a    = formonly.status            ,noentry;
+a10  = dpaksocor.endlgd           ,noentry;
+a11  = dpaksocor.endbrr           ,noentry;
+a12  = dpaksocor.endcid           ,noentry;
+u2   = dpaksocor.endufd           ,noentry;
+a13  = dpaksocor.endcep           ,noentry;
+a14  = dpaksocor.endcepcmp        ,noentry;
+a15  = dpaksocor.dddcod           ,noentry;
+a16  = dpaksocor.teltxt           ,noentry;
+a17  = dpaksocor.horsegsexinc     ,noentry;
+a18  = dpaksocor.horsegsexfnl     ,noentry;
+a19  = dpaksocor.horsabinc        ,noentry;
+a20  = dpaksocor.horsabfnl        ,noentry;
+a21  = dpaksocor.hordominc        ,noentry;
+a22  = dpaksocor.hordomfnl        ,noentry;
+a23  = formonly.pstobs            ,noentry;
+a231 = formonly.qualidade         ,noentry, reverse;
+a24  = formonly.tabela            ,noentry;
+end
+
+instructions
+     delimiters " "
+     screen record s_ctn06c04(nomgrr thru tabela)
+end

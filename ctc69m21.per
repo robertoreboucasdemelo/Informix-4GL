@@ -1,0 +1,46 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m21                                      R.Fornax
+                                                             
+ Cadastro de Pacote X Clausula/Plano                        Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m21--
+ Codigo.....:[a   ]
+ Clausula...:[b   ][c                                                       ]
+------------------------------------------------------------------------------
+ Pacote    Nome                                      Limite      Unidade     
+                                                 
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ]
+ [d    ] [e                                      ] [f       ] [g          ] 
+------------------------------------------------------------------------------
+ Atualizado..:[h          ] por [i                                         ]
+------------------------------------------------------------------------------
+
+}
+end
+
+attributes
+   a  = formonly.plnclscod              ,noentry; 
+   b  = formonly.clscod                 ,noentry;
+   c  = formonly.clsnom                 ,noentry;
+   d  = formonly.paccod                 ,comments = " Digite o Codigo do Pacote"      ,upshift;   
+   e  = formonly.pacnom                 ,noentry;
+   f  = formonly.limite                 ,noentry;
+   g  = formonly.unilim                 ,noentry;
+   h  = formonly.regatldat              ,noentry;
+   i  = formonly.funnom                 ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m21(paccod thru unilim)
+end

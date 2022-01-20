@@ -1,0 +1,57 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctn56c00a.                                    Johnny,Biztalking
+
+                                                                      Fev/2012
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{ 
+                    CONSULTA CAPS E POSTOS DE SERVIÇOS
+------------------------------------------------------------------ctn56c00a---
+ R.Social:[a1                                 ]           Codigo:[a2   ]
+ Endereco:[a3                                      ]      Bairro:[a4         ]
+ Cidade..:[a5                  ]                          UF....:[a6]
+ Telefone:[a8]-[a9       ]
+ Horarios:[a10                                                               ]
+
+ 
+ Observacao.:[a11                                                            ]
+             [a12                                                            ]
+             [a13                                                            ]
+ [a]         
+
+------------------------------------------------------------------------------
+                             (F17) Sair             
+------------------------------------------------------------------------------
+
+}
+end 
+
+ tables avgmcappstend
+       ,datmlcl
+ 
+attributes
+
+a  = formonly.fantasma type char, invisible;
+a1 = formonly.razao    type char, upshift,noentry  ;
+a2 = formonly.codigo   type decimal(5,0), noentry   ;
+a3 = datmlcl.endcmp             , upshift, noentry  ;
+a4 = datmlcl.brrnom             , upshift, noentry  ;
+a5 = datmlcl.cidnom             , upshift, noentry  ;
+a6 = datmlcl.ufdcod             , upshift, noentry  ;
+a8 = avgmcappstend.cmctelddd, noentry ;
+a9 = avgmcappstend.pstcmltel, noentry ;
+a10 = formonly.horarios type char, noentry ; 
+a11 = formonly.observacao1 type char, noentry;
+a12 = formonly.observacao2 type char, noentry;
+a13 = formonly.observacao3 type char, noentry;
+
+
+end 
+
+instructions 
+   delimiters " "
+   
+end                   

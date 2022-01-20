@@ -1,0 +1,50 @@
+{--------------------------------------------------------------------
+ Nome do form: CTN09C01                     Criacao: 25/10/94 - Pedro
+
+ Consulta cadastro de corretores por cep.
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn09c01--
+
+ R.Social:[a005                                      ]Susep.:[a006  ]
+ Endereco:[a007                                     ] Bairro:[a008           ]
+ Cidade..:[a009                ]            U.F.:[uf] Cep...:[a010 ][b01]
+ Tels....:[a011][a012                             ]   Fax...:[a013           ]
+
+ R.Social:[a005                                      ]Susep.:[a006  ]
+ Endereco:[a007                                     ] Bairro:[a008           ]
+ Cidade..:[a009                ]            U.F.:[uf] Cep...:[a010 ][b01]
+ Tels....:[a011][a012                             ]   Fax...:[a013           ]
+
+ R.Social:[a005                                      ]Susep.:[a006  ]
+ Endereco:[a007                                     ] Bairro:[a008           ]
+ Cidade..:[a009                ]            U.F.:[uf] Cep...:[a010 ][b01]
+ Tels....:[a011][a012                             ]   Fax...:[a013           ]
+
+}
+end
+
+tables gcaksusep, gcakcorr, gcakfilial, gabkuno
+
+attributes
+  a005 = gcakcorr.cornom         ,noentry;
+  a006 = gcaksusep.corsus        ,noentry;
+  a007 = gcakfilial.endlgd       ,noentry;
+  a008 = gcakfilial.endbrr       ,noentry;
+  a009 = gcakfilial.endcid       ,noentry;
+  uf   = gcakfilial.endufd       ,noentry;
+  a010 = gcakfilial.endcep       ,noentry;
+  b01  = gcakfilial.endcepcmp    ,noentry;
+  a011 = gcakfilial.dddcod       ,noentry;
+  a012 = gcakfilial.teltxt       ,noentry;
+  a013 = gcakfilial.factxt       ,noentry;
+end
+
+instructions
+  screen record s_ctn09c01 (cornom thru factxt)
+  delimiters " "
+end

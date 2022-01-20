@@ -1,0 +1,32 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS11G00                                              Marcelo
+                                                                     Gilberto
+ Exibicao das informacoes da digitacao do formulario                 Nov/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            Digitacao do Formulario
+--------------------------------------cts11g00--
+ Data Digitacao:[a         ] Hora Digit.:[b    ]
+ Funcionario...:[c |d     |e                   ]
+
+}
+end
+
+tables
+  datmligfrm
+
+attributes
+  a = datmligfrm.caddat         , noentry;
+  b = datmligfrm.cadhor         , noentry;
+  c = datmligfrm.cademp         , format = "&&"    , noentry;
+  d = datmligfrm.cadmat         , format = "&&&&&&", noentry;
+  e = formonly.cadnom           , noentry;
+end
+
+instructions
+  delimiters " "
+end

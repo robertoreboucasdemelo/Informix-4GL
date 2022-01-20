@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTN21C00                                              Gilberto
+                                                                      Marcelo
+ Pesquisa congeneres(outras seguradoras) por nome                    Fev/1996
+------------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctn21c00--
+ Nome:[a                                  ]
+------------------------------------------------------------------------------
+ Nome......:[a5                                      ]            IRB.:[a10  ]
+ Endereco..:[a15                                           ][a20            ]
+ Bairro....:[a25                 ] Cidade.:[a30                 ]  UF.:[uf]
+ Telefone..:[a35 ][a40                                     ]
+ Fax.......:      [a45                 ]
+ Escaninho.:[a50]
+
+ Nome......:[a5                                      ]            IRB.:[a10  ]
+ Endereco..:[a15                                           ][a20            ]
+ Bairro....:[a25                 ] Cidade.:[a30                 ]  UF.:[uf]
+ Telefone..:[a35 ][a40                                     ]
+ Fax.......:      [a45                 ]
+ Escaninho.:[a50]
+
+}
+end
+
+tables  gcckcong
+
+attributes
+
+  a   = formonly.nomepsq                        ,upshift ,
+        comments = " Parte do nome para pesquisa";
+
+  a5  = gcckcong.sgdnom                         ,noentry ;
+  a10 = gcckcong.sgdirbcod,  format = "### #"   ,noentry ;
+  a15 = formonly.endlgd                         ,noentry ;
+  a20 = gcckcong.endcmp                         ,noentry ;
+  a25 = gcckcong.endbrr                         ,noentry ;
+  a30 = gcckcong.endcid                         ,noentry ;
+  uf  = gcckcong.endufd                         ,noentry ;
+  a35 = gcckcong.dddcod                         ,noentry ;
+  a40 = gcckcong.teltxt                         ,noentry ;
+  a45 = gcckcong.factxt                         ,noentry ;
+  a50 = gcckcong.sgdescnum                      ,noentry ;
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctn21c00 (sgdnom thru sgdescnum);
+

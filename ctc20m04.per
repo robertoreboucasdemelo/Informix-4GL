@@ -1,0 +1,47 @@
+{############################################################################
+# Nome do Modulo: CTC20M04                                    Sergio Burini #
+#                                                                PSI 229784 #
+# CADASTRO DE ASSISTENCIA/NATUREZA DOS GRUPOS DE SERVIÇO.          NOV/2008 #
+############################################################################}
+
+database porto
+
+screen size 24 by 80
+{
+
+
+-----------------------------------------------------------------------------
+                  CRITÉRIOS DO GRUPO DE SERVIÇOS[x                            ]
+-------------------------------------------------------------------ctc20m04--
+
+   Critério                         Data Alteração         Usuário
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+  [a   ][b                        ][c                    ][d              ]
+
+     (F1)Incluir     (F2)Deletar     (F6) Valores     (F7) Tolerância
+
+}
+
+tables
+   dpakprtbnfgrpcrt
+
+attributes
+   x = formonly.titulo,            noentry;
+   a = formonly.bnfcrtcod, comments = " Codigo do Critério da Bonificação";
+   b = formonly.bnfcrtdes,         noentry;
+   c = dpakprtbnfgrpcrt.atldat,    noentry;
+   d = formonly.funnom,            noentry;
+end
+
+instructions
+  delimiters " "
+  {screen record s_ctc20m04(bnfcrtcod thru funnom)}
+  screen record s_ctc20m04[9] (bnfcrtcod,bnfcrtdes,atldat,funnom)
+end

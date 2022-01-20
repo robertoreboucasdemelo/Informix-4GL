@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS00M15                                               Gilberto
+                                                                       Marcelo
+ Retorno ao segurado da previsao de chegada ao local                  Set/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+            RETORNO DA PREVISAO DE CHEGADA AO LOCAL
+-----------------------------------------------------cts00m15--
+ Fone no local......:[a   ][b        ]
+
+ Retorno informado?.:[c]
+
+ Retorno informado a:[d                                       ]
+ Previsao de chegada:[e    ]
+
+ Motivo.............:[f                                       ]
+
+
+}
+end
+
+tables datmlcl, datmservico
+
+attributes
+   a  = datmlcl.dddcod       , reverse, noentry;
+   b  = datmlcl.lcltelnum    , reverse, noentry;
+   c  = formonly.retornoflg  , upshift, comments = " Retorno: (S)im, (N)ao";
+   d  = formonly.nomeret     , upshift, comments = " Nome a quem foi dado o retorno";
+   e  = datmservico.atdhorpvt, comments = " Tempo de chegada ao local";
+   f  = formonly.motivoret   , upshift, comments = " Motivo pelo qual nao foi dado o retorno";
+end
+
+instructions
+  delimiters " "
+end

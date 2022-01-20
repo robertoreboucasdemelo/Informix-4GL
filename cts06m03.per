@@ -1,0 +1,52 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m03                                              Pedro
+                                                                     Marcelo
+ Vistorias previas programadas (agenda)                              Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------cts06m03--
+ Realizacao:[a         ]  Sucursal:[a1   ][a11                               ]
+------------------------------------------------------------------------------
+ Data de Realizacao     --- Central 24 Horas ---     ------- Volantes -------
+                        Autorizadas  Programadas     Autorizadas  Programadas
+
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+[a2     ][a3        ]     [a4  ]       [a5  ]          [a6  ]       [a7  ]
+
+}
+end
+
+tables
+   datmvstagen
+
+attributes
+
+   a   = formonly.vstdat        type date,
+         comments = " Data da Realizacao da Vistoria (a partir de)";
+   a1  = formonly.succod        type decimal,
+         comments = " Sucursal";
+   a11 = formonly.sucnom                 ,noentry;
+
+   a2  = formonly.diasem                 ,noentry;
+   a3  = formonly.vstdat2       type date,noentry;
+   a4  = datmvstagen.atrvstqtdc24        ,noentry;
+   a5  = datmvstagen.vstqtdc24           ,noentry;
+   a6  = datmvstagen.vstqtdaut           ,noentry;
+   a7  = datmvstagen.vstqtdvol           ,noentry;
+
+instructions
+  delimiters " "
+  screen record s_cts06m03(diasem thru vstqtdvol)
+end

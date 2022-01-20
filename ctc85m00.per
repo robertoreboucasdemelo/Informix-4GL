@@ -1,0 +1,60 @@
+database porto
+screen size 24 by 80
+{
+                        EXTRATO REMUNERACAO VARIAVEL
+-------------------------------------------------------------------ctc85m00---
+Superintendencia:[f005                          ]             Mes: [a0]/[f002]
+Gerencia........:[f004                          ]
+Coordenacao.....:[f003                          ]
+
+Colaborador....: [f000    ] [f022                ]
+Departamento...: [f006                          ]
+
+Ganho Mes......: [f020           ]   Ganho Acumulado Ano:[f021           ]
+------------------------------------------------------------------------------
+Quesito          |   Atingimento  |    Ganho Mes    | Ganho Possivel Quesito
+------------------------------------------------------------------------------
+[f007            ]    [f008   ]    [f009           ]    [f019             ]  
+[f010            ]    [f011   ]    [f012           ]    [f023             ]  
+[f013            ]    [f014   ]    [f015           ]    [f024             ]  
+[f016            ]    [f017   ]    [f018           ]    [f025             ]  
+------------------------------------------------------------------------------
+(F10)Consulta Meses Anteriores, (Ctrl-C)Sair
+}
+end
+tables
+dacmrmv
+
+attributes
+f000 = dacmrmv.funmat;
+a0 = dacmrmv.cptmes;
+f002 = dacmrmv.cptano;
+f003 = dacmrmv.cnddes;
+f004 = dacmrmv.grndes;
+f005 = dacmrmv.sprdes;
+f006 = dacmrmv.atuaredes;
+f007 = dacmrmv.avlqstprides;
+f008 = dacmrmv.avlqstpriatgper;
+f009 = dacmrmv.avlqstprignhvlr, format = "####,###,##&.&&";
+f010 = dacmrmv.avlqstsegdes;
+f011 = dacmrmv.avlqstsegatgper;
+f012 = dacmrmv.avlqstgnhvlr, format = "####,###,##&.&&";
+f013 = dacmrmv.avlqstterdes;
+f014 = dacmrmv.avlqstteratgper;
+f015 = dacmrmv.avlqsttergnhvlr, format = "####,###,##&.&&";
+f016 = dacmrmv.avlqstquades;
+f017 = dacmrmv.avlqstquaatgper;
+f018 = dacmrmv.avlqstquagnhvlr, format = "####,###,##&.&&";
+f019 = dacmrmv.avlqstgnhmaxvlr, format = "######,###,##&.&&";
+f020 = dacmrmv.gnhtotvlr, format = "####,###,##&.&&";
+f021 = dacmrmv.gnhanovlr, format = "####,###,##&.&&";
+f022 = formonly.nome;
+f023 = formonly.avlqstgnhmaxvlr2;
+f024 = formonly.avlqstgnhmaxvlr3;
+f025 = formonly.avlqstgnhmaxvlr4;
+
+end
+
+
+instructions
+   delimiters " "

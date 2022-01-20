@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc42m01b                                               Sergio
+                                                                       Burini
+ Consulta de veiculos por Sigla X SinCards                           Ago/2008
+-----------------------------------------------------------------------------}
+
+
+database formonly
+
+screen
+{
+-------------------------------------------------------------------ctc42m01b--   
+ Sigla: [a    ]        SIMCARD: [b                                           ]
+
+ Sigla  MDT   Sincard                Prestador           Ultima Atualizacao
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+[c     |c1   |c2                    |c3                ][c4                 ]
+
+}
+end 
+
+attributes                                                                                        
+   a  = formonly.vclsgl, upshift;
+   b  = formonly.simintcod;
+   c  = formonly.atdvclsgl;
+   c1 = formonly.mdtcod;
+   c2 = formonly.cdssimintcod;
+   c3 = formonly.nomgrr;
+   c4 = formonly.sinutmdat;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc42m01b [10] (atdvclsgl thru sinutmdat)
+end

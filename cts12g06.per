@@ -1,0 +1,45 @@
+{--------------------------------------------------------------------
+ Nome do Form: cts12g06                                  Amilton
+                                                         Pinto
+ Pop-up de naturezas Saldos Itau
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+                          Extrato de Utilizacoes                              
+----------------------------------------------------------------cts12g06----  
+----------------------------------------------------------------------------  
+   Naturezas                             Utilz  limite  Saldo   Cobertura
+----------------------------------------------------------------------------   
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+[a|b                                   ] [c  ]  [d  ]   [e  ] [f        ][x]
+
+
+}
+end
+
+attributes
+   a  =  formonly.socntzcod type dec, invisible,noentry;
+   b  =  formonly.socntzdes      , noentry;
+   c  =  formonly.utilz          , noentry;
+   d  =  formonly.Limite         , noentry;   
+   e  =  formonly.saldo          , noentry;   
+   f  =  formonly.lmicob type decimal,         
+         format="-<<&&&.00", noentry;
+   x  =  formonly.flggrp ,invisible,noentry;      
+   
+end
+
+instructions
+   delimiters " "
+   screen record s_cts12g06(socntzcod thru flggrp)
+end
+

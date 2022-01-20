@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------
+ Nome do Form: CTC14M04                                      Marcelo
+                                                             Gilberto
+ Manutencao do Relacionamento Assunto/Ramos                  Fev/1996
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc14m04--
+ Ramos p/ assunto:[a  ][b                                                    ]
+------------------------------------------------------------------------------
+ Ramo                                              Regra/Excecao
+
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+ [c   ] [d                                       ] [e] [f       ]
+
+
+
+}
+end
+
+tables
+   datrclassassunto
+
+attributes
+   a  = formonly.c24astcod                ,noentry;
+   b  = formonly.c24astdes                ,noentry;
+   c  = formonly.ramcod                   ,upshift,
+        comments = " Codigo do Ramo";
+   d  = formonly.ramnom                   ,noentry;
+   e  = formonly.astrgrcod                ,upshift,
+        comments = " Ramo e' (1)regra ou (2)excecao";
+   f  = formonly.astrgrdes                ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc14m04(ramcod thru astrgrdes)
+end

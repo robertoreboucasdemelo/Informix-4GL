@@ -1,0 +1,74 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc48m00                                                   Raji
+
+ Cadastro de codigos de problema                                      Nov/2000
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+--------------------------------------------------------------------ctc48m00--
+  Codigo do Problema.:[a    ]
+------------------------------------------------------------------------------ 
+  Descricao..........:[a1                                      ]
+ 
+  Cod. agrupamento...:[b    ][b1                                      ]
+ 
+  Situacao Problema..:[c ] [c1          ]
+ 
+  Tipo de Assistencia:[g  ][h        ]        Remoção requerida..:[r]
+ 
+  Descricao SMART....:[d2                                                    ]
+  Descricao WEB......:[d1                                                    ]
+  Código do assunto..:[g1 ][g2                                      ]
+ 
+  Incluido...........:[e         ] por [e1                                   ]
+  Atualizado.........:[f         ] por [f1                                   ]
+}
+end
+
+ tables datkpbm
+        datkpbmgrp
+        datkasitip
+
+ attributes
+    a  = datkpbm.c24pbmcod                       ,upshift,
+         comments = " Codigo do Problema";
+
+    a1 = datkpbm.c24pbmdes                       ,upshift,
+         comments = " Descricao do Problema";
+
+    b  = datkpbmgrp.c24pbmgrpcod                 ,upshift,
+         comments = " Codigo do Agrupamento";
+
+    b1 = datkpbmgrp.c24pbmgrpdes                 ,upshift,
+         comments = " Descricao do Agrupamento";
+
+    c  = datkpbm.c24pbmstt                       ,upshift,
+         comments = " (A) Ativo   (C) Cancelado";
+
+    c1 = formonly.c24pbmsttdes                   ,noentry;
+
+    g  = formonly.asitipcod type integer         ,
+                                 comments = " Tipo da assistencia", upshift;
+    h  = datkasitip.asitipabvdes, noentry;
+    
+    d1 = datkpbm.webpbmdes, comments = " Descricao do problema na WEB";
+    
+    d2 = datkpbm.sphpbmdes, comments = " Descricao do problema para Smartphone";
+    
+    g1 = datkpbm.c24astcod, comments = " Código do assunto ligado ao problema ", upshift;
+    g2 = formonly.c24astdes, noentry;
+    
+    r  = datkpbm.remrquflg, comments = " <S> Sim  /  <N> Não", upshift;
+    
+    e  = datkpbm.caddat                          ,noentry;
+    e1 = formonly.cadfunnom                      ,noentry;
+    f  = datkpbm.atldat                          ,noentry;
+    f1 = formonly.funnom                         ,noentry;
+    
+ end
+
+ instructions
+      delimiters " "
+ end

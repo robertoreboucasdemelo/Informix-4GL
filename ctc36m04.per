@@ -1,0 +1,42 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC36M04                                              Marcelo
+                                                                     Gilberto
+                                                                     Wagner
+ Batimento dos itens de vistoria                                     Dez/1998
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+                   BATIMENTO QUANTIDADE DE ITENS DA VISTORIA
+--------------------------------------------------------------------ctc36m04--
+                  [a5                                     ]
+
+
+                    Itens laudo        Itens digitado             Diferenca
+                 --------------        --------------        --------------
+  Quantidade.: [a10            ]     [a15            ]     [a20            ]
+
+
+
+
+
+
+}
+End
+
+Tables datmvstmvt, datrvstitmver
+
+Attributes
+  a5   = formonly.msgcab,                  noentry;
+
+  a10  = formonly.totqtdver,               noentry;
+  a15  = formonly.totqtddig,               noentry;
+  a20  = formonly.totqtddif,               noentry;
+
+End
+
+Instructions
+  delimiters " "
+End

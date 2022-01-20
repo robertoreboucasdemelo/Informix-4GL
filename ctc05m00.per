@@ -1,0 +1,66 @@
+{--------------------------------------------------------------------
+ Nome do form: CTC05M00                     Criacao: 26/09/94 - Pedro
+
+ Manutencao de Inspetorias
+--------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc05m00--
+                         Codigo:[c0 ]
+------------------------------------------------------------------------------
+
+ Razao Social:[a001                                    ]
+
+ Responsavel.:[a002                                    ]
+
+ Endereco....:[a003                                    ]
+ Bairro......:[a004                ]            Cidade:[a005                ]
+ U.F.........:[u0]                              Cep...:[a006 ][c4 ]
+
+ Telefone....:[a007][a008                                     ]
+
+ Telex.......:[a009                ]            Fax...:[a010                ]
+
+                          [a011                                             ]
+}
+end
+
+tables gabkins
+
+attributes
+c0   = gabkins.iptcod,    autonext;
+a001 = gabkins.iptnom,    upshift,
+                          required,
+                          autonext;
+a002 = gabkins.rspnom,    autonext,
+                          required,
+                          upshift;
+a003 = gabkins.endlgd,    autonext,
+                          required,
+                          upshift;
+a004 = gabkins.endbrr,    autonext,
+                          required,
+                          upshift;
+a005 = gabkins.endcid,    autonext,
+                          required,
+                          upshift;
+a006 = gabkins.endcep,    required,
+                          autonext;
+c4   = gabkins.endcepcmp, required,
+                          autonext;
+a007 = gabkins.dddcod,    autonext;
+a008 = gabkins.teltxt,    comments = " Telefones";
+a009 = gabkins.tlxtxt,    autonext;
+a010 = gabkins.factxt,    autonext;
+u0   = gabkins.endufd,    required,
+                          autonext,
+                          upshift;
+a011 = formonly.atlult;
+end
+
+instructions
+     delimiters " "
+end

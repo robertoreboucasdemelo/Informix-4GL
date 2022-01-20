@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------       
+ Nome do Form: ctc83m00a                                              Roberto        
+ Cadastro de Assunto X Teleperformance                               Fev/2008       
+-----------------------------------------------------------------------------}       
+                                                                                     
+database porto                                                                       
+screen                                                                               
+{                                                                                         
+   Assunto     Descricao                                                          
+     
+[y][a  ]      [b                                       ]      
+[y][a  ]      [b                                       ]      
+[y][a  ]      [b                                       ]       
+[y][a  ]      [b                                       ]       
+[y][a  ]      [b                                       ]       
+[y][a  ]      [b                                       ]       
+[y][a  ]      [b                                       ] 
+[y][a  ]      [b                                       ]  
+   
+             [x                                                 ]                    
+------------------------------------------------------------------------------       
+ Incluido...........:[c         ] por [d                   ]                             
+}                                                                                    
+end                                                                                  
+tables datkassunto                                                                         
+                                                                    
+                                                                                     
+attributes
+
+ y = formonly.seta  ;            
+ a = datkassunto.c24astcod , upshift, comments = " Informe o Assunto"; 
+ b = datkassunto.c24astdes , noentry ;  
+ c = formonly.caddat       , noentry;   
+ d = formonly.funnom       , noentry;  
+ x = formonly.obs          , noentry;  
+ 
+end                                                                                                                            
+instructions                                      
+   delimiters " "                                 
+   screen record s_ctc83m00a(seta thru c24astdes)     
+end                                               

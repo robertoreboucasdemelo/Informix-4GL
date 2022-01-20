@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB00M04                                               Marcelo
+                                                                      Gilberto
+ Localiza pagamentos a partir de uma determinada data                 Out/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb00m04--
+ Data:[c0        ]  Tipo:[c][c1        ]  Locadora:[c2 |c20                  ]
+------------------------------------------------------------------------------
+ Servico        No.NF  D.Utl D.Pgt   Valor Bruto  Exced./Desc.  Valor Liquido
+
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+[a1           |a2      |a3  |a4  ][a5           |a6           ][a7           ]
+
+}
+end
+
+tables
+   dblmpagto, datklocadora
+
+attributes
+
+   c0  = formonly.data           , comments = " Data para pesquisa";
+   c   = formonly.tipdat         , comments = " Data de (1)Digitacao, (2)Pagamento e (3)Vencimento";
+   c1  = formonly.tipdes         , noentry;
+   c2  = formonly.lcvcod type smallint, comments = " Codigo da locadora";
+   c20 = datklocadora.lcvnom   , noentry;
+
+   a1  = formonly.servico        ;
+   a2  = dblmpagto.nfsnum        , format = "&&&&&&&&";
+   a3  = dblmpagto.c24pagdiaqtd  ;
+   a4  = dblmpagto.c24utidiaqtd  ;
+   a5  = dblmpagto.c24diaparvlr        , format = "--,---,--&.&&" ;
+   a6  = formonly.c24diaexcvlr type dec, format = "--,---,--&.&&" ;
+   a7  = formonly.c24diatotvlr type dec, format = "--,---,--&.&&" ;
+
+instructions
+  delimiters " "
+  screen record s_ctb00m04(servico thru c24diatotvlr)
+end

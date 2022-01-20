@@ -1,0 +1,39 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTC24M02                                              Marcelo
+                                                                     Gilberto
+ Exibe pop-up para selecao do convenio                               Mar/1996
+-----------------------------------------------------------------------------}
+
+Database porto
+
+Screen
+{
+                    Convenios
+----------------------------------------------ctc24m02--
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+[a                                                 ][b ]
+
+}
+End
+
+tables
+   iddkdominio
+
+Attributes
+ a  = iddkdominio.cpodes       ,noentry;
+ b  = iddkdominio.cpocod       ,noentry, invisible;
+End
+
+Instructions
+ delimiters " "
+ screen record s_ctc24m02(cpodes thru cpocod)
+End

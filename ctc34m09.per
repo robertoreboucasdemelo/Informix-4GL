@@ -1,0 +1,55 @@
+{-----------------------------------------------------------------------------
+ Nome do form: ctc34m09                                               Gilberto
+                                                                       Marcelo
+ Cadastro de pager's para impressao remota                            Set/1998
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc34m09--
+ Codigo......:[a1 ]
+------------------------------------------------------------------------------
+
+ Veiculo.....:[a2   ][a3    ][a31                                            ]
+
+
+ Situacao....:[s][s1           ]
+
+
+
+ Incluido...:[a4        ] por [a41                ]
+ Atualizado.:[a5        ] por [a51                ]
+
+
+
+
+}
+end
+
+ tables
+    datktrximp, datkveiculo
+
+ attributes
+    a1   = formonly.atdimpcod,
+           comments = " Codigo do pager";
+
+    a2   = datkveiculo.atdvclsgl,                  noentry;
+    a3   = datkveiculo.socvclcod,                  noentry;
+    a31  = formonly.vcldes,                        noentry;
+
+    s    = datktrximp.atdimpsit,
+           comments = " Situacao do pager";
+    s1   = formonly.atdimpsitdes,                  noentry;
+
+    a4   = datktrximp.caddat,                      noentry;
+    a41  = formonly.cadfunnom,                     noentry;
+
+    a5   = datktrximp.atldat,                      noentry;
+    a51  = formonly.funnom,                        noentry;
+ end
+
+ instructions
+      delimiters " "
+ end

@@ -1,0 +1,79 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts20m02                                                  Pedro
+                                                                       Marcelo
+ Laudo de Sinistro de Roubo/Furto Total via anel                      Jan/1995
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+ Servico:[a |a0     |a1]  AVISO DE SINISTRO ROUBO/FURTO TOTAL[a2             ]
+--------------------------------------------------------------------cts20m02--
+[b1                                      ]  [b2                              ]
+[b6    |b7                                      ] Convenio:[b8               ]
+[b9    |b10                                     ][b11 |b12    ]Cor:[b13      ]
+------------------------------------------------------------------------------
+ CHASSI/PLACA conferem?:[e]            Obs...:[e1                            ]
+ DOCTOS foram furtados?:[f]            Quais?:[f1                            ]
+------------------------------------------------------------------------------
+ Tipo.....:[c1|c2   ]
+
+ Endereco.:[c3                                                               ]
+ Bairro...:[c4                  ] Cidade....:[c5                  ]  U.F.:[c6]
+ Ponto Ref:[c7                            ]                          Zona:[c ]
+
+ Data....:[c8        ]            Hora......:[c9   ]              Periodo:[d]
+ No. B.O.:[d2   ]                 Emissor...:[d3      ]
+ Atend...:[d4                                                     ]
+}
+end
+
+tables
+datmservico   ,
+datmservicocmp,
+datmlcl,
+datmligacao
+
+attributes
+
+a    = datmservico.atdsrvorg     , format = "&&",     noentry;
+a0   = datmservico.atdsrvnum     , format = "&&&&&&&";
+a1   = datmservico.atdsrvano     , format = "&&"    ;
+a2   = datmligacao.c24solnom     , noentry;
+
+b1   = datmservico.nom           , noentry;
+b2   = formonly.doctxt           , noentry;
+b6   = datmservico.corsus        , noentry;
+b7   = datmservico.cornom        , noentry;
+b8   = formonly.cvnnom           , noentry;
+b9   = datmservico.vclcoddig     , format = "&&&&&&", noentry;
+b10  = datmservico.vcldes        , noentry;
+b11  = datmservico.vclanomdl     , noentry;
+b12  = datmservico.vcllicnum     , noentry;
+b13  = formonly.vclcordes        , noentry;
+
+e    = datmservico.atdrsdflg     , noentry;
+e1   = datmservico.atddfttxt     , noentry;
+f    = datmservico.atdlclflg     , noentry;
+f1   = datmservico.atddoctxt     , noentry;
+
+c1   = datmservicocmp.c24sintip  , noentry;
+c2   = formonly.sintipdes        , noentry;
+c3   = formonly.lgdtxt           , noentry;
+c4   = datmlcl.lclbrrnom         , noentry;
+c5   = datmlcl.cidnom            , noentry;
+c6   = datmlcl.ufdcod            , noentry;
+c7   = datmlcl.lclrefptotxt      , noentry;
+c    = datmlcl.endzon            , noentry;
+c8   = datmservicocmp.sindat     , noentry;
+c9   = datmservicocmp.sinhor     , picture = "##:##", noentry;
+d    = datmservicocmp.c24sinhor  , noentry;
+d2   = datmservicocmp.bocnum     , noentry;
+d3   = datmservicocmp.bocemi     , noentry;
+d4   = formonly.atdtxt           , noentry;
+end
+
+instructions
+  delimiters " "
+end

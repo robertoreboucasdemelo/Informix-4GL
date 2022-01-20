@@ -1,0 +1,64 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts06m10                                                       
+                                                                      Alexson 
+ Controle de Servicos (RADIO)                                        Jun/2003 
+-----------------------------------------------------------------------------}
+
+database porto
+
+screen
+{
+
+Vistoriador..: [v    ]       UF:[a ] Cidade:[b                   ]            
+Periodo de...: [d1        ] ate [d2        ]      Informa Endereco:[e ]       
+Prioridade de: [x]  ate [y]     [o1                                          ]
+--------------------------------------------------------------------cts06m10--
+  Data Espera  Dist Bairro/Cidade/Uf          Periodo Horario             H P 
+------------------------------------------------------------------------------
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+[r1   |r2    |r3   |r4                       |r5                         |h|p]
+------------------------------------------------------------------------------
+}
+end
+
+tables
+    datmservico,
+    datksrvtip,
+    datkasitip,
+    datketapa
+    
+attributes
+    v   = formonly.vistoriador  type char,  upshift;
+    a   = formonly.uf           type char,  upshift,    autonext;
+    b   = formonly.cidade       type char,  upshift;
+    d1  = formonly.datai;
+    d2  = formonly.dataf;
+    e   = formonly.endereco     type char,  upshift,
+                                comments = " S=Informa End | N=Ult VP ou Base | U=Ult VP | B=Base ";
+    x   = formonly.priini       type char,  upshift,    autonext;
+    y   = formonly.prifin       type char,  upshift,    autonext;
+    o1  = formonly.msgcoord     type char,  noentry;
+    r1  = formonly.atdlibdat    type char,  noentry;
+    r2  = formonly.espera       type char,  noentry;
+    r3  = formonly.distancia,               noentry;
+    r4  = formonly.local        type char,  noentry;
+    r5  = formonly.pontoref     type char,  noentry;
+    h   = formonly.hist         type char,  noentry,    color = black reverse where h = "S";
+    p   = formonly.msgpalm      type char,  noentry,    color = black reverse where p = "P";
+end
+
+instructions
+    delimiters " "
+    screen record s_cts06m10(atdlibdat thru msgpalm)
+end
+

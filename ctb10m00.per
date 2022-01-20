@@ -1,0 +1,53 @@
+{-----------------------------------------------------------------------------
+ Nome do form: CTB10M00                                               Gilberto
+                                                                       Marcelo
+ Cadastro de Tarifas de Porto Socorro                                 Nov/1996
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb10m00--
+                Codigo.....:[a1   ]
+------------------------------------------------------------------------------
+
+
+              Descricao..:[a2                                      ]
+
+              Servicos...:[a][a10                           ]
+
+              Situacao...:[s]
+
+
+              Incluido...:[a3        ] por [a31                ]
+              Atualizado.:[a4        ] por [a41                ]
+
+
+
+}
+end
+
+tables dbsktarifasocorro
+
+attributes
+   a1   = formonly.soctrfcod,
+          comments = " Codigo da tarifa"                          ;
+   a2   = dbsktarifasocorro.soctrfdes,
+          comments = " Descricao da tarifa",      upshift         ;
+   a    = dbsktarifasocorro.soctip,           
+          comments = " Informe (1)-P.Socorro , (2)-Carro-Extra ou (3)-RE";
+   a10  = formonly.soctipdes,                             noentry;
+   s    = dbsktarifasocorro.soctrfsitcod,
+          comments = " Situacao da tarifa: (A)tiva ou (C)ancelada", upshift;
+
+   a3   = dbsktarifasocorro.caddat,                       noentry;
+   a31  = formonly.cadfunnom,                             noentry;
+
+   a4   = dbsktarifasocorro.atldat,                       noentry;
+   a41  = formonly.funnom,                                noentry;
+end
+
+instructions
+     delimiters " "
+end

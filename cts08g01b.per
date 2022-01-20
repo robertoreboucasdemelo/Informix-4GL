@@ -1,0 +1,38 @@
+{----------------------------------------------------------------------------
+ Nome do Form: CTS08G01                                              Marcelo
+                                                                     Gilberto
+ Janela para confirmacao de mensagens                                Set/1998
+ ----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+[c0                                      ]
+-------------------------------cts08g01b--
+[c1                                      ]
+[c2                                      ]
+[c3                                      ]
+[c4                                      ]
+[c5                                      ]
+[c6                                      ]
+[c]
+
+}
+
+end
+
+attributes
+   c0 = formonly.cabtxt   type char, reverse  , noentry;
+   c1 = formonly.linha1   type char           , noentry;
+   c2 = formonly.linha2   type char           , noentry;
+   c3 = formonly.linha3   type char           , noentry;
+   c4 = formonly.linha4   type char           , noentry;
+   c5 = formonly.linha5   type char           , noentry;
+   c6 = formonly.linha6   type char           , noentry;
+   c  = formonly.confirma type char, invisible;
+end
+
+instructions
+   delimiters  " "
+end

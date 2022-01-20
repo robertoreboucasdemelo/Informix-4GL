@@ -1,0 +1,59 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTB02M05                                              Wagner
+
+ Mostra todos destinos da ordem de pagamento (Carro-extra)           Out/2000
+-----------------------------------------------------------------------------}
+
+Database porto
+Screen size 24 by 80
+
+{
+      Informacoes do favorecido para pagamento
+-----------------------------------------------ctb02m05--
+[a1                                                    ]
+[a2                                                    ]
+ Opcao Pagto.:[o ][o2        ]
+ Favorecido..:[a3                                      ]
+ Cgc/Cpf.....:[p][a4          ][a5  ][da]
+ Banco.......:[a10 ][a15                 ]
+ Agencia.....:[a20  ][f][a25                 ]
+ Tipo Conta..:[t][t2         ] Conta:[a30         ][d ]
+
+ Confirma dados ? [c]
+}
+End
+
+Tables datklcvfav, gcdkbanco, gcdkbancoage
+
+Attributes
+  a1   = formonly.linha1,                       noentry;
+  a2   = formonly.linha2,                       noentry;
+
+  o    = datklcvfav.pgtopccod,             noentry;
+  o2   = formonly.socpgtopcdes,                 noentry;
+
+  a3   = datklcvfav.favnom,                noentry;
+
+  p    = datklcvfav.pestip,                   noentry;
+  a4   = datklcvfav.cgccpfnum,                noentry;
+  a5   = datklcvfav.cgcord,    format="&&&&", noentry;
+  da   = datklcvfav.cgccpfdig ,format="&&",   noentry;
+
+  a10  = datklcvfav.bcocod,                   noentry;
+  a15  = gcdkbanco.bcosgl,                      noentry;
+
+  a20  = datklcvfav.bcoagnnum,                noentry;
+  f    = datklcvfav.bcoagndig,                noentry;
+  a25  = gcdkbancoage.bcoagnnom,                noentry;
+
+  t    = datklcvfav.bcoctatip,                noentry;
+  t2   = formonly.bcoctatipdes,                 noentry;
+  a30  = datklcvfav.bcoctanum,                noentry;
+  d    = datklcvfav.bcoctadig,                noentry;
+
+  c    = formonly.confirma,                     upshift,
+         comments=" Confirma? (S)im ou (N)ao";
+End
+
+Instructions
+  delimiters " "

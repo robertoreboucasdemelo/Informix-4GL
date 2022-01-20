@@ -1,0 +1,61 @@
+{-----------------------------------------------------------------------------
+ NOME DO FORM: CTA01M13                                          LUCAS SCHEID
+ TELA DE INFORMACOES DO CARTAO - APOLICE SAUDE.                      SET/2006
+-----------------------------------------------------------------------------}
+
+database formonly
+screen
+
+{
+                            INFORMACOES DO CARTAO
+-------------------------------------------------------------------cta01m13---
+ Cartao...........:[a                    ]
+ Suc/Ramo/Contrato:[b                    ]
+ Nome.............:[e                                                 ]
+ CPF..............:[f        |h ]          Fone do Segurado:[fs           ]
+ Situacao.........:[m         ]
+ Empresa..........:[i                                       ]
+ Data do Contrato.:[p         ]
+ Corretor.........:[j     |k                                      ]
+ Fone do Corretor.:[fc                                           ]
+------------------------------------------------------------------------------
+            PLANO
+------------------------------------------------------------------------------
+[n        ][o                                                 ][x]
+
+------------------------------------------------------------------------------
+ (F4)Proc  (F17)Abandona
+
+}
+end
+
+attributes
+
+  a = formonly.crtsaunum  type char,
+      comments = " Numero do cartao";
+  b = formonly.documento  type char, noentry;
+  e = formonly.segnom     type char, upshift,
+      comments = " Nome do segurado";
+  f = formonly.cgccpfnum  type decimal(9,0), autonext,
+      comments = " Numero do CPF";
+  h = formonly.cgccpfdig  type integer,
+      comments = " Digito do CPF";
+  m = formonly.situacao     type char, noentry;
+  i = formonly.empnom       type char, noentry;
+  p = formonly.cntanvdat    type date, format = "dd/mm/yyyy", noentry;
+  j = formonly.corsus       type char, noentry;
+  k = formonly.cornom       type char, noentry;
+  fs = formonly.fone_seg    type char, noentry;
+
+  n = formonly.plncod     type integer, noentry;
+  o = formonly.plndes     type char,    noentry;
+  x = formonly.espera     type char,    invisible;
+
+  fc = formonly.fone_cor    type char, noentry;
+
+
+end
+
+instructions
+  delimiters " "
+

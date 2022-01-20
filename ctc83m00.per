@@ -1,0 +1,50 @@
+{-----------------------------------------------------------------------------      
+ Nome do Form: ctc83m00                                               Roberto       
+ Cadastro de Grupos de Atendimento                                    Fev/2008       
+-----------------------------------------------------------------------------}      
+
+database porto
+screen
+{
+--------------------------------------------------------------------ctc83m00--
+                         Grupo:[a            ]
+------------------------------------------------------------------------------
+   Matricula   Nome                                     Departamento
+ 
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ]
+[y][b     ]  [c                             ][d                              ] 
+  
+    [x                                                                     ]
+------------------------------------------------------------------------------
+ Incluido...........:[e         ] por [f                   ]
+ Atualizado.........:[g         ] por [h                   ]
+}
+end
+tables
+   isskfunc,
+   isskdepto
+
+attributes
+
+   a  = formonly.grupo, upshift, comments = " Informe o Grupo"; 
+   y  = formonly.seta  ; 
+   b  = isskfunc.funmat,  comments = " Informe a Matricula" ;
+   c  = isskfunc.funnom , noentry;      
+   d  = isskdepto.dptnom, noentry; 
+   e  = formonly.caddat , noentry;  
+   f  = formonly.funnom1, noentry;  
+   g  = formonly.atldat , noentry;  
+   h  = formonly.funnom2, noentry;  
+   x  = formonly.obs    , noentry; 
+    
+   
+end
+instructions
+   delimiters " "
+   screen record s_ctc83m00(seta thru dptnom)       
+end

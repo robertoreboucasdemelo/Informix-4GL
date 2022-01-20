@@ -1,0 +1,36 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS18M05                                              Marcelo
+                                                                     Gilberto
+ Pop-up de profissoes                                                Ago/1997
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+{
+                 Profissoes
+-------------------------------------cts18m05--
+ Cod. Profissao
+
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+[a1 ][a2                                      ]
+}
+end
+
+tables
+   ssakprf
+
+attributes
+a1  =  ssakprf.irfprfcod,noentry;
+a2  =  ssakprf.irfprfdes,upshift;
+end
+
+instructions
+screen record s_cts18m05(irfprfcod thru irfprfdes)
+delimiters " "

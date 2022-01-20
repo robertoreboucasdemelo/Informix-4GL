@@ -1,0 +1,30 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: CTS15M06                                              Marcelo
+                                                                     Gilberto
+ Mostra as condicoes para locacao sem documento informado            Out/1996
+-----------------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+
+{
+ Condicoes
+--------------cts15m06--
+[a                ][b  ]
+[a                ][b  ]
+[a                ][b  ]
+[a                ][b  ]
+
+}
+end
+
+attributes
+   a  = formonly.cnddes                ,noentry;
+   b  = formonly.cndcod     ,invisible ,noentry;
+end
+
+instructions
+    delimiters " "
+    screen record s_cts15m06(cnddes thru cndcod)
+end

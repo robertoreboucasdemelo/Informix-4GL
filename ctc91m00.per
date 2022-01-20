@@ -1,0 +1,43 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc91m00                                        Helder Oliveira
+
+ Cadastros                                                            Jan/2011
+-----------------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{                                                                              
+                                                                               
+-------------------------------------------------------------------ctc91m00--  
+  Codigo  Descricao                                                            
+  [a      |b                                                               ]   
+  [a      |b                                                               ]
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+  [a      |b                                                               ]   
+------------------------------------------------------------------------------ 
+   Alterado em: [c         ] por: [d                                       ]   
+------------------------------------------------------------------------------
+ 
+}                                                                              
+end
+
+attributes
+
+    a  = formonly.codigo    ,upshift, comments = 'Codigo';
+    b  = formonly.descricao ,upshift, comments = 'Descricao';
+    c  = formonly.atldat    ,upshift;
+    d  = formonly.funnom      ,upshift;
+
+end
+
+instructions
+    screen record s_ctc91m00 (codigo thru descricao)
+    delimiters " "
+end

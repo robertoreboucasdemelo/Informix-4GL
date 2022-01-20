@@ -1,0 +1,59 @@
+{---------------------------------------------------------------------------
+ Nome do form: CTB05M04                                             Wagner  
+                                                              
+ Consulta distribuicao dos servicos por prestador                   Mar/2002
+---------------------------------------------------------------------------}
+
+ database porto
+ screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctb05m04--
+Data de[a1        ]a[a10       ] Prest.[a2    ] Class.[a|a3                  ]
+------------------------------------------------------------------------------
+ Codigo  Nome Guerra           UF  Cidade                                Qtde
+
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+[b1    ][b2                  ][b3][b4                                ][b5    ]
+------------------------------------------------------------------------------
+ Totais: Prestadores: [c1    ]                              Servicos: [c2    ]
+
+}
+
+ tables dpaksocor
+
+ attributes
+   a1  = formonly.datapsq,
+         comments = " Data de atendimento inicio";
+   a10 = formonly.datapsq_a,
+         comments = " Data de atendimento fim";
+   a2  = formonly.pstcodpsq,
+         comments = " Codigo do prestador";
+   a   = formonly.claconcod   type decimal,
+         comments = " Classificacao: 1-Qtde Servicos, 2-UF/Cidade prestador";
+   a3  = formonly.clacondes                      ,noentry;
+
+   b1  = dpaksocor.pstcoddig                     ,noentry;
+   b2  = dpaksocor.nomgrr                        ,noentry;
+   b3  = dpaksocor.endufd                        ,noentry;
+   b4  = dpaksocor.endcid                        ,noentry;
+   b5  = formonly.srvtotqtd   type decimal,
+                              format="####&&"    ,noentry;
+
+   c1  = formonly.prstotgrl   type decimal,
+                              format="####&&"    ,noentry;
+   c2  = formonly.srvtotgrl   type decimal,
+                              format="####&&"    ,noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctb05m04(pstcoddig thru srvtotqtd)
+ end

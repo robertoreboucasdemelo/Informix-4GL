@@ -1,0 +1,35 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: ctc43m03                                               Gilberto
+                                                                       Marcelo
+ Manutencao no cadastro de validacao dos botoes                       Jul/1999
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+  Botao   Texto Painel
+----------------ctc43m03--
+[a5    ] [a10            ]
+[a5    ] [a10            ]
+[a5    ] [a10            ]
+[a5    ] [a10            ]
+[a5    ] [a10            ]
+
+
+}
+end
+
+ tables datkmdtbot, datkmdtbotval
+
+ attributes
+
+   a5  = datkmdtbotval.mdtbotvalcod,
+         comments = " Botao (precedente)";
+
+   a10 = datkmdtbot.mdtbottxt,                        noentry;
+ end
+
+ instructions
+   delimiters " "
+   screen record s_ctc43m03(mdtbotvalcod thru mdtbottxt)

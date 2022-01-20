@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc53m17                                      R.Fornax
+                                                             
+ Cadastro de Restricao X Natureza                             Abr/2014
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc53m17--
+ Assunto....:[a   ][b                                                       ]
+------------------------------------------------------------------------------
+ Natureza  Nome                                     Data Ini     Data Fim     
+                                                 
+ [c    ] [d                                      ] [e         ] [f         ]
+ [c    ] [d                                      ] [e         ] [f         ]
+ [c    ] [d                                      ] [e         ] [f         ]
+ [c    ] [d                                      ] [e         ] [f         ]
+ [c    ] [d                                      ] [e         ] [f         ]  
+ [c    ] [d                                      ] [e         ] [f         ]   
+ [c    ] [d                                      ] [e         ] [f         ]   
+------------------------------------------------------------------------------
+ Atualizado..:[g          ] por [h                                         ]
+------------------------------------------------------------------------------
+ [i                                                                        ]
+
+}
+end
+
+attributes 
+    a  = formonly.c24astcod              ,noentry;    
+    b  = formonly.c24astdes              ,noentry;   
+    c  = formonly.socntzcod              ,comments = " Digite o Codigo da Natureza"    ,upshift;   
+    d  = formonly.socntzdes              ,noentry;
+    e  = formonly.datini                 ,comments = " Digite a Data Inicial"          ,upshift; 
+    f  = formonly.datfim                 ,comments = " Digite a Data Final"            ,upshift; 
+    g  = formonly.atldat                 ,noentry;
+    h  = formonly.funmat                 ,noentry;
+    i  = formonly.msg                    ,noentry;
+
+
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc53m17(socntzcod thru datfim)
+end

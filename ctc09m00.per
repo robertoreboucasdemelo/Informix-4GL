@@ -1,0 +1,57 @@
+{
+#----------------------------------------------------------------------------#
+# Porto Seguro Cia Seguros Gerais                                            #
+#............................................................................#
+# Sistema       : CENTRAL 24 HORAS                                           #
+# Modulo        : ctc09m00.per                                               #
+# Analista Resp : Glauce Lima                                                #
+# PSI           : 172.057                                                    #
+# OSF           : 028991                                                     #
+#                 Carta de Transferencia de Corretagem.                      #
+#............................................................................#
+# Desenvolvimento: Meta, Robson Inocencio                                    #
+# Liberacao      : 25/11/2003                                                #
+#............................................................................#
+#                                                                            #
+#                   * * * Alteracoes * * *                                   #
+#                                                                            #
+# Data       Autor Fabrica     Origem     Alteracao                          #
+# ---------- ----------------- ---------- -----------------------------------#
+#                                                                            #
+#----------------------------------------------------------------------------#    
+}
+ 
+database porto
+screen 
+{
+-------------------------------------------------------------CTC09M00---
+          ATENCAO: EXISTE CARTA DE TRANFERENCIA PARA A APOLICE
+
+ Susep Atual......: [a     ][a1                                      ]
+ Susep Autorizada.: [b     ][b1                                      ]
+ Nome Solicitante.: [c                                       ]
+ Autorizacao para.: [d]  ( 0-transferencia  ou  1-orcamento )
+
+         [e                                              ]
+
+(F17) Abandona
+}
+end
+
+tables
+ apbmcortrans,
+ gcakcorr
+
+attributes
+    a  = formonly.susep_atual     type char, noentry;           {susep atual}
+    a1 = formonly.nom_susep_atual type char, upshift, noentry;  {descricao susep atual}
+    b  = apbmcortrans.corsus,     noentry;                      {susep autorizado}
+    b1 = apbmcortrans.solnom,     upshift, noentry;             {descricao susep autorizado}
+    c  = gcakcorr.cornom,         upshift, noentry;             {nome solicitante}
+    d  = apbmcortrans.cortrftip,  noentry;                      {autorizacao}
+    e  = formonly.mensagem        type char, noentry;           {mensagem}
+end
+
+instructions
+   delimiters " "
+end

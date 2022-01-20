@@ -1,0 +1,96 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cta16m00                                               Roberto
+ Espelho da Apolice Itau.                                            Jan/2011
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 25 by 80
+{
+Atendimento...:[a         ] Suc:[b2   |b7                                    ]
+--------------------------------------------------------------------cta16m00--
+ Cia:[b1] Apl:[b3       ] Item:[b4     ] End:[b5   ][b6                      ]
+------------------------------------------------------------------------------
+ Servico.....:[h   |h1                                                       ]
+ Cobertura...:[c1  |c2                                                       ]
+ Plano.......:[j1  |j2                 ]KM.:[j3   ] Lim.Pane:[j4  ] Utl:[j5  ]
+------------------------------------------------------------------------------
+ Tp.Cober:[e1][e2            ]         |[i                                   ]
+ Vig.Apl.:[e4        ]a[e5        ]    |Marca....:[f1                  ]
+ Segmento:[e6                         ]|Tipo.....:[f2                  ]
+ Situacao:[e7       ]                  |Modelo...:[f3                        ]
+ --------------------------------------|Chassi...:[f4                  ]
+ Segurado:[g1                         ]|Placa....:[f5     ]
+ Fone....:[g2  ][g3       ]            |Fab/Mod..:[f6  ]/[f7  ]
+ Susep...:[g4    ]                     |Cor......:[f8                  ]
+ Corretor:[g5                         ]|O KM.....:[f10]
+ Fone....:[g6  ][g7       ][x]         |Importado:[f11]        Blindado.:[f12]
+------------------------------------------------------------------------------
+[d                                                                           ]
+}
+end
+tables gcakcorr        ,
+       gcaksusep       ,
+       datmatd6523     ,
+       datmitaapl      ,
+       datmitaaplitm   ,
+       datkitaprd      ,
+       datkitaempasi   ,
+       datkitasgrpln   ,
+       datkitaclisgm   ,
+       datkitavclcrgtip,
+       datkitaasisrv   ,
+       datkitacbt      ,
+       datkitaasipln   ,
+       gabksuc
+
+attributes
+
+   a   = datmatd6523.atdnum                , noentry, format = "<<<<<<<<&&";
+   b1  = datmitaapl.itaciacod              , noentry, format = "&&";
+   b2  = formonly.succod                     type decimal, noentry, format = "###&&";
+   b3  = datmitaapl.itaaplnum              , noentry, format = "<<<<<<<&&";
+   b4  = datmitaaplitm.itaaplitmnum        , noentry, format = "<<<<<&&";
+   b5  = datmitaapl.aplseqnum              , noentry, format = "<<<&&";
+   b6  = formonly.solnom                   , upshift, noentry;
+   b7  = gabksuc.sucnom                    , upshift, noentry;
+   c1  = datkitacbt.itacbtcod              , noentry, format = "<<&&";
+   c2  = datkitacbt.itacbtdes              , upshift, noentry;
+   e1  = datkitasgrpln.itasgrplncod        , noentry, format = "&&";
+   e2  = datkitasgrpln.itasgrplndes        , upshift, noentry;
+   e4  = datmitaapl.itaaplvigincdat        , noentry;
+   e5  = datmitaapl.itaaplvigfnldat        , noentry;
+   e6  = datkitaclisgm.itaclisgmdes        , noentry;
+   e7  = formonly.sitdoc                   , noentry;
+   f1  = datmitaaplitm.autfbrnom           , upshift, noentry;
+   f2  = datmitaaplitm.autlnhnom           , upshift, noentry;
+   f3  = datmitaaplitm.autmodnom           , upshift, noentry;
+   f4  = datmitaaplitm.autchsnum           , upshift, noentry;
+   f5  = datmitaaplitm.autplcnum           , upshift, noentry;
+   f6  = datmitaaplitm.autfbrano           , noentry;
+   f7  = datmitaaplitm.autmodano           , noentry;
+   f8  = datmitaaplitm.autcornom           , upshift, noentry;
+   f10 = formonly.okmflgdes                , noentry;
+   f11 = formonly.impautflgdes             , noentry;
+   f12 = formonly.bldflgdes                , noentry;
+   g1  = datmitaapl.segnom                 , upshift, noentry;
+   g2  = datmitaapl.segresteldddnum        , noentry, format = "&&&&";
+   g3  = datmitaapl.segrestelnum           , noentry;
+   g5  = gcakcorr.cornom                   , upshift, noentry;
+   g4  = gcaksusep.corsus                  , upshift, noentry;
+   g6  = formonly.dddtel                     type decimal, noentry, format = "&&&&";
+   g7  = formonly.numtel                     type decimal, noentry;
+   h   = datkitaasisrv.itaasisrvcod        , noentry, format = "<<&&";
+   h1  = datkitaasisrv.itaasisrvdes        , upshift, noentry;
+   j1  = datkitaasipln.itaasiplncod        , noentry, format = "<<&&";
+   j2  = datkitaasipln.itaasiplndes        , upshift, noentry;
+   j3  = datkitaasipln.socqlmqtd           , noentry, format = "<<&&&";
+   j4  = datkitaasipln.pansoclmtqtd        , noentry, format = "<<&&";
+   j5  = formonly.qtdutilizado               type decimal, noentry, format = "<<&&";
+   i   = formonly.label1                   , noentry;
+   d   = formonly.label2                   , noentry;
+   x   = formonly.seta                     , invisible;
+end
+
+instructions
+   delimiters " "
+end

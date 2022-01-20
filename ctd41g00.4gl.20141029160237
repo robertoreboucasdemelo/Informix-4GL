@@ -1,0 +1,338 @@
+#*****************************************************************************#
+# Modulo .........: ctd41g00.4gl                                              #
+# Analista .......: Fabio Lamartine                                           #
+# Desenvolvimento.: Rodolfo Massini - 10/2013                                 #
+# Objetivo........: Chamada MQ das operacoes da regulacao de agenda AW        #
+#                                                                             #
+#-----------------------------------------------------------------------------# 
+# 10/10/2013 - Rodolfo Massini                                                #
+#-----------------------------------------------------------------------------#
+# 27/05/2014  Fabio, Fornax  PSI-2013-00440PR  Adaptacao regulacao via AW     #
+#-----------------------------------------------------------------------------#
+database porto
+
+# Confirmar se a chave de reserva ainda esta ativa
+#--------------------------------------------------------------------------
+function ctd41g00_checar_reserva(l_rsrchv) 
+#--------------------------------------------------------------------------
+
+ # DEFINICAO E INICIALIZACAO DE VARIAVEIS LOCAIS
+
+ define l_rsrchv        char(19)   # Chave de reserva a ser verificada (param) 
+       ,l_coderro       smallint   # Codigo de erro do retorno MQ
+       ,l_msg_erro      char(30)   # Mensagem de erro do retorno MQ
+       ,l_xml_envio     char(5000) # XML enviado para o MQ
+       ,l_xml_retorno   char(5000) # XML retornado pelo MQ
+       ,l_xml_limpo     char(5000) # XML retornado pelo MQ sem namespaces
+       ,l_qtd           smallint   # Quantidade de registros do retorno MQ
+       ,l_docHandle     integer    # Variavel para realizar parse
+       ,l_path          char(200)  # Caminho generico do XML
+       ,l_reserva_ativa smallint   # Flag de reserva ativa
+       ,l_texto_parse   char(05)   # Texto retornado do servico (true ou false)
+       ,l_path_count    char(150)  # Caminho da TAG a ser contadada
+       ,l_nro_registros smallint   # Numero de registros encontrados
+       ,l_caminho       char(150)  # Caminho para realizar parse
+
+ initialize l_coderro 
+           ,l_msg_erro
+           ,l_xml_envio
+           ,l_xml_retorno
+           ,l_xml_limpo
+           ,l_qtd
+           ,l_docHandle
+           ,l_path
+           ,l_reserva_ativa
+           ,l_path_count
+           ,l_nro_registros
+ to null
+
+ #display 'ctd41g00_checar_reserva acionado'
+ 
+ # MONTAGEM DO XML DE ENVIO
+
+ let l_xml_envio = '<?xml version="1.0" encoding="UTF-8"?>'
+                  ,'<ns0:checarReservaIn xmlns:tns="http://www.portoseguro.c'
+                  ,'om.br/ebo/AgendaAtendimentoSocorrista/V1_0" xmlns:ns0="h'
+                  ,'ttp://www.portoseguro.com.br/atendimento'
+                  ,'Socorrista/business/AgendaAtendimentoSoc'
+                  ,'orristaEBM/V1_0/">'
+                        
+                        # TAG numeroReserva
+                        ,'<ns0:numeroReserva>'
+                        ,l_rsrchv clipped
+                        ,'</ns0:numeroReserva>'
+                   
+                   ,'</ns0:checarReservaIn>'
+
+ # CHAMADA DO SERVICO MQ "CHECAR RESERVA"
+
+ call figrc006_enviar_pseudo_mq('PSOCHECRESSOA01R', 
+                                 l_xml_envio clipped, 
+                                 online())
+           returning l_coderro
+                    ,l_msg_erro
+                    ,l_xml_retorno
+
+ #display 'Retorno da checagem: '
+ #display 'l_coderro    : ', l_coderro 
+ #display 'l_msg_erro   : ', l_msg_erro clipped
+ #display 'l_xml_retorno: ', l_xml_retorno clipped
+ 
+ # VERIFICAR E TRATAR O RETORNO DA CHAMADA MQ
+
+ if l_coderro = 0 then
+
+    call cts02m08_retira_namespce(l_xml_retorno)
+         returning l_xml_limpo 
+   
+    let l_docHandle = figrc011_parse(l_xml_limpo clipped)
+
+    let l_path = "/checarReservaOut/checarReserva" clipped
+
+    let l_path_count = "count(",l_path clipped,")"
+    let l_nro_registros = figrc011_xpath(l_docHandle, l_path_count)
+
+    if l_nro_registros = 1 then
+
+       # RESERVA ATIVA
+       let l_caminho = l_path clipped, "/checarRegulacaoResult"
+       let l_texto_parse = figrc011_xpath(l_docHandle, l_caminho)
+       
+       if l_texto_parse = 'false' then
+          let l_reserva_ativa = false
+          
+          # INICIO - DISPLAY LOG
+          error "Reserva consta inativa"
+          sleep 1
+          #display 'ctd41g00 - Reserva consta inativa'
+          # FIM - DISPLAY LOG
+                      
+       end if
+       
+       if l_texto_parse = 'true' then
+          let l_reserva_ativa = true
+          
+          # INICIO - DISPLAY LOG
+          error "Reserva consta ativa."
+          sleep 1
+          #display 'ctd41g00 - Reserva consta ativa'
+          # FIM - DISPLAY LOG
+          
+       end if
+    else 
+
+       let l_reserva_ativa = true
+       
+       # INICIO - DISPLAY LOG
+       #error "Erro ao tentar checar reserva, assumiremos como ativa"
+       #sleep 1
+       #display 'ctd41g00 - Erro ao tentar checar reserva, assumiremos como ativa'
+       # FIM - DISPLAY LOG
+
+    end if
+
+ else
+
+    let l_reserva_ativa = false
+
+ end if
+
+ return l_reserva_ativa
+
+end function
+
+# Confirmar a utilização de chave previamente reservada 
+#--------------------------------------------------------------------------
+function ctd41g00_baixar_agenda(l_rsrchv, l_atdsrvano, l_atdsrvnum)
+#--------------------------------------------------------------------------
+ 
+# DEFINICAO E INICIALIZACAO DE VARIAVEIS LOCAIS
+  
+ define l_coderro       smallint                   # Cod. de erro do retorno MQ
+       ,l_msg_erro      char(30)                   # Msg. de erro do retorno MQ
+       ,l_xml_envio     char(5000)                 # XML enviado para o MQ
+       ,l_msgid         char(24)                   # ID da Mensagem
+       ,l_correlid      char(24)                   # Correletion ID
+       ,l_rsrchv        char(19)                   # Chave reserva (param)
+       ,l_atdsrvano     like datmservico.atdsrvano # Ano do servico (param)
+       ,l_atdsrvnum     like datmservico.atdsrvnum # Numero servico (param)
+
+ initialize l_coderro 
+           ,l_msg_erro
+           ,l_xml_envio
+           ,l_msgid
+           ,l_correlid
+ to null
+
+ #display 'ctd41g00_baixar_agenda acionado'
+ 
+ # MONTAGEM DO XML DE ENVIO
+
+ let l_xml_envio = '<?xml version="1.0" encoding="UTF-8"?>'
+                  ,'<ns0:baixarAgendaIn xmlns:tns="http://www.portoseguro.com.'
+                  ,'br/ebo/AgendaAtendimentoSocorrista/V1_0" xmlns:ns0="http'
+                  ,'://www.portoseguro.com.br/atendimentoSocorrista/busines'
+                  ,'s/AgendaAtendimentoSocorristaEBM/V1_0/">'
+
+                      # TAG parChave
+                      ,'<ns0:parChave>'
+                      ,l_rsrchv clipped
+                      ,'</ns0:parChave>'
+
+                      # TAG parAnoServico
+                      ,'<ns0:parAnoServico>'
+                      ,l_atdsrvano using "<<"
+                      ,'</ns0:parAnoServico>'
+
+                      # TAG parCodigoServico
+                      ,'<ns0:parCodigoServico>'
+                      ,l_atdsrvnum clipped using "<<<<<<<<<<"
+                      ,'</ns0:parCodigoServico>'
+
+                  ,'</ns0:baixarAgendaIn>'
+
+
+ # INICIO - DISPLAY LOG
+ #display "XML ENVIADO (BAIXAR AGENDA):"
+ #display l_xml_envio clipped
+ # FIM - DISPLAY LOG
+ 
+ # CHAMADA DO SERVICO MQ "BAIXAR AGENDA"
+
+ call figrc006_enviar_datagrama_mq_rq('PSOBAIAGENSOA01D',
+                                     l_xml_envio clipped,
+                                     "",
+                                     online())
+     returning l_coderro,
+               l_msg_erro,
+               l_msgid,
+               l_correlid  
+               
+ #display 'Retorno da baixa: '
+ #display 'l_coderro : ', l_coderro 
+ #display 'l_msg_erro: ', l_msg_erro clipped
+ #display 'l_msgid   : ', l_msgid    clipped
+ #display 'l_correlid: ', l_correlid clipped
+
+ # INICIO - DISPLAY LOG
+ if l_coderro = 0 then
+    #error "Sucesso na chamada MQ baixar agenda."
+    #sleep 1
+    #display 'ctd41g00 - Sucesso na chamada MQ baixar agenda'
+ else
+    error "Erro ",l_coderro," na chamada MQ baixar agenda."
+    sleep 1
+    #display "ctd41g00 - Erro ",l_coderro," na chamada MQ baixar agenda."
+ end if
+ # FIM - DISPLAY LOG
+
+ return l_coderro, l_msg_erro
+ 
+end function
+
+# Desistir da utilização de chave previamente reservada liberando para outro agendamtento 
+#--------------------------------------------------------------------------
+function ctd41g00_liberar_agenda(l_atdsrvano, l_atdsrvnum, l_atddatprg, l_atdhorprg)
+#--------------------------------------------------------------------------
+ 
+# DEFINICAO E INICIALIZACAO DE VARIAVEIS LOCAIS
+
+ define l_coderro        smallint                   # Cod. de erro do retorno MQ
+       ,l_msg_erro       char(30)                   # Msg. de erro do retorno MQ
+       ,l_xml_envio      char(5000)                 # XML enviado para o MQ
+       ,l_msgid          char(24)                   # ID da Mensagem
+       ,l_correlid       char(24)                   # Correletion ID
+       ,l_data_hora_char char(19)                   # Data e Hora (texto)
+       ,l_data_char      char(10)                   # Data - Multiuso (texto)
+       ,l_hora_char      char(05)                   # Hora - Multiuso (texto)
+       ,l_atdsrvano      like datmservico.atdsrvano # Ano do servico (param)
+       ,l_atdsrvnum      like datmservico.atdsrvnum # Numero servico (param)
+       ,l_atddatprg      like datmservico.atddatprg # Data programa (param)
+       ,l_atdhorprg      like datmservico.atdhorprg # Hora programa (param)
+
+ initialize l_coderro 
+           ,l_msg_erro
+           ,l_xml_envio
+           ,l_msgid
+           ,l_correlid
+           ,l_data_hora_char
+           ,l_data_char
+           ,l_hora_char
+ to null
+
+ # FORMATACAO DO CAMPO DATA E HORA DO SERVICO
+
+ #display 'ctd41g00_liberar_agenda acionado'
+ 
+ let l_data_char = l_atddatprg
+ let l_hora_char = l_atdhorprg
+
+ let l_data_hora_char = l_data_char[7,10] clipped
+                       ,"-" clipped
+                       ,l_data_char[4,5] clipped
+                       ,"-" clipped
+                       ,l_data_char[1,2] clipped
+                       ,"T" clipped
+                       ,l_hora_char clipped
+                       , ":00"   # transformar hour to minute para o formato oracle
+
+ # MONTAGEM DO XML DE ENVIO
+
+ let l_xml_envio = '<?xml version="1.0" encoding="UTF-8"?>'
+                  ,'<ns0:liberarAgendaIn xmlns:tns="http://www.portoseguro.co'
+                  ,'m.br/ebo/AgendaAtendimentoSocorrista/V1_0" xmlns:ns0="htt'
+                  ,'p://www.portoseguro.com.br/atendimentoSocorrista/business'
+                  ,'/AgendaAtendimentoSocorristaEBM/V1_0/">'
+
+                      # TAG parAnoServico
+                      ,'<ns0:parAnoServico>'
+                      ,l_atdsrvano
+                      ,'</ns0:parAnoServico>'
+
+                      # TAG parCodigoServico
+                      ,'<ns0:parCodigoServico>'
+                      ,l_atdsrvnum clipped
+                      ,'</ns0:parCodigoServico>'
+
+                      # TAG parDataHoraServico
+                      ,'<ns0:parDataHoraServico>'
+                      ,l_data_hora_char clipped
+                      ,'</ns0:parDataHoraServico>'
+
+                  ,'</ns0:liberarAgendaIn>'
+                  
+ # INICIO - DISPLAY LOG
+ #display "XML ENVIADO (LIBERAR AGENDA):"
+ #display l_xml_envio clipped
+ # FIM - DISPLAY LOG
+
+ # CHAMADA DO SERVICO MQ "BAIXAR AGENDA"
+ call figrc006_enviar_datagrama_mq_rq('PSOLIBAGENSOA01D', 
+                                     l_xml_envio clipped, 
+                                     "",
+                                     online())
+     returning l_coderro,
+               l_msg_erro,
+               l_msgid,
+               l_correlid
+               
+ #display 'Retorno da liberacao: '
+ #display 'l_coderro : ', l_coderro 
+ #display 'l_msg_erro: ', l_msg_erro clipped
+ #display 'l_msgid   : ', l_msgid    clipped
+ #display 'l_correlid: ', l_correlid clipped
+ 
+ # INICIO - DISPLAY LOG
+ if l_coderro = 0 then
+    #error "Sucesso na chamada MQ liberar agenda."
+    #sleep 1
+    #display "ctd41g00 - Sucesso na chamada MQ liberar agenda."
+ else
+    error "Erro ",l_coderro," na chamada MQ liberar agenda."
+    sleep 1
+    display "ctd41g00 - Erro ",l_coderro," na chamada MQ liberar agenda."
+ end if
+ # FIM - DISPLAY LOG
+
+end function
+

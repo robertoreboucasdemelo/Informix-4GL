@@ -1,0 +1,34 @@
+{---------------------------------------------------------------------
+ Nome do form: CTN06C10                      
+ Consulta os grupos de naturezas do prestador
+----------------------------------------------------------------------}
+
+database formonly
+
+screen size 24 by 80
+{
+ Grp   Descricao
+----------------------ctn06c10-------
+
+ [f1] [f2                 ]
+ [f1] [f2                 ]
+ [f1] [f2                 ]
+ [f1] [f2                 ]
+ [f1] [f2                 ]
+
+-------------------------------------
+
+}
+
+end
+
+attributes
+f1 = formonly.socntzgrpcod, noentry;
+f2 = formonly.socntzgrpdes, noentry;
+end
+
+instructions
+   delimiters " "
+   screen record dparpstgrpntz(formonly.socntzgrpcod,
+                               formonly.socntzgrpdes)
+end

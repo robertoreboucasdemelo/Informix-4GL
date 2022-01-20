@@ -1,0 +1,41 @@
+{-----------------------------------------------------------------------------
+ Nome do Form: cts02m03                                                  Pedro
+                                                                       Marcelo
+ Previsao/Porgramacao do servico                                      Dez/1994
+-----------------------------------------------------------------------------}
+
+database porto
+screen size 24 by 80
+
+{
+   Previsao do Servico
+---------------cts02m03--
+ Previsao Chegada:[a    ]
+
+ Retorno Segurado:[b]
+
+ Programacao:
+        Data:[c         ]
+        Hora:[d    ]
+
+}
+end
+
+tables
+datmservico
+
+attributes
+
+a    = datmservico.atdhorpvt,            comments = " Previsao em horas/minutos",
+                                         autonext;
+b    = datmservico.atdpvtretflg,         comments = " Retorno ao Segurado",
+                                         autonext;
+c    = formonly.atddatprg     type date, comments = " Data Programada"  ,
+                                         autonext;
+d    = datmservico.atdhorprg,            comments = " Hora Programada"  ,
+                                         autonext, picture = "##:##";
+end
+
+instructions
+  delimiters " "
+end

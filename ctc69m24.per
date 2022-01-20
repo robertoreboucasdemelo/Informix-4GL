@@ -1,0 +1,48 @@
+{--------------------------------------------------------------------
+ Nome do Form: ctc69m24                                      R.Fornax
+                                                             
+ Cadastro de Natureza,Tipo ou Motivo X Especialidade         Jan/2015
+--------------------------------------------------------------------}
+
+database formonly
+screen size 24 by 80
+
+{
+--------------------------------------------------------------------ctc69m24--
+                         DE-PARA DE ESPECIALIDADE
+------------------------------------------------------------------------------
+ 
+ ORIGEM  COD.  DESCRICAO              SUB.  COD.  ESPECIALIDADE   
+                                             
+ [a   ] [b  ] [c                     ][d ] [e  ] [f                        ]
+ [a   ] [b  ] [c                     ][d ] [e  ] [f                        ]
+ [a   ] [b  ] [c                     ][d ] [e  ] [f                        ]
+ [a   ] [b  ] [c                     ][d ] [e  ] [f                        ]
+ [a   ] [b  ] [c                     ][d ] [e  ] [f                        ]
+------------------------------------------------------------------------------
+ ORIGEM......:[g                ] SUB NATUREZA.:[h                         ]
+ ATUALIZADO..:[i          ] POR [j                                         ]
+------------------------------------------------------------------------------
+ [l                                                                        ]
+ 
+}
+end
+
+attributes
+   a  = formonly.codori                 ,comments = " Digite o Codigo da Origem" ;      
+   b  = formonly.codigo                 ,comments = " Digite o Codigo da Natureza, Tipo ou Motivo" ;     
+   c  = formonly.descricao              ,noentry;    
+   d  = formonly.subcod                 ,comments = " Digite o Codigo da Sub Natureza" ;   
+   e  = formonly.srvespnum              ,comments = " Digite o Codigo da Especialidade" ;      
+   f  = formonly.srvespnom              ,noentry;
+   g  = formonly.srvtipabvdes           ,noentry;
+   h  = formonly.subdes                 ,noentry;   
+   i  = formonly.atldat                 ,noentry;
+   j  = formonly.funmat                 ,noentry;
+   l  = formonly.msg                    ,noentry;
+end
+
+instructions
+   delimiters " "
+   screen record s_ctc69m24(codori thru srvespnom)
+end
